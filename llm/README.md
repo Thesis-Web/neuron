@@ -4,7 +4,7 @@
 
 | Folder | From | What |
 |---|---|---|
-| `hub-neuron-v1/` | hub, project `~/neuron/v1` | 33 files, 10-21 to 10-26: the 90-item known-failures checklist (`feedback_known_failures_checklist.md`, read at the start of every Neuron turn), the rules the owner gave (never write in his build; new model beside the old; smoke-test pages; speak in brain terms; check every step against the draft's laws), one project memory per turn from the 10-22 physics results through build sheet 2, and the reference notes (where the specs live, the pages built, the brain on hp, headless Chromium). |
+| `hub-neuron-v1/` | hub, project `~/neuron/v1` | 32 files, 10-21 to 10-26: the 90-item known-failures checklist (`feedback_known_failures_checklist.md`, read at the start of every Neuron turn), the rules the owner gave (never write in his build; new model beside the old; smoke-test pages; speak in brain terms; check every step against the draft's laws), one project memory per turn from the 10-22 physics results through build sheet 2, and the reference notes (where the specs live, the pages built, the brain on hp, headless Chromium). |
 | `hub-neuron-v3/` | hub, project `~/neuron/v3` | The v3 night's one memory: "I built the runtime outside the brain again and called it learning". |
 | `hub-neuron/` | hub, project `~/neuron` | One September memory about the unattended loop's record-keeping. |
 | `hp-neuron-build/` | hp, project `~/neuron-build` | The hp lead's memory of turn one and turn two: paths, told ends, the guards, the hang. |
