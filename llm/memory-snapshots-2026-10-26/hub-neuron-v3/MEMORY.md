@@ -1,0 +1,1 @@
+- [Neuron v3: I built the runtime outside the brain again and called it learning (2026-10-26, deleted the same night)](feedback_neuron_v3_i_built_the_runtime_again.md) — read before any Neuron work; under total freedom my default is the trap; say so before building

@@ -1,0 +1,4 @@
+look at neuron v19 and tell me what you think... correct? incorrect.. more correct than we have ever done? less correct than we have ever done?
+
+
+(saved Thu Oct 15 21:42:34 CDT 2026, session 69692be7 (neuron-v18 hand-build), extracted verbatim from line 745 of the session .jsonl)

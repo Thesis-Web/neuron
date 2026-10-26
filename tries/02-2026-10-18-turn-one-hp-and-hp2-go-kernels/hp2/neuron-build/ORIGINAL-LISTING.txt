@@ -1,0 +1,30 @@
+/home/james/neuron-build:
+total 596
+drwxrwxr-x+  5 james james   4096 2026-10-19 14:34 .
+drwx--x---+ 15 james james   4096 2026-10-26 04:53 ..
+-rw-rw-r--   1 james james 229784 2026-10-19 15:39 ADVERSARY-FINDINGS.md
+-rwxrwxr-x   1 james james  17122 2026-10-19 07:42 AUDIT-HP2-2026-10-19.md
+-rw-r--r--   1 james james    832 2026-10-18 23:15 CLAUDE.md
+-rw-rw-r--   1 james james  47778 2026-10-19 15:19 DECISIONS.md
+drwxrwxr-x   2 james james   4096 2026-10-19 14:30 kernel
+-rw-rw-r--   1 james james  12933 2026-10-19 09:30 KERNEL-SPEC.md
+drwx------   2 james james   4096 2026-10-19 00:04 keys
+drwxrwxr-x+  2 james james   4096 2026-10-19 14:22 lay
+-rwxrwxr-x   1 james james  45421 2026-10-19 14:34 NEURON-BLUEPRINT-2026-10-18.md
+-rwxrwxr-x   1 james james  10774 2026-10-19 00:12 NEURON-BUILDER-GUIDE-2026-10-18.md
+-rwxrwxr-x   1 james james  17360 2026-10-19 11:36 NEURON-MEANING-BLUEPRINT-2026-10-19.md
+-rwxrwxr-x   1 james james  18160 2026-10-18 23:13 NEURON-NOW-2026-10-18.md
+-rwxrwxr-x   1 james james  71541 2026-10-18 23:13 NEURON-NOW-Interview-2026-10-18.md
+-rwxrwxr-x   1 james james  15695 2026-10-19 00:12 NEURON-RESEARCH-2026-10-19.md
+-rwxrwxr-x   1 james james  12406 2026-10-19 00:06 NEURON-SOURCES-2026-10-19.md
+-rwxrwxr-x   1 james james   2031 2026-10-19 00:12 NEURON-UPDATE-2026-10-19.md
+-rw-rw-r--   1 james james   7701 2026-10-19 02:28 REPORT-TURN-ONE.md
+-rwxrwxr-x   1 james james  16253 2026-10-19 11:36 sematic primes and roots worksheet..ods
+-rw-rw-r--   1 james james  26763 2026-10-19 13:23 TOLD-PROCESSES.md
+
+/home/james/neuron-build/keys:
+total 16
+drwx------  2 james james 4096 2026-10-19 00:04 .
+drwxrwxr-x+ 5 james james 4096 2026-10-19 14:34 ..
+-rw-------  1 james james   37 2026-10-19 00:04 mw_collegiate.key
+-rw-------  1 james james   37 2026-10-19 00:04 mw_thesaurus.key

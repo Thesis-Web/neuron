@@ -1,0 +1,366 @@
+# 00-roots.lay: the origin, the axes, the rigid layer (physics gates), the outcomes, the told values,
+# the ports, the handles of the born processes other files fill, and the keyboard keys.
+# Laid by the lead. Every row here is marked told. Nothing here is a word with a meaning the kernel knows.
+
+# gate 0 is zero: the origin, the point every scale starts from. Its value is 0.
+gate zero @ 0 0 0 = 0
+gate x-axis @ 1 0 0
+gate y-axis @ 0 1 0
+gate z-axis @ 0 0 1
+
+# the rigid layer: one gate per physics word. Passing it makes the silicon do it.
+gate add @ 0 0 -10 : ADD
+gate call @ 1 0 -10 : CALL
+gate clock @ 2 0 -10 : CLOCK
+gate compare @ 3 0 -10 : COMPARE
+gate delete-def @ 4 0 -10 : DELETE.def
+gate delete-label @ 5 0 -10 : DELETE.label
+gate delete-rel @ 6 0 -10 : DELETE.rel
+gate delete-row @ 7 0 -10 : DELETE.row
+gate delete-shard @ 8 0 -10 : DELETE.shard
+gate delete-trig @ 9 0 -10 : DELETE.trig
+gate div @ 10 0 -10 : DIV
+gate drop @ 11 0 -10 : DROP
+gate dup @ 0 1 -10 : DUP
+gate end @ 1 1 -10 : END
+gate find-label @ 2 1 -10 : FIND.label
+gate find-point @ 3 1 -10 : FIND.point
+gate find-row @ 4 1 -10 : FIND.row
+gate find-rowkey @ 5 1 -10 : FIND.rowkey
+gate find-shape @ 6 1 -10 : FIND.shape
+gate find-sig @ 7 1 -10 : FIND.sig
+gate find-time @ 8 1 -10 : FIND.time
+gate find-value @ 9 1 -10 : FIND.value
+gate go @ 10 1 -10 : GO
+gate hear @ 11 1 -10 : HEAR
+gate land @ 0 2 -10 : LAND
+gate move @ 1 2 -10 : MOVE
+gate move-mem @ 2 2 -10 : MOVE.mem
+gate mul @ 3 2 -10 : MUL
+gate rot @ 11 8 -10 : ROT
+gate read-tomark @ 5 8 -10 : READ.tomark
+gate read-memkind @ 7 8 -10 : READ.memkind
+gate read-trailof @ 6 8 -10 : READ.trailof
+gate read-word @ 8 8 -10 : READ.word
+gate read-pick @ 9 8 -10 : READ.pick
+gate read-input @ 10 8 -10 : READ.input
+gate over @ 4 2 -10 : OVER
+gate read-at @ 5 2 -10 : READ.at
+gate read-bind @ 6 2 -10 : READ.bind
+gate read-body @ 7 2 -10 : READ.body
+gate read-count @ 8 2 -10 : READ.count
+gate read-def @ 9 2 -10 : READ.def
+gate read-depth @ 10 2 -10 : READ.depth
+gate read-from @ 11 2 -10 : READ.from
+# read-words: -- l : this run's own input as the encoder reads it now (a word that got its gate since is its gate)
+gate read-words @ 12 2 -10 : READ.words
+gate read-head @ 0 3 -10 : READ.head
+gate read-how @ 1 3 -10 : READ.how
+gate read-item @ 2 3 -10 : READ.item
+gate read-label @ 3 3 -10 : READ.label
+gate read-list @ 4 3 -10 : READ.list
+gate read-made @ 5 3 -10 : READ.made
+gate read-mark @ 6 3 -10 : READ.mark
+gate read-mem @ 7 3 -10 : READ.mem
+gate read-mytrig @ 8 3 -10 : READ.mytrig
+gate read-next @ 9 3 -10 : READ.next
+gate read-pad @ 10 3 -10 : READ.pad
+gate read-parent @ 11 3 -10 : READ.parent
+gate read-point @ 0 4 -10 : READ.point
+gate read-rel @ 1 4 -10 : READ.rel
+gate read-relin @ 2 4 -10 : READ.relin
+gate read-rels @ 3 4 -10 : READ.rels
+gate read-row @ 4 4 -10 : READ.row
+gate read-self @ 5 4 -10 : READ.self
+gate read-shape @ 6 4 -10 : READ.shape
+gate read-shard @ 7 4 -10 : READ.shard
+gate read-sig @ 8 4 -10 : READ.sig
+gate read-size @ 9 4 -10 : READ.size
+gate read-source @ 10 4 -10 : READ.source
+gate read-steps @ 11 4 -10 : READ.steps
+gate read-strength @ 0 5 -10 : READ.strength
+gate read-trail @ 1 5 -10 : READ.trail
+gate read-trig @ 2 5 -10 : READ.trig
+gate read-trust @ 3 5 -10 : READ.trust
+gate read-use @ 4 5 -10 : READ.use
+gate read-value @ 5 5 -10 : READ.value
+gate read-want @ 6 5 -10 : READ.want
+gate read-what @ 7 5 -10 : READ.what
+gate read-when @ 8 5 -10 : READ.when
+gate read-where @ 9 5 -10 : READ.where
+gate read-who @ 10 5 -10 : READ.who
+gate read-why @ 11 5 -10 : READ.why
+gate read-worth @ 0 6 -10 : READ.worth
+gate say @ 1 6 -10 : SAY
+gate spawn @ 2 6 -10 : SPAWN
+gate split @ 3 6 -10 : SPLIT
+gate sub @ 4 6 -10 : SUB
+gate swap @ 5 6 -10 : SWAP
+gate wait @ 6 6 -10 : WAIT
+gate write-body @ 7 6 -10 : WRITE.body
+gate write-def @ 8 6 -10 : WRITE.def
+gate write-label @ 9 6 -10 : WRITE.label
+gate write-mark @ 10 6 -10 : WRITE.mark
+gate write-mem @ 11 6 -10 : WRITE.run
+gate write-outcome @ 0 7 -10 : WRITE.outcome
+gate write-proc @ 1 7 -10 : WRITE.proc
+gate write-receipt @ 2 7 -10 : WRITE.receipt
+gate write-rel @ 3 7 -10 : WRITE.rel
+gate write-rest @ 4 7 -10 : WRITE.rest
+gate write-row @ 5 7 -10 : WRITE.row
+gate write-shard @ 6 7 -10 : WRITE.shard
+gate write-strength @ 7 7 -10 : WRITE.strength
+gate write-trig @ 8 7 -10 : WRITE.trig
+gate write-trust @ 9 7 -10 : WRITE.trust
+gate write-value @ 10 7 -10 : WRITE.value
+gate write-want @ 11 7 -10 : WRITE.want
+
+# outcomes: a test puts one of these at the head of the remainder; the next shard picks the branch
+gate found @ 0 0 -20 : outcome.found
+gate none @ 1 0 -20 : outcome.none
+gate same @ 2 0 -20 : outcome.same
+gate more @ 3 0 -20 : outcome.more
+gate less @ 4 0 -20 : outcome.less
+gate yes @ 5 0 -20 : outcome.yes
+gate no @ 6 0 -20 : outcome.no
+# memory tiers, relationship states, memory fidelity: names in hand
+gate tier-active @ 0 1 -20 : tier.active
+gate tier-persistent @ 1 1 -20 : tier.persistent
+gate tier-long @ 2 1 -20 : tier.long
+gate state-guess @ 0 2 -20 : state.guess
+gate state-belief @ 1 2 -20 : state.belief
+gate state-grounded @ 2 2 -20 : state.grounded
+gate state-contradicted @ 3 2 -20 : state.contradicted
+gate state-told @ 4 2 -20 : state.told
+gate fid-exact @ 0 3 -20 : fid.exact
+gate fid-condensed @ 1 3 -20 : fid.condensed
+gate fid-highlights @ 2 3 -20 : fid.highlights
+
+# told values the kernel reads. Anyone can see them; the brain can change them with WRITE.value.
+gate budget @ 0 4 -20 : VALUE.budget = 2000
+gate beat @ 1 4 -20 : VALUE.beat = 1000
+gate floor @ 2 4 -20 : VALUE.floor = 0.1
+gate steplimit @ 3 4 -20 : VALUE.steplimit = 20000
+gate parkafter @ 4 4 -20 : VALUE.parkafter = 30
+gate slice @ 5 4 -20 : VALUE.slice = 16
+gate splitworth @ 6 4 -20 : VALUE.splitworth = 0.8
+# same-within: two points closer than this compare as same (the kernel's compare reads it)
+gate same-within @ 7 4 -20 : VALUE.same = 0.5
+# shape-step: a hop shorter than this on an axis counts as no movement in a run's shape
+gate shape-step @ 8 4 -20 : VALUE.shapestep = 0.5
+
+# ports: where a run starts. talk is a person; self is the sixth.
+gate talk @ 0 5 -20 : PORT.talk
+gate self @ 1 5 -20 : PORT.self
+
+# handles of born processes the kernel must find. Other files give them their strings (proc NAME: ...).
+gate miss @ 0 6 -20 : PROC.miss
+gate end-of-run @ 1 6 -20 : PROC.end
+gate sixth @ 2 6 -20 : PROC.sixth
+
+# handles the builders fill (proc NAME: ...). Each says what passing it does; the pad protocol is in the briefs.
+gate newborn @ 3 6 -20
+gate ask-what-is @ 4 6 -20
+gate compile @ 5 6 -20
+gate remember @ 6 6 -20
+gate balance @ 7 6 -20
+gate believe @ 8 6 -20
+gate guess @ 9 6 -20
+gate answer @ 10 6 -20
+gate source-check @ 11 6 -20
+gate learn @ 0 7 -20
+gate backpop @ 1 7 -20
+gate hc @ 2 7 -20
+gate sleep-ask @ 3 7 -20
+gate sleep @ 4 7 -20
+gate correct @ 5 7 -20
+gate core-check @ 6 7 -20
+gate say-word @ 7 7 -20
+gate call-word @ 8 7 -20
+# the meaning way (turn two): g -- ; gap, spec, compile, test, hold, wire, use. Filled by 45-meaning.lay
+gate meaning @ 9 7 -20
+
+# the kernel's own row kinds, as names in hand for find-row / find-rowkey / read-row
+gate kind-run @ 5 8 -20 : kind.run
+gate kind-birth @ 6 8 -20 : kind.birth
+gate kind-shift @ 7 8 -20 : kind.shift
+gate kind-parked @ 8 8 -20 : kind.parked
+gate kind-core @ 9 8 -20 : kind.core
+gate kind-born @ 10 8 -20 : kind.born
+gate kind-told @ 11 8 -20 : kind.told
+gate kind-outage @ 12 8 -20 : kind.outage
+
+# the sixth's lists: kinds of rows (write-row / find-row name the kind by these gates)
+gate gap @ 0 8 -20 : kind.gap
+gate imbalance @ 1 8 -20 : kind.imbalance
+gate guesses @ 2 8 -20 : kind.guesses
+gate questions @ 3 8 -20 : kind.questions
+gate slow @ 4 8 -20 : kind.slow
+
+# the keyboard: every key gets its own gate. 0 1 2 point to zero one two (laid by the primes file).
+# letters a and i carry no key label: those texts are words (the primes file labels them).
+# special keys carry no word label, so no English word is taken by a key.
+# + - * / = carry no key label: the operators file points those keys at the operators.
+gate key-a @ 0 0 -30
+gate key-b @ 1 0 -30
+label key-b b
+gate key-c @ 2 0 -30
+label key-c c
+gate key-d @ 3 0 -30
+label key-d d
+gate key-e @ 4 0 -30
+label key-e e
+gate key-f @ 5 0 -30
+label key-f f
+gate key-g @ 6 0 -30
+label key-g g
+gate key-h @ 7 0 -30
+label key-h h
+gate key-i @ 8 0 -30
+gate key-j @ 9 0 -30
+label key-j j
+gate key-k @ 10 0 -30
+label key-k k
+gate key-l @ 11 0 -30
+label key-l l
+gate key-m @ 12 0 -30
+label key-m m
+gate key-n @ 0 1 -30
+label key-n n
+gate key-o @ 1 1 -30
+label key-o o
+gate key-p @ 2 1 -30
+label key-p p
+gate key-q @ 3 1 -30
+label key-q q
+gate key-r @ 4 1 -30
+label key-r r
+gate key-s @ 5 1 -30
+label key-s s
+gate key-t @ 6 1 -30
+label key-t t
+gate key-u @ 7 1 -30
+label key-u u
+gate key-v @ 8 1 -30
+label key-v v
+gate key-w @ 9 1 -30
+label key-w w
+gate key-x @ 10 1 -30
+label key-x x
+gate key-y @ 11 1 -30
+label key-y y
+gate key-z @ 12 1 -30
+label key-z z
+gate key-3 @ 3 2 -30
+label key-3 3
+gate key-4 @ 4 2 -30
+label key-4 4
+gate key-5 @ 5 2 -30
+label key-5 5
+gate key-6 @ 6 2 -30
+label key-6 6
+gate key-7 @ 7 2 -30
+label key-7 7
+gate key-8 @ 8 2 -30
+label key-8 8
+gate key-9 @ 9 2 -30
+label key-9 9
+gate key-0 @ 0 2 -30
+gate key-1 @ 1 2 -30
+gate key-2 @ 2 2 -30
+gate key-grave @ 0 3 -30
+label key-grave `
+gate key-tilde @ 1 3 -30
+label key-tilde ~
+gate key-bang @ 2 3 -30
+label key-bang !
+gate key-at @ 3 3 -30
+label key-at @
+gate key-hash @ 4 3 -30
+label key-hash #
+gate key-dollar @ 5 3 -30
+label key-dollar $
+gate key-percent @ 6 3 -30
+label key-percent %
+gate key-caret @ 7 3 -30
+label key-caret ^
+gate key-amp @ 8 3 -30
+label key-amp &
+gate key-star @ 9 3 -30
+gate key-lparen @ 10 3 -30
+label key-lparen (
+gate key-rparen @ 11 3 -30
+label key-rparen )
+gate key-dash @ 12 3 -30
+gate key-under @ 0 4 -30
+label key-under _
+gate key-equal @ 1 4 -30
+gate key-plus @ 2 4 -30
+gate key-lbrack @ 3 4 -30
+label key-lbrack [
+gate key-rbrack @ 4 4 -30
+label key-rbrack ]
+gate key-lbrace @ 5 4 -30
+label key-lbrace {
+gate key-rbrace @ 6 4 -30
+label key-rbrace }
+gate key-bslash @ 7 4 -30
+label key-bslash \
+gate key-pipe @ 8 4 -30
+label key-pipe |
+gate key-semi @ 9 4 -30
+label key-semi ;
+gate key-colon @ 10 4 -30
+label key-colon :
+gate key-apos @ 11 4 -30
+label key-apos '
+gate key-dquote @ 12 4 -30
+label key-dquote "
+gate key-comma @ 0 5 -30
+label key-comma ,
+gate key-dot @ 1 5 -30
+label key-dot .
+gate key-lt @ 2 5 -30
+label key-lt <
+gate key-gt @ 3 5 -30
+label key-gt >
+gate key-slash @ 4 5 -30
+gate key-qmark @ 5 5 -30
+label key-qmark ?
+gate key-space @ 0 6 -30
+gate key-tab @ 1 6 -30
+gate key-enter @ 2 6 -30
+gate key-shift @ 3 6 -30
+gate key-ctrl @ 4 6 -30
+gate key-alt @ 5 6 -30
+gate key-esc @ 6 6 -30
+gate key-backspace @ 7 6 -30
+gate key-delete @ 8 6 -30
+gate key-insert @ 9 6 -30
+gate key-home @ 10 6 -30
+gate key-end @ 11 6 -30
+gate key-pageup @ 12 6 -30
+gate key-pagedown @ 0 7 -30
+gate key-up @ 1 7 -30
+gate key-down @ 2 7 -30
+gate key-left @ 3 7 -30
+gate key-right @ 4 7 -30
+gate key-capslock @ 5 7 -30
+gate key-super @ 6 7 -30
+gate key-menu @ 7 7 -30
+gate key-printscreen @ 8 7 -30
+gate key-scrolllock @ 9 7 -30
+gate key-pause @ 10 7 -30
+gate key-numlock @ 11 7 -30
+gate key-f1 @ 12 7 -30
+gate key-f2 @ 0 8 -30
+gate key-f3 @ 1 8 -30
+gate key-f4 @ 2 8 -30
+gate key-f5 @ 3 8 -30
+gate key-f6 @ 4 8 -30
+gate key-f7 @ 5 8 -30
+gate key-f8 @ 6 8 -30
+gate key-f9 @ 7 8 -30
+gate key-f10 @ 8 8 -30
+gate key-f11 @ 9 8 -30
+gate key-f12 @ 10 8 -30

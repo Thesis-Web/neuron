@@ -1,0 +1,7204 @@
+{
+ "words": [
+  {
+   "word": "create",
+   "sources": [
+    "mw: to bring into existence",
+    "wn v2: bring into existence"
+   ],
+   "note": "Two shards pass: a row brought into existence, and a table. Same shape, different kind of thing.",
+   "candidates": [
+    "row",
+    "table",
+    "WRONG: read it"
+   ]
+  },
+  {
+   "word": "new",
+   "sources": [
+    "wn adj: not of long duration; having just come into existence",
+    "mw: having recently come into existence: recent, modern"
+   ],
+   "note": "new is a time test on create: born at the clock reading now.",
+   "candidates": [
+    "born now"
+   ]
+  },
+  {
+   "word": "delete",
+   "sources": [
+    "wn v1: remove or make invisible",
+    "mw: to eliminate especially by blotting out, cutting out, or erasing"
+   ],
+   "note": "",
+   "candidates": [
+    "remove the row",
+    "WRONG: hide by moving"
+   ]
+  },
+  {
+   "word": "remove",
+   "sources": [
+    "wn v1: remove something concrete, as by lifting, pushing, or taking off, or remove something abstract",
+    "mw: to change the location, position, station, or residence of; to move by lifting, pushing aside, or taking away or off"
+   ],
+   "note": "Both runs pass remove; only the first passes delete. remove is \"away from here\", delete is \"gone from everywhere\": delete is one shard of remove.",
+   "candidates": [
+    "take the row away",
+    "move it away from the place"
+   ]
+  },
+  {
+   "word": "copy",
+   "sources": [
+    "mw: to make a copy or duplicate of",
+    "wn n1: a reproduction of a written record"
+   ],
+   "note": "",
+   "candidates": [
+    "duplicate the row",
+    "WRONG: move it"
+   ]
+  },
+  {
+   "word": "move",
+   "sources": [
+    "wn v1: change location; move, travel, or proceed",
+    "mw: to go or pass to another place or in a certain direction"
+   ],
+   "note": "copy fails move on one line only: the thing is still at the old place. move = copy + remove-from-old, which is one DELETE more.",
+   "candidates": [
+    "change the place",
+    "WRONG: copy it there",
+    "copy it there, then remove it from here"
+   ]
+  },
+  {
+   "word": "split",
+   "sources": [
+    "wn v1: separate into parts or portions",
+    "mw: to divide lengthwise usually along a grain or seam or by layers"
+   ],
+   "note": "",
+   "candidates": [
+    "two parts by a cut",
+    "WRONG: two copies of all"
+   ]
+  },
+  {
+   "word": "join",
+   "sources": [
+    "wn n2: a set containing all and only the members of two or more given sets",
+    "wn v4: make contact or come together",
+    "mw: to put or bring together so as to form a unit"
+   ],
+   "note": "SQL JOIN is a different meaning under the same letters (pairing by a shared key). That is the encoder's business: two gates, one spelling.",
+   "candidates": [
+    "bring two parts together",
+    "WRONG: pair them up by a key (SQL JOIN)"
+   ]
+  },
+  {
+   "word": "read",
+   "sources": [
+    "mw: to receive or take in the sense of (letters, symbols, etc.) especially by sight or touch",
+    "wn v1: interpret something that is written or printed"
+   ],
+   "note": "",
+   "candidates": [
+    "take in what is written at a known place",
+    "WRONG: change it while looking"
+   ]
+  },
+  {
+   "word": "write",
+   "sources": [
+    "mw: to form (characters, symbols, etc.) by or as if by marking on a surface",
+    "wn v2: communicate or express by writing"
+   ],
+   "note": "write has two shards: the new mark (which is also create's row shard) and the changed mark. create and write share one shard; that is where their places overlap.",
+   "candidates": [
+    "a new mark",
+    "a changed mark",
+    "WRONG: only look"
+   ]
+  },
+  {
+   "word": "find",
+   "sources": [
+    "wn v1: come upon, as if by accident; meet with",
+    "mw: to come upon often accidentally: encounter",
+    "wn v3: discover or determine the existence, presence, or fact of"
+   ],
+   "note": "read and find reach the same roots (READ, COMPARE, FIND). They differ in what is in hand on arrival: an identity (read) or a property (find). That difference is the shard key, not the roots.",
+   "candidates": [
+    "come upon the things with a property",
+    "WRONG: take whatever is first"
+   ]
+  },
+  {
+   "word": "same",
+   "sources": [
+    "wn adj1: same in identity",
+    "mw: resembling in every relevant respect; being one without addition, change, or discontinuance: identical"
+   ],
+   "note": "Identity in every relevant respect: a weaker compare (name only) calls two different apples the same, and fails.",
+   "candidates": [
+    "identical in every field, a thing and itself",
+    "identical in every field, two apples in different places",
+    "WRONG: same name only, two apples in different places"
+   ]
+  },
+  {
+   "word": "different",
+   "sources": [
+    "wn adj1: unlike in nature or quality or form or degree",
+    "mw: partly or totally unlike in nature, form, or quality: dissimilar"
+   ],
+   "note": "",
+   "candidates": [
+    "not identical, two apples apart",
+    "not identical, a thing and itself"
+   ]
+  },
+  {
+   "word": "not",
+   "sources": [
+    "wn: negation of a word or group of words",
+    "mw: used as a function word to make negative a group of words or a word"
+   ],
+   "note": "",
+   "candidates": [
+    "turn the yes into no"
+   ]
+  },
+  {
+   "word": "and",
+   "sources": [
+    "mw: used as a function word to indicate connection or addition especially of items within the same class"
+   ],
+   "note": "",
+   "candidates": [
+    "both at once"
+   ]
+  },
+  {
+   "word": "or",
+   "sources": [
+    "mw: used as a function word to indicate an alternative"
+   ],
+   "note": "",
+   "candidates": [
+    "either"
+   ]
+  },
+  {
+   "word": "if",
+   "sources": [
+    "mw: in the event that"
+   ],
+   "note": "",
+   "candidates": [
+    "the act happens only in the event",
+    "the event does not hold"
+   ]
+  },
+  {
+   "word": "all",
+   "sources": [
+    "wn: quantifier; used to indicate the whole number or amount",
+    "mw: the whole amount, quantity, or extent of"
+   ],
+   "note": "",
+   "candidates": [
+    "every one"
+   ]
+  },
+  {
+   "word": "some",
+   "sources": [
+    "wn: quantifier; used to indicate an unspecified number or quantity",
+    "mw: being an unknown, undetermined, or unspecified unit or thing"
+   ],
+   "note": "some is a count between one and all; which count is not fixed by the word.",
+   "candidates": [
+    "an unspecified number, at least one"
+   ]
+  },
+  {
+   "word": "none",
+   "sources": [
+    "mw: not any",
+    "wn adv: not at all or in no way"
+   ],
+   "note": "",
+   "candidates": [
+    "not any, of a thing there is none of",
+    "not any, of a thing there is some of"
+   ]
+  },
+  {
+   "word": "one",
+   "sources": [
+    "wn: used of a single unit or thing; not two or more",
+    "wn n: the smallest whole number"
+   ],
+   "note": "",
+   "candidates": [
+    "a single unit",
+    "a single unit, asked of a thing that is not there"
+   ]
+  },
+  {
+   "word": "two",
+   "sources": [
+    "wn: being one more than one",
+    "wn n: the cardinal number that is the sum of one and one"
+   ],
+   "note": "",
+   "candidates": [
+    "one more than one"
+   ]
+  },
+  {
+   "word": "more",
+   "sources": [
+    "wn: greater in size or amount or number",
+    "mw: greater"
+   ],
+   "note": "",
+   "candidates": [
+    "a greater number"
+   ]
+  },
+  {
+   "word": "few",
+   "sources": [
+    "wn: a small but indefinite number",
+    "mw: not many persons or things"
+   ],
+   "note": "few = the smaller side of the same compare that more is the greater side of: one COMPARE, two labels, opposite ends.",
+   "candidates": [
+    "a small number: fewer than the others"
+   ]
+  },
+  {
+   "word": "before",
+   "sources": [
+    "wn adv: earlier in time; previously",
+    "mw: at an earlier time"
+   ],
+   "note": "\"-now\" returns a number (-10), not whether a was earlier than b: it cannot be before, because before takes two events.",
+   "candidates": [
+    "earlier in time",
+    "earlier in time, asked the other way round",
+    "WRONG: the worksheet minus now"
+   ]
+  },
+  {
+   "word": "after",
+   "sources": [
+    "wn: happening at a time subsequent to a reference time",
+    "mw: following in time or place"
+   ],
+   "note": "before and after are one COMPARE on two times read from the timeline, less or more. The flip between them is the axis flip, not a negation.",
+   "candidates": [
+    "later in time",
+    "later in time, asked the other way round"
+   ]
+  },
+  {
+   "word": "now",
+   "sources": [
+    "wn n: the momentary present",
+    "mw: at the present time or moment"
+   ],
+   "note": "",
+   "candidates": [
+    "the clock reading at this moment"
+   ]
+  },
+  {
+   "word": "when",
+   "sources": [
+    "mw: at what time",
+    "mw: at or during which time"
+   ],
+   "note": "",
+   "candidates": [
+    "the time an event happened"
+   ]
+  },
+  {
+   "word": "the",
+   "sources": [
+    "mw: used as a function word to indicate that a following noun is definite or has been previously specified by context"
+   ],
+   "note": "the is a FIND in state: the thing the run already has in play. It reads state and nothing else.",
+   "candidates": [
+    "the one already in play",
+    "WRONG: any one"
+   ]
+  },
+  {
+   "word": "a",
+   "sources": [
+    "mw: used as a function word before singular nouns when the referent is unspecified"
+   ],
+   "note": "",
+   "candidates": [
+    "any one of the kind"
+   ]
+  },
+  {
+   "word": "between",
+   "sources": [
+    "wn: in the interval",
+    "mw: in the space that separates"
+   ],
+   "note": "",
+   "candidates": [
+    "in the interval"
+   ]
+  },
+  {
+   "word": "part",
+   "sources": [
+    "wn n2: something determined in relation to something that includes it",
+    "mw: one of the often indefinite or unequal subdivisions into which something is or is regarded as divided"
+   ],
+   "note": "",
+   "candidates": [
+    "a subdivision of the whole"
+   ]
+  },
+  {
+   "word": "whole",
+   "sources": [
+    "wn: all of something including all its component elements or parts"
+   ],
+   "note": "whole runs the same as all: one meaning, two labels.",
+   "candidates": [
+    "all the parts together"
+   ]
+  },
+  {
+   "word": "keep",
+   "sources": [
+    "mw: to retain in one's possession or power",
+    "wn v: keep in a certain state, position, or activity"
+   ],
+   "note": "keep is a test across time: possession at t2 equals possession at t1. Nothing is written to the thing; the clock moves.",
+   "candidates": [
+    "retain over time",
+    "WRONG: give it away meanwhile"
+   ]
+  },
+  {
+   "word": "store",
+   "sources": [
+    "wn v1: keep or lay aside for future use",
+    "mw: to lay away"
+   ],
+   "note": "store = write to memory + keep. keep alone writes nothing; store writes first. Different pre-state, shared tail.",
+   "candidates": [
+    "lay aside now, take back later",
+    "WRONG: lay aside then lose it"
+   ]
+  },
+  {
+   "word": "have",
+   "sources": [
+    "wn v: have or possess, either in a concrete or an abstract sense",
+    "mw: to hold or maintain as a possession"
+   ],
+   "note": "",
+   "candidates": [
+    "possess",
+    "possess, asked of the wrong owner"
+   ]
+  },
+  {
+   "word": "give",
+   "sources": [
+    "wn v1: cause to have, in the abstract sense or physical sense",
+    "mw: to make a present of"
+   ],
+   "note": "Copying fails give on the last line: the giver still has it. A gift is a move of possession, not a copy.",
+   "candidates": [
+    "cause another to have it",
+    "WRONG: copy it to them"
+   ]
+  },
+  {
+   "word": "take",
+   "sources": [
+    "mw: to get into one's hands or into one's possession, power, or control",
+    "wn get v1: come into the possession of something concrete or abstract"
+   ],
+   "note": "give and take are the same run (owner changes from one to another) seen from the two ends. Same roots, same place; the holes (who is I) differ. That is the arrival picking the shard.",
+   "candidates": [
+    "come into possession"
+   ]
+  },
+  {
+   "word": "buy",
+   "sources": [
+    "wn v1: obtain by purchase; acquire by means of a financial transaction",
+    "mw: to acquire possession, ownership, or rights to the use or services of by payment"
+   ],
+   "note": "buy = take + pay. Taking without paying passes take and fails buy. The money line is what buy adds.",
+   "candidates": [
+    "possession one way, money the other",
+    "WRONG: take without paying"
+   ]
+  },
+  {
+   "word": "sell",
+   "sources": [
+    "wn v1: exchange or deliver for money or its equivalent",
+    "mw: to give up (property) to another for something of value (such as money)"
+   ],
+   "note": "sell is buy from the other end: the same run, the holes swapped. One place, two labels, two arrivals.",
+   "candidates": [
+    "deliver for money"
+   ]
+  },
+  {
+   "word": "shop",
+   "sources": [
+    "wn n1: a mercantile establishment for the retail sale of goods or services",
+    "mw: a building or room stocked with merchandise for sale"
+   ],
+   "note": "shop is not a run; it is a place where the sell run happens, over and over. Its meaning is the place plus the process: a noun made of a verb. \"place be\" was wrong: the process was missing.",
+   "candidates": [
+    "a place stocked with things that leave when paid for"
+   ]
+  },
+  {
+   "word": "count",
+   "sources": [
+    "mw: to indicate or name by units or groups so as to find the total number of units involved",
+    "wn v1: determine the number or amount of"
+   ],
+   "note": "",
+   "candidates": [
+    "find the total number"
+   ]
+  },
+  {
+   "word": "order",
+   "sources": [
+    "mw: to put in order: arrange",
+    "wn sort v1: arrange or order by classes or categories"
+   ],
+   "note": "",
+   "candidates": [
+    "arrange in sequence"
+   ]
+  },
+  {
+   "word": "first",
+   "sources": [
+    "mw: preceding all others in time, order, or importance"
+   ],
+   "note": "",
+   "candidates": [
+    "preceding all others in time"
+   ]
+  },
+  {
+   "word": "last",
+   "sources": [
+    "mw: following all the rest"
+   ],
+   "note": "first and last: one ORDER, two ends. The same shape as before/after and more/few: an axis, read from either end.",
+   "candidates": [
+    "following all the rest"
+   ]
+  },
+  {
+   "word": "empty",
+   "sources": [
+    "wn adj1: holding or containing nothing",
+    "mw: containing nothing"
+   ],
+   "note": "",
+   "candidates": [
+    "holding nothing",
+    "holding nothing, asked of a place with things"
+   ]
+  },
+  {
+   "word": "full",
+   "sources": [
+    "wn adj1: containing as much or as many as is possible or normal",
+    "mw: containing as much or as many as is possible or normal"
+   ],
+   "note": "full needs a capacity, which is state, not a thing: full = count compared with a held limit.",
+   "candidates": [
+    "as many as is possible"
+   ]
+  },
+  {
+   "word": "change",
+   "sources": [
+    "wn v1: cause to change; make different; cause a transformation",
+    "mw: to make different in some particular"
+   ],
+   "note": "Setting a value is a change only when the value differs from what is there: on worlds where 8 was already held, the WRONG run changes nothing. A change must read first.",
+   "candidates": [
+    "make different: write what is not there",
+    "WRONG: set a value that may already be there"
+   ]
+  },
+  {
+   "word": "remember",
+   "sources": [
+    "wn v1: recall knowledge from memory; have a recollection",
+    "mw: to bring to mind or think of again"
+   ],
+   "note": "remember = read from memory. It presupposes a store; without the earlier write there is nothing to bring back.",
+   "candidates": [
+    "bring back from memory"
+   ]
+  },
+  {
+   "word": "forget",
+   "sources": [
+    "wn v1: dismiss from the mind; stop remembering",
+    "mw: to lose the remembrance of: be unable to think of or recall"
+   ],
+   "note": "",
+   "candidates": [
+    "stop holding it"
+   ]
+  },
+  {
+   "word": "exist",
+   "sources": [
+    "wn v1: have an existence, be extant",
+    "mw: to have real being whether material or spiritual"
+   ],
+   "note": "",
+   "candidates": [
+    "be extant",
+    "be extant, asked of a thing that is not"
+   ]
+  },
+  {
+   "word": "begin",
+   "sources": [
+    "wn v1: set in motion, cause to start",
+    "mw: to do the first part of an action"
+   ],
+   "note": "",
+   "candidates": [
+    "set in motion"
+   ]
+  },
+  {
+   "word": "end",
+   "sources": [
+    "wn v1: bring to an end or halt",
+    "mw: to bring to an end"
+   ],
+   "note": "",
+   "candidates": [
+    "bring to a halt"
+   ]
+  },
+  {
+   "word": "live",
+   "sources": [
+    "mw: to be alive: have the life of an animal or plant",
+    "wn v2: lead a certain kind of life; live in a certain style"
+   ],
+   "note": "",
+   "candidates": [
+    "be alive",
+    "be alive, asked of a stone"
+   ]
+  },
+  {
+   "word": "die",
+   "sources": [
+    "wn v1: pass from physical life and lose all bodily attributes and functions necessary to sustain life",
+    "mw: to pass from physical life: expire"
+   ],
+   "note": "\"not alive\" reads a state and changes nothing; it is true of the stone, which never lived and did not die. die is a change: alive before, not alive after, the row kept. That is the executed version of the worksheet finding.",
+   "candidates": [
+    "pass from life",
+    "WRONG: the worksheet minus live",
+    "WRONG: minus live on a stone"
+   ]
+  },
+  {
+   "word": "kill",
+   "sources": [
+    "wn v1: cause to die; put to death",
+    "mw: to deprive of life"
+   ],
+   "note": "kill = die + a cause. The cause is not in the thing; it is in the receipt (the timeline row naming the actor).",
+   "candidates": [
+    "cause to die"
+   ]
+  },
+  {
+   "word": "born",
+   "sources": [
+    "wn adj: brought into existence",
+    "mw: brought forth by or as if by birth"
+   ],
+   "note": "born = create + alive. die undoes the alive, not the create.",
+   "candidates": [
+    "brought into existence, alive"
+   ]
+  },
+  {
+   "word": "into",
+   "sources": [
+    "mw: used as a function word to indicate entry, introduction, insertion, superposition, or inclusion"
+   ],
+   "note": "into is the destination hole of a write or a move. Without it the write has nowhere to go and the silicon refuses the line (a syntax error). It has no run of its own; it is a slot in another run.",
+   "candidates": [
+    "the place a write goes",
+    "WRONG: a write with no into"
+   ]
+  },
+  {
+   "word": "add",
+   "sources": [
+    "mw: to join or unite so as to bring about an increase",
+    "wn v1: make an addition"
+   ],
+   "note": "",
+   "candidates": [
+    "bring about an increase"
+   ]
+  },
+  {
+   "word": "subtract",
+   "sources": [
+    "mw: to take away by or as if by deducting",
+    "wn v1: make a subtraction"
+   ],
+   "note": "add and subtract: one axis, two directions, like more/few and before/after.",
+   "candidates": [
+    "take away"
+   ]
+  },
+  {
+   "word": "where",
+   "sources": [
+    "mw: at, in, or to what place"
+   ],
+   "note": "",
+   "candidates": [
+    "the place of a thing"
+   ]
+  },
+  {
+   "word": "which",
+   "sources": [
+    "mw: being what one or ones out of a group"
+   ],
+   "note": "",
+   "candidates": [
+    "the one out of a group with the property"
+   ]
+  },
+  {
+   "word": "lose",
+   "sources": [
+    "wn v1: fail to keep or to maintain; cease to have, either physically or in an abstract sense",
+    "mw: to miss from one's possession or from a customary or supposed place"
+   ],
+   "note": "lose and give end in the same state for the loser. They differ only in the receipt: who did it and whether anyone received. Some meanings are told apart by history, not by the state they leave.",
+   "candidates": [
+    "cease to have"
+   ]
+  }
+ ],
+ "results": [
+  {
+   "word": "create",
+   "candidate": "row",
+   "sql": "INSERT INTO things(name,place,t) VALUES(:x,:p,(SELECT value FROM state WHERE key='now'))",
+   "params": {
+    "x": "plum",
+    "p": "box"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: bring into existence: it did not exist before",
+     true
+    ],
+    [
+     "bring into existence: it exists after",
+     true
+    ],
+    [
+     "nothing else changed",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "STATE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 2,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "INSERT"
+    ],
+    "state": [
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "create",
+   "candidate": "table",
+   "sql": "CREATE TABLE plum(id INTEGER)",
+   "params": {
+    "x": "plum",
+    "p": "box"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: bring into existence: it did not exist before",
+     true
+    ],
+    [
+     "bring into existence: it exists after",
+     true
+    ],
+    [
+     "nothing else changed",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "SPAWN"
+   ],
+   "measure": {
+    "schema(graph)": 1,
+    "writes(silicon rows)": 6,
+    "reads": 1,
+    "rows_written": 0,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "sqlite_master": [
+     "INSERT",
+     "READ",
+     "UPDATE"
+    ],
+    "plum": [
+     "CREATE_TABLE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "create",
+   "candidate": "WRONG: read it",
+   "sql": "SELECT * FROM things WHERE name=:x",
+   "params": {
+    "x": "plum",
+    "p": "box"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: bring into existence: it did not exist before",
+     true
+    ],
+    [
+     "bring into existence: it exists after",
+     false
+    ],
+    [
+     "nothing else changed",
+     true
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 8,
+    "rows_written": 0,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "new",
+   "candidate": "born now",
+   "sql": "INSERT INTO things(name,place,t) VALUES(:x,:p,(SELECT value FROM state WHERE key='now')); SELECT name FROM things WHERE t=(SELECT value FROM state WHERE key='now')",
+   "params": {
+    "x": "plum",
+    "p": "box"
+   },
+   "error": null,
+   "checks": [
+    [
+     "just come into existence: the new things are exactly those born at now, the created one among them",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY",
+    "STATE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 6,
+    "rows_written": 1,
+    "rows_said": 1,
+    "memory": false,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "INSERT",
+     "READ"
+    ],
+    "state": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     "plum"
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "delete",
+   "candidate": "remove the row",
+   "sql": "DELETE FROM things WHERE name=:x",
+   "params": {
+    "x": "pear"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it existed before",
+     true
+    ],
+    [
+     "remove: it does not exist after",
+     true
+    ],
+    [
+     "nothing else changed",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "DELETE",
+    "FIND",
+    "HEAR"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 1,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "DELETE",
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "delete",
+   "candidate": "WRONG: hide by moving",
+   "sql": "UPDATE things SET place='nowhere' WHERE name=:x",
+   "params": {
+    "x": "pear"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it existed before",
+     true
+    ],
+    [
+     "remove: it does not exist after",
+     false
+    ],
+    [
+     "nothing else changed",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 1,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "remove",
+   "candidate": "take the row away",
+   "sql": "DELETE FROM things WHERE name=:x",
+   "params": {
+    "x": "pear"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it was there before",
+     true
+    ],
+    [
+     "taken away: it is not there after",
+     true
+    ],
+    [
+     "nothing else changed",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "DELETE",
+    "FIND",
+    "HEAR"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 1,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "DELETE",
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "remove",
+   "candidate": "move it away from the place",
+   "sql": "UPDATE things SET place=NULL WHERE name=:x",
+   "params": {
+    "x": "pear"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it was there before",
+     true
+    ],
+    [
+     "taken away: it is not there after",
+     true
+    ],
+    [
+     "nothing else changed",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 1,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "copy",
+   "candidate": "duplicate the row",
+   "sql": "INSERT INTO things(name,place,owner,value,alive,t) SELECT name,place,owner,value,alive,(SELECT value FROM state WHERE key='now') FROM things WHERE id=:i",
+   "params": {
+    "i": 2
+   },
+   "error": null,
+   "checks": [
+    [
+     "the original is unchanged",
+     true
+    ],
+    [
+     "a duplicate exists after: same in every field but identity and birth time",
+     true
+    ],
+    [
+     "one more thing exists",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "STATE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 8,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "INSERT",
+     "READ"
+    ],
+    "state": [
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "copy",
+   "candidate": "WRONG: move it",
+   "sql": "UPDATE things SET place=:p WHERE id=:i",
+   "params": {
+    "i": 2,
+    "p": "table"
+   },
+   "error": null,
+   "checks": [
+    [
+     "the original is unchanged",
+     false
+    ],
+    [
+     "a duplicate exists after: same in every field but identity and birth time",
+     false
+    ],
+    [
+     "one more thing exists",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 1,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "move",
+   "candidate": "change the place",
+   "sql": "UPDATE things SET place=:to WHERE id=:i",
+   "params": {
+    "i": 2,
+    "to": "table"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it was at the old place",
+     true
+    ],
+    [
+     "change location: it is at the new place after",
+     true
+    ],
+    [
+     "and no longer at the old one",
+     true
+    ],
+    [
+     "the same number of things",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 1,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "move",
+   "candidate": "WRONG: copy it there",
+   "sql": "INSERT INTO things(name,place,owner,value,alive,t) SELECT name,:to,owner,value,alive,t FROM things WHERE id=:i",
+   "params": {
+    "i": 2,
+    "to": "table"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it was at the old place",
+     true
+    ],
+    [
+     "change location: it is at the new place after",
+     true
+    ],
+    [
+     "and no longer at the old one",
+     false
+    ],
+    [
+     "the same number of things",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 6,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "INSERT",
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "move",
+   "candidate": "copy it there, then remove it from here",
+   "sql": "INSERT INTO things(name,place,owner,value,alive,t) SELECT name,:to,owner,value,alive,t FROM things WHERE id=:i; DELETE FROM things WHERE id=:i",
+   "params": {
+    "i": 2,
+    "to": "table"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it was at the old place",
+     true
+    ],
+    [
+     "change location: it is at the new place after",
+     true
+    ],
+    [
+     "and no longer at the old one",
+     true
+    ],
+    [
+     "the same number of things",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "DELETE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 2,
+    "reads": 7,
+    "rows_written": 2,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "DELETE",
+     "INSERT",
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "split",
+   "candidate": "two parts by a cut",
+   "sql": "CREATE TABLE part1 AS SELECT * FROM things WHERE value>=:k; CREATE TABLE part2 AS SELECT * FROM things WHERE value<:k",
+   "params": {
+    "k": 3
+   },
+   "error": null,
+   "checks": [
+    [
+     "separate into parts: each thing is in exactly one part",
+     true
+    ],
+    [
+     "the parts together are the whole",
+     true
+    ],
+    [
+     "no part is empty",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SPAWN"
+   ],
+   "measure": {
+    "schema(graph)": 2,
+    "writes(silicon rows)": 12,
+    "reads": 18,
+    "rows_written": 0,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "sqlite_master": [
+     "INSERT",
+     "READ",
+     "UPDATE"
+    ],
+    "part1": [
+     "CREATE_TABLE"
+    ],
+    "things": [
+     "READ"
+    ],
+    "part2": [
+     "CREATE_TABLE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "split",
+   "candidate": "WRONG: two copies of all",
+   "sql": "CREATE TABLE part1 AS SELECT * FROM things; CREATE TABLE part2 AS SELECT * FROM things",
+   "params": {
+    "k": 3
+   },
+   "error": null,
+   "checks": [
+    [
+     "separate into parts: each thing is in exactly one part",
+     false
+    ],
+    [
+     "the parts together are the whole",
+     false
+    ],
+    [
+     "no part is empty",
+     true
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "READ",
+    "SPAWN"
+   ],
+   "measure": {
+    "schema(graph)": 2,
+    "writes(silicon rows)": 12,
+    "reads": 16,
+    "rows_written": 0,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "sqlite_master": [
+     "INSERT",
+     "READ",
+     "UPDATE"
+    ],
+    "part1": [
+     "CREATE_TABLE"
+    ],
+    "things": [
+     "READ"
+    ],
+    "part2": [
+     "CREATE_TABLE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "join",
+   "candidate": "bring two parts together",
+   "sql": "CREATE TABLE part1 AS SELECT * FROM things WHERE value>=3; CREATE TABLE part2 AS SELECT * FROM things WHERE value<3; CREATE TABLE joined AS SELECT * FROM part1 UNION SELECT * FROM part2",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "all and only the members of both",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "JOIN",
+    "READ",
+    "SPAWN"
+   ],
+   "measure": {
+    "schema(graph)": 3,
+    "writes(silicon rows)": 18,
+    "reads": 33,
+    "rows_written": 0,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "sqlite_master": [
+     "INSERT",
+     "READ",
+     "UPDATE"
+    ],
+    "part1": [
+     "CREATE_TABLE",
+     "READ"
+    ],
+    "things": [
+     "READ"
+    ],
+    "part2": [
+     "CREATE_TABLE",
+     "READ"
+    ],
+    "joined": [
+     "CREATE_TABLE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "join",
+   "candidate": "WRONG: pair them up by a key (SQL JOIN)",
+   "sql": "CREATE TABLE part1 AS SELECT * FROM things WHERE value>=3; CREATE TABLE part2 AS SELECT * FROM things WHERE value<3; CREATE TABLE joined AS SELECT p1.id, p2.id AS id2 FROM part1 p1 JOIN part2 p2 ON p1.place=p2.place",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "all and only the members of both",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "JOIN",
+    "READ",
+    "SPAWN"
+   ],
+   "measure": {
+    "schema(graph)": 3,
+    "writes(silicon rows)": 18,
+    "reads": 23,
+    "rows_written": 0,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "sqlite_master": [
+     "INSERT",
+     "READ",
+     "UPDATE"
+    ],
+    "part1": [
+     "CREATE_TABLE",
+     "READ"
+    ],
+    "things": [
+     "READ"
+    ],
+    "part2": [
+     "CREATE_TABLE",
+     "READ"
+    ],
+    "joined": [
+     "CREATE_TABLE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "read",
+   "candidate": "take in what is written at a known place",
+   "sql": "SELECT name,place,owner,value FROM things WHERE id=:i",
+   "params": {
+    "i": 2
+   },
+   "error": null,
+   "checks": [
+    [
+     "what comes out is what is written there",
+     true
+    ],
+    [
+     "taking in changes nothing",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 5,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     "pear",
+     "box",
+     "bob",
+     5
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "read",
+   "candidate": "WRONG: change it while looking",
+   "sql": "UPDATE things SET value=value+1 WHERE id=:i; SELECT name,place,owner,value FROM things WHERE id=:i",
+   "params": {
+    "i": 2
+   },
+   "error": null,
+   "checks": [
+    [
+     "what comes out is what is written there",
+     false
+    ],
+    [
+     "taking in changes nothing",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 7,
+    "rows_written": 1,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [
+    [
+     "pear",
+     "box",
+     "bob",
+     6
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "write",
+   "candidate": "a new mark",
+   "sql": "INSERT INTO things(name,place,t) VALUES(:x,:p,(SELECT value FROM state WHERE key='now'))",
+   "params": {
+    "x": "plum",
+    "p": "box",
+    "i": 2
+   },
+   "error": null,
+   "checks": [
+    [
+     "a mark exists after that did not before",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "STATE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 2,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "INSERT"
+    ],
+    "state": [
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "write",
+   "candidate": "a changed mark",
+   "sql": "UPDATE things SET owner=:v WHERE id=:i",
+   "params": {
+    "x": "plum",
+    "p": "box",
+    "i": 2,
+    "v": "zed"
+   },
+   "error": null,
+   "checks": [
+    [
+     "a mark exists after that did not before",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 1,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "write",
+   "candidate": "WRONG: only look",
+   "sql": "SELECT * FROM things",
+   "params": {
+    "x": "plum",
+    "p": "box",
+    "i": 2
+   },
+   "error": null,
+   "checks": [
+    [
+     "a mark exists after that did not before",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 7,
+    "rows_written": 0,
+    "rows_said": 5,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1,
+     "apple",
+     "table",
+     "ann",
+     3,
+     1,
+     1
+    ],
+    [
+     2,
+     "pear",
+     "box",
+     "bob",
+     5,
+     1,
+     2
+    ],
+    [
+     3,
+     "stone",
+     "box",
+     null,
+     0,
+     0,
+     3
+    ],
+    [
+     4,
+     "apple",
+     "box",
+     "bob",
+     4,
+     1,
+     4
+    ],
+    [
+     5,
+     "fish",
+     "pond",
+     null,
+     2,
+     1,
+     5
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "find",
+   "candidate": "come upon the things with a property",
+   "sql": "SELECT id FROM things WHERE place=:p",
+   "params": {
+    "p": "box"
+   },
+   "error": null,
+   "checks": [
+    [
+     "what comes out has the property asked for, and all of them do",
+     true
+    ],
+    [
+     "finding changes nothing",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 3,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     4
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "find",
+   "candidate": "WRONG: take whatever is first",
+   "sql": "SELECT id FROM things LIMIT 1",
+   "params": {
+    "p": "box"
+   },
+   "error": null,
+   "checks": [
+    [
+     "what comes out has the property asked for, and all of them do",
+     false
+    ],
+    [
+     "finding changes nothing",
+     true
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "MOVE",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "same",
+   "candidate": "identical in every field, a thing and itself",
+   "sql": "SELECT (SELECT name||place||IFNULL(owner,'')||value||alive FROM things WHERE id=:a) = (SELECT name||place||IFNULL(owner,'')||value||alive FROM things WHERE id=:b)",
+   "params": {
+    "a": 1,
+    "b": 1
+   },
+   "error": null,
+   "checks": [
+    [
+     "a thing is the same as itself; two things unlike in some respect are not the same",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "JOIN",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 12,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "same",
+   "candidate": "identical in every field, two apples in different places",
+   "sql": "SELECT (SELECT name||place||IFNULL(owner,'')||value||alive FROM things WHERE id=:a) = (SELECT name||place||IFNULL(owner,'')||value||alive FROM things WHERE id=:b)",
+   "params": {
+    "a": 1,
+    "b": 4
+   },
+   "error": null,
+   "checks": [
+    [
+     "a thing is the same as itself; two things unlike in some respect are not the same",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "JOIN",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 12,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     0
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "same",
+   "candidate": "WRONG: same name only, two apples in different places",
+   "sql": "SELECT (SELECT name FROM things WHERE id=:a) = (SELECT name FROM things WHERE id=:b)",
+   "params": {
+    "a": 1,
+    "b": 4
+   },
+   "error": null,
+   "checks": [
+    [
+     "a thing is the same as itself; two things unlike in some respect are not the same",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 4,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "different",
+   "candidate": "not identical, two apples apart",
+   "sql": "SELECT (SELECT name||place||IFNULL(owner,'')||value||alive FROM things WHERE id=:a) <> (SELECT name||place||IFNULL(owner,'')||value||alive FROM things WHERE id=:b)",
+   "params": {
+    "a": 1,
+    "b": 4
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when some field differs",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "JOIN",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 12,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "different",
+   "candidate": "not identical, a thing and itself",
+   "sql": "SELECT (SELECT name||place||IFNULL(owner,'')||value||alive FROM things WHERE id=:a) <> (SELECT name||place||IFNULL(owner,'')||value||alive FROM things WHERE id=:b)",
+   "params": {
+    "a": 1,
+    "b": 1
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when some field differs",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "JOIN",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 12,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     0
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "not",
+   "candidate": "turn the yes into no",
+   "sql": "SELECT NOT (:t), NOT (NOT (:t))",
+   "params": {
+    "t": 1
+   },
+   "error": null,
+   "checks": [
+    [
+     "negation turns 1 into 0",
+     true
+    ],
+    [
+     "and back",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 0,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {},
+   "result": [
+    [
+     0,
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "and",
+   "candidate": "both at once",
+   "sql": "SELECT id FROM things WHERE place='box' AND alive=1",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "the rows are those in both sets",
+     true
+    ],
+    [
+     "never more than either set alone",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 3,
+    "rows_written": 0,
+    "rows_said": 2,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     2
+    ],
+    [
+     4
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "or",
+   "candidate": "either",
+   "sql": "SELECT id FROM things WHERE place='box' OR alive=0",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "the rows are those in either set",
+     true
+    ],
+    [
+     "never fewer than either set alone",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 3,
+    "rows_written": 0,
+    "rows_said": 3,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     4
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "if",
+   "candidate": "the act happens only in the event",
+   "sql": "UPDATE things SET owner=:o WHERE id=:i AND (:cond)=1",
+   "params": {
+    "o": "cat",
+    "i": 2,
+    "cond": 1
+   },
+   "error": null,
+   "checks": [
+    [
+     "when the condition holds the thing changes; when not, nothing changes",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 1,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "if",
+   "candidate": "the event does not hold",
+   "sql": "UPDATE things SET owner=:o WHERE id=:i AND (:cond)=1",
+   "params": {
+    "o": "cat",
+    "i": 2,
+    "cond": 0
+   },
+   "error": null,
+   "checks": [
+    [
+     "when the condition holds the thing changes; when not, nothing changes",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 1,
+    "rows_written": 0,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "all",
+   "candidate": "every one",
+   "sql": "SELECT id FROM things",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "the whole number: every thing comes out",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 5,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ],
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     4
+    ],
+    [
+     5
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "some",
+   "candidate": "an unspecified number, at least one",
+   "sql": "SELECT id FROM things WHERE alive=1",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "at least one",
+     true
+    ],
+    [
+     "a number not fixed in advance",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 4,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ],
+    [
+     2
+    ],
+    [
+     4
+    ],
+    [
+     5
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "none",
+   "candidate": "not any, of a thing there is none of",
+   "sql": "SELECT NOT EXISTS(SELECT 1 FROM things WHERE name=:x)",
+   "params": {
+    "x": "plum"
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when no such thing exists",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 1,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "none",
+   "candidate": "not any, of a thing there is some of",
+   "sql": "SELECT NOT EXISTS(SELECT 1 FROM things WHERE name=:x)",
+   "params": {
+    "x": "pear"
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when no such thing exists",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 1,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     0
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "one",
+   "candidate": "a single unit",
+   "sql": "SELECT COUNT(*) FROM things WHERE id=:i",
+   "params": {
+    "i": 3
+   },
+   "error": null,
+   "checks": [
+    [
+     "the count is one exactly when there is a single such thing",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "one",
+   "candidate": "a single unit, asked of a thing that is not there",
+   "sql": "SELECT COUNT(*) FROM things WHERE id=:i",
+   "params": {
+    "i": 99
+   },
+   "error": null,
+   "checks": [
+    [
+     "the count is one exactly when there is a single such thing",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     0
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "two",
+   "candidate": "one more than one",
+   "sql": "SELECT COUNT(*), 1+1 FROM things WHERE name='apple'",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "the count is one and one",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 1,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     2,
+     2
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "more",
+   "candidate": "a greater number",
+   "sql": "SELECT (SELECT COUNT(*) FROM things WHERE alive=1) > (SELECT COUNT(*) FROM things WHERE alive=0)",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when the first count is greater",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "few",
+   "candidate": "a small number: fewer than the others",
+   "sql": "SELECT (SELECT COUNT(*) FROM things WHERE alive=0) < (SELECT COUNT(*) FROM things WHERE alive=1)",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when the first count is smaller",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "before",
+   "candidate": "earlier in time",
+   "sql": "SELECT (SELECT t FROM timeline WHERE id=:a) < (SELECT t FROM timeline WHERE id=:b)",
+   "params": {
+    "a": 1,
+    "b": 3
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when a happened at an earlier time than b",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY",
+    "TIMELINE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 4,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": true
+   },
+   "tables": {
+    "timeline": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "before",
+   "candidate": "earlier in time, asked the other way round",
+   "sql": "SELECT (SELECT t FROM timeline WHERE id=:a) < (SELECT t FROM timeline WHERE id=:b)",
+   "params": {
+    "a": 3,
+    "b": 1
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when a happened at an earlier time than b",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY",
+    "TIMELINE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 4,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": true
+   },
+   "tables": {
+    "timeline": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     0
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "before",
+   "candidate": "WRONG: the worksheet minus now",
+   "sql": "SELECT -(SELECT value FROM state WHERE key='now')",
+   "params": {
+    "a": 1,
+    "b": 3
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when a happened at an earlier time than b",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY",
+    "STATE",
+    "SUBTRACT"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "state": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     -10
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "after",
+   "candidate": "later in time",
+   "sql": "SELECT (SELECT t FROM timeline WHERE id=:a) > (SELECT t FROM timeline WHERE id=:b)",
+   "params": {
+    "a": 3,
+    "b": 1
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when a happened at a later time than b",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY",
+    "TIMELINE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 4,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": true
+   },
+   "tables": {
+    "timeline": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "after",
+   "candidate": "later in time, asked the other way round",
+   "sql": "SELECT (SELECT t FROM timeline WHERE id=:a) > (SELECT t FROM timeline WHERE id=:b)",
+   "params": {
+    "a": 1,
+    "b": 3
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when a happened at a later time than b",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY",
+    "TIMELINE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 4,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": true
+   },
+   "tables": {
+    "timeline": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     0
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "now",
+   "candidate": "the clock reading at this moment",
+   "sql": "SELECT value FROM state WHERE key='now'",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "it is the present reading of the clock",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY",
+    "STATE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "state": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     "10"
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "when",
+   "candidate": "the time an event happened",
+   "sql": "SELECT t FROM timeline WHERE event=:e",
+   "params": {
+    "e": "rain"
+   },
+   "error": null,
+   "checks": [
+    [
+     "the answer is the time of that event",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY",
+    "TIMELINE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": true
+   },
+   "tables": {
+    "timeline": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     7
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "the",
+   "candidate": "the one already in play",
+   "sql": "SELECT id FROM things WHERE id=(SELECT value FROM state WHERE key='it')",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "exactly one, and it is the one previously specified (state it)",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY",
+    "STATE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 5,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ],
+    "state": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     2
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "the",
+   "candidate": "WRONG: any one",
+   "sql": "SELECT id FROM things LIMIT 1",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "exactly one, and it is the one previously specified (state it)",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "roots": [
+    "MOVE",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "a",
+   "candidate": "any one of the kind",
+   "sql": "SELECT id FROM things WHERE name=:k LIMIT 1",
+   "params": {
+    "k": "apple"
+   },
+   "error": null,
+   "checks": [
+    [
+     "exactly one",
+     true
+    ],
+    [
+     "of the kind asked, and which one is not specified",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "MOVE",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "between",
+   "candidate": "in the interval",
+   "sql": "SELECT id FROM things WHERE value BETWEEN :lo AND :hi",
+   "params": {
+    "lo": 3,
+    "hi": 4
+   },
+   "error": null,
+   "checks": [
+    [
+     "the things whose value lies in the interval, all of them",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 2,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ],
+    [
+     4
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "part",
+   "candidate": "a subdivision of the whole",
+   "sql": "SELECT id FROM things WHERE place='box'",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "included in the whole",
+     true
+    ],
+    [
+     "not the whole",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 3,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     4
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "whole",
+   "candidate": "all the parts together",
+   "sql": "SELECT id FROM things",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "includes every part",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 5,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ],
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     4
+    ],
+    [
+     5
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "keep",
+   "candidate": "retain over time",
+   "sql": "UPDATE state SET value=value+5 WHERE key='now'; SELECT owner FROM things WHERE id=:i",
+   "params": {
+    "i": 1
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: had it before",
+     true
+    ],
+    [
+     "time passed",
+     true
+    ],
+    [
+     "still has it after",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY",
+    "STATE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 4,
+    "rows_written": 1,
+    "rows_said": 1,
+    "memory": false,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "state": [
+     "READ",
+     "UPDATE"
+    ],
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     "ann"
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "keep",
+   "candidate": "WRONG: give it away meanwhile",
+   "sql": "UPDATE things SET owner='bob' WHERE id=:i; UPDATE state SET value=value+5 WHERE key='now'; SELECT owner FROM things WHERE id=:i",
+   "params": {
+    "i": 1
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: had it before",
+     true
+    ],
+    [
+     "time passed",
+     true
+    ],
+    [
+     "still has it after",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "ADD",
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY",
+    "STATE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 2,
+    "reads": 5,
+    "rows_written": 2,
+    "rows_said": 1,
+    "memory": false,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ],
+    "state": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [
+    [
+     "bob"
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "store",
+   "candidate": "lay aside now, take back later",
+   "sql": "INSERT INTO memory(words,said,t) VALUES(:w,:w,(SELECT value FROM state WHERE key='now')); UPDATE state SET value=value+5 WHERE key='now'; SELECT said FROM memory WHERE words=:w",
+   "params": {
+    "w": "the grass is green"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: not held before",
+     true
+    ],
+    [
+     "laid aside: held after",
+     true
+    ],
+    [
+     "for future use: readable later, unchanged",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "MEMORY",
+    "READ",
+    "SAY",
+    "STATE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 2,
+    "reads": 6,
+    "rows_written": 2,
+    "rows_said": 1,
+    "memory": true,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "memory": [
+     "INSERT",
+     "READ"
+    ],
+    "state": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [
+    [
+     "the grass is green"
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "store",
+   "candidate": "WRONG: lay aside then lose it",
+   "sql": "INSERT INTO memory(words,said,t) VALUES(:w,:w,(SELECT value FROM state WHERE key='now')); DELETE FROM memory WHERE words=:w; UPDATE state SET value=value+5 WHERE key='now'; SELECT said FROM memory WHERE words=:w",
+   "params": {
+    "w": "the grass is green"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: not held before",
+     true
+    ],
+    [
+     "laid aside: held after",
+     false
+    ],
+    [
+     "for future use: readable later, unchanged",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "ADD",
+    "CLOCK",
+    "COMPARE",
+    "DELETE",
+    "FIND",
+    "HEAR",
+    "MEMORY",
+    "READ",
+    "STATE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 3,
+    "reads": 7,
+    "rows_written": 3,
+    "rows_said": 0,
+    "memory": true,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "memory": [
+     "DELETE",
+     "INSERT",
+     "READ"
+    ],
+    "state": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "have",
+   "candidate": "possess",
+   "sql": "SELECT EXISTS(SELECT 1 FROM things WHERE id=:i AND owner=:o)",
+   "params": {
+    "i": 1,
+    "o": "ann"
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when that owner holds the thing",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "have",
+   "candidate": "possess, asked of the wrong owner",
+   "sql": "SELECT EXISTS(SELECT 1 FROM things WHERE id=:i AND owner=:o)",
+   "params": {
+    "i": 1,
+    "o": "bob"
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when that owner holds the thing",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     0
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "give",
+   "candidate": "cause another to have it",
+   "sql": "UPDATE things SET owner=:to WHERE id=:i AND owner=:frm",
+   "params": {
+    "i": 1,
+    "frm": "ann",
+    "to": "bob"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: the giver had it",
+     true
+    ],
+    [
+     "cause to have: the receiver has it after",
+     true
+    ],
+    [
+     "and the giver no longer has it",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 2,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "give",
+   "candidate": "WRONG: copy it to them",
+   "sql": "INSERT INTO things(name,place,owner,value,alive,t) SELECT name,place,:to,value,alive,t FROM things WHERE id=:i",
+   "params": {
+    "i": 1,
+    "frm": "ann",
+    "to": "bob"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: the giver had it",
+     true
+    ],
+    [
+     "cause to have: the receiver has it after",
+     false
+    ],
+    [
+     "and the giver no longer has it",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 6,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "INSERT",
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "take",
+   "candidate": "come into possession",
+   "sql": "UPDATE things SET owner=:me WHERE id=:i",
+   "params": {
+    "i": 2,
+    "me": "ann"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: I did not have it",
+     true
+    ],
+    [
+     "into my possession: I have it after",
+     true
+    ],
+    [
+     "the other no longer has it",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 1,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "buy",
+   "candidate": "possession one way, money the other",
+   "sql": "UPDATE things SET owner=:buyer WHERE id=:i AND owner=:seller; UPDATE purse SET money=money-:price WHERE owner=:buyer; UPDATE purse SET money=money+:price WHERE owner=:seller",
+   "params": {
+    "i": 2,
+    "buyer": "ann",
+    "seller": "bob",
+    "price": 4
+   },
+   "error": null,
+   "checks": [
+    [
+     "acquire possession",
+     true
+    ],
+    [
+     "by payment: the buyer has less money by the price",
+     true
+    ],
+    [
+     "and the seller has more by the price",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "SUBTRACT",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 3,
+    "reads": 6,
+    "rows_written": 3,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ],
+    "purse": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "buy",
+   "candidate": "WRONG: take without paying",
+   "sql": "UPDATE things SET owner=:buyer WHERE id=:i AND owner=:seller",
+   "params": {
+    "i": 2,
+    "buyer": "ann",
+    "seller": "bob",
+    "price": 4
+   },
+   "error": null,
+   "checks": [
+    [
+     "acquire possession",
+     true
+    ],
+    [
+     "by payment: the buyer has less money by the price",
+     false
+    ],
+    [
+     "and the seller has more by the price",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 2,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "sell",
+   "candidate": "deliver for money",
+   "sql": "UPDATE things SET owner=:buyer WHERE id=:i AND owner=:seller; UPDATE purse SET money=money-:price WHERE owner=:buyer; UPDATE purse SET money=money+:price WHERE owner=:seller",
+   "params": {
+    "i": 1,
+    "buyer": "bob",
+    "seller": "ann",
+    "price": 2
+   },
+   "error": null,
+   "checks": [
+    [
+     "give up the property",
+     true
+    ],
+    [
+     "for money: the seller has more by the price",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "SUBTRACT",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 3,
+    "reads": 6,
+    "rows_written": 3,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ],
+    "purse": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "shop",
+   "candidate": "a place stocked with things that leave when paid for",
+   "sql": "INSERT INTO things(name,place,owner,value,alive,t) VALUES('hat','shop','shop',3,0,9); UPDATE things SET owner='ann' WHERE name='hat' AND place='shop' AND owner='shop'; UPDATE purse SET money=money-3 WHERE owner='ann'; UPDATE purse SET money=money+3 WHERE owner='shop'; UPDATE things SET place='table' WHERE name='hat'",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "a place with goods for sale, owned by the shop",
+     true
+    ],
+    [
+     "after a sale the good is the buyer's and the shop has the money",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "SUBTRACT",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 5,
+    "reads": 8,
+    "rows_written": 5,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "INSERT",
+     "READ",
+     "UPDATE"
+    ],
+    "purse": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "count",
+   "candidate": "find the total number",
+   "sql": "SELECT COUNT(*) FROM things WHERE place=:p",
+   "params": {
+    "p": "box"
+   },
+   "error": null,
+   "checks": [
+    [
+     "the number equals how many there are",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 1,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     3
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "order",
+   "candidate": "arrange in sequence",
+   "sql": "SELECT id, value FROM things ORDER BY value",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "the sequence never goes down",
+     true
+    ],
+    [
+     "the same members, rearranged",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "MOVE",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 3,
+    "rows_written": 0,
+    "rows_said": 5,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     3,
+     0
+    ],
+    [
+     5,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     2,
+     5
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "first",
+   "candidate": "preceding all others in time",
+   "sql": "SELECT event FROM timeline ORDER BY t LIMIT 1",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "its time is the smallest",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "MOVE",
+    "READ",
+    "SAY",
+    "TIMELINE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": true
+   },
+   "tables": {
+    "timeline": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     "apple made"
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "last",
+   "candidate": "following all the rest",
+   "sql": "SELECT event FROM timeline ORDER BY t DESC LIMIT 1",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "its time is the largest",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "MOVE",
+    "READ",
+    "SAY",
+    "TIMELINE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": true
+   },
+   "tables": {
+    "timeline": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     "rain"
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "empty",
+   "candidate": "holding nothing",
+   "sql": "SELECT COUNT(*)=0 FROM things WHERE place=:p",
+   "params": {
+    "p": "shelf"
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when nothing is there",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 1,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "empty",
+   "candidate": "holding nothing, asked of a place with things",
+   "sql": "SELECT COUNT(*)=0 FROM things WHERE place=:p",
+   "params": {
+    "p": "box"
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when nothing is there",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 1,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     0
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "full",
+   "candidate": "as many as is possible",
+   "sql": "SELECT (SELECT COUNT(*) FROM things WHERE place='box') >= (SELECT value FROM state WHERE key='capacity')",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when the count has reached the held capacity",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY",
+    "STATE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 3,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ],
+    "state": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "change",
+   "candidate": "make different: write what is not there",
+   "sql": "UPDATE things SET place=CASE WHEN place='box' THEN 'table' ELSE 'box' END WHERE id=:i",
+   "params": {
+    "i": 1
+   },
+   "error": null,
+   "checks": [
+    [
+     "the same thing",
+     true
+    ],
+    [
+     "is different after",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 2,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "change",
+   "candidate": "WRONG: set a value that may already be there",
+   "sql": "UPDATE things SET value=:v WHERE id=:i",
+   "params": {
+    "i": 1,
+    "v": 8
+   },
+   "error": null,
+   "checks": [
+    [
+     "the same thing",
+     true
+    ],
+    [
+     "is different after",
+     true
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 1,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "remember",
+   "candidate": "bring back from memory",
+   "sql": "SELECT said FROM memory WHERE words=:q",
+   "params": {
+    "q": "what is blue"
+   },
+   "error": null,
+   "checks": [
+    [
+     "what comes back is what was laid in memory",
+     true
+    ],
+    [
+     "bringing back changes nothing",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "MEMORY",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": true,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "memory": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     "the sky"
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "forget",
+   "candidate": "stop holding it",
+   "sql": "DELETE FROM memory WHERE words=:q; SELECT said FROM memory WHERE words=:q",
+   "params": {
+    "q": "what is blue"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it was held before",
+     true
+    ],
+    [
+     "stop remembering: not held after, nothing comes back",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "DELETE",
+    "FIND",
+    "HEAR",
+    "MEMORY",
+    "READ"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 3,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": true,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "memory": [
+     "DELETE",
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "exist",
+   "candidate": "be extant",
+   "sql": "SELECT EXISTS(SELECT 1 FROM things WHERE name=:x)",
+   "params": {
+    "x": "pear"
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when there is such a thing",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 1,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "exist",
+   "candidate": "be extant, asked of a thing that is not",
+   "sql": "SELECT EXISTS(SELECT 1 FROM things WHERE name=:x)",
+   "params": {
+    "x": "plum"
+   },
+   "error": null,
+   "checks": [
+    [
+     "says yes exactly when there is such a thing",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 1,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     0
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "begin",
+   "candidate": "set in motion",
+   "sql": "UPDATE state SET value='1' WHERE key='running'; INSERT INTO timeline(t,event) VALUES((SELECT value FROM state WHERE key='now'),'start')",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "PRE: not running before",
+     true
+    ],
+    [
+     "running after, and the start is on the timeline at now",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "READ",
+    "STATE",
+    "TIMELINE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 2,
+    "reads": 3,
+    "rows_written": 2,
+    "rows_said": 0,
+    "memory": false,
+    "state": true,
+    "timeline": true
+   },
+   "tables": {
+    "state": [
+     "READ",
+     "UPDATE"
+    ],
+    "timeline": [
+     "INSERT"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "end",
+   "candidate": "bring to a halt",
+   "sql": "UPDATE state SET value='1' WHERE key='running'; UPDATE state SET value='0' WHERE key='running'; INSERT INTO timeline(t,event) VALUES((SELECT value FROM state WHERE key='now'),'end')",
+   "params": {},
+   "error": null,
+   "checks": [
+    [
+     "not running after",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "READ",
+    "STATE",
+    "TIMELINE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 3,
+    "reads": 4,
+    "rows_written": 3,
+    "rows_said": 0,
+    "memory": false,
+    "state": true,
+    "timeline": true
+   },
+   "tables": {
+    "state": [
+     "READ",
+     "UPDATE"
+    ],
+    "timeline": [
+     "INSERT"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "live",
+   "candidate": "be alive",
+   "sql": "SELECT alive FROM things WHERE name=:x",
+   "params": {
+    "x": "pear"
+   },
+   "error": null,
+   "checks": [
+    [
+     "says what the thing's life is",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "live",
+   "candidate": "be alive, asked of a stone",
+   "sql": "SELECT alive FROM things WHERE name=:x",
+   "params": {
+    "x": "stone"
+   },
+   "error": null,
+   "checks": [
+    [
+     "says what the thing's life is",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     0
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "die",
+   "candidate": "pass from life",
+   "sql": "UPDATE things SET alive=0 WHERE name=:x AND alive=1",
+   "params": {
+    "x": "pear"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it was alive before",
+     true
+    ],
+    [
+     "pass from life: not alive after",
+     true
+    ],
+    [
+     "the body remains: the row still exists",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    null,
+    true,
+    null,
+    true,
+    null
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 2,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 7
+  },
+  {
+   "word": "die",
+   "candidate": "WRONG: the worksheet minus live",
+   "sql": "SELECT NOT alive FROM things WHERE name=:x",
+   "params": {
+    "x": "pear"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it was alive before",
+     true
+    ],
+    [
+     "pass from life: not alive after",
+     false
+    ],
+    [
+     "the body remains: the row still exists",
+     true
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    null,
+    false,
+    null,
+    false,
+    null
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     0
+    ]
+   ],
+   "applicable_worlds": 7
+  },
+  {
+   "word": "die",
+   "candidate": "WRONG: minus live on a stone",
+   "sql": "SELECT NOT alive FROM things WHERE name='stone'",
+   "params": {
+    "x": "pear"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it was alive before",
+     true
+    ],
+    [
+     "pass from life: not alive after",
+     false
+    ],
+    [
+     "the body remains: the row still exists",
+     true
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    null,
+    false,
+    null,
+    false,
+    null
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     1
+    ]
+   ],
+   "applicable_worlds": 7
+  },
+  {
+   "word": "kill",
+   "candidate": "cause to die",
+   "sql": "UPDATE things SET alive=0 WHERE name=:x AND alive=1; INSERT INTO timeline(t,event) VALUES((SELECT value FROM state WHERE key='now'), :who||' killed '||:x)",
+   "params": {
+    "x": "pear",
+    "who": "cat"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: it was alive before",
+     true
+    ],
+    [
+     "the thing died",
+     true
+    ],
+    [
+     "and someone caused it: the actor is on the timeline",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    null,
+    true,
+    null,
+    true,
+    null
+   ],
+   "roots": [
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "JOIN",
+    "READ",
+    "STATE",
+    "TIMELINE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 2,
+    "reads": 4,
+    "rows_written": 2,
+    "rows_said": 0,
+    "memory": false,
+    "state": true,
+    "timeline": true
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ],
+    "timeline": [
+     "INSERT"
+    ],
+    "state": [
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 7
+  },
+  {
+   "word": "born",
+   "candidate": "brought into existence, alive",
+   "sql": "INSERT INTO things(name,place,alive,t) VALUES(:x,:p,1,(SELECT value FROM state WHERE key='now'))",
+   "params": {
+    "x": "kit",
+    "p": "box"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: did not exist before",
+     true
+    ],
+    [
+     "exists after, alive, at now",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "CLOCK",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "STATE",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 2,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": true,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "INSERT"
+    ],
+    "state": [
+     "READ"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "into",
+   "candidate": "the place a write goes",
+   "sql": "INSERT INTO things(name,place,t) VALUES(:x,:p,1)",
+   "params": {
+    "x": "plum",
+    "p": "box"
+   },
+   "error": null,
+   "checks": [
+    [
+     "after, the thing is in that place",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 0,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "INSERT"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "into",
+   "candidate": "WRONG: a write with no into",
+   "sql": "INSERT things(name,place,t) VALUES(:x,:p,1)",
+   "params": {
+    "x": "plum",
+    "p": "box"
+   },
+   "error": "near \"things\": syntax error",
+   "checks": [
+    [
+     "after, the thing is in that place",
+     false
+    ]
+   ],
+   "passed": false,
+   "worlds": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "roots": [
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 0,
+    "rows_written": 0,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {},
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "add",
+   "candidate": "bring about an increase",
+   "sql": "UPDATE things SET value=value+:k WHERE id=:i",
+   "params": {
+    "i": 1,
+    "k": 2
+   },
+   "error": null,
+   "checks": [
+    [
+     "the value after is the value before plus k",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "ADD",
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 2,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "subtract",
+   "candidate": "take away",
+   "sql": "UPDATE things SET value=value-:k WHERE id=:i",
+   "params": {
+    "i": 1,
+    "k": 2
+   },
+   "error": null,
+   "checks": [
+    [
+     "the value after is the value before minus k",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "SUBTRACT",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 2,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "where",
+   "candidate": "the place of a thing",
+   "sql": "SELECT place FROM things WHERE id=:i",
+   "params": {
+    "i": 2
+   },
+   "error": null,
+   "checks": [
+    [
+     "the answer is its place",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 2,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     "box"
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "which",
+   "candidate": "the one out of a group with the property",
+   "sql": "SELECT id FROM things WHERE name='apple' AND place=:p",
+   "params": {
+    "p": "box"
+   },
+   "error": null,
+   "checks": [
+    [
+     "one out of the group, picked by the property",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "READ",
+    "SAY"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 0,
+    "reads": 3,
+    "rows_written": 0,
+    "rows_said": 1,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ"
+    ]
+   },
+   "result": [
+    [
+     4
+    ]
+   ],
+   "applicable_worlds": 10
+  },
+  {
+   "word": "lose",
+   "candidate": "cease to have",
+   "sql": "UPDATE things SET owner=NULL WHERE id=:i AND owner=:me",
+   "params": {
+    "i": 1,
+    "me": "ann"
+   },
+   "error": null,
+   "checks": [
+    [
+     "PRE: had it",
+     true
+    ],
+    [
+     "ceases to have it",
+     true
+    ]
+   ],
+   "passed": true,
+   "worlds": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "roots": [
+    "COMPARE",
+    "FIND",
+    "HEAR",
+    "WRITE"
+   ],
+   "measure": {
+    "schema(graph)": 0,
+    "writes(silicon rows)": 1,
+    "reads": 2,
+    "rows_written": 1,
+    "rows_said": 0,
+    "memory": false,
+    "state": false,
+    "timeline": false
+   },
+   "tables": {
+    "things": [
+     "READ",
+     "UPDATE"
+    ]
+   },
+   "result": [],
+   "applicable_worlds": 10
+  }
+ ],
+ "entail": [
+  [
+   "create",
+   "row",
+   "write"
+  ],
+  [
+   "create",
+   "row",
+   "into"
+  ],
+  [
+   "new",
+   "born now",
+   "create"
+  ],
+  [
+   "new",
+   "born now",
+   "write"
+  ],
+  [
+   "new",
+   "born now",
+   "some"
+  ],
+  [
+   "new",
+   "born now",
+   "into"
+  ],
+  [
+   "delete",
+   "remove the row",
+   "remove"
+  ],
+  [
+   "remove",
+   "take the row away",
+   "delete"
+  ],
+  [
+   "remove",
+   "move it away from the place",
+   "write"
+  ],
+  [
+   "copy",
+   "duplicate the row",
+   "write"
+  ],
+  [
+   "move",
+   "change the place",
+   "write"
+  ],
+  [
+   "move",
+   "change the place",
+   "change"
+  ],
+  [
+   "move",
+   "copy it there, then remove it from here",
+   "write"
+  ],
+  [
+   "join",
+   "bring two parts together",
+   "split"
+  ],
+  [
+   "read",
+   "take in what is written at a known place",
+   "some"
+  ],
+  [
+   "write",
+   "a new mark",
+   "create"
+  ],
+  [
+   "write",
+   "a new mark",
+   "into"
+  ],
+  [
+   "write",
+   "a changed mark",
+   "change"
+  ],
+  [
+   "find",
+   "come upon the things with a property",
+   "some"
+  ],
+  [
+   "find",
+   "come upon the things with a property",
+   "part"
+  ],
+  [
+   "same",
+   "identical in every field, a thing and itself",
+   "some"
+  ],
+  [
+   "same",
+   "identical in every field, a thing and itself",
+   "part"
+  ],
+  [
+   "same",
+   "identical in every field, two apples in different places",
+   "some"
+  ],
+  [
+   "different",
+   "not identical, two apples apart",
+   "some"
+  ],
+  [
+   "different",
+   "not identical, two apples apart",
+   "part"
+  ],
+  [
+   "different",
+   "not identical, a thing and itself",
+   "some"
+  ],
+  [
+   "different",
+   "not identical, a thing and itself",
+   "before"
+  ],
+  [
+   "different",
+   "not identical, a thing and itself",
+   "after"
+  ],
+  [
+   "not",
+   "turn the yes into no",
+   "some"
+  ],
+  [
+   "or",
+   "either",
+   "some"
+  ],
+  [
+   "if",
+   "the act happens only in the event",
+   "write"
+  ],
+  [
+   "if",
+   "the act happens only in the event",
+   "change"
+  ],
+  [
+   "all",
+   "every one",
+   "some"
+  ],
+  [
+   "all",
+   "every one",
+   "whole"
+  ],
+  [
+   "some",
+   "an unspecified number, at least one",
+   "part"
+  ],
+  [
+   "none",
+   "not any, of a thing there is none of",
+   "some"
+  ],
+  [
+   "none",
+   "not any, of a thing there is none of",
+   "part"
+  ],
+  [
+   "none",
+   "not any, of a thing there is some of",
+   "some"
+  ],
+  [
+   "one",
+   "a single unit",
+   "some"
+  ],
+  [
+   "one",
+   "a single unit",
+   "part"
+  ],
+  [
+   "one",
+   "a single unit, asked of a thing that is not there",
+   "some"
+  ],
+  [
+   "two",
+   "one more than one",
+   "some"
+  ],
+  [
+   "two",
+   "one more than one",
+   "part"
+  ],
+  [
+   "more",
+   "a greater number",
+   "some"
+  ],
+  [
+   "more",
+   "a greater number",
+   "few"
+  ],
+  [
+   "few",
+   "a small number: fewer than the others",
+   "some"
+  ],
+  [
+   "few",
+   "a small number: fewer than the others",
+   "more"
+  ],
+  [
+   "before",
+   "earlier in time",
+   "some"
+  ],
+  [
+   "before",
+   "earlier in time, asked the other way round",
+   "some"
+  ],
+  [
+   "after",
+   "later in time",
+   "some"
+  ],
+  [
+   "after",
+   "later in time, asked the other way round",
+   "some"
+  ],
+  [
+   "now",
+   "the clock reading at this moment",
+   "some"
+  ],
+  [
+   "when",
+   "the time an event happened",
+   "some"
+  ],
+  [
+   "the",
+   "the one already in play",
+   "some"
+  ],
+  [
+   "the",
+   "the one already in play",
+   "part"
+  ],
+  [
+   "a",
+   "any one of the kind",
+   "some"
+  ],
+  [
+   "a",
+   "any one of the kind",
+   "part"
+  ],
+  [
+   "between",
+   "in the interval",
+   "some"
+  ],
+  [
+   "between",
+   "in the interval",
+   "part"
+  ],
+  [
+   "part",
+   "a subdivision of the whole",
+   "some"
+  ],
+  [
+   "whole",
+   "all the parts together",
+   "all"
+  ],
+  [
+   "whole",
+   "all the parts together",
+   "some"
+  ],
+  [
+   "keep",
+   "retain over time",
+   "some"
+  ],
+  [
+   "store",
+   "lay aside now, take back later",
+   "some"
+  ],
+  [
+   "have",
+   "possess",
+   "some"
+  ],
+  [
+   "have",
+   "possess",
+   "one"
+  ],
+  [
+   "have",
+   "possess",
+   "part"
+  ],
+  [
+   "have",
+   "possess, asked of the wrong owner",
+   "some"
+  ],
+  [
+   "give",
+   "cause another to have it",
+   "write"
+  ],
+  [
+   "give",
+   "cause another to have it",
+   "change"
+  ],
+  [
+   "take",
+   "come into possession",
+   "write"
+  ],
+  [
+   "take",
+   "come into possession",
+   "change"
+  ],
+  [
+   "buy",
+   "possession one way, money the other",
+   "write"
+  ],
+  [
+   "buy",
+   "possession one way, money the other",
+   "sell"
+  ],
+  [
+   "buy",
+   "possession one way, money the other",
+   "change"
+  ],
+  [
+   "sell",
+   "deliver for money",
+   "write"
+  ],
+  [
+   "sell",
+   "deliver for money",
+   "buy"
+  ],
+  [
+   "sell",
+   "deliver for money",
+   "change"
+  ],
+  [
+   "shop",
+   "a place stocked with things that leave when paid for",
+   "write"
+  ],
+  [
+   "count",
+   "find the total number",
+   "some"
+  ],
+  [
+   "count",
+   "find the total number",
+   "part"
+  ],
+  [
+   "order",
+   "arrange in sequence",
+   "all"
+  ],
+  [
+   "order",
+   "arrange in sequence",
+   "some"
+  ],
+  [
+   "order",
+   "arrange in sequence",
+   "whole"
+  ],
+  [
+   "first",
+   "preceding all others in time",
+   "some"
+  ],
+  [
+   "last",
+   "following all the rest",
+   "some"
+  ],
+  [
+   "empty",
+   "holding nothing",
+   "some"
+  ],
+  [
+   "empty",
+   "holding nothing, asked of a place with things",
+   "some"
+  ],
+  [
+   "full",
+   "as many as is possible",
+   "some"
+  ],
+  [
+   "change",
+   "make different: write what is not there",
+   "write"
+  ],
+  [
+   "remember",
+   "bring back from memory",
+   "some"
+  ],
+  [
+   "exist",
+   "be extant",
+   "some"
+  ],
+  [
+   "exist",
+   "be extant",
+   "part"
+  ],
+  [
+   "exist",
+   "be extant, asked of a thing that is not",
+   "some"
+  ],
+  [
+   "live",
+   "be alive",
+   "some"
+  ],
+  [
+   "live",
+   "be alive, asked of a stone",
+   "some"
+  ],
+  [
+   "live",
+   "be alive, asked of a stone",
+   "none"
+  ],
+  [
+   "kill",
+   "cause to die",
+   "die"
+  ],
+  [
+   "born",
+   "brought into existence, alive",
+   "create"
+  ],
+  [
+   "born",
+   "brought into existence, alive",
+   "write"
+  ],
+  [
+   "born",
+   "brought into existence, alive",
+   "into"
+  ],
+  [
+   "into",
+   "the place a write goes",
+   "create"
+  ],
+  [
+   "into",
+   "the place a write goes",
+   "write"
+  ],
+  [
+   "add",
+   "bring about an increase",
+   "write"
+  ],
+  [
+   "add",
+   "bring about an increase",
+   "change"
+  ],
+  [
+   "subtract",
+   "take away",
+   "write"
+  ],
+  [
+   "subtract",
+   "take away",
+   "change"
+  ],
+  [
+   "where",
+   "the place of a thing",
+   "some"
+  ],
+  [
+   "lose",
+   "cease to have",
+   "write"
+  ],
+  [
+   "lose",
+   "cease to have",
+   "change"
+  ]
+ ]
+}

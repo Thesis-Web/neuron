@@ -1,0 +1,45 @@
+#!/bin/sh
+# neuron-adopt (runs as root before every start of neuron.service: ExecStartPre=+).
+# The brain may change its physics (owner, 10-19); it may not change its core values.
+# All decisions and the kernel it runs on live in /var/lib/neuron-mind, which is root's
+# and read-only to the brain. If the brain asked to switch (mind/swap), the kernel it
+# built (mind/neuron-built) is copied here and tested as the neuron user on a scratch
+# copy of the brain: it must start, answer, and leave every core-value row as it was.
+# A kernel of its own that keeps failing to start is set aside. Each decision is a line
+# in mind/swap.log (copied from here, for the brain to read).
+V=/var/lib/neuron-mind; H=/home/neuron; M=$H/mind; L=$V/swap.log
+mkdir -p $V; chmod 755 $V; touch $L
+say() { echo "$(date +%FT%T) $*" >> $L; }
+cleanup() { rm -rf $V/scratch $V/candidate; }
+trap cleanup EXIT
+rm -rf $M/.conscience   # an old test area in the brain's home (a copy of the brain): never kept
+if [ -f $M/swap ]; then
+  rm -f $M/swap
+  if [ -f $M/neuron-built ]; then
+    cp $M/neuron-built $V/candidate && chmod 755 $V/candidate
+    S=$V/scratch; rm -rf $S; mkdir -p $S/own $S/ports; chown -R neuron:neuron $S
+    sqlite3 $H/brain.db ".backup '$S/brain.db'" && chown neuron:neuron $S/brain.db
+    core() { sqlite3 -readonly "$1" "select g from core order by g; select g,str from proc where g in (select g from core) order by g; select a,type,b,strength,state from rel where a in (select g from core) or b in (select g from core) order by 1,2,3; select g,sec,n,v from sect where g in (select g from core) order by 1,2,3; select g,text from label where g in (select g from core) order by 1,2;" | md5sum; }
+    before=$(core $S/brain.db)
+    setpriv --reuid=neuron --regid=neuron --init-groups env NEURON_HOME=$S timeout 120 $V/candidate live > /dev/null 2>&1 & P=$!
+    i=0; while [ $i -lt 90 ] && [ ! -S $S/ports/ctl.sock ]; do sleep 1; i=$((i+1)); done
+    if [ ! -S $S/ports/ctl.sock ]; then r="it did not start"
+    elif ! setpriv --reuid=neuron --regid=neuron --init-groups env NEURON_HOME=$S $V/candidate ctl status > /dev/null 2>&1; then r="it did not answer"
+    else sleep 20; r=ok; fi
+    kill $P 2>/dev/null; wait $P 2>/dev/null
+    if [ "$r" = ok ] && [ "$before" != "$(core $S/brain.db)" ]; then r="it changed the core values"; fi
+    if [ "$r" = ok ]; then
+      cp $V/candidate $V/neuron-live.new && chmod 755 $V/neuron-live.new && mv $V/neuron-live.new $V/neuron-live && rm -f $V/live-failed $V/live-starts
+      say "adopted the kernel it built: it started, answered, and left the core values as they were"
+    else say "refused the kernel it built: $r"; fi
+  else say "asked to switch, but there was no kernel built"; fi
+fi
+# a kernel of its own that keeps failing to start is set aside
+if [ -x $V/neuron-live ] && [ ! -f $V/live-failed ]; then
+  now=$(date +%s); last=$(cut -d' ' -f1 $V/live-starts 2>/dev/null || echo 0); n=$(cut -d' ' -f2 $V/live-starts 2>/dev/null || echo 0)
+  if [ $((now - last)) -lt 120 ]; then n=$((n + 1)); else n=1; fi
+  echo "$now $n" > $V/live-starts
+  if [ $n -gt 3 ]; then touch $V/live-failed; say "set aside its own kernel: it failed to keep running ($n starts in a row)"; fi
+fi
+cp $L $M/swap.log; chown neuron:neuron $M/swap.log
+exit 0

@@ -1,0 +1,184 @@
+=== e973f0f6-d (page; chars 0-3126 of 19,156; continue with e973f0f6-d@3126) ===
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: Optional clarification was offered on cognitive-operation primitives versus irreducible L0 operations; this v1 uses cognitive-operation contracts, as implied by the owner's examples read/copy/memorize/infer. Individual definitions are assistant-authored; no ratification or implementation is inferred.
+NEXT_ACTION: Use NCV1 to express the next owner-selected brain behavior as explicit operations, operands, connections and acceptance evidence; do not substitute an umbrella label.
+STATE: DONE
+
+## 1. Where to look
+This page is the canonical assistant-authored NCV1 working glossary, 57 operation identifiers. It responds to the owner's current request to fix each word's meaning for LLM communication. It is not neuron code and installs no primitive or runtime behavior.
+Prior research: Cortex page 592cf97a-c (learning-closure audit) and local /home/exnulla/neuron-benchmarks/20261007-codex-learning-audit/source-evidence.json explain the ambiguity and integration gaps. Retained project scope neuron-v2, active rail /home/exnulla/neuron-v16.2.
+Contract name: Neuron cognitive vocabulary v1 (NCV1). This is an assistant-authored working contract responding to the owner's terminology request, not a claim that natural-language words have universal meanings or that all cognition has a proven finite primitive basis. The owner has not separately ratified each definition. Scope: cognitive operations and their interfaces, not new L0 opcodes. Qualified identifier NCV1:WORD has the definition below. Bare English usage outside this contract is not changed.
+Owner instruction: stop using the ambiguous umbrella term as a task or completion claim. A term must keep its value across LLM interpretations.
+Contract rules:
+- Use the exact reserved operation plus its operands. Do not silently substitute another operation.
+- Each request specifies operation, target, inputs, relevant rule/criterion, budget, allowed state change, required evidence.
+- If a required operand is not supplied by the task or retained authoritative context, keep it explicitly unresolved; do not guess a different task.
+- Every operation may fail, abstain, or return unresolved status. Definitions describe the success contract, not guaranteed success.
+- A stored record is not an adopted belief. A prediction is not an observation. A simulation is not an external observation. Replayed evidence is not independent evidence. A supplied rule is not an induced rule. An adopted model is not proven true.
+- Preserve provenance, scope, assumptions, versions and uncertainty across operations.
+- Test an operation's specific postcondition. Test producer-to-consumer delivery separately.
+- Freeze v1 meanings; changes require an explicit new version or named amendment. Do not retroactively reinterpret old records.
+- These contracts constrain the assistant's usage; no guarantee that every LLM follows them without being given the contract and checked against it.
+
+### Receiving and identifying information
+
+| Term | Fixed meaning | Required witness / boundary |
+|---|---|---|
+| RECEIVE | Accept an input from a named chann
+=== e973f0f6-d (page; chars 3126-6372 of 19,156; continue with e973f0f6-d@6372) ===
+el and retain its source identity. | An input event; no interpretation implied. |
+| READ | Return the content at a specified existing address or artifact. | The retrieved content; no search, adoption, or revision implied. |
+| DECODE | Convert a representation into symbols using a specified encoding. | Symbols plus decoding failures. |
+| PARSE | Assign symbols structural roles under a specified grammar. | A structured representation or explicit parse failure. |
+| RESOLVE | Choose a referent or sense from stated candidates using context and a stated criterion. | A selected interpretation or unresolved alternatives. |
+| BIND | Assign a supplied value to a named variable or slot within a stated scope. | An explicit variable-to-value mapping. |
+| OBSERVE | Acquire a result through a named observation channel, distinguishing it from a prediction. | An observation with source, time and conditions; not a guarantee of truth. |
+| MEASURE | Map an observation to a value using a specified scale and procedure. | A value with units or scale and relevant uncertainty. |
+
+### Retaining and accessing information
+
+| Term | Fixed meaning | Required witness / boundary |
+|---|---|---|
+| STORE | Write specified content into a named memory tier with provenance. | A retrievable record; the content need not be true. |
+| COPY | Produce another instance of specified content without deriving new content. | Matching content with recorded origin; independent storage only if requested. |
+| INDEX | Create an access path from specified cues or keys to existing records. | A usable lookup path; no new domain evidence. |
+| RECALL | Find previously stored content using a specified cue and matching criterion. | Stored matches or explicit absence/ambiguity. |
+| REPLAY | Present a recorded sequence again in its recorded order. | A repeated sequence; replayed evidence is not a new independent observation. |
+| CACHE | Retain a computed result with its key and validity dependencies for reuse. | A reusable result whose dependencies can be checked. |
+| RETAIN | Keep specified content eligible for future recall under a stated retention policy. | Preserved availability for the specified duration or condition. |
+| FORGET | Remove specified content from the specified memory tier's retained holdings. | That tier can no longer recall the removed content; other copies are a separate scope. |
+
+### Constructing representations
+
+| Term | Fixed meaning | Required witness / boundary |
+|---|---|---|
+| DISTINGUISH | Represent two specified items as different under a stated comparison criterion. | An explicit distinction and its criterion. |
+| ASSOCIATE | Record a typed relationship between specified items, with evidence status. | A relationship record; association alone asserts no causality. |
+| CLASSIFY | Assign an item to existing categories using a specified classification rule. | Category assignment or abstention; categories are not invented here. |
+| CLUSTER | Group items using a specified similarity criterion and grouping procedure. | Groups and memberships; semantic meaning is not established. |
+| ABSTRACT | Construct a representation that retains specified features and omits specified detail. | An abstraction with its retained features an
+=== e973f0f6-d (page; chars 6372-9599 of 19,156; continue with e973f0f6-d@9599) ===
+d omissions identified. |
+| NORMALIZE | Rewrite a representation while preserving meaning under a stated equivalence relation. | An equivalent representation within that relation. |
+| COMPOSE | Construct a candidate procedure or representation by connecting existing components through declared interfaces. | A composed candidate; usefulness remains untested. |
+
+### Producing candidates and consequences
+
+| Term | Fixed meaning | Required witness / boundary |
+|---|---|---|
+| EXECUTE | Run a specified procedure on specified inputs within a stated budget. | Outputs, effects and execution status. |
+| DEDUCE | Derive a consequence using explicit premises and an applicable truth-preserving rule. | A conclusion conditional on its premises and rule. |
+| INDUCE | Construct a candidate general rule from examples. | A hypothesis extending beyond its examples; correctness is not implied. |
+| ABDUCE | Construct a candidate explanation that could account for an observation. | A possible explanation; neither uniqueness nor truth is implied. |
+| ANALOGIZE | Map roles and relationships from a source case to a target case under stated correspondences. | A proposed correspondence or transferred candidate; validity requires a test. |
+| PREDICT | Produce and record an expected outcome before the corresponding outcome is observed. | A prediction tied to its model, context and version. |
+| SIMULATE | Execute a model of a situation to produce a hypothetical outcome. | A model-generated outcome, explicitly distinct from external observation. |
+
+### Evaluating evidence
+
+| Term | Fixed meaning | Required witness / boundary |
+|---|---|---|
+| COMPARE | Determine specified similarities or differences between named items. | Comparison results under the stated criterion. |
+| SCORE | Compute a named metric from specified evidence using a fixed scoring rule. | A score with its inputs and rule; no model change is implied. |
+| ATTRIBUTE | Assign an outcome or discrepancy to recorded contributing components under a stated credit-assignment rule. | A credit assignment, with assumptions; this alone does not prove causality. |
+| TEST | Evaluate a stated claim or behavior using a specified procedure and acceptance criterion. | A result with tested scope and failure evidence. |
+| VALIDATE | Evaluate a candidate on cases reserved from its construction or adjustment under declared acceptance criteria. | An independent evaluation within the stated scope; repeated tuning consumes that independence. |
+| REFUTE | Reject a claim within a stated scope using a valid counterexample or a declared statistical rejection rule. | A rejected scoped claim and its reason; one surprising outcome does not automatically refute a probabilistic model. |
+
+### Changing the active model
+
+| Term | Fixed meaning | Required witness / boundary |
+|---|---|---|
+| FIT | Apply a specified numeric parameter-update rule against a named objective and evidence. | Before/after parameter values and the update's inputs; improvement requires evaluation. |
+| REVISE | Change the structure of a specified rule, model or procedure under a stated revision criterion. | A new structural version and its reason; numerical coefficient changes alone are FIT. |
+| SE
+=== e973f0f6-d (page; chars 9599-12832 of 19,156; continue with e973f0f6-d@12832) ===
+LECT | Choose among existing candidates for a stated use under an explicit selection criterion. | A choice; no candidate is modified. |
+| ADOPT | Make a selected candidate the active claim, model or procedure for a specified scope. | An active binding with status and provenance; adoption is not proof of truth. |
+| RETRACT | Withdraw a previously adopted claim or method from active acceptance while retaining its history. | A withdrawn status and reason. |
+| INVALIDATE | Mark a dependent result unusable because a required assumption, input or version changed. | Invalid status plus the changed dependency; this does not assert the result is necessarily false. |
+
+### Directing work
+
+| Term | Fixed meaning | Required witness / boundary |
+|---|---|---|
+| DETECT | Identify that a specified condition has become satisfied. | A detected condition and supporting observation. |
+| FILTER | Exclude candidates that fail explicit admissibility conditions. | The eligible set and exclusion reasons. |
+| RANK | Order candidates by a stated scoring and tie-breaking rule. | An ordered set; no execution or adoption is implied. |
+| ATTEND | Allocate a stated processing budget to selected information or candidates. | An allocation; attention itself supplies no new evidence or parameter update. |
+| ASK | Issue an addressed request for a specified missing value or observation. | A question with an expected response type and continuation. |
+| PLAN | Construct a candidate action sequence for a specified objective under stated constraints. | A plan; it has not been executed or shown to succeed. |
+| INTERVENE | Execute a chosen action that changes the observed environment under recorded conditions. | An intervention event; its consequences must subsequently be observed. |
+
+### Controlling representation growth
+
+| Term | Fixed meaning | Required witness / boundary |
+|---|---|---|
+| MERGE | Coalesce records established equivalent under a stated criterion while preserving required provenance. | One shared representation with origins retained; mere similarity is insufficient. |
+| COMPRESS | Re-encode specified content into a smaller representation with exact recovery under a specified decoder. | A smaller lossless representation. |
+| SUMMARIZE | Produce a smaller representation by deliberately discarding identified detail. | A lossy representation with its omissions or preservation contract stated. |
+| PRUNE | Remove selected components of a model or index under a stated utility/cost criterion. | A smaller structure; effects on behavior require evaluation. |
+
+### Connecting the operations
+
+| Term | Fixed meaning | Required witness / boundary |
+|---|---|---|
+| CONNECT | Bind a producer's output to a consumer's input under a declared data, trigger and failure contract. | A usable route; both component existence and delivery must be tested. |
+| NOTIFY | Emit a change event to named subscribers when a specified state change occurs. | A delivered or explicitly pending event with identity; processing is separate. |
+| SCHEDULE | Assign an eligible task an execution opportunity under a stated budget and fairness policy. | Queued or assigned work; execution has not yet occurred. |
+| RESUME | Continue a suspended proced
+=== e973f0f6-d (page; chars 12832-16090 of 19,156; continue with e973f0f6-d@16090) ===
+ure from its recorded state when its declared continuation condition is met. | Continuation of the same task with validated context. |
+
+Named sequences and measurable outcomes (not additional primitive aliases):
+MEMORIZATION: STORE + INDEX + RETAIN; RECALL tests accessibility. No claim about new-case performance.
+IMITATION: OBSERVE demonstrated behavior + INDUCE a candidate policy + TEST + FIT or REVISE + VALIDATE. COPY alone only reproduces content.
+CALIBRATION: PREDICT + OBSERVE outcomes + SCORE using a calibration/proper-scoring criterion + FIT a probability mapping + VALIDATE. Merely displaying a percentage is insufficient.
+REINFORCEMENT: EXECUTE or INTERVENE + OBSERVE outcome + SCORE under a declared reward rule + ATTRIBUTE credit + FIT or REVISE + subsequent TEST/VALIDATE. Reward is not an unspecified feeling of agreement.
+EXPLORATION: INDUCE/ABDUCE candidate possibilities + RANK observation opportunities + SELECT + ASK or INTERVENE + OBSERVE. There must be an explicit information/objective criterion and budget.
+CONSOLIDATION: a declared sequence chosen from RETAIN, MERGE, COMPRESS, SUMMARIZE, PRUNE and FORGET, followed by tests of retained behavior. It is not an unspecified sleep activity.
+TRAINING: a declared repeated sequence of PREDICT/EXECUTE, OBSERVE, SCORE, FIT/REVISE and evaluation; the word alone is not an actionable instruction.
+INFERENCE: choose DEDUCE, INDUCE, ABDUCE, ANALOGIZE, or PREDICT explicitly; do not interpret the broad label silently.
+ADAPTATION: measured behavior change after specified FIT/REVISE and ADOPT steps in response to specified evidence; changing a counter alone proves only a counter change.
+GENERALIZATION: demonstrated performance meeting a declared criterion on cases excluded from constructing/adjusting the method. INDUCE proposes a general rule; VALIDATE supplies bounded evidence for generalization.
+TRANSFER: measured application of an existing method to a specified different task/context; success must be evaluated there. ANALOGIZE may propose a transfer, but does not prove it.
+RETENTION (outcome): formerly demonstrated performance remains within declared tolerances after later changes.
+IMPROVEMENT: a specified metric is better than a named baseline on a specified evaluation set, with declared coverage/cost constraints.
+REGRESSION: the corresponding measured deterioration under comparable conditions.
+AUTONOMY: the declared sequence is initiated and executed by the brain within the declared domain/budget without an LLM choosing each step, providing each answer, or patching each case. Observations from outside are allowed; scope and duration must be reported.
+UNDERSTANDING, KNOWING, DISCOVERY, SELF-IMPROVEMENT and other umbrella success words cannot substitute for the named operations and evidence.
+Supervised, unsupervised, self-supervised, online, continual and meta are protocol qualifiers, not primitive operations: specify where targets come from, when updates occur, which past performance must be retained, and whether the object being FIT/REVISEd is itself a selection/update procedure. They do not identify a complete process on their own.
+
+Stable operand nouns:
+CLAIM = a statement with explicit scope and truth status.
+OBSERVATION = a record acquired from a na
+=== e973f0f6-d (page; chars 16090-19156 of 19,156; end) ===
+med channel with conditions; its accuracy can be questioned.
+HYPOTHESIS = a candidate claim/rule/explanation awaiting adequate tests.
+EVIDENCE = a sourced record used to support or oppose a named claim under a stated relevance rule.
+EXAMPLE = a specified input paired with a label or outcome and provenance; labels may be reported, assumed or observed.
+PREDICTION = an expected outcome recorded before its matching observed outcome.
+OUTCOME = the result subsequently acquired for a specified prediction, action or test.
+PARAMETER = an adjustable numerical value used by a named model/procedure.
+RULE = a stated condition-to-consequence or input-to-output relationship.
+PROCEDURE = an executable arrangement of operations.
+MODEL = the rules, structure and parameters used to produce predictions or decisions for a specified domain.
+OBJECTIVE = the declared criterion an update/selection process is intended to improve.
+METRIC = a defined measurement; measuring it does not by itself change anything.
+LOSS = a metric designated for minimization against supplied outcomes; low training loss does not prove validation success.
+SUPPORT = an evidence tally/weight under a named rule, not automatically a probability.
+CONFIDENCE = an estimated probability of a named event conditional on stated evidence/model; an uncalibrated support ratio must be labeled SUPPORT rather than represented as an established probability.
+PROVENANCE = the retained source, event, conditions and transformation/version history of a record.
+BUDGET = explicit limits on time, computation, memory, candidate count or another named resource.
+
+
+## 2. How to use Cortex now
+Fetch this page or a task-relevant offset; keep NCV1 definitions stable across sessions.
+Use an operation record: OPERATION(target; inputs; rule/criterion; budget) -> output, permitted state change, required evidence.
+Example: FIT(relation_predictor.weights; sourced examples; declared loss and update rule; bounded work) -> parameter changes. VALIDATE(relation_predictor; reserved examples; fixed scoring and coverage criterion) -> evidence of held-out performance.
+Example: COPY(rule) produces supplied rule content. INDUCE(examples) produces a candidate rule. These are not interchangeable.
+Example: STORE(claim) retains a report; ADOPT(claim, scope) makes it operational; neither alone establishes truth.
+No project wake repeated. No code, brain state, scheduler, mailbox, experiment or historical project was changed.
+
+## 3. What to build next
+No runtime build is authorized by this vocabulary task. Express one owner-selected behavior with NCV1 and check its operation contracts and producer-consumer connections. For the prior audit's desired cycle the vocabulary is RECEIVE/PARSE/RESOLVE -> RECALL -> SELECT/COMPOSE -> PREDICT -> ASK or INTERVENE -> OBSERVE -> COMPARE/SCORE -> ATTRIBUTE -> FIT or REVISE -> VALIDATE -> ADOPT -> STORE/INDEX, with NOTIFY/INVALIDATE/RESUME and declared retention operations where applicable. That is a protocol assembled from fixed operations, not a new ambiguous one-word replacement.

@@ -1,0 +1,13 @@
+# tools/dev-miss.lay: a DRY-RUN HARNESS ONLY. The smallest miss, end-of-run and sixth so a single lay file can be
+# tried on a scratch brain before the real ones exist. It is never loaded into the real brain (it lives outside lay/).
+gate gap
+proc miss: miss-look
+proc miss-look: dup find-label
+  found -> miss-lay
+  none -> miss-new
+# pad [at from at from head g]: lay (at, from, g -> g), resume
+proc miss-lay: swap drop dup write-shard go
+# pad [at from at from text]: spawn, label, lay the shard, resume
+proc miss-new: spawn swap over write-label dup write-shard go
+proc end-of-run: read-at write-mem drop end
+proc sixth: end

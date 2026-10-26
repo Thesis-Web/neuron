@@ -1,0 +1,39 @@
+### 592 tokens, first time (rows written where new)
+>   run 394 (said, in run 393): BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , ( SE
+  run 395 (build, in run 394): ok
+  run 396 (build, in run 394): ok
+  run 397 (build, in run 394): ok
+  [0.67 s]
+### 592 tokens, again (every row a hit)
+>   run 399 (said, in run 398): BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , ( SE
+  run 400 (build, in run 399): ok
+  run 401 (build, in run 399): ok
+  run 402 (build, in run 399): ok
+  [0.66 s]
+### 1200 tokens, first time (rows written where new)
+>   run 404 (said, in run 403): BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , ( SE
+  run 405 (build, in run 404): ok
+  run 406 (build, in run 404): ok
+  run 407 (build, in run 404): ok
+  [1.82 s]
+### 1200 tokens, again (every row a hit)
+>   run 409 (said, in run 408): BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , ( SE
+  run 410 (build, in run 409): ok
+  run 411 (build, in run 409): ok
+  run 412 (build, in run 409): ok
+  [1.82 s]
+### 2400 tokens, first time (rows written where new)
+>   run 414 (said, in run 413): BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , ( SE
+  run 415 (build, in run 414): ok
+  run 416 (build, in run 414): ok
+  run 417 (build, in run 414): ok
+  [5.77 s]
+### 2400 tokens, again (every row a hit)
+>   run 419 (said, in run 418): BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , ( SE
+  run 420 (build, in run 419): ok
+  run 421 (build, in run 419): ok
+  run 422 (build, in run 419): ok
+  [6.80 s]
+shards|844
+receipts|89062
+runs|422

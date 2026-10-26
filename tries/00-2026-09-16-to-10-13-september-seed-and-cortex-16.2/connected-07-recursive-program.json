@@ -1,0 +1,245 @@
+[
+  {
+    "id": 40566,
+    "run": 27,
+    "gate": 23,
+    "kind": "recursive-program-constructed",
+    "value": [
+      {
+        "object": 260,
+        "address": 10916
+      },
+      {
+        "object": 1529,
+        "address": 40652
+      },
+      {
+        "code": 40674,
+        "tag": "call",
+        "children": [
+          4618,
+          40668,
+          4
+        ]
+      },
+      [
+        {
+          "code": 16141,
+          "tag": "call",
+          "children": [
+            3355,
+            16135,
+            4
+          ]
+        },
+        {
+          "code": 16156,
+          "tag": "call",
+          "children": [
+            3355,
+            16152,
+            4
+          ]
+        },
+        {
+          "object": 1521,
+          "address": 36285
+        },
+        {
+          "object": 1522,
+          "address": 36319
+        }
+      ],
+      [
+        [
+          [
+            [],
+            0,
+            [
+              "OWNER_EXPECTATION",
+              "learn tally this [] want 0; learn tally this [c] want 1; learn tally this [b c] want 2; learn tally this [a b c] want 3"
+            ],
+            1792562598158202898
+          ]
+        ],
+        [
+          [
+            [
+              [
+                "c"
+              ],
+              0
+            ],
+            1,
+            [
+              "REDUCTION_WITNESS",
+              {
+                "code": 16141,
+                "tag": "call",
+                "children": [
+                  3355,
+                  16135,
+                  4
+                ]
+              },
+              {
+                "code": 16156,
+                "tag": "call",
+                "children": [
+                  3355,
+                  16152,
+                  4
+                ]
+              },
+              [
+                [
+                  "c"
+                ],
+                1,
+                [
+                  "OWNER_EXPECTATION",
+                  "learn tally this [] want 0; learn tally this [c] want 1; learn tally this [b c] want 2; learn tally this [a b c] want 3"
+                ],
+                1792562598217822398
+              ],
+              [
+                [],
+                0,
+                [
+                  "OWNER_EXPECTATION",
+                  "learn tally this [] want 0; learn tally this [c] want 1; learn tally this [b c] want 2; learn tally this [a b c] want 3"
+                ],
+                1792562598158202898
+              ]
+            ],
+            1792562733350472045
+          ],
+          [
+            [
+              [
+                "b",
+                "c"
+              ],
+              1
+            ],
+            2,
+            [
+              "REDUCTION_WITNESS",
+              {
+                "code": 16141,
+                "tag": "call",
+                "children": [
+                  3355,
+                  16135,
+                  4
+                ]
+              },
+              {
+                "code": 16156,
+                "tag": "call",
+                "children": [
+                  3355,
+                  16152,
+                  4
+                ]
+              },
+              [
+                [
+                  "b",
+                  "c"
+                ],
+                2,
+                [
+                  "OWNER_EXPECTATION",
+                  "learn tally this [] want 0; learn tally this [c] want 1; learn tally this [b c] want 2; learn tally this [a b c] want 3"
+                ],
+                1792562598352700880
+              ],
+              [
+                [
+                  "c"
+                ],
+                1,
+                [
+                  "OWNER_EXPECTATION",
+                  "learn tally this [] want 0; learn tally this [c] want 1; learn tally this [b c] want 2; learn tally this [a b c] want 3"
+                ],
+                1792562598217822398
+              ]
+            ],
+            1792562733355697988
+          ],
+          [
+            [
+              [
+                "a",
+                "b",
+                "c"
+              ],
+              2
+            ],
+            3,
+            [
+              "REDUCTION_WITNESS",
+              {
+                "code": 16141,
+                "tag": "call",
+                "children": [
+                  3355,
+                  16135,
+                  4
+                ]
+              },
+              {
+                "code": 16156,
+                "tag": "call",
+                "children": [
+                  3355,
+                  16152,
+                  4
+                ]
+              },
+              [
+                [
+                  "a",
+                  "b",
+                  "c"
+                ],
+                3,
+                [
+                  "OWNER_EXPECTATION",
+                  "learn tally this [] want 0; learn tally this [c] want 1; learn tally this [b c] want 2; learn tally this [a b c] want 3"
+                ],
+                1792562598485443138
+              ],
+              [
+                [
+                  "b",
+                  "c"
+                ],
+                2,
+                [
+                  "OWNER_EXPECTATION",
+                  "learn tally this [] want 0; learn tally this [c] want 1; learn tally this [b c] want 2; learn tally this [a b c] want 3"
+                ],
+                1792562598352700880
+              ]
+            ],
+            1792562733361727549
+          ]
+        ],
+        []
+      ],
+      {
+        "object": 1521,
+        "address": 36285
+      },
+      {
+        "object": 1522,
+        "address": 36319
+      }
+    ],
+    "source": "learn tally this [] want 0; learn tally this [c] want 1; learn tally this [b c] want 2; learn tally this [a b c] want 3",
+    "actor": "owner"
+  }
+]

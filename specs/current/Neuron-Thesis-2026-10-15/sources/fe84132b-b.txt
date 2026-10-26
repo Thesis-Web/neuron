@@ -1,0 +1,31 @@
+=== fe84132b-b (page; chars 0-4054 of 4,054; end) ===
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: None needed for this explanation. Compact-storage and memory-lifecycle changes are proposals, not authorized migrations.
+NEXT_ACTION: When implementation is requested, make a copy-only proof that receipts can retain their exact identity and behavior using shared child references instead of recursively stored expression/display text, including exact deduplication checks.
+STATE: READY
+
+## 1. Where to look
+Project/book neuron-v2; living rail /home/exnulla/neuron-v16.2.
+Read-only size measurements: /home/exnulla/neuron-benchmarks/20261003-codex-memory-size/measure.json.
+Source: substrate.py:43 (expr TEXT UNIQUE), :190 (gate_id), :195 (existing-expression reuse), :421 (receipt embeds child expr/shown), :433 (memnode child IDs); physics.py:505 onwards (receipt/occurrence/timeline retention).
+Measurement around 2026-10-03 05:42–05:44 CDT, events 52109–52619 while the definition import continued. Queries have separate read snapshots; sizes are dated observations, not a frozen whole-database census.
+
+## 2. How to use Cortex now
+Use project neuron-v2; no repeated wake in this conversation.
+Fetch this record for the size diagnosis and proposal, previous page 4f422b8d-0 for the completed candidate-search implementation.
+Measure with read-only dbstat per-page SUM. SQLite 3.37.2 aggregate pgsize/payload overflowed signed 32-bit for the two largest objects; raw flawed aggregate and corrected 64-bit totals are retained.
+No brain/code/storage policy was changed, no database copy was made, no memory was deleted.
+
+## 3. What to build next
+Proposed first memory task: copy-only lossless receipt-storage experiment using existing gate IDs/child references, preserving exact gate identity, deduplication, executable reconstruction, historical lookup and live graph references. Canonical mathematical identity must survive any encoding change. A short fingerprint may index candidates but must not replace exact equality. Only after proving this representation should a separate active/recent/consolidated memory policy be implemented as graph behavior.
+
+Measurements:
+- Logical btree allocation: 6,976,462,848 bytes.
+- gate: 3,420,258,304 bytes; unique expr index: 2,853,638,144 bytes. Together 89.93%.
+- All remaining objects: 702,566,400 bytes; memnode itself: 33,460,224 bytes.
+- Earlier nearby column scan: 191,688 receipt gates; receipt expr 2,582,643,116 bytes, shown 713,874,560 bytes. Receipts account for 99.947% of gate expr bytes; this includes stored code, constructed data and route receipts, not exclusively autobiographical episodes.
+- Largest receipt gate 189857, born event 44929 while teaching Codex ws_step: expr 1,553,792 bytes; shown 434,911 bytes; four existing child IDs occupy 28 bytes in memnode.keys. Index also stores expression text. The children themselves still need storage; 28 bytes is not a claim that the entire memory can be represented without them.
+- Identical complete expressions already reuse a gate through add_gate. Distinct parents still embed duplicate copies of common child expressions; this is structural amplification, not simply the number of episodes or digits versus words.
+- Definition import is ongoing. This audit does not attribute all recent growth to that import or claim every receipt can be discarded.
+
+Owner asks about working, todayish short-term, and compressed accessible long-term memory, and proposes a unique link number pointing to one stored memory. gate.id and memnode.keys already supply that addressing foundation; receipt serialization defeats sharing by expanding children again. Proposed lifecycle: working set for current tasks/unresolved conflicts; recent episodic details with time/source/outcome; consolidated patterns/processes plus accessible evidence, with lossless cold archives where exact audit traces are needed. Repeated processes can share content while retaining separate dated occurrences; preserve disagreements and guess status. Representation repair and retention/consolidation policy solve different parts of the problem.

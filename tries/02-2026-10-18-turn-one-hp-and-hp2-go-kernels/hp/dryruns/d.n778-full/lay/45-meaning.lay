@@ -1,0 +1,748 @@
+# 45-meaning.lay (Builder M, turn two): the meaning way (meaning blueprint 5): gap, spec, compile, test, hold, wire,
+# use, senses, holes asking. Fills `meaning` from 00-roots.lay (g --). Names from A (w-something, w-someone,
+# r-derived-from), B (end-of-run lands a branch's memory id on its parent), C (newborn, check-depth), D (source-check)
+# and the handle say-word (F) are used, never laid here. Nothing here is a fact: every formula the brain compiles is a
+# guess in a guesses row until its uses mark it; held and understood are earned in the rows, never laid.
+# Pads in comments: [bottom .. top]; -- what the proc leaves; -> the outcome it puts at the head.
+# Every test is first in its own small proc and every outcome it can give has a branch.
+# Gate identity is tested as one-item lists ([x] against [y]: same only when x is y); compare on bare gates is a distance.
+
+# ---- told values (visible; the brain may change them with write-value)
+# passing it puts 3 on the pad: how many times a gap is sent to the sources before the word is left a bare name
+gate gap-tries = 3
+# passing it puts 8 on the pad: how many beats a compile waits for its reading children
+gate compile-wait = 8
+# states of a compiled meaning, as names in hand (no English label: said as their address until the brain names them)
+# passing held puts it on the pad: two or more sources agreed on the formula
+gate held @ 5 2 -20
+# passing understood puts it on the pad: the formula predicted two of its uses
+gate understood @ 6 2 -20
+
+# ---- small helpers: each drops that many items (the exits of tests whose pad is otherwise done with)
+proc mn-drop2: drop drop
+proc mn-drop3: drop drop drop
+proc mn-drop4: drop drop drop drop
+proc mn-drop5: drop drop drop drop drop
+proc mn-drop6: drop drop drop drop drop drop
+
+# ================= meaning: g -- : the meaning way on g. Branches on g's definition memory: no spec -> the sources
+# (mn-spec); a spec and a bare gate -> compile (mn-compile); wired -> a test on a use (tu-start), or nothing when
+# its guesses row already says understood
+proc meaning: dup =3 mn-spec-t
+# [g g 3] -- [g L] -> found (a spec is held) / none (section 3 empty)
+proc mn-spec-t: read-def
+  found -> mn-bound
+  none -> mn-spec
+
+# ---- SPEC. [g L] -- : source-check (D) runs on g as a branch so the sources fill section 3; the gap row keyed by g is
+# re-written (same key, same row: its seen count rises) and read against gap-tries; past it the row goes: the word
+# stays a bare name, the brain gave up asking
+proc mn-spec: drop dup 'source-check swap split mn-gap
+# [g] -- [n n] then the row's counts
+proc mn-gap: 'gap swap dup dup dup write-row dup mn-gap-t
+proc mn-gap-t: read-mem
+  found -> mn-gap-seen
+  none -> drop
+# [n out seen right wrong last] -- [n seen tries] then the test
+proc mn-gap-seen: drop drop drop swap drop gap-tries mn-gap-cmp
+# [n seen tries] -- [n d] -> more (past the tries: the row goes) / same, less (it stays for the sixth)
+proc mn-gap-cmp: compare
+  more -> mn-gap-drop
+  same -> mn-drop2
+  less -> mn-drop2
+proc mn-gap-drop: drop delete-row
+
+# ---- a spec is held. [g L] -- : a bare gate (no binding) is compiled; a wired one is tested
+proc mn-bound: drop dup mn-bind-t
+proc mn-bind-t: read-bind
+  found -> mn-wired
+  none -> mn-fouled
+# [g] -- [g guesses g] -> the guesses row keyed by g: a formula the brain unwired (wrong led) is not compiled again
+# from the same spec; none, or right not behind -> the compile. The told base is compiled like anything else (the
+# owner, 14:10: a mind the brain cannot change is the builder's word taken as truth); it can change it back (mn-unfoul)
+proc mn-fouled: 'guesses over mn-fouled-t
+proc mn-fouled-t: find-rowkey
+  found -> mn-fouled-row
+  none -> mn-compile
+# [g n] -- [g n out seen right wrong last] -> found / none
+proc mn-fouled-row: dup mn-fouled-mem
+proc mn-fouled-mem: read-mem
+  found -> mn-fouled-cmp
+  none -> mn-fouled-go
+# [g n out seen right wrong last] -- [g n d] -> less (wrong led: stays unwired) / same, more (compile)
+proc mn-fouled-cmp: drop mn-fouled-cmp-t
+proc mn-fouled-cmp-t: compare
+  less -> mn-fouled-stay
+  same -> mn-fouled-go2
+  more -> mn-fouled-go2
+# [g n out seen d] -- : the brain's own verdict stands: its gap row goes, nothing is compiled
+proc mn-fouled-stay: drop drop drop drop mn-ungap drop
+proc mn-fouled-go2: drop drop drop mn-fouled-go
+# [g n] -- [g] -> the compile
+proc mn-fouled-go: drop mn-compile
+# g -- g : the gap row keyed by g goes (the sixth's gap list is for words with no meaning yet; a wired word's tests
+# belong to its guesses row and to parked questions). Nothing when there is none
+proc mn-ungap: 'gap over mn-ungap-t
+proc mn-ungap-t: find-rowkey
+  found -> delete-row
+  none -> mn-ungap-none
+# g -- g : no gap row to drop (a mark put in hand and dropped)
+proc mn-ungap-none: read-mark drop
+# [g t x] -- [g n] : wired: its gap row goes; its guesses row (a wired gate with none, a told first guess, gets one)
+proc mn-wired: drop drop mn-ungap 'guesses over mn-row-t
+proc mn-row-t: find-rowkey
+  found -> mn-known
+  none -> mn-row-new
+proc mn-row-new: dup 'guesses swap dup 'state-guess read-self write-row mn-known
+# [g n] -- [g n out seen right wrong last] -> found / none
+proc mn-known: dup mn-known-t
+proc mn-known-t: read-mem
+  found -> mn-known-out
+  none -> mn-drop2
+# [g n out seen right wrong last] -- [g n out seen right wrong] then: wrong ahead of right -> the brain unwires the
+# formula (write-proc with an empty list: the gate is plain again, its hops go; a section-9 line names the row); else on
+proc mn-known-out: drop mn-unfoul-t
+proc mn-unfoul-t: compare
+  less -> mn-unfoul
+  same -> mn-known-on
+  more -> mn-known-on
+# [g n out seen d] -- : unwired; the row's outcome goes back to a guess; the run ends
+proc mn-unfoul: drop drop drop over read-mark read-tomark write-proc over over =9 swap write-def 'state-guess write-outcome end
+# [g n out seen d] -- [g n out] -> the state test
+proc mn-known-on: drop drop mn-known-gate
+proc mn-known-gate: find-label
+  found -> mn-known-cmp
+  none -> tu-start
+# [g n o] -- [g n d] -> same (understood already: nothing to do) / more (test it on a use)
+proc mn-known-cmp: =1 read-list 'understood =1 read-list mn-known-cmp-t
+proc mn-known-cmp-t: compare
+  same -> mn-drop3
+  more -> mn-test
+  less -> mn-test
+proc mn-test: drop tu-start
+
+# ================= COMPILE: g -- : a compile-reading child per spec line (the text is the child's subject: the kernel
+# encodes it and the child takes the words one at a time); the candidate from what the children land; then wire
+proc mn-compile: dup =3 cm-lines-t
+# [g g 3] -- [g L] -> found / none (cannot happen: meaning found the spec)
+proc cm-lines-t: read-def
+  found -> cm-start
+  none -> mn-drop2
+# [g L] -- [g L 0] then the walk over the lines
+proc cm-start: =0 cm-step
+# [g L i] -- [g L i text] -> found / none (the lines are done: wait for the children)
+proc cm-step: over over cm-item
+proc cm-item: read-item
+  found -> cm-split
+  none -> cm-wait-lines
+# [g L i text] -- [g L i+1] : one compile-reading child on the text
+proc cm-split: 'cm-read swap split =1 add cm-step
+# [g L n] -- : waits for n landings (or the told beats), then cm-pick runs on what landed
+proc cm-wait-lines: 'cm-pick cm-wait
+
+# ---- the wait: [.. n c] -- [.. landings] then c : a beat at a time until n more items landed on the pad, or
+# compile-wait beats passed (wait returns after a beat even when a child has not landed). The needed pad depth,
+# the deadline and c are kept as this run's want (a list), read back each beat
+proc cm-wait: swap read-pad =2 sub add clock compile-wait beat mul add rot =3 read-list write-want cm-wait-loop
+proc cm-wait-loop: wait read-pad cm-wait-want
+# [.. p] -- [.. p W] -> found / none (cannot happen: the want was just written)
+proc cm-wait-want: read-want
+  found -> cm-wait-need
+  none -> drop
+# [.. p W] -- [.. p W need] -> found
+proc cm-wait-need: dup =0 cm-wait-need-t
+proc cm-wait-need-t: read-item
+  found -> cm-wait-cmp
+  none -> mn-drop2
+# [.. p W need] -- [.. W d] -> less (not all landed: the deadline) / same, more (landed: c runs)
+proc cm-wait-cmp: rot swap cm-wait-cmp-t
+proc cm-wait-cmp-t: compare
+  less -> cm-wait-late
+  same -> cm-wait-go
+  more -> cm-wait-go
+# [.. W d] -- [..] then c : write-rest puts c at the front of the remainder: run it
+proc cm-wait-go: drop =2 cm-wait-go-t
+proc cm-wait-go-t: read-item
+  found -> write-rest
+  none -> drop
+# [.. W d] -- [.. W deadline] -> found
+proc cm-wait-late: drop dup =1 cm-wait-dl-t
+proc cm-wait-dl-t: read-item
+  found -> cm-wait-time
+  none -> drop
+# [.. W deadline] -- [.. W d] -> more (past the deadline: c runs with what came) / same, less (another beat)
+proc cm-wait-time: clock swap cm-wait-time-t
+proc cm-wait-time-t: compare
+  more -> cm-wait-go
+  same -> cm-wait-again
+  less -> cm-wait-again
+proc cm-wait-again: drop drop cm-wait-loop
+
+# ---- the compile-reading child (split with a spec line as its subject). [] -- : the first word is the headword, g's
+# own label: find-label takes g in hand; then each word: a gate with a binding is a MEANING, kept; a bare gate or a
+# raw word is a HOLE, w-something kept in its place; the headword met again is skipped; when the words run out the
+# list lands on the parent and the child ends (nothing written)
+proc cm-read: read-word
+  found -> cm-head
+  none -> end
+# [w] -- [g] -> found / none (cannot happen: the headword is g's label)
+proc cm-head: find-label
+  found -> cm-begin
+  none -> end
+# [g] -- [g L] with L empty, then the loop
+proc cm-begin: =0 read-list cm-loop
+# [g L] -- [g L w] -> found / none (the words are done: the list lands with its count of meaning gates)
+proc cm-loop: read-word
+  found -> cm-gate
+  none -> cm-land
+# [g L] -- [g L 0 L 0] : k, the meaning gates counted so far, then the walk
+proc cm-land: =0 over =0 ck-step
+# [g L k L i] -- [g L k L i x] -> found / none (walked)
+proc ck-step: over over ck-item
+proc ck-item: read-item
+  found -> ck-hole
+  none -> ck-done
+# [.. x] -- [.. d] -> same (the hole) / more (a meaning gate)
+proc ck-hole: =1 read-list 'w-something =1 read-list ck-hole-t
+proc ck-hole-t: compare
+  same -> ck-next
+  more -> ck-more
+  less -> ck-more
+# [g L k L i d] -- [g L k L i+1]
+proc ck-next: drop =1 add ck-step
+# [g L k L i d] -- [g L k+1 L i+1]
+proc ck-more: drop rot =1 add rot rot =1 add ck-step
+# [g L k L i] -- : [L k] lands on the parent; the child ends (nothing written)
+proc ck-done: drop drop =2 read-list land end
+# [g L w] -- [g L x] -> found (a gate) / none (a raw word, popped by the test: a hole)
+proc cm-gate: find-label
+  found -> cm-same
+  none -> cm-hole-raw
+# [g L x] -- [L x g d] -> same (the headword again) / more (another word)
+proc cm-same: rot over over =1 read-list swap =1 read-list cm-same-t
+proc cm-same-t: compare
+  same -> cm-skip
+  more -> cm-bind
+  less -> cm-bind
+# [L x g d] -- [g L] : the headword again: skipped
+proc cm-skip: drop rot rot drop cm-loop
+# [L x g d] -- [g L x t v] -> found (a meaning) / none (bare: a hole)
+proc cm-bind: drop rot rot dup cm-bind-t
+proc cm-bind-t: read-bind
+  found -> cm-keep
+  none -> cm-hole
+# [g L x t v] -- [g L+x]
+proc cm-keep: drop drop add cm-loop
+# [g L x] -- [g L+w-something] : a bare gate: a hole in the formula
+proc cm-hole: drop cm-hole-raw
+# [g L] -- [g L+w-something] : a raw word: a hole in the formula
+proc cm-hole-raw: 'w-something add cm-loop
+
+# ---- the candidate. [g L l1..lm] -- : each child landed [L k], its list and its count of meaning gates. F is the
+# RICHEST list (most meaning gates), S the next richest: so the order the children finish in decides nothing.
+# No list with a meaning gate -> the spec's bare words are needed first (cm-seek); F alone -> F, a guess;
+# F and S -> the meaning gates of F that S also holds, in F's order (what the sources agree on)
+# A pass walks C with [g c x C i]: c the step after the pass, x an index left out (the count of C: none, in the
+# first pass; F's index in the second); the best so far is this run's want [bk bi]
+proc cm-pick: read-pad =2 sub read-list swap drop dup read-count 'cf-one swap rot =0 =0 =2 read-list write-want =0 cf-step
+# [g c x C i] -- [g c C i x i x] then: is i the index left out?
+proc cf-step: rot over over cf-x-t
+# [g c C i x d] -> same (left out: the next) / more, less (looked at)
+proc cf-x-t: compare
+  same -> cf-on
+  more -> cf-look
+  less -> cf-look
+proc cf-on: drop rot rot =1 add cf-step
+# [g c C i x d] -- [g c x C i P] -> found / none (C is walked: c runs)
+proc cf-look: drop rot rot over over cf-item
+proc cf-item: read-item
+  found -> cf-k
+  none -> cf-end
+# [g c x C i P] -- [g c x C i k] -> found
+proc cf-k: =1 cf-k-t
+proc cf-k-t: read-item
+  found -> cf-want
+  none -> cf-on2
+proc cf-on2: =1 add cf-step
+# [.. k] -- [.. k W] -> found
+proc cf-want: read-want
+  found -> cf-bk
+  none -> drop
+# [.. k W] -- [.. k W bk] -> found
+proc cf-bk: dup =0 cf-bk-t
+proc cf-bk-t: read-item
+  found -> cf-cmp
+  none -> mn-drop2
+# [.. i k W bk] -- [.. i W k d] -> more (richer than the best: it becomes the best) / same, less (compare takes both)
+proc cf-cmp: rot dup rot cf-cmp-t
+proc cf-cmp-t: compare
+  more -> cf-better
+  same -> cf-worse
+  less -> cf-worse
+# [g c x C i W k d] -- [g c x C i+1] : the want becomes [k i]
+proc cf-better: drop swap drop over =2 read-list write-want =1 add cf-step
+proc cf-worse: drop drop drop =1 add cf-step
+# [g c x C i] -- [g C] then c
+proc cf-end: drop swap drop swap write-rest
+# [g C] -- : after the first pass: the best count above 0 -> F; else no list has a meaning: seek
+proc cf-one: cf-best
+proc cf-best: read-want
+  found -> cf-bk0
+  none -> mn-drop2
+# [.. C W] -- [.. C W bk] -> found
+proc cf-bk0: dup =0 cf-bk0-t
+proc cf-bk0-t: read-item
+  found -> cf-any
+  none -> mn-drop3
+# [.. C W bk] -- [.. C W d] -> more (a list with a meaning) / same, less (none)
+proc cf-any: =0 cf-any-t
+proc cf-any-t: compare
+  more -> cf-pick
+  same -> cf-poor
+  less -> cf-poor
+# [g C W d] -- [g] or [g F C W d] -- [g F] : no richer list: after the first pass seek, after the second F alone
+proc cf-poor: drop drop drop cf-poor-t
+proc cf-poor-t: read-pad =1 cf-poor-tt
+proc cf-poor-tt: compare
+  same -> cf-seek0
+  more -> cf-alone
+  less -> cf-seek0
+proc cf-seek0: drop cm-seek
+proc cf-alone: drop cm-wire-guess
+# [.. C W d] -- [.. C bi] -> found : the best index
+proc cf-pick: drop =1 cf-pick-t
+proc cf-pick-t: read-item
+  found -> cf-take
+  none -> mn-drop2
+# [.. C bi] -- [.. C bi F] -> found : the best list (its P = [L k], L first)
+proc cf-take: over over cf-take-t
+proc cf-take-t: read-item
+  found -> cf-take-l
+  none -> mn-drop2
+proc cf-take-l: =0 cf-take-l-t
+proc cf-take-l-t: read-item
+  found -> cf-have
+  none -> mn-drop2
+# [g C bi F] after the first pass -> [g F c bi C 0] the second pass, F's index left out; [g F C bi S] after the second -> the agreement
+proc cf-have: read-pad =4 cf-have-t
+proc cf-have-t: compare
+  same -> cf-second
+  more -> cf-both
+  less -> cf-second
+proc cf-second: drop rot rot 'cf-two rot rot swap =0 =0 =2 read-list write-want =0 cf-step
+# [g F C W d] -- [g F C W d] then as cf-one with F below
+proc cf-two: cf-best
+# [g F C bi S d] -- [g F S]
+proc cf-both: drop rot drop swap drop ag-start
+# [g F S] -- [g A F 0] : S is kept as this run's want (read back for each test); A, the agreed gates, starts empty
+proc ag-start: write-want =0 read-list swap =0 ag-step
+# [g A F i] -- [g A F i x] -> found / none (F is walked)
+proc ag-step: over over ag-item
+proc ag-item: read-item
+  found -> ag-mean
+  none -> ag-done
+# [.. x] -- [.. x d] -> same (the hole: skipped, never agreed on) / more (a gate: a meaning?)
+proc ag-mean: dup =1 read-list 'w-something =1 read-list ag-hole-t
+proc ag-hole-t: compare
+  same -> ag-skip-d
+  more -> ag-bind0
+  less -> ag-bind0
+proc ag-skip-d: drop ag-skip
+# [.. x d] -- [.. x t v] -> found (a meaning: is it in S?) / none (a bare gate: skipped)
+proc ag-bind0: drop dup ag-bind
+proc ag-bind: read-bind
+  found -> ag-in
+  none -> ag-skip
+# [g A F i x] -- [g A F i+1]
+proc ag-skip: drop =1 add ag-step
+# [g A F i x t v] -- [g A F i X S] -> found : [x] and the other list
+proc ag-in: drop drop =1 read-list ag-want
+proc ag-want: read-want
+  found -> ag-in-cmp
+  none -> ag-skip
+# [g A F i X S] -- [g A F i n d] : d = items of [x] and S that disagree, n = the count of S; x is in S when d is below n
+proc ag-in-cmp: dup read-count rot rot ag-in-cmp1
+proc ag-in-cmp1: compare
+  same -> ag-in-cmp2
+  more -> ag-in-cmp2
+  less -> ag-in-cmp2
+# [g A F i n d] -- [g A F i d'] -> less (d below n: x is in S, agreed) / same, more (not: skipped)
+proc ag-in-cmp2: swap ag-in-cmp3
+proc ag-in-cmp3: compare
+  less -> ag-yes
+  same -> ag-no
+  more -> ag-no
+proc ag-no: drop =1 add ag-step
+# [g A F i d'] -- [g A' F i+1] : x (read again from F) joins A
+proc ag-yes: drop over over ag-yes-x
+proc ag-yes-x: read-item
+  found -> ag-add
+  none -> ag-done
+# [g A F i x] -- [g A' P] with P = [F i], then P unpacked
+proc ag-add: rot rot =2 read-list rot rot add swap ag-unpack
+proc ag-unpack: dup =0 ag-unpack-f
+proc ag-unpack-f: read-item
+  found -> ag-unpack-i
+  none -> mn-drop2
+# [g A P F] -- [g A F i]
+proc ag-unpack-i: swap =1 ag-unpack-i-t
+proc ag-unpack-i-t: read-item
+  found -> ag-next
+  none -> mn-drop2
+proc ag-next: =1 add ag-step
+# [g A F i] -- : F walked: A empty -> F as a guess; else A, held (two sources agreed)
+proc ag-done: drop swap dup read-count =0 ag-done-t
+proc ag-done-t: compare
+  same -> ag-fallback
+  more -> ag-held
+  less -> ag-fallback
+# [g F A d] -- [g F]
+proc ag-fallback: drop drop cm-wire-guess
+# [g F A d] -- [g A]
+proc ag-held: drop swap drop cm-wire-held
+
+# ---- the candidate K with its state s. [g K] -- [s g K] then the wiring
+proc cm-wire-guess: 'state-guess rot rot cm-wire
+proc cm-wire-held: 'held rot rot cm-wire
+
+# ---- WIRE. [s g K] -- [s g K n] : write-proc g K (the kernel keeps the gates and lays the hops; g is made derived),
+# the action line (section 6) and the built-from line (section 4) as the list (written as the gates' labels), and the
+# guesses row keyed by g: home g, outcome state-guess, body this run's memory (the receipt)
+proc cm-wire: over over write-proc over over =6 swap write-def over over =4 swap write-def cm-row
+proc cm-row: over 'guesses swap dup 'state-guess read-self write-row cm-ungap
+# [s g K n] -- [s g K n] : wired now: the gap row keyed by g goes
+proc cm-ungap: rot mn-ungap rot rot cm-receipts
+# [s g K n] -- [V 0] : V = [s K n g tg], tg = g's made (derived now): the walk over K for the parts the brain compiled
+# itself (made the same as g): each gets a section-9 line (applied inside g) and a use receipt to this memory
+proc cm-receipts: rot dup read-made drop =5 read-list =0 rc-step
+# [V i] -- [V i K] -> found
+proc rc-step: over =1 rc-k
+proc rc-k: read-item
+  found -> rc-x
+  none -> rc-done
+# [V i K] -- [V i x] -> found / none (K is walked)
+proc rc-x: over rc-x-t
+proc rc-x-t: read-item
+  found -> rc-made
+  none -> rc-done
+# [V i x] -- [V i x tg] -> found
+proc rc-made: over =4 rc-tg
+proc rc-tg: read-item
+  found -> rc-made2
+  none -> rc-skip
+proc rc-skip: drop =1 add rc-step
+# [V i x tg] -- [V i x d] -> same (x is derived: a receipt) / more (told: nothing to write)
+proc rc-made2: swap dup read-made drop rot rc-made-t
+proc rc-made-t: compare
+  same -> rc-write
+  more -> rc-next
+  less -> rc-next
+proc rc-next: drop drop =1 add rc-step
+# [V i x d] -- [i x V g] -> found
+proc rc-write: drop rot dup =3 rc-g
+proc rc-g: read-item
+  found -> rc-def
+  none -> rc-lost
+proc rc-lost: swap drop swap =1 add rc-step
+# [i x V g] -- [i V x n] -> found : write-def x 9 g, then this memory from V
+proc rc-def: rot swap over =9 rot write-def over =2 rc-n
+proc rc-n: read-item
+  found -> rc-receipt
+  none -> rc-lost2
+proc rc-lost2: drop swap =1 add rc-step
+# [i V x n] -- [V i+1] : write-receipt x n
+proc rc-receipt: write-receipt swap =1 add rc-step
+# [V i] -- : the walk is done: the row's outcome is the state; held is marked right once (two sources agreed)
+proc rc-done: drop dup =0 rc-s
+proc rc-s: read-item
+  found -> rc-n2
+  none -> drop
+# [V s] -- [V s n] -> found
+proc rc-n2: over =2 rc-n2-t
+proc rc-n2-t: read-item
+  found -> rc-state
+  none -> mn-drop2
+# [V s n] -- [V n d] -> same (held) / more (a guess)
+proc rc-state: over over swap write-outcome swap 'held rc-state-t
+proc rc-state-t: compare
+  same -> rc-held
+  more -> mn-drop3
+  less -> mn-drop3
+proc rc-held: drop 'yes write-mark drop
+
+# ---- SEEK. [g] -- : only holes came: the first spec line is read again by a child for its first word with no
+# meaning: a bare gate gets a gap row; a raw word is spawned, labeled, given its born questions and a gap row.
+# The sixth then finds that word's meaning first; nothing else is written for g
+proc cm-seek: =3 cm-seek-t
+proc cm-seek-t: read-def
+  found -> cm-seek-first
+  none -> drop
+proc cm-seek-first: =0 cm-seek-first-t
+proc cm-seek-first-t: read-item
+  found -> cm-seek-split
+  none -> drop
+# [text] --
+proc cm-seek-split: 'cm-seek-read swap split
+# the seeking child: the headword g in hand (never a bare word of its own spec), then the words
+proc cm-seek-read: read-word
+  found -> sk-head
+  none -> end
+# [w] -- [g] -> found / none
+proc sk-head: find-label
+  found -> sk-loop
+  none -> end
+# [g] -- [g w] -> found / none (no bare word in the line: nothing to seek)
+proc sk-loop: read-word
+  found -> sk-gate
+  none -> end
+# [g w] -- [g w x] -> found (a gate) / none (a raw word: [g t], the copy popped by the test)
+proc sk-gate: dup sk-gate-t
+proc sk-gate-t: find-label
+  found -> sk-same
+  none -> sk-spawn
+# [g w x] -- [g x d] -> same (the headword again: skipped) / more
+proc sk-same: swap drop over over =1 read-list swap =1 read-list sk-same-t
+proc sk-same-t: compare
+  same -> sk-next
+  more -> sk-bind
+  less -> sk-bind
+proc sk-next: drop drop sk-loop
+# [g x d] -- [g x t v] -> found (a meaning: skipped) / none (bare: a gap)
+proc sk-bind: drop dup sk-bind-t
+proc sk-bind-t: read-bind
+  found -> sk-skip
+  none -> sk-gap
+proc sk-skip: drop drop drop sk-loop
+# [g x] -- : the gap row keyed by x; the child ends
+proc sk-gap: 'gap swap dup dup dup write-row drop end
+# [g t] -- [g x] : a new gate at the origin, the word as its label, its born questions (newborn, C)
+proc sk-spawn: spawn over over sk-label swap drop newborn sk-gap
+proc sk-label: write-label
+  no -> sk-taken
+# [g t x] -- : the label was taken meanwhile: the word has a gate now; nothing more
+proc sk-taken: drop drop drop end
+
+# ================= TEST ON A USE. [g n] -- : the newest memory g was used in that was marked right (ground truth:
+# a person's yes or the brain's own heal) is run again as a branch; its outcome against the use's outcome:
+# same -> the row is marked right (two rights -> understood); different -> wrong, and when wrong leads, the old
+# formula is kept as a sense for that arrival and g is recompiled
+proc tu-start: over tu-use-t
+proc tu-use-t: read-use
+  found -> tu-newest
+  none -> mn-drop3
+# [g n L] -- [g n L i] : from the newest
+proc tu-newest: dup read-count =1 sub tu-step
+# [g n L i] -- [g n L i m] -> found / none (none marked right: nothing to test)
+proc tu-step: over over tu-item
+proc tu-item: read-item
+  found -> tu-right
+  none -> mn-drop4
+# [.. m] -- [.. m out seen right wrong last] -> found / none
+proc tu-right: dup tu-mem-t
+proc tu-mem-t: read-mem
+  found -> tu-right-cmp
+  none -> tu-prev
+# [g n L i m] -- [g n L i-1]
+proc tu-prev: drop =1 sub tu-step
+# [.. m out seen right wrong last] -- [.. m right d] -> same (no outcome text: not ground truth, skipped) / more
+proc tu-right-cmp: drop drop swap drop swap read-count =0 tu-out-t
+proc tu-out-t: compare
+  same -> tu-prev3
+  more -> tu-right-n
+  less -> tu-prev3
+proc tu-prev3: drop drop tu-prev
+# [.. m right d] -- [.. m d] -> more (right above 0: ground truth) / same, less (skipped)
+proc tu-right-n: drop =0 tu-right-t
+proc tu-right-t: compare
+  more -> tu-run
+  same -> tu-prev2
+  less -> tu-prev2
+proc tu-prev2: drop tu-prev
+# [g n L i m d] -- [g n m I t] -> found : the use memory's input gates
+proc tu-run: drop rot drop swap drop dup tu-input-t
+proc tu-input-t: read-input
+  found -> tu-split
+  none -> mn-drop3
+# [g n m I t] -- [g n m] then the wait for one landing (the branch's memory id) and tu-check
+proc tu-split: drop 'use-run swap split =1 'tu-check cm-wait
+# l -- : the branch: runs the list as its remainder; end-of-run (B) lands its memory id on the parent
+proc use-run: write-rest
+# [g n m k] or [g n m] -- : did the branch land its memory?
+proc tu-check: read-pad =4 tu-check-t
+proc tu-check-t: compare
+  less -> mn-drop4
+  same -> tu-outcomes
+  more -> tu-outcomes
+# [g n m k d] -- [g n m k out seen right wrong last] -> found / none
+proc tu-outcomes: drop dup tu-mem1
+proc tu-mem1: read-mem
+  found -> tu-out1
+  none -> mn-drop4
+# [g n m k out seen right wrong last] -- [g n k o1 m out seen right wrong last] -> found / none
+proc tu-out1: drop drop drop drop rot dup tu-mem2
+proc tu-mem2: read-mem
+  found -> tu-out2
+  none -> mn-drop5
+# [g n k o1 m out ...] -- [g n k m d] -> same (the formula predicted the use) / more (it missed)
+proc tu-out2: drop drop drop drop rot tu-same-t
+proc tu-same-t: compare
+  same -> tu-yes
+  more -> tu-no
+  less -> tu-no
+# [g n k m d] -- : marked right; right at 2 or more -> understood
+proc tu-yes: drop drop drop dup 'yes write-mark dup tu-yes-mem
+proc tu-yes-mem: read-mem
+  found -> tu-yes-right
+  none -> mn-drop2
+# [g n out seen right wrong last] -- [g n d] -> same, more (understood) / less
+proc tu-yes-right: drop drop swap drop swap drop =2 tu-yes-right-t
+proc tu-yes-right-t: compare
+  same -> tu-understood
+  more -> tu-understood
+  less -> mn-drop3
+proc tu-understood: drop 'understood write-outcome drop
+# [g n k m d] -- [g n m out seen right wrong last] -> found : marked wrong; then wrong against right
+proc tu-no: drop swap drop over 'no write-mark over tu-no-mem
+proc tu-no-mem: read-mem
+  found -> tu-no-cmp
+  none -> mn-drop3
+# [g n m out seen right wrong last] -- [g n m out seen d] -> less (wrong leads: a sense and a refit) / same, more
+proc tu-no-cmp: drop tu-no-cmp-t
+proc tu-no-cmp-t: compare
+  less -> tu-refit
+  same -> mn-drop6
+  more -> mn-drop6
+# [g n m out seen d] -- [g] then the recompile : the sense runs as a branch on [g m] (the old formula is kept there
+# before mn-compile rewrites g)
+proc tu-refit: drop drop drop swap drop over swap =2 read-list 'sn-run swap split mn-compile
+
+# ================= the SENSE branch. [P] -- : P = [g m]. g's old formula is kept for this use's arrival: S, a new
+# gate, gets the old list with the head word after it (so the head still runs after the sense); the way
+# (g, from the arrival, head) -> S; S r-derived-from g as a guess
+proc sn-run: dup =0 sn-run-g
+proc sn-run-g: read-item
+  found -> sn-run-m
+  none -> drop
+proc sn-run-m: swap =1 sn-run-m-t
+proc sn-run-m-t: read-item
+  found -> sn-start
+  none -> drop
+# [g m] -- [g m I t] -> found
+proc sn-start: dup sn-input-t
+proc sn-input-t: read-input
+  found -> sn-list
+  none -> mn-drop2
+# [g m I t] -- [g G I 0] : G = [g] for the identity test; the walk for g in the input
+proc sn-list: drop swap drop over =1 read-list swap =0 sn-step
+# [g G I i] -- [g G I i x] -> found / none (g not in the input: no sense)
+proc sn-step: over over sn-item
+proc sn-item: read-item
+  found -> sn-is
+  none -> mn-drop3
+# [g G I i x] -- [g G Q G X] -> found : Q = [I i X]
+proc sn-is: =1 read-list =3 read-list over over =2 sn-is-x
+proc sn-is-x: read-item
+  found -> sn-is-t
+  none -> mn-drop3
+# [g G Q G X] -- [g G Q d] -> same (g is at i) / more
+proc sn-is-t: compare
+  same -> sn-found
+  more -> sn-next
+  less -> sn-next
+# [g G Q d] -- [g G I i+1]
+proc sn-next: drop sn-unpack
+proc sn-unpack: dup =0 sn-unpack-i
+proc sn-unpack-i: read-item
+  found -> sn-unpack-ii
+  none -> mn-drop3
+proc sn-unpack-ii: swap =1 sn-unpack-ii-t
+proc sn-unpack-ii-t: read-item
+  found -> sn-inc
+  none -> mn-drop3
+proc sn-inc: =1 add sn-step
+# [g G Q d] -- [g Q] then [g I i]
+proc sn-found: drop swap drop sn-unpack2
+proc sn-unpack2: dup =0 sn-unpack2-i
+proc sn-unpack2-i: read-item
+  found -> sn-unpack2-ii
+  none -> mn-drop2
+proc sn-unpack2-ii: swap =1 sn-unpack2-ii-t
+proc sn-unpack2-ii-t: read-item
+  found -> sn-head
+  none -> mn-drop2
+# [g I i] -- [g I i h] -> found / none (g was last: no head to run after the sense: skipped)
+proc sn-head: over over =1 add sn-head-t
+proc sn-head-t: read-item
+  found -> sn-arr
+  none -> mn-drop3
+# [g I i h] -- [g h a] -> found / none (g was first: the arrival is the talk port)
+proc sn-arr: rot rot =1 sub sn-arr-t
+proc sn-arr-t: read-item
+  found -> sn-write
+  none -> sn-talk
+proc sn-talk: 'talk sn-write
+# [g h a] -- [Y g] -> found : Y = [g a h]
+proc sn-write: swap =3 read-list dup =0 sn-old
+proc sn-old: read-item
+  found -> sn-old-bind
+  none -> drop
+# [Y g] -- [Y t L] -> found / none (cannot happen: g is wired; the test pops g)
+proc sn-old-bind: read-bind
+  found -> sn-old-h
+  none -> drop
+# [Y t L] -- [Y L h] -> found
+proc sn-old-h: swap drop over =2 sn-old-h-t
+proc sn-old-h-t: read-item
+  found -> sn-spawn
+  none -> mn-drop2
+# [Y L h] -- [Y' S] -> found : the old list with h after it on a new gate S; Y' = [g a h S]. No way (g, a, h) -> S
+# is laid: a proc expands its string on pass, so the kernel would never take that hop; the arrival shard is left for
+# the brain to lay. S is reached by its relationship line
+proc sn-spawn: add spawn swap over swap write-proc add =3 sn-rel-s
+proc sn-rel-s: read-pick
+  found -> sn-rel-g
+  none -> drop
+# [Y S] -- [S rdf g] -> found
+proc sn-rel-g: 'r-derived-from rot =0 sn-rel-g-t
+proc sn-rel-g-t: read-item
+  found -> sn-rel
+  none -> mn-drop2
+# [S rdf g] -- : S's section-9 line (derived: worked out from g), then S r-derived-from g, strength 1, a guess
+proc sn-rel: rot over =9 swap write-def rot rot =1 'state-guess write-rel
+
+# ================= HOLES ASKING. A run leaving a hole fires hole-ask with the parent's pad top as its subject: the hole
+# itself when nothing filled it, else the fill. x -- : unfilled and about a person's own input (depth at or under
+# check-depth, C) -> the hole is said back with a question mark and a questions row is written (home the hole, key
+# the parent's memory, outcome the hole); filled or deep -> ends writing nothing
+trig w-something -> hole-ask 0.5
+trig w-someone -> hole-ask 0.5
+proc hole-ask: dup =1 read-list 'w-something =1 read-list hole-t
+proc hole-t: compare
+  same -> hole-unfilled
+  more -> hole-someone
+  less -> hole-someone
+# [x d] -- [x d] -> same (the who-hole) / more (a fill)
+proc hole-someone: drop dup =1 read-list 'w-someone =1 read-list hole-t2
+proc hole-t2: compare
+  same -> hole-unfilled
+  more -> end
+  less -> end
+# [x d] -- [x depth told] then the test
+proc hole-unfilled: drop read-depth check-depth hole-near
+proc hole-near: compare
+  more -> end
+  same -> hole-say
+  less -> hole-say
+# [x d] -- [x questions x] then the parent's memory
+proc hole-say: drop dup 'questions swap hole-parent
+proc hole-parent: read-parent
+  found -> hole-once
+  none -> mn-drop3
+# [x questions x p] -- : asked already in this input (the row keyed by the parent's memory stands) -> nothing more;
+# else the row and the ask (lead, after finding 44: one input said "a ?" 795 times, once per hole passed)
+proc hole-once: 'questions over hole-once-t
+proc hole-once-t: find-rowkey
+  found -> end
+  none -> hole-write
+# [x questions x p] -- : the row (body: the parent's memory too), then the hole said back: "x ?"
+proc hole-write: over over write-row drop read-mark swap 'key-qmark say-word

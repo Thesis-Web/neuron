@@ -1,0 +1,130 @@
+{
+  "title": "Neuron: Experience as Executable Structure",
+  "date": "2026-10-15",
+  "word_count_markdown": 18591,
+  "chapters": 24,
+  "source_entries": 25,
+  "retrieved_source_files": 26,
+  "internal_links": 162,
+  "validation": "DOCX paragraph text matches Markdown; chapter sequence and link targets verified",
+  "files": {
+    "Neuron-Thesis.md": {
+      "bytes": 125603,
+      "sha256": "b9e0a9b2b3b96ea7de3caf06da507f3734a47ab2d2e22342e7e7add28ed2691e"
+    },
+    "Neuron-Thesis.docx": {
+      "bytes": 82259,
+      "sha256": "735387aa32d57d4de8bf3f9a20f5d3857f431443fc004c6af51fc661700ae2d2"
+    },
+    "sources/08da0f2e-2.txt": {
+      "bytes": 27378,
+      "sha256": "d7f6ac446e3234a193e0db0ac385d409ffcf8cc09e58965c879f26f808dfacf7"
+    },
+    "sources/0ce15058-2.txt": {
+      "bytes": 23090,
+      "sha256": "a3e0cefc6fa57de0ad594bd7f5711c37bdf0e1538a43fa7eed5eb4f01a23f00f"
+    },
+    "sources/1863c8a8-8.txt": {
+      "bytes": 22651,
+      "sha256": "8d50f3582d5dcfe13177427ae816d42aedc62da36136cf104456492666a1f627"
+    },
+    "sources/1c79d4a9-b.txt": {
+      "bytes": 52818,
+      "sha256": "3e2ba3b186736cbbf90c86f07786f54c7c2ede92a4b0c40daf1a159552e7379a"
+    },
+    "sources/2f7fda36-9.txt": {
+      "bytes": 4613,
+      "sha256": "b0bac87d18667d0c6745c8267a420608354883fb4cf93b116e1bccfe8b76e618"
+    },
+    "sources/302ce980-e.txt": {
+      "bytes": 10422,
+      "sha256": "ca0534e3d18554ef825a38d072013bdaad5f2a3a6ec9a0173ffca7cecb399cde"
+    },
+    "sources/434b4795-7.txt": {
+      "bytes": 19046,
+      "sha256": "39e2eb2abe6340becfb2ab8cca01c79a9a2dfdd0040ff3f5a5e6ca4a48d69f20"
+    },
+    "sources/47c23c52-d.txt": {
+      "bytes": 18375,
+      "sha256": "1bbd32d323c46cd1e230ca989bd9e90f1f8972eaf09901ade84ce881f021e11c"
+    },
+    "sources/57823c3e-9.txt": {
+      "bytes": 47408,
+      "sha256": "7521736e46badad080304bfd825a8ec7e5003a9203397beefd3f9d548c06930c"
+    },
+    "sources/58205378-0.txt": {
+      "bytes": 37303,
+      "sha256": "eaae1d8c7b2b65a46f934a4408184e9916510fbbc2657285aa3a3e882e9be46c"
+    },
+    "sources/592cf97a-c.txt": {
+      "bytes": 10473,
+      "sha256": "5ad6ca84da99422e2001fb25dad382e941f60ed37570fbf9475178a43955adfd"
+    },
+    "sources/68b79e93-f.txt": {
+      "bytes": 6095,
+      "sha256": "2f3e4bbf070f4ccc210085ed05024cf757dcac8198614be153a2de2fe227644e"
+    },
+    "sources/6dfe407e-e.txt": {
+      "bytes": 3821,
+      "sha256": "8b24b5924ba1aac1fd71a270e1d0c5e1da49807bbfe62ac3f6105c166b533467"
+    },
+    "sources/89772d1a-3.txt": {
+      "bytes": 7904,
+      "sha256": "d933bb0b255420a0651f25612e17ceb89edf2d2f27e44c6abde3d6c9ed211a3c"
+    },
+    "sources/9a40db66-b.txt": {
+      "bytes": 3155,
+      "sha256": "3e65b7920275c1d7c3a393c524f9e3c775301357477a9590cde74fca178230e5"
+    },
+    "sources/a0da4c14-a.txt": {
+      "bytes": 5428,
+      "sha256": "835358da585ff6f99c472bec7044b841e0207787dfa6f1f111f9adcf498a9f1b"
+    },
+    "sources/aa0c7fd5-9.txt": {
+      "bytes": 35091,
+      "sha256": "316b77225d4688deb66caa3400022af700459e81117668735bb032f16380aeaa"
+    },
+    "sources/b483c7b2-a.txt": {
+      "bytes": 26945,
+      "sha256": "16be9164776dbca6e777586ec070609884ccad04895f4ce74bc87f9bec692215"
+    },
+    "sources/bb22e936-b.txt": {
+      "bytes": 51553,
+      "sha256": "dcff14126d07a7d25ee7caab2980790ef8830dd10474e63b94cf6b30dfbe2f08"
+    },
+    "sources/bf6f821a-9.txt": {
+      "bytes": 10455,
+      "sha256": "62501aeedc2404d8875829cb05c00f3daeec6253612fb9fe2422cc8909c20fd9"
+    },
+    "sources/df23b5bc-1.txt": {
+      "bytes": 13068,
+      "sha256": "dc320e9d00d13b736a2ad3075e09ea8a50445091789f984bd261fe90c9fdb7bb"
+    },
+    "sources/e973f0f6-d.txt": {
+      "bytes": 19644,
+      "sha256": "19ed2b5263c014b8ba78aa4b5a1efd93ce30f5594523cda090d0da8edde0e671"
+    },
+    "sources/ef7b0c72-4.txt": {
+      "bytes": 2467,
+      "sha256": "4d10e4f41acc30819f47da084a40c8c22fb133a5d4983a7a24b3e03f716a02eb"
+    },
+    "sources/f2b88193-b.txt": {
+      "bytes": 4127,
+      "sha256": "84be4325a1108d819f549427605698ec866c5a4e6c3422d78239e29c5b67e3fb"
+    },
+    "sources/faf55255-d.txt": {
+      "bytes": 35566,
+      "sha256": "45632477c514572e0cd92bb0313fbc387a739fd89cda0dda4f6acb139e6eced4"
+    },
+    "sources/fe84132b-b.txt": {
+      "bytes": 4113,
+      "sha256": "fd5cf8ce4a41eb69fb5e34f560cacc8c4e49c2b9236f52827b9c7efa1da592d9"
+    },
+    "Neuron-Thesis.pdf": {
+      "bytes": 414491,
+      "sha256": "1b8019a928bc2e5445f4162e6521ba1f685e6200b415bf5c7d5514f3755cbbde"
+    }
+  },
+  "pdf_pages": 43,
+  "pdf_validation": "Complete extracted PDF text matches Markdown after removing headers/footers and normalizing whitespace; 162 internal links; selected pages visually reviewed."
+}

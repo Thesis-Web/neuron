@@ -1,0 +1,76 @@
+direction: down
+
+outside: "outside the brain" {
+  style.stroke-dash: 4
+  bottom: "bottom.py\nwrites the typed line into input\nprints the timeline row"
+  sources: "sources\ndictionary, thesaurus, textbook, code docs\nreached only through source()" {style.fill: "#e8eef7"}
+}
+
+physics: "told neurons: the skull, laid once as one block" {
+  input: "input (the ear)"
+  encoder: "encoder = the label table\nword -> gate, in order\nalso encodes source text"
+  decide: "decide\nseen this gate list? one indexed lookup in memory\nyes: hop to the memory\nshape matches a formula: fill its variables\nno: walk it from the first gate"
+  lay: "lay\nshard (arrival, next) missing in N\nwrite the shard row and its own hop trigger\nretry through mother" {style.fill: "#f6e7c8"}
+  born: "born\na word with no gate\nmother: table, trigger, blank definition node, first shard\nthen: source call, meaning run, retry the line" {style.fill: "#f6e7c8"}
+  source: "source()\nreaches outside, returns text\na function beside mother" {shape: hexagon; style.fill: "#e4d6f2"}
+  mother: "mother()\nruns SQL text\nthe only thing that can CREATE" {shape: hexagon; style.fill: "#e4d6f2"}
+  end: "end\nremainder empty\nwrite the receipt from the run's rows\ngather what the branches wrote"
+  sense: "makes sense\nproposed output vs previous output (memory)\nvs expected output, if one was given\nbalanced: ship. not: step back" {style.fill: "#fbe9e9"}
+  memory: "memory\nsame receipt + result: times +1\ndifferent result: end the old row, new row\nright, wrong, unchecked written here"
+  timeline: "timeline\ntime, receipt, memory id\nthe row that gets printed"
+  build: "BUILD\ndecode the gates walked into words\nhand the text to mother"
+  var: "variable gates\na value arrives as a remainder\nand is written into a hole" {style.fill: "#e2efe2"}
+  formula: "formula node (shortcut form)\nthe line with holes\nruns once the holes are filled" {style.fill: "#e2efe2"}
+}
+
+words: "word gates, born by typing" {
+  define: "define (12)"
+  space: "space (8)"
+  store: "store (13)\nborn in this run" {style.fill: "#d6ecd6"}
+  storedef: "store.definition\none row per source answer\nblank until source() returns" {style.fill: "#fbf3e0"}
+}
+
+meaning: "the meaning run: the brain's own work, open" {
+  style.stroke-dash: 4
+  q: "question neurons\nwhat kind of word? like what? opposite of what?\nwhich root action? each a run over the definition rows" {style.fill: "#eef3ff"}
+  answer: "answers, written against the run id\nthen laid as trigger pointers on store's shards\n= what store does to the silicon" {style.fill: "#eef3ff"}
+}
+
+legend: "a DNA row is the runtime script" {
+  style.stroke-dash: 4
+  s: "shard: number | arrival | next | trigger | times | first | last\nplus its own SQLite trigger: the hop, and the branch when trigger is set\narrive the same way: this row runs again, times +1\narrive a new way: lay writes a new row and its trigger"
+}
+
+outside.bottom -> physics.input: "define store"
+physics.input -> physics.encoder
+physics.encoder -> physics.born: "store has no gate" {style.stroke-dash: 3}
+physics.born -> physics.mother: "CREATE table, trigger, definition node" {style.stroke-dash: 3}
+physics.born -> physics.source: "look up store" {style.stroke-dash: 3}
+physics.source -> outside.sources: "ask each connected source" {style.stroke-dash: 3}
+physics.source -> words.storedef: "text comes back as rows" {style.stroke-dash: 3}
+words.storedef -> physics.encoder: "definition text runs like any input" {style.stroke-dash: 3}
+physics.encoder -> meaning.q: "the definition's gates,\nwith questions as their triggers" {style.stroke-dash: 3}
+meaning.q -> meaning.answer
+meaning.answer -> words.store: "trigger pointers laid on its shards" {style.stroke-dash: 3}
+physics.mother -> physics.decide: "retry the line [12 8 13]" {style.stroke-dash: 3}
+physics.encoder -> physics.decide: "[12 8 13]"
+physics.decide -> physics.memory: "seen before: one hop" {style.stroke: "#1f7a4d"; style.stroke-width: 3}
+physics.decide -> words.define: "not seen: arrival 0, remainder [8 13]"
+words.define -> physics.lay: "no shard (0, 8)" {style.stroke-dash: 3}
+physics.lay -> physics.mother: "INSERT the shard; CREATE its hop trigger;\nINSERT the run row again" {style.stroke-dash: 3}
+physics.mother -> words.define: "retry" {style.stroke-dash: 3}
+words.define -> words.space: "shard (0,8) hit: hop\narrival 12, remainder [13]"
+words.space -> words.store: "shard (12,13) hit: hop\narrival 8, remainder []"
+words.store -> meaning.q: "a shard with a trigger pointer:\na branch run; the main run continues" {style.stroke-dash: 3}
+words.store -> physics.end: "remainder empty: terminal shard"
+physics.end -> physics.sense: "receipt, plus what the branches wrote"
+physics.sense -> physics.memory: "balanced, or unchecked on a first run"
+physics.sense -> physics.decide: "not balanced: step back to the decide\nthat picked this path, pick another" {style.stroke: "#b23a3a"; style.stroke-dash: 3}
+physics.memory -> physics.timeline
+physics.timeline -> outside.bottom: "printed" {style.stroke-dash: 3}
+
+physics.decide -> physics.var: "shape matches a formula:\nthe values go to the variable gates" {style.stroke: "#1f7a4d"}
+physics.var -> physics.formula: "holes filled"
+physics.formula -> physics.build: "the finished line"
+physics.build -> physics.mother: "text" {style.stroke-dash: 3}
+physics.mother -> physics.end: "ok or error, as the result" {style.stroke-dash: 3}

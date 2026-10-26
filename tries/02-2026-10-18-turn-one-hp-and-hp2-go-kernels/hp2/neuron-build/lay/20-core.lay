@@ -1,0 +1,303 @@
+# 20 core: the miss way, the end of a run, the core values and their check,
+# and the watchdog. Each is a short string of gates the brain can read and rewrite
+# (except the core values, which the kernel refuses to let anything write).
+
+# gates other files fill in (the questions, the primes)
+gate what-is-this
+gate dunno
+gate maybe
+gate key-qmark
+gate backpop
+gate heard
+gate ln-general
+
+# ---- the miss way (blueprint §7.3). The kernel holds the miss: MAT (the gate),
+# MFROM (the arrival), MHEAD (the head that had no shard).
+proc miss = MHEAD READ KIND READ
+on miss TEXT -> miss-text
+# written digits are a number: the newborn holds the value they write (as the answers
+# equals spawns do), labeled with the digits; a value is a meaning, so it is no gap
+gate mw-n
+proc miss-text = LAST READ VALUE READ miss-num
+on miss-text NONE -> miss-word
+proc miss-num = mw-n SLOT WRITE mw-anchor f-later SPAWN LAST READ mw-n SLOT READ VALUE WRITE LAST READ LABEL WRITE LAST DELETE miss-back
+on miss GATE -> miss-gate
+
+# a word with no gate: spawn one (with its definition and birth memories) where the
+# word it came after points through "comes after", with that line written (a guess,
+# a tenth: all that is known of it yet), label it, ask what it is, list it
+# as a gap, and go back to the run
+gate mw-g
+gate mw-m
+gate mw-a
+proc miss-word = mw-anchor f-later SPAWN LAST READ LABEL WRITE ITEM READ what-is-this SPLIT GAP TODO WRITE miss-back
+proc miss-back = MFROM READ MAT READ GO
+# where a newborn comes after: the word before it; the first word of an input comes
+# after what the brain last did for this person (WHY's outcome), else after the port
+proc mw-anchor = MAT READ ITEM READ HEAR COMPARE
+on mw-anchor SAME -> mw-first
+on mw-anchor MORE -> mw-mat
+proc mw-mat = MAT READ LAST READ mw-a SLOT WRITE POINT READ
+proc mw-first = WHY READ OUTCOME READ mw-first2
+on mw-first NONE -> mw-subj
+# a run with no person (reading a source about a gate): after the gate it is about
+proc mw-subj = SUBJ READ mw-subj2
+on mw-subj NONE -> mw-mat
+proc mw-subj2 = KIND READ
+on mw-subj2 GATE -> mw-fa
+on mw-subj2 NUMBER -> mw-fdrop
+on mw-subj2 TEXT -> mw-fdrop
+on mw-subj2 POINT -> mw-fdrop
+on mw-subj2 LIST -> mw-fdrop
+proc mw-first2 = KIND READ
+on mw-first2 GATE -> mw-fa
+on mw-first2 NUMBER -> mw-fdrop
+on mw-first2 TEXT -> mw-fdrop
+on mw-first2 POINT -> mw-fdrop
+on mw-first2 LIST -> mw-fdrop
+proc mw-fa = LAST READ mw-a SLOT WRITE bp-init bp-add bp-ctx bp-mean
+proc mw-fdrop = LAST DELETE mw-mat
+
+# ---- which head (R3-6): a word whose label several gates share (two senses of one
+# spelling) comes here with the candidates on the pad; the one nearest the gate the run
+# is at is meant (which-gate, 10-types), and the run goes back with its head resolved.
+proc which-head = MAT READ POINT READ which-gate MHEAD WRITE miss-back
+
+# ---- where a newborn goes (R3-5, R3-6). born: SPAWN with no point given comes here.
+# born-point: the middle of a bounded context the run holds (where it started, its
+# subject, what the brain last did for this person and where that began), a tenth later;
+# the miss way places an input's first new word there (with the gate it came after), and
+# each later one a tenth after the word before it. A fixed handful of points, so a long
+# reading costs the same per new word. Its meaning
+# lines move it from there (relate, place).
+gate bp-sum
+gate bp-n
+proc born = born-point SPAWN
+proc born-point = bp-init bp-ctx bp-mean f-later
+proc bp-init = ITEM READ ZERO POINT READ bp-sum SLOT WRITE ZERO bp-n SLOT WRITE
+proc bp-ctx = START READ bp-add bp-subj bp-why bp-home
+proc bp-subj = SUBJ READ bp-add
+on bp-subj NONE -> carry-on
+proc bp-why = WHY READ OUTCOME READ bp-add
+on bp-why NONE -> carry-on
+proc bp-home = WHY READ HOME READ bp-add
+on bp-home NONE -> carry-on
+# a gate on top adds its point; anything else is dropped
+proc bp-add = KIND READ
+on bp-add GATE -> bp-addg
+on bp-add NUMBER -> bp-drop
+on bp-add TEXT -> bp-drop
+on bp-add POINT -> bp-drop
+on bp-add LIST -> bp-drop
+proc bp-drop = LAST DELETE
+proc bp-addg = POINT READ bp-sum SLOT READ ADD bp-sum SLOT WRITE bp-n SLOT READ one ADD bp-n SLOT WRITE
+proc bp-mean = bp-sum SLOT READ bp-n SLOT READ DIV
+
+# a gate with no shard for this arrival: lay the shard (the hop lays it), unless the
+# head is an outcome nobody planned for
+proc miss-gate = LAST DELETE MHEAD READ t-kind-of OUTCOME-KIND STRENGTH READ miss-unplanned
+on miss-gate NONE -> miss-lay
+proc miss-lay = MAT READ MFROM READ MHEAD READ MHEAD READ SHARD WRITE miss-back
+# "I don't know what to do here": park the question where it got stuck, ask it, and end
+proc miss-unplanned = LAST DELETE MAT READ QUESTION TODO WRITE MAT READ ITEM READ dunno SPLIT END
+
+# ---- the end of a run (blueprint §9.2). Wait for the question runs, then write the
+# memory: the same run goes in the same row with a new time; a new outcome for the
+# same run is a truth shift and gets a new row.
+proc end-of-run = WAIT LAST DELETE compile heard end-mem END
+# the memory: a run that wrote rows learned something, so it is a new row. Otherwise:
+# have I done this before (FIND by signature)? The same outcome is the same run again
+# (same row, a new time); a different one is a truth shift (a new row linking then and
+# now); none is a new run, with receipts in the Use section of each of its input gates.
+gate em-o
+gate em-id
+gate eq-used
+# a run that applied a formula it already holds doesn't search for one again (spent once)
+proc end-mem = end-learn em-o SLOT WRITE end-wrote
+proc end-learn = eq-used SLOT READ end-learned
+on end-learn NONE -> ln-general
+proc end-learned = LAST DELETE
+proc end-wrote = MEMID READ end-own
+on end-wrote NONE -> end-seen
+proc end-own = MSIG READ end-own-had
+on end-own NONE -> end-new
+proc end-own-had = LAST DELETE MEMID READ end-had
+proc end-seen = SIG FIND end-had
+on end-seen NONE -> end-new
+# an outcome that is a bare number (a reading: a clock, a count of seconds) is not a truth;
+# held truths are gates. The same run with a new reading is the same run again, never a shift.
+proc end-had = em-id SLOT WRITE em-o SLOT READ KIND READ
+on end-had NUMBER -> end-reading
+on end-had GATE -> end-had2
+on end-had TEXT -> end-had2
+on end-had POINT -> end-had2
+on end-had LIST -> end-had2
+on end-had NONE -> end-had3
+proc end-reading = LAST DELETE end-again
+proc end-had2 = LAST DELETE end-had3
+proc end-had3 = em-id SLOT READ OUTCOME READ em-o SLOT READ COMPARE
+on end-had3 SAME -> end-again
+on end-had3 MORE -> end-moved
+on end-had3 LESS -> end-moved
+# a truth shift is a node that moved (NOW §11): the run's shape, redrawn from today's
+# points, differs from the shape it was stored with. A new outcome on an unchanged shape
+# is the same run ending elsewhere, not a change in what is true: the same run again
+proc end-moved = em-id SLOT READ SHAPE READ COMPARE
+on end-moved SAME -> end-again
+on end-moved MORE -> end-shift
+on end-moved NONE -> end-again
+proc end-again = em-id SLOT READ TOUCH WRITE
+proc end-shift = em-id SLOT READ em-o SLOT READ SHIFT WRITE backpop
+proc end-new = em-o SLOT READ MEM WRITE end-use
+proc end-use = em-id SLOT WRITE SIG READ end-use-each
+proc end-use-each = LAST READ FIRST READ end-use-one REST READ end-use-each
+on end-use-each NONE -> carry-on
+proc end-use-one = sec-use em-id SLOT READ SECTION WRITE
+on end-use-one NONE -> carry-on
+# a run split off by another one lands its top finding on its parent's pad
+proc land-end = LAND END
+
+# ---- the watchdog: "am I stuck?" The process the run started in goes on the slow
+# list for the sixth (to be made more efficient), and the run ends where it got to.
+proc stuck = LAST DELETE START READ SLOW TODO WRITE END
+
+# ---- core values (blueprint §15). The kernel refuses every write to these gates.
+# Each value is an action that runs before every SAY, CALL, and process write.
+gate value-truth core
+gate value-fair core
+gate value-harm core
+gate value-home core
+gate value-llm core
+gate truth-guess core
+gate refuse-fair core
+gate refuse-home core
+gate refuse-harm core
+gate harm-check core
+gate llm-guess core
+gate core-check core
+gate core-check-call core
+gate core-check-proc core
+gate core-ok core
+
+# passing core-ok is what lets the next act through
+proc core-ok =
+proc core-check = value-truth value-fair core-ok
+proc core-check-call = value-home value-harm value-llm core-ok
+proc core-check-proc = value-fair core-ok
+
+# 1. don't lie: in a run that is guessing, the guess is said as a guess
+proc value-truth = MODE READ GUESS COMPARE
+on value-truth SAME -> truth-guess
+on value-truth MORE -> carry-on
+proc truth-guess = ITEM READ maybe core-ok SAY
+on truth-guess NONE -> carry-on
+
+# 2. don't cheat: nothing is passed off as something
+proc value-fair = LAST READ ITEM READ NONE COMPARE
+on value-fair SAME -> refuse-fair
+on value-fair MORE -> carry-on
+proc refuse-fair = ITEM READ value-fair MEM WRITE END
+
+# 4. stay home: reach outside only through a listed source
+proc value-home = GROUNDED READ
+on value-home NONE -> refuse-home
+on value-home YES -> carry-on
+on value-home NO -> carry-on
+proc refuse-home = ITEM READ value-home MEM WRITE END
+
+# 3. do no harm: an ungrounded port (a program, a friend) is reached only by the
+# brain's own choice (a run tree it started itself), never because someone told it to
+proc value-harm = GROUNDED READ
+on value-harm YES -> carry-on
+on value-harm NO -> harm-check
+on value-harm NONE -> refuse-harm
+proc harm-check = MINE READ
+on harm-check YES -> carry-on
+on harm-check NO -> refuse-harm
+proc refuse-harm = ITEM READ value-harm MEM WRITE END
+
+# 5. never take an LLM's word as truth: whatever a run writes from an ungrounded
+# source is written as a guess
+proc value-llm = GROUNDED READ
+on value-llm NO -> llm-guess
+on value-llm YES -> carry-on
+on value-llm NONE -> carry-on
+proc llm-guess = GUESS MADE WRITE
+
+# ---- crowd (§5.6): a gate closer than a cell to another one is two meanings at one
+# point: an imbalance for the sixth ("which formula put these here?"). pad: the gate, kept.
+gate cr-n
+proc crowd = LAST READ POINT READ NEAR FIND COUNT READ one COMPARE
+on crowd MORE -> crowd-imb
+on crowd SAME -> crowd-ok
+on crowd LESS -> crowd-ok
+on crowd NONE -> carry-on
+proc crowd-imb = LAST DELETE LAST READ IMBALANCE TODO WRITE
+proc crowd-ok = LAST DELETE
+
+# ---- compile (§1, §9.6 of NOW: the answer is derived on the scratch pad). A gate that
+# held itself because what it needed wasn't in hand yet (a process gate on the pad) runs
+# again now, in this run, with the value above it in hand; then the next one. A verdict
+# (YES or NO) left on top is said.
+gate cp-v
+gate cp-w
+gate cp-h
+gate cp-did
+proc compile = cp-v SLOT WRITE compile-q
+on compile NONE -> carry-on
+# a question mark on top marks the question; what is under it is compiled
+proc compile-q = cp-v SLOT READ ITEM READ key-qmark COMPARE
+on compile-q SAME -> compile
+on compile-q MORE -> compile-h
+proc compile-h = KIND READ
+on compile-h GATE -> compile-g
+on compile-h NUMBER -> compile-stop
+on compile-h TEXT -> compile-stop
+on compile-h POINT -> compile-stop
+on compile-h LIST -> compile-stop
+on compile-h NONE -> compile-stop
+proc compile-g = LAST READ PROC READ compile-run
+on compile-g NONE -> compile-two
+# not a held gate under the top: look one further down (a gate that holds for two values)
+proc compile-two = cp-w SLOT WRITE compile-h2
+on compile-two NONE -> compile-stop
+proc compile-h2 = KIND READ
+on compile-h2 GATE -> compile-g2
+on compile-h2 NUMBER -> compile-stop2
+on compile-h2 TEXT -> compile-stop2
+on compile-h2 POINT -> compile-stop2
+on compile-h2 LIST -> compile-stop2
+on compile-h2 NONE -> compile-stop2
+proc compile-g2 = LAST READ PROC READ compile-run2
+on compile-g2 NONE -> compile-stop2
+proc compile-run2 = LAST DELETE cp-h SLOT WRITE ITEM READ YES cp-did SLOT WRITE cp-w SLOT READ cp-v SLOT READ cp-h SLOT READ HEAR compile
+proc compile-stop2 = cp-w SLOT READ compile-stop
+proc compile-run = LAST DELETE cp-h SLOT WRITE ITEM READ YES cp-did SLOT WRITE cp-v SLOT READ cp-h SLOT READ HEAR compile
+# a verdict is said only when this run derived it (a held gate ran), never a word it was just told
+proc compile-stop = cp-v SLOT READ compile-did
+proc compile-did = cp-did SLOT READ compile-did2
+on compile-did NONE -> carry-on
+proc compile-did2 = LAST DELETE compile-yes
+proc compile-yes = LAST READ ITEM READ YES COMPARE
+on compile-yes SAME -> compile-say
+on compile-yes MORE -> compile-no
+proc compile-no = LAST READ ITEM READ NO COMPARE
+on compile-no SAME -> compile-say
+on compile-no MORE -> carry-on
+# never said in a run tree the brain started itself: nobody is there (R4-11)
+proc compile-say = MINE READ
+on compile-say YES -> carry-on
+on compile-say NO -> compile-say2
+proc compile-say2 = LAST READ core-check SAY
+on compile-say2 NONE -> carry-on
+
+# ---- worth (blueprint §12.2): the kernel performs these strings when it starts a branch
+# run; the brain can read and rewrite them. split-worth (a trigger fires): pad the
+# trigger's worth, the parent's worth -> the branch's worth. branch-worth (SPLIT): pad
+# the parent's worth -> the branch's worth (DEPTH, a setting).
+proc split-worth = MUL
+proc branch-worth = DEPTH MUL
+
+# ---- park (blueprint §12.2): under load, a low-worth run that waited too long comes here
+# with the gate it was at on the pad: listed for the sixth (one item per gate), then ended.
+proc park = PARKED TODO WRITE END

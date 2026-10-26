@@ -1,0 +1,510 @@
+{
+ "lines": [
+  {
+   "line": "born = BUILD INSERT INTO label ( word ) SELECT word FROM bor",
+   "said": null,
+   "s": 0.6,
+   "asks_back": 0,
+   "errors": []
+  },
+  {
+   "line": "source = BUILD INSERT INTO wn.inbox ( word ) SELECT word FRO",
+   "said": null,
+   "s": 81.6,
+   "asks_back": 0,
+   "errors": []
+  },
+  {
+   "line": "define = BUILD INSERT INTO sheet ( run , name , value ) SELE",
+   "said": null,
+   "s": 18.5,
+   "asks_back": 0,
+   "errors": []
+  },
+  {
+   "line": "define : -> define",
+   "said": null,
+   "s": 0.0,
+   "asks_back": 0,
+   "errors": []
+  },
+  {
+   "line": "BUILD SELECT 1 + 1 BUILD",
+   "said": "2",
+   "s": 0.0,
+   "asks_back": 0,
+   "errors": []
+  },
+  {
+   "line": "define : dog",
+   "said": "(Zool.) A quadruped of the genus {Canis}, esp. the domestic dog ({Canis familiaris}). Note: The dog is distinguished above all others of the inferior animals for intelligence, docility, and attachment to man. There are numerous carefully bred varieties, as the {akita}, {beagle}, {bloodhound}, {bulldog}, {coachdog}, {collie}, {Danish dog}, {foxhound}, {greyhound}, {mastiff}, {pointer}, {poodle}, {St. Bernard}, {setter}, {spaniel}, {spitz}, {terrier}, {German shepherd}, {pit bull}, {Chihuahua}, etc. There are also many mixed breeds, and partially domesticated varieties, as well as wild dogs, like the dingo and dhole. (See these names in the Vocabulary.) [1913 Webster +PJC]",
+   "s": 1407.5,
+   "asks_back": 32,
+   "errors": []
+  },
+  {
+   "line": "define : dog",
+   "said": "(Zool.) A quadruped of the genus {Canis}, esp. the domestic dog ({Canis familiaris}). Note: The dog is distinguished above all others of the inferior animals for intelligence, docility, and attachment to man. There are numerous carefully bred varieties, as the {akita}, {beagle}, {bloodhound}, {bulldog}, {coachdog}, {collie}, {Danish dog}, {foxhound}, {greyhound}, {mastiff}, {pointer}, {poodle}, {St. Bernard}, {setter}, {spaniel}, {spitz}, {terrier}, {German shepherd}, {pit bull}, {Chihuahua}, etc. There are also many mixed breeds, and partially domesticated varieties, as well as wild dogs, like the dingo and dhole. (See these names in the Vocabulary.) [1913 Webster +PJC]",
+   "s": 0.4,
+   "asks_back": 0,
+   "errors": []
+  },
+  {
+   "line": "define : cat",
+   "said": "any of a family (Felidae) of carnivorous usually solitary and nocturnal mammals (such as the domestic cat, lion, tiger, leopard, jaguar, cougar, wildcat, lynx, and cheetah)",
+   "s": 155.3,
+   "asks_back": 12,
+   "errors": []
+  },
+  {
+   "line": "define : store",
+   "said": "a mercantile establishment for the retail sale of goods or services; \"he bought it at a shop on Cape Cod\" [syn: {shop}, {store}] 2: a supply of something available for future use; \"he brought back a large store of Cuban",
+   "s": 149.5,
+   "asks_back": 17,
+   "errors": []
+  },
+  {
+   "line": "define : canis",
+   "said": null,
+   "s": 1.6,
+   "asks_back": 0,
+   "errors": [
+    "error: near \"AND\": syntax error"
+   ]
+  },
+  {
+   "line": "define : Canis",
+   "said": null,
+   "s": 1.7,
+   "asks_back": 0,
+   "errors": [
+    "error: near \"AND\": syntax error"
+   ]
+  }
+ ],
+ "checks": {
+  "T1": {
+   "statements": 644,
+   "kinds": {
+    "PRAGMA": 1,
+    "CREATE TABLE": 189,
+    "INSERT INTO": 262,
+    "CREATE INDEX": 4,
+    "CREATE VIEW": 87,
+    "CREATE TRIGGER": 100,
+    "UPDATE": 1
+   },
+   "hand-laid neurons": 87,
+   "deleted rules still present (all should be false)": {
+    "LIMIT 8": false,
+    "agree": false,
+    "SQL-verb rule": false,
+    "expected": false,
+    "decide": false,
+    "memory hop": false,
+    "gap": false,
+    "proc": false,
+    "step back": false,
+    "derive": false,
+    "times counter": false,
+    "? echo": true
+   },
+   "working triggers": [
+    "gate_1",
+    "gate_3",
+    "gate_5",
+    "gate_7",
+    "gate_9",
+    "gate_11",
+    "gate_13",
+    "gate_15",
+    "gate_17",
+    "gate_19",
+    "gate_21",
+    "gate_23",
+    "gate_25",
+    "gate_27",
+    "gate_29",
+    "gate_31",
+    "gate_33",
+    "gate_35",
+    "gate_37",
+    "gate_39",
+    "gate_41",
+    "gate_43",
+    "gate_45",
+    "gate_47",
+    "gate_49",
+    "gate_51",
+    "gate_53",
+    "gate_55",
+    "gate_57",
+    "gate_59",
+    "gate_61",
+    "gate_63",
+    "gate_65",
+    "gate_67",
+    "gate_69",
+    "gate_71",
+    "gate_73",
+    "gate_75",
+    "gate_77",
+    "gate_79",
+    "gate_81",
+    "gate_83",
+    "gate_85",
+    "gate_87",
+    "gate_89",
+    "gate_91",
+    "gate_93",
+    "gate_95",
+    "gate_97",
+    "gate_99",
+    "gate_101",
+    "gate_103",
+    "gate_105",
+    "gate_107",
+    "gate_109",
+    "gate_111",
+    "gate_113",
+    "gate_115",
+    "gate_117",
+    "gate_119",
+    "gate_121",
+    "gate_123",
+    "gate_125",
+    "gate_127",
+    "gate_129",
+    "gate_131",
+    "gate_133",
+    "gate_135",
+    "gate_137",
+    "gate_139",
+    "gate_141",
+    "gate_143",
+    "gate_145",
+    "gate_147",
+    "gate_149",
+    "gate_151",
+    "gate_153",
+    "gate_155",
+    "gate_157",
+    "gate_159",
+    "gate_161",
+    "gate_163",
+    "gate_165",
+    "gate_167",
+    "gate_169",
+    "gate_171",
+    "gate_173",
+    "input_teach",
+    "input_bind",
+    "input_run",
+    "run_go",
+    "born_go",
+    "fire_go",
+    "hop_go",
+    "bind_go",
+    "build_go",
+    "secondary_go",
+    "end_teach",
+    "end_return",
+    "end_line"
+   ]
+  },
+  "T4": true,
+  "T5": {
+   "dog gate": [
+    [
+     293
+    ]
+   ],
+   "born by": [
+    [
+     "formula",
+     null
+    ]
+   ],
+   "first shard -> definition node": [
+    [
+     904,
+     294
+    ],
+    [
+     [
+      "dog.definition"
+     ]
+    ]
+   ],
+   "return runs": [
+    [
+     "gcide",
+     9
+    ],
+    [
+     "moby",
+     15
+    ],
+    [
+     "wn",
+     8
+    ]
+   ],
+   "definition node rows": 32,
+   "rows (source, score, text)": [
+    [
+     "gcide",
+     5.482,
+     "(Zool.) A quadruped of the genus {Canis}, esp. the domestic dog ({Canis familiaris}). Note"
+    ],
+    [
+     "gcide",
+     4.441,
+     "{A dog in the manger}, an ugly-natured person who prevents others from enjoying what would"
+    ],
+    [
+     "wn",
+     3.911,
+     "a member of the genus Canis (probably descended from the common wolf) that has been domest"
+    ],
+    [
+     "wn",
+     2.438,
+     "a hinged catch that fits into a notch of a ratchet to move a wheel forward or prevent it f"
+    ],
+    [
+     "gcide",
+     2.37,
+     "(Mech.) (a) A grappling iron, with a claw or claws, for fastening into wood or other heavy"
+    ],
+    [
+     "gcide",
+     1.898,
+     "a {hot dog}. [slang] [PJC] Note: Dog is used adjectively or in composition, commonly in th"
+    ]
+   ],
+   "said": "(Zool.) A quadruped of the genus {Canis}, esp. the domestic dog ({Canis familiaris}). Note: The dog is distinguished above all others of the inferior animals for intelligence, docility, and attachment to man. There are numerous carefully bred varieties, as the {akita}, {beagle}, {bloodhound}, {bulldog}, {coachdog}, {collie}, {Danish dog}, {foxhound}, {greyhound}, {mastiff}, {pointer}, {poodle}, {St. Bernard}, {setter}, {spaniel}, {spitz}, {terrier}, {German shepherd}, {pit bull}, {Chihuahua}, etc. There are also many mixed breeds, and partially domesticated varieties, as well as wild dogs, like the dingo and dhole. (See these names in the Vocabulary.) [1913 Webster +PJC]",
+   "row 1 is wn sense 1 or Webster sense 1": true
+  },
+  "T6": {
+   "same": true,
+   "asks back": 0
+  },
+  "T7": {
+   "cat": "any of a family (Felidae) of carnivorous usually solitary and nocturnal mammals (such as the domestic cat, lion, tiger, leopard, jaguar, cougar, wildcat, lynx, and cheetah)",
+   "cat is the animal sense from a dictionary": false,
+   "store (recorded only)": "a mercantile establishment for the retail sale of goods or services; \"he bought it at a shop on Cape Cod\" [syn: {shop}, {store}] 2: a supply of something available for future use; \"he brought back a large store of Cuban"
+  },
+  "T8": {
+   "existed before (born inside a return)": [
+    [
+     "Canis"
+    ],
+    [
+     "canis"
+    ]
+   ],
+   "define : canis": null,
+   "define : Canis": null,
+   "sources hold canis": {
+    "wn": 0,
+    "gcide": 0,
+    "mw": 0,
+    "mwt": 0,
+    "moby": 0,
+    "map": 0,
+    "sqldoc": 0,
+    "measured": 0
+   }
+  },
+  "T3": {
+   "shards": 4665,
+   "one sequence, no gaps, no repeats": true,
+   "counter": 4665
+  }
+ },
+ "dog_rows": [
+  [
+   "gcide",
+   5.482,
+   "(Zool.) A quadruped of the genus {Canis}, esp. the domestic dog ({Canis familiaris}). Note: The dog is distinguished above all others of the inferior animals for intelligence, docility, and attachment to man. There are numerous carefully bred varieties, as the {akita}, {beagle}, {bloodhound}, {bulldog}, {coachdog}, {collie}, {Danish dog}, {foxhound}, {greyhound}, {mastiff}, {pointer}, {poodle}, {St. Bernard}, {setter}, {spaniel}, {spitz}, {terrier}, {German shepherd}, {pit bull}, {Chihuahua}, etc. There are also many mixed breeds, and partially domesticated varieties, as well as wild dogs, like the dingo and dhole. (See these names in the Vocabulary.) [1913 Webster +PJC]"
+  ],
+  [
+   "gcide",
+   4.441,
+   "{A dog in the manger}, an ugly-natured person who prevents others from enjoying what would be an advantage to them but is none to him. {Dog ape} (Zool.), a male ape. {Dog cabbage}, or {Dog's cabbage} (Bot.), a succulent herb, native to the Mediterranean region ({Thelygonum Cynocrambe}). {Dog cheap}, very cheap. See under {Cheap}. {Dog ear} (Arch.), an acroterium. [Colloq.] {Dog flea} (Zool.), a species of flea ({Pulex canis}) which infests dogs and cats, and is often troublesome to man. In America it is the common flea. See {Flea}, and {Aphaniptera}. {Dog grass} (Bot.), a grass ({Triticum caninum}) of the same genus as wheat. {Dog Latin}, barbarous Latin; as, the dog Latin of pharmacy. {Dog lichen} (Bot.), a kind of lichen ({Peltigera canina}) growing on earth, rocks, and tree trunks, -- a lobed expansion, dingy green above and whitish with fuscous veins beneath. {Dog louse} (Zool.), a louse that infests the dog, esp. {H[ae]matopinus piliferus}; another species is {Trichodectes latus}. {Dog power}, a machine operated by the weight of a dog traveling in a drum, or on an endless track, as for churning. {Dog salmon} (Zool.), a salmon of northwest America and northern Asia; -- the {gorbuscha}; -- called also {holia}, and {hone}. {Dog shark}. (Zool.) See {Dogfish}. {Dog's meat}, meat fit only for dogs; refuse; offal. {Dog Star}. See in the Vocabulary. {Dog wheat} (Bot.), Dog grass. {Dog whelk} (Zool.), any species of univalve shells of the family {Nassid[ae]}, esp. the {Nassa reticulata} of England. {To give to the dogs}, or {To throw to the dogs}, to throw away as useless. \"Throw physic to the dogs; I'll none of it.\" --Shak. {To go to the dogs}, to go to ruin; to be ruined."
+  ],
+  [
+   "wn",
+   3.911,
+   "a member of the genus Canis (probably descended from the common wolf) that has been domesticated by man since prehistoric times; occurs in many breeds; \"the dog barked all night\""
+  ],
+  [
+   "wn",
+   2.438,
+   "a hinged catch that fits into a notch of a ratchet to move a wheel forward or prevent it from moving backward"
+  ],
+  [
+   "gcide",
+   2.37,
+   "(Mech.) (a) A grappling iron, with a claw or claws, for fastening into wood or other heavy articles, for the purpose of raising or moving them. (b) An iron with fangs fastening a log in a saw pit, or on the carriage of a sawmill. (c) A piece in machinery acting as a catch or clutch; especially, the carrier of a lathe, also, an adjustable stop to change motion, as in a machine tool."
+  ],
+  [
+   "gcide",
+   1.898,
+   "a {hot dog}. [slang] [PJC] Note: Dog is used adjectively or in composition, commonly in the sense of relating to, or characteristic of, a dog. It is also used to denote a male; as, dog fox or g-fox, a male fox; dog otter or dog-otter, dog wolf, etc.; -- also to denote a thing of cheap or mean quality; as, dog Latin."
+  ],
+  [
+   "wn",
+   1.893,
+   "go after with the intent to catch; \"The policeman chased the mugger down the alley\"; \"the dog chased the rabbit\""
+  ],
+  [
+   "wn",
+   1.755,
+   "a dull unattractive unpleasant girl or woman; \"she got a reputation as a frump\"; \"she's a real dog\""
+  ],
+  [
+   "wn",
+   1.545,
+   "a smooth-textured sausage of minced beef or pork usually smoked; often served on a bread roll"
+  ],
+  [
+   "wn",
+   1.366,
+   "metal supports for logs in a fireplace; \"the andirons were too hot to touch\""
+  ],
+  [
+   "gcide",
+   1.145,
+   "(Astron.) One of the two constellations, Canis Major and Canis Minor, or the Greater Dog and the Lesser Dog. Canis Major contains the Dog Star (Sirius)."
+  ],
+  [
+   "wn",
+   1.143,
+   "someone who is morally reprehensible; \"you dirty dog\""
+  ],
+  [
+   "gcide",
+   1.05,
+   "an ugly or crude person, especially an ugly woman. [slang] [PJC]"
+  ],
+  [
+   "gcide",
+   1.032,
+   "An iron for holding wood in a fireplace; a firedog; an andiron."
+  ],
+  [
+   "wn",
+   0.893,
+   "informal term for a man; \"you lucky dog\""
+  ],
+  [
+   "gcide",
+   0.755,
+   "A fellow; -- used humorously or contemptuously; as, a sly dog; a lazy dog. [Colloq.]"
+  ],
+  [
+   "gcide",
+   0.266,
+   "A mean, worthless fellow; a wretch."
+  ],
+  [
+   "moby",
+   1.828,
+   "Afghan hound, Alaskan malamute, Bedlington terrier, Border terrier, Boston bull, Cairn terrier, Chihuahua, Dalmatian, Doberman pinscher, English toy spaniel, Eskimo dog, Gordon setter, Great Dane, Great Pyrenees, Kerry blue terrier, Labrador retriever, Maltese, Newfoundland, Norwegian elkhound, Norwich terrier, Pekingese, Rhodesian ridgeback, Rottweiler, Saluki, Samoyed"
+  ],
+  [
+   "moby",
+   1.662,
+   "buck, bug, bull, bull terrier, bulldog, bullock, bullyrag, burn up, canine, chanticleer, chase, chivy, chock, choke, choke off, chow, close, close off, close tight, close up, clubfoot, coach dog, cock, cockerel, collie"
+  ],
+  [
+   "moby",
+   1.662,
+   "mastiff, mess, miff, molest, mongrel, monster, monstrosity, move behind, mutt, nag, needle, nettle, no beauty, nudzh, obstruct, occlude, otterhound, pack, pack of dogs, pad, papillon, pastern, patte, paw, peacock"
+  ],
+  [
+   "moby",
+   1.609,
+   "give chase, go after, go behind, go hunting, goat, gobbler, golden retriever, greyhound, griffon, gripe, guide dog, gun, gyp, hack, hag, harass, harefoot, harridan, harrier, harry, hart, haunt, hawk, he-goat, heap"
+  ],
+  [
+   "moby",
+   1.439,
+   "pedal extremity, pedes, peeve, persecute, pes, pester, pick on, pied, pig, pique, plague, pluck the beard, plug, pointer, polecat, pooch, poodle, pother, prick, prosecute, provoke, prowl after, pug, puli, pup"
+  ],
+  [
+   "moby",
+   1.206,
+   "beagle, beast, beat, bedevil, bedog, beset, billy, billy goat, bitch, blemish, block, block up, blockade, bloodhound, blot, boar, boarhound, bolt, borzoi, bother, bowwow, boxer, bristle, brown off, bubbly-jock"
+  ],
+  [
+   "moby",
+   1.175,
+   "heckle, hector, heel, hollo after, hoof, hot dog, hound, hunt, hunt down, husky, hyena, insect, instep, irk, jack, jacklight, jade, jam, jughead, kennel, lakeland terrier, lap dog, lock, make after, malamute"
+  ],
+  [
+   "moby",
+   1.109,
+   "tease, teratism, terrier, toad, toe, tom, tom turkey, tomcat, tootsy, top cow, top horse, torment, toy dog, track, trail, trail after, tread close upon, trotter, try the patience, tup, turd, turkey gobbler, turkey-cock, turnspit, tweak the nose"
+  ],
+  [
+   "moby",
+   0.995,
+   "eyesore, falcon, fancy dog, fash, feist, fetlock, flat-coated retriever, flush, follow, follow the hounds, follow up, foot, forefoot, forepaw, fowl, fox terrier, foxhound, frank, fret, fright, gander, gargoyle, garron, get, giant schnauzer"
+  ],
+  [
+   "moby",
+   0.884,
+   "seek out, serpent, setter, shadow, sheep dog, shikar, shithead, shoot, show dog, shut off, shut out, shut tight, sight, skunk, sled dog, sleuth, sleuthhound, slut, snake, sole, spaniel, splayfoot, sport, squeeze, squeeze shut"
+  ],
+  [
+   "moby",
+   0.759,
+   "puppy, pursue, quest, quest after, raise the hunt, ram, rat terrier, reptile, retriever, ride, ride to hounds, rile, roarer, rogue, roil, rooster, rosinante, ruffle, run, run after, scalawag, scarecrow, scum, search, seek"
+  ],
+  [
+   "moby",
+   0.731,
+   "stag, staghound, stalk, stallion, start, steer, stiff, stifle, still-hunt, stinkard, stop up, stot, strangle, strangulate, string along, stud, studhorse, suffocate, swine, tag, tag after, tag along, tail, tailgate, take out after"
+  ],
+  [
+   "moby",
+   0.717,
+   "Scottish deerhound, Seeing Eye dog, Siberian husky, Welsh corgi, Welsh terrier, Yorkshire terrier, affenpinscher, aggravate, animal, annoy, arch, baboon, badger, badger dog, bag, bait, balker, balky horse, bandog, bar, barbet, barricade, basset, basset hound, be at"
+  ],
+  [
+   "moby",
+   0.695,
+   "tyke, ugly duckling, ungula, varmint, vermin, vex, viper, watchdog, wether, whelp, whippet, whistler, wiener, wienerwurst, wienie, wire-haired terrier, witch, wolfhound, working dog, worm, worry, wreck"
+  ],
+  [
+   "moby",
+   0.231,
+   "come after, come behind, constrict, coonhound, course, crate, crock, crowbait, crowd, cur, dachshund, debar, deerhound, devil, digit, discompose, distemper, disturb, drake, drive, entire, entire horse, exasperate, exercise, extremity"
+  ]
+ ],
+ "size": {
+  "neurons": 1002,
+  "triggers": 1015,
+  "runs": [
+   [
+    "defrow",
+    61
+   ],
+   [
+    "formula",
+    926
+   ],
+   [
+    "line",
+    7
+   ],
+   [
+    "teach",
+    3
+   ]
+  ]
+ }
+}

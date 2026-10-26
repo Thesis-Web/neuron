@@ -1,0 +1,4 @@
+There is a third way: build your own sqlite3 with eval, and later your neuron functions, compiled inside it. SQLite is a single C file with no copyright, so this is how "neuron code as its own kernel" could start without starting from zero.<-- should we plan this from the beginning, such that the refactor to kernal is easier?
+
+
+(saved Thu Oct 15 19:13:23 CDT 2026, session 69692be7 (neuron-v18 hand-build), extracted verbatim from line 578 of the session .jsonl; contains quoted lines of the parallel session)

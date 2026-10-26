@@ -1,0 +1,487 @@
+# 71 patterns: learning way 1 (generalize, blueprint §13) over the lines it reads
+# and hears. A new line (a RUN memory's signature) is compared with lines from three
+# index pages: like-shaped memories (FIND SHAPE), the newest memories (FIND TIME) and
+# the lines that used its first, second and last gate (sec-use). Where the two lines differ are
+# holes; the rest stays: a string with holes.
+#  - two holes: if a held (not guessed) line of one type T joins the two fillers in
+#    both lines, the candidate is "a line like this joins its holes by T";
+#  - one hole: if a held line of type T joins the two lines' fillers (either way),
+#    the candidate is "what fills this hole is T to the other filler" (its ref);
+#    else if both fillers are joined by T to one gate (not a source), that gate is
+#    the ref: "what fills this hole is T that gate".
+# The candidate is a spawned gate F, held as a guess: the string (sec-built), T
+# (sec-action), the ref (lp-ref), the partner memory (sec-derived), a record memory
+# (kind lp-rec: its right and wrong counts) and a line anchor t-used-for F, where the
+# anchor is the fixed gate just before the (second) hole, else the last fixed gate. Each line it was not built
+# from that fits it tests it: the fillers held by T (right), by another type only
+# (wrong), or unknown (no test). Over lp-min tests with more right than wrong, F gets
+# the derived process [ITEM READ F lp-use] (through core-check-proc) and backpop runs.
+# A line first hops to the formulas hung on its own gates (rule 2): one it fits is
+# run (tested again; when kept and balanced, unknown fillers get a GUESS line of type
+# T, strength right/(right+wrong), listed on TEST-GUESS). Only when none fits does the
+# long way compare it with other lines. Nothing here names a word or a type.
+
+gate ln-top
+gate ln-stop
+gate ln-types
+gate ln-mark
+gate ln-fl
+gate core-check-proc
+gate ask-name
+gate mn-state
+gate mn-held
+
+gate ln-hole
+gate lp-rec
+gate lp-min val 2
+rel lp-min t-kind-of SETTING
+
+# slots
+gate lp-S
+gate lp-L
+gate lp-ML
+gate lp-QL
+gate lp-GL
+gate lp-FL
+gate lp-TL
+gate lp-M
+gate lp-F
+gate lp-R
+gate lp-T
+gate lp-T2
+gate lp-Pt
+gate lp-x
+gate lp-y
+gate lp-px
+gate lp-py
+gate lp-a
+gate lp-b
+gate lp-a2
+gate lp-b2
+gate lp-ja
+gate lp-jb
+gate lp-fl
+gate lp-fx
+gate lp-ok
+gate lp-hit
+gate lp-rf
+gate lp-rg
+gate lp-rn
+gate lp-n
+gate lp-sl
+gate lp-q
+# settings: how far back the recent page reaches (s), and how many of a word's lines are walked
+gate lp-back val 600
+rel lp-back t-kind-of SETTING
+gate lp-cap val 16
+rel lp-cap t-kind-of SETTING
+# how many rounds of reading up on the fillers before a pair with no link is let go
+gate lp-reads val 4
+rel lp-reads t-kind-of SETTING
+gate lp-rc
+gate lp-DL
+gate lp-G
+gate lp-dup
+gate lp-uc
+gate lp-CL
+gate lp-c
+gate source-check
+# section: the filler a one-hole formula joins a line's filler to
+gate lp-ref
+
+# ==== match: lp-x a signature, lp-y a string with holes. lp-ok YES when every fixed
+# place is the same gate and the lengths agree; the fillers go to lp-ja, lp-jb
+proc lp-m-fail =
+proc lp-m-ok = ITEM READ YES lp-ok SLOT WRITE
+proc lp-m = ITEM READ NO lp-ok SLOT WRITE ITEM READ NONE lp-ja SLOT WRITE ITEM READ NONE lp-jb SLOT WRITE lp-m-step
+proc lp-m-step = lp-y SLOT READ FIRST READ lp-m-s2
+on lp-m-step NONE -> lp-m-end
+proc lp-m-s2 = lp-py SLOT WRITE lp-x SLOT READ FIRST READ lp-m-s3
+on lp-m-s2 NONE -> lp-m-fail
+proc lp-m-s3 = lp-px SLOT WRITE lp-py SLOT READ ITEM READ ln-hole COMPARE
+on lp-m-s3 SAME -> lp-m-hole
+on lp-m-s3 MORE -> lp-m-fix
+proc lp-m-fix = lp-px SLOT READ lp-py SLOT READ COMPARE
+on lp-m-fix SAME -> lp-m-next
+on lp-m-fix MORE -> lp-m-fail
+proc lp-m-hole = lp-ja SLOT READ ITEM READ NONE COMPARE
+on lp-m-hole SAME -> lp-m-h1
+on lp-m-hole MORE -> lp-m-h2
+proc lp-m-h1 = lp-px SLOT READ lp-ja SLOT WRITE lp-m-next
+proc lp-m-h2 = lp-px SLOT READ lp-jb SLOT WRITE lp-m-next
+proc lp-m-next = lp-x SLOT READ REST READ lp-x SLOT WRITE lp-y SLOT READ REST READ lp-y SLOT WRITE lp-m-step
+proc lp-m-end = lp-x SLOT READ FIRST READ lp-m-fail2
+on lp-m-end NONE -> lp-m-ok
+proc lp-m-fail2 = LAST DELETE lp-m-fail
+
+# ==== the hop (rule 2). pad: S (consumed). Each gate of the line: the formulas hung
+# on it; one whose string the line fits is run (its own process when kept)
+proc lp-hop = lp-S SLOT WRITE lp-S SLOT READ COUNT READ one COMPARE
+on lp-hop LESS -> ln-stop
+on lp-hop SAME -> ln-stop
+on lp-hop MORE -> lp-hop1
+proc lp-hop1 = LAST DELETE ITEM READ NO lp-hit SLOT WRITE lp-S SLOT READ lp-GL SLOT WRITE lp-hg
+proc lp-hg = lp-GL SLOT READ FIRST READ lp-hg2
+on lp-hg NONE -> lp-hop-done
+proc lp-hg2 = lp-GL SLOT READ REST READ lp-GL SLOT WRITE t-used-for RELS READ lp-hf0
+on lp-hg2 NONE -> lp-hg
+proc lp-hf0 = lp-FL SLOT WRITE lp-hf
+proc lp-hf = lp-FL SLOT READ FIRST READ lp-hf2
+on lp-hf NONE -> lp-hg
+proc lp-hf2 = lp-F SLOT WRITE lp-FL SLOT READ REST READ lp-FL SLOT WRITE lp-F SLOT READ sec-built SECTION READ lp-hf3
+on lp-hf2 NONE -> lp-hf
+proc lp-hf3 = lp-y SLOT WRITE lp-S SLOT READ lp-x SLOT WRITE lp-m lp-hf4
+proc lp-hf4 = lp-ok SLOT READ ITEM READ YES COMPARE
+on lp-hf4 SAME -> lp-hf5
+on lp-hf4 MORE -> lp-hf
+proc lp-hf5 = ITEM READ YES lp-hit SLOT WRITE lp-ja SLOT READ lp-jb SLOT READ lp-F SLOT READ PROC READ lp-hf6
+on lp-hf5 NONE -> lp-hf7
+# a kept formula does its act (its process) and is tested again on the line, side by side
+proc lp-hf6 = LAST DELETE lp-F SLOT READ SPLIT LAST DELETE lp-F SLOT READ ITEM READ lp-use SPLIT LAST DELETE LAST DELETE LAST DELETE lp-hf
+proc lp-hf7 = lp-F SLOT READ ITEM READ lp-use SPLIT LAST DELETE LAST DELETE LAST DELETE lp-hf
+# a formula it holds fitted: no search (spent once). Else the long way, if there are
+# like-shaped memories
+proc lp-hop-done = lp-hit SLOT READ ITEM READ YES COMPARE
+on lp-hop-done SAME -> ln-stop
+on lp-hop-done MORE -> lp-long0
+# the lines to compare with, three pages (index reads, never a scan): the like-shaped
+# memories, the newest memories (FIND TIME back lp-back s, at most 64), and the lines
+# that used its first, second and last gate (sec-use receipts, at most lp-cap×4 each)
+proc lp-long0 = lp-L SLOT READ lp-lo1
+on lp-long0 NONE -> lp-long-t
+proc lp-lo1 = ITEM READ lp-long SPLIT LAST DELETE lp-long-t
+proc lp-long-t = CLOCK CLOCK lp-back SUB TIME FIND lp-lt2
+on lp-long-t NONE -> lp-long-r
+proc lp-lt2 = ITEM READ lp-long SPLIT LAST DELETE lp-long-r
+# a partner differs in at most two places, so of any three places of the line at
+# least one holds a gate the partner holds too: the lines that used the first, the
+# second and the last gate of the line (their sec-use receipts) hold every partner
+proc lp-long-r = lp-S SLOT READ FIRST READ lp-pg lp-S SLOT READ REST READ FIRST READ lp-r2nd
+proc lp-pg = sec-use SECTIONS READ lp-pg2
+on lp-pg NONE -> carry-on
+proc lp-pg2 = ITEM READ lp-long SPLIT LAST DELETE
+proc lp-r2nd = LAST READ lp-rg SLOT WRITE lp-pg lp-S SLOT READ REST READ REST READ lp-sl SLOT WRITE lp-rl
+proc lp-rl = lp-sl SLOT READ REST READ FIRST READ lp-rl2
+on lp-rl NONE -> lp-rlast
+proc lp-rl2 = LAST DELETE lp-sl SLOT READ REST READ lp-sl SLOT WRITE lp-rl
+proc lp-rlast = lp-sl SLOT READ FIRST READ lp-rlast2
+on lp-rlast NONE -> ln-stop
+proc lp-rlast2 = LAST READ lp-rg SLOT READ COMPARE
+on lp-rlast2 SAME -> ln-stop
+on lp-rlast2 MORE -> lp-rlast3
+proc lp-rlast3 = lp-pg END
+
+# entry with like-shaped memories. pad: S L (consumed)
+proc lp-go = lp-L SLOT WRITE lp-hop
+
+# ==== the long way: each like-shaped memory is a partner, on its own branch
+proc lp-long = lp-ML SLOT WRITE lp-cap lp-cap ADD lp-cap ADD lp-cap ADD lp-n SLOT WRITE lp-l1
+proc lp-l1 = lp-ML SLOT READ FIRST READ lp-l1b
+on lp-l1 NONE -> ln-stop
+proc lp-l1b = lp-n SLOT READ ZERO COMPARE
+on lp-l1b SAME -> ln-stop
+on lp-l1b MORE -> lp-l2
+on lp-l1b LESS -> ln-stop
+proc lp-l2 = LAST DELETE ITEM READ lp-pair SPLIT LAST DELETE lp-n SLOT READ one SUB lp-n SLOT WRITE lp-ML SLOT READ REST READ lp-ML SLOT WRITE lp-l1
+
+# a partner M (pad top, consumed): the places where the two lines differ become
+# holes (exactly two), the rest stays: the string, built in order
+proc lp-pair = lp-M SLOT WRITE ITEM READ NONE lp-a SLOT WRITE ITEM READ NONE lp-b SLOT WRITE lp-S SLOT READ lp-x SLOT WRITE lp-M SLOT READ MSIG READ lp-p0
+on lp-pair NONE -> ln-stop
+proc lp-p0 = LAST READ COUNT READ lp-S SLOT READ COUNT READ COMPARE
+on lp-p0 SAME -> lp-p0b
+on lp-p0 MORE -> ln-stop
+on lp-p0 LESS -> ln-stop
+proc lp-p0b = LAST DELETE lp-y SLOT WRITE lp-d
+proc lp-d = lp-x SLOT READ FIRST READ lp-d2
+on lp-d NONE -> lp-dend
+proc lp-d2 = lp-px SLOT WRITE lp-y SLOT READ FIRST READ lp-d3
+on lp-d2 NONE -> ln-stop
+proc lp-d3 = lp-py SLOT WRITE lp-px SLOT READ lp-py SLOT READ COMPARE
+on lp-d3 SAME -> lp-dsame
+on lp-d3 MORE -> lp-dhole
+proc lp-dsame = lp-px SLOT READ LAST READ lp-fl SLOT WRITE ITEM READ ln-top SPLIT LAST DELETE lp-dnext
+proc lp-dhole = ITEM READ ln-hole ITEM READ ln-top SPLIT LAST DELETE lp-a SLOT READ ITEM READ NONE COMPARE
+on lp-dhole SAME -> lp-dh1
+on lp-dhole MORE -> lp-dh2
+proc lp-dh1 = lp-px SLOT READ lp-a SLOT WRITE lp-py SLOT READ lp-a2 SLOT WRITE lp-fl SLOT READ lp-dh1b
+on lp-dh1 NONE -> lp-dnext
+proc lp-dh1b = lp-fx SLOT WRITE lp-dnext
+proc lp-dh2 = lp-b SLOT READ ITEM READ NONE COMPARE
+on lp-dh2 SAME -> lp-dh3
+on lp-dh2 MORE -> ln-stop
+proc lp-dh3 = lp-px SLOT READ lp-b SLOT WRITE lp-py SLOT READ lp-b2 SLOT WRITE lp-fl SLOT READ lp-dh4
+on lp-dh3 NONE -> lp-dnext
+proc lp-dh4 = lp-fx SLOT WRITE lp-dnext
+proc lp-dnext = lp-x SLOT READ REST READ lp-x SLOT WRITE lp-y SLOT READ REST READ lp-y SLOT WRITE lp-d
+proc lp-dend = lp-y SLOT READ FIRST READ ln-stop
+on lp-dend NONE -> lp-dend2
+proc lp-dend2 = lp-b SLOT READ ITEM READ NONE COMPARE
+on lp-dend2 SAME -> lp-dend3
+on lp-dend2 MORE -> lp-dpat0
+# the anchor: the fixed gate before the (second) hole, else the last fixed gate
+proc lp-dpat0 = lp-fx SLOT READ lp-dpat
+on lp-dpat0 NONE -> lp-dfx
+proc lp-dfx = lp-fl SLOT READ lp-dfx2
+on lp-dfx NONE -> ln-stop
+proc lp-dfx2 = lp-fx SLOT WRITE lp-fx SLOT READ lp-dpat
+proc lp-dend3 = lp-a SLOT READ ITEM READ NONE COMPARE
+on lp-dend3 SAME -> ln-stop
+on lp-dend3 MORE -> lp-dpat1
+proc lp-dpat = LAST DELETE WAIT lp-Pt SLOT WRITE ITEM READ NONE lp-rf SLOT WRITE lp-link
+# one hole: the fillers of the two lines are what a type must join (either way);
+# the partner's filler is kept as the formula's ref
+proc lp-dpat1 = lp-fx SLOT READ lp-dp1b
+on lp-dpat1 NONE -> lp-dfy
+proc lp-dfy = lp-fl SLOT READ lp-dfy2
+on lp-dfy NONE -> ln-stop
+proc lp-dfy2 = lp-fx SLOT WRITE lp-fx SLOT READ lp-dp1b
+proc lp-dp1b = LAST DELETE WAIT lp-Pt SLOT WRITE lp-a2 SLOT READ lp-rf SLOT WRITE lp-link1
+proc lp-link1 = ITEM READ ln-types PROC READ lp-TL SLOT WRITE lp-s1
+proc lp-s1 = lp-TL SLOT READ FIRST READ lp-s2
+on lp-s1 NONE -> lp-read1
+proc lp-s2 = lp-T SLOT WRITE lp-TL SLOT READ REST READ lp-TL SLOT WRITE lp-a SLOT READ lp-T SLOT READ lp-a2 SLOT READ STATE READ lp-s3
+on lp-s2 NONE -> lp-s4
+proc lp-s3 = ITEM READ GUESS COMPARE
+on lp-s3 SAME -> lp-s4
+on lp-s3 MORE -> lp-cand
+proc lp-s4 = lp-a2 SLOT READ lp-T SLOT READ lp-a SLOT READ STATE READ lp-s5
+on lp-s4 NONE -> lp-sc
+proc lp-s5 = ITEM READ GUESS COMPARE
+on lp-s5 SAME -> lp-sc
+on lp-s5 MORE -> lp-cand
+# not joined to each other: a gate both fillers are joined to by T (held, not a
+# source) is the ref instead ("what fills this hole is T that gate")
+proc lp-sc = lp-a SLOT READ lp-T SLOT READ RELS READ lp-sc1
+on lp-sc NONE -> lp-s1
+proc lp-sc1 = lp-CL SLOT WRITE lp-sc2
+proc lp-sc2 = lp-CL SLOT READ FIRST READ lp-sc3
+on lp-sc2 NONE -> lp-s1
+proc lp-sc3 = lp-c SLOT WRITE lp-CL SLOT READ REST READ lp-CL SLOT WRITE lp-c SLOT READ GROUNDED READ lp-sc3b
+on lp-sc3 NONE -> lp-sc3n
+on lp-sc3 YES -> lp-sc3b
+on lp-sc3 NO -> lp-sc3b
+proc lp-sc3n = LAST DELETE lp-sc4
+proc lp-sc3b = LAST DELETE lp-sc2
+proc lp-sc4 = lp-a2 SLOT READ lp-T SLOT READ lp-c SLOT READ STATE READ lp-sc5
+on lp-sc4 NONE -> lp-sc2
+proc lp-sc5 = ITEM READ GUESS COMPARE
+on lp-sc5 SAME -> lp-sc2
+on lp-sc5 MORE -> lp-sc6
+proc lp-sc6 = lp-a SLOT READ lp-T SLOT READ lp-c SLOT READ STATE READ lp-sc7
+on lp-sc6 NONE -> lp-sc2
+proc lp-sc7 = ITEM READ GUESS COMPARE
+on lp-sc7 SAME -> lp-sc2
+on lp-sc7 MORE -> lp-sc8
+proc lp-sc8 = lp-c SLOT READ lp-rf SLOT WRITE lp-cand
+
+# what joins the fillers: the first type with a held line (not a guess) a -> b in
+# this line and a2 -> b2 in the partner. None: nothing to learn here
+proc lp-link = ITEM READ ln-types PROC READ lp-TL SLOT WRITE lp-t1
+proc lp-t1 = lp-TL SLOT READ FIRST READ lp-t2
+on lp-t1 NONE -> lp-read2
+proc lp-t2 = lp-T SLOT WRITE lp-TL SLOT READ REST READ lp-TL SLOT WRITE lp-a SLOT READ lp-T SLOT READ lp-b SLOT READ STATE READ lp-t3
+on lp-t2 NONE -> lp-t1
+proc lp-t3 = ITEM READ GUESS COMPARE
+on lp-t3 SAME -> lp-t1
+on lp-t3 MORE -> lp-t4
+proc lp-t4 = lp-a2 SLOT READ lp-T SLOT READ lp-b2 SLOT READ STATE READ lp-t5
+on lp-t4 NONE -> lp-t1
+proc lp-t5 = ITEM READ GUESS COMPARE
+on lp-t5 SAME -> lp-t1
+on lp-t5 MORE -> lp-cand
+
+# no type joins them in what it holds: know before guessing. It reads up on the
+# fillers (source-check, one source a round, the next source each time), waits for
+# what comes back, and looks again; after lp-reads rounds it lets the pair go
+proc lp-read1 = lp-rc SLOT READ lp-rd1
+on lp-read1 NONE -> lp-rd0
+proc lp-rd0 = lp-reads lp-rc SLOT WRITE lp-read1
+proc lp-rd1 = ZERO COMPARE
+on lp-rd1 SAME -> ln-stop
+on lp-rd1 LESS -> ln-stop
+on lp-rd1 MORE -> lp-rd2
+proc lp-rd2 = LAST DELETE lp-rc SLOT READ one SUB lp-rc SLOT WRITE lp-a SLOT READ ITEM READ source-check SPLIT LAST DELETE lp-a2 SLOT READ ITEM READ source-check SPLIT LAST DELETE WAIT LAST DELETE lp-link1
+proc lp-read2 = lp-rc SLOT READ lp-re1
+on lp-read2 NONE -> lp-re0
+proc lp-re0 = lp-reads lp-rc SLOT WRITE lp-read2
+proc lp-re1 = ZERO COMPARE
+on lp-re1 SAME -> ln-stop
+on lp-re1 LESS -> ln-stop
+on lp-re1 MORE -> lp-re2
+proc lp-re2 = LAST DELETE lp-rc SLOT READ one SUB lp-rc SLOT WRITE lp-a SLOT READ ITEM READ source-check SPLIT LAST DELETE lp-b SLOT READ ITEM READ source-check SPLIT LAST DELETE lp-a2 SLOT READ ITEM READ source-check SPLIT LAST DELETE lp-b2 SLOT READ ITEM READ source-check SPLIT LAST DELETE WAIT LAST DELETE lp-link
+
+# the candidate, held as a guess: spawned at the anchor, its string, type, the
+# partner it was built with, its record, and the anchor line it is found by
+proc lp-cand = lp-fx SLOT READ t-used-for RELS READ lp-hv
+on lp-cand NONE -> lp-cand2
+proc lp-hv = lp-FL SLOT WRITE lp-hv1
+proc lp-hv1 = lp-FL SLOT READ FIRST READ lp-hv2
+on lp-hv1 NONE -> lp-cand2
+proc lp-hv2 = lp-F SLOT WRITE lp-FL SLOT READ REST READ lp-FL SLOT WRITE lp-F SLOT READ sec-built SECTION READ lp-hv3
+on lp-hv2 NONE -> lp-hv1
+proc lp-hv3 = lp-Pt SLOT READ COMPARE
+on lp-hv3 SAME -> lp-hv4
+on lp-hv3 MORE -> lp-hv1
+proc lp-hv4 = lp-F SLOT READ sec-action SECTION READ lp-hv5
+on lp-hv4 NONE -> lp-hv1
+proc lp-hv5 = lp-T SLOT READ COMPARE
+on lp-hv5 SAME -> ln-stop
+on lp-hv5 MORE -> lp-hv1
+proc lp-cand2 = GUESS MADE WRITE lp-fx SLOT READ POINT READ SPAWN lp-c2
+on lp-cand2 NONE -> ln-stop
+proc lp-c2 = lp-F SLOT WRITE lp-F SLOT READ sec-built lp-Pt SLOT READ SECTION WRITE lp-F SLOT READ sec-action lp-T SLOT READ SECTION WRITE lp-F SLOT READ sec-derived lp-M SLOT READ SECTION WRITE lp-F SLOT READ lp-ref lp-rf SLOT READ SECTION WRITE lp-F SLOT READ lp-rec TODO WRITE lp-fx SLOT READ t-used-for lp-F SLOT READ one REL WRITE lp-dup lp-ML SLOT READ lp-QL SLOT WRITE lp-c4
+# spent once: pair runs of one line run side by side, so two can make the same
+# formula at once. A formula that finds the same string and type hung on its anchor
+# with an older record takes its own anchor line back and stops
+proc lp-dup = lp-fx SLOT READ t-used-for RELS READ lp-du1
+on lp-dup NONE -> carry-on
+proc lp-du1 = lp-DL SLOT WRITE lp-du2
+proc lp-du2 = lp-DL SLOT READ FIRST READ lp-du3
+on lp-du2 NONE -> carry-on
+proc lp-du3 = lp-G SLOT WRITE lp-DL SLOT READ REST READ lp-DL SLOT WRITE lp-G SLOT READ lp-F SLOT READ COMPARE
+on lp-du3 SAME -> lp-du2
+on lp-du3 MORE -> lp-du4
+proc lp-du4 = lp-G SLOT READ sec-built SECTION READ lp-du5
+on lp-du4 NONE -> lp-du2
+proc lp-du5 = lp-Pt SLOT READ COMPARE
+on lp-du5 SAME -> lp-du6
+on lp-du5 MORE -> lp-du2
+proc lp-du6 = lp-G SLOT READ sec-action SECTION READ lp-du7
+on lp-du6 NONE -> lp-du2
+proc lp-du7 = lp-T SLOT READ COMPARE
+on lp-du7 SAME -> lp-du8
+on lp-du7 MORE -> lp-du2
+proc lp-du8 = lp-G SLOT READ lp-rec HOME FIND lp-du9
+on lp-du8 NONE -> lp-du2
+proc lp-du9 = lp-F SLOT READ lp-rec HOME FIND lp-du10
+on lp-du9 NONE -> lp-dd
+proc lp-du10 = COMPARE
+on lp-du10 LESS -> lp-drop
+on lp-du10 SAME -> lp-dd
+on lp-du10 MORE -> lp-dd
+proc lp-dd = LAST DELETE lp-du2
+proc lp-drop = LAST DELETE lp-fx SLOT READ t-used-for lp-F SLOT READ REL DELETE END
+
+# tested on the rest of the page it was found in (lines it was not built from)
+proc lp-c4 = lp-QL SLOT READ FIRST READ lp-c5
+on lp-c4 NONE -> ln-stop
+proc lp-c5 = lp-QL SLOT READ REST READ lp-QL SLOT WRITE LAST READ lp-M SLOT READ COMPARE
+on lp-c5 SAME -> lp-c5s
+on lp-c5 MORE -> lp-c6
+on lp-c5 LESS -> lp-c6
+proc lp-c5s = LAST DELETE LAST DELETE lp-c4
+proc lp-c6 = LAST DELETE MSIG READ lp-c7
+on lp-c6 NONE -> lp-c4
+proc lp-c7 = lp-x SLOT WRITE lp-Pt SLOT READ lp-y SLOT WRITE lp-m lp-c8
+proc lp-c8 = lp-ok SLOT READ ITEM READ YES COMPARE
+on lp-c8 SAME -> lp-c9
+on lp-c8 MORE -> lp-c4
+proc lp-c9 = lp-ja SLOT READ lp-jb SLOT READ lp-F SLOT READ ITEM READ lp-use SPLIT LAST DELETE LAST DELETE LAST DELETE lp-c4
+
+# ==== use and test a formula on one line. pad: ja jb F (consumed). Held by T: right.
+# Held by another type only: wrong. Unknown: a kept, balanced formula guesses it.
+# A guess already there teaches nothing
+proc lp-use = lp-F SLOT WRITE lp-jb SLOT WRITE lp-ja SLOT WRITE lp-jb SLOT READ ITEM READ NONE COMPARE
+on lp-use SAME -> lp-use1
+on lp-use MORE -> lp-use2
+proc lp-use1 = lp-F SLOT READ lp-ref SECTION READ lp-use1b
+on lp-use1 NONE -> ln-stop
+proc lp-use1b = lp-jb SLOT WRITE lp-use2
+proc lp-use2 = lp-F SLOT READ lp-rec HOME FIND lp-u1
+on lp-use2 NONE -> ln-stop
+proc lp-u1 = lp-R SLOT WRITE lp-F SLOT READ sec-action SECTION READ lp-u2
+on lp-u1 NONE -> ln-stop
+proc lp-u2 = lp-T SLOT WRITE lp-ja SLOT READ lp-T SLOT READ lp-jb SLOT READ STATE READ lp-u3
+on lp-u2 NONE -> lp-u2b
+proc lp-u2b = lp-jb SLOT READ lp-T SLOT READ lp-ja SLOT READ STATE READ lp-u3
+on lp-u2b NONE -> lp-uother
+proc lp-u3 = ITEM READ GUESS COMPARE
+on lp-u3 SAME -> ln-stop
+on lp-u3 MORE -> lp-uright
+proc lp-uright = lp-R SLOT READ RIGHT WRITE lp-ubal
+proc lp-uother = ITEM READ ln-types PROC READ lp-TL SLOT WRITE lp-o1
+proc lp-o1 = lp-TL SLOT READ FIRST READ lp-o2
+on lp-o1 NONE -> lp-uread
+proc lp-o2 = lp-T2 SLOT WRITE lp-TL SLOT READ REST READ lp-TL SLOT WRITE lp-ja SLOT READ lp-T2 SLOT READ lp-jb SLOT READ STATE READ lp-o3
+on lp-o2 NONE -> lp-o1
+proc lp-o3 = ITEM READ GUESS COMPARE
+on lp-o3 SAME -> lp-o1
+on lp-o3 MORE -> lp-uwrong
+proc lp-uwrong = lp-R SLOT READ WRONG WRITE lp-ubal
+
+# balance: at least lp-min tests and more right than wrong -> kept (once)
+proc lp-ubal = lp-R SLOT READ RIGHT READ lp-R SLOT READ WRONG READ ADD lp-min COMPARE
+on lp-ubal LESS -> lp-uend
+on lp-ubal SAME -> lp-ub2
+on lp-ubal MORE -> lp-ub2
+proc lp-uend = LAST DELETE END
+proc lp-ub2 = LAST DELETE lp-R SLOT READ RIGHT READ lp-R SLOT READ WRONG READ COMPARE
+on lp-ub2 MORE -> lp-ub3
+on lp-ub2 SAME -> lp-uend
+on lp-ub2 LESS -> lp-uend
+proc lp-ub3 = LAST DELETE lp-F SLOT READ PROC READ lp-uend
+on lp-ub3 NONE -> lp-keep
+# kept (R4-22): its process is its predicted act, a string of what it holds: [ITEM READ T
+# ITEM READ ref lp-act] (ref NONE for two holes: the second filler is the other end)
+gate lp-kr
+gate lp-act
+proc lp-keep = DERIVED MADE WRITE lp-F SLOT READ lp-ref SECTION READ lp-keep1
+on lp-keep NONE -> lp-keep0
+proc lp-keep0 = ITEM READ NONE lp-keep1
+proc lp-keep1 = lp-kr SLOT WRITE ITEM READ ITEM ITEM READ ln-top SPLIT LAST DELETE ITEM READ READ ITEM READ ln-top SPLIT LAST DELETE lp-T SLOT READ ITEM READ ln-top SPLIT LAST DELETE ITEM READ ITEM ITEM READ ln-top SPLIT LAST DELETE ITEM READ READ ITEM READ ln-top SPLIT LAST DELETE lp-kr SLOT READ ITEM READ ln-top SPLIT LAST DELETE ITEM READ lp-act ITEM READ ln-top SPLIT LAST DELETE WAIT lp-k2
+proc lp-k2 = ln-fl SLOT WRITE lp-F SLOT READ ln-fl SLOT READ core-check-proc PROC WRITE lp-k3
+on lp-k2 NONE -> ln-stop
+proc lp-k3 = lp-F SLOT READ mn-state ITEM READ mn-held SECTION WRITE lp-F SLOT READ ln-mark lp-F SLOT READ ITEM READ ask-name SPLIT END
+
+
+# unknown: first it reads up on the filler (a source a round, lp-reads rounds) and
+# judges again; only then may it guess
+proc lp-uread = lp-uc SLOT READ lp-ur1
+on lp-uread NONE -> lp-ur0
+proc lp-ur0 = lp-reads lp-uc SLOT WRITE lp-uread
+proc lp-ur1 = ZERO COMPARE
+on lp-ur1 SAME -> lp-ur3
+on lp-ur1 LESS -> lp-ur3
+on lp-ur1 MORE -> lp-ur2
+proc lp-ur2 = LAST DELETE lp-uc SLOT READ one SUB lp-uc SLOT WRITE lp-ja SLOT READ ITEM READ source-check SPLIT LAST DELETE WAIT LAST DELETE lp-use2
+proc lp-ur3 = LAST DELETE lp-unknown
+# still unknown: only a kept formula still in balance guesses
+proc lp-unknown = lp-F SLOT READ PROC READ lp-un2
+on lp-unknown NONE -> ln-stop
+proc lp-un2 = LAST DELETE lp-R SLOT READ RIGHT READ lp-R SLOT READ WRONG READ COMPARE
+on lp-un2 MORE -> lp-guess
+on lp-un2 SAME -> lp-uend
+on lp-un2 LESS -> lp-uend
+gate lp-gl
+proc lp-guess = LAST DELETE GUESS MADE WRITE lp-ja SLOT READ lp-T SLOT READ lp-jb SLOT READ lp-R SLOT READ RIGHT READ lp-R SLOT READ RIGHT READ lp-R SLOT READ WRONG READ ADD DIV REL WRITE lp-gl
+# the guess goes on TEST-GUESS as the line it is, with its maker: [a T b F]
+proc lp-gl = lp-ja SLOT READ ITEM READ ln-top SPLIT LAST DELETE lp-T SLOT READ ITEM READ ln-top SPLIT LAST DELETE lp-jb SLOT READ ITEM READ ln-top SPLIT LAST DELETE lp-F SLOT READ ITEM READ ln-top SPLIT LAST DELETE WAIT TEST-GUESS TODO WRITE END
+
+# ==== the act of a kept formula (R4-22). pad: ja jb T ref (consumed). The line it predicts
+# is ja T b, b = the ref (one hole) or jb (two holes). Know before guessing: a line of any
+# type held between the two (either way) means there is nothing to predict; else the
+# prediction is written as a guess, strength right/(right+wrong) of its record, and listed
+# on TEST-GUESS for testing, with this formula as its maker
+gate lp-aa
+gate lp-ab
+gate lp-at
+gate lp-ar
+gate lp-aT
+gate lp-aL
+proc lp-act = lp-ar SLOT WRITE lp-at SLOT WRITE lp-ab SLOT WRITE lp-aa SLOT WRITE lp-ar SLOT READ ITEM READ NONE COMPARE
+on lp-act SAME -> lp-act2
+on lp-act MORE -> lp-act1
+proc lp-act1 = lp-ar SLOT READ lp-ab SLOT WRITE lp-act2
+proc lp-act2 = ITEM READ ln-types PROC READ lp-aL SLOT WRITE lp-ak
+proc lp-ak = lp-aL SLOT READ FIRST READ lp-ak2
+on lp-ak NONE -> lp-aguess
+proc lp-ak2 = lp-aT SLOT WRITE lp-aL SLOT READ REST READ lp-aL SLOT WRITE lp-aa SLOT READ lp-aT SLOT READ lp-ab SLOT READ STATE READ lp-aheld
+on lp-ak2 NONE -> lp-ak3
+proc lp-ak3 = lp-ab SLOT READ lp-aT SLOT READ lp-aa SLOT READ STATE READ lp-aheld
+on lp-ak3 NONE -> lp-ak
+proc lp-aheld = LAST DELETE END
+proc lp-aguess = lp-F SLOT READ lp-rec HOME FIND lp-ag2
+on lp-aguess NONE -> ln-stop
+proc lp-ag2 = lp-R SLOT WRITE GUESS MADE WRITE lp-aa SLOT READ lp-at SLOT READ lp-ab SLOT READ lp-R SLOT READ RIGHT READ lp-R SLOT READ RIGHT READ lp-R SLOT READ WRONG READ ADD DIV REL WRITE lp-ag3
+proc lp-ag3 = lp-aa SLOT READ lp-ja SLOT WRITE lp-at SLOT READ lp-T SLOT WRITE lp-ab SLOT READ lp-jb SLOT WRITE lp-gl

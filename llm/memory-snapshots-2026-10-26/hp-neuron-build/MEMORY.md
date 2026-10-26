@@ -1,0 +1,1 @@
+- [Neuron turn-one build](neuron-turn-one-build.md) — paths, access and rules for the live brain on hp; turn one and turn two (meaning blueprint) both done 2026-10-19, told ends marked; no edits without the owner reopening

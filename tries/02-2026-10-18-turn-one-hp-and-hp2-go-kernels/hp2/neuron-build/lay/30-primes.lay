@@ -1,0 +1,1158 @@
+# 30 primes: the 65 primes and the early words (blueprint §16, NOW §4).
+# Each prime is laid with what passing it does, built from the physics words and
+# selectors. These are the builder's first guesses; the brain may rewrite any of them.
+# A prime with no action yet is a plain gate marked GAP below, for the brain to fill.
+#
+# How they work at input level: a prime acts on what is in hand (the pad). When what
+# it needs is not in hand yet, it holds itself on the pad (pushes its own gate), the
+# way plus holds its add, so a later gate can apply it. A test's verdict is handed on
+# as YES or NO. Every outcome is planned; nothing here SAYs.
+
+# gates other areas own
+gate key-qmark
+gate maybe
+gate ask-name
+gate what-is-this
+
+# ---- the slots the primes keep things in
+gate p-a
+gate p-b
+gate p-fence
+gate p-actor
+gate p-i-size
+gate p-i-mems
+gate p-hole-at
+gate p-hole-kind
+gate p-avoid
+gate p-other
+
+# ---- shared bits
+proc p-yes = ITEM READ YES
+proc p-no = ITEM READ NO
+proc p-drop1 = LAST DELETE
+on p-drop1 NONE -> carry-on
+proc p-drop2 = LAST DELETE LAST DELETE
+on p-drop2 NONE -> carry-on
+# after a fenced COMPARE: drop what COMPARE pushed (a distance or a mask), then the fence
+proc p-unfence = KIND READ
+on p-unfence GATE -> p-drop1
+on p-unfence NUMBER -> p-drop2
+on p-unfence LIST -> p-drop2
+on p-unfence POINT -> p-drop2
+on p-unfence TEXT -> p-drop2
+on p-unfence NONE -> carry-on
+proc p-yes-u = p-unfence p-yes
+proc p-no-u = p-unfence p-no
+# a hole: where in the sentence it is, and the hole gate in hand
+proc p-hole = SIG READ COUNT READ p-hole-at SLOT WRITE ITEM READ something
+# put the gate in hand on the gap list (keeping it in hand)
+proc p-gap = LAST READ GAP TODO WRITE
+on p-gap NONE -> carry-on
+
+# ================= substantives
+# I: the brain takes stock of itself (its gates, its memories) and is the actor
+# Who a word points to depends on who says it: in a person's words "I" is that person
+# and "you" is the brain; in the brain's own run tree "I" is itself.
+gate i
+proc i = MINE READ
+on i YES -> i-self
+on i NO -> i-who
+proc i-self = SIZE READ p-i-size SLOT WRITE ACTIVE READ p-i-mems SLOT WRITE ITEM READ i p-actor SLOT WRITE ITEM READ i
+proc i-who = WHO READ you-2
+on i-who NONE -> carry-on
+# YOU: the one the words are said to
+gate you
+proc you = MINE READ
+on you NO -> i-self
+on you YES -> i-who
+proc you-2 = LAST READ p-actor SLOT WRITE
+# SOMETHING: a hole waiting to be filled (the kernel's hole gate)
+gate something
+proc something = ITEM READ something p-hole-kind SLOT WRITE p-hole
+# SOMEONE: a hole for a who
+gate someone
+proc someone = ITEM READ someone p-hole-kind SLOT WRITE p-hole
+# GAP: PEOPLE, BODY
+gate people
+gate body
+
+# ================= relational
+# KIND: what kind the gate in hand is (its strongest kind-of line); unknown: a gap
+gate kind
+proc kind = KIND READ
+on kind GATE -> kind-g
+on kind NUMBER -> kind-hold
+on kind TEXT -> kind-hold
+on kind POINT -> kind-hold
+on kind LIST -> kind-hold
+on kind NONE -> kind-hold
+proc kind-hold = ITEM READ kind
+proc kind-g = LAST READ t-kind-of REL READ
+on kind-g NONE -> p-gap
+# PART: what the gate in hand is part of; unknown: a gap
+gate part
+proc part = KIND READ
+on part GATE -> part-g
+on part NUMBER -> part-hold
+on part TEXT -> part-hold
+on part POINT -> part-hold
+on part LIST -> part-hold
+on part NONE -> part-hold
+proc part-hold = ITEM READ part
+proc part-g = LAST READ t-part-of REL READ
+on part-g NONE -> p-gap
+
+# ================= determiners
+# THIS: the run's subject; else what the brain last handed on to this person; else a hole
+gate this
+proc this = SUBJ READ
+on this NONE -> this-why
+proc this-why = WHY READ OUTCOME READ
+on this-why NONE -> this-hole
+proc this-hole = ITEM READ this p-hole-kind SLOT WRITE p-hole
+# THE SAME: COMPARE the two in hand: same? -> YES / NO
+gate the-same
+proc the-same = p-a SLOT WRITE the-same-b
+on the-same NONE -> the-same-hold
+proc the-same-b = p-b SLOT WRITE the-same-c
+on the-same-b NONE -> the-same-back
+proc the-same-back = p-a SLOT READ the-same-hold
+proc the-same-hold = ITEM READ the-same
+proc the-same-c = p-fence p-b SLOT READ p-a SLOT READ COMPARE
+on the-same-c SAME -> p-yes-u
+on the-same-c MORE -> p-no-u
+on the-same-c LESS -> p-no-u
+# OTHER: not the gate in hand: keep it aside and leave a hole
+gate other
+proc other = KIND READ
+on other GATE -> other-g
+on other NUMBER -> other-hold
+on other TEXT -> other-hold
+on other POINT -> other-hold
+on other LIST -> other-hold
+on other NONE -> other-hold
+proc other-hold = ITEM READ other
+proc other-g = p-other SLOT WRITE ITEM READ other p-hole-kind SLOT WRITE p-hole
+
+# ================= quantifiers (one and two are in 25-numbers)
+# SOME: one of the list in hand (its first)
+gate some
+proc some = KIND READ
+on some LIST -> some-l
+on some GATE -> some-hold
+on some NUMBER -> some-hold
+on some TEXT -> some-hold
+on some POINT -> some-hold
+on some NONE -> some-hold
+proc some-hold = ITEM READ some
+proc some-l = FIRST READ
+on some-l NONE -> carry-on
+# GAP: ALL, MUCH, LITTLE
+gate all
+gate much
+gate little
+
+# ================= evaluators: balance toward the want, or toward what it doesn't want
+# GOOD: the gate in hand is what the run wants -> YES / NO; no want yet: hold
+gate good
+proc good = KIND READ
+on good GATE -> good-g
+on good NUMBER -> good-hold
+on good TEXT -> good-hold
+on good POINT -> good-hold
+on good LIST -> good-hold
+on good NONE -> good-hold
+proc good-hold = ITEM READ good
+proc good-g = p-a SLOT WRITE good-w
+proc good-w = WANT READ good-c
+on good-w NONE -> good-back
+proc good-back = p-a SLOT READ good-hold
+proc good-c = p-a SLOT READ COMPARE
+on good-c SAME -> p-yes
+on good-c MORE -> p-no
+on good-c LESS -> p-no
+# BAD: the gate in hand is what the run doesn't want -> YES / NO
+gate bad
+proc bad = KIND READ
+on bad GATE -> bad-g
+on bad NUMBER -> bad-hold
+on bad TEXT -> bad-hold
+on bad POINT -> bad-hold
+on bad LIST -> bad-hold
+on bad NONE -> bad-hold
+proc bad-hold = ITEM READ bad
+proc bad-g = p-a SLOT WRITE bad-w
+proc bad-w = p-avoid SLOT READ bad-c
+on bad-w NONE -> bad-back
+proc bad-back = p-a SLOT READ bad-hold
+proc bad-c = p-a SLOT READ COMPARE
+on bad-c SAME -> p-yes
+on bad-c MORE -> p-no
+on bad-c LESS -> p-no
+
+# ================= descriptors: the kind-of / part-of scaling on the value in hand
+gate big
+proc big = KIND READ
+on big NUMBER -> f-grow
+on big POINT -> f-grow
+on big GATE -> big-hold
+on big TEXT -> big-hold
+on big LIST -> big-hold
+on big NONE -> big-hold
+proc big-hold = ITEM READ big
+gate small
+proc small = KIND READ
+on small NUMBER -> f-shrink
+on small POINT -> f-shrink
+on small GATE -> small-hold
+on small TEXT -> small-hold
+on small LIST -> small-hold
+on small NONE -> small-hold
+proc small-hold = ITEM READ small
+
+# ================= mental
+# THINK: split the gate in hand's own question (its first usual trigger) and wait for it
+gate think
+proc think = KIND READ
+on think GATE -> think-g
+on think NUMBER -> think-hold
+on think TEXT -> think-hold
+on think POINT -> think-hold
+on think LIST -> think-hold
+on think NONE -> think-hold
+proc think-hold = ITEM READ think
+proc think-g = LAST READ USUAL READ FIRST READ think-go
+on think-g NONE -> carry-on
+proc think-go = SPLIT WAIT
+# KNOW: read its own rows: the gate in hand's definition memory; none: NO, and a gap
+gate know
+proc know = KIND READ
+on know GATE -> know-g
+on know NUMBER -> know-hold
+on know TEXT -> know-hold
+on know POINT -> know-hold
+on know LIST -> know-hold
+on know NONE -> know-hold
+proc know-hold = ITEM READ know
+proc know-g = LAST READ DEF HOME FIND know-body
+on know-g NONE -> know-not
+proc know-body = BODY READ
+on know-body NONE -> know-not
+proc know-not = p-gap p-no
+# WANT: sets the run's want to what is in hand
+gate want
+proc want = KIND READ
+on want GATE -> want-set
+on want NUMBER -> want-set
+on want TEXT -> want-set
+on want POINT -> want-set
+on want LIST -> want-set
+on want NONE -> want-hold
+proc want-hold = ITEM READ want
+proc want-set = LAST READ WANT WRITE
+# DON'T WANT: keeps what is in hand as what the run steers away from
+gate dont-want
+proc dont-want = KIND READ
+on dont-want GATE -> dont-want-set
+on dont-want NUMBER -> dont-want-set
+on dont-want TEXT -> dont-want-set
+on dont-want POINT -> dont-want-set
+on dont-want LIST -> dont-want-set
+on dont-want NONE -> dont-want-hold
+proc dont-want-hold = ITEM READ dont-want
+proc dont-want-set = LAST READ p-avoid SLOT WRITE
+# HEAR: the physics word: the text in hand is heard as input
+gate hear
+proc hear = KIND READ
+on hear TEXT -> hear-t
+on hear GATE -> hear-hold
+on hear NUMBER -> hear-hold
+on hear POINT -> hear-hold
+on hear LIST -> hear-hold
+on hear NONE -> hear-hold
+proc hear-hold = ITEM READ hear
+proc hear-t = HEAR
+on hear-t NONE -> carry-on
+# GAP: FEEL, SEE
+gate feel
+gate see
+
+# ================= speech
+# SAY: the words for the gate in hand (its label, in hand); no words: ask its name.
+# Saying it out loud is the questions area's act, not this one.
+gate say
+proc say = KIND READ
+on say GATE -> say-g
+on say TEXT -> carry-on
+on say NUMBER -> say-hold
+on say POINT -> say-hold
+on say LIST -> say-hold
+on say NONE -> say-hold
+proc say-hold = ITEM READ say
+proc say-g = LAST READ LABEL READ
+on say-g NONE -> ask-name
+# WORDS: the text in hand -> the gates those words point to; no gate: a hole
+gate words
+proc words = KIND READ
+on words TEXT -> words-t
+on words GATE -> words-hold
+on words NUMBER -> words-hold
+on words POINT -> words-hold
+on words LIST -> words-hold
+on words NONE -> words-hold
+proc words-hold = ITEM READ words
+proc words-t = LABELS FIND
+on words-t NONE -> something
+# TRUE: how the gate (or memory) in hand came to be held: told, sourced or derived
+# -> YES; a guess or a spawn not yet checked -> maybe
+gate true
+proc true = KIND READ
+on true GATE -> true-g
+on true NUMBER -> true-g
+on true TEXT -> true-hold
+on true POINT -> true-hold
+on true LIST -> true-hold
+on true NONE -> true-hold
+proc true-hold = ITEM READ true
+proc true-g = LAST READ MADE READ true-c
+on true-g NONE -> carry-on
+proc true-c = LAST READ GUESS COMPARE
+on true-c SAME -> true-maybe
+on true-c MORE -> true-c2
+on true-c LESS -> true-c2
+proc true-c2 = LAST READ SPAWNED COMPARE
+on true-c2 SAME -> true-maybe
+on true-c2 MORE -> true-yes
+on true-c2 LESS -> true-yes
+proc true-maybe = LAST DELETE ITEM READ maybe
+proc true-yes = LAST DELETE p-yes
+
+# ================= actions, events, movement
+# DO: run the gate in hand (a branch run there), and wait for what it lands
+gate do
+proc do = KIND READ
+on do GATE -> do-g
+on do NUMBER -> do-hold
+on do TEXT -> do-hold
+on do POINT -> do-hold
+on do LIST -> do-hold
+on do NONE -> do-hold
+proc do-hold = ITEM READ do
+proc do-g = LAST READ ITEM READ do COMPARE
+on do-g SAME -> do-self
+on do-g MORE -> do-it
+proc do-self = LAST DELETE do-hold
+proc do-it = SPLIT WAIT
+# MOVE: the physics word: the gate in hand goes to the point in hand
+gate move
+proc move = KIND READ
+on move POINT -> move-p
+on move GATE -> move-hold
+on move NUMBER -> move-hold
+on move TEXT -> move-hold
+on move LIST -> move-hold
+on move NONE -> move-hold
+proc move-hold = ITEM READ move
+# a point moves by the brain's own choice (its relationships, its learning), never
+# because someone typed it: otherwise the move is held
+proc move-p = MINE READ
+on move-p YES -> move-do
+on move-p NO -> move-hold
+proc move-do = POINT MOVE
+on move-do NONE -> carry-on
+# GAP: HAPPEN
+gate happen
+
+# ================= existence, possession
+# THERE IS: is there a gate for the word, point or value in hand? -> the gate and YES, or NO
+gate there-is
+proc there-is = KIND READ
+on there-is TEXT -> there-is-t
+on there-is POINT -> there-is-p
+on there-is NUMBER -> there-is-n
+on there-is GATE -> p-yes
+on there-is LIST -> there-is-hold
+on there-is NONE -> there-is-hold
+proc there-is-hold = ITEM READ there-is
+proc there-is-t = LABEL FIND p-yes
+on there-is-t NONE -> p-no
+proc there-is-p = POINT FIND p-yes
+on there-is-p NONE -> p-no
+proc there-is-n = number-gate ti-ng
+proc ti-ng = LAST READ ITEM READ NONE COMPARE
+on ti-ng SAME -> ti-none
+on ti-ng MORE -> p-yes
+proc ti-none = LAST DELETE p-no
+# BE (SOMEONE/SOMETHING): of the two gates in hand, is the first a kind of the second
+# (a stored line), or the same gate? -> YES / NO
+gate be-someone
+proc be-someone = KIND READ
+on be-someone GATE -> be-a
+on be-someone NUMBER -> be-num
+on be-someone TEXT -> be-hold
+on be-someone POINT -> be-hold
+on be-someone LIST -> be-hold
+on be-someone NONE -> be-hold
+proc be-hold = ITEM READ be-someone
+# a question mark in hand is not a thing: the question is held until its words come
+proc be-a = LAST READ ITEM READ key-qmark COMPARE
+on be-a SAME -> be-hold
+on be-a MORE -> be-a2
+proc be-a2 = p-a SLOT WRITE be-b
+proc be-b = KIND READ
+on be-b GATE -> be-bq
+on be-b NUMBER -> be-back
+on be-b TEXT -> be-back
+on be-b POINT -> be-back
+on be-b LIST -> be-back
+on be-b NONE -> be-back
+proc be-bq = LAST READ ITEM READ key-qmark COMPARE
+on be-bq SAME -> be-bq-drop
+on be-bq MORE -> be-bh
+proc be-bq-drop = LAST DELETE be-b
+# the other side is a hole (what / who): fill it with what is held about the first
+proc be-bh = LAST READ ITEM READ something COMPARE
+on be-bh SAME -> be-fill-d
+on be-bh MORE -> be-bh2
+proc be-bh2 = LAST READ ITEM READ someone COMPARE
+on be-bh2 SAME -> be-fill-d
+on be-bh2 MORE -> be-c
+proc be-fill-d = LAST DELETE be-fill
+proc be-back = p-a SLOT READ be-hold
+# a value in hand and a hole on the other side (what is X ?): what it holds is the value
+proc be-num = p-a SLOT WRITE be-nb
+proc be-nb = KIND READ
+on be-nb GATE -> be-nbq
+on be-nb NUMBER -> be-back
+on be-nb TEXT -> be-back
+on be-nb POINT -> be-back
+on be-nb LIST -> be-back
+on be-nb NONE -> be-back
+proc be-nbq = LAST READ ITEM READ key-qmark COMPARE
+on be-nbq SAME -> be-nbq-drop
+on be-nbq MORE -> be-nbh
+proc be-nbq-drop = LAST DELETE be-nb
+proc be-nbh = LAST READ ITEM READ something COMPARE
+on be-nbh SAME -> be-nsay
+on be-nbh MORE -> be-back
+proc be-nsay = LAST DELETE p-a SLOT READ be-say-w p-a SLOT READ
+# every held line between the two, either way: a kind, the same, alike, a part
+# every held line between the two is weighed (meaning blueprint §1.5: balance decides):
+# the lines that say "is" (a kind, the same, alike, a part, either way) against the lines
+# that say "is not" (opposite, either way), each by its strength (trust is in it), a line
+# belief contradicted weighing nothing. One side over be-clear times the other: that
+# side's verdict, through the line that holds it. No clear balance: the run guesses from
+# here (maybe: a guess is said as a guess) and hands on the heavier side's verdict (an
+# even tie: no verdict). No line at all: the same
+# gate, else it doesn't know.
+gate be-x
+gate be-y
+gate be-t
+gate be-sy
+gate be-sn
+gate be-clear val 2
+rel be-clear t-kind-of SETTING
+proc be-c = p-b SLOT WRITE p-b SLOT READ p-a SLOT READ t-kind-of be-w p-a SLOT READ p-b SLOT READ t-same be-w ADD p-b SLOT READ p-a SLOT READ t-same be-w ADD p-b SLOT READ p-a SLOT READ t-like be-w ADD p-a SLOT READ p-b SLOT READ t-like be-w ADD p-b SLOT READ p-a SLOT READ t-part-of be-w ADD be-sy SLOT WRITE p-a SLOT READ p-b SLOT READ t-opposite be-w p-b SLOT READ p-a SLOT READ t-opposite be-w ADD be-sn SLOT WRITE be-c2
+proc be-c2 = be-sy SLOT READ be-sn SLOT READ ADD ZERO COMPARE
+on be-c2 SAME -> be-c-none
+on be-c2 MORE -> be-c3
+on be-c2 LESS -> be-c3
+proc be-c-none = LAST DELETE be-same
+proc be-c3 = LAST DELETE be-sy SLOT READ be-sn SLOT READ be-clear MUL COMPARE
+on be-c3 MORE -> be-c-yes
+on be-c3 SAME -> be-c4
+on be-c3 LESS -> be-c4
+proc be-c-yes = LAST DELETE be-ck
+proc be-c4 = LAST DELETE be-sn SLOT READ be-sy SLOT READ be-clear MUL COMPARE
+on be-c4 MORE -> be-c-no
+on be-c4 SAME -> be-c5
+on be-c4 LESS -> be-c5
+proc be-c-no = LAST DELETE be-differ
+proc be-c5 = LAST DELETE maybe be-sy SLOT READ be-sn SLOT READ COMPARE
+on be-c5 MORE -> be-c5-yes
+on be-c5 LESS -> be-c5-no
+on be-c5 SAME -> p-drop1
+proc be-c5-yes = LAST DELETE p-yes
+proc be-c5-no = LAST DELETE p-no
+# the weight of one line: pad a b type -> its strength (none, or contradicted: zero)
+proc be-w = be-t SLOT WRITE be-y SLOT WRITE be-x SLOT WRITE be-x SLOT READ be-t SLOT READ be-y SLOT READ STATE READ be-w2
+on be-w NONE -> be-w0
+proc be-w0 = ZERO
+proc be-w2 = ITEM READ CONTRADICTED COMPARE
+on be-w2 SAME -> be-w0
+on be-w2 MORE -> be-w3
+proc be-w3 = be-x SLOT READ be-t SLOT READ be-y SLOT READ STRENGTH READ
+on be-w3 NONE -> be-w0
+proc be-ck = p-b SLOT READ t-kind-of p-a SLOT READ STATE READ be-found
+on be-ck NONE -> be-samel
+proc be-samel = p-a SLOT READ t-same p-b SLOT READ STATE READ be-found
+on be-samel NONE -> be-samel2
+proc be-samel2 = p-b SLOT READ t-same p-a SLOT READ STATE READ be-found
+on be-samel2 NONE -> be-likel
+proc be-likel = p-b SLOT READ t-like p-a SLOT READ STATE READ be-found-w
+on be-likel NONE -> be-likel2
+proc be-likel2 = p-a SLOT READ t-like p-b SLOT READ STATE READ be-found-w
+on be-likel2 NONE -> be-partl
+proc be-partl = p-b SLOT READ t-part-of p-a SLOT READ STATE READ be-found-p
+on be-partl NONE -> be-same
+proc be-found = be-maybe p-yes
+# alike or a part is not "is": it says the word for the line it holds
+proc be-found-w = be-maybe ITEM READ like be-say-w
+proc be-found-p = be-maybe ITEM READ part be-say-w
+proc be-say-w = MINE READ
+on be-say-w YES -> carry-on
+on be-say-w NO -> be-say-w2
+proc be-say-w2 = core-check SAY
+on be-say-w2 NONE -> p-drop1
+# the line rests on a guess (or was contradicted): the run is guessing from here (maybe)
+proc be-maybe = LAST READ ITEM READ GUESS COMPARE
+on be-maybe SAME -> be-maybe-g
+on be-maybe MORE -> be-maybe-c
+proc be-maybe-c = LAST READ ITEM READ CONTRADICTED COMPARE
+on be-maybe-c SAME -> be-maybe-g
+on be-maybe-c MORE -> p-drop1
+proc be-maybe-g = LAST DELETE maybe
+proc be-same = p-b SLOT READ p-a SLOT READ COMPARE
+on be-same SAME -> p-yes
+on be-same MORE -> be-differ
+on be-same LESS -> be-differ
+# not the same and not a kind: NO only when a held line says they differ;
+# with nothing held either way it doesn't know, and asks (absence is not "no")
+proc be-differ = p-a SLOT READ t-opposite p-b SLOT READ STATE READ be-differ-yes
+on be-differ NONE -> be-differ2
+proc be-differ2 = p-b SLOT READ t-opposite p-a SLOT READ STATE READ be-differ-yes
+on be-differ2 NONE -> be-unknown
+proc be-differ-yes = be-maybe p-no
+# the gate stays in hand (the run's outcome); dunno asks it once
+proc be-unknown = p-b SLOT READ ITEM READ dunno SPLIT
+# what / who is X: X's strongest held line of each kind, said through the word whose
+# action reads that line; nothing held: the actor's own stock, else ask "X what ?"
+gate bf-any
+gate bf-t
+gate bf-w
+gate bf-b
+proc be-fill = MINE READ
+on be-fill YES -> bf-done
+on be-fill NO -> be-fill2
+proc be-fill2 = ITEM READ NO bf-any SLOT WRITE t-kind-of ITEM READ kind bf-line t-same ITEM READ the-same bf-line t-opposite ITEM READ not bf-line t-part-of ITEM READ part bf-line t-like ITEM READ like bf-line bf-end
+proc bf-line = bf-w SLOT WRITE bf-t SLOT WRITE p-a SLOT READ bf-t SLOT READ REL READ bf-got
+on bf-line NONE -> carry-on
+proc bf-got = bf-b SLOT WRITE ITEM READ YES bf-any SLOT WRITE p-a SLOT READ bf-t SLOT READ bf-b SLOT READ STATE READ bf-st
+on bf-got NONE -> bf-say
+proc bf-st = LAST READ ITEM READ GUESS COMPARE
+on bf-st SAME -> bf-st-g
+on bf-st MORE -> bf-st-c
+# a line belief has contradicted is not said as held
+proc bf-st-c = LAST READ ITEM READ CONTRADICTED COMPARE
+on bf-st-c SAME -> p-drop1
+on bf-st-c MORE -> p-drop1-say
+proc p-drop1-say = LAST DELETE bf-say
+proc bf-st-g = LAST DELETE ITEM READ maybe core-check SAY bf-say
+on bf-st-g NONE -> p-drop1-say
+proc bf-say = bf-w SLOT READ core-check SAY bf-say2
+on bf-say NONE -> p-drop1-say2
+proc p-drop1-say2 = LAST DELETE bf-say2
+proc bf-say2 = bf-b SLOT READ core-check SAY
+on bf-say2 NONE -> p-drop1
+proc bf-end = bf-any SLOT READ ITEM READ YES COMPARE
+on bf-end SAME -> bf-done
+on bf-end MORE -> bf-none
+proc bf-done = p-a SLOT READ
+proc bf-none = p-actor SLOT READ bf-none2
+on bf-none NONE -> bf-ask
+proc bf-none2 = p-a SLOT READ COMPARE
+on bf-none2 SAME -> bf-stock
+on bf-none2 MORE -> bf-ask
+on bf-none2 LESS -> bf-ask
+proc bf-ask = p-a SLOT READ ITEM READ dunno SPLIT LAST DELETE p-a SLOT READ
+# the actor is the brain: what it took stock of (how many gates, how many memories)
+proc bf-stock = p-a SLOT READ core-check SAY bf-stock2
+on bf-stock NONE -> p-drop1-stock
+proc p-drop1-stock = LAST DELETE bf-stock2
+proc bf-stock2 = p-i-size SLOT READ core-check SAY p-i-mems SLOT READ core-check SAY p-a SLOT READ
+on bf-stock2 NONE -> bf-done
+# MINE: did the brain make the gate in hand itself (spawned or derived)? -> YES / NO
+gate mine
+proc mine = KIND READ
+on mine GATE -> mine-g
+on mine NUMBER -> mine-hold
+on mine TEXT -> mine-hold
+on mine POINT -> mine-hold
+on mine LIST -> mine-hold
+on mine NONE -> mine-hold
+proc mine-hold = ITEM READ mine
+proc mine-g = LAST READ MADE READ LAST READ SPAWNED COMPARE
+on mine-g SAME -> mine-yes
+on mine-g MORE -> mine-d
+proc mine-d = DERIVED COMPARE
+on mine-d SAME -> p-yes
+on mine-d MORE -> p-no
+proc mine-yes = LAST DELETE p-yes
+# GAP: BE (SOMEWHERE)
+gate be-somewhere
+
+# ================= life and death
+# LIVE is a root (28-roots); DIE = −live (a first guess, the worksheet's)
+gate live
+gate die
+proc die = live r-neg
+
+# ================= time
+# WHEN: the time of the memory in hand; else a hole for a time
+gate when
+proc when = KIND READ
+on when NUMBER -> when-m
+on when GATE -> when-hole
+on when TEXT -> when-hole
+on when POINT -> when-hole
+on when LIST -> when-hole
+on when NONE -> when-hole
+proc when-m = TIME READ
+on when-m NONE -> when-hole
+proc when-hole = ITEM READ when p-hole-kind SLOT WRITE p-hole
+# NOW is a root (28-roots: the clock). The worksheet's time primes are formulas of it,
+# each a first guess (the owner's pseudocode, read as written; see 28-roots for the
+# operations): before = −now; after = now +; a long time = now ++; a short time = −−now;
+# for some time = now + now.
+gate now
+gate before
+proc before = now r-neg
+gate after
+proc after = now r-more
+gate long-time
+proc long-time = now r-lot
+gate short-time
+proc short-time = now r-neg r-neg
+gate some-time
+proc some-time = now r-twice
+# GAP: MOMENT
+gate moment
+
+# ================= space
+# WHERE: the point of the gate in hand; else a hole for a place
+gate where
+proc where = KIND READ
+on where GATE -> where-g
+on where NUMBER -> where-hole
+on where TEXT -> where-hole
+on where POINT -> where-hole
+on where LIST -> where-hole
+on where NONE -> where-hole
+proc where-g = POINT READ
+proc where-hole = ITEM READ where p-hole-kind SLOT WRITE p-hole
+# HERE: the run's own where
+gate here
+proc here = WHERE READ
+on here NONE -> carry-on
+# NEAR: −far (a first guess, the worksheet's). FAR is a root (28-roots)
+gate far
+gate near
+proc near = far r-neg
+# TOUCH: are the two gates in hand within one cell of each other? -> YES / NO
+gate touch
+proc touch = KIND READ
+on touch GATE -> touch-a
+on touch NUMBER -> touch-hold
+on touch TEXT -> touch-hold
+on touch POINT -> touch-hold
+on touch LIST -> touch-hold
+on touch NONE -> touch-hold
+proc touch-hold = ITEM READ touch
+proc touch-a = p-a SLOT WRITE touch-b
+proc touch-b = KIND READ
+on touch-b GATE -> touch-c
+on touch-b NUMBER -> touch-back
+on touch-b TEXT -> touch-back
+on touch-b POINT -> touch-back
+on touch-b LIST -> touch-back
+on touch-b NONE -> touch-back
+proc touch-back = p-a SLOT READ touch-hold
+proc touch-c = POINT READ p-a SLOT READ POINT READ COMPARE
+on touch-c SAME -> touch-yes
+on touch-c MORE -> touch-no
+on touch-c LESS -> touch-no
+proc touch-yes = LAST DELETE p-yes
+proc touch-no = LAST DELETE p-no
+# ABOVE is a root (28-roots); BELOW = −above (a first guess, the worksheet's)
+gate above
+gate below
+proc below = above r-neg
+# GAP: SIDE, INSIDE
+gate side
+gate inside
+
+# ================= logical
+# NOT: flips what is in hand: a gate to its opposite (the stored line, else the
+# opposite's formula and the gate at that point), a number or point negated
+gate not
+proc not = KIND READ
+on not GATE -> not-g
+on not NUMBER -> f-negate
+on not POINT -> f-negate
+on not TEXT -> not-hold
+on not LIST -> not-hold
+on not NONE -> not-hold
+proc not-hold = ITEM READ not
+# a held BE (is) in hand: NOT holds itself above it, for what comes next. A gate in hand
+# with a held BE waiting under it: BE runs first on the two, and NOT flips its verdict
+# (YES <-> NO; anything else is left as it is).
+proc not-g = p-a SLOT WRITE p-a SLOT READ ITEM READ be-someone COMPARE
+on not-g SAME -> not-back
+on not-g MORE -> not-under
+proc not-under = KIND READ
+on not-under GATE -> not-under-g
+on not-under NUMBER -> not-g2
+on not-under TEXT -> not-g2
+on not-under POINT -> not-g2
+on not-under LIST -> not-g2
+on not-under NONE -> not-g2
+proc not-under-g = LAST READ ITEM READ be-someone COMPARE
+on not-under-g SAME -> not-be
+on not-under-g MORE -> not-g2
+proc not-be = LAST DELETE p-a SLOT READ be-someone not-flip
+proc not-flip = KIND READ
+on not-flip GATE -> not-flip-g
+on not-flip NUMBER -> carry-on
+on not-flip TEXT -> carry-on
+on not-flip POINT -> carry-on
+on not-flip LIST -> carry-on
+on not-flip NONE -> carry-on
+proc not-flip-g = LAST READ ITEM READ YES COMPARE
+on not-flip-g SAME -> not-flip-no
+on not-flip-g MORE -> not-flip-g2
+proc not-flip-no = LAST DELETE p-no
+proc not-flip-g2 = LAST READ ITEM READ NO COMPARE
+on not-flip-g2 SAME -> not-flip-yes
+on not-flip-g2 MORE -> carry-on
+proc not-flip-yes = LAST DELETE p-yes
+proc not-g2 = p-a SLOT READ t-opposite REL READ
+on not-g2 NONE -> not-formula
+proc not-formula = p-a SLOT READ POINT READ f-negate POINT FIND
+on not-formula NONE -> not-back
+proc not-back = p-a SLOT READ not-hold
+# MAYBE: the run is guessing from here on (its rows are written as guesses)
+proc maybe = GUESS MADE WRITE
+# CAN: does the gate in hand have a way to act (a process)? -> YES / NO
+gate can
+proc can = KIND READ
+on can GATE -> can-g
+on can NUMBER -> can-hold
+on can TEXT -> can-hold
+on can POINT -> can-hold
+on can LIST -> can-hold
+on can NONE -> can-hold
+proc can-hold = ITEM READ can
+proc can-g = LAST READ PROC READ p-drop1 p-yes
+on can-g NONE -> p-no
+# BECAUSE: back to the cause: a gate's birth memory (or how it came to be held);
+# a memory's home gate
+gate because
+proc because = KIND READ
+on because GATE -> because-g
+on because NUMBER -> because-m
+on because TEXT -> because-hold
+on because POINT -> because-hold
+on because LIST -> because-hold
+on because NONE -> because-hold
+proc because-hold = ITEM READ because
+proc because-g = LAST READ BIRTH HOME FIND
+on because-g NONE -> because-made
+proc because-made = LAST READ MADE READ
+proc because-m = LAST READ HOME READ
+on because-m NONE -> carry-on
+# IF: a test: a NO (or a zero) in hand ends the run here; anything else carries on
+gate if
+proc if = KIND READ
+on if GATE -> if-g
+on if NUMBER -> if-n
+on if TEXT -> carry-on
+on if POINT -> carry-on
+on if LIST -> carry-on
+on if NONE -> carry-on
+proc if-g = LAST READ ITEM READ NO COMPARE
+on if-g SAME -> if-stop
+on if-g MORE -> carry-on
+proc if-n = LAST READ ZERO COMPARE
+on if-n SAME -> if-stop
+on if-n MORE -> p-drop1
+on if-n LESS -> p-drop1
+proc if-stop = END
+
+# ================= intensifier, augmentor
+# VERY: doubles the degree in hand
+gate very
+proc very = KIND READ
+on very NUMBER -> very-n
+on very POINT -> very-n
+on very GATE -> very-hold
+on very TEXT -> very-hold
+on very LIST -> very-hold
+on very NONE -> very-hold
+proc very-hold = ITEM READ very
+proc very-n = two MUL
+# MORE: COMPARE the two in hand: more? -> YES / NO. With one value: one more (ADD)
+gate more
+proc more = p-a SLOT WRITE more-b
+on more NONE -> more-hold
+proc more-b = p-b SLOT WRITE more-c
+on more-b NONE -> more-one
+proc more-one = p-a SLOT READ one ADD
+on more-one NONE -> more-back
+proc more-back = LAST DELETE more-hold
+proc more-hold = ITEM READ more
+proc more-c = p-fence p-b SLOT READ p-a SLOT READ COMPARE
+on more-c MORE -> p-yes-u
+on more-c SAME -> p-no-u
+on more-c LESS -> p-no-u
+
+# ================= similarity
+# LIKE: are the two gates in hand alike? A stored like line first; else like's
+# formula on the first one's point, compared with the second's -> YES / NO
+gate like
+proc like = KIND READ
+on like GATE -> like-a
+on like NUMBER -> like-hold
+on like TEXT -> like-hold
+on like POINT -> like-hold
+on like LIST -> like-hold
+on like NONE -> like-hold
+proc like-hold = ITEM READ like
+proc like-a = p-a SLOT WRITE like-b
+proc like-b = KIND READ
+on like-b GATE -> like-c
+on like-b NUMBER -> like-back
+on like-b TEXT -> like-back
+on like-b POINT -> like-back
+on like-b LIST -> like-back
+on like-b NONE -> like-back
+proc like-back = p-a SLOT READ like-hold
+proc like-c = p-b SLOT WRITE p-b SLOT READ t-like p-a SLOT READ STRENGTH READ like-found
+on like-c NONE -> like-formula
+proc like-found = LAST DELETE p-yes
+proc like-formula = p-b SLOT READ POINT READ f-near p-a SLOT READ POINT READ COMPARE
+on like-formula SAME -> touch-yes
+on like-formula MORE -> touch-no
+on like-formula LESS -> touch-no
+
+# ================= the early words: who = someone + ?, what = something + ?
+gate who
+proc who = someone key-qmark
+gate what
+proc what = something key-qmark
+# how is not a prime: a first-guess formula of primes: how = what, of the kind like (a
+# hole for a way, and the question). The kind is kept in the hole's slot, not left on
+# the pad: two held gates on the pad re-run each other in compile without end.
+gate how
+proc how = what ITEM READ like p-hole-kind SLOT WRITE
+
+# ================= labels (the only words written here)
+label en "I" i
+label en "i" i
+label en "me" i
+label en "you" you
+label en "someone" someone
+label en "somebody" someone
+label en "something" something
+label en "thing" something
+label en "people" people
+label en "body" body
+label en "kind" kind
+label en "part" part
+label en "this" this
+label en "the same" the-same
+label en "same" the-same
+label en "other" other
+label en "else" other
+label en "some" some
+label en "all" all
+label en "much" much
+label en "many" much
+label en "little" little
+label en "few" little
+label en "good" good
+label en "bad" bad
+label en "big" big
+label en "small" small
+label en "think" think
+label en "know" know
+label en "want" want
+label en "don't want" dont-want
+label en "avoid" dont-want
+label en "feel" feel
+label en "see" see
+label en "hear" hear
+label en "say" say
+label en "words" words
+label en "word" words
+label en "true" true
+label en "do" do
+label en "happen" happen
+label en "move" move
+label en "be somewhere" be-somewhere
+label en "there is" there-is
+label en "exists" there-is
+label en "be" be-someone
+label en "is" be-someone
+label en "are" be-someone
+label en "am" be-someone
+label en "mine" mine
+label en "my" mine
+label en "live" live
+label en "die" die
+label en "when" when
+label en "time" when
+label en "now" now
+label en "before" before
+label en "after" after
+label en "a long time" long-time
+label en "a short time" short-time
+label en "for some time" some-time
+label en "moment" moment
+label en "where" where
+label en "place" where
+label en "here" here
+label en "above" above
+label en "below" below
+label en "far" far
+label en "near" near
+label en "side" side
+label en "inside" inside
+label en "touch" touch
+label en "not" not
+label en "maybe" maybe
+label en "can" can
+label en "because" because
+label en "if" if
+label en "very" very
+label en "more" more
+label en "like" like
+label en "as" like
+label en "way" like
+label en "who" who
+label en "what" what
+label en "how" how
+
+# ---- the primes laid as gaps (§16: "laid as a gap for the brain to fill, and listed as a gap").
+# Passing one lists it on the sixth's GAP list (once) and hands it on, held, for whatever
+# the brain later learns it does. Their actions are the brain's to find.
+proc people = ITEM READ people GAP TODO WRITE ITEM READ people
+proc body = ITEM READ body GAP TODO WRITE ITEM READ body
+proc all = ITEM READ all GAP TODO WRITE ITEM READ all
+proc much = ITEM READ much GAP TODO WRITE ITEM READ much
+proc little = ITEM READ little GAP TODO WRITE ITEM READ little
+proc feel = ITEM READ feel GAP TODO WRITE ITEM READ feel
+proc see = ITEM READ see GAP TODO WRITE ITEM READ see
+proc happen = ITEM READ happen GAP TODO WRITE ITEM READ happen
+proc be-somewhere = ITEM READ be-somewhere GAP TODO WRITE ITEM READ be-somewhere
+proc moment = ITEM READ moment GAP TODO WRITE ITEM READ moment
+proc side = ITEM READ side GAP TODO WRITE ITEM READ side
+proc inside = ITEM READ inside GAP TODO WRITE ITEM READ inside
+
+# ================= the worksheet's missing words (meaning blueprint §2.3): words needed
+# early that are not primes. Each is a first-guess formula of roots and primes, marked a
+# guess like every other. Already laid elsewhere, not repeated: is and be (be-someone),
+# thing (something), maybe (maybe), plus and minus (25-numbers: ADD, SUB), yes (the YES
+# root, 00-roots: yes = x, no = 1/x). multiply and divide are the told operators times and
+# divided (25-numbers: MUL, DIV); their words are pointed there.
+# These words are not wired: passing one pushes its gate, so a sense the brain holds lines
+# on (tall is short) is never taken over by a guess. Each first-guess formula is a
+# candidate meaning (a process gate mg-WORD, named in the word's sec-action, mn-state
+# GUESS), for the meaning loop (73 `mean`) to test on the word's uses and wire only if it
+# balances.
+gate mn-state
+gate p-count
+gate times
+gate divided
+# TO: toward (−far) a place (a hole for where)
+gate to
+gate mg-to
+proc mg-to = near where
+sect to sec-action mg-to
+sect mg-to mn-state GUESS
+sect mg-to sec-truth GUESS
+# A: one of what comes next (the count is kept; nothing is left on the pad)
+gate a
+gate mg-a
+proc mg-a = one p-count SLOT WRITE
+sect a sec-action mg-a
+sect mg-a mn-state GUESS
+sect mg-a sec-truth GUESS
+# HAVE: a hole for a thing, of the kind mine (what is had)
+gate have
+gate mg-have
+proc mg-have = something ITEM READ mine p-hole-kind SLOT WRITE
+sect have sec-action mg-have
+sect mg-have mn-state GUESS
+sect mg-have sec-truth GUESS
+# FORE: before (be + fore)
+gate fore
+gate mg-fore
+proc mg-fore = before
+sect fore sec-action mg-fore
+sect mg-fore mn-state GUESS
+sect mg-fore sec-truth GUESS
+# LONG: a large distance, grown (far big); SHORT: −long
+gate long
+gate mg-long
+proc mg-long = far big
+sect long sec-action mg-long
+sect mg-long mn-state GUESS
+sect mg-long sec-truth GUESS
+gate short
+gate mg-short
+proc mg-short = long r-neg
+sect short sec-action mg-short
+sect mg-short mn-state GUESS
+sect mg-short sec-truth GUESS
+# IN: inside
+gate in
+gate mg-in
+proc mg-in = inside
+sect in sec-action mg-in
+sect mg-in mn-state GUESS
+sect mg-in sec-truth GUESS
+# CAUSE: what because points back to
+gate cause
+gate mg-cause
+proc mg-cause = because
+sect cause sec-action mg-cause
+sect mg-cause mn-state GUESS
+sect mg-cause sec-truth GUESS
+# NONE: absence, held as a thing in hand (the owner's none = null)
+gate none
+gate mg-none
+proc mg-none = ITEM READ NONE
+sect none sec-action mg-none
+sect mg-none mn-state GUESS
+sect mg-none sec-truth GUESS
+# OBJECT: a hole for a thing, of the kind body
+gate object
+gate mg-object
+proc mg-object = something ITEM READ body p-hole-kind SLOT WRITE
+sect object sec-action mg-object
+sect mg-object mn-state GUESS
+sect mg-object sec-truth GUESS
+# AT: where
+gate at
+gate mg-at
+proc mg-at = where
+sect at sec-action mg-at
+sect mg-at mn-state GUESS
+sect mg-at sec-truth GUESS
+label en "to" to
+label en "a" a
+label en "have" have
+label en "has" have
+label en "fore" fore
+label en "long" long
+label en "short" short
+label en "in" in
+label en "cause" cause
+label en "none" none
+label en "object" object
+label en "at" at
+label en "multiply" times
+label en "divide" divided
+
+# ================= every prime's action here is a first guess (§8: the first-guess layer),
+# marked the one way roots are (28-roots): sec-truth GUESS. A formula's parts are in sec-built,
+# for the meaning loop to refit the part that fails. (The gap primes have no action yet:
+# they list themselves on GAP when passed.)
+sect i sec-truth GUESS
+sect you sec-truth GUESS
+sect something sec-truth GUESS
+sect someone sec-truth GUESS
+sect kind sec-truth GUESS
+sect part sec-truth GUESS
+sect this sec-truth GUESS
+sect the-same sec-truth GUESS
+sect other sec-truth GUESS
+sect some sec-truth GUESS
+sect good sec-truth GUESS
+sect bad sec-truth GUESS
+sect big sec-truth GUESS
+sect small sec-truth GUESS
+sect think sec-truth GUESS
+sect know sec-truth GUESS
+sect want sec-truth GUESS
+sect dont-want sec-truth GUESS
+sect hear sec-truth GUESS
+sect say sec-truth GUESS
+sect words sec-truth GUESS
+sect true sec-truth GUESS
+sect do sec-truth GUESS
+sect move sec-truth GUESS
+sect there-is sec-truth GUESS
+sect be-someone sec-truth GUESS
+sect mine sec-truth GUESS
+sect die sec-truth GUESS
+sect when sec-truth GUESS
+sect before sec-truth GUESS
+sect after sec-truth GUESS
+sect long-time sec-truth GUESS
+sect short-time sec-truth GUESS
+sect some-time sec-truth GUESS
+sect where sec-truth GUESS
+sect here sec-truth GUESS
+sect near sec-truth GUESS
+sect touch sec-truth GUESS
+sect below sec-truth GUESS
+sect not sec-truth GUESS
+sect maybe sec-truth GUESS
+sect can sec-truth GUESS
+sect because sec-truth GUESS
+sect if sec-truth GUESS
+sect very sec-truth GUESS
+sect more sec-truth GUESS
+sect like sec-truth GUESS
+sect who sec-truth GUESS
+sect what sec-truth GUESS
+sect how sec-truth GUESS
+sect to sec-truth GUESS
+sect a sec-truth GUESS
+sect have sec-truth GUESS
+sect fore sec-truth GUESS
+sect long sec-truth GUESS
+sect short sec-truth GUESS
+sect in sec-truth GUESS
+sect cause sec-truth GUESS
+sect none sec-truth GUESS
+sect object sec-truth GUESS
+sect at sec-truth GUESS
+# what each formula is built from
+sect die sec-built live
+sect die sec-built r-neg
+sect before sec-built now
+sect before sec-built r-neg
+sect after sec-built now
+sect after sec-built r-more
+sect long-time sec-built now
+sect long-time sec-built r-lot
+sect short-time sec-built now
+sect short-time sec-built r-neg
+sect some-time sec-built now
+sect some-time sec-built r-twice
+sect below sec-built above
+sect below sec-built r-neg
+sect near sec-built far
+sect near sec-built r-neg
+sect who sec-built someone
+sect what sec-built something
+sect how sec-built like
+sect how sec-built what
+sect to sec-built near
+sect to sec-built where
+sect a sec-built one
+sect have sec-built mine
+sect have sec-built something
+sect fore sec-built before
+sect long sec-built far
+sect long sec-built big
+sect short sec-built long
+sect short sec-built r-neg
+sect in sec-built inside
+sect cause sec-built because
+sect none sec-built NONE
+sect object sec-built something
+sect object sec-built body
+sect at sec-built where

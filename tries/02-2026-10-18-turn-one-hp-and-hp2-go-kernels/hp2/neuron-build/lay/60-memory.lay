@@ -1,0 +1,399 @@
+# 60 memory: the timeline (when-did), recall (truth shift by shape), the HC seed
+# (hc), rebuilding a memory from its highlights (rebuild), and keeping a memory
+# safe (mem-keep). Blueprint §9, NOW §11 and §15. Each is a short string of
+# gates the brain can read and rewrite (READ PROC / WRITE PROC); nothing here
+# chooses in Go: every choice below is a COMPARE or a READ outcome on a shard.
+
+# the time primes (30-primes lays them: now = CLOCK; moment, short-time,
+# long-time, some-time are gaps the brain fills from sources, so at birth they
+# leave only themselves on the pad). Forward-declared here.
+gate do
+gate moment
+gate short-time
+gate long-time
+gate some-time
+
+# told values the brain can read and change (WRITE VALUE)
+# hc-fresh: memories touched within this many seconds stay as they are; older ones
+# are the HC's to condense and move to long-term (when it sleeps, which is when its
+# active memories pass sleep-room: the brain's own mark, not a fixed day)
+gate hc-fresh val 600
+gate sleep-room
+# hc-mark: how far along the timeline the HC has got (the HC moves it itself)
+gate hc-mark init 0
+# hc-chunk: how many memories of a page one run hands out before the rest goes on in a new run
+gate hc-chunk val 64
+gate hc-k
+gate hc-end
+# hc-batch: FIND TIME gives at most this many memories at a time
+gate hc-batch val 64
+# when-span: the window when-did looks back over when the input names no span
+gate when-span val 600
+gate SOURCED
+gate GUESS
+# when-many: how many memories when-did says
+gate when-many val 4
+# wd-gap: the last seconds before the asking are left out: what this question's own runs
+# are doing now is not what it did
+gate wd-gap val 2
+# when-look: how many timeline entries it looks at, at most, for them (a busy second holds
+# many records that are not runs)
+gate when-look val 64
+gate wd-lk
+
+# slots
+gate wd-d
+gate wd-id
+gate wd-n
+gate wd-last
+gate wd-ref
+gate wd-k
+gate wd-lastg
+gate rc-id
+gate hc-t1
+gate hc-id
+gate hc-n
+gate hc-last
+gate rb-id
+gate rebuild
+gate p-drop1
+
+# ---- mem-keep: "save is just for the brain to declare something safe".
+# pad: a memory id on top (consumed). The memory moves to PERSISTENT.
+proc mem-keep = PERSISTENT TIER MOVE
+
+# ---- recall (§9.3): a memory is recalled. A memory in LONG comes back to
+# ACTIVE; then its path is redrawn from today's points (READ SHAPE). A truth
+# shift is a changed outcome (end-of-run judges that); a redrawn path alone is not.
+# pad: a memory id on top; it is left there.
+proc recall = LAST READ TIER READ LONG COMPARE
+on recall SAME -> recall-back
+on recall MORE -> recall-shape
+# a memory back from LONG holds only its highlights: it is rebuilt from them (the
+# shards fill the steps between) and what came back is its body again
+gate rb-x
+proc recall-back = LAST READ ACTIVE TIER MOVE LAST READ rebuild rb-file recall-shape
+proc rb-file = KIND READ
+on rb-file LIST -> rb-file2
+on rb-file GATE -> p-drop1
+on rb-file NUMBER -> p-drop1
+on rb-file TEXT -> p-drop1
+on rb-file POINT -> p-drop1
+on rb-file NONE -> carry-on
+proc rb-file2 = rb-x SLOT WRITE LAST READ rb-x SLOT READ BODY WRITE
+gate rs-old
+proc recall-shape = LAST READ SHAPE READ recall-cmp
+on recall-shape NONE -> carry-on
+proc recall-cmp = rs-old SLOT WRITE LAST READ rs-old SLOT READ COMPARE
+on recall-cmp SAME -> recall-same
+on recall-cmp MORE -> recall-shift
+proc recall-same = LAST DELETE
+# a path redrawn differently while the outcome stays the same is not a truth shift:
+# nothing held true changed (points drift as lines pull them), so nothing is marked
+# wrong; the id stays on the pad
+proc recall-shift = LAST DELETE
+
+# ---- when-did (§9.5): "what did you do <when>?" The time words of the input
+# leave a number on the pad (a span of seconds, or a moment from NOW). The
+# window is reached by an index seek on the timeline (FIND TIME), never a
+# scan, and each memory in it is recalled and said by its labels: where it
+# started (HOME) and how it came out (OUTCOME). Nothing in the window: NO.
+# the timeline is told only to a person who asks: in the brain's own run tree, nothing
+proc when-did = MINE READ
+on when-did YES -> wd-self
+on when-did NO -> wd-src
+proc wd-self = END
+# and only to the person's own words: a time word in a text a source gave (a run reading
+# a source: SOURCED, or an unnamed text: GUESS) asks nothing of the timeline
+proc wd-src = MODE READ ITEM READ SOURCED COMPARE
+on wd-src SAME -> wd-self
+on wd-src MORE -> wd-src2
+proc wd-src2 = MODE READ ITEM READ GUESS COMPARE
+on wd-src2 SAME -> wd-self
+on wd-src2 MORE -> wd-ask
+# and only when the person's words ask what it did (DO among them): "now" in an
+# instruction ("get me some coffee now") asks nothing of the timeline. The scan is over
+# the input's own words (SIG), never a table
+proc wd-ask = SIG READ wd-scan
+proc wd-scan = LAST READ FIRST READ wd-is-do
+on wd-scan NONE -> wd-notasked
+proc wd-is-do = ITEM READ do COMPARE
+on wd-is-do SAME -> wd-asked
+on wd-is-do MORE -> wd-scan2
+proc wd-scan2 = REST READ wd-scan
+on wd-scan2 NONE -> wd-notasked
+proc wd-asked = LAST DELETE wd-kind
+proc wd-notasked = LAST DELETE END
+proc wd-kind = KIND READ
+on wd-kind NUMBER -> wd-num
+on wd-kind GATE -> wd-default
+on wd-kind TEXT -> wd-default
+on wd-kind POINT -> wd-default
+on wd-kind LIST -> wd-default
+on wd-kind NONE -> wd-default
+proc wd-default = when-span wd-span
+# a number smaller than half of now is a span back from now; otherwise it is a
+# moment in time, and the window is the span before it
+proc wd-num = LAST READ CLOCK two DIV COMPARE
+on wd-num LESS -> wd-back
+on wd-num SAME -> wd-at
+on wd-num MORE -> wd-at
+proc wd-back = LAST DELETE wd-span
+# newest first: the window is asked for from now back
+proc wd-span = wd-d SLOT WRITE CLOCK wd-gap SUB CLOCK wd-d SLOT READ SUB wd-find
+proc wd-at = LAST DELETE wd-d SLOT WRITE wd-d SLOT READ wd-d SLOT READ when-span SUB wd-find
+# the window is paged newest first (FIND TIME-END is where a page ended), at most
+# wd-pages-max pages, until when-many runs are said: on a busy brain a page can hold
+# only births, definitions and list items, which are records, not things it did
+gate wd-lo
+gate wd-hi
+gate wd-end
+gate wd-pg
+gate wd-pages-max val 8
+proc wd-find = wd-lo SLOT WRITE wd-hi SLOT WRITE ZERO wd-n SLOT WRITE ITEM READ ZERO wd-lastg SLOT WRITE ZERO wd-last SLOT WRITE wd-pages-max wd-pg SLOT WRITE ZERO wd-ref SLOT WRITE wd-page
+proc wd-page = wd-hi SLOT READ wd-lo SLOT READ TIME-END FIND wd-end SLOT WRITE wd-hi SLOT READ wd-lo SLOT READ TIME FIND wd-start
+on wd-page NONE -> wd-said
+proc wd-nothing = NO core-check SAY
+# newest first, a few entries (when-many), each memory once: what it did (where it
+# started and how it came out, by their labels) and when (seconds before the newest
+# entry, a whole number from the timeline). An entry with no word to say is skipped.
+proc wd-start = when-look wd-lk SLOT WRITE wd-ref SLOT READ ZERO COMPARE
+on wd-start SAME -> wd-ref-set
+on wd-start MORE -> wd-ref-ok
+on wd-start LESS -> wd-ref-ok
+# when is said as whole seconds before the newest entry of the first page
+proc wd-ref-set = LAST DELETE LAST READ FIRST READ TIME READ wd-ref SLOT WRITE wd-each
+proc wd-ref-ok = LAST DELETE wd-each
+proc wd-each = wd-n SLOT READ when-many COMPARE
+on wd-each SAME -> wd-full
+on wd-each MORE -> wd-full
+on wd-each LESS -> wd-next
+proc wd-full = LAST DELETE LAST DELETE wd-said
+# it looked and said nothing: NO
+proc wd-said = wd-n SLOT READ ZERO COMPARE
+on wd-said SAME -> wd-said-no
+on wd-said MORE -> p-drop1
+on wd-said LESS -> p-drop1
+proc wd-said-no = LAST DELETE wd-nothing
+proc wd-next = LAST DELETE wd-lk SLOT READ one SUB LAST READ wd-lk SLOT WRITE ZERO COMPARE
+on wd-next MORE -> wd-next2
+on wd-next SAME -> wd-full
+on wd-next LESS -> wd-full
+proc wd-next2 = LAST DELETE LAST READ FIRST READ wd-one REST READ wd-each
+on wd-next2 NONE -> wd-done
+proc wd-done = LAST DELETE wd-more
+proc wd-more = wd-pg SLOT READ one SUB LAST READ wd-pg SLOT WRITE ZERO COMPARE
+on wd-more MORE -> wd-turn
+on wd-more SAME -> wd-more-end
+on wd-more LESS -> wd-more-end
+proc wd-more-end = LAST DELETE wd-said
+proc wd-turn = LAST DELETE wd-end SLOT READ one SUB wd-hi SLOT WRITE wd-page
+proc wd-one = wd-id SLOT WRITE wd-last SLOT READ wd-id SLOT READ COMPARE
+on wd-one SAME -> wd-drop
+on wd-one MORE -> wd-fresh
+on wd-one LESS -> wd-fresh
+proc wd-fresh = LAST DELETE wd-id SLOT READ wd-last SLOT WRITE wd-own
+# what it did is its runs (a memory with the words it ran on); a birth, a definition or a
+# list item is a record, not a run. The asking itself (these same words) is not something
+# it did before
+proc wd-own = wd-id SLOT READ MSIG READ wd-own2
+on wd-own NONE -> carry-on
+proc wd-own2 = LAST READ SIG READ COMPARE
+on wd-own2 SAME -> p-drop1
+on wd-own2 MORE -> wd-pre
+# nor is a run of this question's own (a branch of it: its words are the first words of
+# these, the ones heard when it split)
+gate wd-pa
+gate wd-pb
+proc wd-pre = wd-pa SLOT WRITE SIG READ wd-pb SLOT WRITE wd-pstep
+proc wd-pstep = wd-pa SLOT READ FIRST READ wd-pnext
+on wd-pstep NONE -> carry-on
+proc wd-pnext = wd-pb SLOT READ FIRST READ wd-pcmp
+on wd-pnext NONE -> wd-pdiff
+proc wd-pcmp = COMPARE
+on wd-pcmp SAME -> wd-padv
+on wd-pcmp MORE -> wd-fresh2
+proc wd-pdiff = LAST DELETE wd-fresh2
+proc wd-padv = wd-pa SLOT READ REST READ wd-pa SLOT WRITE wd-pb SLOT READ REST READ wd-pb SLOT WRITE wd-pstep
+proc wd-fresh2 = wd-id SLOT READ recall LAST DELETE ITEM READ NO wd-k SLOT WRITE wd-home wd-out wd-when
+proc wd-home = wd-id SLOT READ HOME READ wd-g
+on wd-home NONE -> carry-on
+proc wd-out = wd-id SLOT READ OUTCOME READ wd-g
+on wd-out NONE -> carry-on
+proc wd-g = KIND READ
+on wd-g GATE -> wd-g0
+on wd-g NUMBER -> wd-gn
+on wd-g TEXT -> wd-drop
+on wd-g POINT -> wd-drop
+on wd-g LIST -> wd-drop
+# zero is where a memory with no start points: nothing to say
+proc wd-g0 = LAST READ ITEM READ ZERO COMPARE
+on wd-g0 SAME -> wd-drop
+on wd-g0 MORE -> wd-g1
+# the same gate as the one said just before adds nothing
+proc wd-g1 = LAST READ wd-lastg SLOT READ COMPARE
+on wd-g1 SAME -> wd-drop
+on wd-g1 MORE -> wd-g1b
+proc wd-g1b = LAST READ LABEL READ wd-g2
+on wd-g1b NONE -> wd-drop
+proc wd-g2 = LAST DELETE LAST READ wd-lastg SLOT WRITE wd-say-it
+# a number that is a moment (a clock reading, as wd-num tells them) is when, not what
+proc wd-gn = LAST READ CLOCK two DIV COMPARE
+on wd-gn LESS -> wd-gn-say
+on wd-gn SAME -> wd-gn-drop
+on wd-gn MORE -> wd-gn-drop
+proc wd-gn-say = LAST DELETE wd-say-it
+proc wd-gn-drop = LAST DELETE LAST DELETE
+proc wd-say-it = ITEM READ YES wd-k SLOT WRITE core-check SAY
+on wd-say-it NONE -> wd-drop
+proc wd-drop = LAST DELETE
+# and when, only for an entry that said what it did; then it counts
+proc wd-when = wd-k SLOT READ ITEM READ YES COMPARE
+on wd-when SAME -> wd-ago
+on wd-when MORE -> carry-on
+proc wd-ago = wd-ref SLOT READ wd-id SLOT READ TIME READ SUB core-check SAY wd-n SLOT READ one ADD wd-n SLOT WRITE
+
+# a time word in the input asks the timeline. The trigger fires when a run hops
+# on from the time word to the next input item, with what the word left on top
+# of the pad: so it sits on the time primes that leave a span (value gates),
+# and on CLOCK, where a word whose action reads the clock (NOW) ends.
+trig CLOCK -> when-did 0.5
+trig moment -> when-did 0.5
+trig short-time -> when-did 0.5
+trig long-time -> when-did 0.5
+trig some-time -> when-did 0.5
+
+# ---- hc, the HC seed (§9.4, §9.6). Condense memories not touched for hc-fresh
+# seconds, from where it got to last time (hc-mark), a page at a time (FIND TIME).
+# For each: one redone since (newer than the cut) stays exact; a persistent one
+# is left; one that was said right and never wrong is kept (mem-keep); any other
+# run memory with an outcome and a body longer than its highlights is condensed
+# to its highlights (the start and the outcome; its signature and shape stay on
+# its row) and marked CONDENSED; a cold one (done once) is marked HIGHLIGHTS and
+# moved to LONG (its body goes to disk, and comes back on READ BODY).
+# Nothing is deleted. The points where the balance changed most are not on the
+# trail, so they are not kept yet. pad: nothing taken; the branch runs land the
+# ids they handled on the caller's landing list.
+proc hc = hc-mark CLOCK hc-fresh SUB LAST READ hc-t1 SLOT WRITE hc-mark hc-t1 SLOT READ TIME-END FIND hc-end SLOT WRITE TIME FIND hc-start
+on hc NONE -> carry-on
+proc hc-start = LAST READ COUNT READ hc-n SLOT WRITE ZERO hc-k SLOT WRITE hc-each
+# each memory of the page is looked at in a run of its own; every hc-chunk of them the
+# rest of the page goes on in a new run (a page holding a whole busy second still
+# fits); WAIT gathers them before the mark moves
+proc hc-each = LAST READ FIRST READ ITEM READ hc-one SPLIT LAST DELETE REST READ hc-tick
+on hc-each NONE -> hc-done
+proc hc-tick = hc-k SLOT READ one ADD LAST READ hc-k SLOT WRITE hc-chunk COMPARE
+on hc-tick LESS -> hc-goon
+on hc-tick SAME -> hc-hand
+on hc-tick MORE -> hc-hand
+proc hc-goon = LAST DELETE hc-each
+proc hc-hand = LAST DELETE ZERO hc-k SLOT WRITE ITEM READ hc-each SPLIT LAST DELETE END
+# where it got to: a full page moves the mark one second past the page's last entry (a
+# page ends at a whole second); otherwise everything up to the cut has been seen
+proc hc-done = LAST DELETE WAIT LAST DELETE hc-n SLOT READ hc-batch COMPARE
+on hc-done SAME -> hc-full
+on hc-done MORE -> hc-full
+on hc-done LESS -> hc-part
+proc hc-full = LAST DELETE hc-end SLOT READ one ADD hc-setmark
+# one page a sleep: while its active memories are still over sleep-room it stays
+# tired, and the next sleep takes the next page (a chain of runs would lose worth)
+proc hc-part = LAST DELETE hc-tomark
+proc hc-tomark = hc-t1 SLOT READ hc-setmark
+proc hc-setmark = ITEM READ hc-mark VALUE WRITE
+
+# per memory, in its own run: one redone since the cut stays exact; a persistent
+# one, or one already in long-term, is left; the others go to their own branch run
+# (hc-judge)
+proc hc-one = hc-id SLOT WRITE hc-id SLOT READ TIME READ hc-t1 SLOT READ COMPARE
+on hc-one MORE -> hc-hot
+on hc-one SAME -> hc-old
+on hc-one LESS -> hc-old
+proc hc-hot = LAST DELETE
+proc hc-old = LAST DELETE hc-id SLOT READ TIER READ PERSISTENT COMPARE
+on hc-old SAME -> carry-on
+on hc-old MORE -> hc-notlong
+proc hc-notlong = hc-id SLOT READ TIER READ LONG COMPARE
+on hc-notlong SAME -> carry-on
+on hc-notlong MORE -> hc-judge-go
+proc hc-judge-go = ITEM READ hc-judge SPLIT
+proc hc-judge = LAST DELETE hc-judge-w hc-id SLOT READ
+# said right and never wrong: kept (persistent); otherwise condensed
+proc hc-judge-w = hc-id SLOT READ WRONG READ ZERO COMPARE
+on hc-judge-w SAME -> hc-w0
+on hc-judge-w MORE -> hc-cut-d
+on hc-judge-w LESS -> hc-cut-d
+proc hc-w0 = LAST DELETE hc-id SLOT READ RIGHT READ ZERO COMPARE
+on hc-w0 MORE -> hc-keep
+on hc-w0 SAME -> hc-cut-d
+on hc-w0 LESS -> hc-cut-d
+proc hc-keep = LAST DELETE hc-id SLOT READ mem-keep
+proc hc-cut-d = LAST DELETE hc-cut
+proc hc-cut = hc-id SLOT READ OUTCOME READ hc-cut-body
+on hc-cut NONE -> hc-cold-x
+# no outcome (a birth, a definition, a list item): nothing to condense; a cold one
+# goes to long-term exact, its body on disk
+proc hc-cold-x = hc-id SLOT READ SEEN READ one COMPARE
+on hc-cold-x SAME -> hc-tolong
+on hc-cold-x LESS -> hc-tolong
+on hc-cold-x MORE -> hc-warm
+proc hc-tolong = LAST DELETE hc-id SLOT READ LONG TIER MOVE
+proc hc-cut-body = LAST DELETE hc-id SLOT READ BODY READ hc-cut-len
+on hc-cut-body NONE -> carry-on
+# a body no longer than its highlights (or a truth-shift row) is left as it is
+proc hc-cut-len = LAST READ COUNT READ one SUB two COMPARE
+on hc-cut-len MORE -> hc-condense
+on hc-cut-len SAME -> hc-already
+on hc-cut-len LESS -> hc-already
+proc hc-already = LAST DELETE LAST DELETE hc-cold
+# the highlights (the first gate in the trail that has a word, and the outcome)
+# are landed by branch runs and gathered by WAIT, then written as the body
+proc hc-condense = LAST DELETE hc-first hc-out hc-id SLOT READ WAIT BODY WRITE hc-id SLOT READ CONDENSED FID MOVE hc-cold
+proc hc-first = LAST READ FIRST READ hc-first-lab
+on hc-first NONE -> hc-first-end
+proc hc-first-end = LAST DELETE
+proc hc-first-lab = LAST READ LABEL READ hc-first-hit
+on hc-first-lab NONE -> hc-first-next
+proc hc-first-hit = LAST DELETE ITEM READ carry-on SPLIT LAST DELETE LAST DELETE
+proc hc-first-next = LAST DELETE REST READ hc-first
+proc hc-out = hc-id SLOT READ OUTCOME READ hc-out-land
+on hc-out NONE -> carry-on
+proc hc-out-land = ITEM READ carry-on SPLIT LAST DELETE
+# a cold memory (done once) keeps only its highlights and goes to LONG
+proc hc-cold = hc-id SLOT READ SEEN READ one COMPARE
+on hc-cold SAME -> hc-long
+on hc-cold MORE -> hc-warm
+on hc-cold LESS -> hc-long
+proc hc-warm = LAST DELETE
+proc hc-long = LAST DELETE hc-id SLOT READ HIGHLIGHTS FID MOVE hc-id SLOT READ LONG TIER MOVE
+
+# ---- rebuild (§9.4): run from the start through the highlights; the shards
+# fill in the steps between. Each highlight that is a process is run as a
+# branch (its own string, through its own shards); any other highlight lands as
+# it is. WAIT gathers what came back: the rebuilt memory.
+# pad: a memory id on top (consumed); pushes the rebuilt list.
+proc rebuild = recall rb-id SLOT WRITE rb-id SLOT READ BODY READ rb-each
+on rebuild NONE -> rb-none
+proc rb-none = ITEM READ NONE
+proc rb-each = LAST READ FIRST READ rb-one REST READ rb-each
+on rb-each NONE -> rb-wait
+proc rb-wait = LAST DELETE WAIT
+proc rb-one = KIND READ
+on rb-one GATE -> rb-gate
+on rb-one NUMBER -> rb-land
+on rb-one TEXT -> rb-land
+on rb-one POINT -> rb-land
+on rb-one LIST -> rb-land
+on rb-one NONE -> rb-land
+proc rb-gate = LAST READ PROC READ rb-run
+on rb-gate NONE -> rb-land
+proc rb-run = LAST DELETE LAST READ SPLIT LAST DELETE
+proc rb-land = ITEM READ carry-on SPLIT LAST DELETE
+rel hc-fresh t-kind-of SETTING
+rel hc-chunk t-kind-of SETTING
+rel hc-mark t-kind-of SETTING
+rel hc-batch t-kind-of SETTING
+rel when-span t-kind-of SETTING
+rel wd-pages-max t-kind-of SETTING
+rel when-many t-kind-of SETTING
+rel wd-gap t-kind-of SETTING
+rel when-look t-kind-of SETTING

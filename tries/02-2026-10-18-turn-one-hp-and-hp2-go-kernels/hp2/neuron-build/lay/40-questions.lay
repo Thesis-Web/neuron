@@ -1,0 +1,1108 @@
+# 40 questions: the born questions (blueprint §8), balance (§11.1), belief (§10.3),
+# guessing (§10.6) and talking (§14). Each question is a process gate at root level.
+# What the brain says comes only from gate labels: the gates a run touched and the
+# gates its question is made of (the subject, what, ?). No sentences anywhere.
+# Every SAY comes right after core-check and plans its NONE (a gate with no label
+# is not said). Question runs are branch runs; most of them only list what they
+# could not settle (the sixth's lists) instead of splitting more runs.
+
+# ---- gates other areas define (forward)
+gate mean
+gate gap-need
+gate source-check
+gate GAP-NEED
+gate backpop
+gate src-src
+gate src-c
+gate src-top
+gate ln-top
+
+# ---- the words the questions are made of (the primes lay their labels and actions)
+gate because
+gate p-hole
+gate p-hole-kind
+gate p-hole-at
+# WHY: a hole for a cause (BECAUSE) + ?, the way 30-primes lays who = someone + ? and
+# what = something + ?. A first guess (meaning blueprint §4: "why maybe from BECAUSE"),
+# marked as a guess for the brain to refit by balance.
+gate why
+proc why = ITEM READ because p-hole-kind SLOT WRITE p-hole key-qmark
+sect why sec-truth GUESS
+label en "why" why
+gate what
+gate where
+gate when
+gate maybe
+gate the-same
+gate not
+gate kind
+gate people
+
+# ---- told values
+gate half val 0.5
+
+# ---- what balance hands on
+gate closer
+gate further
+gate balanced
+
+# ---- slots
+gate h-out
+gate h-why
+gate h-g
+gate ms-id
+gate ms-got
+gate wis-s
+gate gs-g
+gate gs-mode
+gate gs-c
+gate q-q
+gate q-g
+gate bl-a
+gate bl-n
+gate bl-b
+gate bl-src
+gate bl-top
+gate bl-u
+gate bl-e
+gate bl-t
+gate bl-s
+gate bl-hs
+gate bal-w
+gate bal-g
+gate bal-last
+gate sec-asked
+gate fr-again
+gate fr-l
+gate fr-n
+gate sec-rerun
+gate fr-gap val 3
+# fr-reads: how many sources a question it can't fill reads before it asks the person
+gate fr-reads val 3
+
+# ================= saying: "what ?" (each SAY has its own check and plans its NONE)
+proc say-what = ITEM READ what core-check SAY say-q
+on say-what NONE -> say-what-drop
+proc say-what-drop = LAST DELETE say-q
+proc say-q = ITEM READ key-qmark core-check SAY
+on say-q NONE -> say-q-drop
+proc say-q-drop = LAST DELETE
+
+# ================= a question's worth (§8): pad g q (q on top), q a usual trigger of g
+# landed something: worth up a tenth; landed nothing: worth down a tenth
+proc q-up = q-q SLOT WRITE q-g SLOT WRITE q-g SLOT READ q-q SLOT READ WORTH READ q-up-w
+on q-up NONE -> carry-on
+proc q-up-w = tenth ADD q-ceil
+# and never above one (a worth multiplies its runs' worth)
+proc q-ceil = LAST READ one COMPARE
+on q-ceil MORE -> q-ceil-down
+on q-ceil SAME -> q-ceil-ok
+on q-ceil LESS -> q-ceil-ok
+proc q-ceil-down = LAST DELETE LAST DELETE one q-down-write
+proc q-ceil-ok = LAST DELETE q-down-write
+proc q-down = q-q SLOT WRITE q-g SLOT WRITE q-g SLOT READ q-q SLOT READ WORTH READ q-down-w
+on q-down NONE -> carry-on
+proc q-down-w = nine-tenths MUL q-floor
+# a question's worth never falls below the floor: a flood of one word can't kill it
+gate worth-floor val 0.05
+proc q-floor = LAST READ worth-floor COMPARE
+on q-floor LESS -> q-floor-up
+on q-floor SAME -> q-floor-ok
+on q-floor MORE -> q-floor-ok
+proc q-floor-up = LAST DELETE LAST DELETE worth-floor q-down-write
+proc q-floor-ok = LAST DELETE q-down-write
+proc q-down-write = q-g SLOT READ q-q SLOT READ USUAL WRITE
+
+# ================= Do I know this? (a newborn's usual question; subject = the gate)
+# known: land what it is a kind of; thin: list it as a gap for the sixth (no split)
+proc know-this = kn-meant SUBJ READ ITEM READ t-kind-of REL READ know-yes
+# knowing about a word is not its meaning (meaning blueprint §5.1): a word in a person's
+# words with no meaning (no process, no value, not told) is a needed gap even when it
+# holds lines; the rest of know-this goes on as before
+proc kn-meant = SUBJ READ PROC READ kn-meant-y
+on kn-meant NONE -> kn-meant-n
+proc kn-meant-y = LAST DELETE
+proc kn-meant-n = SUBJ READ MADE READ ITEM READ TOLD COMPARE
+on kn-meant-n SAME -> carry-on
+on kn-meant-n MORE -> kn-mv
+proc kn-mv = SUBJ READ VALUE READ kn-mv-y
+on kn-mv NONE -> kn-mw
+proc kn-mv-y = LAST DELETE
+proc kn-mw = MINE READ
+on kn-mw YES -> carry-on
+on kn-mw NO -> kn-mm
+proc kn-mm = MODE READ ITEM READ SOURCED COMPARE
+on kn-mm SAME -> carry-on
+on kn-mm MORE -> kn-mm2
+proc kn-mm2 = MODE READ ITEM READ GUESS COMPARE
+on kn-mm2 SAME -> carry-on
+on kn-mm2 MORE -> kn-mneed
+proc kn-mneed = SUBJ READ gap-need
+on know-this NONE -> know-src
+# known through a source it has read counts too
+proc know-src = SUBJ READ sec-sources SECTIONS READ know-yes
+on know-src NONE -> know-no
+proc know-yes = SUBJ READ ITEM READ know-this q-up LAND END
+proc know-no = SUBJ READ ITEM READ know-this q-down SUBJ READ kn-who
+# a word is needed when a person's words wait on it; one a source or the brain's own
+# run met is a plain gap (spawning is not a reason to read up on it)
+proc kn-who = MINE READ
+on kn-who YES -> kn-gap
+on kn-who NO -> kn-mode
+proc kn-mode = MODE READ ITEM READ SOURCED COMPARE
+on kn-mode SAME -> kn-gap
+on kn-mode MORE -> kn-mode2
+proc kn-mode2 = MODE READ ITEM READ GUESS COMPARE
+on kn-mode2 SAME -> kn-gap
+on kn-mode2 MORE -> kn-need
+proc kn-gap = GAP TODO WRITE END
+# a live question waits on it: it is listed as needed, at the front of GAP-NEED (new
+# items come first), so the sixth takes it on GAP's next turn, in its own run tree (the
+# meaning loop's tests are the brain's own, and say nothing to the person)
+proc kn-need = gap-need END
+
+# ================= Is this new? (at a spawn: the relationships it arrived with)
+# it arrived placed: land the kind and end the asking run; new: carry on asking
+proc is-new = SUBJ READ ITEM READ t-kind-of REL READ is-new-no
+on is-new NONE -> carry-on
+proc is-new-no = LAND END
+
+# ================= What is this? (split on every newborn; subject = the new gate)
+# the ladder: recent memory, what it knows, sources, then a labeled guess, then ask back
+proc what-is-this = SUBJ READ wis-k
+on what-is-this NONE -> wis-end
+proc wis-k = KIND READ
+on wis-k GATE -> wis-a
+on wis-k NUMBER -> wis-end
+on wis-k TEXT -> wis-end
+on wis-k POINT -> wis-end
+on wis-k LIST -> wis-end
+proc wis-end = END
+proc wis-a = wis-s SLOT WRITE WHY READ wis-recent
+on wis-a NONE -> wis-new
+proc wis-recent = OUTCOME READ wis-rk
+on wis-recent NONE -> wis-new
+proc wis-rk = KIND READ
+on wis-rk GATE -> wis-rl
+on wis-rk NUMBER -> wis-drop
+on wis-rk TEXT -> wis-drop
+on wis-rk POINT -> wis-drop
+on wis-rk LIST -> wis-drop
+proc wis-drop = LAST DELETE wis-new
+# the brain's last act left a gate with no name: this new word is likely its name
+# (heard writes it); nothing to ask
+proc wis-rl = LAST READ LABEL READ wis-rl-has
+on wis-rl NONE -> wis-rl-o
+proc wis-rl-has = LAST DELETE LAST DELETE wis-new
+# an outcome gate (NONE, SAME...) is not a thing to name
+proc wis-rl-o = t-kind-of OUTCOME-KIND STRENGTH READ wis-rl-oo
+on wis-rl-o NONE -> wis-end
+proc wis-rl-oo = LAST DELETE wis-new
+proc wis-new = is-new wis-mode
+# a word born while a source is being read is placed by that reading (and listed as
+# a gap by the miss way): give it its usual question and stop, so sources don't cascade
+proc wis-mode = MODE READ ITEM READ SOURCED COMPARE
+on wis-mode SAME -> wis-listed
+on wis-mode MORE -> wis-mode2
+proc wis-mode2 = MODE READ ITEM READ GUESS COMPARE
+on wis-mode2 SAME -> wis-listed
+on wis-mode2 MORE -> wis-know
+proc wis-listed = wis-s SLOT READ ITEM READ know-this half USUAL WRITE END
+# give the newborn its usual question and list it; spawning is no reason to fetch its
+# definition (meaning blueprint §8): when a question needs its meaning, dunno lists it
+# as a needed gap (GAP-NEED, for mean) and reads for that question
+proc wis-know = wis-s SLOT READ ITEM READ know-this half USUAL WRITE wis-s SLOT READ QUESTION TODO WRITE wis-hist
+# state and history: has a run used it before? then no guess, just ask
+proc wis-hist = wis-s SLOT READ sec-use SECTION READ wis-hist-has
+on wis-hist NONE -> wis-guess
+proc wis-hist-has = LAST DELETE wis-ask
+proc wis-guess = wis-s SLOT READ guess wis-ask
+# a newborn in a person's words is not asked about here: the sentence it came in is run
+# when its question runs end, and a slot that sentence can't fill becomes the question
+# (dunno, which reads more first; the end of the phrase for a word that is all there is)
+proc wis-ask = END
+
+# ================= Is this shaped like something I've done? pushes the outcome of a
+# run shaped like this one (a gate), or the NONE gate
+proc shaped-like = SHAPE FIND sl-first
+on shaped-like NONE -> sl-none
+proc sl-first = FIRST READ OUTCOME READ sl-k
+on sl-first NONE -> sl-none
+proc sl-k = KIND READ
+on sl-k GATE -> carry-on
+on sl-k NUMBER -> sl-drop
+on sl-k TEXT -> sl-drop
+on sl-k POINT -> sl-drop
+on sl-k LIST -> sl-drop
+proc sl-drop = LAST DELETE sl-none
+proc sl-none = ITEM READ NONE
+
+# ================= guess (§10.6): pad top = the gate the ladder found nothing for.
+# Candidate: a similar-shaped run's outcome, else the nearest other gate in its cell.
+# Written as a guess (state GUESS, weight a tenth; it pulls no point until tested),
+# listed to be tested, said with maybe.
+proc guess = gs-g SLOT WRITE MODE READ gs-mode SLOT WRITE shaped-like gs-cand
+proc gs-cand = LAST READ ITEM READ NONE COMPARE
+on gs-cand SAME -> gs-near
+on gs-cand MORE -> gs-make
+# a neighbour says something only once a meaning line has moved the gate from where
+# it was born (placed by word order alone, being near something is no likely relationship)
+proc gs-near = LAST DELETE gs-g SLOT READ POINT READ gs-g SLOT READ DEF HOME FIND gs-born
+on gs-near NONE -> gs-none-p
+proc gs-none-p = LAST DELETE gs-none
+proc gs-born = BODY READ FIRST READ COMPARE
+on gs-born SAME -> gs-none-d
+on gs-born MORE -> gs-near-go
+proc gs-none-d = LAST DELETE gs-none
+proc gs-near-go = LAST DELETE gs-g SLOT READ POINT READ NEAR FIND gs-near-l
+on gs-near-go NONE -> gs-none
+proc gs-near-l = LAST READ FIRST READ gs-near-1
+on gs-near-l NONE -> gs-none-l
+proc gs-none-l = LAST DELETE gs-none
+proc gs-near-1 = LAST READ gs-g SLOT READ COMPARE
+on gs-near-1 SAME -> gs-near-2
+on gs-near-1 MORE -> gs-near-ok
+proc gs-near-2 = LAST DELETE REST READ FIRST READ gs-make
+on gs-near-2 NONE -> gs-none
+proc gs-near-ok = gs-c SLOT WRITE LAST DELETE gs-c SLOT READ gs-make
+# zero is where every newborn starts, so being near it says nothing: no guess from it
+proc gs-make = gs-c SLOT WRITE gs-c SLOT READ ITEM READ ZERO COMPARE
+on gs-make SAME -> gs-none
+on gs-make MORE -> gs-make2
+# listed to be tested as the line itself, [c t-like g guess] (guess is its maker),
+# gathered from branch runs that each land one part
+proc gs-make2 = ITEM READ GUESS MADE WRITE gs-c SLOT READ ITEM READ t-like gs-g SLOT READ tenth REL WRITE gs-c SLOT READ ITEM READ ln-top SPLIT LAST DELETE ITEM READ t-like ITEM READ ln-top SPLIT LAST DELETE gs-g SLOT READ ITEM READ ln-top SPLIT LAST DELETE ITEM READ guess ITEM READ ln-top SPLIT LAST DELETE WAIT TEST-GUESS TODO WRITE gs-say
+# words go out only to a person: in the brain's own run tree nothing is said (no one is there)
+proc gs-say = MINE READ
+on gs-say YES -> gs-none
+on gs-say NO -> gs-say2
+proc gs-say2 = gs-c SLOT READ core-check SAY gs-none
+on gs-say2 NONE -> gs-say-drop
+proc gs-say-drop = LAST DELETE gs-none
+proc gs-none = gs-mode SLOT READ MADE WRITE
+
+# ================= ask-name: pad top = a gate with no label. List the question, say
+# the gate through what it was built from (if it has that), then "what ?". The gate
+# stays on top of the pad.
+proc ask-name = LAST READ QUESTION TODO WRITE an-who
+proc an-who = MINE READ
+on an-who YES -> carry-on
+on an-who NO -> an-mode
+# and only from runs that aren't reading a source or guessing (a pattern under test, a
+# reading): those list the question (above) and say nothing, as dunno does
+proc an-mode = MODE READ ITEM READ SOURCED COMPARE
+on an-mode SAME -> carry-on
+on an-mode MORE -> an-mode2
+proc an-mode2 = MODE READ ITEM READ GUESS COMPARE
+on an-mode2 SAME -> carry-on
+on an-mode2 MORE -> an-made
+# a gate that is itself still a guess (a formula under test) is not asked about yet: its
+# label is asked for later (blueprint §13), once it holds
+proc an-made = LAST READ MADE READ ITEM READ GUESS COMPARE
+on an-made SAME -> carry-on
+on an-made MORE -> an-once
+# one answer is said once (R2-12): asked about this gate within the last second (this same
+# input, another branch of it), it is not asked again
+proc an-once = LAST READ sec-asked SECTION READ an-t
+on an-once NONE -> an-mark
+proc an-t = CLOCK one SUB COMPARE
+on an-t MORE -> an-quiet
+on an-t SAME -> an-mark-d
+on an-t LESS -> an-mark-d
+proc an-quiet = LAST DELETE
+proc an-mark-d = LAST DELETE an-mark
+proc an-mark = LAST READ sec-asked CLOCK SECTION WRITE an-say
+proc an-say = LAST READ sec-built SECTION READ ask-built
+on an-say NONE -> say-what
+proc ask-built = core-check SAY say-what
+on ask-built NONE -> ask-built-drop
+proc ask-built-drop = LAST DELETE say-what
+
+# ================= dunno: "I don't know what to do here" (split; subject = where it got stuck)
+# asked once: when it asked about this gate is on the gate (sec-asked); asked within the
+# last second (this same input), it is not asked again
+proc dunno = SUBJ READ dn-q
+on dunno NONE -> wis-end
+proc dn-q = LAST READ sec-asked SECTION READ dn-t
+on dn-q NONE -> dn-say
+proc dn-t = CLOCK one SUB COMPARE
+on dn-t MORE -> dn-quiet
+on dn-t SAME -> dn-say-d
+on dn-t LESS -> dn-say-d
+proc dn-quiet = LAST DELETE LAST DELETE END
+proc dn-say-d = LAST DELETE dn-say
+proc dn-say = MINE READ
+on dn-say YES -> dn-self
+on dn-say NO -> dn-src
+# only the person's own words are asked about: a word a source reading heard (the run
+# reads a source: SOURCED, or an unnamed text: GUESS) is listed, not asked
+proc dn-src = MODE READ ITEM READ SOURCED COMPARE
+on dn-src SAME -> dn-self
+on dn-src MORE -> dn-src2
+proc dn-src2 = MODE READ ITEM READ GUESS COMPARE
+on dn-src2 SAME -> dn-self
+on dn-src2 MORE -> dn-know
+proc dn-self = LAST DELETE END
+# know before asking (rule 3; the frame, meaning blueprint §4): a slot the person's words
+# need and can't fill is first a question for what the brain can read. Two sources on the
+# gate, one after the other (one CALL a run), then the person's words are run again in
+# this run with whatever came back, and what balances now is said. Only when that second
+# run still can't fill the slot is the person asked.
+proc dn-know = fr-again SLOT READ dn-know-2
+on dn-know NONE -> dn-know-l
+# a gate with no word (one of its own inner gates, where a process of its own got stuck)
+# is not the person's question: it is listed (QUESTION) for the sixth, not said. A told
+# word (a prime, an operator) has its action already: no source makes it run; it asks.
+proc dn-know-l = LAST READ LABEL READ dn-know-l2
+on dn-know-l NONE -> dn-self
+proc dn-know-l2 = LAST DELETE LAST READ MADE READ ITEM READ TOLD COMPARE
+on dn-know-l2 SAME -> dn-out
+on dn-know-l2 MORE -> dn-read
+proc dn-know-2 = LAST DELETE dn-out
+# fr-reads sources, one run after another (each asks the next source not yet asked)
+proc dn-read = LAST READ GAP-NEED TODO WRITE ITEM READ YES fr-again SLOT WRITE fr-reads fr-n SLOT WRITE dn-read1
+proc dn-read1 = LAST READ ITEM READ source-check SPLIT LAST DELETE WAIT LAST DELETE fr-n SLOT READ one SUB LAST READ fr-n SLOT WRITE one COMPARE
+on dn-read1 LESS -> dn-read3
+on dn-read1 SAME -> dn-read2
+on dn-read1 MORE -> dn-read2
+proc dn-read2 = LAST DELETE dn-read1
+proc dn-read3 = LAST DELETE fr-rerun
+# the person's words again (their gates, as inner words of this run: no input triggers),
+# then the held words that waited for them (compile says a verdict it derived)
+# the pad this run was split with is the asking run's: it is emptied first, so the words
+# balance only with each other
+# once per input: two questions of one phrase (both sides of an "is") run it again once
+# (when it was last run again is on its first word: sec-rerun, within fr-gap seconds)
+proc fr-rerun = SIG READ FIRST READ fr-once
+on fr-rerun NONE -> fr-go
+proc fr-once = LAST READ sec-rerun SECTION READ fr-once-t
+on fr-once NONE -> fr-mark
+proc fr-once-t = CLOCK fr-gap SUB COMPARE
+on fr-once-t MORE -> fr-quiet
+on fr-once-t SAME -> fr-mark-d
+on fr-once-t LESS -> fr-mark-d
+proc fr-quiet = LAST DELETE LAST DELETE END
+proc fr-mark-d = LAST DELETE fr-mark
+proc fr-mark = sec-rerun CLOCK SECTION WRITE fr-go
+proc fr-go = ITEM READ YES fr-again SLOT WRITE SIG READ fr-l SLOT WRITE fr-clear
+proc fr-clear = LAST DELETE fr-clear
+on fr-clear NONE -> fr-step
+proc fr-step = fr-l SLOT READ FIRST READ fr-hear
+on fr-step NONE -> fr-end
+proc fr-hear = HEAR fr-next
+proc fr-next = fr-l SLOT READ REST READ fr-l SLOT WRITE fr-step
+# and what it came to is checked again by the frame (still open: asked, once)
+proc fr-end = compile fr-filled END
+proc dn-out = LAST READ sec-asked CLOCK SECTION WRITE core-check SAY say-what
+on dn-out NONE -> dunno-nolabel
+proc dunno-nolabel = LAST DELETE say-what
+
+# ================= What did I try when I was wrong, and why? (split; subject = a memory id)
+# the correction filed on what it said; none: ask a source why
+proc when-wrong = SUBJ READ OUTCOME READ ww-out
+on when-wrong NONE -> wis-end
+proc ww-out = LAST READ CORRECTION HOME FIND ww-found
+on ww-out NONE -> ww-src
+proc ww-found = BODY READ ww-land
+on ww-found NONE -> ww-src
+proc ww-land = LAND END
+# a source is asked about a gate (a word); a number it said is not a word to look up
+proc ww-src = KIND READ
+on ww-src GATE -> ww-src-g
+on ww-src NUMBER -> wis-end
+on ww-src TEXT -> wis-end
+on ww-src POINT -> wis-end
+on ww-src LIST -> wis-end
+proc ww-src-g = ITEM READ source-check SPLIT END
+
+# ================= balance (§11.1): pad got want (want on top) -> closer / further /
+# balanced (or maybe, after asking "yes ?", when it can't measure)
+proc balance = bal-w SLOT WRITE bal-g SLOT WRITE bal-g SLOT READ KIND READ
+on balance GATE -> bal-gate
+on balance NUMBER -> bal-num
+on balance TEXT -> bal-cant1
+on balance POINT -> bal-cant1
+on balance LIST -> bal-cant1
+proc bal-num = bal-w SLOT READ KIND READ
+on bal-num NUMBER -> bal-num2
+on bal-num GATE -> bal-cant2
+on bal-num TEXT -> bal-cant2
+on bal-num POINT -> bal-cant2
+on bal-num LIST -> bal-cant2
+proc bal-num2 = COMPARE
+on bal-num2 SAME -> bal-same
+on bal-num2 MORE -> bal-d
+on bal-num2 LESS -> bal-d
+proc bal-gate = bal-w SLOT READ KIND READ
+on bal-gate GATE -> bal-gate2
+on bal-gate NUMBER -> bal-cant2
+on bal-gate TEXT -> bal-cant2
+on bal-gate POINT -> bal-cant2
+on bal-gate LIST -> bal-cant2
+proc bal-gate2 = POINT READ POINT READ COMPARE
+on bal-gate2 SAME -> bal-same
+on bal-gate2 MORE -> bal-d
+proc bal-same = LAST DELETE ZERO bal-last SLOT WRITE ITEM READ balanced
+proc bal-d = LAST READ bal-last SLOT READ bal-d2
+on bal-d NONE -> bal-first
+proc bal-d2 = COMPARE
+on bal-d2 LESS -> bal-closer
+on bal-d2 MORE -> bal-further
+on bal-d2 SAME -> bal-further
+proc bal-closer = LAST DELETE bal-last SLOT WRITE ITEM READ closer
+proc bal-further = LAST DELETE bal-last SLOT WRITE ITEM READ further
+proc bal-first = bal-last SLOT WRITE LAST DELETE ITEM READ further
+proc bal-cant1 = LAST DELETE bal-right
+proc bal-cant2 = LAST DELETE LAST DELETE bal-right
+proc bal-right = MINE READ
+on bal-right YES -> bal-unm-self
+on bal-right NO -> bal-right2
+proc bal-unm-self = ITEM READ maybe
+proc bal-right2 = ITEM READ YES core-check SAY bal-unm
+on bal-right2 NONE -> bal-right-drop
+proc bal-right-drop = LAST DELETE bal-unm
+proc bal-unm = say-q ITEM READ maybe
+
+# ================= Have I done this before? Was I right? Was I wrong a lot?
+# As a trigger (split, subject = the gate the run is leaving): by the run's signature,
+# else the subject's latest use. Right: land the remembered outcome (the hop). Wrong
+# before: what did I try then? Never: the question's worth falls.
+proc done-before = SIG READ COUNT READ ZERO COMPARE
+on done-before SAME -> db-use
+on done-before MORE -> db-sig
+proc db-sig = LAST DELETE SIG FIND db-have
+on db-sig NONE -> db-none
+proc db-use = LAST DELETE SUBJ READ sec-use SECTION READ db-have
+on db-use NONE -> db-none
+proc db-have = LAST READ WRONG READ ZERO COMPARE
+on db-have SAME -> db-right
+on db-have MORE -> db-wrong
+proc db-right = LAST DELETE OUTCOME READ db-land
+on db-right NONE -> db-none
+proc db-land = SUBJ READ ITEM READ done-before q-up LAND END
+proc db-wrong = LAST DELETE ITEM READ when-wrong SPLIT END
+proc db-none = SUBJ READ ITEM READ done-before q-down END
+
+# At the end of each phrase (heard, in the root run): pad got; the memory of this
+# same input, then does this make sense?
+proc done-sig = SIG FIND done-check
+on done-sig NONE -> done-new
+proc done-new = LAST DELETE
+proc done-check = LAST READ WRONG READ ZERO COMPARE
+on done-check SAME -> done-right
+on done-check MORE -> done-wrong
+proc done-right = LAST DELETE makes-sense
+proc done-wrong = LAST DELETE LAST READ ITEM READ when-wrong SPLIT LAST DELETE makes-sense
+
+# ================= Does this make sense? pad got id: balance what it got now against
+# what that memory got. Further: was the environment different?
+# a bare number is a reading (a clock, a count: now, live, before, after): it is meant to
+# change from run to run, so it is not an answer that failed to balance (as end-of-run
+# judges it). Only a held gate against a held gate is balanced; any other pair can't be
+# measured and is left (nothing to ask).
+proc makes-sense = ms-id SLOT WRITE ms-got SLOT WRITE ms-got SLOT READ ms-kind
+proc ms-kind = KIND READ
+on ms-kind GATE -> ms-g
+on ms-kind NUMBER -> ms-cant
+on ms-kind TEXT -> ms-cant
+on ms-kind POINT -> ms-cant
+on ms-kind LIST -> ms-cant
+proc ms-cant = LAST DELETE
+proc ms-g = ms-id SLOT READ OUTCOME READ ms-g2
+on ms-g NONE -> ms-cant
+proc ms-g2 = KIND READ
+on ms-g2 GATE -> ms-bal
+on ms-g2 NUMBER -> ms-two
+on ms-g2 TEXT -> ms-two
+on ms-g2 POINT -> ms-two
+on ms-g2 LIST -> ms-two
+proc ms-two = LAST DELETE LAST DELETE
+proc ms-bal = balance ms-judge
+proc ms-judge = LAST READ ITEM READ further COMPARE
+on ms-judge SAME -> ms-further
+on ms-judge MORE -> ms-fine
+proc ms-fine = LAST DELETE
+proc ms-further = LAST DELETE ms-id SLOT READ env-diff
+
+# ================= Was the environment different? (a memory id; redraw its path from
+# today's points). Same: the answer itself is off: an imbalance, ask a source.
+# Changed: the end of the run writes the truth shift.
+gate sd-old
+proc env-diff = SHAPE READ env-cmp
+on env-diff NONE -> carry-on
+proc env-cmp = sd-old SLOT WRITE LAST READ sd-old SLOT READ COMPARE
+on env-cmp SAME -> env-same
+on env-cmp MORE -> env-changed
+proc env-same = LAST DELETE ms-got SLOT READ IMBALANCE TODO WRITE ms-got SLOT READ ITEM READ source-check SPLIT LAST DELETE
+proc env-changed = LAST DELETE
+
+# ================= belief (§10.3), split by a source run that contradicts a held line.
+# pad: a type b (b on top) = the new claim; slots: src-src the source, src-c the type
+# held now (a src-c b), src-top the topic. The owner's five steps, then adopt or keep;
+# the reason is filed in a's truth section (held score, new score, winner). Lands YES
+# (adopted) or NO (kept).
+proc belief = bl-b SLOT WRITE bl-n SLOT WRITE bl-a SLOT WRITE src-src SLOT READ bl-top-r
+on belief NONE -> wis-end
+proc bl-top-r = bl-src SLOT WRITE src-top SLOT READ bl-top-w
+on bl-top-r NONE -> bl-top-a
+proc bl-top-w = bl-top SLOT WRITE bl-mem
+proc bl-top-a = bl-a SLOT READ bl-top SLOT WRITE bl-mem
+# 1. memory support: how many runs used a
+proc bl-mem = bl-a SLOT READ sec-use SECTIONS READ bl-mem-n
+on bl-mem NONE -> bl-mem-zero
+proc bl-mem-n = COUNT READ bl-u SLOT WRITE bl-err
+proc bl-mem-zero = ZERO bl-u SLOT WRITE bl-err
+# 2. error history: has the held line been contradicted before? (halves it)
+proc bl-err = src-c SLOT READ bl-err-h
+on bl-err NONE -> bl-err-none
+proc bl-err-h = LAST DELETE bl-a SLOT READ src-c SLOT READ bl-b SLOT READ STATE READ bl-err-s
+on bl-err-h NONE -> bl-err-none
+proc bl-err-s = ITEM READ CONTRADICTED COMPARE
+on bl-err-s SAME -> bl-err-half
+on bl-err-s MORE -> bl-err-one
+proc bl-err-half = half bl-e SLOT WRITE bl-trust
+proc bl-err-one = one bl-e SLOT WRITE bl-trust
+proc bl-err-none = ZERO bl-e SLOT WRITE bl-trust
+# 3. the source's trust on this topic
+proc bl-trust = bl-src SLOT READ bl-top SLOT READ trust-weight bl-t SLOT WRITE bl-sup
+# 4. supporting knowledge: how strongly the new claim is already held
+proc bl-sup = bl-a SLOT READ bl-n SLOT READ bl-b SLOT READ STRENGTH READ bl-sup-n
+on bl-sup NONE -> bl-sup-zero
+proc bl-sup-n = bl-s SLOT WRITE bl-held
+proc bl-sup-zero = ZERO bl-s SLOT WRITE bl-held
+# the held line's weight: strength x error x (uses+1)/(uses+2)
+proc bl-held = src-c SLOT READ bl-held-c
+on bl-held NONE -> bl-held-zero
+proc bl-held-c = LAST DELETE bl-a SLOT READ src-c SLOT READ bl-b SLOT READ STRENGTH READ bl-held-n
+on bl-held-c NONE -> bl-held-zero
+proc bl-held-n = bl-e SLOT READ MUL bl-u SLOT READ one ADD MUL bl-u SLOT READ two ADD DIV bl-hs SLOT WRITE bl-weigh
+proc bl-held-zero = ZERO bl-hs SLOT WRITE bl-weigh
+# 5. the inequality: is the new claim (trust + support) closer than what is held?
+proc bl-weigh = bl-a SLOT READ sec-truth bl-hs SLOT READ SECTION WRITE bl-a SLOT READ sec-truth bl-t SLOT READ bl-s SLOT READ ADD SECTION WRITE bl-t SLOT READ bl-s SLOT READ ADD bl-hs SLOT READ COMPARE
+on bl-weigh MORE -> bl-adopt
+on bl-weigh SAME -> bl-keep
+on bl-weigh LESS -> bl-keep
+proc bl-adopt = LAST DELETE bl-a SLOT READ bl-n SLOT READ bl-b SLOT READ bl-t SLOT READ relate bl-adopt-old
+proc bl-adopt-old = bl-a SLOT READ src-c SLOT READ bl-b SLOT READ ITEM READ CONTRADICTED STATE WRITE bl-why-yes
+on bl-adopt-old NONE -> bl-why-yes
+proc bl-why-yes = bl-a SLOT READ sec-truth bl-src SLOT READ SECTION WRITE ITEM READ YES
+proc bl-keep = LAST DELETE bl-a SLOT READ sec-truth src-c SLOT READ SECTION WRITE bl-a SLOT READ IMBALANCE TODO WRITE ITEM READ NO
+
+# ================= heard: end-of-run calls it in every root run before the memory is
+# written, with the run's outcome on top; the outcome is put back on top at the end.
+# If this input answers the brain's last act (WHY): a yes marks it right; a no marks
+# it wrong, files a correction on what it said, back-populates (a branch run, so a
+# long walk never holds the person's run), and sends it to
+# sources and memory to find out why; one word after an act that left a gate with
+# no name is that gate's name. Otherwise: the end-of-phrase questions.
+proc heard = h-out SLOT WRITE heard-a
+on heard NONE -> carry-on
+proc heard-a = WHY READ heard-b
+on heard-a NONE -> heard-phrase
+proc heard-b = h-why SLOT WRITE SIG READ ITEM READ YES COMPARE
+on heard-b SAME -> hs-yes
+on heard-b MORE -> heard-c
+proc heard-c = SIG READ ITEM READ NO COMPARE
+on heard-c SAME -> hs-no
+on heard-c MORE -> heard-name
+# a yes or a no is about what the brain said. A memory whose outcome is one of its own
+# told inner gates with no word (a refusal a branch run filed, a core value) said
+# nothing: the yes or no is not about it
+gate hs-v
+proc hs-yes = ITEM READ heard-yes hs-v SLOT WRITE hs-said
+proc hs-no = ITEM READ heard-no hs-v SLOT WRITE hs-said
+proc hs-said = h-why SLOT READ OUTCOME READ hs-k
+on hs-said NONE -> hs-go
+proc hs-k = KIND READ
+on hs-k GATE -> hs-lab
+on hs-k NUMBER -> hs-go-d
+on hs-k TEXT -> hs-go-d
+on hs-k POINT -> hs-go-d
+on hs-k LIST -> hs-go-d
+proc hs-go-d = LAST DELETE hs-go
+proc hs-lab = LAST READ LABEL READ hs-lab-y
+on hs-lab NONE -> hs-told
+proc hs-lab-y = LAST DELETE LAST DELETE hs-go
+proc hs-told = MADE READ ITEM READ TOLD COMPARE
+on hs-told SAME -> hs-find
+on hs-told MORE -> hs-go
+# then the person is answering what was said for those same words: the newest memory on
+# the timeline (an index seek over the hs-span seconds before the refusal began, newest
+# first) with the same signature whose outcome was said (a word or a number)
+gate hs-sig
+gate hs-l
+gate hs-span val 5
+proc hs-find = h-why SLOT READ MSIG READ hs-find1
+on hs-find NONE -> heard-phrase
+proc hs-find1 = hs-sig SLOT WRITE h-why SLOT READ BEGAN READ LAST READ hs-span SUB TIME FIND hs-find2
+on hs-find1 NONE -> heard-phrase
+# at most hs-many entries are looked at (a busy second holds thousands)
+gate hs-n
+gate hs-many val 24
+proc hs-find2 = hs-l SLOT WRITE hs-many hs-n SLOT WRITE hs-step
+proc hs-step = hs-l SLOT READ FIRST READ hs-m
+on hs-step NONE -> heard-phrase
+proc hs-next = hs-n SLOT READ one SUB LAST READ hs-n SLOT WRITE one COMPARE
+on hs-next LESS -> hs-out
+on hs-next SAME -> hs-next2
+on hs-next MORE -> hs-next2
+proc hs-out = LAST DELETE heard-phrase
+proc hs-next2 = LAST DELETE hs-l SLOT READ REST READ hs-l SLOT WRITE hs-step
+proc hs-m = LAST READ MSIG READ hs-m1
+on hs-m NONE -> hs-skip1
+proc hs-m1 = hs-sig SLOT READ COMPARE
+on hs-m1 SAME -> hs-m2
+on hs-m1 MORE -> hs-skip1
+proc hs-skip2 = LAST DELETE LAST DELETE hs-next
+proc hs-skip1 = LAST DELETE hs-next
+proc hs-m2 = LAST READ OUTCOME READ hs-mk
+on hs-m2 NONE -> hs-skip1
+proc hs-mk = KIND READ
+on hs-mk NUMBER -> hs-hit
+on hs-mk GATE -> hs-mg
+on hs-mk TEXT -> hs-skip2
+on hs-mk POINT -> hs-skip2
+on hs-mk LIST -> hs-skip2
+proc hs-mg = LABEL READ hs-hit
+on hs-mg NONE -> hs-skip1
+proc hs-hit = LAST DELETE h-why SLOT WRITE hs-go
+proc hs-go = hs-v SLOT READ HEAR
+proc heard-name = h-why SLOT READ OUTCOME READ heard-name-k
+on heard-name NONE -> heard-phrase
+proc heard-name-k = KIND READ
+on heard-name-k GATE -> heard-name-lab
+on heard-name-k NUMBER -> heard-drop
+on heard-name-k TEXT -> heard-drop
+on heard-name-k POINT -> heard-drop
+on heard-name-k LIST -> heard-drop
+proc heard-drop = LAST DELETE heard-phrase
+proc heard-name-lab = LAST READ LABEL READ heard-labeled
+on heard-name-lab NONE -> heard-name-o
+proc heard-name-o = LAST READ t-kind-of OUTCOME-KIND STRENGTH READ heard-name-oo
+on heard-name-o NONE -> heard-name-one
+proc heard-name-oo = LAST DELETE LAST DELETE heard-phrase
+proc heard-labeled = LAST DELETE LAST DELETE heard-phrase
+proc heard-name-one = SIG READ COUNT READ one COMPARE
+on heard-name-one SAME -> heard-label
+on heard-name-one MORE -> heard-drop2
+on heard-name-one LESS -> heard-drop2
+proc heard-drop2 = LAST DELETE LAST DELETE heard-phrase
+# a name a person gives is checked first: a word that already holds a different value
+# is not taken for this gate (a person is never grounded for facts): it says no and
+# lists the imbalance
+proc heard-label = LAST DELETE h-g SLOT WRITE heard-asked
+# only a gate it actually asked about (a QUESTION listed at it) takes a person's word as its name
+proc heard-asked = h-g SLOT READ QUESTION HOME FIND heard-asked2
+on heard-asked NONE -> heard-phrase
+proc heard-asked2 = LAST DELETE heard-told
+# a told word (a prime, a key) already has its meaning: it is not taken as a name
+proc heard-told = SIG READ FIRST READ MADE READ ITEM READ TOLD COMPARE
+on heard-told SAME -> heard-refuse2
+on heard-told MORE -> heard-vchk
+proc heard-vchk = SIG READ FIRST READ VALUE READ heard-v2
+on heard-vchk NONE -> heard-opp
+proc heard-v2 = h-g SLOT READ VALUE READ heard-v3
+on heard-v2 NONE -> heard-v2n
+proc heard-v3 = COMPARE
+on heard-v3 SAME -> heard-v-same
+on heard-v3 MORE -> heard-refuse
+on heard-v3 LESS -> heard-refuse
+proc heard-v-same = LAST DELETE heard-opp
+proc heard-v2n = LAST DELETE heard-opp
+# a word whose held lines say it is the opposite of this gate is not its name
+proc heard-opp = SIG READ FIRST READ t-opposite h-g SLOT READ STRENGTH READ heard-refuse
+on heard-opp NONE -> heard-opp2
+proc heard-opp2 = h-g SLOT READ t-opposite SIG READ FIRST READ STRENGTH READ heard-refuse
+on heard-opp2 NONE -> heard-label2
+proc heard-refuse = LAST DELETE heard-refuse2
+proc heard-refuse2 = h-g SLOT READ IMBALANCE TODO WRITE ITEM READ NO core-check SAY heard-end
+on heard-refuse2 NONE -> heard-end
+# a person is never grounded: the name is held as a guess (the label and its line are
+# written in guess mode) until something else bears it out
+proc heard-label2 = GUESS MADE WRITE WHAT READ h-g SLOT READ LABEL WRITE h-g SLOT READ t-same SIG READ FIRST READ half relate heard-named
+proc heard-named = h-g SLOT READ QUESTION HOME FIND heard-close
+on heard-named NONE -> heard-end
+proc heard-close = MEM DELETE heard-end
+on heard-close NONE -> heard-end
+proc heard-yes = h-why SLOT READ RIGHT WRITE heard-end
+on heard-yes NONE -> heard-end
+proc heard-no = h-why SLOT READ WRONG WRITE heard-no-c
+on heard-no NONE -> heard-end
+proc heard-no-c = h-why SLOT READ OUTCOME READ heard-no-todo
+on heard-no-c NONE -> heard-no-back
+proc heard-no-todo = CORRECTION TODO WRITE heard-no-back
+proc heard-no-back = h-why SLOT READ ITEM READ backpop SPLIT LAST DELETE heard-no-src
+proc heard-no-src = h-why SLOT READ OUTCOME READ heard-no-split
+on heard-no-src NONE -> heard-no-mem
+proc heard-no-split = KIND READ
+on heard-no-split GATE -> heard-no-split2
+on heard-no-split NUMBER -> heard-no-nsrc
+on heard-no-split TEXT -> heard-no-nsrc
+on heard-no-split POINT -> heard-no-nsrc
+on heard-no-split LIST -> heard-no-nsrc
+proc heard-no-nsrc = LAST DELETE heard-no-mem
+proc heard-no-split2 = ITEM READ source-check SPLIT LAST DELETE heard-no-mem
+proc heard-no-mem = h-why SLOT READ ITEM READ when-wrong SPLIT LAST DELETE h-why SLOT READ ITEM READ recheck SPLIT LAST DELETE heard-end
+
+# ================= recheck (split by a "no"; subject = the memory the person said no to).
+# The no is not a fact: the brain re-checks what its act rested on.
+# A verdict (YES / NO) that rested on a held line: the person's no is a claim against
+# that line (the line's opposite type), weighed by belief with a person as the source
+# (never grounded: written in guess mode). A gate said by a name that rests only on a
+# person's word (a guessed same-line to a word with that label): the name line is taken back
+# and the gate is asked about again. Anything else held: an imbalance.
+gate rk-id
+gate rk-a
+gate rk-b
+gate rk-n
+gate rk-g
+gate rk-w
+proc recheck = SUBJ READ rk-id SLOT WRITE rk-id SLOT READ OUTCOME READ rk-k
+on recheck NONE -> wis-end
+proc rk-k = KIND READ
+on rk-k GATE -> rk-g1
+on rk-k NUMBER -> rk-num
+on rk-k TEXT -> wis-end
+on rk-k POINT -> wis-end
+on rk-k LIST -> wis-end
+proc rk-g1 = LAST READ ITEM READ YES COMPARE
+on rk-g1 SAME -> rk-v
+on rk-g1 MORE -> rk-g2
+proc rk-g2 = LAST READ ITEM READ NO COMPARE
+on rk-g2 SAME -> rk-v
+on rk-g2 MORE -> rk-name
+# the two things the verdict was about: the words of the input that aren't told words
+proc rk-v = LAST DELETE rk-id SLOT READ MSIG READ rk-walk
+on rk-v NONE -> wis-end
+proc rk-walk = LAST READ FIRST READ rk-w1 REST READ rk-walk
+on rk-walk NONE -> rk-wend
+proc rk-w1 = KIND READ
+on rk-w1 GATE -> rk-w2
+on rk-w1 NUMBER -> p-drop1
+on rk-w1 TEXT -> p-drop1
+on rk-w1 POINT -> p-drop1
+on rk-w1 LIST -> p-drop1
+proc rk-w2 = LAST READ MADE READ ITEM READ TOLD COMPARE
+on rk-w2 SAME -> p-drop1
+on rk-w2 MORE -> rk-put
+proc rk-put = rk-a SLOT READ rk-put-b
+on rk-put NONE -> rk-put-a
+proc rk-put-a = rk-a SLOT WRITE
+proc rk-put-b = LAST DELETE rk-b SLOT WRITE
+proc rk-wend = LAST DELETE rk-h1
+# the line the verdict rested on, either way
+proc rk-h1 = rk-a SLOT READ t-opposite rk-b SLOT READ STRENGTH READ rk-h1y
+on rk-h1 NONE -> rk-h2
+proc rk-h1y = LAST DELETE ITEM READ t-opposite rk-go
+proc rk-h2 = rk-b SLOT READ t-opposite rk-a SLOT READ STRENGTH READ rk-h2y
+on rk-h2 NONE -> rk-h3
+proc rk-h2y = LAST DELETE rk-swap ITEM READ t-opposite rk-go
+proc rk-h3 = rk-a SLOT READ t-same rk-b SLOT READ STRENGTH READ rk-h3y
+on rk-h3 NONE -> rk-h4
+proc rk-h3y = LAST DELETE ITEM READ t-same rk-go
+proc rk-h4 = rk-b SLOT READ t-same rk-a SLOT READ STRENGTH READ rk-h4y
+on rk-h4 NONE -> wis-end
+proc rk-h4y = LAST DELETE rk-swap ITEM READ t-same rk-go
+proc rk-swap = rk-a SLOT READ rk-b SLOT READ rk-a SLOT WRITE rk-b SLOT WRITE
+# the claim is the held type's opposite type; a person is the source
+proc rk-go = src-c SLOT WRITE src-c SLOT READ t-opposite REL READ rk-claim
+on rk-go NONE -> wis-end
+proc rk-claim = rk-n SLOT WRITE ITEM READ people src-src SLOT WRITE GUESS MADE WRITE rk-a SLOT READ rk-n SLOT READ rk-b SLOT READ belief rk-after
+# adopted from a person: a guess, listed to be tested
+proc rk-after = LAST READ ITEM READ YES COMPARE
+on rk-after SAME -> rk-test
+on rk-after MORE -> rk-land
+proc rk-test = rk-a SLOT READ TEST-GUESS TODO WRITE rk-land
+proc rk-land = LAND END
+# a number it said: the word of the input that holds that value is the one re-checked
+# (the number was said for that word's name)
+gate rk-nv
+gate rk-isnum
+gate rk-os
+proc rk-num = rk-nv SLOT WRITE ITEM READ YES rk-isnum SLOT WRITE rk-id SLOT READ MSIG READ rk-nwalk
+on rk-num NONE -> wis-end
+proc rk-nwalk = LAST READ FIRST READ rk-n1 REST READ rk-nwalk
+on rk-nwalk NONE -> wis-end
+proc rk-n1 = KIND READ
+on rk-n1 GATE -> rk-n2
+on rk-n1 NUMBER -> p-drop1
+on rk-n1 TEXT -> p-drop1
+on rk-n1 POINT -> p-drop1
+on rk-n1 LIST -> p-drop1
+proc rk-n2 = LAST READ VALUE READ rk-n3
+on rk-n2 NONE -> p-drop1
+proc rk-n3 = rk-nv SLOT READ COMPARE
+on rk-n3 SAME -> rk-n4
+on rk-n3 MORE -> p-drop2
+on rk-n3 LESS -> p-drop2
+proc rk-n4 = LAST DELETE rk-name
+# a name: the gate's strongest same-line goes to a word with the very label it was said by
+# first the label it said: another gate carrying the same label with a different value
+# means one word on two meanings: the clash is filed (truth section, imbalance)
+gate rk-val
+gate rk-o
+gate rk-unlabel
+proc rk-name = rk-g SLOT WRITE rk-g SLOT READ VALUE READ rk-lv
+on rk-name NONE -> rk-name2
+proc rk-lv = rk-val SLOT WRITE rk-g SLOT READ LABEL READ rk-lv2
+on rk-lv NONE -> rk-name2
+proc rk-lv2 = LABELS FIND rk-lw
+on rk-lv2 NONE -> rk-name2
+proc rk-lw = LAST READ FIRST READ rk-l1 REST READ rk-lw
+on rk-lw NONE -> rk-lend
+proc rk-lend = LAST DELETE rk-lend2
+# a number said for a word that has another sense, one holding no number: the number
+# sense of the word rests only on the name it was given (a person's word), and it has
+# now been said wrong: the name comes off the number (the number keeps its value, the
+# word keeps its other sense), the reason is filed and the number is asked about again.
+# A told gate keeps its name. A word with no other sense keeps it (an imbalance).
+proc rk-lend2 = rk-isnum SLOT READ rk-lend3
+on rk-lend2 NONE -> rk-name2
+proc rk-lend3 = LAST DELETE rk-os SLOT READ rk-lend4
+on rk-lend3 NONE -> rk-name2
+proc rk-lend4 = LAST DELETE rk-g SLOT READ MADE READ ITEM READ TOLD COMPARE
+on rk-lend4 SAME -> rk-name2
+on rk-lend4 MORE -> rk-num-take
+proc rk-num-take = rk-unlabel rk-g SLOT READ sec-truth rk-os SLOT READ SECTION WRITE rk-g SLOT READ QUESTION TODO WRITE ITEM READ NO LAND END
+proc rk-l1 = LAST READ VALUE READ rk-l2
+on rk-l1 NONE -> rk-l-other
+# another sense of the word that is not a number at all
+proc rk-l-other = rk-os SLOT WRITE
+proc rk-l2 = rk-val SLOT READ COMPARE
+on rk-l2 SAME -> p-drop2
+on rk-l2 MORE -> rk-clash
+on rk-l2 LESS -> rk-clash
+proc rk-clash = LAST DELETE rk-o SLOT WRITE LAST DELETE rk-unlabel rk-g SLOT READ sec-truth rk-o SLOT READ SECTION WRITE rk-g SLOT READ IMBALANCE TODO WRITE ITEM READ NO LAND END
+# the label it said is taken off the gate (the word keeps its own label)
+proc rk-unlabel = rk-g SLOT READ LABEL READ rk-g SLOT READ LABEL DELETE
+on rk-unlabel NONE -> carry-on
+proc rk-name2 = rk-g SLOT READ t-same REL READ rk-nw
+on rk-name2 NONE -> wis-end
+proc rk-nw = rk-w SLOT WRITE rk-w SLOT READ LABEL READ rk-nw2
+on rk-nw NONE -> wis-end
+proc rk-nw2 = rk-g SLOT READ LABEL READ rk-nw3
+on rk-nw2 NONE -> wis-end
+proc rk-nw3 = COMPARE
+on rk-nw3 SAME -> rk-ns0
+on rk-nw3 MORE -> wis-end
+proc rk-ns0 = rk-g SLOT READ t-same rk-w SLOT READ STATE READ rk-ns
+on rk-ns0 NONE -> wis-end
+proc rk-ns = ITEM READ GUESS COMPARE
+on rk-ns SAME -> rk-take
+on rk-ns MORE -> rk-keep
+# only a person's word holds it: the name line is taken back, the reason filed, asked again
+proc rk-take = rk-g SLOT READ t-same rk-w SLOT READ REL DELETE rk-unlabel rk-g SLOT READ sec-truth rk-w SLOT READ SECTION WRITE rk-g SLOT READ QUESTION TODO WRITE ITEM READ NO LAND END
+proc rk-keep = rk-g SLOT READ IMBALANCE TODO WRITE ITEM READ YES LAND END
+# the end of a phrase: only for a run that heard something
+proc heard-phrase = SIG READ COUNT READ ZERO COMPARE
+on heard-phrase SAME -> heard-end-d
+on heard-phrase MORE -> heard-ph2
+proc heard-end-d = LAST DELETE heard-end
+proc heard-ph2 = LAST DELETE h-out SLOT READ done-sig fr-when h-out SLOT READ fr-filled cl-start heard-end
+# a time in the hole (a first guess, GUESS): a place or time hole (at = where, when) still
+# open at the end of a person's phrase, filled by a word holding a number (typed digits),
+# is a time: the number goes to the timeline (when-did: a moment, or a span back from now,
+# by its own rule). A number followed by ":" and another (11:30) is a formula it doesn't
+# hold: ":" is asked about. In the brain's own runs: nothing.
+gate fr-wl
+gate fr-wk
+gate key-colon
+gate when-did
+sect fr-when sec-truth GUESS
+proc fr-when = MINE READ
+on fr-when YES -> carry-on
+on fr-when NO -> fr-w0
+proc fr-w0 = SIG READ fr-wl SLOT WRITE fr-wstep
+# the person's words, one by one: a word whose action is a place or a time hole (at's
+# is where; when's is when) is followed by what fills it
+proc fr-wstep = fr-wl SLOT READ FIRST READ fr-w1
+on fr-wstep NONE -> carry-on
+proc fr-w1 = PROC READ fr-w1b
+on fr-w1 NONE -> fr-wadv
+proc fr-w1b = FIRST READ fr-w1c
+on fr-w1b NONE -> fr-wadv
+proc fr-w1c = LAST READ ITEM READ where COMPARE
+on fr-w1c SAME -> fr-w2
+on fr-w1c MORE -> fr-w1d
+proc fr-w1d = ITEM READ when COMPARE
+on fr-w1d SAME -> fr-wat
+on fr-w1d MORE -> fr-wadv
+proc fr-w2 = LAST DELETE fr-wat
+proc fr-wadv = fr-wl SLOT READ REST READ fr-wl SLOT WRITE fr-wstep
+proc fr-wat = fr-wl SLOT READ REST READ LAST READ fr-wl SLOT WRITE FIRST READ fr-wv
+on fr-wat NONE -> carry-on
+proc fr-wv = VALUE READ fr-wc
+on fr-wv NONE -> carry-on
+proc fr-wc = fr-wl SLOT READ REST READ FIRST READ fr-wc2
+on fr-wc NONE -> fr-wsplit
+proc fr-wc2 = LAST READ ITEM READ key-colon COMPARE
+on fr-wc2 SAME -> fr-colon
+on fr-wc2 MORE -> fr-wgo
+proc fr-wgo = LAST DELETE fr-wsplit
+# the timeline is walked in a run of its own (the number on its pad)
+proc fr-wsplit = ITEM READ when-did SPLIT LAST DELETE
+proc fr-colon = ITEM READ dunno SPLIT LAST DELETE LAST DELETE
+# ================= clarify (meaning blueprint §1.4): a word of the phrase that is one
+# spelling on two or more meanings (gates with its label that each hold a meaning: a
+# value, or a held same / opposite / kind line; told gates aside), when history doesn't
+# settle which one runs (these same words were never said right), is asked about with
+# its own meanings: the word, then each meaning by the word for it and "?". The first
+# such word only. (Which sense the sentence picked is which-head's nearest-point choice,
+# 20-core; it is not checked again here.) Lines are read by the store's strength index
+# (RELS: strongest first), so a word with many lines costs the same.
+gate cl-wl
+gate cl-g
+gate cl-sl
+gate cl-sall
+gate cl-n
+proc cl-start = MINE READ
+on cl-start YES -> carry-on
+on cl-start NO -> cl-hist
+proc cl-hist = SIG FIND cl-hist2
+on cl-hist NONE -> cl-go
+proc cl-hist2 = RIGHT READ ZERO COMPARE
+on cl-hist2 SAME -> cl-go-d
+on cl-hist2 MORE -> p-drop1
+on cl-hist2 LESS -> cl-go-d
+proc cl-go-d = LAST DELETE cl-go
+proc cl-go = SIG READ cl-wl SLOT WRITE cl-word
+proc cl-word = cl-wl SLOT READ FIRST READ cl-w1
+on cl-word NONE -> carry-on
+proc cl-w1 = KIND READ
+on cl-w1 GATE -> cl-w2
+on cl-w1 NUMBER -> cl-wskip
+on cl-w1 TEXT -> cl-wskip
+on cl-w1 POINT -> cl-wskip
+on cl-w1 LIST -> cl-wskip
+proc cl-wskip = LAST DELETE cl-wnext
+proc cl-w2 = LAST READ MADE READ ITEM READ TOLD COMPARE
+on cl-w2 SAME -> cl-wskip
+on cl-w2 MORE -> cl-w3
+proc cl-w3 = cl-g SLOT WRITE cl-g SLOT READ LABEL READ cl-w4
+on cl-w3 NONE -> cl-wnext
+proc cl-w4 = LABELS FIND cl-w5
+on cl-w4 NONE -> cl-wnext
+proc cl-w5 = LAST READ cl-sall SLOT WRITE cl-sl SLOT WRITE ZERO cl-n SLOT WRITE cl-cnt
+proc cl-wnext = cl-wl SLOT READ REST READ cl-wl SLOT WRITE cl-word
+# how many of its senses hold a meaning
+proc cl-cnt = cl-sl SLOT READ FIRST READ cl-c1
+on cl-cnt NONE -> cl-cend
+proc cl-c1 = LAST READ MADE READ ITEM READ TOLD COMPARE
+on cl-c1 SAME -> cl-cskip
+on cl-c1 MORE -> cl-cm
+proc cl-cskip = LAST DELETE cl-cnext
+proc cl-cm = cl-m cl-cnext
+proc cl-cnext = cl-sl SLOT READ REST READ cl-sl SLOT WRITE cl-cnt
+proc cl-m = LAST READ VALUE READ cl-my
+on cl-m NONE -> cl-m2
+proc cl-m2 = LAST READ t-same RELS READ cl-my
+on cl-m2 NONE -> cl-m3
+proc cl-m3 = LAST READ t-opposite RELS READ cl-my
+on cl-m3 NONE -> cl-m4
+proc cl-m4 = LAST READ t-kind-of RELS READ cl-my
+on cl-m4 NONE -> p-drop1
+proc cl-my = LAST DELETE LAST DELETE cl-n SLOT READ one ADD cl-n SLOT WRITE
+proc cl-cend = cl-n SLOT READ two COMPARE
+on cl-cend LESS -> cl-cend-n
+on cl-cend SAME -> cl-cend-y
+on cl-cend MORE -> cl-cend-y
+proc cl-cend-n = LAST DELETE cl-wnext
+proc cl-cend-y = LAST DELETE cl-ask
+# the question, from its meanings
+proc cl-ask = cl-g SLOT READ core-check SAY cl-ask2
+on cl-ask NONE -> p-drop1
+proc cl-ask2 = cl-sall SLOT READ cl-sl SLOT WRITE cl-each
+proc cl-each = cl-sl SLOT READ FIRST READ cl-e1
+on cl-each NONE -> cl-asked
+proc cl-e1 = LAST READ MADE READ ITEM READ TOLD COMPARE
+on cl-e1 SAME -> cl-eskip
+on cl-e1 MORE -> cl-esay
+proc cl-eskip = LAST DELETE cl-enext
+proc cl-esay = cl-say1 cl-enext
+proc cl-enext = cl-sl SLOT READ REST READ cl-sl SLOT WRITE cl-each
+proc cl-asked = cl-g SLOT READ QUESTION TODO WRITE
+# one meaning: its value, else the same / not / kind and the word its line goes to
+proc cl-say1 = LAST READ VALUE READ cl-sv
+on cl-say1 NONE -> cl-s1
+proc cl-sv = core-check SAY cl-q
+on cl-sv NONE -> p-drop1
+proc cl-q = say-q LAST DELETE
+proc cl-s1 = LAST READ t-same RELS READ FIRST READ cl-ss
+on cl-s1 NONE -> cl-s2
+proc cl-ss = ITEM READ the-same core-check SAY cl-sb
+on cl-ss NONE -> cl-sb-n
+proc cl-s2 = LAST READ t-opposite RELS READ FIRST READ cl-so
+on cl-s2 NONE -> cl-s3
+proc cl-so = ITEM READ not core-check SAY cl-sb
+on cl-so NONE -> cl-sb-n
+proc cl-s3 = LAST READ t-kind-of RELS READ FIRST READ cl-sk
+on cl-s3 NONE -> p-drop1
+proc cl-sk = ITEM READ kind core-check SAY cl-sb
+on cl-sk NONE -> cl-sb-n
+proc cl-sb = core-check SAY cl-q
+on cl-sb NONE -> cl-sb-n
+proc cl-sb-n = LAST DELETE cl-q
+# the frame at the end of a phrase (meaning blueprint §4): what the phrase came to is a
+# gate with no meaning at all (no action, no value, no held line, no definition read):
+# the slot it was to fill is still open, and that is the question (dunno: read, run
+# again, then ask). A told gate has its action.
+proc fr-filled = KIND READ
+on fr-filled GATE -> fr-f0
+on fr-filled NUMBER -> p-drop1
+on fr-filled TEXT -> p-drop1
+on fr-filled POINT -> p-drop1
+on fr-filled LIST -> p-drop1
+on fr-filled NONE -> carry-on
+# a hole a prime opened (who: someone, what: something, when, where, why: because) is
+# what the phrase came to, unfilled: the question is that hole, said by its own word
+proc fr-f0 = LAST READ ITEM READ something COMPARE
+on fr-f0 SAME -> fr-hk
+on fr-f0 MORE -> fr-f1
+proc fr-hk = LAST DELETE p-hole-kind SLOT READ fr-hk2
+on fr-hk NONE -> carry-on
+# a what-hole be could not fill has been asked about already (dunno: X what ?)
+proc fr-hk2 = LAST READ ITEM READ something COMPARE
+on fr-hk2 SAME -> p-drop1
+on fr-hk2 MORE -> fr-hole
+proc fr-hole = LAST READ sec-asked SECTION READ fr-hole-t
+on fr-hole NONE -> fr-hole-say
+proc fr-hole-t = CLOCK one SUB COMPARE
+on fr-hole-t MORE -> fr-hole-q
+on fr-hole-t SAME -> fr-hole-d
+on fr-hole-t LESS -> fr-hole-d
+proc fr-hole-q = LAST DELETE LAST DELETE
+proc fr-hole-d = LAST DELETE fr-hole-say
+proc fr-hole-say = LAST READ sec-asked CLOCK SECTION WRITE LAST READ QUESTION TODO WRITE core-check SAY say-q
+on fr-hole-say NONE -> p-drop1
+proc fr-f1 = LAST READ MADE READ ITEM READ TOLD COMPARE
+on fr-f1 SAME -> p-drop1
+on fr-f1 MORE -> fr-f2
+proc fr-f2 = LAST READ PROC READ fr-has
+on fr-f2 NONE -> fr-f3
+proc fr-f3 = LAST READ VALUE READ fr-has
+on fr-f3 NONE -> fr-f4
+proc fr-f4 = LAST READ sec-sources SECTION READ fr-has
+on fr-f4 NONE -> fr-f5
+proc fr-f5 = LAST READ t-kind-of RELS READ fr-has
+on fr-f5 NONE -> fr-f6
+proc fr-f6 = LAST READ t-same RELS READ fr-has
+on fr-f6 NONE -> fr-f7
+proc fr-f7 = LAST READ t-opposite RELS READ fr-has
+on fr-f7 NONE -> fr-open
+proc fr-has = LAST DELETE LAST DELETE
+proc fr-open = ITEM READ dunno SPLIT LAST DELETE
+proc heard-end = h-out SLOT READ
+
+# ================= where the questions fire (§8 table)
+# have I done this before? at = and ? and at the end of a phrase (heard calls done-sig)
+trig equals -> done-before 0.5
+trig key-qmark -> done-before 0.5
+trig key-period -> done-before 0.5
+rel half t-kind-of SETTING
+rel worth-floor t-kind-of SETTING
+rel fr-reads t-kind-of SETTING
+rel hs-span t-kind-of SETTING
+rel hs-many t-kind-of SETTING
+rel fr-gap t-kind-of SETTING
+# the same line read the other way: what contradicts "the opposite" is "the same"
+rel t-opposite t-opposite t-same

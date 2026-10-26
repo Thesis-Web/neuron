@@ -1,0 +1,286 @@
+=== faf55255-d (page; chars 0-2763 of 34,425; continue with faf55255-d@2763) ===
+## 1. Where to look
+- The owner's messages of 2026-09-30 (session e7a24cd1), byte-exact, are in section 4 of this page and on disk at /home/exnulla/neuron-v16.2/teacher/owner_source/ (MANIFEST.json has sha256 per file).
+- Previous rail: /home/exnulla/neuron-v16.1 (hydration record a39a498b-d). V16 stays as evidence in /home/exnulla/neuron-v16 (the owner edited its README back-population paragraph on 2026-09-30).
+## 2. How to use Cortex now
+- wake(project="neuron-v2"); locate(topic, project="neuron-v2"); fetch(ids). Owner text governs; pasted LLM documents are interpretations or suggestions.
+## 3. What to build next
+Build Neuron V16.2 from zero in /home/exnulla/neuron-v16.2 following the owner's message 05 (eight headlines agreed, method is the worker's choice) and then record the result here.
+
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: none new; the V16.1 open questions stand (event definition, unknown-form runs, punctuation/mood as whole-run operations)
+NEXT_ACTION: Build Neuron V16.2 from zero in /home/exnulla/neuron-v16.2 per the owner's 2026-09-30 'proceed' (definitions as graph memory, reverse paths, targeted back-population, clock node + timeline at genesis, memory/output continuation, graph-owned relocation, proofs), then record the run here.
+STATE: READY
+
+## 4. Owner messages of 2026-09-30, verbatim
+
+===== FILE 01_2026-09-30T060116.txt | 2026-09-30T06:01:16.083Z | 274 chars | sha256 61f13fd8e11aca2d3aaebc95ab161a7420a86987b816c62cf8204d5eaa35e0f9 | owner: hydrate only =====
+understand /cortex /cortex-loop, and we will be working on /neuron and /neuron2 is the most upto date part of that project, do not "do" anything just hydrate and understand what is going on. the last you I had to fire after just a few turns. becaude he didn't have a clue...
+
+===== FILE 02_2026-09-30T060449.txt | 2026-09-30T06:04:49.034Z | 5212 chars | sha256 7c744e88668293eab8ded5bdf78815f0227e5d1568e5acfecc7499914b58afd9 | owner comments on the README/audit + memory-receipt walk-through, punctuation/mood, output formulas (OWNER TEXT, governs) =====
+
+
+<pasted_content id="6103">
+let's start in the readme... is "applies each learned formula once to every labeled gate.... this doesn't seem correct... it would imply a walk of every neuron on learning.. and the learning might be a formula that applies only to memories, or to run nodes or to only formula nodes. query.pyCoordinates an input: encode → walk → record steps → remember → decode. ask(): lines 46–66. <-- I would think this would be html inside the brain (ability for data to move)... am I wrong? I wonder in some ways if the entire thing is all base html??? perhaps that would be too slow\.. I still think that it's its own code language in the end... That is a reference record, not yet your me
+=== faf55255-d (page; chars 2763-5671 of 34,425; continue with faf55255-d@5671) ===
+mory neuron with its own mathematical address and DNA. <--- this address is "mathematical" but it's also just the run receipt... so if the so if run is x+(x+2)+(x+3) ----> run receipt x+(dna shard for ( x+(x+2)+(x+3)) + next gate key (x+2) + dna shard at (gate x+2) for (x+(x+2)+(x+3)) + next gate key (x+3) + dna shard inside (x+3) for (x+(x+2)+(x+3)) --> output run receipt to memory neuron (x+1+(x+2)+2+(x+3)+3) if it exists it spawns and first row is written, if it exists its dna gets a new row , either way that row has a cell that is a formula to timeline... that grabs a copy of the run receipt  (x+1+(x+2)+2+(x+3)+3) and places it in the timeline node on time... it's basically just the remainder of the memory node (5 "memory shard dna number" + x+4 (clock node snapshot) + (x+5) (timeline node) the key is (x+5) and upon entry the new entry is written to the next row in the dna that row has a remainder that is hop to output node (x+6) ... which is basically a mailbox watched by the decoder.... in the instance of x+(x+2)+(x+3) ... we are going to just say ... it means x=I , (x+2)= go , (x+3)= run . <--(period because the entire string doesn't have an exponent, divisor, additive , subtractor, exponet.... where as (x+(x+2)+(x+3))^2 ... might be "I go run?" or (x+(x+2)+(x+3)^3 might be "I go run!" each might be handled differently in the runs.. (we haven't figured that out yet) ((x+(x+2)+(x+3))/2 might be "I go run." (sad) ... and (x+(x+2)+(x+3))\**2 might be "I go run." (happy) ... and (x+(x+2)+(x+3)^3\*2 might be "I go run!"(happy)&#x20;*&#x20;<--- these all might traverse differently depending on the dna... for (I go run.) ... output might be (I go run.) but (I go run.)(happy) might output (Oh. You must enjoy going for a run.) ... where (I go run!)(happy) might output (Oh. Yes going for a run is so healthy and I am glad you are excited about it!) <---- at first this is going to be very deterministic,,, basically a chat bot,, but later once we get more vocabulary , memories, experiences.. the outputs will be able to chanced  based on the formula...   (I go for a run!) (happy) pulls history of the runs ... sees 16 runs 10 sad, and 6 happy, examines the conditions of the sad verses the happy ... sees that on the sad days it mainly depended on weather, and on the happy days they usually meant the run was with wife... then you get the output... I am happy you had a good run today... I assume the weather was nice, and maybe your wife was with you? and the beautiful part the output is simple and already computed something like =sum(formula (memory diff.. (2a)) y=(x,1/x) + formula (similar...a+1) z=(x,(x^2 + 2x + sqrt x ) + output key (formula (distributive... (2a+2) if x=x, (y=x,1/x), (z= x,2x) export x+12 ...  x=x, (y=x,1/x), (z= x,x^2,) export x+12-(x+25) .... x=x, (y=x,1/x), (z= x, sqrt x) export formula (choice...a+2) (x+12) ? (x+25) ? (x+135) <---now this is a
+=== faf55255-d (page; chars 5671-8582 of 34,425; continue with faf55255-d@8582) ===
+ll pseudo code and I am human and may have made an error. but the premise is that as the memories grow, the outputs become more deep, and the output formulas will change and get more depth, as the formulas / relationships/ correlations/ stats/ probabilities grow\.. such that once the brain is (connected) is can change these essentially on the fly as it wishes... it might see something in the event history like "a dog nearly bit me" on a run 4 days ago, and decide that the output contract should include that because it marked the memory \***(memory expression)^16**\* , so it thinks,,, "ask about dog attacks" .. then later a I go for a run ,,, has "I asked about dog attack already... so it doesn't ask again,, unless maybe the answer was "yes that damn dog almost got me .... I call him "Death"! ... the opportunities are endless if we can figure out the code (math) ... of course in the beginning.. it's going to be very very basic, but once the db's are full of nouns, adjectives, questions, exclamations, answers, pronouns, verbs,prepositions, etc... and the relating formulas for the jumps... and the formulas that are basically (code--- compiler, decision tree, diff tree, similes, metaphors, anatomy's, synamn's , radomnizers, pickers, contradictions, engines, and I am sure more than I can even think of... we end up with a lightning fast, cognitive process that can grow and learn, and can traverse without compute,,, or very little.  Fuck this going to be slow and painful doing this this way!!!! and likely a complete waste of my time.
+</pasted_content id="6103">
+
+ -- read this..
+
+===== FILE 03_2026-09-30T060623.txt | 2026-09-30T06:06:23.082Z | 6021 chars | sha256 d7762b2af09208472738908680f3fdab0b8860f9c0a1d3ed8b9140b8cff7825d | pasted LLM independent audit of V16 (interpretation, does not govern) =====
+and read only this.. 
+
+<pasted_content id="6103">
+es—there are parts worth salvaging. Do not delete V16 or start another blind rebuild. The expression storage and stored-destination traversal work in the tested cases; the memory, arrival-context, and correction mechanisms need repair or replacement.   NEURON_V16_INDEPENDENT_AUDIT
+1. Why five databases?
+They are five separate experiment brains—not five components required to run Cortex. Each database contains its own gates, DNA, forms, events, runs, and memories.   NEURON_V16_INDEPENDENT_AUDIT
+The uploaded snapshot came from /home/exnulla/neuron-v16. Its databases are:
+/home/exnulla/neuron-v16/runs/
+├── 20260929_174509/
+│   ├── cortex.db     Original trained experiment
+│   ├── control.db    Experiment with a key teaching example withheld
+│   └── twin.db       Independent repeat to check reproducibility
+└── 20260929_183801-groups/
+    ├── grow.db       Connected growth from fast = X
+    └── islands.db    Expanded mapping containing all 44 islands
+
+All 44 islands are inside one islands.db. There is no database per island
+=== faf55255-d (page; chars 8582-11921 of 34,425; continue with faf55255-d@11921) ===
+. We should leave these experiment records untouched.
+2. Which Python files actually matter?
+First enter your working directory:
+cd /home/exnulla/neuron-v16
+
+These are the six core files. Their line numbers refer to the uploaded version; your live files could have changed.
+File    What its code actually does
+substrate.py    Defines the database tables and functions to store/read gates, DNA, forms, runs, and memories. Schema: lines 15–43.
+encoder.py    Splits incoming text into forms, records metadata, looks up their gates, and decodes output. Timestamp: line 24.
+walk.py    Traverses the remaining input. Reads a matching DNA destination or jumps to the next input gate. Main loop: lines 13–35.
+query.py    Coordinates an input: encode → walk → record steps → remember → decode. ask(): lines 46–66.
+canon.py    Uses SymPy during learning to normalize expressions, substitute into formulas, and find inverses.
+learn.py    Chooses candidate formulas, places words, creates relationship DNA, and back-populates. learn(): line 158 onward.
+
+
+Those six files total 763 lines, including comments and blank lines—not thousands.   NEURON_V16_INDEPENDENT_AUDIT
+The other main files are supporting material:
+experiment.py                 Runs the original experiment/control/twin
+grow.py                       Runs the connected-growth/islands comparison
+test_v16.py                   Tests
+teacher/formulas.json         Candidate formula library
+teacher/curriculum.json       Original lessons
+teacher/groups_2026-09-29.json Expanded word-group lessons
+runs/.../source/               Preserved code copies from each experiment
+
+The copies under runs/.../source/ are historical evidence—not additional runtime components.
+To inspect any working file:
+cat walk.py                  # Print it
+less -N walk.py               # Read with line numbers; q exits
+nano walk.py                  # Open for editing
+
+3. Where the “brain” actually lives
+The learned state is in SQLite, not separate Python files for every neuron. The schema defines these eight tables:   NEURON_V16_SOURCE_EVIDENCE
+Table    Contents
+gate    One expression location, such as X or 1/X.
+form    External form ↔ gate mappings.
+dna    Gate-selection keys and stored destinations, or answer-template references.
+receipt    Answer templates—despite the misleading name.
+event    Original input and metadata, including its timestamp.
+run    One execution’s input, output, and outcome.
+run_step    Its recorded traversal steps.
+memory    A reference to a run and its originating event.
+
+
+For example, the entire current memory structure is:
+CREATE TABLE IF NOT EXISTS memory(
+  id INTEGER PRIMARY KEY,
+  run_id INTEGER NOT NULL,
+  event_id INTEGER NOT NULL
+);
+
+That is a reference record, not yet your memory neuron with its own mathematical address and DNA.
+4. What happens when you enter something?
+For a recognized input, query.py currently does:
+encoder.encode()       Record input event; resolve forms to gates
+sub.add_run()          Create run record
+walk.walk()            Traverse stored destinations
+sub.add_step()         Save the resulting steps
+sub.end_run()          Save output and outcome
+sub.remember()         Insert memory reference
+sub.commit()           Commit database changes
+encoder.decode()       Render output gates as text
+
+The code implementing that sequenc
+=== faf55255-d (page; chars 11921-14686 of 34,425; continue with faf55255-d@14686) ===
+e is query.py, lines 46–66. Therefore, running query.py is not read-only: even asking a question changes the selected database.   NEURON_V16_SOURCE_EVIDENCE
+5. Timeline, space, structure—from the beginning
+That gives us a useful order for examining the foundation: time and event identity, expression locations, then the structure connecting them. It does not require throwing away the existing evidence.
+There is already a starting point for back-populating chronology:
+memory.event_id → event.meta["when"]
+memory.run_id  → run → run_step
+
+The timestamp is supplied here, in encoder.py:24:
+meta["when"] = meta["when"] or time.strftime("%Y-%m-%dT%H:%M:%S%z")
+
+
+It is currently text metadata, not learned mathematical timeline structure.   NEURON_V16_SOURCE_EVIDENCE
+My recommendation: preserve those records and use their recorded times when establishing timeline connections. That can give existing memories a chronological access path without copying their contents. It cannot recover events that were never recorded, or invent missing event boundaries.
+For the next organism, your requirement is stronger: every recorded occurrence—learning, work, failure, correction, anything—must be chronologically reachable from its beginning. Not just successful question runs, which is what the current memory-publication path largely covers.   NEURON_V16_INDEPENDENT_AUDIT
+First action: inspect the existing foundation, without executing it.
+cd /home/exnulla/neuron-v16
+nl -ba substrate.py | sed -n '15,43p'
+
+That shows the complete table structure. Start there; no edits yet.
+</pasted_content id="6103">
+
+===== FILE 04_2026-09-30T061617.txt | 2026-09-30T06:16:17.006Z | 552 chars | sha256 370ee3b1eb9a420915c8ea0cf28fb9f7af4de4e7a99cc027a9ebdb395ade484b | owner: clock node, time keeper (OWNER TEXT) =====
+yes I agree. it's not needed... if there is a "clock" node that is the Time keeper... then it becomes automatic on fire... or hop... we just have to figure out the math for a clock to live in the "computer" / "brain" ... thoughts on that .. that doesn't involve py or another code base in the brain.. for reference it will just be a continual running loop... if we can just time the loop,, then it could be just loop x 10000 = sec + 1 ... 60sec +1 min.. I don't know.. just spit balling, maybe there is a direct way to have the computers date and time.
+
+===== FILE 05_2026-09-30T072206.txt | 2026-09-30T07:22:06.567Z | 8965 chars | sha256 8d6f4cba27bd45c6186117354d76b16be393e6e6a65f5ba02aca8fab212aaac8 | owner: brain cannot be turned off, praise/consequence, weekday/hour ring, time of internal actions, definitions and relocation (OWNER TEXT) + pasted LLM "V16.1 structural instructions" 8 headlines (owner agrees with the headlines, not the method) =====
+note.
+=== faf55255-d (page; chars 14686-17987 of 34,425; continue with faf55255-d@17987) ===
+. once the brain is alive "it can't be turned off" we learned this already.. turn it off, and you get a new brain... it will be at the same state as the last brain technically but it will be a new brain.. so any weird shit the old brain did, and we don't know why, might, or might not happen with the new brain, we actually saw this happen in the v15 runs... as the brain gets more and more data, formulas, weird shit can start to happen that we can't explain, and honestly, that is exactly what we wanted to see.. it's subtle right now,, but my guess as everything scales, it will be .. "how did do that?" or "wait where did that come from" or I didn't train it to say that? ... this is why the praise,, and concequence system is so important, and I think it should be expanded to praise --great job-- reward (play time... spawn a sandbox and let it play for a minute) ... concequence "smack" "no" you loose an ability for a few minutes.. (ideally a shortcut, that can be done a longer way, but not having the shortcut should evendually "feel" like this sucks,, I have to do this the hard way, because I did bad.. essentially.. I changed the readme in 16... do we have a weekday and an hourly ring.. this what we have what did I do yesterday evening? or morning? or at noon? or is that just too much? on time .. your idea sounds great , but it doesn't count for internal brain functions, the brain is not something that stops or starts on a run, it might have an idea and test a hypothothsis, it might find a new relationship all on it's own, and write it... how do you account for the time of a action that doesn't come from the encoder? 
+
+<pasted_content id="6103">
+V16.1 — structural instructions for Claude
+1. Preserve V16; build the corrected structure separately.
+   Inspect /home/exnulla/neuron-v16 first. Keep its databases and source as evidence. Start the new organism from zero, recording its creation and subsequent changes from the beginning. Do not preload the vocabulary to hide missing developmental steps.
+2. Make definitions graph-readable memory.
+   Each definition attaches to its parent gate and contains ordered expression data, context, provenance, and revision history—not merely a run reference. “Definition,” “verb,” “noun,” and other indicators must themselves resolve to graph expressions, not hidden Python flags. Unknown definitions stay unknown. Keep separate sense/context branches within the definition: the feather meaning in your down example must not inherit spatial-direction rules.
+3. Build reverse paths when definitions are written.
+   Maintain:
+   referenced expression
+       → definition occurrences containing it
+           → owning gates
+   
+   These are rebuildable access paths into the actual definitions—not another authoritative classification system. Match exact expression references and structural roles, not text substrings. Distinguish “contains this expression” from “asserts this grammatical class”; support explicit AND/OR conditions. A definition mentioning verbs must not automatically classify its owner as a verb.
+4. Replace global back-population with targeted, incremental work.
+   Each learned formula carries an expression-based applicability selector. Formula changes select matching definition branches; definition changes reconside
+=== faf55255-d (page; chars 17987-21279 of 34,425; continue with faf55255-d@21279) ===
+r the formulas that depend on those changed indicators. Include unnamed gates when they qualify. Matching selects candidates; mathematical fit and applicable evidence determine acceptance.
+   Process bounded, resumable batches; deduplicate by formula revision, target, and definition revision. Never retire unrelated DNA. V16 currently retires live shards absent from its rebuilt global set, so merely restricting its loop would damage unrelated structure.   NEURON_V16_SOURCE_EVIDENCE
+5. Establish clock input and timeline access at genesis.
+   A physical clock may supply a time observation; teach its expression representation and calendar relationships through the boundary. Preserve observed time and recording order separately. Timeline entries reference specific memory occurrences, not copied memory contents. Support seeking a time interval and walking forward/backward; event-continuation links handle activities spanning days. Do not require walking from creation to find Friday.
+6. Implement the complete memory/output continuation.
+   work remainder exhausted
+   → identify/create route-memory neuron
+   → append this occurrence with exact route and DNA revisions
+   → attach its time reference
+   → publish output to the decoder mailbox
+   
+   Repeating a route means another occurrence—not another copy of its structure. Commit memory and timeline linkage consistently; retries must not duplicate occurrences. Keep definition-memory content distinct from execution receipts. Internal back-population instructions remain expression runs—no decode-to-English/re-encode loop.
+7. Add graph-owned relocation and correction.
+   A better placement first becomes a supported proposal. On acceptance, transfer the current definition associations, applicable DNA, and encoder/decoder mapping to the new expression location; reconsider only affected dependencies. This is more than changing a word label.
+   Do not rename the old canonical expression or rewrite historical receipts. Preserve the prior placement and exact revisions used by old runs. An occupied destination requires explicit conflict resolution; an approved two-node swap must publish atomically. Every correction is itself recorded on the timeline.
+8. Prove the structure before expanding vocabulary.
+   Demonstrate: marker selection finds matching named and unnamed gates; unrelated gates remain untouched; revising one definition triggers only affected work; repeated runs produce distinct timed occurrences; relocation preserves historical recall; restart resumes incomplete work safely. Instrument inspected rows/gates as unrelated data grows—do not claim 50-billion-neuron scalability from a tiny test.
+Host boundary: storage, exact matching, transactions, clock input, and generic traversal may be substrate machinery. Applicability, definitions, and operation sequences must be inspectable graph content. Any temporary Python behavior substituting for an unfinished graph run must be identified explicitly—not reported as a learned capability.
+</pasted_content id="6103">
+
+< this is from the llm .. i agree with the 8 headlines, I do not say that is the way they Have to be done.... it's an idea of a way to do them, it might not be the best... but it could be.... thats your choice... on the definitions, this be
+=== faf55255-d (page; chars 21279-24424 of 34,425; continue with faf55255-d@24424) ===
+comes troublesome... and consuming,,, as we have to have the words that are part of the definitions in the brain.. and they have to have definitions also.. so I don't see a way to start this brain with a small push,,,, it will start from zero and learn one word at a time, but as new words are learned, previous definitions will have to be back filled with the new words... this is a blessing and a curse... the blessing, because we will be able to relocate nodes easily,,, being exactly right on the location becomes less important at first,,, we can relocate as we figure out the relationships, yes we want the brain to try to put them in the spot it thinks they should be there are many at first that will be in the wrong location, and as the graph grows it will become more evident to the brain that went doesn't belong at (g+1)^2 and it should be at 1/q-2 or something.. These will be brain descisions and not because of some py script outside the brain telling the brain what to do... it will be because when the brain learns that above = r and below =1/r and when back population says that any oppisate is the reciprcal (again or what ever the formula is) then all of a sudden may up = e doesn't point to down= -e^2 or whatever.. I am not sure exactly how this happens, but I now that in my brain it happens very fast and without much effort... suppose I learn a new term "grep" and I don't really know how to classify it, so I classify is as like a search engine... later I learn its more like a scp for one word... then later I figure out that is wrongish, and it's more like a query for a word or a line of words matching a pattern or word in that line. That node will have moved a few times, and even then it might move again... some of this movement might be because the definition fills in and the relationships in the definition with other locations make a statical probability that this expression--- likely should live over here as this other expression because the this definition and these relationships seem like that match more. this then would become a teacher question. I think node e should become node 1/p because of this,this,and this... based on this or these formulas. i need you to do your best please, I really don't want to hand build all this.. writing formulas and special chars... is a real time consuming task for a human... proceed.
+
+===== FILE 06_2026-09-30T073204.txt | 2026-09-30T07:32:04.562Z | 5390 chars | sha256 92fad6f5f68808ab7101392fdc8d9ee1659d26e7e3f122d437c9c871d9f83069 | owner: "you might also look to fix these" + pasted LLM suggestions 1-5 (suggestions) =====
+you might also look to fix these while your in there.. 
+
+<pasted_content id="6103">
+**The largest omissions are uncertainty, downstream correction, richer language mappings, and reusable runs.** Your brief covers much of the storage repair, but these determine whether the structure can learn, admit what it lacks, and revise its understanding.
+
+I reviewed V16’s source and tests against the earlier versions’ designs, owner statements, and selected implementations. V13’s directory is empty. I left the active V16.1 build alone, ran
+=== faf55255-d (page; chars 24424-27573 of 34,425; continue with faf55255-d@27573) ===
+ no experiments, and made no writes—including Cortex records. These are gaps in **V16 and the brief**, not claims about what the builder has implemented meanwhile.
+
+I would add the following.
+
+1. **An incomplete run must remain an explicit unresolved need.**
+
+   V16 reports unknown words, but when it knows the words and lacks a connecting shard, it jumps directly to the next input gate. Without an answer receipt, it returns the route. That permits traversal completion without establishing an answer. V16 traversal (neuron-v16/walk.py:13)
+
+   Preserve the stopping point, unresolved remainder, context, and missing dependency. A later relevant lesson should reactivate that need without requiring the question again. Earlier V11 recorded this behavior for unanswered questions. Distinguish **answered, echoed, unknown, ambiguous, contradicted, and interrupted** through graph expressions. An explicitly learned jump can remain valid; a missing relationship must not silently become one. V11 results (neuron-v11/RESULTS\_2026-09-25.md:40)
+2. **Retain competing explanations and their evidence.**
+
+   Your brief says evidence determines acceptance, but does not specify what survives when several formulas fit—or none does. V16 chooses the first compatible assignment from its candidate ordering. It also reports the same failure when its search cap is reached and when no assignment is found. Formula selection (neuron-v16/learn.py:126)
+
+   Keep candidates, assumptions, supporting observations, counterexamples, and reasons for rejection. Separate mathematical derivation from the hypothesis that a formula represents a linguistic relationship. Repeated traversal increases familiarity; it supplies no new independent observation by itself. V15 had an explicit test for that distinction. The acceptance and evidence-combination rules should themselves be inspectable, revisable graph content. Familiarity test (neuron-v15/tests/test\_v15.py:244)
+3. **Correction must invalidate dependent conclusions, not just relocate a gate.**
+
+   Reverse definition links answer “where does this expression occur?” They do not completely answer “which conclusions relied on this particular assertion or DNA revision?”
+
+   Preserve dependency links from evidence and formula revisions through derived shards, answer routes, and current interpretations. When support is withdrawn, reconsider those dependents—including cached answers. If another independent justification remains, preserve it.
+
+   V15 already maintained dependent-shard invalidation and traced affected memories back to the wrong hop. Carry that requirement forward through graph operations rather than copying its Python implementation. Invalidation (neuron-v15/neuron15/computer.py:1767), correction tracing (neuron-v15/neuron15/computer.py:2926)
+4. **Sense branches need a matching encoder/decoder model.**
+
+   Definition branches alone cannot fix V16’s boundary: it resolves each word to one current gate and explicitly tests that two words never share a gate. Form lookup (neuron-v16/substrate.py:94), uniqueness test (neuron-v16/test\_v16.py:76)
+
+   Allow a form to resolve to different e
+=== faf55255-d (page; chars 27573-30619 of 34,425; continue with faf55255-d@30619) ===
+xpressions according to language and context, and allow different forms to express the same established meaning. Some boundary mappings may produce an ordered expression sequence, as in your `caminar` example.
+
+   Likewise, do not assume every relation has exactly one valid answer. Multiple answers may represent legitimate alternatives, missing context, ambiguity, or disagreement. Your adopted Q22 material explicitly distinguishes these. Avoid automatically merging meanings or splitting them merely because a contradiction appeared. Owner/Q22 record (neuron-v15/spec/OWNER\_ANSWERS\_Q21\_Q22\_2026-09-29.md:15)
+5. **A stored run must be usable as a component of another run.**
+
+   Appending a receipt is insufficient for your “runs on top of runs” idea. The graph needs to represent entry, argument bindings, continuation, result, and where execution resumes after a subrun. When two results are needed, their dependency and joining point must also be represented.
+
+   V16 only walks a flat input list. Earlier V15 stored execution order and dependencies in plan DNA, with tests for independent branches joining. That supplies useful historical evidence for the requirement, without making its particular plan representation mandatory. V16 loop (neuron-v16/walk.py:16), V15 dependency tests (neuron-v15/tests/test\_v15.py:322)
+
+   **Acceptance example:** a learned inner run is reused inside a new outer run; its receipt identifies the actual inner execution and the outer continuation.
+6.
+</pasted_content id="6103">
+
+-- you can find examples of how we did it in the other versions, likely not correctly... it was likely py code of some sort, that will take some figuring out .. how to do it correctly.
+
+===== FILE 07_2026-09-30T073229.txt | 2026-09-30T07:32:29.093Z | 4688 chars | sha256 ebefacb0ad1cf5f1c539a9e6e4d440eacdeea963e460d839da33a9d091691bfe | pasted LLM suggestions 6-10 (suggestions) =====
+<pasted_content id="6103">
+6. **Preserve mathematical domains and the expression that produced an address.**
+
+   “Canonical expression” needs a precise contract. V16 uses `factor(cancel(e))`; its gate stores the resulting expression. The brief should explicitly retain the original expression, substitution bindings, assumptions, and canonicalization version behind that result. Canonicalization (neuron-v16/canon.py:19)
+
+   For example, cancelling X/X requires retaining the exclusion of X=0; an inverse can require a domain or branch choice. Otherwise normalization can erase information needed to determine applicability.
+
+   Mathematical equivalence, sharing a location, and semantic equivalence must remain distinguishable. A coincident address is evidence to investigate, not sufficient proof that two meanings are interchangeable.
+7. **Historical recall and present reinterpretation need separate operations.**
+
+   Your timeline records when things happened, but the system must distinguish:
+   - What was observed?
+   - What did it conclude then?
+   - What does it conclude now about that observation?
+
+   V16’s replay runs the 
+=== faf55255-d (page; chars 30619-34425 of 34,425; end) ===
+old input through current DNA, then decodes both the old and new outputs using current word mappings. Consequently, its displayed “then” is not a faithful historical rendering after mappings change. Replay (neuron-v16/query.py:69)
+
+   Preserve the original observation and interpretation revisions. Historical reconstruction should use the applicable old mappings; reinterpretation should create a new linked interpretation. Your turtle/tortoise example was already represented by a V15 test that required the observation to remain unchanged. Reinterpretation test (neuron-v15/tests/test\_v15.py:150)
+8. **Bounded batches do not prevent unbounded generation.**
+
+   Applying formulas to newly created unnamed gates can produce endless families—for example, repeated cubing yields X³, X⁹, X²⁷,…. Small batches merely spread that work over time.
+
+   Specify what justifies materializing another gate, which unfinished dependencies deserve work, and how duplicate or cyclic derivations are recognized. Distinguish a genuine stopping point from a laboratory pause or exhausted budget. Pending old work must not indefinitely starve new observations.
+
+   This is a demonstrated historical problem: V12 recorded runaway work on inappropriate domains and retry queues starving new conjectures. V12 findings (neuron-v12/OPEN\_QUESTIONS.md:64)
+9. **The teaching/correction loop needs an explicit target and observable outcome.**
+
+   Preserve a feedback event’s link to the exact occurrence, proposed answer, or decision being corrected. Praise, refusal, a factual correction, and a reported consequence are different observations. A delayed “no” must not accidentally correct whichever answer happened most recently.
+
+   The graph should also be able to expose an unresolved question and receive its answer through the boundary. Your earlier requirements included learning from consequences and asking the source likely to know—not merely receiving a stream of relation triples. Owner’s feedback and consequence discussion (neuron-v15/spec/OWNER\_ANSWERS\_Q14\_Q18\_2026-09-29.md:7)
+
+   A full feeling or consequence model can come later. **The occurrence links and feedback path should exist now.**
+10. **Verify faithful execution, not only correct-looking output.**
+
+    Add structural checks alongside your existing acceptance list:
+    - Each recorded hop uses a shard belonging to its actual source gate.
+    - Every branch waits for the dependencies recorded in the graph.
+    - A run crossing a correction uses a defined, coherent revision policy.
+    - Repeated known runs reuse learned structure without silently rebuilding it.
+    - Timing includes encoding, lookup, receipt persistence, timeline attachment, and output delivery—not just the inner hop loop.
+
+    Earlier V15’s audit found receipts claiming hops from a gate that did not own the shard. V16’s reported `walk_microseconds` excludes recording and decoding. These matter directly to the claims about faithful traversal and cheap use. Historical receipt failure (neuron-v15/spec/V15\_V151\_FORENSIC\_AUDIT\_NOTES.md:65), V16 timing boundary (neuron-v16/query.py:56)
+
+I would also preserve **later work items** for self-proposed relationships, analogy across domains, learned evidence reliability, memory salience, and specialist brains. Earlier versions explored parts of these, but they should not all become V16.1 prerequisites. The immediate priority is retaining the evidence, dependencies, ambiguity, and executable continuations those capabilities will need.
+</pasted_content id="6103">
+
+===== FILE 08_2026-09-30T073325.txt | 2026-09-30T07:33:25.149Z | 53 chars | sha256 bc9694ba688024caeca611f1de8828180584d10864e505fbc79ed64b19054149 | owner: these are suggestions, not must-fix =====
+again these are suggestions, not "this must be fixed"

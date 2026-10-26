@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# demo: grow a brain from nothing and walk it through plus, minus, times and equals.
+# Each line shows what was typed and everything the brain said back.
+set -euo pipefail
+cd "$(dirname "$0")"
+say() { printf '  %-16s -> %s\n' "$*" "$(./say "$@" | paste -sd ' ')"; }
+
+echo "== grow: the bones, neuron 1, and the first run"
+./grow
+echo
+echo "== teach plus and equals (their long forms, once)"
+./teach.sh teach/1_base.sql
+echo "== plus, the long way, then the shortcut, then three memories for study"
+say 2 + 3
+say 2 + 3
+say 1 + 4
+say 0 + 7
+echo "== plus now points to the formula study found; numbers it never counted:"
+say 1234 + 4321
+say 2 + 3 + 4
+echo
+echo "== teach minus (its long form, once); relate back-populates plus's shards"
+./teach.sh teach/2_minus.sql
+say 5 - 3
+say 9 - 4
+say 8 - 8
+say 3 - 10
+echo
+echo "== teach times (its long form, once)"
+./teach.sh teach/3_times.sql
+say 3 x 4
+say 2 x 5
+say 7 x 1
+say 25 x 4
+say 2 + 3 x 4
+echo
+echo "== balance, and what it does not know"
+say 2 + 3 = 5
+say 2 + 2 = 5
+say zork
+say 7 +
+echo
+./look

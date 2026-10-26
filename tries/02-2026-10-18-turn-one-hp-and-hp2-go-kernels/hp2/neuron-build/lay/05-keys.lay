@@ -1,0 +1,198 @@
+# 05 keys: every key on the keyboard has its own gate. Shift is a key; a capital is shift + the letter key,
+# so the label is the lowercase letter (the encoder falls back to lowercase).
+
+gate key-a
+label key "a" key-a
+gate key-b
+label key "b" key-b
+gate key-c
+label key "c" key-c
+gate key-d
+label key "d" key-d
+gate key-e
+label key "e" key-e
+gate key-f
+label key "f" key-f
+gate key-g
+label key "g" key-g
+gate key-h
+label key "h" key-h
+gate key-i
+label key "i" key-i
+gate key-j
+label key "j" key-j
+gate key-k
+label key "k" key-k
+gate key-l
+label key "l" key-l
+gate key-m
+label key "m" key-m
+gate key-n
+label key "n" key-n
+gate key-o
+label key "o" key-o
+gate key-p
+label key "p" key-p
+gate key-q
+label key "q" key-q
+gate key-r
+label key "r" key-r
+gate key-s
+label key "s" key-s
+gate key-t
+label key "t" key-t
+gate key-u
+label key "u" key-u
+gate key-v
+label key "v" key-v
+gate key-w
+label key "w" key-w
+gate key-x
+label key "x" key-x
+gate key-y
+label key "y" key-y
+gate key-z
+label key "z" key-z
+gate key-3
+label key "3" key-3
+gate key-4
+label key "4" key-4
+gate key-5
+label key "5" key-5
+gate key-6
+label key "6" key-6
+gate key-7
+label key "7" key-7
+gate key-8
+label key "8" key-8
+gate key-9
+label key "9" key-9
+gate key-backtick
+label key "`" key-backtick
+gate key-tilde
+label key "~" key-tilde
+gate key-bang
+label key "!" key-bang
+gate key-at
+label key "@" key-at
+gate key-hash
+label key "#" key-hash
+gate key-dollar
+label key "$" key-dollar
+gate key-percent
+label key "%" key-percent
+gate key-caret
+label key "^" key-caret
+gate key-amp
+label key "&" key-amp
+gate key-lparen
+label key "(" key-lparen
+gate key-rparen
+label key ")" key-rparen
+gate key-underscore
+label key "_" key-underscore
+gate key-lbracket
+label key "[" key-lbracket
+gate key-rbracket
+label key "]" key-rbracket
+gate key-lbrace
+label key "{" key-lbrace
+gate key-rbrace
+label key "}" key-rbrace
+gate key-backslash
+label key "\\" key-backslash
+gate key-pipe
+label key "|" key-pipe
+gate key-semicolon
+label key ";" key-semicolon
+gate key-colon
+label key ":" key-colon
+gate key-quote
+label key "'" key-quote
+gate key-dquote
+label key "\"" key-dquote
+gate key-comma
+label key "," key-comma
+gate key-period
+label key "." key-period
+gate key-less
+label key "<" key-less
+gate key-greater
+label key ">" key-greater
+gate key-qmark
+label key "?" key-qmark
+# the special keys: reached by their key names
+gate key-space
+label keyname "space" key-space
+gate key-enter
+label keyname "enter" key-enter
+gate key-tab
+label keyname "tab" key-tab
+gate key-backspace
+label keyname "backspace" key-backspace
+gate key-escape
+label keyname "escape" key-escape
+gate key-shift
+label keyname "shift" key-shift
+gate key-ctrl
+label keyname "ctrl" key-ctrl
+gate key-alt
+label keyname "alt" key-alt
+gate key-super
+label keyname "super" key-super
+gate key-capslock
+label keyname "capslock" key-capslock
+gate key-up
+label keyname "up" key-up
+gate key-down
+label keyname "down" key-down
+gate key-left
+label keyname "left" key-left
+gate key-right
+label keyname "right" key-right
+gate key-delete
+label keyname "delete" key-delete
+gate key-insert
+label keyname "insert" key-insert
+gate key-home
+label keyname "home" key-home
+gate key-end
+label keyname "end" key-end
+gate key-pageup
+label keyname "pageup" key-pageup
+gate key-pagedown
+label keyname "pagedown" key-pagedown
+gate key-menu
+label keyname "menu" key-menu
+gate key-printscreen
+label keyname "printscreen" key-printscreen
+gate key-scrolllock
+label keyname "scrolllock" key-scrolllock
+gate key-pause
+label keyname "pause" key-pause
+gate key-numlock
+label keyname "numlock" key-numlock
+gate key-f1
+label keyname "f1" key-f1
+gate key-f2
+label keyname "f2" key-f2
+gate key-f3
+label keyname "f3" key-f3
+gate key-f4
+label keyname "f4" key-f4
+gate key-f5
+label keyname "f5" key-f5
+gate key-f6
+label keyname "f6" key-f6
+gate key-f7
+label keyname "f7" key-f7
+gate key-f8
+label keyname "f8" key-f8
+gate key-f9
+label keyname "f9" key-f9
+gate key-f10
+label keyname "f10" key-f10
+gate key-f11
+label keyname "f11" key-f11
+gate key-f12
+label keyname "f12" key-f12

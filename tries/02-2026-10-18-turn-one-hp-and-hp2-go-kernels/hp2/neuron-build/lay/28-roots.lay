@@ -1,0 +1,140 @@
+# 28 roots: the root meanings and the root operations (meaning blueprint §2.1, the
+# appendix worksheet, §8 "Roots and primes are the first-guess layer").
+# The physics words (00-roots) are the bottom. Above them sit a few root meanings the
+# primes seem to be built from (the worksheet guesses live, now, above, far) and a few
+# operations the worksheet builds primes with (−x, x +, x ++, x + x, and 1/x).
+# EVERY ONE HERE IS A FIRST GUESS: the owner's pseudocode read by the builder. None is a
+# rule. Each is marked the one way this layer marks a guess, `sect G sec-truth GUESS`
+# (the same GUESS gate 10-types gives `sec-truth GUESS`), so the meaning loop can see it
+# is a guess and refit it when its uses don't balance (guess-balance, below).
+#
+# The labels (now, live, above, far) are laid with the other primes in 30-primes.
+
+# gates other areas own
+gate not
+gate GAP
+
+# ================= root operations: each acts on the value in hand (the top of the pad)
+# −x: the opposite. A number or a point is mirrored through the origin (on = y, off = −y);
+# a gate goes to its opposite (the prime NOT). Text or a list: left as it is.
+gate r-neg
+proc r-neg = KIND READ
+on r-neg NUMBER -> f-negate
+on r-neg POINT -> f-negate
+on r-neg GATE -> not
+on r-neg TEXT -> carry-on
+on r-neg LIST -> carry-on
+on r-neg NONE -> carry-on
+# x +: after, more: a number one more ("some = +one"); a point grown along itself
+gate r-more
+proc r-more = KIND READ
+on r-more NUMBER -> r-more-n
+on r-more POINT -> f-grow
+on r-more GATE -> carry-on
+on r-more TEXT -> carry-on
+on r-more LIST -> carry-on
+on r-more NONE -> carry-on
+proc r-more-n = one ADD
+# x ++: a lot more: grown by its own size (x · x; a point: its dot with itself)
+gate r-lot
+proc r-lot = KIND READ
+on r-lot NUMBER -> r-lot-n
+on r-lot POINT -> r-lot-n
+on r-lot GATE -> carry-on
+on r-lot TEXT -> carry-on
+on r-lot LIST -> carry-on
+on r-lot NONE -> carry-on
+proc r-lot-n = LAST READ MUL
+# x + x: the value and itself again
+gate r-twice
+proc r-twice = KIND READ
+on r-twice NUMBER -> r-twice-n
+on r-twice POINT -> r-twice-n
+on r-twice GATE -> carry-on
+on r-twice TEXT -> carry-on
+on r-twice LIST -> carry-on
+on r-twice NONE -> carry-on
+proc r-twice-n = LAST READ ADD
+# 1/x: the inverse (yes = x, no = 1/x; a point p/|p|²)
+gate r-inv
+proc r-inv = KIND READ
+on r-inv NUMBER -> f-invert
+on r-inv POINT -> f-invert
+on r-inv GATE -> carry-on
+on r-inv TEXT -> carry-on
+on r-inv LIST -> carry-on
+on r-inv NONE -> carry-on
+
+# ================= root meanings (the origin and the three axes are the roots of place)
+# LIVE: the brain's own running state: how many of its memories are awake (a count)
+gate live
+proc live = ACTIVE READ
+# NOW: the clock (the moment, in seconds)
+gate now
+proc now = CLOCK
+# ABOVE: a direction: up the y axis (the y axis's point)
+gate above
+proc above = ITEM READ y-axis POINT READ
+# FAR: a large distance: one whole axis length from the origin (the x axis's point
+# with itself, a number)
+gate far
+proc far = ITEM READ x-axis POINT READ LAST READ MUL
+
+# ---- every root and operation above is a guess
+sect r-neg sec-truth GUESS
+sect r-more sec-truth GUESS
+sect r-lot sec-truth GUESS
+sect r-twice sec-truth GUESS
+sect r-inv sec-truth GUESS
+sect live sec-truth GUESS
+sect now sec-truth GUESS
+sect above sec-truth GUESS
+sect far sec-truth GUESS
+sect live sec-built ACTIVE
+sect now sec-built CLOCK
+sect above sec-built y-axis
+sect far sec-built x-axis
+
+# ================= refit by balance
+# guess-balance: SPLIT with subject = a gate whose meaning is a guess (latest sec-truth
+# GUESS). Its uses are already on record: end-of-run files each run's memory id in the
+# sec-use section of every gate the run heard (20-core end-use), and a person's yes or no
+# marks that memory RIGHT or WRONG (40-questions heard). This adds up RIGHT and WRONG over
+# its latest uses (at most PAGE of them, an index read each) and, when wrong outweighs
+# right, reopens the meaning: sec-truth CONTRADICTED, and the gate goes on the GAP list
+# (a missing meaning again) for the meaning loop (`mean`) to refit it from its parts
+# (sec-built). It lands YES (still balances, or no judged uses yet), NO (reopened), or
+# NONE (not a guess). Compute is spent only when the learning side asks.
+gate gb-r
+gate gb-w
+gate gb-k
+gate gb-m
+proc guess-balance = SUBJ READ sec-truth SECTION READ gb-is
+on guess-balance NONE -> gb-none
+proc gb-is = ITEM READ GUESS COMPARE
+on gb-is SAME -> gb-start
+on gb-is MORE -> gb-none
+proc gb-none = ITEM READ NONE LAND END
+proc gb-start = ZERO gb-r SLOT WRITE ZERO gb-w SLOT WRITE ZERO gb-k SLOT WRITE SUBJ READ sec-use SECTIONS READ gb-walk
+on gb-start NONE -> gb-held
+proc gb-walk = gb-k SLOT READ one ADD LAST READ gb-k SLOT WRITE PAGE COMPARE
+on gb-walk LESS -> gb-next
+on gb-walk SAME -> gb-full
+on gb-walk MORE -> gb-full
+proc gb-full = LAST DELETE gb-sum
+proc gb-next = LAST DELETE LAST READ FIRST READ gb-one REST READ gb-walk
+on gb-next NONE -> gb-sum
+proc gb-one = gb-m SLOT WRITE gb-m SLOT READ RIGHT READ gb-one2
+on gb-one NONE -> carry-on
+proc gb-one2 = gb-r SLOT READ ADD gb-r SLOT WRITE gb-m SLOT READ WRONG READ gb-one3
+on gb-one2 NONE -> carry-on
+proc gb-one3 = gb-w SLOT READ ADD gb-w SLOT WRITE
+proc gb-sum = LAST DELETE gb-w SLOT READ gb-r SLOT READ COMPARE
+on gb-sum MORE -> gb-off
+on gb-sum SAME -> gb-held-d
+on gb-sum LESS -> gb-held-d
+proc gb-held-d = LAST DELETE gb-held
+proc gb-held = ITEM READ YES LAND END
+proc gb-off = LAST DELETE SUBJ READ sec-truth ITEM READ CONTRADICTED SECTION WRITE SUBJ READ GAP TODO WRITE gb-reopened
+on gb-off NONE -> gb-reopened
+proc gb-reopened = ITEM READ NO LAND END

@@ -1,0 +1,100 @@
+/opt/neuron:
+total 20
+drwxr-xr-x 5 root root 4096 Oct 19 14:31 .
+drwxr-xr-x 3 root root 4096 Oct 19 00:15 ..
+drwxr-xr-x 2 root root 4096 Oct 19 14:31 bin
+drwxr-xr-x 2 root root 4096 Oct 19 14:31 kernel
+drwxr-xr-x 2 root root 4096 Oct 19 14:31 lay
+
+/opt/neuron/bin:
+total 264
+drwxr-xr-x 2 root root 4096 Oct 19 14:31 .
+drwxr-xr-x 5 root root 4096 Oct 19 14:31 ..
+-rwxr-xr-x 1 root root  284 Oct 19 14:31 archive.sh
+-rwxr-xr-x 1 root root  274 Oct 19 14:31 arxiv.sh
+-rwxr-xr-x 1 root root  307 Oct 19 14:31 britannica1911.sh
+-rwxr-xr-x 1 root root  306 Oct 19 14:31 cldr.sh
+-rwxr-xr-x 1 root root  287 Oct 19 14:31 cmudict.sh
+-rwxr-xr-x 1 root root  252 Oct 19 14:31 cppreference.sh
+-rwxr-xr-x 1 root root  260 Oct 19 14:31 crossref.sh
+-rwxr-xr-x 1 root root  244 Oct 19 14:31 devdocs.sh
+-rwxr-xr-x 1 root root  286 Oct 19 14:31 dict-elements.sh
+-rwxr-xr-x 1 root root  280 Oct 19 14:31 dict-foldoc.sh
+-rwxr-xr-x 1 root root  277 Oct 19 14:31 dict-gcide.sh
+-rwxr-xr-x 1 root root  196 Oct 19 14:31 dictorg-gcide.sh
+-rwxr-xr-x 1 root root  268 Oct 19 14:31 dict-wn.sh
+-rwxr-xr-x 1 root root  302 Oct 19 14:31 europepmc.sh
+-rwxr-xr-x 1 root root  288 Oct 19 14:31 factbook.sh
+-rwxr-xr-x 1 root root  258 Oct 19 14:31 gbif.sh
+-rwxr-xr-x 1 root root  195 Oct 19 14:31 godoc.sh
+-rwxr-xr-x 1 root root  238 Oct 19 14:31 gospec.sh
+-rwxr-xr-x 1 root root  264 Oct 19 14:31 gutenberg.sh
+-rwxr-xr-x 1 root root  283 Oct 19 14:31 horizons.sh
+-rwxr-xr-x 1 root root  294 Oct 19 14:31 itis.sh
+-rwxr-xr-x 1 root root  249 Oct 19 14:31 kerneldoc.sh
+-rwxr-xr-x 1 root root  252 Oct 19 14:31 loc.sh
+-rwxr-xr-x 1 root root  336 Oct 19 14:31 man.sh
+-rwxr-xr-x 1 root root  255 Oct 19 14:31 mathworld.sh
+-rwxr-xr-x 1 root root  257 Oct 19 14:31 mdn.sh
+-rwxr-xr-x 1 root root  280 Oct 19 14:31 medlineplus.sh
+-rwxr-xr-x 1 root root  255 Oct 19 14:31 metamath.sh
+-rwxr-xr-x 1 root root  305 Oct 19 14:31 moby.sh
+-rwxr-xr-x 1 root root  422 Oct 19 14:31 mw-antonyms.sh
+-rwxr-xr-x 1 root root  381 Oct 19 14:31 mw-collegiate.sh
+-rwxr-xr-x 1 root root  423 Oct 19 14:31 mw-thesaurus.sh
+-rwxr-xr-x 1 root root  307 Oct 19 14:31 ncbi-books.sh
+-rwxr-xr-x 1 root root  280 Oct 19 14:31 nist-constants.sh
+-rwxr-xr-x 1 root root  282 Oct 19 14:31 nominatim.sh
+-rwxr-xr-x 1 root root  250 Oct 19 14:31 oeis.sh
+-rwxr-xr-x 1 root root  585 Oct 19 14:31 oewn.sh
+-rwxr-xr-x 1 root root  265 Oct 19 14:31 openalex.sh
+-rwxr-xr-x 1 root root  257 Oct 19 14:31 openlibrary.sh
+-rwxr-xr-x 1 root root  309 Oct 19 14:31 openstax.sh
+-rwxr-xr-x 1 root root  235 Oct 19 14:31 pkggo.sh
+-rwxr-xr-x 1 root root  280 Oct 19 14:31 posix.sh
+-rwxr-xr-x 1 root root  321 Oct 19 14:31 pubchem.sh
+-rwxr-xr-x 1 root root  301 Oct 19 14:31 pubmed.sh
+-rwxr-xr-x 1 root root  256 Oct 19 14:31 python.sh
+-rwxr-xr-x 1 root root  252 Oct 19 14:31 rfc.sh
+-rwxr-xr-x 1 root root  268 Oct 19 14:31 roget.sh
+-rwxr-xr-x 1 root root  258 Oct 19 14:31 sbdb.sh
+-rwxr-xr-x 1 root root  250 Oct 19 14:31 sep.sh
+-rwxr-xr-x 1 root root  246 Oct 19 14:31 sqlite.sh
+-rwxr-xr-x 1 root root  219 Oct 19 14:31 tee-own.sh
+-rwxr-xr-x 1 root root  277 Oct 19 14:31 unicode.sh
+-rwxr-xr-x 1 root root  285 Oct 19 14:31 uniprot.sh
+-rwxr-xr-x 1 root root  294 Oct 19 14:31 usda.sh
+-rwxr-xr-x 1 root root  304 Oct 19 14:31 usgs-quakes.sh
+-rwxr-xr-x 1 root root  306 Oct 19 14:31 wikidata.sh
+-rwxr-xr-x 1 root root  307 Oct 19 14:31 wikipedia.sh
+-rwxr-xr-x 1 root root  382 Oct 19 14:31 wiktionary.sh
+-rwxr-xr-x 1 root root  316 Oct 19 14:31 wn-ant.sh
+-rwxr-xr-x 1 root root  271 Oct 19 14:31 wn-hyper.sh
+-rwxr-xr-x 1 root root  270 Oct 19 14:31 wn-mero.sh
+-rwxr-xr-x 1 root root  380 Oct 19 14:31 wn-syn.sh
+-rwxr-xr-x 1 root root  589 Oct 19 14:31 words.sh
+-rwxr-xr-x 1 root root  300 Oct 19 14:31 worldbank.sh
+
+/opt/neuron/kernel:
+total 104
+drwxr-xr-x 2 root root  4096 Oct 19 14:31 .
+drwxr-xr-x 5 root root  4096 Oct 19 14:31 ..
+-rw-r--r-- 1 root root 16339 Oct 19 14:31 lay.go
+-rw-r--r-- 1 root root  2456 Oct 19 14:31 main.go
+-rw-r--r-- 1 root root 32167 Oct 19 14:31 physics.go
+-rw-r--r-- 1 root root  5574 Oct 19 14:31 ports.go
+-rw-r--r-- 1 root root 14716 Oct 19 14:31 run.go
+-rw-r--r-- 1 root root 20105 Oct 19 14:31 store.go
+
+/opt/neuron/lay:
+total 196
+drwxr-xr-x 2 root root  4096 Oct 19 14:31 .
+drwxr-xr-x 5 root root  4096 Oct 19 14:31 ..
+-rw-r--r-- 1 root root 11413 Oct 19 14:31 00-roots.lay
+-rw-r--r-- 1 root root 18772 Oct 19 14:31 10-told.lay
+-rw-r--r-- 1 root root 19756 Oct 19 14:31 20-memory.lay
+-rw-r--r-- 1 root root 27750 Oct 19 14:31 30-questions.lay
+-rw-r--r-- 1 root root 24160 Oct 19 14:31 40-sources.lay
+-rw-r--r-- 1 root root 31415 Oct 19 14:31 45-meaning.lay
+-rw-r--r-- 1 root root 38779 Oct 19 14:31 50-learning.lay
+-rw-r--r-- 1 root root 10205 Oct 19 14:31 60-core.lay

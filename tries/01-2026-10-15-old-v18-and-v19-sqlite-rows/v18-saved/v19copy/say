@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# say: the ear and the mouth. Words exist only here and in the word table: each token you type is
+# handed to the brain as a pointer. The brain answers only with what its runs produced:
+# a value, a balance (=, or ≠), or "?" and what it still needs. Nothing it says is written in advance.
+# Use x for times (or quote the whole line, so the shell leaves * alone).
+set -f
+cd "$(dirname "$0")"
+[ $# -gt 0 ] || { echo "usage: ./say 2 + 3" >&2; exit 2; }
+read -r -a toks <<< "$*"
+last="${toks[${#toks[@]}-1]}"
+[ "$last" = "." ] || [ "$last" = "?" ] || toks+=(".")
+q() { local s=$1; printf "%s" "${s//\'/\'\'}"; }
+{
+  echo ".load ./kernel/eval"
+  echo "PRAGMA recursive_triggers = ON;"
+  echo "BEGIN;"
+  echo "INSERT INTO ear (text) VALUES ('$(q "$*")');"
+  for t in "${toks[@]}"; do
+    echo "INSERT INTO heard (ear, token) VALUES ((SELECT max(id) FROM ear), '$(q "$t")');"
+  done
+  echo "COMMIT;"
+  cat <<'SQL'
+SELECT line FROM (
+  SELECT b.at AS at, b.id AS k, 0 AS o,
+         (SELECT text FROM nm WHERE id = b.a) || CASE WHEN b.ok THEN ' = ' ELSE ' ≠ ' END || (SELECT text FROM nm WHERE id = b.b) AS line
+    FROM balance b WHERE b.ear = (SELECT max(id) FROM ear)
+  UNION ALL
+  SELECT n.at, n.id, 1, '? ' || coalesce(n.token, (SELECT text FROM nm WHERE id = n.neuron))
+    FROM need n WHERE n.ear = (SELECT max(id) FROM ear)
+  UNION ALL
+  SELECT o.at, o.id, 2, (SELECT text FROM nm WHERE id = o.neuron)
+    FROM out o WHERE o.ear = (SELECT max(id) FROM ear) AND o.neuron IS NOT NULL
+) ORDER BY at, o, k;
+SQL
+} | sqlite3 -bail brain.db

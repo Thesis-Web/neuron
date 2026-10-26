@@ -1,0 +1,14 @@
+I did this. because you can't have memories without dna??? I think .... because the dna shard that has no remainder is what triggers the write of the memories or the spawn of a new memory.. 
+
+<pasted_content id="2f9a">
+cd ~/neuron-v18
+sqlite3 brain.db
+CREATE TABLE dna (id INTEGER PRIMARY KEY, neuron INTEGER NOT NULL, key INTEGER NOT NULL, dest INTEGER NOT NULL, born INTEGER NOT NULL);
+CREATE INDEX dna_hop ON dna (neuron, key);
+.schema dna
+</pasted_content id="2f9a">
+
+.. but the problem remains the same, chicken or the egg.... we need to build the first run, but we need the code for the first run, which involves runs in the neurons.
+
+
+(saved Thu Oct 15 16:51:56 CDT 2026, session 69692be7 (neuron-v18 hand-build), extracted verbatim from line 262 of the session .jsonl, from "I did this." on)

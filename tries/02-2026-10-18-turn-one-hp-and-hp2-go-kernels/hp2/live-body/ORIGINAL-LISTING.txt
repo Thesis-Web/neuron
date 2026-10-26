@@ -1,0 +1,400 @@
+/home/neuron:
+total 1206232
+drwxr-x--- 7 neuron neuron      4096 2026-10-19 14:32 .
+drwxr-xr-x 4 root   root        4096 2026-10-19 00:04 ..
+-rw-r----- 1 neuron neuron 223803794 2026-10-19 15:40 acts.log
+-rw-r----- 1 neuron neuron 759213939 2026-10-19 13:20 acts.log.1
+-rw-r--r-- 1 neuron neuron       220 2026-03-08 10:21 .bash_logout
+-rw-r--r-- 1 neuron neuron      3526 2026-03-08 10:21 .bashrc
+drwxr-x--- 2 root   neuron      4096 2026-10-19 03:03 books
+-rw-r--r-- 1 neuron neuron 247087104 2026-10-19 15:39 brain.db
+-rw-r--r-- 1 neuron neuron     32768 2026-10-19 15:40 brain.db-shm
+-rw-r--r-- 1 neuron neuron   4944032 2026-10-19 15:40 brain.db-wal
+drwxrwxr-x 4 neuron neuron      4096 2026-10-19 01:36 .config
+-rw-r--r-- 1 neuron neuron     37206 2026-10-19 12:46 heap.prof
+drwxr-xr-x 5 neuron neuron      4096 2026-10-19 15:40 mind
+drwxrwxr-x 4 neuron neuron      4096 2026-10-19 13:21 own
+drwxrws--- 2 neuron neuron      4096 2026-10-19 14:33 ports
+-rw-r--r-- 1 neuron neuron       807 2026-03-08 10:21 .profile
+
+/home/neuron/books:
+total 136
+drwxr-x--- 2 root   neuron   4096 2026-10-19 03:03 .
+drwxr-x--- 7 neuron neuron   4096 2026-10-19 14:32 ..
+-rw-r----- 1 root   neuron 129141 2026-10-19 03:03 mcguffey-readers.txt
+
+/home/neuron/.config:
+total 16
+drwxrwxr-x 4 neuron neuron 4096 2026-10-19 01:36 .
+drwxr-x--- 7 neuron neuron 4096 2026-10-19 14:32 ..
+drwxrwxr-x 3 neuron neuron 4096 2026-10-19 01:36 go
+drwxrwxr-x 2 neuron neuron 4096 2026-10-19 00:59 merriam-webster
+
+/home/neuron/.config/go:
+total 12
+drwxrwxr-x 3 neuron neuron 4096 2026-10-19 01:36 .
+drwxrwxr-x 4 neuron neuron 4096 2026-10-19 01:36 ..
+drwxrwxr-x 4 neuron neuron 4096 2026-10-19 01:36 telemetry
+
+/home/neuron/.config/go/telemetry:
+total 16
+drwxrwxr-x 4 neuron neuron 4096 2026-10-19 01:36 .
+drwxrwxr-x 3 neuron neuron 4096 2026-10-19 01:36 ..
+drwxrwxr-x 2 neuron neuron 4096 2026-10-19 14:30 local
+drwxrwxr-x 2 neuron neuron 4096 2026-10-19 01:36 upload
+
+/home/neuron/.config/go/telemetry/local:
+total 60
+drwxrwxr-x 2 neuron neuron  4096 2026-10-19 14:30 .
+drwxrwxr-x 4 neuron neuron  4096 2026-10-19 01:36 ..
+-rw-rw-r-- 1 neuron neuron 16384 2026-10-19 14:28 asm@go1.24.4-go1.24.4-linux-amd64-2026-10-19.v1.count
+-rw-rw-r-- 1 neuron neuron 16384 2026-10-19 14:29 cgo@go1.24.4-go1.24.4-linux-amd64-2026-10-19.v1.count
+-rw-rw-r-- 1 neuron neuron 16384 2026-10-19 14:32 compile@go1.24.4-go1.24.4-linux-amd64-2026-10-19.v1.count
+-rw-rw-r-- 1 neuron neuron 16384 2026-10-19 15:20 doc@go1.24.4-go1.24.4-linux-amd64-2026-10-19.v1.count
+-rw-rw-r-- 1 neuron neuron 16384 2026-10-19 15:20 go@go1.24.4-go1.24.4-linux-amd64-2026-10-19.v1.count
+-rw-rw-r-- 1 neuron neuron 16384 2026-10-19 14:32 link@go1.24.4-go1.24.4-linux-amd64-2026-10-19.v1.count
+-rw-rw-r-- 1 neuron neuron     0 2026-10-19 01:36 upload.token
+-rw-rw-r-- 1 neuron neuron     2 2026-10-19 01:36 weekends
+
+/home/neuron/.config/go/telemetry/upload:
+total 8
+drwxrwxr-x 2 neuron neuron 4096 2026-10-19 01:36 .
+drwxrwxr-x 4 neuron neuron 4096 2026-10-19 01:36 ..
+
+/home/neuron/.config/merriam-webster:
+total 16
+drwxrwxr-x 2 neuron neuron 4096 2026-10-19 00:59 .
+drwxrwxr-x 4 neuron neuron 4096 2026-10-19 01:36 ..
+-rw------- 1 neuron neuron   37 2026-10-19 00:59 mw_collegiate.key
+-rw------- 1 neuron neuron   37 2026-10-19 00:59 mw_thesaurus.key
+
+/home/neuron/mind:
+total 8884
+drwxr-xr-x   5 neuron neuron    4096 2026-10-19 15:40 .
+drwxr-x---   7 neuron neuron    4096 2026-10-19 14:32 ..
+-rw-rw-r--   1 neuron neuron       0 2026-10-19 14:31 build.log
+drwxrwxr-x 258 neuron neuron    4096 2026-10-19 14:30 .cache
+drwxr-xr-x   3 neuron neuron    4096 2026-10-19 14:28 kernel
+drwxr-xr-x   2 neuron neuron    4096 2026-10-19 14:28 lay
+-rwxrwxr-x   1 neuron neuron 9069416 2026-10-19 14:32 neuron-built
+-rw-r--r--   1 neuron neuron     109 2026-10-19 15:40 swap.log
+
+total 1040
+drwxrwxr-x 258 neuron neuron 4096 2026-10-19 14:30 .
+drwxr-xr-x   5 neuron neuron 4096 2026-10-19 15:40 ..
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 00
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 01
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 02
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 03
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 04
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 05
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 06
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 07
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 08
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 09
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 0a
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 0b
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 0c
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 0d
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 0e
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 0f
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 10
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 11
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 12
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:31 13
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 14
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 15
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 16
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 17
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 18
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 19
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 1a
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:32 1b
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 1c
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 1d
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:31 1e
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 1f
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 20
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 21
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 22
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 23
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 24
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 25
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 26
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 27
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 28
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 29
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 2a
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 2b
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 2c
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:32 2d
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 2e
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 2f
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 30
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 31
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 32
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 33
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 34
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 35
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 36
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 37
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 38
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 39
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 3a
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 3b
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 3c
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 3d
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 3e
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 3f
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 40
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 41
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 42
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 43
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 44
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 45
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 46
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 47
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 48
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 49
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 4a
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 4b
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 4c
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 4d
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 4e
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 4f
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 50
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 51
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 52
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 53
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 54
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 55
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 56
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 57
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 58
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 59
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:32 5a
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 5b
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 5c
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 5d
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 5e
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 5f
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 60
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 61
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 62
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 63
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 64
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 65
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 66
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 67
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:32 68
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 69
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 6a
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 6b
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 6c
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 6d
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 6e
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 6f
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 70
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:30 71
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 72
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 73
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 74
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 75
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 76
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 77
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:30 78
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 79
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 7a
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 7b
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 7c
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 7d
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 7e
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:32 7f
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 80
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 81
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 82
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 83
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 84
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 85
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 86
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 87
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 88
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 89
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 8a
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 8b
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 8c
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 8d
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 8e
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 8f
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 90
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 91
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 92
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 93
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 94
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 95
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 96
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 97
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 98
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 99
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 9a
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 9b
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 9c
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 9d
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 9e
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:31 9f
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 a0
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 a1
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 a2
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 a3
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 a4
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 a5
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 a6
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 a7
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 a8
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:31 a9
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 aa
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 ab
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 ac
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 ad
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 ae
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 af
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 b0
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 b1
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 b2
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 b3
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 b4
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 b5
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 b6
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 b7
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 b8
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 b9
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 ba
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:32 bb
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 bc
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 bd
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 be
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 bf
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 c0
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 c1
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 c2
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 c3
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 c4
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 c5
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 c6
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 c7
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 c8
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 c9
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 ca
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 cb
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 cc
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 cd
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 ce
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:30 cf
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 d0
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 d1
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 d2
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 d3
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:32 d4
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 d5
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 d6
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 d7
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 d8
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 d9
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 da
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 db
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 dc
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 dd
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 de
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 df
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 e0
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 e1
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 e2
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 e3
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 e4
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 e5
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 e6
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 e7
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 e8
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 e9
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 ea
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 eb
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 ec
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 ed
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 ee
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 ef
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 f0
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 f1
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 f2
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 f3
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 f4
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 f5
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 f6
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 f7
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 f8
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 f9
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 fa
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 fb
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 fc
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:29 fd
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 fe
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 ff
+-rw-rw-r--   1 neuron neuron  222 2026-10-19 14:28 README
+-rw-rw-r--   1 neuron neuron   10 2026-10-19 14:30 trim.txt
+
+total 40
+drwxrwxr-x   2 neuron neuron  4096 2026-10-19 14:28 .
+drwxrwxr-x 258 neuron neuron  4096 2026-10-19 14:30 ..
+-rw-rw-r--   1 neuron neuron   175 2026-10-19 14:28 001d832a8affb96166abe3f2c0083434a28b989002877f410cc805e455e7a1e3-a
+-rw-rw-r--   1 neuron neuron 24028 2026-10-19 14:28 002ab0cfa9ce2a027fd83e5513d6be90b7e80ae8eb5467f7bb6fedcb50b4b37a-d
+-rw-rw-r--   1 neuron neuron    13 2026-10-19 14:28 00dedcbaf5dd36c49447863279d4bf0649eb1838d56074e8076fc688dff92fca-d
+
+total 20
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 .
+drwxrwxr-x 258 neuron neuron 4096 2026-10-19 14:30 ..
+-rw-rw-r--   1 neuron neuron  175 2026-10-19 14:28 011bac84ca8d17a8c5f0ba83a6039147db44bedd67b2c7534c3a32886d73bd3a-a
+-rw-rw-r--   1 neuron neuron  560 2026-10-19 14:28 01532ba7b1702ae7b6f550acefc167b07b043bad6ae8f25bf363c35c487ff536-d
+-rw-rw-r--   1 neuron neuron  175 2026-10-19 14:28 01c97b9a2c5f510b65cf37f0203143454e7c53819d5ed67efdc617c4ba0f12b1-a
+
+total 944
+drwxrwxr-x   2 neuron neuron   4096 2026-10-19 14:28 .
+drwxrwxr-x 258 neuron neuron   4096 2026-10-19 14:30 ..
+-rw-rw-r--   1 neuron neuron 827662 2026-10-19 14:28 025e67d37a3b3e2f873f0ac190f3a2f6968630c2a68e5f24611df99d5b62b69b-d
+-rw-rw-r--   1 neuron neuron    150 2026-10-19 14:28 026ea4421214fcc424b21d42ac4a27aa52dcc9a54b0a628bf2df751e6f46bc81-d
+-rw-rw-r--   1 neuron neuron 115376 2026-10-19 14:28 0289a68aec35641edec2a3467ea9287c673ab1ee36b13d73f820fcb65bf602af-d
+-rw-rw-r--   1 neuron neuron    175 2026-10-19 14:28 02bb1dc5208c94d7cfcebbb62e33ac222f32ecb5d88cfe5067d343ad227ad91c-a
+
+total 24
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 .
+drwxrwxr-x 258 neuron neuron 4096 2026-10-19 14:30 ..
+-rw-rw-r--   1 neuron neuron  175 2026-10-19 14:28 030d6518c5eaa6d9047ff049c645f174e41cf21b8e5dd2463f8a6fe31d48cab2-a
+-rw-rw-r--   1 neuron neuron 1210 2026-10-19 14:28 03552fbe75c9e85c53e61f328895feeeb355029655336ba27bf7c2d9a7d997a2-d
+-rw-rw-r--   1 neuron neuron  175 2026-10-19 14:28 03bff71bdf90deb86765ebd0be0d1111b249e0d9903954403757c599aa33daff-a
+-rw-rw-r--   1 neuron neuron  175 2026-10-19 14:28 03f5255f4a15f9f16933b865a4590fca258bb50451b9f7db3597c08fff4be09f-a
+
+total 20
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 .
+drwxrwxr-x 258 neuron neuron 4096 2026-10-19 14:30 ..
+-rw-rw-r--   1 neuron neuron  175 2026-10-19 14:28 043bb047d1d3742da3b18ed443bdd9e33b33d27ebef7149d44067635ad91d49c-a
+-rw-rw-r--   1 neuron neuron  175 2026-10-19 14:28 049bd5b627acc1201931ff3abb585f7e8287c51788910c9cba3d2fa4916deb5a-a
+-rw-rw-r--   1 neuron neuron  114 2026-10-19 14:28 04b4509d27fd9c93eb33d9e8d80ff91f4a3bd31a7c7e2b9a77367d5c2f33aca8-d
+
+total 272
+drwxrwxr-x   2 neuron neuron   4096 2026-10-19 14:28 .
+drwxrwxr-x 258 neuron neuron   4096 2026-10-19 14:30 ..
+-rw-rw-r--   1 neuron neuron   1257 2026-10-19 14:28 0526a67cf5602a58260d85dbd1a4820e9ce36ae2187ddc1006275e720ee5c8e4-d
+-rw-rw-r--   1 neuron neuron 246942 2026-10-19 14:28 053c24405f7644d2ad8ff83794e1c35757e5bd6a278588bab9aa12aebdd170a0-d
+-rw-rw-r--   1 neuron neuron    175 2026-10-19 14:28 0552affe2351800a7a60b72126e890cbdb66ab24506e9be958de7996a7ac5643-a
+-rw-rw-r--   1 neuron neuron    175 2026-10-19 14:28 058989959dc956112ce366d993b2d9e6eaabf9a7528c42306b298dd10510c30c-a
+-rw-rw-r--   1 neuron neuron    175 2026-10-19 14:28 05f496f74407f096cdf21dedb5d4798e76f5349f8326d3287a8403e4543a4423-a
+-rw-rw-r--   1 neuron neuron     54 2026-10-19 14:28 05f5e6492430b00f807e4629c6e4a53f3948fc9382f19898d1cc361b3b99ff9b-d
+
+total 28
+drwxrwxr-x   2 neuron neuron 4096 2026-10-19 14:28 .
+drwxrwxr-x 258 neuron neuron 4096 2026-10-19 14:30 ..
+-rw-rw-r--   1 neuron neuron  175 2026-10-19 14:28 06309157f923c8b3bb041a012b653d8d16400c97c8b85d1b92b9ccf9b980363f-a
+-rw-rw-r--   1 neuron neuron  175 2026-10-19 14:28 064285932f93b134c6a9dd149a574d048f7dee760324d715071f31a6c5f7e597-a
+-rw-rw-r--   1 neuron neuron  175 2026-10-19 14:28 0652738420dc1375a27c2e32ac4fac18bec0c788c381215b92e0895dc57487ed-a
+-rw-rw-r--   1 neuron neuron  175 2026-10-19 14:28 0696ca29c22995a21d2038499aed923f605c8997c87697f4fb98de5ad1da3f4b-a
+-rw-rw-r--   1 neuron neuron   15 2026-10-19 14:28 06a45522df397b46b35bf32c99a6897f0e05a1628f940c5c48517ecab0a791ff-d
+
+total 24

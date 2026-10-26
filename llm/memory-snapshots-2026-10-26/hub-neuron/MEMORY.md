@@ -1,0 +1,1 @@
+- [Neuron loop pass shape](neuron-loop-pass-shape.md) — record lands via mailbox_drop + readback, not MCP close_out; predecessor pinned note can lag one experiment

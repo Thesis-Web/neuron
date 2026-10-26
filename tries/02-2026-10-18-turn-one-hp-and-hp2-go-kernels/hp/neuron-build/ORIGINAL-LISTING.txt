@@ -1,0 +1,37 @@
+/home/james/neuron-build:
+total 508
+drwxrwxr-x  7 james james  4096 2026-10-19 13:55 .
+drwx------ 19 james james  4096 2026-10-26 04:53 ..
+-rw-rw-r--  1 james james  2758 2026-10-19 00:31 ADVERSARY-BRIEF.md
+-rw-rw-r--  1 james james  3916 2026-10-19 12:17 ADVERSARY-BRIEF-TURN-TWO.md
+-rwxrwxr-x  1 james james 16454 2026-10-19 07:42 AUDIT-HP-2026-10-19.md
+-rw-rw-r--  1 james james 13727 2026-10-19 00:29 BRIEF-COMMON.md
+-rw-rw-r--  1 james james  6422 2026-10-19 12:11 BRIEF-TURN-TWO.md
+-rw-r--r--  1 james james  1016 2026-10-18 23:15 CLAUDE.md
+-rw-rw-r--  1 james james 40423 2026-10-19 14:32 DECISIONS.md
+-rw-rw-r--  1 james james 98809 2026-10-19 13:59 FINDINGS.md
+drwxrwxr-x  2 james james  4096 2026-10-19 14:30 kernel
+drwx------  2 james james  4096 2026-10-19 00:04 keys
+drwxrwxr-x  2 james james  4096 2026-10-19 13:33 lay
+-rw-rw-r--  1 james james 15396 2026-10-19 14:32 LAY-NOTATION.md
+-rw-rw-r--  1 james james  6866 2026-10-19 11:46 MEANING-GAP-2026-10-19.md
+-rwxrwxr-x  1 james james 45421 2026-10-19 00:12 NEURON-BLUEPRINT-2026-10-18.md
+-rwxrwxr-x  1 james james 10774 2026-10-19 00:12 NEURON-BUILDER-GUIDE-2026-10-18.md
+-rwxrwxr-x  1 james james 17360 2026-10-19 11:36 NEURON-MEANING-BLUEPRINT-2026-10-19.md
+-rwxrwxr-x  1 james james 18160 2026-10-18 23:15 NEURON-NOW-2026-10-18.md
+-rwxrwxr-x  1 james james 71541 2026-10-18 23:15 NEURON-NOW-Interview-2026-10-18.md
+-rwxrwxr-x  1 james james 15695 2026-10-19 00:12 NEURON-RESEARCH-2026-10-19.md
+-rwxrwxr-x  1 james james 12406 2026-10-19 00:06 NEURON-SOURCES-2026-10-19.md
+-rwxrwxr-x  1 james james  2031 2026-10-19 00:12 NEURON-UPDATE-2026-10-19.md
+-rw-rw-r--  1 james james 16690 2026-10-19 08:40 REPORT-TURN-ONE.md
+-rw-rw-r--  1 james james 10205 2026-10-19 14:32 REPORT-TURN-TWO.md
+-rwxrwxr-x  1 james james 16253 2026-10-19 11:36 sematic primes and roots worksheet..ods
+drwxrwxr-x  3 james james  4096 2026-10-19 00:41 sources
+drwxrwxr-x  2 james james  4096 2026-10-19 14:00 tools
+
+/home/james/neuron-build/keys:
+total 16
+drwx------ 2 james james 4096 2026-10-19 00:04 .
+drwxrwxr-x 7 james james 4096 2026-10-19 13:55 ..
+-rw------- 1 james james   37 2026-10-19 00:04 mw_collegiate.key
+-rw------- 1 james james   37 2026-10-19 00:04 mw_thesaurus.key

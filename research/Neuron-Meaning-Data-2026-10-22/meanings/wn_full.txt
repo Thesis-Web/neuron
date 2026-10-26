@@ -1,0 +1,2316 @@
+=== create
+ create
+ v 1: make or cause to be or to become; "make a mess in one's
+ office"; "create a furor" [syn: {make}, {create}]
+ 2: bring into existence; "The company was created 25 years ago";
+ "He created a new movement in painting"
+ 3: pursue a creative activity; be engaged in a creative
+ activity; "Don't disturb him--he is creating"
+ 4: invest with a new title, office, or rank; "Create one a peer"
+ 5: create by artistic means; "create a poem"; "Schoenberg
+ created twelve-tone music"; "Picasso created Cubism"; "Auden
+ made verses" [syn: {create}, {make}]
+ 6: create or manufacture a man-made product; "We produce more
+ cars than we can sell"; "The company has been making toys for
+ two centuries" [syn: {produce}, {make}, {create}]
+=== new
+ new
+ adv 1: very recently; "they are newly married"; "newly raised
+ objections"; "a newly arranged hairdo"; "grass new washed
+ by the rain"; "a freshly cleaned floor"; "we are fresh
+ out of tomatoes" [syn: {newly}, {freshly}, {fresh},
+ {new}]
+ adj 1: not of long duration; having just (or relatively
+ recently) come into being or been made or acquired or
+ discovered; "a new law"; "new cars"; "a new comet"; "a
+ new friend"; "a new year"; "the New World" [ant: {old}]
+ 2: original and of a kind not seen before; "the computer
+ produced a completely novel proof of a well-known theorem"
+ [syn: {fresh}, {new}, {novel}]
+ 3: lacking training or experience; "the new men were eager to
+ fight"; "raw recruits" [syn: {raw}, {new}]
+ 4: having no previous example or precedent or parallel; "a time
+ of unexampled prosperity" [syn: {new}, {unexampled}]
+ 5: other than the former one(s); different; "they now have a new
+ leaders"; "my new car is four years old but has only 15,000
+ miles on it"; "ready to take a new direction"
+ 6: unaffected by use or exposure; "it looks like new" [ant:
+ {worn}]
+ 7: (of a new kind or fashion) gratuitously new; "newfangled
+ ideas"; "she buys all these new-fangled machines and never
+ uses them" [syn: {newfangled}, {new}]
+ 8: in use after medieval times; "New Eqyptian was the language
+ of the 18th to 21st dynasties"
+ 9: used of a living language; being the current stage in its
+ development; "Modern English"; "New Hebrew is Israeli Hebrew"
+ [syn: {Modern}, {New}]
+ 10: (of crops) harvested at an early stage of development;
+ before complete maturity; "new potatoes"; "young corn" [syn:
+ {new}, {young}]
+ 11: unfamiliar; "new experiences"; "experiences new to him";
+ "errors of someone new to the job"
+=== table
+ table
+ n 1: a set of data arranged in rows and columns; "see table 1"
+ [syn: {table}, {tabular array}]
+ 2: a piece of furniture having a smooth flat top that is usually
+ supported by one or more vertical legs; "it was a sturdy
+ table"
+ 3: a piece of furniture with tableware for a meal laid out on
+ it; "I reserved a table at my favorite restaurant"
+ 4: flat tableland with steep edges; "the tribe was relatively
+ safe on the mesa but they had to descend into the valley for
+ water" [syn: {mesa}, {table}]
+ 5: a company of people assembled at a table for a meal or game;
+ "he entertained the whole table with his witty remarks"
+ 6: food or meals in general; "she sets a fine table"; "room and
+ board" [syn: {board}, {table}]
+ v 1: hold back to a later time; "let's postpone the exam" [syn:
+ {postpone}, {prorogue}, {hold over}, {put over}, {table},
+ {shelve}, {set back}, {defer}, {remit}, {put off}]
+ 2: arrange or enter in tabular form [syn: {table}, {tabularize},
+ {tabularise}, {tabulate}]
+=== into
+=== insert
+ insert
+ n 1: a folded section placed between the leaves of another
+ publication
+ 2: an artifact that is inserted or is to be inserted [syn:
+ {insert}, {inset}]
+ 3: (broadcasting) a local announcement inserted into a network
+ program [syn: {cut-in}, {insert}]
+ 4: (film) a still picture that is introduced and that interrupts
+ the action of a film [syn: {cut-in}, {insert}]
+ v 1: put or introduce into something; "insert a picture into the
+ text" [syn: {insert}, {infix}, {enter}, {introduce}]
+ 2: introduce; "Insert your ticket here" [syn: {insert},
+ {enclose}, {inclose}, {stick in}, {put in}, {introduce}]
+ 3: fit snugly into; "insert your ticket into the slot"; "tuck
+ your shirttail in" [syn: {tuck}, {insert}]
+ 4: insert casually; "She slipped in a reference to her own work"
+ [syn: {slip in}, {stick in}, {sneak in}, {insert}]
+=== read
+ read
+ n 1: something that is read; "the article was a very good read"
+ v 1: interpret something that is written or printed; "read the
+ advertisement"; "Have you read Salman Rushdie?"
+ 2: have or contain a certain wording or form; "The passage reads
+ as follows"; "What does the law say?" [syn: {read}, {say}]
+ 3: look at, interpret, and say out loud something that is
+ written or printed; "The King will read the proclamation at
+ noon"
+ 4: obtain data from magnetic tapes; "This dictionary can be read
+ by the computer" [syn: {read}, {scan}]
+ 5: interpret the significance of, as of palms, tea leaves,
+ intestines, the sky; also of human behavior; "She read the
+ sky and predicted rain"; "I can't read his strange behavior";
+ "The fortune teller read his fate in the crystal ball"
+ 6: interpret something in a certain way; convey a particular
+ meaning or impression; "I read this address as a satire";
+ "How should I take this message?"; "You can't take credit for
+ this!" [syn: {take}, {read}]
+ 7: be a student of a certain subject; "She is reading for the
+ bar exam" [syn: {learn}, {study}, {read}, {take}]
+ 8: indicate a certain reading; of gauges and instruments; "The
+ thermometer showed thirteen degrees below zero"; "The gauge
+ read `empty'" [syn: {read}, {register}, {show}, {record}]
+ 9: audition for a stage role by reading parts of a role; "He is
+ auditioning for `Julius Caesar' at Stratford this year"
+ 10: to hear and understand; "I read you loud and clear!"
+ 11: make sense of a language; "She understands French"; "Can you
+ read Greek?" [syn: {understand}, {read}, {interpret},
+ {translate}]
+=== write
+ write
+ v 1: produce a literary work; "She composed a poem"; "He wrote
+ four novels" [syn: {write}, {compose}, {pen}, {indite}]
+ 2: communicate or express by writing; "Please write to me every
+ week"
+ 3: have (one's written work) issued for publication; "How many
+ books did Georges Simenon write?"; "She published 25 books
+ during her long career" [syn: {publish}, {write}]
+ 4: communicate (with) in writing; "Write her soon, please!"
+ [syn: {write}, {drop a line}]
+ 5: communicate by letter; "He wrote that he would be coming
+ soon"
+ 6: write music; "Beethoven composed nine symphonies" [syn:
+ {compose}, {write}]
+ 7: mark or trace on a surface; "The artist wrote Chinese
+ characters on a big piece of white paper"; "Russian is
+ written with the Cyrillic alphabet"
+ 8: record data on a computer; "boot-up instructions are written
+ on the hard disk" [syn: {write}, {save}]
+ 9: write or name the letters that comprise the conventionally
+ accepted form of (a word or part of a word); "He spelled the
+ word wrong in this letter" [syn: {spell}, {write}]
+ 10: create code, write a computer program; "She writes code
+ faster than anybody else"
+=== copy
+ copy
+ n 1: a reproduction of a written record (e.g. of a legal or
+ school record) [syn: {transcript}, {copy}]
+ 2: a thing made to be similar or identical to another thing;
+ "she made a copy of the designer dress"; "the clone was a
+ copy of its ancestor"
+ 3: matter to be printed; exclusive of graphical materials [syn:
+ {copy}, {written matter}]
+ 4: material suitable for a journalistic account; "catastrophes
+ make good copy"
+ v 1: copy down as is; "The students were made to copy the
+ alphabet over and over"
+ 2: reproduce someone's behavior or looks; "The mime imitated the
+ passers-by"; "Children often copy their parents or older
+ siblings" [syn: {imitate}, {copy}, {simulate}]
+ 3: reproduce or make an exact copy of; "replicate the cell";
+ "copy the genetic information" [syn: {replicate}, {copy}]
+ 4: make a replica of; "copy that drawing"; "re-create a picture
+ by Rembrandt" [syn: {copy}, {re-create}]
+=== move
+ move
+ n 1: the act of deciding to do something; "he didn't make a move
+ to help"; "his first move was to hire a lawyer"
+ 2: the act of changing your residence or place of business;
+ "they say that three moves equal one fire" [syn: {move},
+ {relocation}]
+ 3: a change of position that does not entail a change of
+ location; "the reflex motion of his eyebrows revealed his
+ surprise"; "movement is a sign of life"; "an impatient move
+ of his hand"; "gastrointestinal motility" [syn: {motion},
+ {movement}, {move}, {motility}]
+ 4: the act of changing location from one place to another;
+ "police controlled the motion of the crowd"; "the movement of
+ people from the farms to the cities"; "his move put him
+ directly in my path" [syn: {motion}, {movement}, {move}]
+ 5: (game) a player's turn to take some action permitted by the
+ rules of the game
+ v 1: change location; move, travel, or proceed, also
+ metaphorically; "How fast does your new car go?"; "We
+ travelled from Rome to Naples by bus"; "The policemen went
+ from door to door looking for the suspect"; "The soldiers
+ moved towards the city in an attempt to take it before
+ night fell"; "news travelled fast" [syn: {travel}, {go},
+ {move}, {locomote}] [ant: {stay in place}]
+ 2: cause to move or shift into a new position or place, both in
+ a concrete and in an abstract sense; "Move those boxes into
+ the corner, please"; "I'm moving my money to another bank";
+ "The director moved more responsibilities onto his new
+ assistant" [syn: {move}, {displace}]
+ 3: move so as to change position, perform a nontranslational
+ motion; "He moved his hand slightly to the right" [ant:
+ {stand still}]
+ 4: change residence, affiliation, or place of employment; "We
+ moved from Idaho to Nebraska"; "The basketball player moved
+ from one team to another" [ant: {stay}, {stay put}, {stick},
+ {stick around}]
+ 5: follow a procedure or take a course; "We should go farther in
+ this matter"; "She went through a lot of trouble"; "go about
+ the world in a certain manner"; "Messages must go through
+ diplomatic channels" [syn: {go}, {proceed}, {move}]
+ 6: be in a state of action; "she is always moving" [syn: {be
+ active}, {move}] [ant: {rest}]
+ 7: go or proceed from one point to another; "the debate moved
+ from family values to the economy"
+ 8: perform an action, or work out or perform (an action); "think
+ before you act"; "We must move quickly"; "The governor should
+ act on the new energy bill"; "The nanny acted quickly by
+ grabbing the toddler and covering him with a wet towel" [syn:
+ {act}, {move}] [ant: {forbear}, {refrain}]
+ 9: have an emotional or cognitive impact upon; "This child
+ impressed me as unusually mature"; "This behavior struck me
+ as odd" [syn: {affect}, {impress}, {move}, {strike}]
+ 10: give an incentive for action; "This moved me to sacrifice my
+ career" [syn: {motivate}, {actuate}, {propel}, {move},
+ {prompt}, {incite}]
+ 11: arouse sympathy or compassion in; "Her fate moved us all"
+ 12: dispose of by selling; "The chairman of the company told the
+ salesmen to move the computers"
+ 13: progress by being changed; "The speech has to go through
+ several more drafts"; "run through your presentation before
+ the meeting" [syn: {move}, {go}, {run}]
+ 14: live one's life in a specified environment; "she moves in
+ certain circles only"
+ 15: have a turn; make one's move in a game; "Can I go now?"
+ [syn: {move}, {go}]
+ 16: propose formally; in a debate or parliamentary meeting [syn:
+ {move}, {make a motion}]
+=== delete
+ delete
+ v 1: remove or make invisible; "Please delete my name from your
+ list" [syn: {delete}, {cancel}]
+ 2: wipe out digitally or magnetically recorded information; "Who
+ erased the files form my hard disk?" [syn: {erase}, {delete}]
+ [ant: {record}, {tape}]
+ 3: cut or eliminate; "she edited the juiciest scenes" [syn:
+ {edit}, {blue-pencil}, {delete}]
+=== remove
+ remove
+ n 1: degree of figurative distance or separation; "just one
+ remove from madness" or "it imitates at many removes a
+ Shakespearean tragedy";
+ v 1: remove something concrete, as by lifting, pushing, or
+ taking off, or remove something abstract; "remove a
+ threat"; "remove a wrapper"; "Remove the dirty dishes from
+ the table"; "take the gun from your pocket"; "This machine
+ withdraws heat from the environment" [syn: {remove},
+ {take}, {take away}, {withdraw}]
+ 2: remove from a position or an office
+ 3: dispose of; "Get rid of these old shoes!"; "The company got
+ rid of all the dead wood" [syn: {get rid of}, {remove}]
+ 4: cause to leave; "The teacher took the children out of the
+ classroom" [syn: {take out}, {move out}, {remove}]
+ 5: shift the position or location of, as for business, legal,
+ educational, or military purposes; "He removed his children
+ to the countryside"; "Remove the troops to the forest
+ surrounding the city"; "remove a case to another court" [syn:
+ {remove}, {transfer}]
+ 6: go away or leave; "He absented himself" [syn: {absent},
+ {remove}]
+ 7: kill intentionally and with premeditation; "The mafia boss
+ ordered his enemies murdered" [syn: {murder}, {slay}, {hit},
+ {dispatch}, {bump off}, {off}, {polish off}, {remove}]
+ 8: get rid of something abstract; "The death of her mother
+ removed the last obstacle to their marriage"; "God takes away
+ your sins" [syn: {remove}, {take away}]
+=== split
+ split
+ adj 1: having been divided; having the unity destroyed;
+ "Congress...gave the impression of...a confusing sum of
+ disconnected local forces"-Samuel Lubell; "a league of
+ disunited nations"- E.B.White; "a fragmented coalition";
+ "a split group" [syn: {disconnected}, {disunited},
+ {fragmented}, {split}]
+ 2: (especially of wood) cut or ripped longitudinally with the
+ grain; "we bought split logs for the fireplace"
+ n 1: extending the legs at right angles to the trunk (one in
+ front and the other in back)
+ 2: a bottle containing half the usual amount
+ 3: a promised or claimed share of loot or money; "he demanded
+ his split before they disbanded"
+ 4: a lengthwise crack in wood; "he inserted the wedge into a
+ split in the log"
+ 5: an opening made forcibly as by pulling apart; "there was a
+ rip in his pants"; "she had snags in her stockings" [syn:
+ {rip}, {rent}, {snag}, {split}, {tear}]
+ 6: an old Croatian city on the Adriatic Sea
+ 7: a dessert of sliced fruit and ice cream covered with whipped
+ cream and cherries and nuts
+ 8: (tenpin bowling) a divided formation of pins left standing
+ after the first bowl; "he was winning until he got a split in
+ the tenth frame"
+ 9: an increase in the number of outstanding shares of a
+ corporation without changing the shareholders' equity; "they
+ announced a two-for-one split of the common stock" [syn:
+ {split}, {stock split}, {split up}]
+ 10: the act of rending or ripping or splitting something; "he
+ gave the envelope a vigorous rip" [syn: {rent}, {rip},
+ {split}]
+ 11: division of a group into opposing factions; "another schism
+ like that and they will wind up in bankruptcy" [syn:
+ {schism}, {split}]
+ v 1: separate into parts or portions; "divide the cake into
+ three equal parts"; "The British carved up the Ottoman
+ Empire after World War I" [syn: {divide}, {split}, {split
+ up}, {separate}, {dissever}, {carve up}] [ant: {unify},
+ {unite}]
+ 2: separate or cut with a tool, such as a sharp instrument;
+ "cleave the bone" [syn: {cleave}, {split}, {rive}]
+ 3: discontinue an association or relation; go different ways;
+ "The business partners broke over a tax question"; "The
+ couple separated after 25 years of marriage"; "My friend and
+ I split up" [syn: {separate}, {part}, {split up}, {split},
+ {break}, {break up}]
+ 4: go one's own way; move apart; "The friends separated after
+ the party" [syn: {separate}, {part}, {split}]
+ 5: come open suddenly and violently, as if from internal
+ pressure; "The bubble burst" [syn: {burst}, {split}, {break
+ open}]
+=== join
+ join
+ n 1: the shape or manner in which things come together and a
+ connection is made [syn: {articulation}, {join}, {joint},
+ {juncture}, {junction}]
+ 2: a set containing all and only the members of two or more
+ given sets; "let C be the union of the sets A and B" [syn:
+ {union}, {sum}, {join}]
+ v 1: become part of; become a member of a group or organization;
+ "He joined the Communist Party as a young man" [syn:
+ {join}, {fall in}, {get together}]
+ 2: cause to become joined or linked; "join these two parts so
+ that they fit together" [syn: {join}, {bring together}] [ant:
+ {disjoin}, {disjoint}]
+ 3: come into the company of; "She joined him for a drink"
+ 4: make contact or come together; "The two roads join here"
+ [syn: {join}, {conjoin}] [ant: {disjoin}, {disjoint}]
+ 5: be or become joined or united or linked; "The two streets
+ connect to become a highway"; "Our paths joined"; "The
+ travelers linked up again at the airport" [syn: {connect},
+ {link}, {link up}, {join}, {unite}]
+=== find
+ find
+ n 1: a productive insight [syn: {discovery}, {breakthrough},
+ {find}]
+ 2: the act of discovering something [syn: {discovery}, {find},
+ {uncovering}]
+ v 1: come upon, as if by accident; meet with; "We find this idea
+ in Plato"; "I happened upon the most wonderful bakery not
+ very far from here"; "She chanced upon an interesting book
+ in the bookstore the other day" [syn: {find}, {happen},
+ {chance}, {bump}, {encounter}]
+ 2: discover or determine the existence, presence, or fact of;
+ "She detected high levels of lead in her drinking water"; "We
+ found traces of lead in the paint" [syn: {detect}, {observe},
+ {find}, {discover}, {notice}]
+ 3: come upon after searching; find the location of something
+ that was missed or lost; "Did you find your glasses?"; "I
+ cannot find my gloves!" [syn: {find}, {regain}] [ant: {lose}]
+ 4: establish after a calculation, investigation, experiment,
+ survey, or study; "find the product of two numbers"; "The
+ physicist who found the elusive particle won the Nobel Prize"
+ [syn: {determine}, {find}, {find out}, {ascertain}]
+ 5: come to believe on the basis of emotion, intuitions, or
+ indefinite grounds; "I feel that he doesn't like me"; "I find
+ him to be obnoxious"; "I found the movie rather entertaining"
+ [syn: {find}, {feel}]
+ 6: perceive or be contemporaneous with; "We found Republicans
+ winning the offices"; "You'll see a lot of cheating in this
+ school"; "The 1960's saw the rebellion of the younger
+ generation against established traditions"; "I want to see
+ results" [syn: {witness}, {find}, {see}]
+ 7: get something or somebody for a specific purpose; "I found
+ this gadget that will serve as a bottle opener"; "I got hold
+ of these tools to fix our plumbing"; "The chairman got hold
+ of a secretary on Friday night to type the urgent letter"
+ [syn: {line up}, {get hold}, {come up}, {find}]
+ 8: make a discovery, make a new finding; "Roentgen discovered
+ X-rays"; "Physicists believe they found a new elementary
+ particle" [syn: {discover}, {find}]
+ 9: make a discovery; "She found that he had lied to her"; "The
+ story is false, so far as I can discover" [syn: {discover},
+ {find}]
+ 10: obtain through effort or management; "She found the time and
+ energy to take care of her aging parents"; "We found the
+ money to send our sons to college"
+ 11: decide on and make a declaration about; "find someone
+ guilty" [syn: {rule}, {find}]
+ 12: receive a specified treatment (abstract); "These aspects of
+ civilization do not find expression or receive an
+ interpretation"; "His movie received a good review"; "I got
+ nothing but trouble for my good intentions" [syn: {receive},
+ {get}, {find}, {obtain}, {incur}]
+ 13: perceive oneself to be in a certain condition or place; "I
+ found myself in a difficult situation"; "When he woke up, he
+ found himself in a hospital room"
+ 14: get or find back; recover the use of; "She regained control
+ of herself"; "She found her voice and replied quickly" [syn:
+ {recover}, {retrieve}, {find}, {regain}]
+ 15: succeed in reaching; arrive at; "The arrow found its mark"
+ 16: accept and make use of one's personality, abilities, and
+ situation; "My son went to Berkeley to find himself" [syn:
+ {find oneself}, {find}]
+=== same
+ same
+ adj 1: same in identity; "the same man I saw yesterday"; "never
+ wore the same dress twice"; "this road is the same one we
+ were on yesterday"; "on the same side of the street"
+ [ant: {other}]
+ 2: closely similar or comparable in kind or quality or quantity
+ or degree; "curtains the same color as the walls"; "two girls
+ of the same age"; "mother and son have the same blue eyes";
+ "animals of the same species"; "the same rules as before";
+ "two boxes having the same dimensions"; "the same day next
+ year" [ant: {different}]
+ 3: equal in amount or value; "like amounts"; "equivalent
+ amounts"; "the same amount"; "gave one six blows and the
+ other a like number"; "the same number" [syn: {like}, {same}]
+ [ant: {unlike}]
+ 4: unchanged in character or nature; "the village stayed the
+ same"; "his attitude is the same as ever"
+ n 1: a member of an indigenous nomadic people living in northern
+ Scandinavia and herding reindeer [syn: {Lapp},
+ {Lapplander}, {Sami}, {Saami}, {Same}, {Saame}]
+ 2: the language of nomadic Lapps in northern Scandinavia and the
+ Kola Peninsula [syn: {Lapp}, {Sami}, {Saami}, {Same},
+ {Saame}]
+=== different
+ different
+ adj 1: unlike in nature or quality or form or degree; "took
+ different approaches to the problem"; "came to a
+ different conclusion"; "different parts of the country";
+ "on different sides of the issue"; "this meeting was
+ different from the earlier one" [ant: {same}]
+ 2: distinctly separate from the first; "that's another (or
+ different) issue altogether"
+ 3: differing from all others; not ordinary; "advertising that
+ strives continually to be different"; "this new music is
+ certainly different but I don't really like it"
+ 4: marked by dissimilarity; "for twins they are very unlike";
+ "people are profoundly different" [syn: {unlike},
+ {dissimilar}, {different}] [ant: {like}, {similar}]
+ 5: distinct or separate; "each interviewed different members of
+ the community"
+=== not
+ not
+ adv 1: negation of a word or group of words; "he does not speak
+ French"; "she is not going"; "they are not friends"; "not
+ many"; "not much"; "not at all" [syn: {not}, {non}]
+=== and
+=== or
+ OR
+ n 1: a state in northwestern United States on the Pacific [syn:
+ {Oregon}, {Beaver State}, {OR}]
+ 2: a room in a hospital equipped for the performance of surgical
+ operations; "great care is taken to keep the operating rooms
+ aseptic" [syn: {operating room}, {OR}, {operating theater},
+ {operating theatre}, {surgery}]
+=== if
+=== all
+ all
+ adv 1: to a complete degree or to the full or entire extent
+ (`whole' is often used informally for `wholly'); "he was
+ wholly convinced"; "entirely satisfied with the meal";
+ "it was completely different from what we expected"; "was
+ completely at fault"; "a totally new situation"; "the
+ directions were all wrong"; "it was not altogether her
+ fault"; "an altogether new approach"; "a whole new idea"
+ [syn: {wholly}, {entirely}, {completely}, {totally},
+ {all}, {altogether}, {whole}] [ant: {part}, {partially},
+ {partly}]
+ adj 1: quantifier; used with either mass or count nouns to
+ indicate the whole number or amount of or every one of a
+ class; "we sat up all night"; "ate all the food"; "all
+ men are mortal"; "all parties are welcome" [ant: {no(a)},
+ {some(a)}]
+ 2: completely given to or absorbed by; "became all attention"
+=== some
+ some
+ adv 1: (of quantities) imprecise but fairly close to correct;
+ "lasted approximately an hour"; "in just about a minute";
+ "he's about 30 years old"; "I've had about all I can
+ stand"; "we meet about once a month"; "some forty people
+ came"; "weighs around a hundred pounds"; "roughly
+ $3,000"; "holds 3 gallons, more or less"; "20 or so
+ people were at the party" [syn: {approximately}, {about},
+ {close to}, {just about}, {some}, {roughly}, {more or
+ less}, {around}, {or so}]
+ adj 1: quantifier; used with either mass nouns or plural count
+ nouns to indicate an unspecified number or quantity;
+ "have some milk"; "some roses were still blooming";
+ "having some friends over"; "some apples"; "some paper"
+ [ant: {all(a)}, {no(a)}]
+ 2: relatively much but unspecified in amount or extent; "we
+ talked for some time"; "he was still some distance away"
+ 3: relatively many but unspecified in number; "they were here
+ for some weeks"; "we did not meet again for some years"
+ 4: remarkable; "that was some party"; "she is some skier"
+=== none
+ none
+ adv 1: not at all or in no way; "seemed none too pleased with
+ his dinner"; "shirt looked none the worse for having been
+ slept in"; "none too prosperous"; "the passage is none
+ too clear"
+ adj 1: not any; "thou shalt have none other gods before me"
+ n 1: a canonical hour that is the ninth hour of the day counting
+ from sunrise
+ 2: a service in the Roman Catholic Church formerly read or
+ chanted at 3 PM (the ninth hour counting from sunrise) but
+ now somewhat earlier
+=== one
+ one
+ adj 1: used of a single unit or thing; not two or more; "`ane'
+ is Scottish" [syn: {one}, {1}, {i}, {ane}]
+ 2: having the indivisible character of a unit; "a unitary
+ action"; "spoke with one voice" [syn: {one(a)}, {unitary}]
+ 3: of the same kind or quality; "two animals of one species"
+ 4: used informally as an intensifier; "that is one fine dog"
+ 5: indefinite in time or position; "he will come one day"; "one
+ place or another"
+ 6: being a single entity made by combining separate components;
+ "three chemicals combining into one solution"
+ 7: eminent beyond or above comparison; "matchless beauty"; "the
+ team's nonpareil center fielder"; "she's one girl in a
+ million"; "the one and only Muhammad Ali"; "a peerless
+ scholar"; "infamy unmatched in the Western world"; "wrote
+ with unmatchable clarity"; "unrivaled mastery of her art"
+ [syn: {matchless}, {nonpareil}, {one(a)}, {one and only(a)},
+ {peerless}, {unmatched}, {unmatchable}, {unrivaled},
+ {unrivalled}]
+ n 1: the smallest whole number or a numeral representing this
+ number; "he has the one but will need a two and three to go
+ with it"; "they had lunch at one" [syn: {one}, {1}, {I},
+ {ace}, {single}, {unity}]
+ 2: a single person or thing; "he is the best one"; "this is the
+ one I ordered"
+=== two
+ two
+ adj 1: being one more than one; "he received two messages" [syn:
+ {two}, {2}, {ii}]
+ n 1: the cardinal number that is the sum of one and one or a
+ numeral representing this number [syn: {two}, {2}, {II},
+ {deuce}]
+ 2: one of the four playing cards in a deck that have two spots
+ [syn: {deuce}, {two}]
+=== more
+ more
+ adv 1: used to form the comparative of some adjectives and
+ adverbs; "more interesting"; "more beautiful"; "more
+ quickly" [syn: {more}, {to a greater extent}] [ant:
+ {less}, {to a lesser extent}]
+ 2: comparative of much; to a greater degree or extent; "he works
+ more now"; "they eat more than they should" [ant: {less}]
+ adj 1: (comparative of `much' used with mass nouns) a quantifier
+ meaning greater in size or amount or extent or degree;
+ "more land"; "more support"; "more rain fell"; "more than
+ a gallon" [syn: {more(a)}, {more than}] [ant: {less(a)}]
+ 2: (comparative of `many' used with count nouns) quantifier
+ meaning greater in number; "a hall with more seats"; "we have
+ no more bananas"; "more than one" [ant: {fewer}]
+ n 1: English statesman who opposed Henry VIII's divorce from
+ Catherine of Aragon and was imprisoned and beheaded;
+ recalled for his concept of Utopia, the ideal state [syn:
+ {More}, {Thomas More}, {Sir Thomas More}]
+=== few
+ few
+ adj 1: a quantifier that can be used with count nouns and is
+ often preceded by `a'; a small but indefinite number; "a
+ few weeks ago"; "a few more wagons than usual"; "an
+ invalid's pleasures are few and far between"; "few roses
+ were still blooming"; "few women have led troops in
+ battle" [ant: {many}]
+ n 1: a small elite group; "it was designed for the
+ discriminating few"
+=== less
+ less
+ adv 1: used to form the comparative of some adjectives and
+ adverbs; "less interesting"; "less expensive"; "less
+ quickly" [syn: {less}, {to a lesser extent}] [ant:
+ {more}, {to a greater extent}]
+ 2: comparative of little; "she walks less than she should"; "he
+ works less these days" [ant: {more}]
+ adj 1: (comparative of `little' usually used with mass nouns) a
+ quantifier meaning not as great in amount or degree; "of
+ less importance"; "less time to spend with the family";
+ "a shower uses less water"; "less than three years old"
+ [ant: {more than}, {more(a)}]
+ 2: (usually preceded by `no') lower in quality; "no less than
+ perfect"
+ 3: (nonstandard in some uses but often idiomatic with measure
+ phrases) fewer; "less than three weeks"; "no less than 50
+ people attended"; "in 25 words or less"
+=== before
+ before
+ adv 1: earlier in time; previously; "I had known her before";
+ "as I said before"; "he called me the day before but your
+ call had come even earlier"; "her parents had died four
+ years earlier"; "I mentioned that problem earlier" [syn:
+ {earlier}, {before}]
+ 2: at or in the front; "I see the lights of a town ahead"; "the
+ road ahead is foggy"; "staring straight ahead"; "we couldn't
+ see over the heads of the people in front"; "with the cross
+ of Jesus marching on before" [syn: {ahead}, {in front},
+ {before}]
+=== after
+ after
+ adv 1: happening at a time subsequent to a reference time; "he
+ apologized subsequently"; "he's going to the store but
+ he'll be back here later"; "it didn't happen until
+ afterward"; "two hours after that" [syn: {subsequently},
+ {later}, {afterwards}, {afterward}, {after}, {later on}]
+ 2: behind or in the rear; "and Jill came tumbling after"
+ adj 1: located farther aft
+=== now
+ now
+ adv 1: in the historical present; at this point in the narration
+ of a series of past events; "President Kennedy now calls
+ in the National Guard"; "Washington now decides to cross
+ the Delaware"; "the ship is now listing to port"
+ 2: in these times; "it is solely by their language that the
+ upper classes nowadays are distinguished"- Nancy Mitford; "we
+ now rarely see horse-drawn vehicles on city streets"; "today
+ almost every home has television" [syn: {nowadays}, {now},
+ {today}]
+ 3: used to preface a command or reproof or request; "now hear
+ this!"; "now pay attention"
+ 4: at the present moment; "goods now on sale"; "the now-aging
+ dictator"; "they are now abroad"; "he is busy at present
+ writing a new novel"; "it could happen any time now" [syn:
+ {now}, {at present}]
+ 5: without delay or hesitation; with no time intervening; "he
+ answered immediately"; "found an answer straightaway"; "an
+ official accused of dishonesty should be suspended
+ forthwith"; "Come here now!" [syn: {immediately},
+ {instantly}, {straightaway}, {straight off}, {directly},
+ {now}, {right away}, {at once}, {forthwith}, {like a shot}]
+ 6: (prefatory or transitional) indicates a change of subject or
+ activity; "Now the next problem is..."
+ 7: in the immediate past; "told me just now"
+ n 1: the momentary present; "Now is a good time to do it"; "it
+ worked up to right now"
+=== when
+=== the
+=== a
+ A
+ n 1: a metric unit of length equal to one ten billionth of a
+ meter (or 0.0001 micron); used to specify wavelengths of
+ electromagnetic radiation [syn: {angstrom}, {angstrom
+ unit}, {A}]
+ 2: any of several fat-soluble vitamins essential for normal
+ vision; prevents night blindness or inflammation or dryness
+ of the eyes [syn: {vitamin A}, {antiophthalmic factor},
+ {axerophthol}, {A}]
+ 3: one of the four nucleotides used in building DNA; all four
+ nucleotides have a common phosphate group and a sugar
+ (ribose) [syn: {deoxyadenosine monophosphate}, {A}]
+ 4: (biochemistry) purine base found in DNA and RNA; pairs with
+ thymine in DNA and with uracil in RNA [syn: {adenine}, {A}]
+ 5: the basic unit of electric current adopted under the Systeme
+ International d'Unites; "a typical household circuit carries
+ 15 to 50 amps" [syn: {ampere}, {amp}, {A}]
+ 6: the 1st letter of the Roman alphabet [syn: {A}, {a}]
+ 7: the blood group whose red cells carry the A antigen [syn:
+ {A}, {type A}, {group A}]
+=== between
+ between
+ adv 1: in the interval; "dancing all the dances with little rest
+ between" [syn: {between}, {betwixt}]
+ 2: in between; "two houses with a tree between" [syn: {between},
+ {'tween}]
+=== part
+ part
+ adv 1: in part; in some degree; not wholly; "I felt partly to
+ blame"; "He was partially paralyzed" [syn: {partially},
+ {partly}, {part}] [ant: {all}, {altogether},
+ {completely}, {entirely}, {totally}, {whole}, {wholly}]
+ n 1: something determined in relation to something that includes
+ it; "he wanted to feel a part of something bigger than
+ himself"; "I read a portion of the manuscript"; "the
+ smaller component is hard to reach"; "the animal
+ constituent of plankton" [syn: {part}, {portion},
+ {component part}, {component}, {constituent}]
+ 2: something less than the whole of a human artifact; "the rear
+ part of the house"; "glue the two parts together" [syn:
+ {part}, {portion}]
+ 3: a portion of a natural object; "they analyzed the river into
+ three parts"; "he needed a piece of granite" [syn: {part},
+ {piece}]
+ 4: that which concerns a person with regard to a particular role
+ or situation; "it requires vigilance on our part"; "they
+ resisted every effort on his part"
+ 5: the extended spatial location of something; "the farming
+ regions of France"; "religions in all parts of the world";
+ "regions of outer space" [syn: {region}, {part}]
+ 6: the actions and activities assigned to or required or
+ expected of a person or group; "the function of a teacher";
+ "the government must do its part"; "play its role" [syn:
+ {function}, {office}, {part}, {role}]
+ 7: an actor's portrayal of someone in a play; "she played the
+ part of Desdemona" [syn: {character}, {role}, {theatrical
+ role}, {part}, {persona}]
+ 8: assets belonging to or due to or contributed by an individual
+ person or group; "he wanted his share in cash" [syn: {share},
+ {portion}, {part}, {percentage}]
+ 9: one of the portions into which something is regarded as
+ divided and which together constitute a whole; "the written
+ part of the exam"; "the finance section of the company"; "the
+ BBC's engineering division" [syn: {part}, {section},
+ {division}]
+ 10: a line of scalp that can be seen when sections of hair are
+ combed in opposite directions; "his part was right in the
+ middle" [syn: {part}, {parting}]
+ 11: the melody carried by a particular voice or instrument in
+ polyphonic music; "he tried to sing the tenor part" [syn:
+ {part}, {voice}]
+ 12: the part played by a person in bringing about a result; "I
+ am proud of my contribution in advancing the project"; "they
+ all did their share of the work" [syn: {contribution},
+ {part}, {share}]
+ v 1: go one's own way; move apart; "The friends separated after
+ the party" [syn: {separate}, {part}, {split}]
+ 2: discontinue an association or relation; go different ways;
+ "The business partners broke over a tax question"; "The
+ couple separated after 25 years of marriage"; "My friend and
+ I split up" [syn: {separate}, {part}, {split up}, {split},
+ {break}, {break up}]
+ 3: leave; "The family took off for Florida" [syn: {depart},
+ {part}, {start}, {start out}, {set forth}, {set off}, {set
+ out}, {take off}]
+ 4: come apart; "The two pieces that we had glued separated"
+ [syn: {separate}, {divide}, {part}]
+ 5: force, take, or pull apart; "He separated the fighting
+ children"; "Moses parted the Red Sea" [syn: {separate},
+ {disunite}, {divide}, {part}]
+=== whole
+ whole
+ adv 1: to a complete degree or to the full or entire extent
+ (`whole' is often used informally for `wholly'); "he was
+ wholly convinced"; "entirely satisfied with the meal";
+ "it was completely different from what we expected"; "was
+ completely at fault"; "a totally new situation"; "the
+ directions were all wrong"; "it was not altogether her
+ fault"; "an altogether new approach"; "a whole new idea"
+ [syn: {wholly}, {entirely}, {completely}, {totally},
+ {all}, {altogether}, {whole}] [ant: {part}, {partially},
+ {partly}]
+ adj 1: including all components without exception; being one
+ unit or constituting the full amount or extent or
+ duration; complete; "gave his whole attention"; "a whole
+ wardrobe for the tropics"; "the whole hog"; "a whole
+ week"; "the baby cried the whole trip home"; "a whole
+ loaf of bread" [ant: {fractional}]
+ 2: (of siblings) having the same parents; "whole brothers and
+ sisters" [ant: {half}]
+ 3: not injured [syn: {unharmed}, {unhurt}, {unscathed}, {whole}]
+ 4: exhibiting or restored to vigorous good health; "hale and
+ hearty"; "whole in mind and body"; "a whole person again"
+ [syn: {hale}, {whole}]
+ 5: acting together as a single undiversified whole; "a solid
+ voting bloc" [syn: {solid}, {unanimous}, {whole}]
+ n 1: all of something including all its component elements or
+ parts; "Europe considered as a whole"; "the whole of
+ American literature"
+ 2: an assemblage of parts that is regarded as a single entity;
+ "how big is that part compared to the whole?"; "the team is a
+ unit" [syn: {whole}, {unit}]
+=== keep
+ keep
+ n 1: the financial means whereby one lives; "each child was
+ expected to pay for their keep"; "he applied to the state
+ for support"; "he could no longer earn his own livelihood"
+ [syn: {support}, {keep}, {livelihood}, {living}, {bread and
+ butter}, {sustenance}]
+ 2: the main tower within the walls of a medieval castle or
+ fortress [syn: {keep}, {donjon}, {dungeon}]
+ 3: a cell in a jail or prison [syn: {hold}, {keep}]
+ v 1: keep in a certain state, position, or activity; e.g., "keep
+ clean"; "hold in place"; "She always held herself as a
+ lady"; "The students keep me on my toes" [syn: {keep},
+ {maintain}, {hold}]
+ 2: continue a certain state, condition, or activity; "Keep on
+ working!"; "We continued to work into the night"; "Keep
+ smiling"; "We went on working until well past midnight" [syn:
+ {continue}, {go on}, {proceed}, {go along}, {keep}] [ant:
+ {discontinue}]
+ 3: retain possession of; "Can I keep my old stuffed animals?";
+ "She kept her maiden name after she married" [syn: {keep},
+ {hold on}] [ant: {lose}]
+ 4: stop (someone or something) from doing something or being in
+ a certain state; "We must prevent the cancer from spreading";
+ "His snoring kept me from falling asleep"; "Keep the child
+ from eating the marbles" [syn: {prevent}, {keep}] [ant:
+ {allow}, {let}, {permit}]
+ 5: conform one's action or practice to; "keep appointments";
+ "she never keeps her promises"; "We kept to the original
+ conditions of the contract" [syn: {observe}, {keep}] [ant:
+ {breach}, {break}, {go against}, {infract}, {offend},
+ {transgress}, {violate}]
+ 6: stick to correctly or closely; "The pianist kept time with
+ the metronome"; "keep count"; "I cannot keep track of all my
+ employees" [syn: {observe}, {keep}, {maintain}]
+ 7: look after; be the keeper of; have charge of; "He keeps the
+ shop when I am gone"
+ 8: maintain by writing regular records; "keep a diary";
+ "maintain a record"; "keep notes" [syn: {keep}, {maintain}]
+ 9: supply with room and board; "He is keeping three women in the
+ guest cottage"; "keep boarders"
+ 10: allow to remain in a place or position or maintain a
+ property or feature; "We cannot continue several servants
+ any longer"; "She retains a lawyer"; "The family's fortune
+ waned and they could not keep their household staff"; "Our
+ grant has run out and we cannot keep you on"; "We kept the
+ work going as long as we could"; "She retained her
+ composure"; "this garment retains its shape even after many
+ washings" [syn: {retain}, {continue}, {keep}, {keep on}]
+ 11: supply with necessities and support; "She alone sustained
+ her family"; "The money will sustain our good cause";
+ "There's little to earn and many to keep" [syn: {sustain},
+ {keep}, {maintain}]
+ 12: fail to spoil or rot; "These potatoes keep for a long time"
+ [syn: {keep}, {stay fresh}]
+ 13: behave as expected during of holidays or rites; "Keep the
+ commandments"; "celebrate Christmas"; "Observe Yom Kippur"
+ [syn: {observe}, {celebrate}, {keep}]
+ 14: keep under control; keep in check; "suppress a smile"; "Keep
+ your temper"; "keep your cool" [syn: {restrain}, {keep},
+ {keep back}, {hold back}]
+ 15: maintain in safety from injury, harm, or danger; "May God
+ keep you" [syn: {keep}, {preserve}]
+ 16: raise; "She keeps a few chickens in the yard"; "he keeps
+ bees"
+ 17: retain rights to; "keep my job for me while I give birth";
+ "keep my seat, please"; "keep open the possibility of a
+ merger" [syn: {keep open}, {hold open}, {keep}, {save}]
+ 18: store or keep customarily; "Where do you keep your gardening
+ tools?"
+ 19: have as a supply; "I always keep batteries in the freezer";
+ "keep food for a week in the pantry"; "She keeps a sixpack
+ and a week's worth of supplies in the refrigerator"
+ 20: maintain for use and service; "I keep a car in the
+ countryside"; "She keeps an apartment in Paris for her
+ shopping trips" [syn: {keep}, {maintain}]
+ 21: hold and prevent from leaving; "The student was kept after
+ school"
+ 22: prevent (food) from rotting; "preserved meats"; "keep
+ potatoes fresh" [syn: {preserve}, {keep}]
+=== store
+ store
+ n 1: a mercantile establishment for the retail sale of goods or
+ services; "he bought it at a shop on Cape Cod" [syn:
+ {shop}, {store}]
+ 2: a supply of something available for future use; "he brought
+ back a large store of Cuban cigars" [syn: {store}, {stock},
+ {fund}]
+ 3: an electronic memory device; "a memory and the CPU form the
+ central part of a computer to which peripherals are attached"
+ [syn: {memory}, {computer memory}, {storage}, {computer
+ storage}, {store}, {memory board}]
+ 4: a depository for goods; "storehouses were built close to the
+ docks" [syn: {storehouse}, {depot}, {entrepot}, {storage},
+ {store}]
+ v 1: keep or lay aside for future use; "store grain for the
+ winter"; "The bear stores fat for the period of hibernation
+ when he doesn't eat" [syn: {store}, {hive away}, {lay in},
+ {put in}, {salt away}, {stack away}, {stash away}]
+ 2: find a place for and put away for storage; "where should we
+ stow the vegetables?"; "I couldn't store all the books in the
+ attic so I sold some"
+=== have
+ have
+ n 1: a person who possesses great material wealth [syn: {rich
+ person}, {wealthy person}, {have}]
+ v 1: have or possess, either in a concrete or an abstract sense;
+ "She has $1,000 in the bank"; "He has got two beautiful
+ daughters"; "She holds a Master's degree from Harvard"
+ [syn: {have}, {have got}, {hold}]
+ 2: have as a feature; "This restaurant features the most famous
+ chefs in France" [syn: {have}, {feature}] [ant: {lack},
+ {miss}]
+ 3: go through (mental or physical states or experiences); "get
+ an idea"; "experience vertigo"; "get nauseous"; "receive
+ injuries"; "have a feeling" [syn: {experience}, {receive},
+ {have}, {get}]
+ 4: have ownership or possession of; "He owns three houses in
+ Florida"; "How many cars does she have?" [syn: {own}, {have},
+ {possess}]
+ 5: cause to move; cause to be in a certain position or
+ condition; "He got his squad on the ball"; "This let me in
+ for a big surprise"; "He got a girl into trouble" [syn:
+ {get}, {let}, {have}]
+ 6: serve oneself to, or consume regularly; "Have another bowl of
+ chicken soup!"; "I don't take sugar in my coffee" [syn:
+ {consume}, {ingest}, {take in}, {take}, {have}] [ant:
+ {abstain}, {desist}, {refrain}]
+ 7: have a personal or business relationship with someone; "have
+ a postdoc"; "have an assistant"; "have a lover"
+ 8: organize or be responsible for; "hold a reception"; "have,
+ throw, or make a party"; "give a course" [syn: {hold},
+ {throw}, {have}, {make}, {give}]
+ 9: have left; "I have two years left"; "I don't have any money
+ left"; "They have two more years before they retire"
+ 10: be confronted with; "What do we have here?"; "Now we have a
+ fine mess"
+ 11: undergo; "The stocks had a fast run-up" [syn: {have},
+ {experience}]
+ 12: suffer from; be ill with; "She has arthritis"
+ 13: cause to do; cause to act in a specified manner; "The ads
+ induced me to buy a VCR"; "My children finally got me to buy
+ a computer"; "My wife made me buy a new sofa" [syn:
+ {induce}, {stimulate}, {cause}, {have}, {get}, {make}]
+ 14: receive willingly something given or offered; "The only girl
+ who would have him was the miller's daughter"; "I won't have
+ this dog in my house!"; "Please accept my present" [syn:
+ {accept}, {take}, {have}] [ant: {decline}, {pass up},
+ {refuse}, {reject}, {turn down}]
+ 15: get something; come into possession of; "receive payment";
+ "receive a gift"; "receive letters from the front" [syn:
+ {receive}, {have}]
+ 16: undergo (as of injuries and illnesses); "She suffered a
+ fracture in the accident"; "He had an insulin shock after
+ eating three candy bars"; "She got a bruise on her leg"; "He
+ got his arm broken in the scuffle" [syn: {suffer},
+ {sustain}, {have}, {get}]
+ 17: achieve a point or goal; "Nicklaus had a 70"; "The Brazilian
+ team got 4 goals"; "She made 29 points that day" [syn:
+ {have}, {get}, {make}]
+ 18: cause to be born; "My wife had twins yesterday!" [syn: {give
+ birth}, {deliver}, {bear}, {birth}, {have}]
+ 19: have sex with; archaic use; "He had taken this woman when
+ she was most vulnerable" [syn: {take}, {have}]
+=== give
+ give
+ n 1: the elasticity of something that can be stretched and
+ returns to its original length [syn: {give}, {spring},
+ {springiness}]
+ v 1: cause to have, in the abstract sense or physical sense;
+ "She gave him a black eye"; "The draft gave me a cold"
+ 2: be the cause or source of; "He gave me a lot of trouble";
+ "Our meeting afforded much interesting information" [syn:
+ {yield}, {give}, {afford}]
+ 3: transfer possession of something concrete or abstract to
+ somebody; "I gave her my money"; "can you give me lessons?";
+ "She gave the children lots of love and tender loving care"
+ [ant: {take}]
+ 4: convey or reveal information; "Give one's name"
+ 5: convey, as of a compliment, regards, attention, etc.; bestow;
+ "Don't pay him any mind"; "give the orders"; "Give him my
+ best regards"; "pay attention" [syn: {give}, {pay}]
+ 6: organize or be responsible for; "hold a reception"; "have,
+ throw, or make a party"; "give a course" [syn: {hold},
+ {throw}, {have}, {make}, {give}]
+ 7: convey or communicate; of a smile, a look, a physical
+ gesture; "Throw a glance"; "She gave me a dirty look" [syn:
+ {give}, {throw}]
+ 8: give as a present; make a gift of; "What will you give her
+ for her birthday?" [syn: {give}, {gift}, {present}]
+ 9: cause to happen or be responsible for; "His two singles gave
+ the team the victory" [syn: {give}, {yield}]
+ 10: dedicate; "give thought to"; "give priority to"; "pay
+ attention to" [syn: {give}, {pay}, {devote}]
+ 11: give or supply; "The cow brings in 5 liters of milk"; "This
+ year's crop yielded 1,000 bushels of corn"; "The estate
+ renders some revenue for the family" [syn: {render},
+ {yield}, {return}, {give}, {generate}]
+ 12: transmit (knowledge or skills); "give a secret to the
+ Russians"; "leave your name and address here"; "impart a new
+ skill to the students" [syn: {impart}, {leave}, {give},
+ {pass on}]
+ 13: bring about; "The trompe l'oeil-illusion establishes depth"
+ [syn: {establish}, {give}]
+ 14: leave with; give temporarily; "Can I give you my keys while
+ I go in the pool?"; "Can I give you the children for the
+ weekend?"
+ 15: emit or utter; "Give a gulp"; "give a yelp"
+ 16: endure the loss of; "He gave his life for his children"; "I
+ gave two sons to the war" [syn: {sacrifice}, {give}]
+ 17: place into the hands or custody of; "hand me the spoon,
+ please"; "Turn the files over to me, please"; "He turned
+ over the prisoner to his lawyers" [syn: {pass}, {hand},
+ {reach}, {pass on}, {turn over}, {give}]
+ 18: give entirely to a specific person, activity, or cause; "She
+ committed herself to the work of God"; "give one's talents
+ to a good cause"; "consecrate your life to the church" [syn:
+ {give}, {dedicate}, {consecrate}, {commit}, {devote}]
+ 19: give (as medicine); "I gave him the drug"
+ 20: give or convey physically; "She gave him First Aid"; "I gave
+ him a punch in the nose" [syn: {give}, {apply}]
+ 21: bestow; "give homage"; "render thanks" [syn: {give},
+ {render}]
+ 22: bestow, especially officially; "grant a degree"; "give a
+ divorce"; "This bill grants us new rights" [syn: {grant},
+ {give}]
+ 23: move in order to make room for someone for something; "The
+ park gave way to a supermarket"; "`Move over,' he told the
+ crowd" [syn: {move over}, {give way}, {give}, {ease up},
+ {yield}]
+ 24: give food to; "Feed the starving children in India"; "don't
+ give the child this tough meat" [syn: {feed}, {give}] [ant:
+ {famish}, {starve}]
+ 25: contribute to some cause; "I gave at the office" [syn:
+ {contribute}, {give}, {chip in}, {kick in}]
+ 26: break down, literally or metaphorically; "The wall
+ collapsed"; "The business collapsed"; "The dam broke"; "The
+ roof collapsed"; "The wall gave in"; "The roof finally gave
+ under the weight of the ice" [syn: {collapse}, {fall in},
+ {cave in}, {give}, {give way}, {break}, {founder}]
+ 27: estimate the duration or outcome of something; "He gave the
+ patient three months to live"; "I gave him a very good
+ chance at success"
+ 28: execute and deliver; "Give bond"
+ 29: deliver in exchange or recompense; "I'll give you three
+ books for four CDs"
+ 30: afford access to; "the door opens to the patio"; "The French
+ doors give onto a terrace" [syn: {afford}, {open}, {give}]
+ 31: present to view; "He gave the sign to start"
+ 32: perform for an audience; "Pollini is giving another concert
+ in New York"
+ 33: be flexible under stress of physical force; "This material
+ doesn't give" [syn: {give}, {yield}]
+ 34: propose; "He gave the first of many toasts at the birthday
+ party"
+ 35: accord by verdict; "give a decision for the plaintiff"
+ 36: manifest or show; "This student gives promise of real
+ creativity"; "The office gave evidence of tampering"
+ 37: offer in good faith; "He gave her his word"
+ 38: submit for consideration, judgment, or use; "give one's
+ opinion"; "give an excuse"
+ 39: guide or direct, as by behavior of persuasion; "You gave me
+ to think that you agreed with me"
+ 40: allow to have or take; "I give you two minutes to respond"
+ 41: inflict as a punishment; "She gave the boy a good spanking";
+ "The judge gave me 10 years"
+ 42: occur; "what gives?"
+ 43: consent to engage in sexual intercourse with a man; "She
+ gave herself to many men"
+ 44: proffer (a body part); "She gave her hand to her little
+ sister"
+=== take
+ take
+ n 1: the income or profit arising from such transactions as the
+ sale of land or other property; "the average return was
+ about 5%" [syn: {return}, {issue}, {take}, {takings},
+ {proceeds}, {yield}, {payoff}]
+ 2: the act of photographing a scene or part of a scene without
+ interruption
+ v 1: carry out; "take action"; "take steps"; "take vengeance"
+ 2: require (time or space); "It took three hours to get to work
+ this morning"; "This event occupied a very short time" [syn:
+ {take}, {occupy}, {use up}]
+ 3: take somebody somewhere; "We lead him to our chief"; "can you
+ take me to the main entrance?"; "He conducted us to the
+ palace" [syn: {lead}, {take}, {direct}, {conduct}, {guide}]
+ 4: get into one's hands, take physically; "Take a cookie!"; "Can
+ you take this bag, please" [syn: {take}, {get hold of}]
+ 5: take on a certain form, attribute, or aspect; "His voice took
+ on a sad tone"; "The story took a new turn"; "he adopted an
+ air of superiority"; "She assumed strange manners"; "The gods
+ assume human or animal form in these fables" [syn: {assume},
+ {acquire}, {adopt}, {take on}, {take}]
+ 6: interpret something in a certain way; convey a particular
+ meaning or impression; "I read this address as a satire";
+ "How should I take this message?"; "You can't take credit for
+ this!" [syn: {take}, {read}]
+ 7: take something or somebody with oneself somewhere; "Bring me
+ the box from the other room"; "Take these letters to the
+ boss"; "This brings me to the main point" [syn: {bring},
+ {convey}, {take}]
+ 8: take into one's possession; "We are taking an orphan from
+ Romania"; "I'll take three salmon steaks" [ant: {give}]
+ 9: travel or go by means of a certain kind of transportation, or
+ a certain route; "He takes the bus to work"; "She takes Route
+ 1 to Newark"
+ 10: pick out, select, or choose from a number of alternatives;
+ "Take any one of these cards"; "Choose a good husband for
+ your daughter"; "She selected a pair of shoes from among the
+ dozen the salesgirl had shown her" [syn: {choose}, {take},
+ {select}, {pick out}]
+ 11: receive willingly something given or offered; "The only girl
+ who would have him was the miller's daughter"; "I won't have
+ this dog in my house!"; "Please accept my present" [syn:
+ {accept}, {take}, {have}] [ant: {decline}, {pass up},
+ {refuse}, {reject}, {turn down}]
+ 12: assume, as of positions or roles; "She took the job as
+ director of development"; "he occupies the position of
+ manager"; "the young prince will soon occupy the throne"
+ [syn: {fill}, {take}, {occupy}]
+ 13: take into consideration for exemplifying purposes; "Take the
+ case of China"; "Consider the following case" [syn:
+ {consider}, {take}, {deal}, {look at}]
+ 14: require as useful, just, or proper; "It takes nerve to do
+ what she did"; "success usually requires hard work"; "This
+ job asks a lot of patience and skill"; "This position
+ demands a lot of personal sacrifice"; "This dinner calls for
+ a spectacular dessert"; "This intervention does not
+ postulate a patient's consent" [syn: {necessitate}, {ask},
+ {postulate}, {need}, {require}, {take}, {involve}, {call
+ for}, {demand}] [ant: {eliminate}, {obviate}, {rid of}]
+ 15: experience or feel or submit to; "Take a test"; "Take the
+ plunge"
+ 16: make a film or photograph of something; "take a scene";
+ "shoot a movie" [syn: {film}, {shoot}, {take}]
+ 17: remove something concrete, as by lifting, pushing, or taking
+ off, or remove something abstract; "remove a threat";
+ "remove a wrapper"; "Remove the dirty dishes from the
+ table"; "take the gun from your pocket"; "This machine
+ withdraws heat from the environment" [syn: {remove}, {take},
+ {take away}, {withdraw}]
+ 18: serve oneself to, or consume regularly; "Have another bowl
+ of chicken soup!"; "I don't take sugar in my coffee" [syn:
+ {consume}, {ingest}, {take in}, {take}, {have}] [ant:
+ {abstain}, {desist}, {refrain}]
+ 19: accept or undergo, often unwillingly; "We took a pay cut"
+ [syn: {take}, {submit}]
+ 20: make use of or accept for some purpose; "take a risk"; "take
+ an opportunity" [syn: {take}, {accept}]
+ 21: take by force; "Hitler took the Baltic Republics"; "The army
+ took the fort on the hill"
+ 22: occupy or take on; "He assumes the lotus position"; "She
+ took her seat on the stage"; "We took our seats in the
+ orchestra"; "She took up her position behind the tree";
+ "strike a pose" [syn: {assume}, {take}, {strike}, {take up}]
+ 23: admit into a group or community; "accept students for
+ graduate study"; "We'll have to vote on whether or not to
+ admit a new member" [syn: {accept}, {admit}, {take}, {take
+ on}]
+ 24: ascertain or determine by measuring, computing or take a
+ reading from a dial; "take a pulse"; "A reading was taken of
+ the earth's tremors"
+ 25: be a student of a certain subject; "She is reading for the
+ bar exam" [syn: {learn}, {study}, {read}, {take}]
+ 26: take as an undesirable consequence of some event or state of
+ affairs; "the accident claimed three lives"; "The hard work
+ took its toll on her" [syn: {claim}, {take}, {exact}]
+ 27: head into a specified direction; "The escaped convict took
+ to the hills"; "We made for the mountains" [syn: {take},
+ {make}]
+ 28: point or cause to go (blows, weapons, or objects such as
+ photographic equipment) towards; "Please don't aim at your
+ little brother!"; "He trained his gun on the burglar";
+ "Don't train your camera on the women"; "Take a swipe at
+ one's opponent" [syn: {aim}, {take}, {train}, {take aim},
+ {direct}]
+ 29: be seized or affected in a specified way; "take sick"; "be
+ taken drunk"
+ 30: have with oneself; have on one's person; "She always takes
+ an umbrella"; "I always carry money"; "She packs a gun when
+ she goes into the mountains" [syn: {carry}, {pack}, {take}]
+ 31: engage for service under a term of contract; "We took an
+ apartment on a quiet street"; "Let's rent a car"; "Shall we
+ take a guide in Rome?" [syn: {lease}, {rent}, {hire},
+ {charter}, {engage}, {take}]
+ 32: receive or obtain regularly; "We take the Times every day"
+ [syn: {subscribe}, {subscribe to}, {take}]
+ 33: buy, select; "I'll take a pound of that sausage"
+ 34: to get into a position of having, e.g., safety, comfort;
+ "take shelter from the storm"
+ 35: have sex with; archaic use; "He had taken this woman when
+ she was most vulnerable" [syn: {take}, {have}]
+ 36: lay claim to; as of an idea; "She took credit for the whole
+ idea" [syn: {claim}, {take}] [ant: {disclaim}]
+ 37: be designed to hold or take; "This surface will not take the
+ dye" [syn: {accept}, {take}]
+ 38: be capable of holding or containing; "This box won't take
+ all the items"; "The flask holds one gallon" [syn:
+ {contain}, {take}, {hold}]
+ 39: develop a habit; "He took to visiting bars"
+ 40: proceed along in a vehicle; "We drive the turnpike to work"
+ [syn: {drive}, {take}]
+ 41: obtain by winning; "Winner takes all"; "He took first prize"
+ 42: be stricken by an illness, fall victim to an illness; "He
+ got AIDS"; "She came down with pneumonia"; "She took a
+ chill" [syn: {contract}, {take}, {get}]
+=== get
+ get
+ n 1: a return on a shot that seemed impossible to reach and
+ would normally have resulted in a point for the opponent
+ v 1: come into the possession of something concrete or abstract;
+ "She got a lot of paintings from her uncle"; "They acquired
+ a new pet"; "Get your results the next day"; "Get
+ permission to take a few days off from work" [syn: {get},
+ {acquire}]
+ 2: enter or assume a certain state or condition; "He became
+ annoyed when he heard the bad news"; "It must be getting more
+ serious"; "her face went red with anger"; "She went into
+ ecstasy"; "Get going!" [syn: {become}, {go}, {get}]
+ 3: cause to move; cause to be in a certain position or
+ condition; "He got his squad on the ball"; "This let me in
+ for a big surprise"; "He got a girl into trouble" [syn:
+ {get}, {let}, {have}]
+ 4: receive a specified treatment (abstract); "These aspects of
+ civilization do not find expression or receive an
+ interpretation"; "His movie received a good review"; "I got
+ nothing but trouble for my good intentions" [syn: {receive},
+ {get}, {find}, {obtain}, {incur}]
+ 5: reach a destination; arrive by movement or progress; "She
+ arrived home at 7 o'clock"; "She didn't get to Chicago until
+ after midnight" [syn: {arrive}, {get}, {come}] [ant: {go
+ away}, {go forth}, {leave}]
+ 6: go or come after and bring or take back; "Get me those books
+ over there, please"; "Could you bring the wine?"; "The dog
+ fetched the hat" [syn: {bring}, {get}, {convey}, {fetch}]
+ [ant: {bear away}, {bear off}, {carry away}, {carry off},
+ {take away}]
+ 7: go through (mental or physical states or experiences); "get
+ an idea"; "experience vertigo"; "get nauseous"; "receive
+ injuries"; "have a feeling" [syn: {experience}, {receive},
+ {have}, {get}]
+ 8: take vengeance on or get even; "We'll get them!"; "That'll
+ fix him good!"; "This time I got him" [syn: {pay back}, {pay
+ off}, {get}, {fix}]
+ 9: achieve a point or goal; "Nicklaus had a 70"; "The Brazilian
+ team got 4 goals"; "She made 29 points that day" [syn:
+ {have}, {get}, {make}]
+ 10: cause to do; cause to act in a specified manner; "The ads
+ induced me to buy a VCR"; "My children finally got me to buy
+ a computer"; "My wife made me buy a new sofa" [syn:
+ {induce}, {stimulate}, {cause}, {have}, {get}, {make}]
+ 11: succeed in catching or seizing, especially after a chase;
+ "We finally got the suspect"; "Did you catch the thief?"
+ [syn: {get}, {catch}, {capture}]
+ 12: come to have or undergo a change of (physical features and
+ attributes); "He grew a beard"; "The patient developed
+ abdominal pains"; "I got funny spots all over my body";
+ "Well-developed breasts" [syn: {grow}, {develop}, {produce},
+ {get}, {acquire}]
+ 13: be stricken by an illness, fall victim to an illness; "He
+ got AIDS"; "She came down with pneumonia"; "She took a
+ chill" [syn: {contract}, {take}, {get}]
+ 14: communicate with a place or person; establish communication
+ with, as if by telephone; "Bill called this number and he
+ got Mary"; "The operator couldn't get Kobe because of the
+ earthquake"
+ 15: give certain properties to something; "get someone mad";
+ "She made us look silly"; "He made a fool of himself at the
+ meeting"; "Don't make this into a big deal"; "This invention
+ will make you a millionaire"; "Make yourself clear" [syn:
+ {make}, {get}]
+ 16: move into a desired direction of discourse; "What are you
+ driving at?" [syn: {drive}, {get}, {aim}]
+ 17: grasp with the mind or develop an understanding of; "did you
+ catch that allusion?"; "We caught something of his theory in
+ the lecture"; "don't catch your meaning"; "did you get it?";
+ "She didn't get the joke"; "I just don't get him" [syn:
+ {catch}, {get}]
+ 18: attract and fix; "His look caught her"; "She caught his
+ eye"; "Catch the attention of the waiter" [syn: {catch},
+ {arrest}, {get}]
+ 19: reach with a blow or hit in a particular spot; "the rock
+ caught her in the back of the head"; "The blow got him in
+ the back"; "The punch caught him in the stomach" [syn:
+ {get}, {catch}]
+ 20: reach by calculation; "What do you get when you add up these
+ numbers?"
+ 21: acquire as a result of some effort or action; "You cannot
+ get water out of a stone"; "Where did she get these news?"
+ 22: purchase; "What did you get at the toy store?"
+ 23: perceive by hearing; "I didn't catch your name"; "She didn't
+ get his name when they met the first time" [syn: {catch},
+ {get}]
+ 24: suffer from the receipt of; "She will catch hell for this
+ behavior!" [syn: {catch}, {get}]
+ 25: receive as a retribution or punishment; "He got 5 years in
+ prison" [syn: {get}, {receive}]
+ 26: leave immediately; used usually in the imperative form;
+ "Scram!" [syn: {scram}, {buzz off}, {fuck off}, {get},
+ {bugger off}]
+ 27: reach and board; "She got the bus just as it was leaving"
+ 28: irritate; "Her childish behavior really get to me"; "His
+ lying really gets me" [syn: {get}, {get under one's skin}]
+ 29: evoke an emotional response; "Brahms's `Requiem' gets me
+ every time"
+ 30: apprehend and reproduce accurately; "She really caught the
+ spirit of the place in her drawings"; "She got the mood just
+ right in her photographs" [syn: {catch}, {get}]
+ 31: earn or achieve a base by being walked by the pitcher; "He
+ drew a base on balls" [syn: {draw}, {get}]
+ 32: overcome or destroy; "The ice storm got my hibiscus"; "the
+ cat got the goldfish"
+ 33: be a mystery or bewildering to; "This beats me!"; "Got me--I
+ don't know the answer!"; "a vexing problem"; "This question
+ really stuck me" [syn: {perplex}, {vex}, {stick}, {get},
+ {puzzle}, {mystify}, {baffle}, {beat}, {pose}, {bewilder},
+ {flummox}, {stupefy}, {nonplus}, {gravel}, {amaze},
+ {dumbfound}]
+ 34: take the first step or steps in carrying out an action; "We
+ began working at dawn"; "Who will start?"; "Get working as
+ soon as the sun rises!"; "The first tourists began to arrive
+ in Cambodia"; "He began early in the day"; "Let's get down
+ to work now" [syn: {get down}, {begin}, {get}, {start out},
+ {start}, {set about}, {set out}, {commence}] [ant: {end},
+ {terminate}]
+ 35: undergo (as of injuries and illnesses); "She suffered a
+ fracture in the accident"; "He had an insulin shock after
+ eating three candy bars"; "She got a bruise on her leg"; "He
+ got his arm broken in the scuffle" [syn: {suffer},
+ {sustain}, {have}, {get}]
+ 36: make children; "Abraham begot Isaac"; "Men often father
+ children but don't recognize them" [syn: {beget}, {get},
+ {engender}, {father}, {mother}, {sire}, {generate}, {bring
+ forth}]
+=== put
+ put
+ n 1: the option to sell a given stock (or stock index or
+ commodity future) at a given price before a given date
+ [syn: {put option}, {put}] [ant: {call}, {call option}]
+ v 1: put into a certain place or abstract location; "Put your
+ things here"; "Set the tray down"; "Set the dogs on the
+ scent of the missing children"; "Place emphasis on a
+ certain point" [syn: {put}, {set}, {place}, {pose},
+ {position}, {lay}]
+ 2: cause to be in a certain state; cause to be in a certain
+ relation; "That song put me in awful good humor"; "put your
+ ideas in writing"
+ 3: formulate in a particular style or language; "I wouldn't put
+ it that way"; "She cast her request in very polite language"
+ [syn: {frame}, {redact}, {cast}, {put}, {couch}]
+ 4: attribute or give; "She put too much emphasis on her the last
+ statement"; "He put all his efforts into this job"; "The
+ teacher put an interesting twist to the interpretation of the
+ story" [syn: {put}, {assign}]
+ 5: make an investment; "Put money into bonds" [syn: {invest},
+ {put}, {commit}, {place}] [ant: {disinvest}, {divest}]
+ 6: estimate; "We put the time of arrival at 8 P.M." [syn:
+ {place}, {put}, {set}]
+ 7: cause (someone) to undergo something; "He put her to the
+ torture"
+ 8: adapt; "put these words to music"
+ 9: arrange thoughts, ideas, temporal events; "arrange my
+ schedule"; "set up one's life"; "I put these memories with
+ those of bygone times" [syn: {arrange}, {set up}, {put},
+ {order}]
+=== hold
+ hold
+ n 1: the act of grasping; "he released his clasp on my arm"; "he
+ has a strong grip for an old man"; "she kept a firm hold on
+ the railing" [syn: {clasp}, {clench}, {clutch}, {clutches},
+ {grasp}, {grip}, {hold}]
+ 2: understanding of the nature or meaning or quality or
+ magnitude of something; "he has a good grasp of accounting
+ practices" [syn: {appreciation}, {grasp}, {hold}]
+ 3: power by which something or someone is affected or dominated;
+ "he has a hold over them"
+ 4: time during which some action is awaited; "instant replay
+ caused too long a delay"; "he ordered a hold in the action"
+ [syn: {delay}, {hold}, {time lag}, {postponement}, {wait}]
+ 5: a state of being confined (usually for a short time); "his
+ detention was politically motivated"; "the prisoner is on
+ hold"; "he is in the custody of police" [syn: {detention},
+ {detainment}, {hold}, {custody}]
+ 6: a stronghold
+ 7: a cell in a jail or prison [syn: {hold}, {keep}]
+ 8: the appendage to an object that is designed to be held in
+ order to use or move it; "he grabbed the hammer by the
+ handle"; "it was an old briefcase but it still had a good
+ grip" [syn: {handle}, {grip}, {handgrip}, {hold}]
+ 9: the space in a ship or aircraft for storing cargo [syn:
+ {cargo area}, {cargo deck}, {cargo hold}, {hold}, {storage
+ area}]
+ v 1: keep in a certain state, position, or activity; e.g., "keep
+ clean"; "hold in place"; "She always held herself as a
+ lady"; "The students keep me on my toes" [syn: {keep},
+ {maintain}, {hold}]
+ 2: have or hold in one's hands or grip; "Hold this bowl for a
+ moment, please"; "A crazy idea took hold of him" [syn:
+ {hold}, {take hold}] [ant: {let go}, {let go of}, {release},
+ {relinquish}]
+ 3: organize or be responsible for; "hold a reception"; "have,
+ throw, or make a party"; "give a course" [syn: {hold},
+ {throw}, {have}, {make}, {give}]
+ 4: have or possess, either in a concrete or an abstract sense;
+ "She has $1,000 in the bank"; "He has got two beautiful
+ daughters"; "She holds a Master's degree from Harvard" [syn:
+ {have}, {have got}, {hold}]
+ 5: keep in mind or convey as a conviction or view; "take for
+ granted"; "view as important"; "hold these truths to be self-
+ evident"; "I hold him personally responsible" [syn: {deem},
+ {hold}, {view as}, {take for}]
+ 6: maintain (a theory, thoughts, or feelings); "bear a grudge";
+ "entertain interesting notions"; "harbor a resentment" [syn:
+ {harbor}, {harbour}, {hold}, {entertain}, {nurse}]
+ 7: to close within bounds, limit or hold back from movement;
+ "This holds the local until the express passengers change
+ trains"; "About a dozen animals were held inside the
+ stockade"; "The illegal immigrants were held at a detention
+ center"; "The terrorists held the journalists for ransom"
+ [syn: {restrain}, {confine}, {hold}]
+ 8: secure and keep for possible future use or application; "The
+ landlord retained the security deposit"; "I reserve the right
+ to disagree" [syn: {retain}, {hold}, {keep back}, {hold
+ back}]
+ 9: have rightfully; of rights, titles, and offices; "She bears
+ the title of Duchess"; "He held the governorship for almost a
+ decade" [syn: {bear}, {hold}]
+ 10: be the physical support of; carry the weight of; "The beam
+ holds up the roof"; "He supported me with one hand while I
+ balanced on the beam"; "What's holding that mirror?" [syn:
+ {hold}, {support}, {sustain}, {hold up}]
+ 11: contain or hold; have within; "The jar carries wine"; "The
+ canteen holds fresh water"; "This can contains water" [syn:
+ {hold}, {bear}, {carry}, {contain}]
+ 12: have room for; hold without crowding; "This hotel can
+ accommodate 250 guests"; "The theater admits 300 people";
+ "The auditorium can't hold more than 500 people" [syn:
+ {accommodate}, {hold}, {admit}]
+ 13: remain in a certain state, position, or condition; "The
+ weather held"; "They held on the road and kept marching"
+ 14: support or hold in a certain manner; "She holds her head
+ high"; "He carried himself upright" [syn: {hold}, {carry},
+ {bear}]
+ 15: be valid, applicable, or true; "This theory still holds"
+ [syn: {prevail}, {hold}, {obtain}]
+ 16: assert or affirm; "Rousseau's philosophy holds that people
+ are inherently good"
+ 17: have as a major characteristic; "The novel holds many
+ surprises"; "The book holds in store much valuable advise"
+ 18: be capable of holding or containing; "This box won't take
+ all the items"; "The flask holds one gallon" [syn:
+ {contain}, {take}, {hold}]
+ 19: arrange for and reserve (something for someone else) in
+ advance; "reserve me a seat on a flight"; "The agent booked
+ tickets to the show for the whole family"; "please hold a
+ table at Maxim's" [syn: {reserve}, {hold}, {book}]
+ 20: protect against a challenge or attack; "Hold that position
+ behind the trees!"; "Hold the bridge against the enemy's
+ attacks" [syn: {defend}, {guard}, {hold}]
+ 21: bind by an obligation; cause to be indebted; "He's held by a
+ contract"; "I'll hold you by your promise" [syn: {oblige},
+ {bind}, {hold}, {obligate}]
+ 22: hold the attention of; "The soprano held the audience";
+ "This story held our interest"; "She can hold an audience
+ spellbound"
+ 23: remain committed to; "I hold to these ideas"
+ 24: resist or confront with resistance; "The politician defied
+ public opinion"; "The new material withstands even the
+ greatest wear and tear"; "The bridge held" [syn: {defy},
+ {withstand}, {hold}, {hold up}]
+ 25: be pertinent or relevant or applicable; "The same laws apply
+ to you!"; "This theory holds for all irrational numbers";
+ "The same rules go for everyone" [syn: {apply}, {hold}, {go
+ for}]
+ 26: stop dealing with; "hold all calls to the President's office
+ while he is in a meeting"
+ 27: lessen the intensity of; temper; hold in restraint; hold or
+ keep within limits; "moderate your alcohol intake"; "hold
+ your tongue"; "hold your temper"; "control your anger" [syn:
+ {control}, {hold in}, {hold}, {contain}, {check}, {curb},
+ {moderate}]
+ 28: keep from departing; "Hold the taxi"; "Hold the horse"
+ 29: take and maintain control over, often by violent means; "The
+ dissatisfied students held the President's office for almost
+ a week"
+ 30: cause to stop; "Halt the engines"; "Arrest the progress";
+ "halt the presses" [syn: {halt}, {hold}, {arrest}]
+ 31: cover as for protection against noise or smell; "She held
+ her ears when the jackhammer started to operate"; "hold
+ one's nose"
+ 32: drink alcohol without showing ill effects; "He can hold his
+ liquor"; "he had drunk more than he could carry" [syn:
+ {carry}, {hold}]
+ 33: aim, point, or direct; "Hold the fire extinguisher directly
+ on the flames"
+ 34: declare to be; "She was declared incompetent"; "judge held
+ that the defendant was innocent" [syn: {declare}, {adjudge},
+ {hold}]
+ 35: be in accord; be in agreement; "We agreed on the terms of
+ the settlement"; "I can't agree with you!"; "I hold with
+ those who say life is sacred"; "Both philosophers concord on
+ this point" [syn: {agree}, {hold}, {concur}, {concord}]
+ [ant: {differ}, {disagree}, {dissent}, {take issue}]
+ 36: keep from exhaling or expelling; "hold your breath"
+=== lose
+ lose
+ v 1: fail to keep or to maintain; cease to have, either
+ physically or in an abstract sense; "She lost her purse
+ when she left it unattended on her seat" [ant: {hold on},
+ {keep}]
+ 2: fail to win; "We lost the battle but we won the war" [ant:
+ {win}]
+ 3: suffer the loss of a person through death or removal; "She
+ lost her husband in the war"; "The couple that wanted to
+ adopt the child lost her when the biological parents claimed
+ her"
+ 4: place (something) where one cannot find it again; "I
+ misplaced my eyeglasses" [syn: {misplace}, {mislay}, {lose}]
+ 5: miss from one's possessions; lose sight of; "I've lost my
+ glasses again!" [ant: {find}, {regain}]
+ 6: allow to go out of sight; "The detective lost the man he was
+ shadowing after he had to stop at a red light"
+ 7: fail to make money in a business; make a loss or fail to
+ profit; "I lost thousands of dollars on that bad
+ investment!"; "The company turned a loss after the first
+ year" [syn: {lose}, {turn a loss}] [ant: {break even},
+ {profit}, {turn a profit}]
+ 8: fail to get or obtain; "I lost the opportunity to spend a
+ year abroad" [ant: {acquire}, {gain}, {win}]
+ 9: retreat [syn: {fall back}, {lose}, {drop off}, {fall behind},
+ {recede}] [ant: {advance}, {gain}, {gain ground}, {get
+ ahead}, {make headway}, {pull ahead}, {win}]
+ 10: fail to perceive or to catch with the senses or the mind; "I
+ missed that remark"; "She missed his point"; "We lost part
+ of what he said" [syn: {miss}, {lose}]
+ 11: be set at a disadvantage; "This author really suffers in
+ translation" [syn: {suffer}, {lose}]
+=== count
+ count
+ n 1: the total number counted; "a blood count"
+ 2: the act of counting; reciting numbers in ascending order;
+ "the counting continued for several hours" [syn: {count},
+ {counting}, {numeration}, {enumeration}, {reckoning},
+ {tally}]
+ 3: a nobleman (in various countries) having rank equal to a
+ British earl
+ v 1: determine the number or amount of; "Can you count the books
+ on your shelf?"; "Count your change" [syn: {count},
+ {number}, {enumerate}, {numerate}]
+ 2: have weight; have import, carry weight; "It does not matter
+ much" [syn: {count}, {matter}, {weigh}]
+ 3: show consideration for; take into account; "You must consider
+ her age"; "The judge considered the offender's youth and was
+ lenient" [syn: {consider}, {count}, {weigh}]
+ 4: name or recite the numbers in ascending order; "The toddler
+ could count to 100"
+ 5: put into a group; "The academy counts several Nobel Prize
+ winners among its members" [syn: {count}, {number}]
+ 6: include as if by counting; "I can count my colleagues in the
+ opposition"
+ 7: have a certain value or carry a certain weight; "each answer
+ counts as three points"
+ 8: have faith or confidence in; "you can count on me to help you
+ any time"; "Look to your friends for support"; "You can bet
+ on that!"; "Depend on your family in times of crisis" [syn:
+ {count}, {bet}, {depend}, {look}, {calculate}, {reckon}]
+ 9: take account of; "You have to reckon with our opponents";
+ "Count on the monsoon" [syn: {reckon}, {count}]
+=== sort
+ sort
+ n 1: a category of things distinguished by some common
+ characteristic or quality; "sculpture is a form of art";
+ "what kinds of desserts are there?" [syn: {kind}, {sort},
+ {form}, {variety}]
+ 2: an approximate definition or example; "she wore a sort of
+ magenta dress"; "she served a creamy sort of dessert thing"
+ 3: a person of a particular character or nature; "what sort of
+ person is he?"; "he's a good sort"
+ 4: an operation that segregates items into groups according to a
+ specified criterion; "the bottleneck in mail delivery is the
+ process of sorting" [syn: {sort}, {sorting}]
+ v 1: examine in order to test suitability; "screen these
+ samples"; "screen the job applicants" [syn: {screen},
+ {screen out}, {sieve}, {sort}]
+ 2: arrange or order by classes or categories; "How would you
+ classify these pottery shards--are they prehistoric?" [syn:
+ {classify}, {class}, {sort}, {assort}, {sort out},
+ {separate}]
+=== order
+ order
+ n 1: (often plural) a command given by a superior (e.g., a
+ military or law enforcement officer) that must be obeyed;
+ "the British ships dropped anchor and waited for orders
+ from London"
+ 2: a degree in a continuum of size or quantity; "it was on the
+ order of a mile"; "an explosion of a low order of magnitude"
+ [syn: {order}, {order of magnitude}]
+ 3: established customary state (especially of society); "order
+ ruled in the streets"; "law and order" [ant: {disorder}]
+ 4: logical or comprehensible arrangement of separate elements;
+ "we shall consider these questions in the inverse order of
+ their presentation" [syn: {ordering}, {order}, {ordination}]
+ 5: a condition of regular or proper arrangement; "he put his
+ desk in order"; "the machine is now in working order" [syn:
+ {orderliness}, {order}] [ant: {disorder}, {disorderliness}]
+ 6: a legally binding command or decision entered on the court
+ record (as if issued by a court or judge); "a friend in New
+ Mexico said that the order caused no trouble out there" [syn:
+ {decree}, {edict}, {fiat}, {order}, {rescript}]
+ 7: a commercial document used to request someone to supply
+ something in return for payment and providing specifications
+ and quantities; "IBM received an order for a hundred
+ computers" [syn: {order}, {purchase order}]
+ 8: a formal association of people with similar interests; "he
+ joined a golf club"; "they formed a small lunch society";
+ "men from the fraternal order will staff the soup kitchen
+ today" [syn: {club}, {social club}, {society}, {guild},
+ {gild}, {lodge}, {order}]
+ 9: a body of rules followed by an assembly [syn: {order}, {rules
+ of order}, {parliamentary law}, {parliamentary procedure}]
+ 10: (usually plural) the status or rank or office of a Christian
+ clergyman in an ecclesiastical hierarchy; "theologians still
+ disagree over whether `bishop' should or should not be a
+ separate Order" [syn: {Holy Order}, {Order}]
+ 11: a group of person living under a religious rule; "the order
+ of Saint Benedict" [syn: {order}, {monastic order}]
+ 12: (biology) taxonomic group containing one or more families
+ 13: a request for something to be made, supplied, or served; "I
+ gave the waiter my order"; "the company's products were in
+ such demand that they got more orders than their call center
+ could handle"
+ 14: (architecture) one of original three styles of Greek
+ architecture distinguished by the type of column and
+ entablature used or a style developed from the original
+ three by the Romans
+ 15: the act of putting things in a sequential arrangement;
+ "there were mistakes in the ordering of items on the list"
+ [syn: {order}, {ordering}]
+ v 1: give instructions to or direct somebody to do something
+ with authority; "I said to him to go home"; "She ordered
+ him to do the shopping"; "The mother told the child to get
+ dressed" [syn: {order}, {tell}, {enjoin}, {say}]
+ 2: make a request for something; "Order me some flowers"; "order
+ a work stoppage"
+ 3: issue commands or orders for [syn: {order}, {prescribe},
+ {dictate}]
+ 4: bring into conformity with rules or principles or usage;
+ impose regulations; "We cannot regulate the way people
+ dress"; "This town likes to regulate" [syn: {regulate},
+ {regularize}, {regularise}, {order}, {govern}] [ant:
+ {deregulate}]
+ 5: bring order to or into; "Order these files" [ant: {disarray},
+ {disorder}]
+ 6: place in a certain order; "order the photos chronologically"
+ 7: appoint to a clerical posts; "he was ordained in the Church"
+ [syn: {ordain}, {consecrate}, {ordinate}, {order}]
+ 8: arrange thoughts, ideas, temporal events; "arrange my
+ schedule"; "set up one's life"; "I put these memories with
+ those of bygone times" [syn: {arrange}, {set up}, {put},
+ {order}]
+ 9: assign a rank or rating to; "how would you rank these
+ students?"; "The restaurant is rated highly in the food
+ guide" [syn: {rate}, {rank}, {range}, {order}, {grade},
+ {place}]
+=== first
+ first
+ adv 1: before anything else; "first we must consider the garter
+ snake" [syn: {first}, {firstly}, {foremost}, {first of
+ all}, {first off}]
+ 2: the initial time; "when Felix first saw a garter snake" [syn:
+ {first}, {for the first time}]
+ 3: before another in time, space, or importance; "I was here
+ first"; "let's do this job first"
+ 4: prominently forward; "he put his best foot foremost" [syn:
+ {foremost}, {first}]
+ adj 1: preceding all others in time or space or degree; "the
+ first house on the right"; "the first day of spring";
+ "his first political race"; "her first baby"; "the first
+ time"; "the first meetings of the new party"; "the first
+ phase of his training" [ant: {last}]
+ 2: indicating the beginning unit in a series [syn: {first},
+ {1st}]
+ 3: serving to set in motion; "the magazine's inaugural issue";
+ "the initiative phase in the negotiations"; "an initiatory
+ step toward a treaty"; "his first (or maiden) speech in
+ Congress"; "the liner's maiden voyage" [syn: {inaugural},
+ {initiative}, {initiatory}, {first}, {maiden}]
+ 4: serving to begin; "the beginning canto of the poem"; "the
+ first verse" [syn: {beginning(a)}, {first}]
+ 5: ranking above all others; "was first in her class"; "the
+ foremost figure among marine artists"; "the top graduate"
+ [syn: {first}, {foremost}, {world-class}]
+ 6: highest in pitch or chief among parts or voices or
+ instruments or orchestra sections; "first soprano"; "the
+ first violin section"; "played first horn" [ant: {second}]
+ n 1: the first or highest in an ordering or series; "He wanted
+ to be the first" [syn: {first}, {number one}]
+ 2: the first element in a countable series; "the first of the
+ month" [syn: {first}, {number one}, {number 1}]
+ 3: the time at which something is supposed to begin; "they got
+ an early start"; "she knew from the get-go that he was the
+ man for her" [syn: {beginning}, {commencement}, {first},
+ {outset}, {get-go}, {start}, {kickoff}, {starting time},
+ {showtime}, {offset}] [ant: {end}, {ending}, {middle}]
+ 4: the fielding position of the player on a baseball team who is
+ stationed at first of the bases in the infield (counting
+ counterclockwise from home plate) [syn: {first base},
+ {first}]
+ 5: an honours degree of the highest class [syn: {first}, {first-
+ class honours degree}]
+ 6: the lowest forward gear ratio in the gear box of a motor
+ vehicle; used to start a car moving [syn: {first gear},
+ {first}, {low gear}, {low}]
+=== last
+ last
+ adv 1: most_recently; "I saw him last in London"
+ 2: the item at the end; "last, I'll discuss family values" [syn:
+ {last}, {lastly}, {in conclusion}, {finally}]
+ adj 1: immediately past; "last Thursday"; "the last chapter we
+ read"
+ 2: coming after all others in time or space or degree or being
+ the only one remaining; "the last time I saw Paris"; "the
+ last day of the month"; "had the last word"; "waited until
+ the last minute"; "he raised his voice in a last supreme
+ call"; "the last game of the season"; "down to his last
+ nickel" [ant: {first}]
+ 3: occurring at or forming an end or termination; "his
+ concluding words came as a surprise"; "the final chapter";
+ "the last days of the dinosaurs"; "terminal leave" [syn:
+ {concluding}, {final}, {last}, {terminal}]
+ 4: most unlikely or unsuitable; "the last person we would have
+ suspected"; "the last man they would have chosen for the job"
+ 5: occurring at the time of death; "his last words"; "the last
+ rites"
+ 6: conclusive in a process or progression; "the final answer";
+ "a last resort"; "the net result" [syn: {final}, {last},
+ {net}]
+ 7: highest in extent or degree; "to the last measure of human
+ endurance"; "whether they were accomplices in the last degree
+ or a lesser one was...to be determined individually" [syn:
+ {last}, {utmost}]
+ 8: not to be altered or undone; "the judge's decision is final";
+ "the arbiter will have the last say" [syn: {final}, {last}]
+ 9: lowest in rank or importance; "last prize"; "in last place"
+ [syn: {last}, {last-place}, {lowest}]
+ n 1: the temporal end; the concluding time; "the stopping point
+ of each round was signaled by a bell"; "the market was up
+ at the finish"; "they were playing better at the close of
+ the season" [syn: {stopping point}, {finale}, {finis},
+ {finish}, {last}, {conclusion}, {close}]
+ 2: the last or lowest in an ordering or series; "he was the last
+ to leave"; "he finished an inglorious last"
+ 3: a person's dying act; the final thing a person can do; "he
+ breathed his last"
+ 4: the time at which life ends; continuing until dead; "she
+ stayed until his death"; "a struggle to the last" [syn:
+ {death}, {last}]
+ 5: a unit of weight equal to 4,000 pounds
+ 6: a unit of capacity for grain equal to 80 bushels
+ 7: the concluding parts of an event or occurrence; "the end was
+ exciting"; "I had to miss the last of the movie" [syn: {end},
+ {last}, {final stage}]
+ 8: holding device shaped like a human foot that is used to
+ fashion or repair shoes [syn: {last}, {shoemaker's last},
+ {cobbler's last}]
+ v 1: persist for a specified period of time; "The bad weather
+ lasted for three days" [syn: {last}, {endure}]
+ 2: continue to live through hardship or adversity; "We went
+ without water and food for 3 days"; "These superstitions
+ survive in the backwaters of America"; "The race car driver
+ lived through several very serious accidents"; "how long can
+ a person last without food and water?" [syn: {survive},
+ {last}, {live}, {live on}, {go}, {endure}, {hold up}, {hold
+ out}]
+=== empty
+ empty
+ adj 1: holding or containing nothing; "an empty glass"; "an
+ empty room"; "full of empty seats"; "empty hours" [ant:
+ {full}]
+ 2: devoid of significance or point; "empty promises"; "a hollow
+ victory"; "vacuous comments" [syn: {empty}, {hollow},
+ {vacuous}]
+ 3: needing nourishment; "after skipped lunch the men were empty
+ by suppertime"; "empty-bellied children" [syn: {empty},
+ {empty-bellied}]
+ 4: emptied of emotion; "after the violent argument he felt
+ empty"
+ n 1: a container that has been emptied; "return all empties to
+ the store"
+ v 1: make void or empty of contents; "Empty the box"; "The alarm
+ emptied the building" [ant: {fill}, {fill up}, {make full}]
+ 2: become empty or void of its content; "The room emptied" [syn:
+ {empty}, {discharge}] [ant: {fill}, {fill up}]
+ 3: leave behind empty; move out of; "You must vacate your office
+ by tonight" [syn: {vacate}, {empty}, {abandon}]
+ 4: remove; "Empty the water"
+ 5: excrete or discharge from the body [syn: {evacuate}, {void},
+ {empty}]
+=== full
+ full
+ adv 1: to the greatest degree or extent; completely or entirely;
+ (`full' in this sense is used as a combining form);
+ "fully grown"; "he didn't fully understand"; "knew full
+ well"; "full-grown"; "full-fledged" [syn: {fully}, {to
+ the full}, {full}]
+ adj 1: containing as much or as many as is possible or normal;
+ "a full glass"; "a sky full of stars"; "a full life";
+ "the auditorium was full to overflowing" [ant: {empty}]
+ 2: constituting the full quantity or extent; complete; "an
+ entire town devastated by an earthquake"; "gave full
+ attention"; "a total failure" [syn: {entire}, {full},
+ {total}]
+ 3: complete in extent or degree and in every particular; "a full
+ game"; "a total eclipse"; "a total disaster" [syn: {full},
+ {total}]
+ 4: filled to satisfaction with food or drink; "a full stomach"
+ [syn: {full}, {replete(p)}]
+ 5: (of sound) having marked deepness and body; "full tones"; "a
+ full voice" [ant: {thin}]
+ 6: having the normally expected amount; "gives full measure";
+ "gives good measure"; "a good mile from here" [syn: {full},
+ {good}]
+ 7: being at a peak or culminating point; "broad daylight"; "full
+ summer" [syn: {broad(a)}, {full(a)}]
+ 8: having ample fabric; "the current taste for wide trousers";
+ "a full skirt" [syn: {wide}, {wide-cut}, {full}]
+ n 1: the time when the Moon is fully illuminated; "the moon is
+ at the full" [syn: {full moon}, {full-of-the-moon}, {full
+ phase of the moon}, {full}]
+ v 1: beat for the purpose of cleaning and thickening; "full the
+ cloth"
+ 2: make (a garment) fuller by pleating or gathering
+ 3: increase in phase; "the moon is waxing" [syn: {wax}, {full}]
+ [ant: {wane}]
+=== change
+ change
+ n 1: an event that occurs when something passes from one state
+ or phase to another; "the change was intended to increase
+ sales"; "this storm is certainly a change for the worse";
+ "the neighborhood had undergone few modifications since his
+ last visit years ago" [syn: {change}, {alteration},
+ {modification}]
+ 2: a relational difference between states; especially between
+ states before and after some event; "he attributed the change
+ to their marriage"
+ 3: the action of changing something; "the change of government
+ had no impact on the economy"; "his change on abortion cost
+ him the election"
+ 4: the result of alteration or modification; "there were marked
+ changes in the lining of the lungs"; "there had been no
+ change in the mountains"
+ 5: the balance of money received when the amount you tender is
+ greater than the amount due; "I paid with a twenty and
+ pocketed the change"
+ 6: a thing that is different; "he inspected several changes
+ before selecting one"
+ 7: a different or fresh set of clothes; "she brought a change in
+ her overnight bag"
+ 8: coins of small denomination regarded collectively; "he had a
+ pocketful of change"
+ 9: money received in return for its equivalent in a larger
+ denomination or a different currency; "he got change for a
+ twenty and used it to pay the taxi driver"
+ 10: a difference that is usually pleasant; "he goes to France
+ for variety"; "it is a refreshing change to meet a woman
+ mechanic" [syn: {variety}, {change}]
+ v 1: cause to change; make different; cause a transformation;
+ "The advent of the automobile may have altered the growth
+ pattern of the city"; "The discussion has changed my
+ thinking about the issue" [syn: {change}, {alter},
+ {modify}]
+ 2: undergo a change; become different in essence; losing one's
+ or its original nature; "She changed completely as she grew
+ older"; "The weather changed last night" [ant: {remain},
+ {rest}, {stay}]
+ 3: become different in some particular way, without permanently
+ losing one's or its former characteristics or essence; "her
+ mood changes in accordance with the weather"; "The
+ supermarket's selection of vegetables varies according to the
+ season" [syn: {change}, {alter}, {vary}]
+ 4: lay aside, abandon, or leave for another; "switch to a
+ different brand of beer"; "She switched psychiatrists"; "The
+ car changed lanes" [syn: {switch}, {shift}, {change}]
+ 5: change clothes; put on different clothes; "Change before you
+ go to the opera"
+ 6: exchange or replace with another, usually of the same kind or
+ category; "Could you convert my dollars into pounds?"; "He
+ changed his name"; "convert centimeters into inches";
+ "convert holdings into shares" [syn: {change}, {exchange},
+ {commute}, {convert}]
+ 7: give to, and receive from, one another; "Would you change
+ places with me?"; "We have been exchanging letters for a
+ year" [syn: {exchange}, {change}, {interchange}]
+ 8: change from one vehicle or transportation line to another;
+ "She changed in Chicago on her way to the East coast" [syn:
+ {transfer}, {change}]
+ 9: become deeper in tone; "His voice began to change when he was
+ 12 years old"; "Her voice deepened when she whispered the
+ password" [syn: {deepen}, {change}]
+ 10: remove or replace the coverings of; "Father had to learn how
+ to change the baby"; "After each guest we changed the bed
+ linens"
+=== remember
+ remember
+ v 1: recall knowledge from memory; have a recollection; "I can't
+ remember saying any such thing"; "I can't think what her
+ last name was"; "can you remember her phone number?"; "Do
+ you remember that he once loved you?"; "call up memories"
+ [syn: {remember}, {retrieve}, {recall}, {call back}, {call
+ up}, {recollect}, {think}] [ant: {blank out}, {block},
+ {draw a blank}, {forget}]
+ 2: keep in mind for attention or consideration; "Remember the
+ Alamo"; "Remember to call your mother every day!"; "Think of
+ the starving children in India!" [syn: {remember}, {think
+ of}] [ant: {bury}, {forget}]
+ 3: recapture the past; indulge in memories; "he remembered how
+ he used to pick flowers" [syn: {remember}, {think back}]
+ 4: show appreciation to; "He remembered her in his will"
+ 5: mention favorably, as in prayer; "remember me in your
+ prayers"
+ 6: mention as by way of greeting or to indicate friendship;
+ "Remember me to your wife" [syn: {commend}, {remember}]
+ 7: exercise, or have the power of, memory; "After the shelling,
+ many people lost the ability to remember"; "some remember
+ better than others"
+ 8: call to remembrance; keep alive the memory of someone or
+ something, as in a ceremony; "We remembered the 50th
+ anniversary of the liberation of Auschwitz"; "Remember the
+ dead of the First World War" [syn: {commemorate}, {remember}]
+=== forget
+ forget
+ v 1: dismiss from the mind; stop remembering; "I tried to bury
+ these unpleasant memories" [syn: {forget}, {bury}] [ant:
+ {remember}, {think of}]
+ 2: be unable to remember; "I'm drawing a blank"; "You are
+ blocking the name of your first wife!" [syn: {forget},
+ {block}, {blank out}, {draw a blank}] [ant: {call back},
+ {call up}, {recall}, {recollect}, {remember}, {retrieve},
+ {think}]
+ 3: forget to do something; "Don't forget to call the chairman of
+ the board to the meeting!" [ant: {bear in mind}, {mind}]
+ 4: leave behind unintentionally; "I forgot my umbrella in the
+ restaurant"; "I left my keys inside the car and locked the
+ doors" [syn: {forget}, {leave}]
+=== exist
+ exist
+ v 1: have an existence, be extant; "Is there a God?" [syn:
+ {exist}, {be}]
+ 2: support oneself; "he could barely exist on such a low wage";
+ "Can you live on $2000 a month in New York City?"; "Many
+ people in the world have to subsist on $1 a day" [syn:
+ {exist}, {survive}, {live}, {subsist}]
+=== where
+=== which
+=== add
+ ADD
+ n 1: a condition (mostly in boys) characterized by behavioral
+ and learning disorders [syn: {attention deficit disorder},
+ {ADD}, {attention deficit hyperactivity disorder}, {ADHD},
+ {hyperkinetic syndrome}, {minimal brain dysfunction},
+ {minimal brain damage}, {MBD}]
+ v 1: make an addition (to); join or combine or unite with
+ others; increase the quality, quantity, size or scope of;
+ "We added two students to that dorm room"; "She added a
+ personal note to her letter"; "Add insult to injury"; "Add
+ some extra plates to the dinner table" [ant: {take away},
+ {take out}]
+ 2: state or say further; "`It doesn't matter,' he supplied"
+ [syn: {add}, {append}, {supply}]
+ 3: bestow a quality on; "Her presence lends a certain cachet to
+ the company"; "The music added a lot to the play"; "She
+ brings a special atmosphere to our meetings"; "This adds a
+ light note to the program" [syn: {lend}, {impart}, {bestow},
+ {contribute}, {add}, {bring}]
+ 4: make an addition by combining numbers; "Add 27 and 49,
+ please!" [syn: {add}, {add together}] [ant: {deduct},
+ {subtract}, {take off}]
+ 5: determine the sum of; "Add all the people in this town to
+ those of the neighboring town" [syn: {total}, {tot}, {tot
+ up}, {sum}, {sum up}, {summate}, {tote up}, {add}, {add
+ together}, {tally}, {add up}]
+ 6: constitute an addition; "This paper will add to her
+ reputation"
+=== subtract
+ subtract
+ v 1: make a subtraction; "subtract this amount from my paycheck"
+ [syn: {subtract}, {deduct}, {take off}] [ant: {add}, {add
+ together}]
+ 2: take off or away; "this prefix was subtracted when the word
+ was borrowed from French"
+=== begin
+ Begin
+ n 1: Israeli statesman (born in Russia) who (as prime minister
+ of Israel) negotiated a peace treaty with Anwar Sadat (then
+ the president of Egypt) (1913-1992) [syn: {Begin},
+ {Menachem Begin}]
+ v 1: take the first step or steps in carrying out an action; "We
+ began working at dawn"; "Who will start?"; "Get working as
+ soon as the sun rises!"; "The first tourists began to
+ arrive in Cambodia"; "He began early in the day"; "Let's
+ get down to work now" [syn: {get down}, {begin}, {get},
+ {start out}, {start}, {set about}, {set out}, {commence}]
+ [ant: {end}, {terminate}]
+ 2: have a beginning, in a temporal, spatial, or evaluative
+ sense; "The DMZ begins right over the hill"; "The second
+ movement begins after the Allegro"; "Prices for these homes
+ start at $250,000" [syn: {begin}, {start}] [ant: {cease},
+ {end}, {finish}, {stop}, {terminate}]
+ 3: set in motion, cause to start; "The U.S. started a war in the
+ Middle East"; "The Iraqis began hostilities"; "begin a new
+ chapter in your life" [syn: {begin}, {lead off}, {start},
+ {commence}] [ant: {end}, {terminate}]
+ 4: begin to speak or say; "Now listen, friends," he began
+ 5: be the first item or point, constitute the beginning or
+ start, come first in a series; "The number `one' begins the
+ sequence"; "A terrible murder begins the novel"; "The
+ convocation ceremony officially begins the semester"
+ 6: have a beginning, of a temporal event; "WW II began in 1939
+ when Hitler marched into Poland"; "The company's Asia tour
+ begins next month"
+ 7: have a beginning characterized in some specified way; "The
+ novel begins with a murder"; "My property begins with the
+ three maple trees"; "Her day begins with a workout"; "The
+ semester begins with a convocation ceremony" [syn: {begin},
+ {start}]
+ 8: begin an event that is implied and limited by the nature or
+ inherent function of the direct object; "begin a cigar"; "She
+ started the soup while it was still hot"; "We started physics
+ in 10th grade" [syn: {begin}, {start}]
+ 9: achieve or accomplish in the least degree, usually used in
+ the negative; "This economic measure doesn't even begin to
+ deal with the problem of inflation"; "You cannot even begin
+ to understand the problem we had to deal with during the war"
+ 10: begin to speak, understand, read, and write a language; "She
+ began Russian at an early age"; "We started French in fourth
+ grade"
+=== end
+ end
+ n 1: either extremity of something that has length; "the end of
+ the pier"; "she knotted the end of the thread"; "they rode
+ to the end of the line"; "the terminals of the anterior
+ arches of the fornix" [syn: {end}, {terminal}]
+ 2: the point in time at which something ends; "the end of the
+ year"; "the ending of warranty period" [syn: {end}, {ending}]
+ [ant: {beginning}, {commencement}, {first}, {get-go},
+ {kickoff}, {middle}, {offset}, {outset}, {showtime}, {start},
+ {starting time}]
+ 3: the concluding parts of an event or occurrence; "the end was
+ exciting"; "I had to miss the last of the movie" [syn: {end},
+ {last}, {final stage}]
+ 4: the state of affairs that a plan is intended to achieve and
+ that (when achieved) terminates behavior intended to achieve
+ it; "the ends justify the means" [syn: {goal}, {end}]
+ 5: a final part or section; "we have given it at the end of the
+ section since it involves the calculus"; "Start at the
+ beginning and go on until you come to the end" [ant:
+ {beginning}, {middle}]
+ 6: a final state; "he came to a bad end"; "the so-called
+ glorious experiment came to an inglorious end" [syn: {end},
+ {destruction}, {death}]
+ 7: the surface at either extremity of a three-dimensional
+ object; "one end of the box was marked `This side up'"
+ 8: (football) the person who plays at one end of the line of
+ scrimmage; "the end managed to hold onto the pass"
+ 9: a boundary marking the extremities of something; "the end of
+ town"
+ 10: one of two places from which people are communicating to
+ each other; "the phone rang at the other end"; "both ends
+ wrote at the same time"
+ 11: the part you are expected to play; "he held up his end"
+ 12: the last section of a communication; "in conclusion I want
+ to say..." [syn: {conclusion}, {end}, {close}, {closing},
+ {ending}]
+ 13: a piece of cloth that is left over after the rest has been
+ used or sold [syn: {end}, {remainder}, {remnant}, {oddment}]
+ 14: (American football) a position on the line of scrimmage; "no
+ one wanted to play end"
+ v 1: have an end, in a temporal, spatial, or quantitative sense;
+ either spatial or metaphorical; "the bronchioles terminate
+ in a capillary bed"; "Your rights stop where you infringe
+ upon the rights of other"; "My property ends by the
+ bushes"; "The symphony ends in a pianissimo" [syn: {end},
+ {stop}, {finish}, {terminate}, {cease}] [ant: {begin},
+ {start}]
+ 2: bring to an end or halt; "She ended their friendship when she
+ found out that he had once been convicted of a crime"; "The
+ attack on Poland terminated the relatively peaceful period
+ after WW I" [syn: {end}, {terminate}] [ant: {begin},
+ {commence}, {get}, {get down}, {lead off}, {set about}, {set
+ out}, {start}, {start out}]
+ 3: be the end of; be the last or concluding part of; "This sad
+ scene ended the movie" [syn: {end}, {terminate}]
+ 4: put an end to; "The terrible news ended our hopes that he had
+ survived"
+=== die
+ die
+ n 1: a small cube with 1 to 6 spots on the six faces; used in
+ gambling to generate random numbers [syn: {die}, {dice}]
+ 2: a device used for shaping metal
+ 3: a cutting tool that is fitted into a diestock and used for
+ cutting male (external) screw threads on screws or bolts or
+ pipes or rods
+ v 1: pass from physical life and lose all bodily attributes and
+ functions necessary to sustain life; "She died from
+ cancer"; "The children perished in the fire"; "The patient
+ went peacefully"; "The old guy kicked the bucket at the age
+ of 102" [syn: {die}, {decease}, {perish}, {go}, {exit},
+ {pass away}, {expire}, {pass}, {kick the bucket}, {cash in
+ one's chips}, {buy the farm}, {conk}, {give-up the ghost},
+ {drop dead}, {pop off}, {choke}, {croak}, {snuff it}] [ant:
+ {be born}]
+ 2: suffer or face the pain of death; "Martyrs may die every day
+ for their faith"
+ 3: be brought to or as if to the point of death by an intense
+ emotion such as embarrassment, amusement, or shame; "I was
+ dying with embarrassment when my little lie was discovered";
+ "We almost died laughing during the show"
+ 4: stop operating or functioning; "The engine finally went";
+ "The car died on the road"; "The bus we travelled in broke
+ down on the way to town"; "The coffee maker broke"; "The
+ engine failed on the way to town"; "her eyesight went after
+ the accident" [syn: {fail}, {go bad}, {give way}, {die},
+ {give out}, {conk out}, {go}, {break}, {break down}]
+ 5: feel indifferent towards; "She died to worldly things and
+ eventually entered a monastery"
+ 6: languish as with love or desire; "She dying for a cigarette";
+ "I was dying to leave"
+ 7: cut or shape with a die; "Die out leather for belts" [syn:
+ {die}, {die out}]
+ 8: to be on base at the end of an inning, of a player
+ 9: lose sparkle or bouquet; "wine and beer can pall" [syn:
+ {die}, {pall}, {become flat}]
+ 10: disappear or come to an end; "Their anger died"; "My secret
+ will die with me!"
+ 11: suffer spiritual death; be damned (in the religious sense);
+ "Whosoever..believes in me shall never die"
+=== live
+ live
+ adv 1: not recorded; "the opera was broadcast live"
+ adj 1: actually being performed at the time of hearing or
+ viewing; "a live television program"; "brought to you
+ live from Lincoln Center"; "live entertainment involves
+ performers actually in the physical presence of a live
+ audience" [syn: {live}, {unrecorded}] [ant: {recorded}]
+ 2: exerting force or containing energy; "live coals"; "tossed a
+ live cigarette out the window"; "got a shock from a live
+ wire"; "live ore is unmined ore"; "a live bomb"; "a live ball
+ is one in play" [ant: {dead}]
+ 3: possessing life; "the happiest person alive"; "the nerve is
+ alive"; "doctors are working hard to keep him alive"; "burned
+ alive"; "a live canary" [syn: {alive(p)}, {live}] [ant:
+ {dead}]
+ 4: highly reverberant; "a live concert hall"
+ 5: charged with an explosive; "live ammunition"; "a live bomb"
+ 6: elastic; rebounds readily; "clean bouncy hair"; "a lively
+ tennis ball"; "as resilient as seasoned hickory"; "springy
+ turf" [syn: {bouncy}, {live}, {lively}, {resilient},
+ {springy}]
+ 7: abounding with life and energy; "the club members are a
+ really live bunch"
+ 8: in current use or ready for use; "live copy is ready to be
+ set in type or already set but not yet proofread"
+ 9: of current relevance; "a live issue"; "still a live option"
+ 10: charged or energized with electricity; "a hot wire"; "a live
+ wire" [syn: {hot}, {live}]
+ 11: capable of erupting; "a live volcano"; "the volcano is very
+ much alive" [syn: {alive}, {live}]
+ v 1: inhabit or live in; be an inhabitant of; "People lived in
+ Africa millions of years ago"; "The people inhabited the
+ islands that are now deserted"; "this kind of fish dwells
+ near the bottom of the ocean"; "deer are populating the
+ woods" [syn: {populate}, {dwell}, {live}, {inhabit}]
+ 2: lead a certain kind of life; live in a certain style; "we had
+ to live frugally after the war"
+ 3: continue to live through hardship or adversity; "We went
+ without water and food for 3 days"; "These superstitions
+ survive in the backwaters of America"; "The race car driver
+ lived through several very serious accidents"; "how long can
+ a person last without food and water?" [syn: {survive},
+ {last}, {live}, {live on}, {go}, {endure}, {hold up}, {hold
+ out}]
+ 4: support oneself; "he could barely exist on such a low wage";
+ "Can you live on $2000 a month in New York City?"; "Many
+ people in the world have to subsist on $1 a day" [syn:
+ {exist}, {survive}, {live}, {subsist}]
+ 5: have life, be alive; "Our great leader is no more"; "My
+ grandfather lived until the end of war" [syn: {be}, {live}]
+ 6: have firsthand knowledge of states, situations, emotions, or
+ sensations; "I know the feeling!"; "have you ever known
+ hunger?"; "I have lived a kind of hell when I was a drug
+ addict"; "The holocaust survivors have lived a nightmare"; "I
+ lived through two divorces" [syn: {know}, {experience},
+ {live}]
+ 7: pursue a positive and satisfying existence; "You must accept
+ yourself and others if you really want to live"
+=== born
+ born
+ adj 1: brought into existence; "he was a child born of adultery"
+ [ant: {unborn}]
+ 2: being talented through inherited qualities; "a natural
+ leader"; "a born musician"; "an innate talent" [syn:
+ {natural}, {born(p)}, {innate(p)}]
+ n 1: British nuclear physicist (born in Germany) honored for his
+ contributions to quantum mechanics (1882-1970) [syn:
+ {Born}, {Max Born}]
+=== kill
+ kill
+ n 1: the act of terminating a life [syn: {killing}, {kill},
+ {putting to death}]
+ 2: the destruction of an enemy plane or ship or tank or missile;
+ "the pilot reported two kills during the mission"
+ v 1: cause to die; put to death, usually intentionally or
+ knowingly; "This man killed several people when he tried to
+ rob a bank"; "The farmer killed a pig for the holidays"
+ 2: thwart the passage of; "kill a motion"; "he shot down the
+ student's proposal" [syn: {kill}, {shoot down}, {defeat},
+ {vote down}, {vote out}]
+ 3: end or extinguish by forceful means; "Stamp out poverty!"
+ [syn: {stamp out}, {kill}]
+ 4: be fatal; "cigarettes kill"; "drunken driving kills"
+ 5: be the source of great pain for; "These new shoes are killing
+ me!"
+ 6: overwhelm with hilarity, pleasure, or admiration; "The
+ comedian was so funny, he was killing me!"
+ 7: hit with so much force as to make a return impossible, in
+ racket games; "She killed the ball"
+ 8: hit with great force; "He killed the ball"
+ 9: deprive of life; "AIDS has killed thousands in Africa"
+ 10: cause the death of, without intention; "She was killed in
+ the collision of three cars"
+ 11: drink down entirely; "He downed three martinis before
+ dinner"; "She killed a bottle of brandy that night"; "They
+ popped a few beer after work" [syn: {toss off}, {pop}, {bolt
+ down}, {belt down}, {pour down}, {down}, {drink down},
+ {kill}]
+ 12: mark for deletion, rub off, or erase; "kill these lines in
+ the President's speech" [syn: {kill}, {obliterate}, {wipe
+ out}]
+ 13: tire out completely; "The daily stress of her work is
+ killing her"
+ 14: cause to cease operating; "kill the engine"
+ 15: destroy a vitally essential quality of or in; "Eating
+ artichokes kills the taste of all other foods"
+=== buy
+ buy
+ n 1: an advantageous purchase; "she got a bargain at the
+ auction"; "the stock was a real buy at that price" [syn:
+ {bargain}, {buy}, {steal}]
+ v 1: obtain by purchase; acquire by means of a financial
+ transaction; "The family purchased a new car"; "The
+ conglomerate acquired a new company"; "She buys for the big
+ department store" [syn: {buy}, {purchase}] [ant: {sell}]
+ 2: make illegal payments to in exchange for favors or influence;
+ "This judge can be bought" [syn: {bribe}, {corrupt}, {buy},
+ {grease one's palms}]
+ 3: be worth or be capable of buying; "This sum will buy you a
+ ride on the train"
+ 4: acquire by trade or sacrifice or exchange; "She wanted to buy
+ his love with her dedication to him and his work"
+ 5: accept as true; "I can't buy this story"
+=== sell
+ sell
+ n 1: the activity of persuading someone to buy; "it was a hard
+ sell"
+ v 1: exchange or deliver for money or its equivalent; "He sold
+ his house in January"; "She sells her body to survive and
+ support her drug habit" [ant: {buy}, {purchase}]
+ 2: be sold at a certain price or in a certain way; "These books
+ sell like hot cakes"
+ 3: persuade somebody to accept something; "The French try to
+ sell us their image as great lovers"
+ 4: do business; offer for sale as for one's livelihood; "She
+ deals in gold"; "The brothers sell shoes" [syn: {deal},
+ {sell}, {trade}]
+ 5: give up for a price or reward; "She sold her principles for a
+ successful career"
+ 6: be approved of or gain acceptance; "The new idea sold well in
+ certain circles"
+ 7: be responsible for the sale of; "All her publicity sold the
+ products"
+ 8: deliver to an enemy by treachery; "Judas sold Jesus"; "The
+ spy betrayed his country" [syn: {betray}, {sell}]
+=== shop
+ shop
+ n 1: a mercantile establishment for the retail sale of goods or
+ services; "he bought it at a shop on Cape Cod" [syn:
+ {shop}, {store}]
+ 2: small workplace where handcrafts or manufacturing are done
+ [syn: {workshop}, {shop}]
+ 3: a course of instruction in a trade (as carpentry or
+ electricity); "I built a birdhouse in shop" [syn: {shop
+ class}, {shop}]
+ v 1: do one's shopping; "She goes shopping every Friday"
+ 2: do one's shopping at; do business with; be a customer or
+ client of [syn: {patronize}, {patronise}, {shop}, {shop at},
+ {buy at}, {frequent}, {sponsor}] [ant: {boycott}]
+ 3: shop around; not necessarily buying; "I don't need help, I'm
+ just browsing" [syn: {shop}, {browse}]
+ 4: give away information about somebody; "He told on his
+ classmate who had cheated on the exam" [syn: {denounce},
+ {tell on}, {betray}, {give away}, {rat}, {grass}, {shit},
+ {shop}, {snitch}, {stag}]
+=== goods
+=== money
+ money
+ n 1: the most common medium of exchange; functions as legal
+ tender; "we tried to collect the money he owed us"
+ 2: wealth reckoned in terms of money; "all his money is in real
+ estate"
+ 3: the official currency issued by a government or national
+ bank; "he changed his money into francs"
+=== trade
+ trade
+ n 1: the commercial exchange (buying and selling on domestic or
+ international markets) of goods and services; "Venice was
+ an important center of trade with the East"; "they are
+ accused of conspiring to constrain trade"
+ 2: the skilled practice of a practical occupation; "he learned
+ his trade as an apprentice" [syn: {trade}, {craft}]
+ 3: the business given to a commercial establishment by its
+ customers; "even before noon there was a considerable
+ patronage" [syn: {trade}, {patronage}]
+ 4: a particular instance of buying or selling; "it was a package
+ deal"; "I had no further trade with him"; "he's a master of
+ the business deal" [syn: {deal}, {trade}, {business deal}]
+ 5: people who perform a particular kind of skilled work; "he
+ represented the craft of brewers"; "as they say in the trade"
+ [syn: {craft}, {trade}]
+ 6: steady winds blowing from east to west above and below the
+ equator; "they rode the trade winds going west" [syn: {trade
+ wind}, {trade}]
+ 7: an equal exchange; "we had no money so we had to live by
+ barter" [syn: {barter}, {swap}, {swop}, {trade}]
+ v 1: engage in the trade of; "he is merchandising telephone
+ sets" [syn: {trade}, {merchandise}]
+ 2: turn in as payment or part payment for a purchase; "trade in
+ an old car for a new one" [syn: {trade}, {trade in}]
+ 3: be traded at a certain price or under certain conditions;
+ "The stock traded around $20 a share"
+ 4: exchange or give (something) in exchange for [syn: {trade},
+ {swap}, {swop}, {switch}]
+ 5: do business; offer for sale as for one's livelihood; "She
+ deals in gold"; "The brothers sell shoes" [syn: {deal},
+ {sell}, {trade}]

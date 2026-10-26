@@ -1,0 +1,76 @@
+=== 592cf97a-c (page; chars 0-2940 of 10,161; continue with 592cf97a-c@2940) ===
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: Owner asks why learning remains seeded, whether the goal drifted, why the sixth appears off, whether graph-resident formulas/parameters can learn, how QKV/entropy/trees/forests/logistic regression fit, and how to close the loop without bloat. This is a research audit, not a build assignment.
+NEXT_ACTION: Review with the owner the proposed single bounded ordinary-input-to-outcome-to-model-update proof before expanding the learner inventory; no lane reassignment or live activation follows from this record.
+STATE: DONE
+
+## 1. Where to look
+Project/book neuron-v2; active rail /home/exnulla/neuron-v16.2.
+Fresh read-only evidence /home/exnulla/neuron-benchmarks/20261007-codex-learning-audit/live-structure.json (2026-10-07 13:39 CDT): sx6_enabled -> 1, dm_on -> 1, rv_on -> 0; cy_now points at a current body. Old line pool still 964 rows/max event 69180; latest event 473828. Names and destinations rechecked, but these switches are not a behavioral/progress proof. sqlite3 executable unavailable; Node's DatabaseSync was used readOnly with query_only, no brain input or source change.
+source-evidence.json in the same directory preserves SHA-256 and bounded excerpts from nine named source files.
+Key source locations:
+- l0/bf_l0.lessons:205-211, 235-283, 370-388, 503. Graph-resident configuration and integer-hop arithmetic; fixed installer values; adoption records; trust increments for agreeing with held/adopted content.
+- l0/inf_l0.lessons:176-177,210: supplied count-to-confidence mapping 1=>11,2=>48,3=>74,4+=>81. No outcome-driven updater found in inspected active scoring path; not a universal absence claim.
+- l0/mk_l0.lessons:25-69: correction can select/link existing inference/relationship procedures for later use. Genuine bounded procedural adaptation.
+- teacher/prefix_mother/README.md:47-92: graph composition and trial of local one/two-relation hypotheses; observations and library supplied, no autonomous task chooser.
+- teacher/discriminating_questions/README.md: explicit question selection and response revision APIs; no ordinary parser/scheduler installation.
+- teacher/dream/README.md: recorded autonomous method discovery and finite candidate testing; old line feed explicitly frozen after mother removal. Historical measurements, not fresh reproduction.
+- AUDIT_BUILT_VS_CONNECTED_20261006.md: old fact/input/change seams, retained but disconnected ml/qd/rq/PT interfaces, legacy memory policy not fully ported. Do not treat all October 6 row statuses as current: inference/reader/mistake/why have since landed.
+- MAILBOX/624c...CORRECTION...md (13:34): supersedes 622c/623c claim inference works only for is; copy proof shows other relations work with supporting lessons. Adopted belief D records are not consumed as M5 Relationships by chains. A teacher commonsense pass is only a proposal.
+- MAILBOX/622c...HOLDOUT...md: spent 30-item holdout, mixed semantics despite z
+=== 592cf97a-c (page; chars 2940-6165 of 10,161; continue with 592cf97a-c@6165) ===
+ero faults; 623c lane-b landing and LOAD_ORDER record later fixes, so score is not a fresh current-main score.
+- Shared neuron manual and LOAD_ORDER: re-teaching lower hooks silently unhooked reader, zero faults; corrected order/slot installation documented. Some config installers overwrite configured values; code/data identity needs stable versioned indirection.
+
+## 2. How to use Cortex now
+Reuse wake already read in this session; its latest page bd0c76ec-d was a lane-b record with a nonstandard STATE and was stale relative to later mailbox landings.
+fetch(locations=[this page id]) retrieves this audit; locate(topic="QKV",project="neuron-v2") finds owner hypothesis records, not a demonstrated trained QKV implementation.
+Keep original owner goal, bounded component proofs, contemporary code observations, fresh persisted measurements, and this audit's proposals distinct.
+No brain say/tick/teach/run, restart, experiment, worker, coordination message, live modification, or historical-project hydration occurred.
+
+Findings and interpretation:
+1. The owner's goal has not been shown to change: persistent relational computation improving from experience toward mother independence. Present work is largely L0 migration, parsing, scoring, provenance, and integration, with some genuine narrow learning. Component progress and integration regressions coexist. There is no inspected current end-to-end evidence for sustained autonomous general learning.
+2. Graph-resident executable bodies and mutable numeric links already exist. Representing a learner as data is feasible. Mutability is not an update rule, calibrated probability, credit assignment or demonstrated generalization.
+3. Current bf score is a support ratio with supplied weights and policy cutoffs, not a fitted logistic probability. The adoption threshold 92 is attributed to the owner: don't autonomously optimize away owner policy. Learned predictive confidence and externally set adoption rules are different variables.
+4. Scoring must compare a recorded prior prediction with separately obtained outcomes. Agreement with the brain's existing belief is not an independent correctness label. The trust path increments on agreement; a negative-trust reader exists but no writer was found in inspected bf source. This is a source finding, not a claim of universal exploitability.
+5. The largest concrete gaps are typed interoperable evidence, adopted-fact availability to reasoning with provenance/retraction, new-evidence notifications to current learner queues, a reachable task/observation producer, outcome-based parameter updating, and end-to-end verification/memory controls. Don't blindly reconnect stale legacy pipelines.
+6. Entropy measures uncertainty; reducing it alone can reward confident error. Cross-entropy or Brier loss requires outcome evidence; information gain can rank questions; irreducible noise should not monopolize exploration.
+7. Decision trees/forests/logistic methods do not require a different storage ontology. Need features/targets, bounded numerical work, induced splits or parameter updates, independent validation, and explicit size limits. Existing rf_l0 means relationship formula, NOT random forest. Efficient exp/l
+=== 592cf97a-c (page; chars 6165-8855 of 10,161; continue with 592cf97a-c@8855) ===
+og/gradient paths were not verified; rational counts/Gini/simple online updates do not require waiting for them.
+8. QKV performs relevance-weighted retrieval; learning projection matrices needs an objective/optimizer. A graph gives useful relational bias but neither three spatial coordinates nor high dimension guarantees semantic correctness, discovery or convergence. The owner's broad geometry/human-brain hypothesis remains unproved.
+9. No evidence supports deliberate LLM obstruction. Observed failure modes are local feature completion, stale state, fragmented representations, broad claims from narrow proofs, and fragile installation contracts. Knowledge of ML does not by itself execute the required engineering. These failures are not justified by calling the architecture novel.
+10. Anti-bloat: one compact learner/model per reusable context; online statistics and bounded examples; shared structure; short-lived candidate trials; versioned dependency-aware caches; novelty/value-based retention; pruning/condensation and stability checks. Exact unbounded history, fixed finite storage and indefinite learning cannot all be promised.
+
+Primary research read:
+Mitchell intro and decision-tree lecture slides:
+https://www.cs.cmu.edu/afs/cs.cmu.edu/project/theo-20/www/mlbook/ch1.pdf
+https://www.cs.cmu.edu/afs/cs.cmu.edu/project/theo-20/www/mlbook/ch3.pdf
+Stanford logistic regression derivation:
+https://cs229.stanford.edu/notes_archive/cs229-notes-all/cs229-notes1.pdf
+Domingos/Hulten VFDT (incremental sufficient statistics, memory-limited leaf growth):
+https://alchemy.cs.washington.edu/papers/pdfs/domingos-hulten00.pdf
+Breiman random forests:
+https://www.stat.berkeley.edu/users/breiman/randomforest2001.pdf
+Bifet/Gavalda adaptive trees/concept drift:
+https://www.cs.upc.edu/~gavalda/papers/ida09-extended.pdf
+Vaswani et al attention, learned projections and training:
+https://arxiv.org/html/1706.03762v7
+Battaglia et al relational inductive bias:
+https://arxiv.org/abs/1806.01261
+Gneiting/Raftery proper scoring:
+https://sites.stat.washington.edu/people/raftery/Research/PDF/Gneiting2007jasa.pdf
+Guo et al calibration:
+https://proceedings.mlr.press/v70/guo17a.html
+Hinton/van Camp description length:
+https://www.cs.toronto.edu/~hinton/absps/colt93.html
+Experience replay:
+https://arxiv.org/abs/1811.11682
+Curiosity/noisy-TV failure:
+https://proceedings.mlr.press/v162/mavor-parker22a.html
+
+## 3. What to build next
+PROPOSED, not implemented or a reassignment: one bounded ordinary-input learning proof using existing graph learners where compatible. Scope one relation-prediction family. Track input/context -> candidate prediction with model/version/provenance -> independ
+=== 592cf97a-c (page; chars 8855-10161 of 10,161; end) ===
+ently obtained outcome -> score/update in neuron code -> persistence -> changed prediction on unseen cases. Let adopted evidence enter a provenance-aware relation reader and publish deduplicated change events; connect one compatible existing learner and its question/reply loop. Begin with a small outcome-trained reliability/model parameter set rather than more answer lessons; use a compact online classifier only where the existing symbolic learner cannot express the task.
+Freeze implementation during the demonstration. Compare adaptive, frozen and memory-only baselines from identical initial states, train from observations rather than winning-rule lessons, evaluate unseen combinations and later contradictions, test copy restart and inactive period resumption, and measure forecast loss, coverage/abstention, retention, steps and persistent bytes. Budget active model/candidates/queue/replay and handle duplicate evidence without manufacturing support. Retain provenance and withdrawal of dependents. Initial learning programs may be supplied; claims of later autonomy require the brain to choose/apply/revise without code patches per case. Generalization and bounded growth must be demonstrated together. This is the point to earn a narrow autonomy claim; general autonomous science remains open.

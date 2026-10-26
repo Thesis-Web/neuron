@@ -1,0 +1,1 @@
+- [One session, no stopping](one-session-no-stopping.md) — carry Neuron turn one through to told ends; never pause to propose the next round

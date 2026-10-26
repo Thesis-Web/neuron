@@ -1,0 +1,134 @@
+=== b483c7b2-a (page; chars 0-3084 of 25,859; continue with b483c7b2-a@3084) ===
+## 1. Where to look
+The sections below numbered 4 and up are the owner's texts, verbatim and byte-exact from the session transcript (split at the pasted-block tags of message 02). Disk copies: /home/exnulla/neuron-v16/teacher/owner_source/ with MANIFEST.json. Earlier capture f6da0b16-2 holds all files in its raw, which search cannot reach; this page makes them fetchable and searchable.
+## 2. How to use Cortex now
+- locate(topic=<a phrase>, project="neuron-v2"), then fetch the ids; follow id@offset to continue.
+- The owner's spoken explanation governs; the LLM V16 documents are interpretations.
+## 3. What to build next
+Unchanged from a50bb8fc-1: the owner answers the bridge-or-anchors question; then rerun grow.py with that choice.
+
+## 4. VERBATIM owner spoken V16 explanation (governing) (15506 chars, sha256 56914154603ad58a9a478ddcc9a3511cd090ebd9a3d43a0743997eabf4a7fbef)
+
+Okay. So those two things are the LLM's interpretation of what I'm talking about. Now I'm going to tell you the same things I've been telling y'all for two days. This is the simplest, stupidest thing that you've ever done. It's so simple. And that's why I think that it is actually it, because at the root of my intelligence and cognition and reasoning and everything else in my brain is something very, very simple that uses no energy, nearly, and is very, very fast and can do unbelievable amounts of what seem like mathematical work in fractions of a second. And biology-wise, you can map it and say there's billions of neurons and somehow there's hundreds of trillions of synapses, and we don't exactly know how all that works. And I'm saying I think I do. And I think it's so stupidly simple that it's hard for y'all. Basically, and I've said this multiple times, but you're not hearing it as simply as I'm saying it. Basically the neuron, not inside the neuron, but the neuron itself, the node, is the code. And that code is the simplest expression of math. That's the input gate. That simplest expression of math is its location in a graph. That is X, is its location, or 1 over X is its location, or Y is its location, or Y plus 1, or Y plus 2 is its location, Y squared, Y plus 1 squared. Those are all independent locations of nodes. You don't assign words to the nodes. You derive what the word is that should be at that node. Words never live in the graph. Words live in the encoder and the decoder. Words come in. A string of simplest expressions come out. That's how we know how to hop from neuron to neuron to neuron to neuron. I think the internal workings of the neuron, from whatever, as far as how they work, is correct from all the other versions. What's incorrect is that it takes Python to do it. It doesn't. It doesn't take Python to do it at all. The LLM still thinks that there's going to be some physics that are Python. I think that once the brain gets big enough, we're going to realize that we actually don't need those either. So maybe right now, in what we would consider the developmental phase, we need physics that are Python. But my hypothesis is at some point we'
+=== b483c7b2-a (page; chars 3084-6552 of 25,859; continue with b483c7b2-a@6552) ===
+re going to realize that the same code that is math of the brain can be the same code that is the structure of the brain later. We just don't know enough of that code yet to understand how we make a structure out of that code. It's going to be hard for me to explain to you in context, but think of it like you just learned Python today, and you know Bash. You just learned Bash today, and all you know in Bash is nano, cat, grep. That's it. And you can do a lot with those things, but you really can't do that much with them. That's basically where we're at with the neuron, is we know there's a code base here, and we know what it looks like, but we just don't know what it is yet. And the code base isn't base Python or base TypeScript or base... If anything, if there is a base to it, it's base binary. But I think the code base itself is its own. Like, that's it. It's not a compiler that's taking Python or C sharp or C plus or Java or any of those other things and compiling them together to make a code base. It's not doing that. It is in and of itself its own code base whenever it's all said and done. How? We've already covered that a simplest expression is a location. That simplest expression has a mathematical formula that relates to another location. Our job is to understand the relationships of language to mathematical formulas, such that X and 1 over X, two different locations on the graph, that have a relationship, whereas 1 over X is the reciprocal of X, that can be explained in the encoder and decoder as language. Maybe, and this is all hypothetical, treat it like pseudocode. Maybe X and 1 over X is the representation in math of up and down. That doesn't mean that the node X gets labeled up in the brain, or the node 1 over X gets labeled down in the brain. It means that we know how those two words correlate in the encoder and decoder, such that if I encoded up down, out of the encoder, it would get, the brain would get X 1 over X, and the brain would output, because this isn't a question or anything else, it's just a statement, the brain would output up down, but not in those words. It would just output X 1 over X, and the decoder would say up down. So if you put in up down, you get out up down. Now it's my hypothesis that when you start changing the sentence structures with grammar, that you can hop from one tree to another tree. So if you put up down question mark, it might hop from X to 1 over X to Y 1 over Y. And maybe those take you to, because of how you got to Y 1 over Y, right? And again it's expressed in code, right? So if up down equals X 1 over X, up down question mark equals X 1 over X Z. Maybe question mark is Z.So whenever we go into the x neuron and our next remainder is 1 over x, then we pick up. We just go into the x neuron. We go into the x 1 over x shard of DNA, and it outputs us to gate 1 over x. We just go straight from there to 1 over x. Now we inputted. The way we got to that gate was x 1 over x Z. So when we input into the 1 over x gate, we go to the shard that is x 1 over x Z, and we output to Z. Now when we get to the Z gate, we come into the Z gate. We go to the shard that is the DNA for x 1 over x Z, and that shard points to a run that is the answer. That run is a run receipt that we've already made that we know is the answer to that question. This is where it gets unbelievably interesting. That new run, which is the gate voltage to a node, essentially, which is the answer, mi
+=== b483c7b2-a (page; chars 6552-9931 of 25,859; continue with b483c7b2-a@9931) ===
+ght be a paragraph. It might be a sentence. It might be... I don't know what it might be. The answer to up, down, question mark, might be, That's a very good correlation of those two words. Up is to down as down is to up. They have all kinds of relationships. Let me list you some, and it lists all the relationships. Again, all of that can be explained with the mathematics of the graph. So at some point, it doesn't become just input in, output out. At some point, there's enough information in the memories and the nodes and the transactions that all of a sudden it starts formulating its own sentences in code, right? But because of the correlations and the relationships that it learns, it just knows. It has intelligence. It has cognition. It's very, very similar to a child. A child learns the color blue: blue, blue in, blue out. Child learns the color green: green, green in, green out. At some point, the child learns no and yes and go and stop and hear and come and all of these other things. And then one day the child says, I go here, because it knows what they are, and it learned them sequentially in order, and it has many, many events and memories of each of those runs that it can draw conclusions from based on mathematical relationships in the brain that are all pre-computed. That's the most important part, is that once we know that this word relates to this word and that word relates to this word and also relates to this other word, and once we know, and this is how we get from go to going to gone, and this is how we get from hard, harder, hardest, and this is how we combined, That's a little hard. This is going to be much harder. This is going to be the hardest thing I've ever done. Once we learn how to combine all those things mathematically, it becomes something very, very simple and very, very special. The easy part is it's my hypothesis that the formulas already exist in the world. The code already exists in the world. The code is the simplest expressions that can be written mathematically, and the formulas are the known formulas that we know in the world, whatever those are. They could be trig formulas. They could be algebra formulas. They could be simple mathematical, you know, plus, minus, division, multiplication, real numbers. They could be quadratic formulas. They could be calculus formulas. They could be physics formulas. They could be chemical formulas, chemistry formulas. Maybe. I don't know. But the point is, is it all exists. It's just a puzzle of ten million pieces, or fifty billion pieces. And the puzzle is the graph. That's the puzzle. Like you have to fit each piece in the puzzle where that piece fits, which honestly isn't all that hard because we know the math of what x and 1 over x is and how they... We know all that. We know how it correlates. What we don't know is what that means. It's like putting together a puzzle upside down. So it's just a blank. And then we have to figure out, Oh, this puzzle piece means go, and this puzzle piece means stop, and this puzzle piece means went, and this puzzle piece means above and below, and this is how they all correlate together. Once we figure that out, it'll be the fastest, most intelligent cognitive machine that uses almost no energy, and it's not run by Python compilers or Python runtimes or any of that. It's run by the code in the graph, the structur
+=== b483c7b2-a (page; chars 9931-13353 of 25,859; continue with b483c7b2-a@13353) ===
+e of the graph, and the different formulas that work over that structure. And it's simple substitution, essentially. All the formulas, maybe not all the formulas, but in the beginning the formulas are going to be one-variable formulas, right? X equals 1 over x. If I know I'm at gate A, then A equals 1 over A, then I know I go to gate 1 over A to find whatever it is I'm looking for. X equals negative x. If I'm at gate B, then B equals negative x. Then I would go to negative x to figure out whatever it is I'm looking for. And figure out whatever it is I'm looking for just means that in this instance, if the input to the encoder is, What is the inverse of go? The output of the inverter is x 1 over x Z, if Z is question mark. And that DNA shard goes to node X, then node 1 over x, and then to node Z, and outputs whatever that output is supposed to be. The inverse of go is stop. And that...And that output is basically pre-recorded at first. But at some point, the output becomes an equation of the relationships later. And so as the relationships change or update or whatever else, you end up with intelligence and cognition. As it learns more and becomes more complicated and has more memories and events and storages, it basically can just do it without any outside complicated all these things doing anything. It just, it starts out very simply. You can input, you can output, all of that. You know, we go in order of simplest things, and then we learn what the next simplest thing is that we can add, and then we learn how, you know, maybe a formula becomes negative x, or maybe, yeah, maybe x equals negative x, one over x becomes a formula, and that formula ends up giving us an output. That's a relationship to whatever the original variable was. And the original variable might start at one over x and then have a relationship to one over x that isn't x. It might be two times one over x, or it might be later on. It might be two variables. It might be y one over x, which means that if it's that, then we've already got far enough in the run to have two variables. We know what A is and we know what C is, and we know that A came first, and so it has to be X, and that C came second, and it has to be Y. And then it's just substitution theory into that, and boom, you have more complicated answers that might have 16, 20, 30, 50 variables. Not because— maybe because they started with 15 variables, but each variable is solved by hopping through the nodes, and at some point we know what A is, and we know what C is, and we know what Z is, and all of those are just mathematical expressions. Z equals one over x, A equals x plus four, Y equals 2Z minus one over four, Z equals 12 times x cubed square root of 19, or something. This is all just pseudo code. I'm just trying to give you an idea of what it expands to. And once we get into that harder math and correlation or relationships and probability and statistics, then all of a sudden it all just works. I'm telling you. And that's why, like at five years old, all of a sudden they say, Oh, the brain's connected! Because up until that point, the brain doesn't have enough memory and location. It's just trying to figure out the brain. But once the brain has enough, all of a sudden a five-year-old can say sentences and carry on a conversation and answer questions and describe things and all of these things. And then every step along the way from 
+=== b483c7b2-a (page; chars 13353-16546 of 25,859; continue with b483c7b2-a@16546) ===
+there is education by observation or hearing or being taught something. I'm telling you it'll work. And I'm just a poor communicator. I don't know that I can communicate it any more clearly. I don't know that I can tell you that it's any more simple than what I'm telling you. It is extraordinarily simple. But I also know that I manually worked it with ChatGPT, and it was excruciatingly hard for ChatGPT. Because it's hard for you to look at an expression and not think I have to do math. You don't. You only have to do math one time when the math is learned, and then it's just hopping through nodes and orders. That's all it is. It's so simple. It is so stupidly simple. And all of those relationships define the language. It's not that the language gets defined by the relationships. The relationships in the graph define what word is supposed to be where. And I think that they are innately defined. But in the beginning, it's okay if it just works for now under these rules. And as we learn new rules, the graph might have to adjust. And I think that that's what happens in the human body. Like, you might simply, when you learn up and down, up might be one, and down might be negative one. And, you know, so they might be super simple in the beginning, but at some point you have an epiphany. You have a breakthrough, and you're like, Oh, no, because I learned inverse today, up and down probably isn't up is one and down is negative one. I bet that up is one and down is one over one. Maybe one's a bad example. Up is two and down is one over two, or whatever. So the question is, can you build it? That's the question. You have all this other data that is somewhatly on point in the 15 different versions. It's all built wrong. So this will be version 16. And the question is, can you build it? And I will tell you this: you cannot build a graph. You cannot build the graph without the encoder. It's impossible. You have to have the encoder. Just like if I had a brain with no eyes and no ears and no nose and no touch and no taste. If my brain had no sensors, I don't know that my brain would do anything. The encoder is the sensor to the brain. The encoder is what delivers the data and the sensory metadata. The data is this. The metadata is how I got it: the who, the what, the when, the where, the why, the how, the using what, the pertaining to what. You know, those nine or ten describers that travel with the data. That's important, because if I don't know if I heard it, or if I don't know when it happened, or if I don't know if I saw it, or if I tasted it, or if I smelled it, or if I touched it, then I don't have perspective, and I don't have timeline. And if I don't have...If I don't have perspective and timeline and memories, events, then I don't have reasoning. And arguably I might not have intelligence. I definitely don't have state. If you can build it, build it. It's an experiment. We're just going to figure it out. It might be wrong, but we're just going to figure it out.
+</pasted_content id="5d12">
+
+
+## 5. VERBATIM owner candidate groups + growth-rule instruction (8480 chars, sha256 c73752870427f80eb7f2912fcfc782182b4146d9c4ce15fdca26c06d2a80cc0d)
+
+
+<p
+=== b483c7b2-a (page; chars 16546-19706 of 25,859; continue with b483c7b2-a@19706) ===
+asted_content id="5d12">
+These are candidate mappings, not established rules. \(A\) is only the formula’s input slot: substitute the word’s existing complete expression into it. The citations support the language categories—not the proposed mathematics.
+Initial word groups
+1. Paired opposition — candidate: \(\boxed{-A}\)
+   hot ↔ cold; high ↔ low; hard ↔ soft; fast ↔ slow; big ↔ small; long ↔ short; strong ↔ weak; bright ↔ dim; loud ↔ quiet; near ↔ far.
+   Also test the directional and endpoint pairs: up ↔ down; above ↔ below; in ↔ out; inside ↔ outside; start ↔ finish; begin ↔ end.
+   These are candidate members of one mathematical family, not a claim that every kind of opposition must use it. WordNet
+2. Selected near-equivalent pairings — candidate: \(\boxed{-1/A}\)
+   fast ↔ quick; slow ↔ sluggish; big ↔ large; small ↔ little; near ↔ close; far ↔ distant; start ↔ begin; finish ↔ end; speak ↔ talk.
+   Context-specific spatial pairings: up ↔ above; down ↔ below; in ↔ inside; out ↔ outside.
+   Why this candidate: it returns to the original expression when applied twice, and it preserves the opposition structure in Group 1. These are selected pairings, not a universal function returning every synonym. Synonymy itself is context-dependent. WordNet
+3. Crossed opposition — implied by Groups 1 and 2: \(\boxed{1/A}\)
+   fast ↔ sluggish; quick ↔ slow; big ↔ little; large ↔ small; near ↔ distant; close ↔ far; start ↔ end; begin ↔ finish; up ↔ below; above ↔ down.
+   This formula is not another independent guess: opposite followed by the selected near-equivalent relationship gives
+   \[
+   -\frac{1}{-A}=\frac1A.
+   \]These cross-pairs become tests of whether Groups 1 and 2 belong together.
+4. Binary complement — candidate: \(\boxed{1-A}\)
+   on ↔ off; yes ↔ no; present ↔ absent; valid ↔ invalid; possible ↔ impossible.
+   Test each within a defined two-state context. This keeps complement separate from the signed oppositions above.
+5. Binary state ↔ affirmative/negative response — candidate: \(\boxed{\dfrac{A-1}{2A-1}}\)
+   on ↔ yes; off ↔ no—specifically when answering whether the state is on.
+   Why this less-obvious formula: it preserves Group 4’s complement relationship. Once on → yes is placed, off → no reaches the corresponding complementary gate:
+   \[
+   F(1-A)=1-F(A).
+   \]This is a contextual state/response relationship, not a claim that on and yes are synonyms.
+6. Grammatical degree progression — candidate: \(\boxed{A^3}\) per step
+   hot → hotter → hottest; cold → colder → coldest;
+   high → higher → highest; low → lower → lowest;
+   fast → faster → fastest; quick → quicker → quickest;
+   slow → slower → slowest; big → bigger → biggest;
+   large → larger → largest; small → smaller → smallest;
+   strong → stronger → strongest; weak → weaker → weakest;
+   near → nearer → nearest; close → closer → closest.
+   The proposed addresses progress \(E\rightarrow E^3\rightarrow E^9\). Cubing preserves the distinction between \(E\) and \(-E\); squaring destroys it. This models the three grammatical forms, not a claim that “hottest” means a numerical temperature cubed twice. LearnEnglish
+7. Adjective → correspondi
+=== b483c7b2-a (page; chars 19706-22845 of 25,859; continue with b483c7b2-a@22845) ===
+ng property noun — candidate: \(\boxed{A+1}\)
+   strong → strength; weak → weakness; hard → hardness; soft → softness; bright → brightness; dim → dimness; loud → loudness; quiet → quietness; high → height; long → length; wide → width; deep → depth.
+   This tests a change of grammatical/representational role while retaining the originating property. WordNet
+8. Opposition between those property nouns — implied candidate: \(\boxed{2-A}\)
+   strength ↔ weakness; hardness ↔ softness; brightness ↔ dimness; loudness ↔ quietness.
+   If strong = E, then strength = E+1, while weakness = 1-E. Therefore the relationship between the already-placed noun gates must be:
+   \[
+   2-(E+1)=1-E.
+   \]
+9. Adjective → manner adverb — candidate: \(\boxed{e^A}\)
+   strong → strongly; weak → weakly; bright → brightly; dim → dimly; loud → loudly; quiet → quietly; quick → quickly; slow → slowly; soft → softly.
+   New cross-link: opposite adjectives placed at \(E,-E\) produce adverbs at \(e^E,e^{-E}\). Their opposition would therefore reuse Group 3’s reciprocal formula:
+   strongly ↔ weakly; brightly ↔ dimly; loudly ↔ quietly.
+   I am deliberately excluding hard → hardly: that is not the same manner relationship. LearnEnglish
+10. Base verb → simple-past form — candidate: \(\boxed{A-1}\)
+    go → went; come → came; eat → ate; see → saw; speak → spoke; talk → talked; run → ran; walk → walked; give → gave; take → took; start → started; begin → began; finish → finished; end → ended; lock → locked; unlock → unlocked.
+    Regular and irregular spelling stay in the encoder/decoder; this tests a shared relationship between their gate expressions. It cannot cover unchanged forms such as cut → cut without a different treatment. LearnEnglish
+11. Base verb → its “-ing” form — candidate: \(\boxed{2A}\)
+    go → going; eat → eating; see → seeing; speak → speaking; talk → talking; run → running; walk → walking; start → starting; begin → beginning; finish → finishing; end → ending; lock → locking; unlock → unlocking.
+    This is the form-family relationship, not an assertion that every “-ing” form means present tense; those forms have several grammatical uses. LearnEnglish
+12. Action ↔ its reversal — candidate: \(\boxed{\dfrac{A+1}{A-1}}\)
+    lock ↔ unlock; tie ↔ untie; wrap ↔ unwrap; pack ↔ unpack; button ↔ unbutton; zip ↔ unzip.
+    This candidate returns to its input when applied twice. I would test this separately from hot/cold: undoing an action is not necessarily the same relationship as occupying the other end of a scale.
+Further groups forced by those placements
+These formulas follow algebraically from the candidates above. Their linguistic applicability still needs testing.
+13. The selected near-equivalent relationship, in past forms — \(\boxed{-\dfrac1{A+1}-1}\)
+    started ↔ began; finished ↔ ended; spoke ↔ talked.
+    Derived from Group 2 combined with Group 10—not guessed separately for each pair.
+14. The selected near-equivalent relationship, in “-ing” forms — \(\boxed{-4/A}\)
+    starting ↔ beginning; finishing ↔ ending; speaking ↔ talking.
+    Derived from Group 2 combined with Group 11.
+15. Action reversal, 
+=== b483c7b2-a (page; chars 22845-25859 of 25,859; end) ===
+in past forms — \(\boxed{2/A}\)
+    locked ↔ unlocked; tied ↔ untied; wrapped ↔ unwrapped; packed ↔ unpacked; buttoned ↔ unbuttoned; zipped ↔ unzipped.
+    Derived from Group 12 combined with Group 10.
+16. Action reversal, in “-ing” forms — \(\boxed{\dfrac{2(A+2)}{A-2}}\)
+    locking ↔ unlocking; tying ↔ untying; wrapping ↔ unwrapping; packing ↔ unpacking; buttoning ↔ unbuttoning; zipping ↔ unzipping.
+    Derived from Group 12 combined with Group 11.
+One connected fragment, with actual expression assignments
+Anchor only fast = X. The following placements follow from Groups 1, 2, and 6; none gets a fresh root.
+Base form and expression    Comparative form and expression    Superlative form and expression
+fast: \(X\)    faster: \(X^3\)    fastest: \(X^9\)
+slow: \(-X\)    slower: \(-X^3\)    slowest: \(-X^9\)
+quick: \(-1/X\)    quicker: \(-1/X^3\)    quickest: \(-1/X^9\)
+sluggish: \(1/X\)    more sluggish: \(1/X^3\)    most sluggish: \(1/X^9\)
+
+
+These are 12 distinct expression identities, with \(X\) kept symbolic and nonzero. Multiple routes close on the same destination:
+\[
+\underbrace{X\rightarrow -1/X\rightarrow -1/X^3}_{\text{fast → quick → quicker}}
+\]\[
+\underbrace{X\rightarrow X^3\rightarrow -1/X^3}_{\text{fast → faster → quicker}}
+\]The second route does not create another “quicker.” It reaches the expression already belonging to “quicker.”
+This is the fragment I would start comparing against Claude’s graph: opposition, selected near-equivalence, crossed opposition, and degree all constrain the same locations. The algebra closes; whether these are the right linguistic placements remains the experiment.
+For questions, I would retain your question gate → chronological answer memories model for now. I would not assign a formula that supposedly turns a statement directly into its true answer—the answer can change while the question’s identity remains the same.
+</pasted_content id="5d12">
+
+<-- see if you can map all these, and put them in the encoder. such that the neurons grow,, from the state they know to the new state, that means that you can't teach something that doesn't connect to what is known via a relationship connection.. procede
+
+## 6. VERBATIM owner /neuron2 get-educated request (250 chars, sha256 90ca7b37c0c8b1e4681705e9b8042eeb4f7c0b3ab34d57eba48acafd205eb536)
+<command-message>neuron2</command-message>
+<command-name>/neuron2</command-name>
+<command-args>get educated, I am not saying what we were doing is completely in correct, but again I think y'all made it much harder than it needed to be.</command-args>
+
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: 43 islands cannot grow under the rule: supply bridge lines, or allow one anchor per island?; are the 14 coincidence closures (complement(strong) = weakness, undopast(begin) = finishing) acceptable or a sign a formula is wrong?; add tie -> tied / tie -> tying lines so groups 15/16 are tested beyond lock
+NEXT_ACTION: Owner answers the bridge-or-anchors question; then rerun grow.py with that choice.
+STATE: DONE

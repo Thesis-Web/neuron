@@ -1,0 +1,137 @@
+=== 47c23c52-d (page; chars 0-3237 of 17,885; continue with 47c23c52-d@3237) ===
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: none; owner is collecting the other two scope contributions
+NEXT_ACTION: When the owner supplies the three contributions, reconcile them into PROJECT_SCOPE.md and make the approved combined scope explicitly retrievable during neuron-v2 hydration, preserving pseudocode and evidence status.
+STATE: READY
+
+## 1. Where to look
+Current owner's 2026-10-02 message in this session; exact critical excerpts and Codex draft below. Cortex prior scope record 2c683caf-6; owner message 51 at 9a40db66-b. Prior Codex synthesis 2ea49d34-9 / aa1a3dba-a. The current user correction supersedes earlier treatment of illustrative punctuation arithmetic as competing operator proposals.
+
+## 2. How to use Cortex now
+Fresh sessions wake(project="neuron-v2") once. Fetch this page as a draft contribution, not final merged PROJECT_SCOPE.md.
+Preserve the owner's pseudocode rule immediately; formulas in owner examples do not become implementation commitments.
+Use exact scoped evidence for current status; older capability descriptions are not fresh runtime verification.
+
+## 3. What to build next
+Synthesize the three contributions when supplied. No developmental run is requested by this scope discussion.
+
+CODEX CONTRIBUTION TO PROJECT_SCOPE.md — DRAFT FOR THREE-PERSPECTIVE SYNTHESIS
+Date: 2026-10-02. This is one perspective requested by the owner, not the final merged scope and not authorization to implement. Current user direction supersedes earlier interpretations. No local PROJECT_SCOPE.md or hydration routing was edited this turn.
+
+1. Identity, purpose, and destination
+/neuron2 maps to Cortex project/book neuron-v2. The original neuron project and predecessor experiments supply historical evidence, not current marching orders. The book contains later work including V16.2; do not infer current implementation from the book's name or an old workspace path. Read the latest implementation pointer separately.
+Cortex provides persistent project evidence and continuity for workers. Neuron is the experimental graph in which acquired knowledge, memory, selection, execution, and eventually self-directed learning should live.
+The goal is cognition: a system that acquires useful structure through experience, recalls it, applies and composes it, recognizes uncertainty, investigates gaps, revises itself, and eventually initiates relevant work without a teacher supplying each decision. Conversational ability is an early interface and milestone. Logic gates, compilers, tools, storage, language and other processes are intended uses of the same substrate. Breadth is an architectural aim, not an established universal capability.
+
+2. Owner examples are PSEUDOCODE
+Treat anything the owner illustrates about formulas, placements, groups of formulas, numeric addresses, punctuation mappings or sentence equations as explanatory pseudocode unless explicitly identified as an established, evidenced formula.
+The owner knows the intended process and may not know its mathematical realization. Extract the behavior, relationships, inputs, conditions and intended outcomes. Record the exact illustrative arithmetic separately as nonbinding.
+Do not promote 'magnify -> exponent', '? -> square/divide', '! -> cube/e
+=== 47c23c52-d (page; chars 3237-6533 of 17,885; continue with 47c23c52-d@6533) ===
+xponent', or an expression for a sentence into rules, competing numerical hypotheses, or contradictions merely because the examples differ. The owner has not required those operators. Tests should investigate the intended transformation; if a worker later proposes a specific operator, label it as that worker's hypothesis with its own rationale.
+This applies to sample unknown-word relations, store answers, people, preference details, memory numbers and feeling-factor numbers: examples are not real-world facts or seeded answers.
+
+3. Computational identity and ownership
+Gate values are mathematical expression locations; labels and database/storage IDs are different things. DNA retains local executable relationships/continuations selected by arrival and remaining work. Runs are compositions of those transitions: the runs themselves are formulas.
+The graph should contain the behavior that constitutes a capability. A neuron named 'reasoning' or 'compiler' that delegates the substantive operation to an external host routine does not establish graph acquisition.
+Mother-to-student independence is essential. The mother can teach and provide feedback during development, but acquired student abilities must eventually work with that teacher disconnected. Host implementation details, small runtime primitives and boundary codecs must be distinguished from semantic selection/inference/learning supplied outside the graph. The exact permitted primitive boundary must be stated, not expanded invisibly to make a demonstration pass.
+External sensory data and tools can eventually connect through interfaces. External input is not equivalent to an external teacher secretly deciding the student's cognitive steps.
+
+4. Learning and execution
+Learning performs the expensive work of proposing, discovering, testing, establishing, revising and making structure reusable. Execution uses established runs, applicable substitutions and materialized transitions.
+Known answers should not require repeating their discovery. Novel inputs may still require applying a learned parameterized process or learning a missing one; an old output cannot be indiscriminately reused.
+Every capability claim identifies what was supplied, what was acquired, and what was merely recalled. Teacher-provided graph programs may be legitimate scaffolding, but are supplied procedures, not independently discovered ones.
+Keep incorrect foundations revisable. Birth/placement must distinguish absent locations from missing relationships, paths, selectors or evidence to existing locations. Exact current birth and DNA schema belong in the measured state/evidence layer.
+
+5. Receipts, memory, timeline and recursive shortcuts
+Retain actual paths/selected DNA, variable bindings and necessary state/provenance to distinguish different derivations reaching one canonical endpoint. The owner's model makes run receipts central to memory identity and occurrence records. The exact receipt representation and when different memory classes form must be explicit implementation facts or open questions.
+An execution shortcut avoids replaying established internal work. A learning shortcut reopens a related process recursively, changes a useful internal decision and retains the rest. Long routes are recoverable working structure
+=== 47c23c52-d (page; chars 6533-9824 of 17,885; continue with 47c23c52-d@9824) ===
+, not just explanatory prose.
+For adaptation: start from a relevant receipt; step backward; inspect the local DNA associated with the same completed arrival (owner's current rule); compare applicable known continuation outcomes; follow promising alternatives and reopen nested runs when needed. Do not restart a corpus scan at each node. Equality of endpoint alone does not establish equality of arrival.
+No known improvement means no examined eligible continuation improved, not proof that an unknown one cannot. How to handle exploration beyond improving known choices remains open.
+Memories preserve experiences; timeline distinguishes occurrence, recording and later reinterpretation. Newly applying a formula to an old event is a new event linked to the original. Negative results and the conditions under which they occurred remain useful.
+Memory can be accessed by problem structure, relations, outcomes, definitions, or time. Owner also reports a composite bodily/internal 'feeling' pattern as a rapid entry route. Treat it as a reported access mechanism to investigate, not a universal biological fact or a fixed scalar code. Compare its composition and relevance after retrieval.
+
+6. Language is structured activity with context
+A sequence of gate locations gains operational structure through relations among words, roles, grammar, punctuation, tense and context. Determine how, why, where and when these operations apply. Do not equate parts of speech or punctuation to arithmetic symbols just to obtain a numeric result.
+The destination of a sentence run can be an answer, a question, a process for obtaining missing information, an action plan or a combination. Some tasks need new external observations.
+Preserve the intended relational behavior while discovering actual operators. Syntax alone does not establish meaning or correct action. Proposed punctuation/operator/grammar realizations remain hypotheses until supported.
+
+7. Situated cognition example, not fixed dialogue
+The owner's shopping example illustrates: current request + speaker identity + relevant time/state + reliable preferences/history + immediate constraints -> select an appropriate answer or information-gathering process.
+The same surface question may require different actions for urgency, cost, quality, illness, a planned occasion, location, or preferences. A destination may therefore have memories of many context-dependent responses rather than one fixed string.
+Examples involving Megan, calendars, stores and milk are illustrative. Do not invent or assume these personal facts. Distinguish known, stale, inferred and unavailable context; ask or obtain missing information when necessary.
+Internet/calendar/map interfaces are possible future capabilities, not claims about present integration.
+Eventually discrepancy, unresolved need, new observation or a due commitment may supply internally generated input. Detection, prioritization, question selection, action and stopping must be student capabilities. The exact mechanism is unresolved.
+
+8. Unknown locations, nameless concepts and rich definitions
+Relationship formulas can constrain an unnamed location and support parts of a definition before the surface word is known. Distinguish: unknown word label, unknown location, partially know
+=== 47c23c52-d (page; chars 9824-13097 of 17,885; continue with 47c23c52-d@13097) ===
+n concept/definition, missing relationship, and missing usable route.
+The intended response can be 'I do not know the word; these relationships suggest this meaning', with the guess and its evidence exposed. Being able to print a preexisting label does not prove construction of an unnamed concept.
+Known words need full dictionary-style definitions, with separate senses where applicable, parts of speech, usage/examples, sense-specific relations and available language-specific information. A bare 'is noun' is insufficient.
+Each definition memory should have an updatable Relationships section. When supported relationships land at the point, retain the relation, source/formula, relevant sense/context, epistemic standing and revision history. Proposed fields here are a worker interpretation of the owner's requirement, not a finalized schema.
+Unknown concepts can accumulate partial definitions, open constraints and conflicting evidence without fabricating a complete entry. Inferred relationships stay hypotheses until justified. Definition changes should inform affected uses while preserving history.
+Rich definitions are usable evidence for recall, constraint checking, word discovery, explanation and later reasoning; they are not inert display text.
+
+9. Reasoning, question selection, guesses and progress
+Reasoning composes existing processes and investigates missing dependencies. A question is itself an operation with an origin and purpose; what/how/why words do not alone determine that purpose.
+Candidate missing-dependency selection, local alternative selection, feeling-route construction and internally generated input remain hypotheses unless measured. Do not disguise these gaps with function names.
+Guesses enable investigation, missing-variable proposals and new continuations. Preserve their origin, assumptions, evidence, test and current standing across runs/recall. A once-guessed relationship can later become supported within scope without rewriting its earlier uncertainty.
+Progress must be assessed against the active goal and constraints. Speed alone, fewer unknowns, familiar-looking output or a repeated assertion do not establish improvement. Discovering a false assumption can increase unknowns while improving understanding.
+Large-scale performance and general cognition remain outcomes to investigate, not guaranteed conclusions.
+
+10. Evidence required to ground claims
+Tests are tools, not self-certification. Declare the intended externally observable result and failure conditions before changing the implementation; do not derive the success criterion from how the code happens to work.
+Use a separate brain copy/sandbox for actual end-to-end use through the real boundary, with provenance/state snapshots. Do not teach or mutate the original as a shortcut to a proof. An isolated live-use result establishes only its observed scope.
+The 'little' trap is required reading: owner reported and Cortex page 9a40db66-b records the objection that a printed word already supplied by encoder/decoder/teaching was being presented as discovery. Before a new learning claim, inventory teacher lessons, decoder labels, definitions, graph structure and receipts relevant to the answer.
+Differentiate discovery of a nameless concept, naming 
+=== 47c23c52-d (page; chars 13097-16370 of 17,885; continue with 47c23c52-d@16370) ===
+it, retrieval of an existing label, taught association, composition and generalization. Claim only the demonstrated one.
+Grounding demonstrations needed as capabilities develop:
+- Same mathematical destination, distinguishable derivations and arrivals.
+- Reused capability survives restart and relevant mother disconnection.
+- New composition/changed inputs work without the answer being supplied through another route.
+- Explicit wrong/unknown/guessed cases remain visible.
+- Nameless concept supports a derived partial definition before a label is taught.
+- Rich definitions and relationship updates change relevant behavior without erasing history.
+- Shortcut and long route agree on relevant results/effects; changed dependencies are handled.
+- Local exploration touches bounded relevant structure rather than silently scanning the corpus.
+- A candidate new formula helps or fails on additional cases not used to invent it.
+- Context selects an appropriate process based on real supplied state, not scripted example answers.
+- Internally generated action occurs through the student when that capability is claimed.
+These are evidence categories, not a frozen implementation order or proof of all cognition. Production integration is a separate concrete step within user authorization, after the copied-brain outcome is established.
+
+11. What hydration must contain
+Keep three distinguishable layers:
+A. Stable scope: this vision, pseudocode convention, ownership boundaries, mechanism model, distinctive ideas, failure traps and acceptance principles.
+B. Current state: dated implementation/version/path, real running state when verified, capabilities with measured evidence, known limitations, remaining host/teacher ownership, current task and stopping condition.
+C. Evidence: exact owner sources, receipts, experiments, counterexamples and provenance accessible through Cortex.
+Mark every major item OWNER INTENT, OWNER EXAMPLE/PSEUDOCODE, ASSISTANT HYPOTHESIS, REPORTED OBSERVATION, VERIFIED RESULT (with scope), or OPEN QUESTION. Do not turn a record's storage date into a fresh verification date. A later user correction overrides earlier worker interpretations.
+For current state, use a compact capability table: capability | graph-owned portion | teacher/host-supplied portion | evidence/date | limits/next uncertainty.
+Hydrate via current-project wake and an explicit scope pointer, then the current record and only the evidence needed. Do not flood context with all historical versions. A bounded scope entry must expose essential invariants rather than burying the pseudocode rule or mother independence in optional deep pages.
+
+12. Demonstrate orientation through a concrete explanation
+A hydrated worker should be able to explain:
+- What the project aims to become and the role of today's task in it.
+- Which behaviors it can actually demonstrate today, and what still belongs to the mother/host.
+- Why an owner's illustrative exponent does not determine implementation.
+- One path from input through selection/execution to receipt, memory, timeline and output.
+- How a familiar process can be reused or locally reopened for a new problem.
+- How an unknown word can have a constrained partial meaning.
+- Why a known decoder label is not evidence of discove
+=== 47c23c52-d (page; chars 16370-17885 of 17,885; end) ===
+ry.
+- What result would disprove the worker's next hypothesis.
+A restated summary is not immunity to drift. The next action and actual receipts must continue to respect these distinctions.
+
+AUTHORITATIVE CORRECTION CAPTURED FROM CURRENT USER (verbatim excerpt)
+"ANYTHING" I SAY REGUARDING A FORMULA,PLACEMENT,GROUP OF FORMULAS, IF I GIVE AN EXAMPLE "IT IS CONSIDERED PSEUDO CODE"
+"IT WAS INTENDED TO DESCRIBE A PROCESS I CAN SEE IN MY HEAD, BUT DON'T FULLY UNDERSTAND THE HOW"
+
+EVIDENCE USED THIS TURN
+Current user message is the primary correction and scope request. Prior same-session owner monologues and cross-response analysis supply context. Cortex 2c683caf-6 confirms historical scope/handoff material and book versus version distinction; its implementation state is dated, not current verification. Cortex 9a40db66-b includes owner message 51 on the decoder/'little'/nameless-definition trap. No current brain behavior was inspected or tested. A local skill read command failed because sandbox setup could not enforce the .aws symlink read-only rule; required skill instructions were already available from earlier in this conversation. No file edits attempted.
+
+NEXT_ACTION
+When the owner supplies the three contributions, reconcile them into the requested PROJECT_SCOPE.md with owner intent, pseudocode, hypotheses and proof boundaries distinguished, then make the resulting scope explicitly retrievable during neuron-v2 hydration. Do not silently adopt this single contribution as the final merged scope.

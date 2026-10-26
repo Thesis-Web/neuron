@@ -1,0 +1,223 @@
+# 10 relationship types (blueprint §5.2, §16). A type is a gate; its action
+# section names its formula: a process that takes a point off the pad and
+# leaves where the related point should be. All of these are first guesses
+# (the owner's pseudocode where there is one; the builder's otherwise), and
+# the brain refits them (learning way 2).
+
+# a branch that just carries on
+proc carry-on =
+
+# one is a prime (laid with its value here because the tug of war needs it)
+gate one val 1
+gate two val 2
+
+# constants the formulas use
+gate minus-one val -1
+gate tenth val 0.1
+gate nine-tenths val 0.9
+gate eleven-tenths val 1.1
+
+# the slots the graph processes keep their inputs in
+gate s-a
+gate s-type
+gate s-b
+gate s-str
+gate s-f
+gate crowd
+
+# formulas
+proc f-same =
+# negation: on = y, off = -y
+proc f-negate = minus-one MUL
+# inversion: yes = x, no = 1/x; in 3D, p/|p|²
+proc f-invert = LAST READ LAST READ MUL DIV
+proc f-shrink = nine-tenths MUL
+proc f-grow = eleven-tenths MUL
+proc f-later = ITEM READ z-axis POINT READ tenth MUL ADD
+proc f-earlier = ITEM READ z-axis POINT READ tenth MUL SUB
+proc f-near = ITEM READ y-axis POINT READ tenth MUL ADD
+proc f-far = ITEM READ x-axis POINT READ tenth MUL ADD
+proc f-near-back = ITEM READ y-axis POINT READ tenth MUL SUB
+proc f-far-back = ITEM READ x-axis POINT READ tenth MUL SUB
+# each formula's inverse (structure: undoing a move)
+gate t-inverse
+rel f-same t-inverse f-same
+rel f-negate t-inverse f-negate
+rel f-invert t-inverse f-invert
+rel f-shrink t-inverse f-grow
+rel f-grow t-inverse f-shrink
+rel f-later t-inverse f-earlier
+rel f-earlier t-inverse f-later
+rel f-near t-inverse f-near-back
+rel f-near-back t-inverse f-near
+rel f-far t-inverse f-far-back
+rel f-far-back t-inverse f-far
+
+gate t-same
+gate t-opposite
+gate t-kind-of
+gate t-part-of
+gate t-like
+gate t-cause
+gate t-before
+gate t-used-for
+gate t-describes
+gate t-supports
+gate t-contradicts
+gate t-derived-from
+# a record of the brain's own act, not a meaning: this gate was looked up in that source
+gate t-asked
+
+sect t-same sec-action f-same
+sect t-opposite sec-action f-negate
+sect t-kind-of sec-action f-shrink
+sect t-part-of sec-action f-grow
+sect t-like sec-action f-near
+sect t-cause sec-action f-later
+sect t-before sec-action f-later
+sect t-used-for sec-action f-far
+sect t-describes sec-action f-near
+sect t-supports sec-action f-near
+sect t-contradicts sec-action f-negate
+sect t-derived-from sec-action f-earlier
+
+# types that cannot both hold between the same two gates: a source that says
+# one while the brain holds the other is a contradiction (blueprint §10.2)
+rel t-same t-opposite t-opposite
+rel t-supports t-opposite t-contradicts
+# taken back: "before is the opposite of cause" was a fact from the builder's head (adversary 15)
+unrel t-before t-opposite t-cause
+
+# the owner's own examples (on = y, off = -y; yes = x, no = 1/x)
+gate on at 0 1 0
+gate off at 0 -1 0
+rel on t-opposite off
+rel off t-opposite on
+rel YES t-opposite NO
+rel NO t-opposite YES
+label en "on" on
+label en "off" off
+label en "yes" YES
+label en "no" NO
+
+# the outcome gates are a kind of outcome (the miss way reads this)
+rel NONE t-kind-of OUTCOME-KIND
+rel SAME t-kind-of OUTCOME-KIND
+rel MORE t-kind-of OUTCOME-KIND
+rel LESS t-kind-of OUTCOME-KIND
+rel GATE t-kind-of OUTCOME-KIND
+rel NUMBER t-kind-of OUTCOME-KIND
+rel TEXT t-kind-of OUTCOME-KIND
+rel POINT t-kind-of OUTCOME-KIND
+rel LIST t-kind-of OUTCOME-KIND
+
+# ---- relate: write a relationship and let it pull (the tug of war, §5.5).
+# pad: a type b strength. The b side moves toward where the type's formula
+# says it should be, by the strength: new = (b + f(a)·s) / (1 + s).
+proc relate = s-str SLOT WRITE s-b SLOT WRITE s-type SLOT WRITE s-a SLOT WRITE relate-write place
+proc relate-write = s-a SLOT READ s-type SLOT READ s-b SLOT READ s-str SLOT READ REL WRITE
+proc place = s-type SLOT READ sec-action SECTION READ place-move
+on place NONE -> carry-on
+proc place-move = s-f SLOT WRITE s-a SLOT READ POINT READ s-f SLOT READ SPLIT LAST DELETE WAIT s-str SLOT READ MUL s-b SLOT READ POINT READ ADD s-str SLOT READ one ADD DIV s-b SLOT READ POINT MOVE place-crowd
+on place-move NONE -> carry-on
+# placed onto another gate by a meaning line: two meanings at one point (§5.6)
+proc place-crowd = s-b SLOT READ crowd LAST DELETE place-back
+# and the a side moves toward where the inverse formula puts it from b
+gate s-g
+proc place-back = s-f SLOT READ t-inverse REL READ place-back2
+on place-back NONE -> carry-on
+proc place-back2 = s-g SLOT WRITE s-b SLOT READ POINT READ s-g SLOT READ SPLIT LAST DELETE WAIT s-str SLOT READ MUL s-a SLOT READ POINT READ ADD s-str SLOT READ one ADD DIV s-a SLOT READ POINT MOVE place-back-crowd
+on place-back2 NONE -> carry-on
+proc place-back-crowd = s-a SLOT READ crowd LAST DELETE
+
+# ---- trust (§10.3): from a source's right and wrong counts on a topic, (right+1)/(right+wrong+2).
+# pad: source topic -> the weight. No source is ever 100%.
+gate tw-r
+gate tw-w
+proc trust-weight = TRUST READ tw-w SLOT WRITE tw-r SLOT WRITE tw-r SLOT READ one ADD tw-r SLOT READ tw-w SLOT READ ADD two ADD DIV
+
+# ---- how a line a run writes is held, by the run's mode (read by the store from each
+# mode's truth section; the brain can rewrite these). With none: a guess.
+sect TOLD sec-truth TOLD
+sect SOURCED sec-truth GROUNDED-STATE
+sect DERIVED sec-truth BELIEF
+sect GUESS sec-truth GUESS
+sect SPAWNED sec-truth GUESS
+
+# ---- settings are values the brain runs by, not numbers it means: a lookup by value
+# skips them. number-gate: pad a number -> the gate that means it, or the NONE gate.
+gate SETTING
+gate ng-l
+proc number-gate = VALUES FIND ng-walk
+on number-gate NONE -> ng-none
+proc ng-walk = ng-l SLOT WRITE ng-next
+proc ng-next = ng-l SLOT READ FIRST READ ng-check
+on ng-next NONE -> ng-none
+proc ng-check = LAST READ t-kind-of SETTING STRENGTH READ ng-skip
+on ng-check NONE -> carry-on
+proc ng-skip = LAST DELETE LAST DELETE ng-l SLOT READ REST READ ng-l SLOT WRITE ng-next
+proc ng-none = ITEM READ NONE
+rel BEAT t-kind-of SETTING
+rel BUDGET t-kind-of SETTING
+rel STUCK t-kind-of SETTING
+rel DEPTH t-kind-of SETTING
+rel PATIENCE t-kind-of SETTING
+rel PARK t-kind-of SETTING
+rel CELL t-kind-of SETTING
+rel WAITBEATS t-kind-of SETTING
+rel SPARE t-kind-of SETTING
+rel SLICE t-kind-of SETTING
+rel PAGE t-kind-of SETTING
+rel TIME-PAGE t-kind-of SETTING
+rel ACTS-CAP t-kind-of SETTING
+rel PARK-WAIT t-kind-of SETTING
+rel SHAPE-PAGE t-kind-of SETTING
+rel TRAIL-CAP t-kind-of SETTING
+rel CALL-WAIT t-kind-of SETTING
+rel CALL-CAP t-kind-of SETTING
+rel minus-one t-kind-of SETTING
+rel tenth t-kind-of SETTING
+rel nine-tenths t-kind-of SETTING
+rel eleven-tenths t-kind-of SETTING
+
+# ---- which gate (R3-6): a choice the kernel doesn't make. When several gates share a
+# label (two senses of one spelling) or a point, the candidates come here in index
+# order with a context point, and the one nearest the context is the pick. A tie keeps
+# the earlier one. pad: candidates (list), the context point (top) -> the pick.
+gate wg-l
+gate wg-p
+gate wg-best
+gate wg-d
+gate wg-c
+gate wg-e
+proc which-gate = wg-p SLOT WRITE wg-l SLOT WRITE wg-l SLOT READ FIRST READ LAST READ wg-best SLOT WRITE wg-dist wg-d SLOT WRITE wg-next
+proc wg-dist = POINT READ wg-p SLOT READ COMPARE
+on wg-dist SAME -> carry-on
+on wg-dist MORE -> carry-on
+proc wg-next = wg-l SLOT READ REST READ LAST READ wg-l SLOT WRITE FIRST READ wg-try
+on wg-next NONE -> wg-end
+proc wg-try = LAST READ wg-c SLOT WRITE wg-dist LAST READ wg-e SLOT WRITE wg-d SLOT READ COMPARE
+on wg-try LESS -> wg-take
+on wg-try SAME -> wg-skip
+on wg-try MORE -> wg-skip
+proc wg-take = LAST DELETE wg-c SLOT READ wg-best SLOT WRITE wg-e SLOT READ wg-d SLOT WRITE wg-next
+proc wg-skip = LAST DELETE wg-next
+proc wg-end = wg-best SLOT READ
+# FIND LABEL with several gates: the context is the run's subject, else where it started
+proc which-label = wl-ctx POINT READ which-gate
+proc wl-ctx = SUBJ READ KIND READ
+on wl-ctx GATE -> carry-on
+on wl-ctx NUMBER -> wl-start
+on wl-ctx TEXT -> wl-start
+on wl-ctx POINT -> wl-start
+on wl-ctx LIST -> wl-start
+on wl-ctx NONE -> wl-start2
+proc wl-start = LAST DELETE START READ
+proc wl-start2 = START READ
+
+# ---- strongest (R3-6): READ REL with several lines of a type. The candidates come
+# in the store's strength index (strongest first), so the pick is the first: a hop,
+# not a walk over every line (a word read up on holds hundreds). The brain may rewrite
+# this to weigh them another way.
+# pad: candidates (list), a, type (top) -> the pick.
+proc strongest = LAST DELETE LAST DELETE FIRST READ

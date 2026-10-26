@@ -1,0 +1,429 @@
+    0.0 Some people can walk up to a machine
+    1.6 they have never seen before, a dryer
+    3.6 that spins but won't heat, a car that
+    6.0 clicks and refuses to start, a laptop
+    8.4 that dies at 40% and within a few
+   10.7 minutes they put their finger on the one
+   12.5 part that failed. They didn't read the
+   14.7 manual. They may never have owned that
+   16.8 model. And yet they move through it as
+   18.9 if they built it themselves. Psychology
+   21.3 has a name for what's happening in their
+   22.7 heads and it has surprisingly little to
+   24.9 do with their hands. It's called
+   26.8 mechanical intelligence, the ability to
+   29.3 understand how things work by building a
+   31.2 working model of them in your mind and
+   33.0 running it. Once you understand how this
+   35.1 kind of intelligence works, you'll see
+   37.2 why some people can fix anything and why
+   39.5 so many of us freeze the moment
+   41.2 something stops working. Most people
+   43.1 have a few labels ready for these
+   44.4 people. They're handy. They're good with
+   46.5 their hands. Sometimes, with a little
+   48.8 pity in the voice, they're not really
+   50.6 book smart but great with that kind of
+   52.6 stuff. And if you ask how to become one
+   54.4 of them, you get the usual advice. Watch
+   56.8 a tutorial or accept that some people
+   59.0 are just born that way. But the hands
+   61.1 are the last part of the process to
+   62.6 move. By the time a fixer picks up a
+   64.8 screwdriver, most of the real work has
+   67.0 already happened somewhere you can't
+   68.7 see. What looks like a knack in the
+   70.6 fingers is one of the most demanding
+   72.3 kinds of thinking a person can do. And
+   74.8 it's the kind our schools almost never
+   76.8 test for. Back in 1920, the psychologist
+   80.0 Edward Thorndike split human
+   81.7 intelligence into three kinds: abstract,
+   84.9 social, and mechanical. The first is
+   87.4 roughly what IQ tests came to measure.
+   89.6 The second grew into an entire industry
+   91.6 of books and seminars. The third, the
+   94.2 intelligence of things, we mostly
+   96.2 forgot. Decades later, Vanderbilt
+   98.6 researchers followed hundreds of gifted
+  100.6 13-year-olds for more than 30 years.
+  103.6 Their spatial ability, the skill of
+  105.4 turning objects around in the mind,
+  107.3 predicted who would later earn patents
+  109.6 and publish research beyond what their
+  111.6 math and verbal scores explained. Yet,
+  114.3 as David Lubinski, who led the study,
+  116.6 pointed out the usual searches for
+  118.8 gifted kids miss about half of the top
+  121.4 1% in spatial ability. And the educator
+  124.4 Mike Rose, after years of watching
+  126.6 plumbers, electricians, and carpenters
+  128.4 at work, argued that our old line
+  130.5 between hand work and brain work hides
+  132.6 an enormous amount of thinking.
+  134.9 Today on Psych Tunes, we're going to
+  137.0 step inside the mind of someone who can
+  139.2 fix anything. What they see when
+  141.6 something breaks, why it works even on
+  143.8 machines they've never touched, the
+  145.8 hidden price it carries, and how you can
+  147.8 start thinking this way yourself, even
+  149.8 if you've spent your whole life saying
+  151.6 you're not a mechanical person. Let's
+  153.6 get started.
+  155.0 In 1943,
+  156.6 a young Scottish psychologist named
+  158.8 Kenneth Craik published a short book
+  160.6 with a very big idea. He proposed that
+  163.1 the mind carries a small-scale model of
+  165.6 the outside world, a miniature reality
+  167.9 it can run in private. With that model,
+  170.6 you can try out different moves, see
+  172.8 where they lead, and choose the best one
+  174.9 before you touch anything at all. Craik
+  177.2 died 2 years later at just 31, but his
+  180.2 idea became the foundation of what
+  182.0 psychologists now call mental models.
+  185.3 Everyone carries mental models. In a
+  187.4 person with high mechanical
+  188.7 intelligence, though, the model of a
+  190.5 machine behaves less like a photograph
+  192.8 and more like a film. It runs. The
+  195.6 cognitive psychologist Mary Hegarty at
+  198.0 the University of California, Santa
+  199.7 Barbara, spent years studying exactly
+  202.2 this. She showed people simple diagrams
+  204.8 of pulley systems, ropes, and wheels,
+  206.9 and a hanging weight, and asked
+  208.6 questions like, "If you pull this rope,
+  211.3 which way does that pulley turn?" Then
+  213.3 she tracked where their eyes went while
+  215.0 they worked it out. Nobody pictured the
+  216.9 whole machine moving at once. Their eyes
+  219.2 traveled along the system one connection
+  221.3 at a time. This rope pulls this wheel.
+  224.1 This wheel turns that one. That one
+  226.8 lifts the weight. Hegarty called it
+  228.9 mental animation, and the people who did
+  231.2 best had one particular strengths,
+  233.6 spatial visualization, the ability to
+  236.0 hold one step steady in the mind while
+  238.3 running the next. Here's the simplest
+  240.3 way to picture it. Every machine is a
+  242.7 relay race. A switch hands the job to a
+  245.5 wire, the wire hands it to a motor, the
+  248.3 motor hands it to a belt, and the belt
+  251.0 hands it to the drum that finally spins
+  253.7 your clothes.
+  255.2 When something breaks, almost always one
+  257.9 runner somewhere has dropped the baton.
+  260.3 Most people look at a broken machine and
+  262.0 see a dead object. The fixer sees the
+  264.3 race and starts asking where the baton
+  266.2 went missing. Watch these people closely
+  268.8 and three signs keep showing up. Sign
+  271.2 one, they see parts where everyone else
+  273.4 sees a name. When a table wobbles, most
+  275.7 people see a table. The fixer sees four
+  278.1 legs, one of them a few millimeters
+  280.0 short, and a folded coaster on the
+  281.8 counter that happens to be exactly the
+  284.0 right thickness. Psychologists call the
+  286.3 trap that catches everyone else
+  288.0 functional fixedness. Once an object has
+  290.5 a name, the name tells you what it's for
+  292.7 and it quietly hides everything else it
+  294.6 could be. In 2012, the psychologist Tony
+  298.0 McCaffrey at the University of
+  299.5 Massachusetts tested a simple way around
+  301.8 it. He taught people to break every
+  304.0 object into its parts and describe each
+  306.1 part without implying a use. A candle
+  308.5 stops being a candle. It becomes a stick
+  311.0 of wax and a length of string. In one
+  313.2 classic puzzle, that string, the wick,
+  316.3 is exactly what you need to tie two
+  318.3 metal rings together. People trained
+  320.3 this way solved the puzzles more than
+  322.5 eight times out of 10, far more often
+  325.1 than people who weren't. Fixers do this
+  327.2 without being taught. Names slide off
+  329.8 things and what's left is material,
+  332.3 shape, and what that material could do.
+  335.0 The price is a little funny and a little
+  336.8 lonely. They can never look at anything
+  338.7 as just itself. Every drawer in their
+  340.7 home slowly fills with screws, springs,
+  343.2 and things that might be useful someday.
+  345.2 The people around them see clutter. The
+  347.1 fixer sees inventory. Sign two, they
+  350.1 follow the job instead of chasing the
+  351.9 symptom. Picture a car that won't start
+  353.9 on a cold morning. Most people jump
+  355.8 straight to a guess. It's probably the
+  357.8 battery. So, they buy a new one, install
+  360.5 it, turn the key, and hear the exact
+  363.0 same click. The fixer asks smaller
+  365.2 questions first. Do the dashboard lights
+  367.3 come on? Does the engine try to turn
+  369.3 over? Or is there just one click? Each
+  371.7 question checks one point along the path
+  373.8 the power is supposed to take. In the
+  375.8 1970s, the Danish engineer Jens
+  378.4 Rasmussen studied technicians hunting
+  380.5 for faults in electronic equipment and
+  382.7 described two strategies. The first he
+  385.1 called symptomatic, match the symptom to
+  387.8 a fault you've seen before. It's fast
+  390.5 and it works beautifully as long as the
+  392.4 problem is familiar. The second he
+  394.4 called topographic, set the symptom
+  396.7 aside and follow the route the system
+  398.8 takes when it's healthy point by point
+  401.4 until the good signal turns bad. This is
+  403.8 the fixer following the baton. They
+  405.8 start where the race begins and watch
+  407.7 each handoff until they find the runner
+  409.8 standing there with empty hands. And
+  411.8 this is the real answer to the question
+  413.4 in the title. Matching symptoms only
+  415.7 works on problems you've met before.
+  417.7 Following the path works on almost
+  419.4 anything because every machine, even one
+  421.8 you've never laid eyes on, has a path.
+  424.4 Their memory supplies a few good first
+  426.4 guesses. The machine itself supplies the
+  428.6 rest. Ask them how they knew and many of
+  431.8 them can't quite say. Something in the
+  433.9 click sounded wrong. A screw turned with
+  436.4 the wrong kind of resistance. The
+  438.4 philosopher Michael Polanyi had a line
+  441.0 for this. We can know more than we can
+  443.1 tell.
+  444.2 Years of following paths leave knowledge
+  446.1 in the ears and fingertips that never
+  447.8 gets translated into words. The cost of
+  450.2 this sign is time and other people's
+  452.4 patience. Following the path is slower
+  454.6 than guessing and to the people waiting
+  456.6 it can look stubborn, even obsessive.
+  458.8 Sometimes it is. More often it's the
+  461.0 reason the problem stays fixed. Sign
+  463.4 three, they open it. A coffee machine
+  465.8 stops working. For most people, it's
+  468.0 inside might as well be a locked room
+  469.9 with a quiet fear attached to the door.
+  472.2 If I open this, I'll make it worse and
+  474.1 everyone will see I had no idea what I
+  475.9 was doing. So, the machine goes in the
+  478.0 trash or sits in a corner of the counter
+  480.6 for a year. The fixer turns it over,
+  483.2 finds the screws, and takes a photo
+  485.4 before removing each one. Every time
+  487.8 they open something, they add another
+  489.3 working model to a private library of
+  491.2 how things work, and that library
+  493.2 compounds. In 1984, the researchers
+  496.2 David Kirsh and Susan Bovair taught
+  499.2 people to operate an unfamiliar control
+  501.6 panel dressed up as the weapons console
+  504.0 of a starship. Some learned only the
+  506.0 steps. Others first got a simple picture
+  508.6 of how power flowed through the device.
+  510.8 That second group learned faster,
+  512.9 remembered better, and most remarkably,
+  516.1 worked out correct procedures nobody had
+  518.4 ever taught them. One real understanding
+  520.6 of how a thing works can produce dozens
+  522.6 of answers you were never given. The
+  524.8 philosopher Matthew Crawford, who left a
+  526.8 think tank job in Washington to run a
+  528.6 motorcycle repair shop, argues that this
+  530.8 work demands an unusual humility. The
+  533.3 machine has no interest in your theory
+  535.0 or your title, and you have to be
+  536.8 willing to be wrong in front of it. It's
+  538.7 an argument from the workbench rather
+  540.3 than the lab, but anyone who has
+  542.2 repaired anything will recognize it. And
+  544.9 here's the part nobody sees. The
+  547.0 confidence you admire in a fixer was
+  549.2 bought with broken things. They have
+  551.4 stripped screws, snapped plastic clips,
+  554.4 cracked casings, and made at least one
+  556.6 thing permanently worse. Many people who
+  559.0 can fix anything have broken more
+  560.6 objects than you have ever owned. They
+  562.6 just kept opening. But, there's a deeper
+  564.4 price, and it shows up far away from any
+  566.8 machine. When you spend years hunting
+  569.1 for the dropped baton, you start hunting
+  571.5 for it everywhere. A friend calls after
+  573.9 a terrible week, and before they finish
+  575.9 their second sentence, the fixer is
+  577.7 already three hand-offs into a
+  579.1 diagnosis. Was it your manager? Have you
+  581.8 tried talking to HR? Every question
+  584.2 comes from care, and it can still land
+  586.3 wrong. Researchers who followed couples
+  588.3 while one partner prepared for the bar
+  589.9 exam found that the support that helped
+  591.8 most was often the support the stressed
+  593.8 partner barely noticed. Obvious help
+  596.3 sometimes carried a hidden cost because
+  598.5 being helped can feel like being told
+  600.6 you're struggling. Later studies suggest
+  602.6 it depends on whether the help matches
+  604.3 what the person actually needs. But the
+  606.5 risk is real. Sometimes nothing in the
+  608.8 person is broken at all. They wanted
+  610.7 company, and they got a repair. A mind
+  613.4 built to restore things can quietly cost
+  615.5 them closeness. So, what if you're not
+  617.5 one of them? What if you're the one who
+  619.1 freezes the moment something stops
+  620.7 working? Here's the first thing to know.
+  622.8 You can't get there by memorizing fixes.
+  625.4 A thousand repair videos will still
+  627.4 leave you lost the moment something
+  629.2 fails in a way the video didn't cover.
+  631.5 When the researchers Morris and Rouse
+  633.2 reviewed years of troubleshooting
+  634.7 studies in 1985, they found that
+  637.4 teaching people the theory of how a
+  638.9 system works did not, by itself, produce
+  641.7 good troubleshooters. What helped was
+  644.2 guidance on how to use what they knew.
+  646.6 And knowledge of the actual task
+  648.2 mattered more than raw aptitude.
+  650.7 Memorized routes fail the moment one
+  652.6 road closes. A map lets you find a way
+  655.3 you've never taken. The good news is
+  657.4 that the ability underneath all of this
+  659.1 can be trained. In 2013, a team led by
+  662.2 David Uttal at Northwestern University
+  664.4 pooled 217 studies on training spatial
+  667.6 skills. Practice improved those skills,
+  670.3 the gains held up over time, and they
+  672.5 carried over to tasks people had never
+  674.5 practiced. The people who started out
+  676.5 weakest improved the most, which brings
+  679.0 us to the hardest part of this video. If
+  681.0 you've spent your life saying, "I'm just
+  683.0 not a mechanical person," take an honest
+  685.2 look at what that sentence does for you.
+  687.2 It sounds like a description of who you
+  688.7 are. In practice, it works like a lid.
+  691.1 You closed it a long time ago, maybe
+  693.0 after one embarrassing moment in front
+  694.6 of someone who knew more, and you've
+  695.9 kept it shut ever since because as long
+  697.8 as you never open anything, you never
+  699.3 have to feel what it's like to not know.
+  701.6 What that sentence really protects you
+  703.0 from is the first 5 minutes of being a
+  704.5 beginner, and the price is a lifetime of
+  706.6 waiting for someone else to fix things
+  708.0 for you.
+  709.1 So, here are three ways to start
+  710.5 thinking like someone who can fix
+  711.8 anything. Principle one, say the chain
+  714.5 out loud before you touch anything.
+  716.6 Before you open or replace anything,
+  718.6 describe how the thing is supposed to
+  720.1 work step-by-step out loud or on paper.
+  723.8 I press the button, power reaches the
+  726.1 heater, the heater warms the water, the
+  728.7 pump pushes the water through the
+  730.5 coffee. This is Hegarty's mental
+  733.0 animation done on purpose, and pay
+  735.8 attention to the moment you get stuck.
+  738.5 The first step you can't describe is
+  741.0 exactly where your model has a gap, and
+  743.5 very often, it's exactly where to look.
+  746.4 Principle two,
+  748.0 test the middle first. When you don't
+  750.0 know which step failed, skip your
+  751.9 favorite suspect and test somewhere in
+  754.1 the middle.
+  755.1 If a lamp won't turn on, plug a
+  756.8 different lamp into the same outlet. If
+  759.0 the second lamp works, you've just
+  760.4 cleared the outlet, the wiring, and the
+  762.5 power to the house in one move, and the
+  764.7 problem lives in the first lamp. If it
+  767.0 doesn't work, the first lamp is cleared
+  769.0 instead. Engineers call this the
+  771.1 half-split method, and the US Air Force
+  773.7 was already studying it as a way to
+  775.6 train technicians in the 1950s.
+  778.6 Each good test cuts the problem in half.
+  781.4 10 good tests can narrow a thousand
+  783.5 possibilities down to one. Principle
+  785.8 three, start with something you're
+  787.4 allowed to break. Find an old remote, a
+  790.0 dead toaster, a cheap gadget nobody will
+  792.8 miss. Keep it unplugged, and leave
+  795.0 microwaves and old televisions to
+  796.8 professionals because they can hold a
+  798.7 dangerous charge even when they're
+  799.9 switched off. Open it, photograph every
+  802.4 step, try to name every part and say
+  804.4 what it does. You don't even have to fix
+  806.6 it. The goal is to put one more working
+  808.9 model in your head and to feel in your
+  810.9 body that opening something is
+  812.7 survivable. Every fixer you've ever
+  815.3 admired started with a pile of things
+  817.1 they were allowed to ruin. When this
+  819.2 kind of mind matures, it stops being
+  821.4 only about machines. The seasoned fixer
+  824.1 starts to see how everything holds
+  825.5 together. Why a morning routine falls
+  827.9 apart at the same step every day. Why a
+  830.6 team keeps missing the same deadline.
+  833.0 The skill grows from taking things apart
+  835.1 into understanding how things stay
+  836.5 together. And the wisest fixers learn
+  838.6 the hardest lesson of all. When to put
+  841.1 the screwdriver down. Before they start,
+  843.5 they ask, "Do you want help fixing this
+  845.9 or do you just want me here?" That one
+  848.6 question turns a mind built for repair
+  851.0 into a person people feel safe around.
+  853.6 Someone who can fix almost anything and
+  855.9 who knows that some things only need to
+  857.7 be held. In 1974, Robert Pirsig
+  860.8 published a book about a long motorcycle
+  862.8 trip and the quiet discipline of keeping
+  864.8 a machine running. Tucked inside it is a
+  867.3 line fixers understand before anyone
+  869.3 else. The real cycle you're working on
+  871.6 is a cycle called yourself. Kenneth
+  874.1 Craik believed the mind carries a small
+  876.0 working model of the world. Maybe the
+  877.8 most important model any of us ever
+  879.4 builds is the one of ourselves. And
+  881.4 maybe the same rules apply. Run it
+  883.6 honestly. Follow the path and open the
+  886.4 thing you've been most afraid to open.
+  888.7 So, of the three signs, which one do you
+  891.2 see in yourself? Do you see parts where
+  893.3 others see names? Follow the path while
+  895.4 everyone else guesses? Or open what
+  897.6 other people throw away? Or maybe for
+  900.0 now, you're still holding the lid shut.
+  902.3 Tell me in the comments. Wherever you're
+  904.2 starting from, you're not alone. If this
+  906.6 video gave you a new way to see this
+  908.2 kind of mind, hit like and send it to
+  910.7 the person in your life who always fixes
+  912.6 everything. They rarely hear that what
+  914.6 they do is a form of intelligence. Your
+  916.9 message might be the first time someone
+  918.5 says it out loud. Don't forget to
+  920.2 subscribe and turn on notifications so
+  922.1 we can keep exploring the hidden corners
+  923.8 of the mind together. Thank you for
+  925.6 staying with me until the very end.
+  927.3 Goodbye and see you next time.

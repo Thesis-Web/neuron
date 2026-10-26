@@ -1,0 +1,204 @@
+=== 58205378-0 (page; chars 0-2808 of 35,846; continue with 58205378-0@2808) ===
+## 1. Where to look
+- /home/exnulla/NEURON_NEXT_SESSION.md (start here), /home/exnulla/neuron-v16.2/README.md (section 'Where a formula comes from'), home/REPORT_20260930_074307.md, runs/lab_20260930/RESULTS.md, runs/20260930_074114/RESULTS.md, teacher/additions_2026-09-30e.json, teacher/owner_source/ 01-17, test_v16_2.py (47; tests 46 and 47 are the widened math).
+- The living brain: cd /home/exnulla/neuron-v16.2 ; cat home/cortex.pid ; home/talk.sh "summer opposite ?" "winter nextseason ?" "power alikenoun ?" "nextseason ?" "no ?".
+- Code: canon.py between / solutions / members / tidy / TEMPLATES / family; learn.py choose / revise / _search / _apply; encoder.py _said.
+- Earlier records: 7808fc1f-4 + page 1bb43756-6 (the owner's correction: no cop-out rules), 48c0ce90-e + page 6fd056ff-9 (third turn), 80eef6fd-2 + page 2de10368-8.
+## 2. How to use Cortex now
+- wake(project="neuron-v2") returns this record. locate(topic, project="neuron-v2") then fetch(ids). Owner text governs; the catalog inside file 17 is an LLM's suggestion.
+- Record each milestone with close_out(project="neuron-v2"), owner text verbatim in the PAGE, built from the files (scripts/fd.py close_out --json), hand-off block short and LAST.
+## 4. The owner's message, verbatim (the owner's words are the first lines; the rest is the pasted catalog)
+
+===== FILE 17_2026-09-30T123009.txt | 2026-09-30T12:30:09.049Z | 33600 chars | sha256 00f82b6dddd16d9ac1494e1c7321075cb6e7d4472de36e653e7e3cd2a5062395 | owner: 'I feel the math is tooo boxed in... here is a list of formulas that might help', with a pasted LLM catalog of 73 formula families =====
+ok .. I suppose now is as good a time as any... let's expand ourself a little .. I feel the math is tooo boxed in... so here is a list of formulas that might help... 
+
+<pasted_content id="d64a">
+I checked the current formula generator (neuron-v16.2/canon.py:47). It varies integer parameters, composes pairs from the existing library, removes equivalent expressions, and orders candidates by complexity. It is deterministic, rather than random, but your larger point holds: **it explores a relatively narrow family of algebraic expressions.** I did not independently verify the count of approximately 240.
+
+Below are **73 candidate families**, with representative mathematics, possible Neuron uses, and sources. This is a research catalog, not a recommendation to install everything. The mathematics comes from the cited work; **the proposed Neuron applications are my suggestions**, unless stated otherwise. Some entries are mathematical systems or algorithms rather than single equations.
+
+One distinction matters throughout: a formula for **where a meaning belongs**, a formula for **executing an operation**, and a formula for **assessing evidence** have different jobs. The
+=== 58205378-0 (page; chars 2808-5211 of 35,846; continue with 58205378-0@5211) ===
+y can all live as graph content without being interchangeable.
+
+**For mathematical locations and relationships**, I would explore these families first.
+
+| \# | Family and representative form | Possible use in Neuron | Source |
+|---|---|---|---|
+| 1 | **Affine transformations:** f(x)=Mx+b | Relationships involving several dimensions at once. Translation, scaling, reflection, and rotation become special cases. | [MIT: linear algebra, least squares, and SVD (https://www.ocw.mit.edu/courses/10-34-numerical-methods-applied-to-chemical-engineering-fall-2015/b3d5967d107c09284ab273a74fa33212\_MIT10\_34F15\_Lec06.pdf)](<https://www.ocw.mit.edu/courses/10-34-numerical-methods-applied-to-chemical-engineering-fall-2015/b3d5967d107c09284ab273a74fa33212_MIT10_34F15_Lec06.pdf>) |
+| 2 | **Polynomial and rational families:** f(x)=∑ aₖxᵏ, or P(x)/Q(x) | Broader relationship candidates than fixed multiples and powers. Multivariate versions could depend on context as well as the starting meaning. | [Brunton, Proctor \& Kutz, 2016 (https://arxiv.org/abs/1509.03580)](<https://arxiv.org/abs/1509.03580>) |
+| 3 | **Algebraic laws, inverses, and involutions:** f(f(x))=x, g(f(x))=x | Test the _structure_ of a proposed relationship. A reversible opposition should satisfy different laws from “more,” “part of,” or “causes.” | [Knuth \& Bendix, 1970 (https://www.cs.tufts.edu/\~nr/cs257/archive/don-knuth/knuth-bendix.pdf)](<https://www.cs.tufts.edu/~nr/cs257/archive/don-knuth/knuth-bendix.pdf>) |
+| 4 | **Möbius transformations:** f(x)=(ax+b)/(cx+d) | A compact family combining offsets, scaling, and reciprocals. Could reveal relationships the current templates miss. Requires domain restrictions and nonzero determinant. | [NIST: bilinear transformations (https://dlmf.nist.gov/1.9\#iv)](<https://dlmf.nist.gov/1.9#iv>) |
+| 5 | **Logarithms and exponentials:** log(xy)=log x+log y, eᵃ⁺ᵇ=eᵃeᵇ | Express multiplicative relationships additively; represent ratios or quantities spanning many orders of magnitude. Useful candidates for graded intensity. Real logarithms require positive inputs. | [NIST: logarithms, exponentials, and powers (https://dlmf.nist.gov/4.2)](<https://dlmf.nist.gov/4.2>) |
+| 6 | **Trigonometric and complex rotations:** z'=ze^{iθ} | Cycles, recurring phases, directional relations, and composable transformations. Could test whether a relationship behaves like a rotation or its invers
+=== 58205378-0 (page; chars 5211-7970 of 35,846; continue with 58205378-0@7970) ===
+e. | [RotatE, 2019 (https://arxiv.org/abs/1902.10197)](<https://arxiv.org/abs/1902.10197>) |
+| 7 | **Complex bilinear relationships:** \\(\\operatorname{Re}\\sum\_k h\_kr\_k\\overline{t\_k}\\) | Model several relationships sharing the same entities, including asymmetric ones. Useful as a placement proposal or scoring method; the score does not establish exact identity. | [ComplEx, 2016 (https://arxiv.org/abs/1606.06357)](<https://arxiv.org/abs/1606.06357>) |
+| 8 | **Hyperbolic geometry** | Represent branching hierarchies such as animal → mammal → dog while preserving meaningful distances. This is approximate geometry, not a guarantee of the uniquely correct address. | [Poincaré Embeddings, 2017 (https://arxiv.org/abs/1705.08039)](<https://arxiv.org/abs/1705.08039>) |
+| 9 | **Optimal transport:** minimize ∑ᵢⱼπᵢⱼcᵢⱼ subject to matching constraints | Compare whole neighborhoods when proposing relocation. A candidate placement should fit surrounding relationships, not merely one pair. | [Peyré \& Cuturi, 2019 (https://arxiv.org/abs/1803.00567)](<https://arxiv.org/abs/1803.00567>) |
+| 10 | **Constrained optimization:** min E(X,θ) subject to known constraints | Jointly revise positions X and relationship parameters θ. Exact constraints can coexist with uncertain observations, provided their status stays explicit. | [Boyd \& Vandenberghe, 2004 (https://web.stanford.edu/\~boyd/cvxbook/)](<https://web.stanford.edu/~boyd/cvxbook/>) |
+
+Your puzzle idea particularly points toward **joint constraint solving**: several relationships constrain the same meaning simultaneously. However, the constraints may determine a structure only up to a translation, rotation, or other symmetry. A unique numerical address additionally needs reference points or a canonical convention. Also, conflicting constraints can reveal a mistaken observation, an inadequate formula family, or two senses that were incorrectly merged.
+
+**For making the graph executable and teaching it new procedures**, these are especially relevant.
+
+| \# | Family or mechanism | Possible use in Neuron | Source |
+|---|---|---|---|
+| 11 | **Interaction combinators and local graph rewriting** | Computation through local interactions between graph elements. This is direct mathematical precedent for your “the graph is the code” position. | [Lafont, 1997 (https://www.sciencedirect.com/science/article/pii/S0890540197926432)](<https://www.sciencedirect.com/science/article/pii/S0890540197926432>) |
+| 12 | **Lambda calculus and substitution:** (λ x.E)(a)→ E\[x:=a\] | Represent an operation, bind its variables, and execute it by substitution. Particularly close to your x,y,z example. | [Plotkin, 1975 (https://homepages.inf.ed.ac.uk/gdp/publications/cbn\_cbv\_lambda.pdf)](<https://ho
+=== 58205378-0 (page; chars 7970-10479 of 35,846; continue with 58205378-0@10479) ===
+mepages.inf.ed.ac.uk/gdp/publications/cbn_cbv_lambda.pdf>) |
+| 13 | **Unification:** find σ such that sσ=tσ | Match expression structures and bind unknowns. Useful for applicability selectors, grammar, and matching a question to a learned procedure. | [Robinson, 1965 (https://web.stanford.edu/class/linguist289/robinson65.pdf)](<https://web.stanford.edu/class/linguist289/robinson65.pdf>) |
+| 14 | **Anti-unification:** f(a,b),f(a,c)→ f(a,X) | Discover the shared structure of examples. A route toward “these two pairs have the same kind of relationship.” | [Plotkin, 1970 (https://homepages.inf.ed.ac.uk/gdp/publications/MI5\_note\_ind\_gen.pdf)](<https://homepages.inf.ed.ac.uk/gdp/publications/MI5_note_ind_gen.pdf>) |
+| 15 | **Term rewriting and completion:** lσ→ rσ | Teach simplification, substitution, arithmetic transformations, and equivalence. Completion investigates whether rules agree; termination is not automatic. | [Knuth \& Bendix, 1970 (https://www.cs.tufts.edu/\~nr/cs257/archive/don-knuth/knuth-bendix.pdf)](<https://www.cs.tufts.edu/~nr/cs257/archive/don-knuth/knuth-bendix.pdf>) |
+| 16 | **Equality saturation and e-graphs** | Keep multiple proven-equivalent expressions together, then choose an efficient executable form. Useful when “simplest” depends on the intended operation. | [Willsey et al., _egg_, 2021 (https://arxiv.org/abs/2004.03082)](<https://arxiv.org/abs/2004.03082>) |
+| 17 | **Datalog combined with equality reasoning** | Let relational facts and expression equivalences inform one another. Relevant to graph-readable definitions and derived relationships. | [_egglog_, 2023 (https://arxiv.org/abs/2304.04332)](<https://arxiv.org/abs/2304.04332>) |
+| 18 | **Counterexample-guided synthesis:** propose → check → counterexample → revise | Turn failures into constraints on the next formula. Avoid repeatedly trying candidates already disproved under the same conditions. | [Solar-Lezama et al., 2006 (https://people.eecs.berkeley.edu/\~sseshia/pubs/b2hd-solar-asplos06.html)](<https://people.eecs.berkeley.edu/~sseshia/pubs/b2hd-solar-asplos06.html>) |
+| 19 | **Minimum description length:** minimize \\(L(\\text{model})+L(\\text{data}\\mid\\text{model})\\) | Prefer a reusable explanation over a huge formula that memorizes examples. Exceptions must still count toward its cost. | [Rissanen, 1978 (https://research.ibm.com/publications/modeling-by-shortest-data-description)](<https://research.ibm.com/publications/modeling-by-shortest-data-description>) |
+| 20 | **Lea
+=== 58205378-0 (page; chars 10479-13095 of 35,846; continue with 58205378-0@13095) ===
+rning reusable program libraries** | Discover recurring subprocedures and make them reusable graph operations. The library itself grows through experience. | [Ellis et al., _DreamCoder_, 2021 (https://arxiv.org/abs/2006.08381)](<https://arxiv.org/abs/2006.08381>) |
+| 21 | **Symbolic regression constrained by theory** | Search for equations that fit observations while checking their compatibility with existing mathematical knowledge. Stronger than numerical fit alone. | [AI-Descartes, 2023 (https://www.nature.com/articles/s41467-023-37236-y)](<https://www.nature.com/articles/s41467-023-37236-y>) |
+
+**Interaction combinators deserve particular attention.** Lafont demonstrates a universal computational system with very few graph interaction rules. That establishes feasibility for graph computation; it does not establish that Neuron’s current structure is universal, efficient, or capable of learning those rules.
+
+**For truth, epistemic state, evidence, and correction**, there are several distinct mathematical jobs.
+
+I checked Cortex’s existing truth-matrix view (cortex-substrate/migrations/0045\_standing\_views\_skip\_quarantine.sql:7). It already keeps support and opposition separate, calculates a weighted beta-style mean, and distinguishes candidate, supported, contradicted, and disputed propositions. Exact-source deduplication is present too. That is useful groundwork, although duplicate detection does not establish full independence between sources.
+
+| \# | Family and representative form | Possible use in Neuron | Source |
+|---|---|---|---|
+| 22 | **Belnap four-valued logic:** support/refutation pairs (0,0),(1,0),(0,1),(1,1) | Distinguish unknown, supported, opposed, and conflicting evidence. A contradiction need not make every unrelated conclusion derivable. | [Belnap, 1977 (https://link.springer.com/chapter/10.1007/978-94-010-1161-7\_2)](<https://link.springer.com/chapter/10.1007/978-94-010-1161-7_2>) |
+| 23 | **Bayesian updating and beta distributions:** \\(p(H\\mid E)\\propto p(E\\mid H)p(H)\\); beta mean =α/(α+β) | Update uncertainty from observations. Appropriate observation models matter: arbitrary weighted claims are not automatically independent trials. | [NIST: Bayesian methodology (https://www.itl.nist.gov/div898/handbook/apr/section2/apr1a.htm)](<https://www.itl.nist.gov/div898/handbook/apr/section2/apr1a.htm>) |
+| 24 | **Log odds and likelihood ratios:** \\(\\log O(H\\mid E)=\\log O(H)+\\log LR(E)\\) | Accumulate evidence additively. Copied or dependent reports must not each receive an independent evidence increment. | [NIST: Bayes formula (https://www.itl.
+=== 58205378-0 (page; chars 13095-15301 of 35,846; continue with 58205378-0@15301) ===
+nist.gov/div898/handbook/apr/section2/apr1a.htm)](<https://www.itl.nist.gov/div898/handbook/apr/section2/apr1a.htm>) |
+| 25 | **Subjective logic:** opinion (b,d,u,a), with b+d+u=1 | Keep belief, disbelief, and uncertainty separate. “Little evidence” should differ from “lots of evenly divided evidence.” | [Jøsang, 2001 (https://faculty.cc.gatech.edu/\~isbell/classes/reading/papers/logunprob.pdf)](<https://faculty.cc.gatech.edu/~isbell/classes/reading/papers/logunprob.pdf>) |
+| 26 | **Dempster–Shafer belief and plausibility** | Represent evidence supporting a set of possibilities without assigning unsupported precision to each possibility. Combining evidence needs explicit assumptions. | [Dempster, 1967 (https://www.stat.purdue.edu/\~chuanhai/projects/DS/docs/67Annals.pdf)](<https://www.stat.purdue.edu/~chuanhai/projects/DS/docs/67Annals.pdf>) |
+| 27 | **Provenance semirings:** addition represents alternatives; multiplication represents joint dependencies | Record _which evidence combinations_ support a conclusion. Useful for detecting shared origins and tracing consequences of corrections. | [Green, Karvounarakis \& Tannen, 2007 (https://www.cs.ucdavis.edu/\~green/papers/pods07.pdf)](<https://www.cs.ucdavis.edu/~green/papers/pods07.pdf>) |
+| 28 | **Truth-maintenance systems** | Maintain dependencies between assumptions and conclusions. Revise affected conclusions when their support changes; retain the reasons. | [Doyle’s original work, 1979 (https://groups.csail.mit.edu/medg/ftp/doyle/)](<https://groups.csail.mit.edu/medg/ftp/doyle/>) |
+| 29 | **AGM belief revision and contraction** | Formalize how an accepted belief set changes when incorporating a correction or withdrawing a premise. Historical records can remain intact. | [Alchourrón, Gärdenfors \& Makinson, 1985 (https://www.cambridge.org/core/journals/journal-of-symbolic-logic/article/abs/on-the-logic-of-theory-change-partial-meet-contraction-and-revision-functions/7ED837BAD5FB6D9A7C77906D73527F9C)](<https://www.cambridge.org/core/journals/journal-of-symbolic-logic/article/abs/on-the-logic-of-theory-change-partial-meet-contraction-and-revision-functions/7ED837BAD5FB6D9A7C77906D73527F9C>) |
+| 30 | **Epistemic logic
+=== 58205378-0 (page; chars 15301-17958 of 35,846; continue with 58205378-0@17958) ===
+:** Kₐ p, “agent a knows p” | Distinguish the owner’s statement, the builder’s belief, and Neuron’s conclusion. Prevent attribution from silently becoming endorsement. | [Fagin et al., _Reasoning About Knowledge_ (https://www.cs.rice.edu/\~vardi/papers/book.pdf)](<https://www.cs.rice.edu/~vardi/papers/book.pdf>) |
+| 31 | **Source confusion matrices** | Estimate how different sources make errors. A topic-conditioned extension could represent “reliable about this subject, unreliable about another.” | [Dawid \& Skene, 1979 (https://academic.oup.com/jrsssc/article/28/1/20/6953573)](<https://academic.oup.com/jrsssc/article/28/1/20/6953573>) |
+| 32 | **Brier score:** ((1)/(N))∑ᵢ(pᵢ-yᵢ)² | Measure whether expressed confidence predicts actual outcomes. High confidence should earn its standing through performance. | [Brier, 1950 (https://journals.ametsoc.org/doi/abs/10.1175/1520-0493%281950%29078%3C0001%3AVOFEIT%3E2.0.CO%3B2)](<https://journals.ametsoc.org/doi/abs/10.1175/1520-0493%281950%29078%3C0001%3AVOFEIT%3E2.0.CO%3B2>) |
+| 33 | **Conformal prediction** | Produce a calibrated set of candidate answers rather than inventing certainty. Coverage guarantees require assumptions such as exchangeability. | [Angelopoulos \& Bates, 2021 (https://arxiv.org/abs/2107.07511)](<https://arxiv.org/abs/2107.07511>) |
+| 34 | **Causal models and intervention:** \\(P(Y\\mid do(X=x))\\) | Distinguish correlation from consequences of changing something. Useful for debugging and learning what actually caused a failed run. | [Pearl, 1995 (https://proceedings.mlr.press/r0/pearl95a.html)](<https://proceedings.mlr.press/r0/pearl95a.html>) |
+| 35 | **Argumentation frameworks:** arguments plus attack relations | Represent competing explanations, objections, and defenses. Useful when disagreement cannot honestly be reduced to one confidence number. | [Dung, 1995 (https://cse-robotics.engr.tamu.edu/dshell/cs631/papers/dung95acceptability.pdf)](<https://cse-robotics.engr.tamu.edu/dshell/cs631/papers/dung95acceptability.pdf>) |
+
+These approaches are alternatives or complementary components—not one formula to combine indiscriminately. A sensible truth matrix could keep **logical standing, confidence, provenance, source competence, context, and time** separately inspectable.
+
+**For language, word patterns, tense, describers, rhymes, and parables**, the following are more directly useful than arbitrary numerical offsets.
+
+| \# | Family or mechanism | Possible use in Neuron | Source |
+|---|---|---|---|
+| 36 | **Fuzzy membership:** μₜₐₗₗ(x)∈\[0,1\] | Represent graded describers such as tall, warm, or similar. Degree of membership differs from uncertain
+=== 58205378-0 (page; chars 17958-20425 of 35,846; continue with 58205378-0@20425) ===
+ty about an observation. | [Zadeh, 1965 (https://doi.org/10.1016/S0019-9958%2865%2990241-X)](<https://doi.org/10.1016/S0019-9958%2865%2990241-X>) |
+| 37 | **Typed compositional semantics and lambda expressions** | Compose sentence meaning while preserving roles, scope, quantifiers, and negation. “Every person knows someone” needs more structure than a bag of words. | [Montague, 1970 (https://onlinelibrary.wiley.com/doi/10.1111/j.1755-2567.1970.tb00434.x)](<https://onlinelibrary.wiley.com/doi/10.1111/j.1755-2567.1970.tb00434.x>) |
+| 38 | **Weighted finite-state transducers:** compose mappings T₁∘ T₂ | Morphology, inflections, spelling-to-sound mappings, and tense forms. Phoneme sequences provide a better basis for rhyme than written endings alone. | [Mohri, Pereira \& Riley, 2002 (https://research.google/pubs/weighted-finite-state-transducers-in-speech-recognition-3/)](<https://research.google/pubs/weighted-finite-state-transducers-in-speech-recognition-3/>) |
+| 39 | **Edit distance** | Recognize spelling variations, transcription errors, and similar phoneme sequences. Similar strings remain distinct from similar meanings. | [Levenshtein, 1966 (https://nymity.ch/sybilhunting/pdf/Levenshtein1966a.pdf)](<https://nymity.ch/sybilhunting/pdf/Levenshtein1966a.pdf>) |
+| 40 | **Semiring parsing** | Use a common parsing structure to compute possible interpretations, best interpretations, or weighted alternatives. Useful for preserving genuine ambiguity. | [Goodman, 1999 (https://aclanthology.org/J99-4004/)](<https://aclanthology.org/J99-4004/>) |
+| 41 | **Pointwise mutual information:** log((P(x,y))/(P(x)P(y))) | Find words or constructions that occur together more than expected. Candidate relationship discovery—not proof of synonymy or causation. | [Church \& Hanks, 1990 (https://aclanthology.org/J90-1003/)](<https://aclanthology.org/J90-1003/>) |
+| 42 | **Tversky feature similarity:** shared features minus weighted differences | Compare meanings while allowing asymmetric similarity. Relevant to synonyms, categories, and which aspects of two things actually match. | [Tversky, 1977 (https://worthylab.org/wp-content/uploads/2021/08/tversky1977\_featuresofsimilarity\_psychreview.pdf)](<https://worthylab.org/wp-content/uploads/2021/08/tversky1977_featuresofsimilarity_psychreview.pdf>) |
+| 43 | **Structure mapping and relational analogy** | Recognize shared relationship patterns across different subjects. Particularly relevant to parable
+=== 58205378-0 (page; chars 20425-23069 of 35,846; continue with 58205378-0@23069) ===
+s: transfer the relational lesson without claiming literal identity. | [Gentner, 1983 (https://groups.psych.northwestern.edu/gentner/papers/Gentner83.2b.pdf)](<https://groups.psych.northwestern.edu/gentner/papers/Gentner83.2b.pdf>) |
+| 44 | **Allen’s interval algebra** | Represent before, after, during, overlaps, starts, finishes, and related temporal relations. Useful for tense, event memory, and activities spanning days. | [Allen, 1983 (https://cse.unl.edu/\~choueiry/Documents/Allen-CACM1983.pdf)](<https://cse.unl.edu/~choueiry/Documents/Allen-CACM1983.pdf>) |
+
+For your **queen/Queen** example, grammar, event context, and evidence about the referent could participate in a graph program that selects a sense. The capitalization pattern can contribute evidence without being granted sole authority over meaning.
+
+**For salience, memory, and the “inner me” that chooses work**, these offer explicit decision mechanisms.
+
+| \# | Family and representative form | Possible use in Neuron | Source |
+|---|---|---|---|
+| 45 | **Surprisal and entropy:** I(x)=-log P(x); H=-∑ plog p | Measure unexpected events and unresolved uncertainty. Another major use of logarithms. Unexpectedness alone does not establish importance. | [Shannon, 1948 (https://people.math.harvard.edu/\~ctm/home/text/others/shannon/entropy/entropy.pdf)](<https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf>) |
+| 46 | **Bayesian surprise:** D\_{KL}(P\_{after}‖ P\_{before}) | Prioritize observations that materially change the model. Distinguishes “rare event” from “event that changed my understanding.” | [Itti \& Baldi, 2009 (https://ilab.usc.edu/publications/Itti\_Baldi09vr.html)](<https://ilab.usc.edu/publications/Itti_Baldi09vr.html>) |
+| 47 | **Expected value of information:** expected improvement in a decision minus inquiry cost | Choose which question, experiment, or unresolved contradiction to investigate next. A strong candidate for internal initiative. | [Howard, 1966 (https://doi.org/10.1109/TSSC.1966.300074)](<https://doi.org/10.1109/TSSC.1966.300074>) |
+| 48 | **Upper confidence bounds:** r̄ᵢ+√(2log t/nᵢ) | Allocate bounded exploration among competing procedures or hypotheses. Gives underexplored candidates a chance without exploring everything. | [Auer, Cesa-Bianchi \& Fischer, 2002 (https://doi.org/10.1023/A:1013689704352)](<https://doi.org/10.1023/A:1013689704352>) |
+| 49 | **Bellman equations:** \\(V(s)=\\max\_a E\[r+\\gamma V(s')\]\\) | Evaluate action sequences by their future consequences. Could support choosing among learned graph procedures. | [Sutton \& Barto, 2018 (https://www.incompleteideas.net
+=== 58205378-0 (page; chars 23069-25744 of 35,846; continue with 58205378-0@25744) ===
+/book/bookdraft2018mar21.pdf)](<https://www.incompleteideas.net/book/bookdraft2018mar21.pdf>) |
+| 50 | **Temporal-difference learning:** δ=r+γ V(s')-V(s) | Update expectations from outcomes, including delayed consequences. Praise can influence learning without becoming evidence that every underlying claim is true. | [Sutton \& Barto, 2018 (https://www.incompleteideas.net/book/bookdraft2018mar21.pdf)](<https://www.incompleteideas.net/book/bookdraft2018mar21.pdf>) |
+| 51 | **Power-law memory activation:** accumulated contributions proportional to t⁻ᵈ | Prioritize memories using recency and repeated usefulness while keeping the historical occurrences themselves. | [Anderson \& Schooler, 1991 (https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.1991.tb00174.x)](<https://journals.sagepub.com/doi/abs/10.1111/j.1467-9280.1991.tb00174.x>) |
+| 52 | **Damped graph propagation:** sₜ₊₁=α P^{⊤} sₜ+(1-α)v | Spread a limited amount of attention from the current question into related neighborhoods. Ranking is not truth assessment. | [Brin \& Page, 1998 (https://snap.stanford.edu/class/cs224w-readings/Brin98Anatomy.pdf)](<https://snap.stanford.edu/class/cs224w-readings/Brin98Anatomy.pdf>) |
+| 53 | **Bayesian change-point detection** | Detect when an old pattern stopped fitting: source reliability changed, terminology shifted, or a procedure began failing after a revision. | [Adams \& MacKay, 2007 (https://arxiv.org/abs/0710.3742)](<https://arxiv.org/abs/0710.3742>) |
+| 54 | **Associative memory and energy minimization:** E=-((1)/(2))s^{⊤} Ws+b^{⊤} s | Retrieve a remembered configuration from partial cues. Requires safeguards against spurious attractors being mistaken for established memories. | [Hopfield, 1982 (https://www.dna.caltech.edu/courses/cs191/paperscs191/Hopfield82.pdf)](<https://www.dna.caltech.edu/courses/cs191/paperscs191/Hopfield82.pdf>) |
+
+My proposed internal loop would draw from these: an unresolved issue has expected value, the graph selects a bounded next step, records its result, updates its expectations, and decides whether further work is worthwhile. **The selection procedure and its state would themselves need to be graph content.**
+
+**For calculus, changing systems, signals, and large patterns**, these extend beyond static word relationships.
+
+| \# | Family and representative form | Possible use in Neuron | Source |
+|---|---|---|---|
+| 55 | **Gradients, Jacobians, and Hessians:** ∇ E, J, H | During learning, estimate which parameter or placement changes reduce disagreement, and how sensitive other relationships are to those changes. | [Boyd \& Vandenberghe, 2004 (https://web.stanford.edu/\~boyd/cvxbook/)](<https://w
+=== 58205378-0 (page; chars 25744-28292 of 35,846; continue with 58205378-0@28292) ===
+eb.stanford.edu/~boyd/cvxbook/>) |
+| 56 | **Sparse discovery of differential equations:** Ẋ=Θ(X)Ξ | Learn compact descriptions of changing processes from observations. Potentially useful for physical learning or internal activity dynamics. | [Brunton, Proctor \& Kutz, 2016 (https://arxiv.org/abs/1509.03580)](<https://arxiv.org/abs/1509.03580>) |
+| 57 | **Kalman filtering:** prediction plus uncertainty-weighted correction | Track changing quantities using noisy observations. Appropriate for estimated state, rather than treating every new measurement as exact truth. | [Kalman, 1960 (https://www.cs.cmu.edu/\~./motionplanning/papers/sbp\_papers/k/Kalman1960.pdf)](<https://www.cs.cmu.edu/~./motionplanning/papers/sbp_papers/k/Kalman1960.pdf>) |
+| 58 | **Fourier transforms:** Xₖ=∑ₙ xₙe^{-2π i kn/N} | Find repeated rhythms and cycles in sound, activity, or time series. More applicable to pronunciation and rhythm than semantic meaning itself. | [Cooley \& Tukey, 1965 (https://www.ams.org/mcom/1965-19-090/S0025-5718-1965-0178586-1/S0025-5718-1965-0178586-1.pdf)](<https://www.ams.org/mcom/1965-19-090/S0025-5718-1965-0178586-1/S0025-5718-1965-0178586-1.pdf>) |
+| 59 | **Wavelets and multiresolution analysis** | Detect patterns at several time scales, including brief changes that a whole-sequence Fourier summary can obscure. | [Mallat, 1989, author’s publication archive (https://www.di.ens.fr/\~mallat/biblio.html)](<https://www.di.ens.fr/~mallat/biblio.html>) |
+| 60 | **Graph Laplacians and spectral methods:** L=D-A | Examine connectivity, bottlenecks, clusters, and diffusion through graph neighborhoods. Could help diagnose fragmented “puzzle islands.” | [Chung, _Spectral Graph Theory_ (https://fanchung.ucsd.edu/research/outline.html)](<https://fanchung.ucsd.edu/research/outline.html>) |
+| 61 | **Tensor decomposition:** approximate a multidimensional array by simpler factors | Discover patterns across meaning × relation × context × time. Useful for proposing shared structure without equating an approximation with canonical identity. | [Kolda \& Bader, 2009 (https://epubs.siam.org/doi/epdf/10.1137/07070111X)](<https://epubs.siam.org/doi/epdf/10.1137/07070111X>) |
+
+Calculus belongs primarily where something changes continuously or where learning adjusts parameters. It need not be inserted into every forward execution. A learned route can use the resulting structure without rerunning the entire discovery process.
+
+**For scope alignment, dependable execution, and preventing runaway work**, these are particularly practic
+=== 58205378-0 (page; chars 28292-30808 of 35,846; continue with 58205378-0@30808) ===
+al.
+
+| \# | Family or mechanism | Possible use in Neuron | Source |
+|---|---|---|---|
+| 62 | **Hoare logic:** {P} C {Q} | Express what must hold before an operation and what it must establish afterward. Directly relevant to “the test passes, but this component does not fulfill the requested scope.” | [Hoare, 1969 (https://www.cs.ox.ac.uk/publications/publication8205-abstract.html)](<https://www.cs.ox.ac.uk/publications/publication8205-abstract.html>) |
+| 63 | **Abstract interpretation** | Analyze conservative summaries of possible executions. Detect incompatible types, unreachable outputs, or missing capabilities without executing every case. | [Cousot \& Cousot, 1977 (https://www.di.ens.fr/\~cousot/COUSOTpapers/POPL77.shtml)](<https://www.di.ens.fr/~cousot/COUSOTpapers/POPL77.shtml>) |
+| 64 | **Temporal logic:** always, eventually, until | State requirements across execution: memory linkage must precede publication; accepted work eventually completes under specified conditions; retries preserve occurrence identity. | [Lamport, _Specifying Systems_, 2002 (https://www.microsoft.com/en-us/research/wp-content/uploads/2018/05/book-02-08-08.pdf)](<https://www.microsoft.com/en-us/research/wp-content/uploads/2018/05/book-02-08-08.pdf>) |
+| 65 | **Incremental rule matching—Rete** | Maintain partial matches and revisit affected conditions when facts change. Relevant to avoiding a sweep across every definition. | [Forgy, 1982 (https://www.sciencedirect.com/science/article/pii/0004370282900200)](<https://www.sciencedirect.com/science/article/pii/0004370282900200>) |
+| 66 | **Differential dataflow** | Propagate changes through derived results and iterative computations. Relevant to targeted formula reconsideration after a definition revision. | [McSherry et al., 2013 (https://www.microsoft.com/en-us/research/publication/differential-dataflow/)](<https://www.microsoft.com/en-us/research/publication/differential-dataflow/>) |
+| 67 | **Petri nets and event structures** | Represent dependencies, concurrency, resource availability, and continuation. Could support learning while other graph activity remains live. | [Nielsen, Plotkin \& Winskel, 1981 (https://homepages.inf.ed.ac.uk/gdp/publications/Petri\_Event.pdf)](<https://homepages.inf.ed.ac.uk/gdp/publications/Petri_Event.pdf>) |
+
+These sources describe mechanisms worth expressing in Neuron. Using an external implementation of one would still need to be reported honestly as substrate or scaffolding. Merely adding a graph node named “Re
+=== 58205378-0 (page; chars 30808-33639 of 35,846; continue with 58205378-0@33639) ===
+te” or “compiler” would not put that procedure into the graph.
+
+**For conscience, self-monitoring, and consciousness**, I would distinguish useful engineering models from claims about experience.
+
+| \# | Family or model | Possible use in Neuron—and its limit | Source |
+|---|---|---|---|
+| 68 | **Deontic logic:** obligations, permissions, prohibitions | Represent commitments and constraints explicitly. It can reason about supplied norms; mathematics does not independently determine which norms are right. | [von Wright, 1951, _Mind_ (https://academic.oup.com/mind/article-abstract/LX/237/1/941536?login=false)](<https://academic.oup.com/mind/article-abstract/LX/237/1/941536?login=false>) |
+| 69 | **Constrained decision-making:** maximize benefit subject to cost or harm bounds | Keep a goal from overriding other requirements merely because its reward is large. Constraints still need meaningful definitions. | [Achiam et al., 2017 (https://arxiv.org/abs/1705.10528)](<https://arxiv.org/abs/1705.10528>) |
+| 70 | **Cooperative inverse reinforcement learning** | Maintain uncertainty about what a person wants and learn through interaction. Could support asking before acting when preferences are unclear. | [Hadfield-Menell et al., 2016 (https://arxiv.org/abs/1606.03137)](<https://arxiv.org/abs/1606.03137>) |
+| 71 | **Variational free energy:** F=E\_{q}\[log q(z)-log p(o,z)\] | A framework for inference and prediction under an internal model. Potential relevance to self-monitoring; it is not a formula for moral goodness or proof of consciousness. | [Friston, 2010 (https://www.nature.com/articles/nrn2787)](<https://www.nature.com/articles/nrn2787>) |
+| 72 | **Global neuronal workspace models** | Limited information becomes broadly available to otherwise specialized processes. An architectural candidate for coordinating attention, memory, and action. | [Dehaene, Kerszberg \& Changeux, 1998 (https://pmc.ncbi.nlm.nih.gov/articles/PMC24407/)](<https://pmc.ncbi.nlm.nih.gov/articles/PMC24407/>) |
+| 73 | **Integrated information theory** | Investigate proposed relationships between causal organization and consciousness. Research territory: its measures should not be treated as established tests that Neuron is conscious. | [Albantakis et al., IIT 4.0 (https://arxiv.org/abs/2212.14787)](<https://arxiv.org/abs/2212.14787>) |
+
+**My recommendation is to prioritize the mathematics that lets Neuron discover, explain, and correct its own structure.** For your present stage, I would put these first:
+
+1. **Unification, anti-unification, and graph rewriting**—match expressions, extract shared patterns, and execute learned transformations.
+2. **Joint constraints and counterexample-guided synthesis**—revise formulas and placements together instead of finding one convenient pairwise fit.
+3. **Minimum description len
+=== 58205378-0 (page; chars 33639-35846 of 35,846; end) ===
+gth plus unseen examples**—distinguish reusable relationships from elaborate memorization.
+4. **Provenance and truth maintenance**—know why a placement or conclusion exists and what must change when its support fails.
+5. **Four-valued standing plus calibrated uncertainty**—preserve unknowns and contradictions as actionable states.
+6. **Value of information and bounded exploration**—choose useful internal work without unrestricted fan-out.
+7. **Contracts and temporal logic**—connect actual behavior to the owner’s scope.
+
+For example, when `big → huge` suggests 3A, the next useful step is not automatically trying every larger power. Neuron could identify another relationship that constrains both meanings, find where competing candidates disagree, request or retrieve that discriminating example, and revise the affected structure. If several formulas still fit, it should retain that uncertainty and the next useful question.
+
+Each candidate also needs its **domain, applicable context, evidence, counterexamples, dependencies, revision, and execution cost** represented alongside it. Otherwise a richer library simply makes it easier to find an impressive-looking equation that fits yesterday’s examples.
+
+The forward run can remain short where learning has already resolved the work. But arbitrary new inputs still require real matching, substitution, traversal, and sometimes calculation; these papers do not justify a universal “nearly zero compute” claim.
+
+I kept this read-only. No builder files, graph data, lessons, or runtime state were changed.
+</pasted_content id="d64a">
+
+===== END 17_2026-09-30T123009.txt =====
+
+## 3. What to build next
+Teach more word groups asked-before-told with no candidate formulas (go/stop, up/down, on/off, start/finish, run ran running, great greater greatest), on a copy first, and let the lines find and refute the formulas.
+
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: gates with more than one coordinate (N-d): wanted now?; which word groups next?
+NEXT_ACTION: Read /home/exnulla/NEURON_NEXT_SESSION.md, check the living brain, run the 47 tests, then teach new word groups with no candidate formulas (copy first) unless the owner names something else.
+STATE: DONE

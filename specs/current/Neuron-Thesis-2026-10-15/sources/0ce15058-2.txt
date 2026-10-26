@@ -1,0 +1,251 @@
+=== 0ce15058-2 (page; chars 0-3175 of 22,429; continue with 0ce15058-2@3175) ===
+## 1. Where to look
+- TASK_CHECKLIST (last hydration step): /home/exnulla/neuron-scope/TASK_CHECKLIST.md (38 items WORD-NS-NNN, each pinned to verbatim owner words; 59 pins machine-checked) + history/CHECKLIST_REVIEW.md (diff/drift/invention of the browser, Codex and Claude lists). Both are in section 5 below.
+- Owner texts byte-exact: teacher/owner_source/69 (request + the browser and Codex lists), 70, 71.
+- The plan seed item is amended to v3 through the truth matrix (it lands in the generator: wake serves it as OWNER PLAN).
+
+## 2. How to use Cortex now
+- wake(project="neuron-v2"); follow the plan line; read the checklist last; pick the first eligible item (prefer MOTHER items).
+
+## 3. What to build next
+STEPBACK-NS-014 awaits the owner's go (design, ch 153e6723-6); otherwise the first eligible checklist item.
+
+## 4. Owner messages 70 and 71, verbatim
+if generator works then this lands there? maybe? and fix the mint bugs if you can..
+I would add at least three times No new py outside brain build with neuron code inside. and no new py outside the brain hidden in learn.py teacher.py encoder that is meant to control actions,behaviors,runs inside the brain.
+
+## 5. TASK_CHECKLIST.md and its review
+# Neuron2 TASK_CHECKLIST (last step of hydration; rev 1, 2026-10-02, Claude; owner-approved process: owner_source/69)
+
+RULE 1 of 3 (owner 71, verbatim): "No new py outside brain build with neuron code inside. and no new py outside the brain hidden in learn.py teacher.py encoder that is meant to control actions,behaviors,runs inside the brain."
+
+Read after the three SCOPE files and START HERE. You should leave hydration knowing the next task.
+REVISE IN PLACE: tick boxes, change STATUS, add items at the end with the next number. Never renumber; never delete an item (mark it SUPERSEDED).
+
+ID = WORD-NS-NNN. WORD is the one-word "what"; NNN is a fixed global number to follow (owner 69: "JUST THIS WOULD GIVE ME A ONE WORD FOR "WHAT" WE ARE WORKING ON... AND KEEP YOU A DETERMINISTIC NUMBER TO FOLLOW"; the exact names are the owner's pseudo code).
+
+STATUS is per the records of 2026-10-01/02 and is NOT re-verified live:
+- LIVE = in the brain now
+- PARTIAL = some of it is in the brain
+- OPEN = not started
+- DESIGN = a proposal awaits the owner's go
+- MAYBE = only an LLM grounds it
+
+Pins:
+- OWNER(NN) = verbatim words in teacher/owner_source/NN. Every formula the owner writes is pseudo code.
+- LLM = the item in Claude's (C) / Codex's (X) / browser's (B, N2-T###) lists. LLM grounding is a hint, never the authority.
+- MOTHER = the item moves a decision out of host Python into the brain. When several items are eligible, prefer a MOTHER item (owner 56: "the only py outside the neuron should be the teacher, and the fucking decoder").
+
+Terms:
+- "Cortex" = the project-memory system (hp, MCP front door).
+- "brain" = the living neuron cluster (/home/exnulla/neuron-v16.2/home/cortex.db). The file name collides with "Cortex".
+- Owner 69: "intent is that the neuron2 project will be part of cortex evendually or it will replace most of cortex depending how far we can get it".
+
+## Next up
+RULE 2 of 3 (owner 71, verbatim): "No new py outside brain build w
+=== 0ce15058-2 (page; chars 3175-6324 of 22,429; continue with 0ce15058-2@6324) ===
+ith neuron code inside. and no new py outside the brain hidden in learn.py teacher.py encoder that is meant to control actions,behaviors,runs inside the brain."
+STEPBACK-NS-014. The design is waiting for the owner's go (Cortex ch 153e6723-6).
+Otherwise take the first unchecked eligible item below. The items are ordered roughly easiest first, within their prerequisites.
+
+## Checklist
+
+- [ ] PROOF-NS-001 | OPEN | Re-check every past "learned" claim: was the word or line already known or decoded before? Record a narrower claim where it was.
+  OWNER(67): "little had been known for three days and was already in the decoder" ; OWNER(67): "I never trust your tests..... ever..."
+  LLM: B N2-T004; C scope 4 (proofs to re-check). IDEA: compare each word's first event with the claimed learning event.
+- [ ] DEFINE-NS-002 | OPEN | Full dictionary-style definitions, stored as runs, for a bounded word set.
+  OWNER(56): "there should be an entire schema for what a definition looks like" ; OWNER(67): "definitions of known words should be full dictionary definitions" ; OWNER(57): "it holds a run reciept .... that's it"
+  LLM: X "Full definitions"; B N2-T016; C scope 3. IDEA: teach the entry's senses, usage and examples as one definition run.
+- [ ] RELATE-NS-003 | OPEN | Each definition memory gets a Relationships section that updates when a relationship lands on that point.
+  OWNER(67): "every definition memories has an updatedable--- Relationships - section that populates when relationships land at that point"
+  LLM: X "Definition relationships"; B N2-T017.
+- [ ] NAMELESS-NS-004 | PARTIAL (the NAMELESS hook is live) | An unnamed point described from its relationships: part of speech, opposite, similar, scale, rhyme, metaphor, other languages; the word itself stays unknown.
+  OWNER(67): "relationship formulas can point to points that we don't know and can give some of the definitions"
+  LLM: X "Nameless concepts", "Inferred definitions"; B N2-T018, N2-T019 (learning the label is separate).
+- [ ] GUESS-NS-005 | PARTIAL (the GUESS line is live) | A guess stays marked through use, composition, recall and later revision.
+  OWNER(64): "the neuron has to know that it's guessing" ; OWNER(64): "You might know that you guessed in the moment, but after that moment you never knew you guessed again."
+  LLM: X "Persistent guess status"; B N2-T012.
+- [ ] KEYS-NS-006 | PARTIAL | Every key, including punctuation and Enter, is its own neuron, with no tokenizer. Solve how "." avoids holding billions of memories.
+  OWNER(59): "EVERY KEY ON MY KEY BOARD AND ALL THE SPECIAL KEYS WILL HAVE THEIR OWN NEURON" ; OWNER(58): "ALL THESE SHOULD HAVE THEIR OWN GATE" ; OWNER(59): "CAUSE THE MEMORY FOR (.) NODE TO HAVE 50 BILLION MEMORIES"
+  LLM: X "Common-key memory growth". GUESS (X): share structure and occurrence references instead of a memory row per use.
+- [ ] RECEIPT-NS-007 | PARTIAL (memory neuron per receipt is live) | The receipt keeps arrival, the chosen DNA and the bindings, so any decision can be reopened.
+  OWNER(02): "if it exists its dna gets a new row" ; OWNER(57): "it holds a run reciept .... that's it"
+  LLM: X "Recoverabl
+=== 0ce15058-2 (page; chars 6324-9474 of 22,429; continue with 0ce15058-2@9474) ===
+e receipts"; B N2-T010.
+- [ ] MEMORY-NS-008 | PARTIAL (timeline + clock are live) | Each occurrence keeps the state at that time (what was known then). Later interpretations never rewrite it.
+  OWNER(64): "State and timeline is super important."
+  LLM: X "Memory/timeline completion"; B N2-T011.
+- [ ] SHORTCUT-NS-009 | PARTIAL (calculation answer link only) | Known processes: run only the ends and substitute. Revise a shortcut when what it depends on changes.
+  OWNER(62): "All you have to do is run the ends of the runs." ; OWNER(64): "learning is compute and run is execution"
+  LLM: X "Applicable shortcuts"; B N2-T013, N2-T015.
+- [ ] SEARCH-NS-010 | MOTHER | OPEN | Bound learn.revise and every search: never the whole corpus; resumable; the brain stays alive (a yes once ran revise for 29+ min).
+  OWNER(55): "it is not legal to search *.* the entire corpus" ; OWNER(62): "I never look through everything in my brain ever."
+  LLM: X "Resumable work"; Codex mailbox #8 (bound/resume the search).
+- [ ] RELOCATE-NS-011 | MOTHER | OPEN | Relabel or relocate a gate only together with its definition, DNA and dependent relationships.
+  OWNER(55): "you need to make sure the definition of in the memory matches the new value"
+  LLM: X "Relocation repair"; B N2-T015.
+- [ ] SANDBOX-NS-012 | MOTHER | OPEN | The brain itself spins up a copy to test a hypothesis and merges it if it succeeds. This is not a frozen brain plus a worker-run second brain.
+  OWNER(69): "should be able to spin up another brain to test a hypothosis... and merge it if it's successful" ; OWNER(67): "you can open a new brain as a sandbox and build live on the dupe.. then merge when you know it works correctly to the outcome"
+  LLM: B N2-T002 (owner-corrected: no freezing), N2-T051.
+- [ ] COMPARE-NS-013 | OPEN | Compare outcomes as runs: is this the desired outcome? Is it closer than the previous one? Roll back if worse.
+  OWNER(64): "I'm really concerned whether I'm progressing or I'm digressing" ; OWNER(66): "Is this outcome the desired outcome? That's question one."
+  LLM: X "Outcome comparison", "Nonnumeric progress"; B N2-T022; C F11.
+- [ ] STEPBACK-NS-014 | DESIGN (owner go pending, ch 153e6723-6) | Step back along a receipt. At a node, look only at shards that arrived the same way and at their known outcomes. Step down if a shard is closer, up if none is.
+  OWNER(66): "It works when you step back, you look at the DNA in that node, and then you just examine those." ; OWNER(66): "We're only looking at the DNAs that arrived at that gate exactly the same, not every DNA in that neuron."
+  LLM: X "Local outcome access", "Same-arrival alternatives", "Single-step backtracking"; B N2-T023, N2-T024; C round 2.
+- [ ] RECURSE-NS-015 | OPEN | Reopen a nested shortcut, change one decision, return the result to the containing run; then ask memory which other patterns the new formula solves.
+  OWNER(66): "But also they can be used recursively." ; OWNER(66): "have I ever had any other patterns like this that this new formula would solve?"
+  LLM: X "Recursive adaptation", "Historical testing of new formulas"; B N2-T025.
+- [ ] RECALL-NS-016 | OPEN | Recall
+=== 0ce15058-2 (page; chars 9474-12594 of 22,429; continue with 0ce15058-2@12594) ===
+ by pattern: drop a memory at its first mismatch, and let the pattern itself route to the few candidates.
+  OWNER(64): "a pattern search through memories" ; OWNER(62): "I never look through everything in my brain ever."
+  LLM: X "Pattern recall"; B N2-T028, N2-T029; C F1 (an exact receipt is one hop).
+- [ ] FEEL-NS-017 | OPEN | Memory index by the "feeling factor": a composite of everything felt at once. Then check the formula that composed it.
+  OWNER(66): "memories are a feeling. That's the first search."
+  LLM: X "Feeling-pattern recall"; B N2-T030 (the 272 is pseudo code).
+- [ ] BACKPOP-NS-018 | MOTHER | PARTIAL | A newly learned formula updates only the neurons it applies to, recursively, and stops where it no longer applies.
+  OWNER(54): "then if we learn a new formula, then we back-populate all the relevant DNAs." ; OWNER(seed OWNER_INTENT 2026-09-24): "Propagation should continue only where the mathematics actually applies."
+  LLM: X "Graph-owned applicability", "Targeted back-population"; B N2-T026.
+- [ ] CONTINUE-NS-019 | MOTHER | OPEN | Move occurrence → timeline → output continuation into graph code (Codex's named next action of 2026-09-30).
+  OWNER(56): "the only py outside the neuron should be the teacher, and the fucking decoder"
+  LLM: X "Graph-owned completion"; START HERE "Next".
+- [ ] FORMULA-NS-020 | MOTHER | OPEN | Formula discovery, fit and revision as runs: candidates come from remembered processes and local alternatives, not a Python search.
+  OWNER(66): "The formulas are the runs." ; OWNER(56): "the only py outside the neuron should be the teacher, and the fucking decoder"
+  LLM: X "Graph-owned formula discovery", "Graph-owned revision".
+- [ ] MEANING-NS-021 | MOTHER | OPEN | Meaning and sense selection inside the brain, not the encoder.
+  OWNER(21): "each neuron is bacially an exec function" ; OWNER(56): "the only py outside the neuron should be the teacher, and the fucking decoder"
+  LLM: X "Meaning-based retrieval"; B N2-T020, N2-T021.
+- [ ] TOOLS-NS-022 | OPEN | grep, cat, sed and output, each built as a formula plus the neuron runs that make it.
+  OWNER(62): "NEED A GREP TOOL BUILD THE FUCKING FORMULA AND THE NEURON RUNS THAT MAKE THAT TOOL"
+  LLM: X "Tools as runs".
+- [ ] GRAMMAR-NS-023 | OPEN | Grammar roles as formulas: how, why, where and when a noun, verb, adjective, adverb, subject or object is used.
+  OWNER(67): "IF YOU FULLY UNDERSTAND THE FORMULAS OF GRAMMAR WHAT A NOUN,ADJECTIVE,VERB,ADBERB,SUBJECT,OBJECT,ETC is"
+  LLM: X "Grammar composition"; B N2-T031.
+- [ ] PUNCT-NS-024 | OPEN | Punctuation and grouping as operators on the whole run. The formula is unknown; the owner's ^2 or / are pseudo code.
+  OWNER(67): "UNDERSTAND THE FORMULAS OF THE PUNCUTION" ; OWNER(58): "ALL THESE SHOULD HAVE THEIR OWN GATE"
+  LLM: X "Punctuation/grouping"; B N2-T032.
+- [ ] TENSE-NS-025 | OPEN | Tense as an operator that keeps the event and its original time.
+  OWNER(66): "maybe tense would be another one: past, present."
+  LLM: X "Tense"; B N2-T033.
+- [ ] ANSWER-NS-026 | OPEN | An answer node holds a process to find the answer, and over time man
+=== 0ce15058-2 (page; chars 12594-15722 of 22,429; continue with 0ce15058-2@15722) ===
+y answers.
+  OWNER(67): "a simple answer or process to find the answers" ; OWNER(67): "some day in the answer node memories you might see 50 or 100 different answers that answer the same question in a different way"
+  LLM: B N2-T037.
+- [ ] CONTEXT-NS-027 | OPEN | Choose among those answers by state: who is talking, today's events, preferences, mood. The names in the owner's example are illustrations.
+  OWNER(67): "we are trying to create congnition"
+  LLM: X "Context-selected answers"; B N2-T038.
+- [ ] QUESTION-NS-028 | OPEN | Question formulas: know what to ask from what is missing.
+  OWNER(64): "The formulas for questions and how to know what question to ask, those don't exist."
+  LLM: X "Question generation", "Question/reasoning selection"; B N2-T035; C F4-F9 (what = value, how = route, why = cause; a hypothesis).
+- [ ] REASON-NS-029 | OPEN | Reasoning as a big formula over an array of formulas, with tests that find each variable (the owner's Ohm's-law picture).
+  OWNER(54): "That is reasoning right there." ; OWNER(66): "it might require formulas upon formulas upon formulas just to decide what formula we're going to do under the circumstances"
+  LLM: X "Composed reasoning"; B N2-T036.
+- [ ] RETRY-NS-030 | OPEN | Revisit a failed attempt only when something relevant has changed since.
+  OWNER(64): "Is there anything that I know new now that I didn't know then that might answer those questions?"
+  LLM: X "Revisit failures"; B N2-T027; C F7.
+- [ ] MOTHER-NS-031 | MOTHER | OPEN | One whole learning loop on a small new task with the mother disconnected: recall, hypothesis, trial, keep.
+  OWNER(64): "at some point the mother can't exist." ; OWNER(64): "whatever we build has to be self-sustaining before that point."
+  LLM: X "Mother-independent learning"; B N2-T039.
+- [ ] SIXTH-NS-032 | OPEN | The brain's own input: unresolved needs, contradictions and due events become inputs it acts on.
+  OWNER(64): "So we haven't built the sixth sense yet that is the brain's own input."
+  LLM: X "Internal input", "Prioritization and stopping" (MAYBE); B N2-T040.
+- [ ] LOGIC-NS-033 | PARTIAL (NAND and compiler are SUPPLIED programs) | Logic, storage, compilers and engines learned as compositions, not supplied.
+  OWNER(64): "they can be NAND gates, they can be compilers, they can be engines, they can be memories, or data storage."
+  LLM: X "Acquired arithmetic/compiler composition"; B N2-T048.
+- [ ] MATH-NS-034 | PARTIAL | An ordered, dependency-aware math curriculum, taught one smallest lesson at a time. The browser's geometry/trig/log families are MAYBE (they come from its old document, not the owner).
+  OWNER(seed OWNER_INTENT 2026-09-24): "It contains an ordered/dependency-aware mathematical curriculum."
+  LLM: B N2-T042..T046.
+- [ ] NDSPACE-NS-035 | OPEN | Gates in N-dimensional space, each with many relationships. This changes what a gate is, so propose before building.
+  OWNER(16): "in the 3d space or 4 d or N d space a sigle gate might have 20 or 50 relationships"
+  LLM: memory note (Sep 30). Not in X or B.
+- [ ] EXTERNAL-NS-036 | MAYBE (later) | An answer process may call outside so
+=== 0ce15058-2 (page; chars 15722-18817 of 22,429; continue with 0ce15058-2@18817) ===
+urces (search, map); choosing and interpreting stays in the brain.
+  OWNER(67): "(which someday maybe could have a hook up to the internet to do those things)"
+  LLM: X "External information interfaces"; B N2-T049 (its credential/authority detail is LLM).
+- [ ] EMOTION-NS-037 | MAYBE (later) | Feelings as formulas (satisfaction, praise, consequence; happy vs sad answers).
+  OWNER(62): "it will have the ability to feel."
+  LLM: none directly.
+- [ ] SCALE-NS-038 | OPEN (later) | Measure retrieval, execution and storage as history grows toward the owner's scale.
+  OWNER(64): "there's gonna be 50 billion neurons in this thing"
+  LLM: X "Scaling"; B N2-T050.
+
+RULE 3 of 3 (owner 71, verbatim): "No new py outside brain build with neuron code inside. and no new py outside the brain hidden in learn.py teacher.py encoder that is meant to control actions,behaviors,runs inside the brain." Every item above is built as neuron code inside the brain; a step that needs a new Python decision is not done.
+
+## Review of the three lists (detail: history/CHECKLIST_REVIEW.md)
+
+Browser (N2-T001..052): treat as MAYBE.
+- Owner-corrected: N2-T002's "freeze the brain / second brain run by the worker" is now SANDBOX-NS-012, owned by the brain.
+- Drift: it uses "Cortex" for two things (the memory system and the project/brain). Terms above.
+- LLM procedure, not owner prose: the status contract, freezing every baseline, the promotion discipline, the credential/authority rules, and the math families beyond the seed's curriculum.
+
+Codex (task.md): mostly grounded.
+- MAYBE: "Prioritization and stopping".
+- Missing: SANDBOX, KEYS, PROOF, NDSPACE.
+- Its Cortex save failed ("front door was unreachable"). The list is preserved in owner_source/69.
+
+Claude (scope + F1-F18):
+- Corrected by the owner: the punctuation-operator "test" (pseudo code), and an overstated independence from Codex.
+- WHAT/HOW/WHY and the why-first rule stay hypotheses under QUESTION-NS-028, not laws.
+
+# Diff / drift / invention review of the three task lists (Claude, 2026-10-02; owner request owner_source/69)
+
+Sources:
+- browser "Neuron2 — task hydration" (N2-T001..052)
+- Codex checklist ("task.md", not saved: its Cortex front door was unreachable)
+- Claude: SCOPE_CLAUDE.md and the F1-F18 analysis
+
+All three are verbatim in owner_source/69 (browser and Codex) and the scope/evidence files (Claude). Owner guidance: treat browser output as "maybe" useful; keep its format idea (one word + a number).
+
+## Coverage map: TASK_CHECKLIST id ← Codex / browser
+PROOF-001 ← B T004 (Codex none) | DEFINE-002 ← X Full definitions, B T016 | RELATE-003 ← X, B T017 | NAMELESS-004 ← X Nameless+Inferred, B T018/T019
+GUESS-005 ← X, B T012 | KEYS-006 ← X Common-key (B none) | RECEIPT-007 ← X, B T010 | MEMORY-008 ← X, B T011 | SHORTCUT-009 ← X, B T013/T015
+SEARCH-010 ← X Resumable work | RELOCATE-011 ← X, B T015 | SANDBOX-012 ← B T002 (corrected), T051 | COMPARE-013 ← X, B T022 | STEPBACK-014 ← X x3, B T023/T024
+RECURSE-015 ← X x2, B T025 | RECALL-016 ← X, B T028/T029 | FEEL-017 ← X, B T030 | BACKPOP-018 ← X x2, B T026 | CONTINUE-0
+=== 0ce15058-2 (page; chars 18817-22429 of 22,429; end) ===
+19 ← X Graph-owned completion
+FORMULA-020 ← X x2 | MEANING-021 ← X, B T020/T021 | TOOLS-022 ← X | GRAMMAR-023 ← X, B T031 | PUNCT-024 ← X, B T032 | TENSE-025 ← X, B T033
+ANSWER-026 ← B T037 | CONTEXT-027 ← X, B T038 | QUESTION-028 ← X x2, B T035 | REASON-029 ← X, B T036 | RETRY-030 ← X, B T027 | MOTHER-031 ← X, B T039
+SIXTH-032 ← X x2, B T040 | LOGIC-033 ← X, B T048 | MATH-034 ← B T042-T046 | NDSPACE-035 ← none | EXTERNAL-036 ← X, B T049 | EMOTION-037 ← none | SCALE-038 ← X, B T050
+
+Not carried as items:
+- B T001: rail resolution. That is hydration itself (wake + START HERE).
+- B T003 (provenance trace), T005, T006, T009, T014: folded into RECEIPT, SHORTCUT and STEPBACK, or already live.
+- B T034: monologue experiments. Analysis, not a brain task.
+- B T047: relation families. Covered by NAMELESS, MEANING and the edge-word teaching.
+- B T052: fresh-worker test. That is a Cortex task; Cortex now generates the seed amendments.
+
+## Browser: drift and invention
+- OWNER-CORRECTED: N2-T002 "Establish protected experiment states" (freeze baselines, a worker-run duplicate). The owner (69) wants the brain to spin up its own test brain and merge on success: SANDBOX-NS-012.
+- DRIFT: "Cortex" used for both the project-memory system and the brain/project ("Neuron2 within Cortex"). The owner (69): neuron2 may become part of Cortex or replace most of it. The checklist defines both terms.
+- INVENTION / LLM procedure (not owner prose):
+  - the §5 status contract (PROVEN_SCOPED, PROMOTION fields)
+  - "freeze brain, code, curriculum, encoder, and decoder baselines separately"
+  - N2-T051 promotion discipline
+  - N2-T049 credentials and authority
+  - N2-T050's measurement contract
+  - the "Cortex boundary laws" basis
+  - the effort grades E0-E4 (it says they are guesses)
+  Kept only where an owner sentence grounds the underlying task.
+- MAYBE: the math families geometry/trig/logs (T043-T046) come from H1 (its own earlier peripheral-hydration document), not from the owner's seed. The seed (OWNER_INTENT 2026-09-24) gives only "an ordered/dependency-aware mathematical curriculum".
+- Earlier browser doc errors corrected in SCOPE_BROWSER.md: the teacher/decoder boundary called "imprecise T1"; the guess percentages called arbitrary.
+
+## Codex: drift and invention
+- Grounded throughout, except "Prioritization and stopping" (no owner sentence; MAYBE under SIXTH).
+- "Resumable work" is Codex's framing of the owner's never-search-everything / 29-minute revise complaint (55, 62), kept as SEARCH-NS-010.
+- Missing compared with the owner's words: SANDBOX (67, 69), KEYS (58-60), PROOF / the "little" re-check (67), NDSPACE (16).
+- Operational: its Cortex close_out failed ("front door was unreachable"), so the list exists only in owner_source/69.
+
+## Claude: drift and invention
+- Owner-corrected 2026-10-02 (67): treated two owner illustrations of "?" as competing formulas.
+- Self-corrected (66 review): round 1 said Codex was read only after Claude's own analysis. Formulas 1-3 had been read first.
+- Hypotheses that must not be read as laws: question word = type of the missing piece; WHY first only on a mismatch; feeling = recall of an outcome (the owner later said feeling is the index). Kept under QUESTION-NS-028 / FEEL-NS-017.
+- The browser flagged "the WHAT/HOW/WHY taxonomy installed as mathematics". Agreed: a hypothesis only.
+
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: go on the STEPBACK-NS-014 experiment design?
+NEXT_ACTION: Hydrate (wake, scope x3, START HERE, newest record, TASK_CHECKLIST.md); then STEPBACK-NS-014 on the owner's go, else the first eligible checklist item.
+STATE: READY

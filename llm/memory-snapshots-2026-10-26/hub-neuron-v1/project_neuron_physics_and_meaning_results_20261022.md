@@ -1,0 +1,18 @@
+---
+name: project_neuron_physics_and_meaning_results_20261022
+description: Turn 15 (2026-10-22) verified results - the sixteen physics as real SQLite triggers (44 checks with controls), envelope speed fix, E5 place->meaning null, E6 formulas narrowed by tests, E8 "how did you do that" from the brain's own rows, memory-hop flaw, E7 held for scope
+metadata:
+  type: project
+---
+Verified 2026-10-22 (turn 15). Sources live in the session scratchpad (v15/, turn15/e5..e8/); the owner's build ~/neuron/v1 was not touched.
+
+- **Physics in SQLite:** v15 told block = 377 statements (gen_physics.py -> physics15.json); every neuron a table + gate view + miss trigger; each DNA row lays its own hop trigger through mother. 44 checks pass, each with a control that fails when the credited thing is removed; Python host and sql.js browser host give identical rows. Fix this turn: a definition-row run shares no cells with the typed line (P14).
+- **Speed:** SQLite compiles every reachable trigger per statement, so a per-row-trigger brain slows as it grows. Envelope (one constant landing statement per gate) cut a known line from 0.21 s to 0.018 s at 948 triggers and 0.45 s to 0.024 s at 1,567 (learning a new line unchanged, 0.6 s / 3 s). sql.js export() closes the db: re-register mother/satwork, PRAGMA recursive_triggers, re-attach satellites. A snapshot is about 3 MB after five lines.
+- **E5 (owner: place in the graph -> formula):** with the 14 actions as anchors, 1 of 5 verbs right on the owner's map vs 0.52 by shuffling, p = 0.42. Not better than chance yet. Function words are missing from the map.
+- **E6 (owner's shape "what is your name?"):** 18 small forms from the run's holes; three iterations with predictions written first; all iteration-3 predictions held. is -> write what follows under the key built before it, only if a key exists; your -> owner = the other one, my -> owner = speaker, decided ONLY when the brain holds its own name before anything is said (otherwise a pure relabeling); name/age -> build the key from owner + word; what, ? unconstrained; how-sentence unattributable. Verified on the real brain; swapped your/my control fails as predicted.
+- **E8 ("How did you do that?"):** the stmt rows of the line before (statements with holes filled) are how it did it; one formula reading them answers correctly; same answer if put on "that" (unattributable). FLAW: a repeat of the question is answered from memory with the stale answer; proposed fix (memory whose run read :prev reopens) left to the owner.
+- **Depth in a browser:** the lay rule (lay row + hop trigger, then retry through mother) nests mother one level per new row, and definition rows of new words nest inside; "how did you do that ?" nested 48 levels. Node passes at 600 KB stack, fails at 400 KB with an empty "Error"; Chromium worker ~0.5 MB, main thread ~1.3 MB; the sql.js WebAssembly build fails at 400 KB too. v15 page: worker undoes a too-deep line from its snapshot and the page reruns it on the main thread.
+- **E8b:** after a memory hop the line before has no statements; the how formula follows memid -> memory.run to the run that made it (H6 held with controls).
+- **E7 (guessing brain on GPU):** designed, predictions written, corpus fetched, NOT trained: the owner flagged scope; "test your hypothesis" may mean the guessing brain or my AS/"as" shared-root hypothesis.
+
+**Why:** these are the measured state of meaning work; the next turn builds on them. **How to apply:** quote these numbers, not new guesses; rerun from the scripts if the physics changes. Related: [[project_neuron_router_and_as_facts_20261022]], [[feedback_known_failures_checklist]], [[reference_neuron_pages_20261021]].

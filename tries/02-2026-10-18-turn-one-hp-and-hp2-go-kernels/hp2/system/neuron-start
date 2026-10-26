@@ -1,0 +1,6 @@
+#!/bin/sh
+# neuron-start (runs as the neuron user, sandboxed): the kernel neuron-adopt adopted, if
+# any and not set aside; otherwise the told kernel. Nothing here is the brain's to change.
+V=/var/lib/neuron-mind
+if [ -x $V/neuron-live ] && [ ! -f $V/live-failed ]; then exec $V/neuron-live live; fi
+exec /usr/local/bin/neuron live

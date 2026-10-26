@@ -1,0 +1,19 @@
+=== ef7b0c72-4 (page; chars 0-2412 of 2,412; end) ===
+## 1. Where to look
+MAILBOX/726c (READY-2, gate d table), 725c (my contract: the qc_* rows on R), 723c (the observer's order from owner 328). Stage neuron-benchmarks/20261011-s32-knownword/stage: qw_l0_v8.lessons 010ad33dd4b6f75d, qc_l0.lessons fa01d716c0130d53, .sha16 stamps; land/land_qw8qc.sh (teach only the two files). Probes zk10 (zk_qc), dialogues p4 p6 p7.
+
+## 2. How to use Cortex now
+wake(project=neuron-v2) once; then MAILBOX newest notes to system32-99 (72xc) and owner_source newest. This page records the work; the mailbox holds the landing state. Nothing lands without the observer.
+
+## 3. What to build next
+Lane b posts 724c (the walk: step neurons over arrays filling the contract) and fixes pw_say1 #ids; then: contracts filed from a TEACHER sentence in learn state (723c gate b), the pronoun slot flipped by sense (you -> I), a contract for yes/no answers, where-is beyond in / part, or / not as action words made by talk.
+
+## 4. The work
+Measured, built and proven on fresh VACUUM INTO snapshots of the living main: the ask law (words main knows get paired), is/are/who/where/of seeds through a private key, OF = the relation applied, IS checks the taught line, the not/or refusal and exact-two-values guard after the observer's 721c, where-is acting on the identity record's subject reading in / part (paris -> france), and qc_l0: the what-is sequence as rows on R (the second ask of a subject shows the past run, its CLOCK time, its answer, the same decision, the contract (noun) filled and balanced). Replays on the 5b23 version: typed 1,044 0 differ, scientist 216 46 differ (mostly intended), faults 0/0.
+
+LOOP_HANDOFF v1
+STATE: READY
+NEXT_ACTION: The observer re-runs the 726c gate on a copy of main and lands with land_qw8qc.sh after lane b's pw_say1 fix; system32-99 then builds contracts filed from teacher sentences (723c gate b) on lane b's 724c walk.
+OWNER_QUESTIONS: None pending. Decision packet in 726c: land v8 + qc now (recommended, default) or hold qc until 724c exists (it writes rows only, no speech).
+KEYS: neuron-v2.qw_l0.v8.staged, neuron-v2.qc_l0.contracts, neuron-v2.ask-law.living-brain, neuron-v2.sayer.gate-ids
+SUMMARY: v8 + qc_l0 staged and proven on fresh snapshots of main: question shapes answer from runs, the ask starts for words main knows, where-is reads location, and the what-is sequence leaves its records on R for the walk; landing is the observer's.

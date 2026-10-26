@@ -1,0 +1,22 @@
+<pasted_content id="2f9a">
+The expression bloat. Yes, that came from the process, not from your idea. V16 had two causes:
+1. The expression was written out every time the gate appeared. Your own rule fixes that: a string is written once, and everything else points to it [107, 311].
+2. Runs were stored gate by gate. If the next gate is where you stand plus the remainder, a run doesn't need to list its gates. It's the start plus its remainders, which are small numbers. Your 1-to-9 run becomes "start at 1, +1 eight times", and the formula shortcut makes it shorter still. A 60,000-gate run is 60,000 small numbers while it's being learned, and a handful once the shortcut is found.
+
+Your machines. Brains do work this way: regions specialize, densely wired inside and thinly wired between each other. The catch is distance. A hop inside one machine took 5.7 µs in V16. A call from the hub to hp over ssh took 10 to 15 ms when I tried it just now, which is about 2,000 times slower. A link kept open all the time would be faster than that, but still far slower than a hop inside one machine. A run that crossed machines on every step would crawl, so split where the brain hands over whole jobs, not single hops:
+- Together, on the fastest machine: the run, active memory, and the sixth. The sixth is the voice inside every run, so it has to sit next to the run.
+- Elsewhere: the hc, which does sleep work in batches and sends back the result; long-term memory, which is big and rarely read; and the outside (sources, friends).
+
+Each machine keeps its own storage, and the cores work at the same time. To get there without a redesign later, build the parts as separate files on the hub now; SQLite can hold several open at once. Moving a part later means moving its file and sending it jobs as waiting rows, which is the same call-out you've already seen, just over ssh. Start on one machine, though. Every machine you add is one more thing that can be asleep, unreachable or out of sync, and V16's trouble with copies and lanes was that kind.
+
+What to invent, in this order:
+1. The location system: how a meaning becomes a place, so that relationships are arithmetic. Nobody has this. It's yours, and it decides how much has to be stored at all.
+2. The engine: a store or kernel spread across your machines and cores, down to the silicon. It comes after the location system, because before then nobody knows the shape of what it has to hold. Building it first would repeat V16's mistake of speeding up the walker while main was down.
+
+SQLite on the hub will carry the location system for a long time: about 2 billion links on the 100 GB you have free.
+</pasted_content id="2f9a">
+
+ you need to read this...
+
+
+(saved Thu Oct 15 19:15:40 CDT 2026, session 69692be7 (neuron-v18 hand-build), extracted verbatim from line 715 of the session .jsonl; the paste is the parallel session reply, the owner words are the last line)

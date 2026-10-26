@@ -1,0 +1,52 @@
+direction: down
+
+outside: "the bottom (outside the brain)" {
+  style.stroke-dash: 4
+  bottom: "bottom.py\nwrites the typed line into input\nprints the timeline row the run wrote"
+}
+
+physics: "told neurons (hand-laid once)" {
+  input: "input (the ear)\nthe line lands here"
+  encoder: "encoder = the label table\nword -> gate number, in order\n'define' has no gate yet"
+  decide: "decide (g1)\nlook up memory by this gate list\nfound: hop to it\nnot found: land on the first gate\nwith the rest as remainder"
+  born: "born (g3)\na word with no gate\nmother: CREATE its table, its trigger,\nits blank definition node\nthen retry through mother" {style.fill: "#f6e7c8"}
+  lay: "lay (g2)\nshard (arrival, next) missing in neuron N\nwrite the shard row in N\nmother: lay N's static hop trigger for next\nthen retry through mother" {style.fill: "#f6e7c8"}
+  end: "end (g4)\nremainder is empty\nread the run's own rows\nwrite the receipt: gates + shards hit"
+  memory: "memory (g5)\nsame receipt, same result: times +1, new time\ndifferent result: end the old row, new row\nnone: new row"
+  timeline: "timeline (g6)\nappend: time, receipt, memory id\nthis row is what gets printed"
+  mother: "mother()\nruns SQL text handed to it\nanswers ok or error\nthe only thing that can CREATE" {shape: hexagon; style.fill: "#e4d6f2"}
+}
+
+words: "word neurons (gates)" {
+  define: "define (g11)\nborn during this run" {style.fill: "#d6ecd6"}
+  space1: "space (g8)"
+  create: "create (g9)"
+  space2: "space (g8) again\ndifferent arrival = different shard"
+  table: "table (g10)"
+}
+
+legend: "every word neuron's trigger, in English" {
+  style.stroke-dash: 4
+  t: "a run row lands: (run, arrival, remainder)\n1. head = first gate of the remainder\n2. shard (arrival, head) in this neuron?\n   yes: times +1, new time; its hop trigger lands the run in head\n        with arrival = me, remainder = the rest.\n        shard points at a trigger neuron: a second row lands there (a branch run)\n   no:  land a row in lay; lay writes the shard, lays the hop, retries through mother\n3. remainder empty: land a row in end" {style.stroke-dash: 0}
+}
+
+outside.bottom -> physics.input: "typed line"
+physics.input -> physics.encoder: "trigger"
+physics.encoder -> physics.born: "'define' has no gate" {style.stroke-dash: 3}
+physics.born -> physics.mother: "CREATE TABLE g11 ..." {style.stroke-dash: 3}
+physics.mother -> physics.decide: "retry: the run restarts\n[11 8 9 8 10]" {style.stroke-dash: 3}
+physics.encoder -> physics.decide: "gate list [11 8 9 8 10]"
+physics.decide -> physics.memory: "second time: receipt found\nhop straight to the memory" {style.stroke: "#1f7a4d"; style.stroke-width: 3}
+physics.decide -> words.define: "first time: land on g11\narrival 0, remainder [8 9 8 10]"
+
+words.define -> physics.lay: "no shard (0, 8)" {style.stroke-dash: 3}
+physics.lay -> physics.mother: "INSERT shard; CREATE TRIGGER g11_hop_8;\nINSERT the run again" {style.stroke-dash: 3}
+physics.mother -> words.define: "retry: now the shard exists" {style.stroke-dash: 3}
+words.define -> words.space1: "shard (0,8) hit: times +1\nits hop trigger lands the run in g8\narrival 11, remainder [9 8 10]"
+words.space1 -> words.create: "shard (11,9)\narrival 8, remainder [8 10]"
+words.create -> words.space2: "shard (8,8)\narrival 9, remainder [10]"
+words.space2 -> words.table: "shard (9,10)\narrival 8, remainder []"
+words.table -> physics.end: "remainder empty"
+physics.end -> physics.memory: "receipt 11:s1 8:s2 9:s3 8:s4 10:s5"
+physics.memory -> physics.timeline: "memory id"
+physics.timeline -> outside.bottom: "printed" {style.stroke-dash: 3}

@@ -1,0 +1,224 @@
+runs 98 passed 78 intended-wrong 20 intended-wrong that passed 0
+ENTAILMENTS (run of A satisfies the spec of B on all ten worlds):
+   create [row] -> write
+   create [row] -> into
+   new [born now] -> create
+   new [born now] -> write
+   new [born now] -> some
+   new [born now] -> into
+   delete [remove the row] -> remove
+   remove [take the row away] -> delete
+   remove [move it away from the place] -> write
+   copy [duplicate the row] -> write
+   move [change the place] -> write
+   move [change the place] -> change
+   move [copy it there, then remove it ] -> write
+   join [bring two parts together] -> split
+   read [take in what is written at a k] -> some
+   write [a new mark] -> create
+   write [a new mark] -> into
+   write [a changed mark] -> change
+   find [come upon the things with a pr] -> some
+   find [come upon the things with a pr] -> part
+   same [identical in every field, a th] -> some
+   same [identical in every field, a th] -> part
+   same [identical in every field, two ] -> some
+   different [not identical, two apples apar] -> some
+   different [not identical, two apples apar] -> part
+   different [not identical, a thing and its] -> some
+   different [not identical, a thing and its] -> before
+   different [not identical, a thing and its] -> after
+   not [turn the yes into no] -> some
+   or [either] -> some
+   if [the act happens only in the ev] -> write
+   if [the act happens only in the ev] -> change
+   all [every one] -> some
+   all [every one] -> whole
+   some [an unspecified number, at leas] -> part
+   none [not any, of a thing there is n] -> some
+   none [not any, of a thing there is n] -> part
+   none [not any, of a thing there is s] -> some
+   one [a single unit] -> some
+   one [a single unit] -> part
+   one [a single unit, asked of a thin] -> some
+   two [one more than one] -> some
+   two [one more than one] -> part
+   more [a greater number] -> some
+   more [a greater number] -> few
+   few [a small number: fewer than the] -> some
+   few [a small number: fewer than the] -> more
+   before [earlier in time] -> some
+   before [earlier in time, asked the oth] -> some
+   after [later in time] -> some
+   after [later in time, asked the other] -> some
+   now [the clock reading at this mome] -> some
+   when [the time an event happened] -> some
+   the [the one already in play] -> some
+   the [the one already in play] -> part
+   a [any one of the kind] -> some
+   a [any one of the kind] -> part
+   between [in the interval] -> some
+   between [in the interval] -> part
+   part [a subdivision of the whole] -> some
+   whole [all the parts together] -> all
+   whole [all the parts together] -> some
+   keep [retain over time] -> some
+   store [lay aside now, take back later] -> some
+   have [possess] -> some
+   have [possess] -> one
+   have [possess] -> part
+   have [possess, asked of the wrong ow] -> some
+   give [cause another to have it] -> write
+   give [cause another to have it] -> change
+   take [come into possession] -> write
+   take [come into possession] -> change
+   buy [possession one way, money the ] -> write
+   buy [possession one way, money the ] -> sell
+   buy [possession one way, money the ] -> change
+   sell [deliver for money] -> write
+   sell [deliver for money] -> buy
+   sell [deliver for money] -> change
+   shop [a place stocked with things th] -> write
+   count [find the total number] -> some
+   count [find the total number] -> part
+   order [arrange in sequence] -> all
+   order [arrange in sequence] -> some
+   order [arrange in sequence] -> whole
+   first [preceding all others in time] -> some
+   last [following all the rest] -> some
+   empty [holding nothing] -> some
+   empty [holding nothing, asked of a pl] -> some
+   full [as many as is possible] -> some
+   change [make different: write what is ] -> write
+   remember [bring back from memory] -> some
+   exist [be extant] -> some
+   exist [be extant] -> part
+   exist [be extant, asked of a thing th] -> some
+   live [be alive] -> some
+   live [be alive, asked of a stone] -> some
+   live [be alive, asked of a stone] -> none
+   kill [cause to die] -> die
+   born [brought into existence, alive] -> create
+   born [brought into existence, alive] -> write
+   born [brought into existence, alive] -> into
+   into [the place a write goes] -> create
+   into [the place a write goes] -> write
+   add [bring about an increase] -> write
+   add [bring about an increase] -> change
+   subtract [take away] -> write
+   subtract [take away] -> change
+   where [the place of a thing] -> some
+   lose [cease to have] -> write
+   lose [cease to have] -> change
+SAME ROOT SET (same place by roots):
+   CLOCK,COMPARE,FIND,HEAR,READ,STATE,WRITE => create [row]; copy [duplicate the row]; write [a new mark]; born [brought into existence, al]
+   COMPARE,DELETE,FIND,HEAR => delete [remove the row]; remove [take the row away]
+   COMPARE,FIND,HEAR,WRITE => remove [move it away from the plac]; move [change the place]; write [a changed mark]; if [the act happens only in th]; if [the event does not hold]; give [cause another to have it]; take [come into possession]; change [make different: write what]; die [pass from life]; lose [cease to have]
+   COMPARE,FIND,HEAR,READ,SAY => read [take in what is written at]; find [come upon the things with ]; none [not any, of a thing there ]; none [not any, of a thing there ]; between [in the interval]; have [possess]; have [possess, asked of the wron]; exist [be extant]; exist [be extant, asked of a thin]; live [be alive]; live [be alive, asked of a stone]; where [the place of a thing]; which [the one out of a group wit]
+   COMPARE,FIND,HEAR,JOIN,READ,SAY => same [identical in every field, ]; same [identical in every field, ]; different [not identical, two apples ]; different [not identical, a thing and]
+   COMPARE,FIND,READ,SAY => and [both at once]; or [either]; some [an unspecified number, at ]; part [a subdivision of the whole]
+   READ,SAY => all [every one]; whole [all the parts together]
+   ADD,COMPARE,FIND,HEAR,READ,SAY => one [a single unit]; one [a single unit, asked of a ]; count [find the total number]; empty [holding nothing]; empty [holding nothing, asked of ]
+   ADD,COMPARE,FIND,READ,SAY => two [one more than one]; more [a greater number]; few [a small number: fewer than]
+   COMPARE,FIND,HEAR,READ,SAY,TIMELINE => before [earlier in time]; before [earlier in time, asked the]; after [later in time]; after [later in time, asked the o]; when [the time an event happened]
+   ADD,COMPARE,FIND,HEAR,SUBTRACT,WRITE => buy [possession one way, money ]; sell [deliver for money]
+   MOVE,READ,SAY,TIMELINE => first [preceding all others in ti]; last [following all the rest]
+   CLOCK,COMPARE,FIND,READ,STATE,TIMELINE,WRITE => begin [set in motion]; end [bring to a halt]
+PASS create    row                                          roots=CLOCK,COMPARE,FIND,HEAR,READ,STATE,WRITE | ok PRE: bring into existence: it did not exist befo; ok bring into existence: it exists after; ok nothing else changed
+PASS create    table                                        roots=SPAWN | ok PRE: bring into existence: it did not exist befo; ok bring into existence: it exists after; ok nothing else changed
+FAIL create    WRONG: read it                               roots=COMPARE,FIND,HEAR,READ | ok PRE: bring into existence: it did not exist befo; NO bring into existence: it exists after; ok nothing else changed
+PASS new       born now                                     roots=CLOCK,COMPARE,FIND,HEAR,READ,SAY,STATE,WRITE | ok just come into existence: the new things are exa
+PASS delete    remove the row                               roots=COMPARE,DELETE,FIND,HEAR | ok PRE: it existed before; ok remove: it does not exist after; ok nothing else changed
+FAIL delete    WRONG: hide by moving                        roots=COMPARE,FIND,HEAR,WRITE | ok PRE: it existed before; NO remove: it does not exist after; NO nothing else changed
+PASS remove    take the row away                            roots=COMPARE,DELETE,FIND,HEAR | ok PRE: it was there before; ok taken away: it is not there after; ok nothing else changed
+PASS remove    move it away from the place                  roots=COMPARE,FIND,HEAR,WRITE | ok PRE: it was there before; ok taken away: it is not there after; ok nothing else changed
+PASS copy      duplicate the row                            roots=CLOCK,COMPARE,FIND,HEAR,READ,STATE,WRITE | ok the original is unchanged; ok a duplicate exists after: same in every field bu; ok one more thing exists
+FAIL copy      WRONG: move it                               roots=COMPARE,FIND,HEAR,WRITE | NO the original is unchanged; NO a duplicate exists after: same in every field bu; NO one more thing exists
+PASS move      change the place                             roots=COMPARE,FIND,HEAR,WRITE | ok PRE: it was at the old place; ok change location: it is at the new place after; ok and no longer at the old one; ok the same number of things
+FAIL move      WRONG: copy it there                         roots=COMPARE,FIND,HEAR,READ,WRITE | ok PRE: it was at the old place; ok change location: it is at the new place after; NO and no longer at the old one; NO the same number of things
+PASS move      copy it there, then remove it from here      roots=COMPARE,DELETE,FIND,HEAR,READ,WRITE | ok PRE: it was at the old place; ok change location: it is at the new place after; ok and no longer at the old one; ok the same number of things
+PASS split     two parts by a cut                           roots=COMPARE,FIND,HEAR,READ,SPAWN | ok separate into parts: each thing is in exactly on; ok the parts together are the whole; ok no part is empty
+FAIL split     WRONG: two copies of all                     roots=READ,SPAWN | NO separate into parts: each thing is in exactly on; NO the parts together are the whole; ok no part is empty
+PASS join      bring two parts together                     roots=COMPARE,FIND,JOIN,READ,SPAWN | ok all and only the members of both
+FAIL join      WRONG: pair them up by a key (SQL JOIN)      roots=COMPARE,FIND,JOIN,READ,SPAWN | NO all and only the members of both
+PASS read      take in what is written at a known place     roots=COMPARE,FIND,HEAR,READ,SAY | ok what comes out is what is written there; ok taking in changes nothing
+FAIL read      WRONG: change it while looking               roots=ADD,COMPARE,FIND,HEAR,READ,SAY,WRITE | NO what comes out is what is written there; NO taking in changes nothing
+PASS write     a new mark                                   roots=CLOCK,COMPARE,FIND,HEAR,READ,STATE,WRITE | ok a mark exists after that did not before
+PASS write     a changed mark                               roots=COMPARE,FIND,HEAR,WRITE | ok a mark exists after that did not before
+FAIL write     WRONG: only look                             roots=READ,SAY | NO a mark exists after that did not before
+PASS find      come upon the things with a property         roots=COMPARE,FIND,HEAR,READ,SAY | ok what comes out has the property asked for, and a; ok finding changes nothing
+FAIL find      WRONG: take whatever is first                roots=MOVE,READ,SAY | NO what comes out has the property asked for, and a; ok finding changes nothing
+PASS same      identical in every field, a thing and itself roots=COMPARE,FIND,HEAR,JOIN,READ,SAY | ok a thing is the same as itself; two things unlike
+PASS same      identical in every field, two apples in diff roots=COMPARE,FIND,HEAR,JOIN,READ,SAY | ok a thing is the same as itself; two things unlike
+FAIL same      WRONG: same name only, two apples in differe roots=COMPARE,FIND,HEAR,READ,SAY | NO a thing is the same as itself; two things unlike
+PASS different not identical, two apples apart              roots=COMPARE,FIND,HEAR,JOIN,READ,SAY | ok says yes exactly when some field differs
+PASS different not identical, a thing and itself            roots=COMPARE,FIND,HEAR,JOIN,READ,SAY | ok says yes exactly when some field differs
+PASS not       turn the yes into no                         roots=COMPARE,HEAR,READ,SAY | ok negation turns 1 into 0; ok and back
+PASS and       both at once                                 roots=COMPARE,FIND,READ,SAY | ok the rows are those in both sets; ok never more than either set alone
+PASS or        either                                       roots=COMPARE,FIND,READ,SAY | ok the rows are those in either set; ok never fewer than either set alone
+PASS if        the act happens only in the event            roots=COMPARE,FIND,HEAR,WRITE | ok when the condition holds the thing changes; when
+PASS if        the event does not hold                      roots=COMPARE,FIND,HEAR,WRITE | ok when the condition holds the thing changes; when
+PASS all       every one                                    roots=READ,SAY | ok the whole number: every thing comes out
+PASS some      an unspecified number, at least one          roots=COMPARE,FIND,READ,SAY | ok at least one; ok a number not fixed in advance
+PASS none      not any, of a thing there is none of         roots=COMPARE,FIND,HEAR,READ,SAY | ok says yes exactly when no such thing exists
+PASS none      not any, of a thing there is some of         roots=COMPARE,FIND,HEAR,READ,SAY | ok says yes exactly when no such thing exists
+PASS one       a single unit                                roots=ADD,COMPARE,FIND,HEAR,READ,SAY | ok the count is one exactly when there is a single 
+PASS one       a single unit, asked of a thing that is not  roots=ADD,COMPARE,FIND,HEAR,READ,SAY | ok the count is one exactly when there is a single 
+PASS two       one more than one                            roots=ADD,COMPARE,FIND,READ,SAY | ok the count is one and one
+PASS more      a greater number                             roots=ADD,COMPARE,FIND,READ,SAY | ok says yes exactly when the first count is greater
+PASS few       a small number: fewer than the others        roots=ADD,COMPARE,FIND,READ,SAY | ok says yes exactly when the first count is smaller
+PASS before    earlier in time                              roots=COMPARE,FIND,HEAR,READ,SAY,TIMELINE | ok says yes exactly when a happened at an earlier t
+PASS before    earlier in time, asked the other way round   roots=COMPARE,FIND,HEAR,READ,SAY,TIMELINE | ok says yes exactly when a happened at an earlier t
+FAIL before    WRONG: the worksheet minus now               roots=CLOCK,COMPARE,FIND,READ,SAY,STATE,SUBTRACT | NO says yes exactly when a happened at an earlier t
+PASS after     later in time                                roots=COMPARE,FIND,HEAR,READ,SAY,TIMELINE | ok says yes exactly when a happened at a later time
+PASS after     later in time, asked the other way round     roots=COMPARE,FIND,HEAR,READ,SAY,TIMELINE | ok says yes exactly when a happened at a later time
+PASS now       the clock reading at this moment             roots=CLOCK,COMPARE,FIND,READ,SAY,STATE | ok it is the present reading of the clock
+PASS when      the time an event happened                   roots=COMPARE,FIND,HEAR,READ,SAY,TIMELINE | ok the answer is the time of that event
+PASS the       the one already in play                      roots=COMPARE,FIND,READ,SAY,STATE | ok exactly one, and it is the one previously specif
+FAIL the       WRONG: any one                               roots=MOVE,READ,SAY | NO exactly one, and it is the one previously specif
+PASS a         any one of the kind                          roots=COMPARE,FIND,HEAR,MOVE,READ,SAY | ok exactly one; ok of the kind asked, and which one is not specifie
+PASS between   in the interval                              roots=COMPARE,FIND,HEAR,READ,SAY | ok the things whose value lies in the interval, all
+PASS part      a subdivision of the whole                   roots=COMPARE,FIND,READ,SAY | ok included in the whole; ok not the whole
+PASS whole     all the parts together                       roots=READ,SAY | ok includes every part
+PASS keep      retain over time                             roots=ADD,CLOCK,COMPARE,FIND,HEAR,READ,SAY,STATE,WRITE | ok PRE: had it before; ok time passed; ok still has it after
+FAIL keep      WRONG: give it away meanwhile                roots=ADD,CLOCK,COMPARE,FIND,HEAR,READ,SAY,STATE,WRITE | ok PRE: had it before; ok time passed; NO still has it after
+PASS store     lay aside now, take back later               roots=ADD,CLOCK,COMPARE,FIND,HEAR,MEMORY,READ,SAY,STATE,WRITE | ok PRE: not held before; ok laid aside: held after; ok for future use: readable later, unchanged
+FAIL store     WRONG: lay aside then lose it                roots=ADD,CLOCK,COMPARE,DELETE,FIND,HEAR,MEMORY,READ,STATE,WRITE | ok PRE: not held before; NO laid aside: held after; NO for future use: readable later, unchanged
+PASS have      possess                                      roots=COMPARE,FIND,HEAR,READ,SAY | ok says yes exactly when that owner holds the thing
+PASS have      possess, asked of the wrong owner            roots=COMPARE,FIND,HEAR,READ,SAY | ok says yes exactly when that owner holds the thing
+PASS give      cause another to have it                     roots=COMPARE,FIND,HEAR,WRITE | ok PRE: the giver had it; ok cause to have: the receiver has it after; ok and the giver no longer has it
+FAIL give      WRONG: copy it to them                       roots=COMPARE,FIND,HEAR,READ,WRITE | ok PRE: the giver had it; NO cause to have: the receiver has it after; NO and the giver no longer has it
+PASS take      come into possession                         roots=COMPARE,FIND,HEAR,WRITE | ok PRE: I did not have it; ok into my possession: I have it after; ok the other no longer has it
+PASS buy       possession one way, money the other          roots=ADD,COMPARE,FIND,HEAR,SUBTRACT,WRITE | ok acquire possession; ok by payment: the buyer has less money by the pric; ok and the seller has more by the price
+FAIL buy       WRONG: take without paying                   roots=COMPARE,FIND,HEAR,WRITE | ok acquire possession; NO by payment: the buyer has less money by the pric; NO and the seller has more by the price
+PASS sell      deliver for money                            roots=ADD,COMPARE,FIND,HEAR,SUBTRACT,WRITE | ok give up the property; ok for money: the seller has more by the price
+PASS shop      a place stocked with things that leave when  roots=ADD,COMPARE,FIND,SUBTRACT,WRITE | ok a place with goods for sale, owned by the shop; ok after a sale the good is the buyer's and the sho
+PASS count     find the total number                        roots=ADD,COMPARE,FIND,HEAR,READ,SAY | ok the number equals how many there are
+PASS order     arrange in sequence                          roots=MOVE,READ,SAY | ok the sequence never goes down; ok the same members, rearranged
+PASS first     preceding all others in time                 roots=MOVE,READ,SAY,TIMELINE | ok its time is the smallest
+PASS last      following all the rest                       roots=MOVE,READ,SAY,TIMELINE | ok its time is the largest
+PASS empty     holding nothing                              roots=ADD,COMPARE,FIND,HEAR,READ,SAY | ok says yes exactly when nothing is there
+PASS empty     holding nothing, asked of a place with thing roots=ADD,COMPARE,FIND,HEAR,READ,SAY | ok says yes exactly when nothing is there
+PASS full      as many as is possible                       roots=ADD,COMPARE,FIND,READ,SAY,STATE | ok says yes exactly when the count has reached the 
+PASS change    make different: write what is not there      roots=COMPARE,FIND,HEAR,WRITE | ok the same thing; ok is different after
+FAIL change    WRONG: set a value that may already be there roots=COMPARE,FIND,HEAR,WRITE | ok the same thing; ok is different after
+PASS remember  bring back from memory                       roots=COMPARE,FIND,HEAR,MEMORY,READ,SAY | ok what comes back is what was laid in memory; ok bringing back changes nothing
+PASS forget    stop holding it                              roots=COMPARE,DELETE,FIND,HEAR,MEMORY,READ | ok PRE: it was held before; ok stop remembering: not held after, nothing comes 
+PASS exist     be extant                                    roots=COMPARE,FIND,HEAR,READ,SAY | ok says yes exactly when there is such a thing
+PASS exist     be extant, asked of a thing that is not      roots=COMPARE,FIND,HEAR,READ,SAY | ok says yes exactly when there is such a thing
+PASS begin     set in motion                                roots=CLOCK,COMPARE,FIND,READ,STATE,TIMELINE,WRITE | ok PRE: not running before; ok running after, and the start is on the timeline 
+PASS end       bring to a halt                              roots=CLOCK,COMPARE,FIND,READ,STATE,TIMELINE,WRITE | ok not running after
+PASS live      be alive                                     roots=COMPARE,FIND,HEAR,READ,SAY | ok says what the thing's life is
+PASS live      be alive, asked of a stone                   roots=COMPARE,FIND,HEAR,READ,SAY | ok says what the thing's life is
+PASS die       pass from life                               roots=COMPARE,FIND,HEAR,WRITE | ok PRE: it was alive before; ok pass from life: not alive after; ok the body remains: the row still exists
+FAIL die       WRONG: the worksheet minus live              roots=COMPARE,FIND,HEAR,READ,SAY | ok PRE: it was alive before; NO pass from life: not alive after; ok the body remains: the row still exists
+FAIL die       WRONG: minus live on a stone                 roots=COMPARE,FIND,READ,SAY | ok PRE: it was alive before; NO pass from life: not alive after; ok the body remains: the row still exists
+PASS kill      cause to die                                 roots=CLOCK,COMPARE,FIND,HEAR,JOIN,READ,STATE,TIMELINE,WRITE | ok PRE: it was alive before; ok the thing died; ok and someone caused it: the actor is on the timel
+PASS born      brought into existence, alive                roots=CLOCK,COMPARE,FIND,HEAR,READ,STATE,WRITE | ok PRE: did not exist before; ok exists after, alive, at now
+PASS into      the place a write goes                       roots=HEAR,WRITE | ok after, the thing is in that place
+FAIL into      WRONG: a write with no into                  roots=HEAR,WRITE | NO after, the thing is in that place | error: near "things": syntax error
+PASS add       bring about an increase                      roots=ADD,COMPARE,FIND,HEAR,WRITE | ok the value after is the value before plus k
+PASS subtract  take away                                    roots=COMPARE,FIND,HEAR,SUBTRACT,WRITE | ok the value after is the value before minus k
+PASS where     the place of a thing                         roots=COMPARE,FIND,HEAR,READ,SAY | ok the answer is its place
+PASS which     the one out of a group with the property     roots=COMPARE,FIND,HEAR,READ,SAY | ok one out of the group, picked by the property
+PASS lose      cease to have                                roots=COMPARE,FIND,HEAR,WRITE | ok PRE: had it; ok ceases to have it

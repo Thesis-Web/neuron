@@ -1,0 +1,537 @@
+# 75 the sixth, sleep and back-population (blueprint §9.6, §10.5, §12).
+# Three shared gates: sixth (the kernel starts it on an idle beat), sleep (the
+# sixth calls it when tired), backpop (called with a memory id on top).
+# Every choice here is a starting value the brain can read and rewrite.
+
+# gates other areas define (forward-declared)
+gate source-check
+gate hc
+gate dunno
+gate learn-balance
+gate learn-test
+gate learn-self
+gate learn-search
+gate mean
+gate mn-state
+gate mn-understood
+
+# the sixth's slots
+gate six-kind
+gate six-item
+gate six-subj
+gate six-do
+gate six-was
+gate six-got
+# the sixth's choice: rel sixth six-pick LIST, strength = the progress it
+# expects from that list. Told at first; it moves with every outcome (×1.1 when
+# acting on the list gave something new, ×0.9 when it gave nothing).
+gate six-pick
+
+# sleep's marks (told values the brain can change)
+# active memories since the last sleep that make it tired
+gate sleep-mark val 2000
+# sleep-room: the active memories it holds awake; past this it is tired and sleeps,
+# and the HC moves its cold memories to long-term (a value the brain can change)
+gate sleep-room val 3000
+# seconds of quiet after which it sleeps, if enough happened since the last sleep
+gate sleep-quiet val 1800
+gate sleep-few val 20
+# the active count when the last sleep ended; where back-propagation got to
+gate sleep-at init 0
+gate sleep-time init 0
+gate sleep-m
+gate sleep-now
+
+# back-population's slots
+gate bp-from
+gate bp-left
+gate bp-hop
+
+# ---- what acting on each list means: the list's action section names the way
+# a listed item is fed in (as its own run, subject = the item's subject)
+# a GAP item is a missing meaning: the gate goes to mean (73), which gathers a spec only
+# when the meaning needs one. GAP-NEED holds the gaps something is waiting on (a live
+# question, a compile in mean); the GAP pick serves it first (need order).
+gate GAP-NEED
+sect GAP sec-action mean
+sect GAP-NEED sec-action mean
+sect IMBALANCE sec-action gt-balance
+sect TEST-GUESS sec-action gt-test
+sect QUESTION sec-action dunno
+sect SLOW sec-action learn-self
+sect PARKED sec-action dunno
+
+# ==== the sixth ==============================================================
+# tired? then a long quiet? then one item from the lists. Nothing due: END,
+# nothing written.
+proc sixth = six-tired six-quiet six-choose
+
+proc six-tired = ACTIVE READ sleep-room COMPARE
+on six-tired MORE -> six-tired2
+# tiredness learns from its own record: if the last sleep brought ACTIVE no lower
+# (sleep-at, written at its start and again at its end, against sleep-from, ACTIVE at
+# its start; a sleep still going counts as no lower), it is not tired again until
+# hc-fresh seconds after that sleep began (sleep-began), or until ACTIVE has grown by
+# sleep-mark since
+gate hc-fresh
+gate sleep-from init 0
+gate sleep-began init 0
+rel sleep-from t-kind-of SETTING
+rel sleep-began t-kind-of SETTING
+proc six-tired2 = LAST DELETE sleep-at sleep-from COMPARE
+on six-tired2 LESS -> six-sleep
+on six-tired2 SAME -> six-stuck
+on six-tired2 MORE -> six-stuck
+proc six-stuck = LAST DELETE CLOCK sleep-began hc-fresh ADD COMPARE
+on six-stuck LESS -> six-stuck2
+on six-stuck SAME -> six-sleep
+on six-stuck MORE -> six-sleep
+proc six-stuck2 = LAST DELETE ACTIVE READ sleep-at sleep-mark ADD COMPARE
+on six-stuck2 LESS -> six-awake
+on six-stuck2 SAME -> six-sleep
+on six-stuck2 MORE -> six-sleep
+on six-tired SAME -> six-awake
+on six-tired LESS -> six-awake
+proc six-awake = LAST DELETE
+
+# quiet = no memory on the timeline in the last sleep-quiet seconds (an index seek)
+proc six-quiet = CLOCK sleep-quiet SUB CLOCK TIME FIND six-awake
+on six-quiet NONE -> six-hush
+proc six-hush = ACTIVE READ sleep-at SUB sleep-few COMPARE
+on six-hush MORE -> six-sleep
+on six-hush SAME -> six-awake
+on six-hush LESS -> six-awake
+
+# asking to sleep: the want is its own; it takes it and sleeps
+proc six-sleep = LAST DELETE ITEM READ sleep WANT WRITE sleep END
+
+# the lists, strongest expected progress first; the first one with an item due
+# hunger first: when hunger-pace seconds have passed since it last read, it reads its
+# next line (then the lists get their turn on the next beat); otherwise the lists
+proc six-choose = CLOCK hunger-at hunger-pace ADD COMPARE
+on six-choose LESS -> six-lists
+on six-choose SAME -> six-want
+on six-choose MORE -> six-want
+# it reads only for a meaning: while a gap something waits on is listed (a line read
+# gives example uses of its words, receipts the meaning loop tests on); else no reading
+proc six-want = GAP-NEED KIND FIND six-want2
+on six-want NONE -> six-lists
+proc six-want2 = LAST DELETE six-read
+proc six-lists = LAST DELETE ITEM READ sixth six-pick RELS READ six-walk
+on six-lists NONE -> END
+proc six-walk = LAST READ FIRST READ six-look
+on six-walk NONE -> END
+# a list gives a page of its items, least recently touched first; the sixth picks the
+# first one that is due, and looks through up to six-pages pages
+gate six-pg
+gate six-at
+gate thirty-two val 32
+gate six-pages val 1
+proc six-look = LAST READ six-kind SLOT WRITE ZERO six-at SLOT WRITE six-kind SLOT READ six-need
+# where it looks in a list goes round: rel sixth six-cur LIST, strength = the place of
+# the page it looked at last; each look starts a page on, and past the end from the
+# front, so an item tried once comes round again even while new items keep arriving
+gate six-cur
+proc six-look2 = LAST DELETE ITEM READ sixth six-cur six-kind SLOT READ STRENGTH READ six-look3
+on six-look2 NONE -> six-look0
+proc six-look0 = six-kind SLOT READ KIND FIND six-page-c
+on six-look0 NONE -> six-on
+proc six-look3 = LAST READ six-at SLOT WRITE six-kind SLOT READ KINDAT FIND six-page-c
+on six-look3 NONE -> six-look-wrap
+proc six-look-wrap = ZERO six-at SLOT WRITE six-kind SLOT READ KIND FIND six-page-c
+on six-look-wrap NONE -> six-on
+proc six-page-c = ITEM READ sixth six-cur six-kind SLOT READ six-at SLOT READ thirty-two ADD REL WRITE six-page
+# GAP's turn: first a due item from GAP-NEED (what something is waiting on), else GAP's own
+proc six-need = LAST READ ITEM READ GAP COMPARE
+on six-need SAME -> six-need-g
+on six-need MORE -> six-look2
+proc six-need-g = GAP-NEED KIND FIND six-npage
+on six-need-g NONE -> six-look2
+proc six-npage = six-pg SLOT WRITE six-npick
+proc six-npick = six-pg SLOT READ FIRST READ six-ndue
+on six-npick NONE -> six-look2
+# a need is live for need-live seconds after it was listed: an older GAP-NEED item no
+# question waits on any more comes off (the gate stays a plain gap on GAP), and the
+# next one is looked at; so a fresh need is never stuck behind old ones
+gate need-live val 1800
+rel need-live t-kind-of SETTING
+proc six-ndue = six-item SLOT WRITE CLOCK six-item SLOT READ BEGAN READ SUB need-live COMPARE
+on six-ndue MORE -> six-ndue-old
+on six-ndue SAME -> six-ndue2
+on six-ndue LESS -> six-ndue2
+proc six-ndue-old = LAST DELETE six-item SLOT READ MEM DELETE six-pg SLOT READ REST READ six-pg SLOT WRITE six-npick
+# a live need doesn't fade: it is due PATIENCE after its last try (need-live retires it);
+# the growing wait (PATIENCE times tries to the fourth) is for items nothing can help
+proc six-ndue2 = LAST DELETE six-nwait CLOCK COMPARE
+proc six-nwait = six-item SLOT READ TIME READ PATIENCE ADD
+on six-ndue2 LESS -> six-due-yes
+on six-ndue2 SAME -> six-due-yes
+on six-ndue2 MORE -> six-ndue-no
+proc six-ndue-no = LAST DELETE six-pg SLOT READ REST READ six-pg SLOT WRITE six-npick
+proc six-page = six-pg SLOT WRITE six-pick1
+proc six-pick1 = six-pg SLOT READ FIRST READ six-due
+on six-pick1 NONE -> six-page-none
+proc six-page-none = six-at SLOT READ thirty-two ADD LAST READ six-at SLOT WRITE six-pages thirty-two MUL COMPARE
+on six-page-none LESS -> six-next-page
+on six-page-none SAME -> six-on-clean
+on six-page-none MORE -> six-on-clean
+proc six-on-clean = LAST DELETE six-on
+proc six-next-page = LAST DELETE six-at SLOT READ six-kind SLOT READ KINDAT FIND six-page
+on six-next-page NONE -> six-on
+# is the item due? one tried n times waits PATIENCE·n⁴ seconds after its last try
+proc six-due = six-item SLOT WRITE six-wait CLOCK COMPARE
+proc six-wait = six-item SLOT READ SEEN READ LAST READ MUL LAST READ MUL PATIENCE MUL six-item SLOT READ TIME READ ADD
+on six-due LESS -> six-due-yes
+on six-due SAME -> six-due-yes
+on six-due MORE -> six-due-no
+proc six-due-yes = LAST DELETE six-item SLOT READ six-take
+proc six-due-no = LAST DELETE six-pg SLOT READ REST READ six-pg SLOT WRITE six-pick1
+proc six-on = REST READ six-walk
+
+# an item is due: count the try (it waits twice as long next time), then feed it in
+proc six-take = six-item SLOT WRITE LAST DELETE six-item SLOT READ TOUCH WRITE six-age six-subject
+# a list that has had its turn steps back (×six-turn, floored); every other list has
+# waited a turn and rises (×1.1, capped at one): every list gets picked
+gate six-turn val 0.5
+rel six-turn t-kind-of SETTING
+gate six-ls
+gate six-lg
+proc six-age = ITEM READ sixth six-pick RELS READ six-age0
+on six-age NONE -> carry-on
+proc six-age0 = six-ls SLOT WRITE six-age1
+proc six-age1 = six-ls SLOT READ FIRST READ six-age2
+on six-age1 NONE -> carry-on
+proc six-age2 = six-lg SLOT WRITE six-ls SLOT READ REST READ six-ls SLOT WRITE six-lg SLOT READ six-kind SLOT READ COMPARE
+on six-age2 SAME -> six-age-mine
+on six-age2 MORE -> six-age-up
+proc six-age-mine = ITEM READ sixth six-pick six-lg SLOT READ ITEM READ sixth six-pick six-lg SLOT READ STRENGTH READ six-turn MUL six-floor six-age1
+proc six-age-up = ITEM READ sixth six-pick six-lg SLOT READ ITEM READ sixth six-pick six-lg SLOT READ STRENGTH READ eleven-tenths MUL six-ceil six-age1
+proc six-subject = six-item SLOT READ BODY READ FIRST READ six-act
+on six-subject NONE -> six-drop
+proc six-drop = six-item SLOT READ MEM DELETE END
+proc six-act = six-subj SLOT WRITE six-kind SLOT READ ITEM READ GAP COMPARE
+on six-act SAME -> six-gap
+on six-act MORE -> six-act-q
+proc six-act-q = six-kind SLOT READ ITEM READ QUESTION COMPARE
+on six-act-q SAME -> six-q-need
+on six-act-q MORE -> six-act2
+# a parked QUESTION item is not a live question (it may be hours old): it no longer
+# lists its gate as needed. GAP-NEED is written only for a person's words (kn-need, 40).
+proc six-q-need = six-subj SLOT READ KIND READ
+on six-q-need GATE -> six-q-need2
+on six-q-need NUMBER -> six-q-skip
+on six-q-need TEXT -> six-q-skip
+on six-q-need POINT -> six-q-skip
+on six-q-need LIST -> six-q-skip
+on six-q-need NONE -> six-act2
+# a told gate's meaning is laid (a physics word, a selector, an outcome): a question that
+# missed at it is not waiting on a meaning
+proc six-q-need2 = LAST READ MADE READ ITEM READ TOLD COMPARE
+on six-q-need2 SAME -> six-q-skip
+on six-q-need2 MORE -> six-q-need3
+proc six-q-need3 = LAST DELETE six-act2
+proc six-q-skip = LAST DELETE six-act2
+proc six-act2 = six-kind SLOT READ sec-action SECTION READ six-handler
+on six-act2 NONE -> six-less
+# a list whose action is not a process does nothing when passed: not acted through
+proc six-handler = LAST READ six-do SLOT WRITE PROC READ six-go
+on six-handler NONE -> six-less
+# what the subject's source definitions were before, then feed it in as its own run
+proc six-go = LAST DELETE six-subj SLOT READ sec-sources SECTIONS READ six-had
+on six-go NONE -> six-had-none
+proc six-had-none = ITEM READ NONE six-had
+proc six-had = six-was SLOT WRITE six-subj SLOT READ six-do SLOT READ SPLIT WAIT six-got SLOT WRITE LAST DELETE six-judge
+
+# progress (smarter): did the subject's source definitions grow? If not, did the
+# run land something that is neither nothing nor what it was given? (Nothing
+# landed within the one beat WAIT holds: no judgement; the item waits.)
+proc six-judge = six-subj SLOT READ sec-sources SECTIONS READ six-grew
+on six-judge NONE -> six-landed
+proc six-grew = six-was SLOT READ COMPARE
+on six-grew MORE -> six-more
+on six-grew SAME -> six-landed
+proc six-landed = six-got SLOT READ FIRST READ six-judge2
+on six-landed NONE -> six-less
+proc six-judge2 = LAST READ ITEM READ NONE COMPARE
+on six-judge2 SAME -> six-less
+on six-judge2 MORE -> six-judge3
+proc six-judge3 = six-subj SLOT READ COMPARE
+on six-judge3 SAME -> six-less
+on six-judge3 MORE -> six-more
+on six-judge3 LESS -> six-more
+# something new: the item is done (one fewer unknown) and its list gains worth
+# the subject goes in as the sixth's own input (who: itself): its run has a signature,
+# so the same subject again is the same run, and the word's own questions fire
+proc six-feed = six-subj SLOT READ LABEL READ six-feed2
+on six-feed NONE -> carry-on
+proc six-feed2 = HEAR
+proc six-more = gt-del six-up six-feed
+proc six-up = ITEM READ sixth six-pick six-kind SLOT READ ITEM READ sixth six-pick six-kind SLOT READ STRENGTH READ eleven-tenths MUL six-ceil
+proc six-down = ITEM READ sixth six-pick six-kind SLOT READ ITEM READ sixth six-pick six-kind SLOT READ STRENGTH READ nine-tenths MUL six-floor
+# never above one, as never below the floor
+proc six-ceil = LAST READ one COMPARE
+on six-ceil MORE -> six-ceil-one
+on six-ceil SAME -> six-floor-ok
+on six-ceil LESS -> six-floor-ok
+proc six-ceil-one = LAST DELETE LAST DELETE one REL WRITE
+# nothing new: the item stays (and waits longer), its list loses worth
+proc six-less = six-down six-feed
+# a list's weight never falls below the floor (the same told floor the questions use)
+proc six-floor = LAST READ worth-floor COMPARE
+on six-floor LESS -> six-floor-up
+on six-floor SAME -> six-floor-ok
+on six-floor MORE -> six-floor-ok
+proc six-floor-up = LAST DELETE LAST DELETE worth-floor REL WRITE
+proc six-floor-ok = LAST DELETE REL WRITE
+
+# ---- GAP: a missing meaning (meaning blueprint §5.1). The gate goes to its list's
+# action (mean, 73) as its own run; then the pick is judged by the gate itself: it has a
+# meaning now -> it leaves the list and the list gains worth; its spec grew -> the list
+# gains worth and the gap stays (mean goes on next time); nothing -> it waits longer and
+# the list loses worth. A gate that already has a meaning just leaves the list. No word
+# is fed in or read up on here: mean asks for a spec when the meaning needs one.
+proc six-gap = six-subj SLOT READ six-done ITEM READ YES COMPARE
+on six-gap SAME -> six-gap-had
+on six-gap MORE -> six-gap-go
+proc six-gap-had = gt-del six-up END
+# what it holds about the gate only as a guess is tested while its meaning is built:
+# the gate goes on TEST-GUESS (once), where gt-test opens it into its guess lines
+proc six-gap-go = six-subj SLOT READ TEST-GUESS TODO WRITE six-subj SLOT READ sec-sources SECTIONS READ six-gap-w
+on six-gap-go NONE -> six-gap-w0
+# a gap with no spec yet is read up on only when something waits on it (GAP-NEED); a
+# plain gap waits, so the brain doesn't crawl outward faster than its gaps close
+# (needed: the gate has a GAP-NEED item, whichever list this pick came from; the pick's
+# kind is always GAP, so it can't say)
+proc six-gap-w0 = six-subj SLOT READ GAP-NEED HOME FIND six-gap-w0y
+on six-gap-w0 NONE -> six-gap-none0
+proc six-gap-w0y = LAST DELETE six-gap-w0n
+proc six-gap-w0n = ITEM READ NONE six-gap-w
+proc six-gap-w = six-was SLOT WRITE six-subj SLOT READ six-kind SLOT READ sec-action SECTION READ SPLIT WAIT LAST DELETE LAST DELETE six-gap-judge
+proc six-gap-judge = six-subj SLOT READ six-meant ITEM READ YES COMPARE
+on six-gap-judge SAME -> six-gap-j2
+on six-gap-judge MORE -> six-gap-spec
+proc six-gap-j2 = six-subj SLOT READ six-done ITEM READ YES COMPARE
+on six-gap-j2 SAME -> six-gap-had
+on six-gap-j2 MORE -> six-gap-spec-up
+proc six-gap-spec = six-subj SLOT READ sec-sources SECTIONS READ six-gap-grew
+on six-gap-spec NONE -> six-gap-none0
+proc six-gap-none0 = six-down END
+proc six-gap-grew = six-was SLOT READ COMPARE
+on six-gap-grew SAME -> six-gap-none0
+on six-gap-grew MORE -> six-gap-spec-up
+proc six-gap-spec-up = six-up END
+
+# pad: a gate (consumed) -> YES when passing it runs something (a process string or a
+# value), else NO
+proc six-meant = LAST READ PROC READ six-m-p
+on six-meant NONE -> six-m-v
+proc six-m-p = LAST DELETE LAST DELETE ITEM READ YES
+proc six-m-v = VALUE READ six-m-yes
+on six-m-v NONE -> gt-no
+proc six-m-yes = LAST DELETE ITEM READ YES
+
+# pad: a gate (consumed) -> YES when its gap is closed: it has a meaning, and the meaning
+# loop has nothing left to do on it (its action's candidate is understood, 73's mark, or
+# its action is not a candidate of the loop); NO otherwise (held but not yet understood
+# stays on GAP for a use it hasn't seen)
+proc six-done = LAST READ six-meant ITEM READ YES COMPARE
+on six-done SAME -> six-done2
+on six-done MORE -> six-done-no
+proc six-done-no = LAST DELETE gt-no
+proc six-done2 = LAST READ sec-action SECTION READ six-done3
+on six-done2 NONE -> six-done-yes
+proc six-done-yes = LAST DELETE gt-yes
+proc six-done3 = mn-state SECTION READ six-done4
+on six-done3 NONE -> six-done-yes
+proc six-done4 = ITEM READ mn-understood COMPARE
+on six-done4 SAME -> six-done-yes
+on six-done4 MORE -> six-done-no
+
+# shared: pad a gate (consumed). Something is waiting on its meaning (a live question, a
+# compile in mean): when it has none it goes on GAP-NEED, which the GAP pick serves first.
+proc gap-need = LAST READ six-meant ITEM READ YES COMPARE
+on gap-need SAME -> gap-need-has
+on gap-need MORE -> gap-need-list
+proc gap-need-has = LAST DELETE
+proc gap-need-list = GAP-NEED TODO WRITE
+
+# the starting order: unknowns first (smarter), then imbalances, guesses,
+# parked questions, slow processes (more efficient), parked runs
+rel sixth six-pick GAP 0.6
+rel sixth six-pick IMBALANCE 0.5
+rel sixth six-pick TEST-GUESS 0.4
+rel sixth six-pick QUESTION 0.3
+rel sixth six-pick SLOW 0.2
+rel sixth six-pick PARKED 0.1
+
+# ==== sleep ==================================================================
+# the HC, formula search over the day's runs (the learning ways), and
+# back-propagation. Nothing held true is changed.
+proc sleep = ACTIVE READ ITEM READ sleep-from VALUE WRITE ACTIVE READ ITEM READ sleep-at VALUE WRITE CLOCK ITEM READ sleep-began VALUE WRITE ITEM READ hc SPLIT ITEM READ learn-search SPLIT sleep-weigh WAIT LAST DELETE sleep-end
+proc sleep-end = ACTIVE READ ITEM READ sleep-at VALUE WRITE
+
+# back-propagation: the memories on the timeline since the last sleep (one
+# page, an index seek on time); each guess among them is weighed by its record,
+# and one that has been wrong more than right goes back to be tested awake
+proc sleep-weigh = CLOCK sleep-now SLOT WRITE sleep-time sleep-now SLOT READ TIME FIND sleep-guesses
+on sleep-weigh NONE -> sleep-moved
+proc sleep-moved = sleep-now SLOT READ ITEM READ sleep-time VALUE WRITE
+proc sleep-guesses = LAST READ FIRST READ LAST READ ITEM READ sleep-used SPLIT LAST DELETE sleep-guess REST READ sleep-guesses
+# guessed meanings that were used: each gate on the memory's trail whose latest
+# sec-truth is GUESS (a root, a prime, a candidate) goes to guess-balance (28-roots) in
+# its own run, which refits it by balance over its uses; each memory of the page is
+# looked at in its own run, at most sleep-gb-max gates a memory.
+# pad: a memory id (consumed)
+gate guess-balance
+gate sb-l
+gate sb-n
+gate sleep-gb-max val 4
+rel sleep-gb-max t-kind-of SETTING
+proc sleep-used = ZERO sb-n SLOT WRITE BODY READ sleep-u1
+on sleep-used NONE -> carry-on
+proc sleep-u1 = sb-l SLOT WRITE sleep-u2
+proc sleep-u2 = sb-l SLOT READ FIRST READ sleep-u3
+on sleep-u2 NONE -> carry-on
+proc sleep-u3 = sb-l SLOT READ REST READ sb-l SLOT WRITE sleep-u4 sleep-u2
+proc sleep-u4 = LAST READ sec-truth SECTION READ sleep-u5
+on sleep-u4 NONE -> six-awake
+proc sleep-u5 = ITEM READ GUESS COMPARE
+on sleep-u5 SAME -> sleep-u6
+on sleep-u5 MORE -> six-awake
+proc sleep-u6 = sb-n SLOT READ sleep-gb-max COMPARE
+on sleep-u6 LESS -> sleep-u7
+on sleep-u6 SAME -> sleep-u-full
+on sleep-u6 MORE -> sleep-u-full
+proc sleep-u-full = LAST DELETE LAST DELETE
+proc sleep-u7 = LAST DELETE sb-n SLOT READ one ADD sb-n SLOT WRITE ITEM READ guess-balance SPLIT LAST DELETE
+on sleep-guesses NONE -> sleep-paged
+proc sleep-paged = LAST DELETE sleep-moved
+proc sleep-guess = LAST READ MADE READ sleep-is-guess
+on sleep-guess NONE -> six-awake
+proc sleep-is-guess = GUESS COMPARE
+on sleep-is-guess SAME -> sleep-reweigh
+on sleep-is-guess MORE -> six-awake
+proc sleep-reweigh = LAST READ sleep-m SLOT WRITE WRONG READ sleep-m SLOT READ RIGHT READ COMPARE
+on sleep-reweigh MORE -> sleep-retest
+on sleep-reweigh SAME -> six-awake
+on sleep-reweigh LESS -> six-awake
+proc sleep-retest = LAST DELETE sleep-m SLOT READ BODY READ FIRST READ sleep-rt
+on sleep-retest NONE -> sleep-rt-home
+proc sleep-rt-home = sleep-m SLOT READ HOME READ TEST-GUESS TODO WRITE
+# a listed line is re-weighed from its test record; a gate goes back on the list
+proc sleep-rt = KIND READ
+on sleep-rt LIST -> sleep-rt-line
+on sleep-rt GATE -> sleep-rt-gate
+on sleep-rt NUMBER -> six-awake
+on sleep-rt TEXT -> six-awake
+on sleep-rt POINT -> six-awake
+on sleep-rt NONE -> six-awake
+proc sleep-rt-line = gt-l SLOT WRITE sleep-m SLOT READ gt-l SLOT READ gt-reweigh
+proc sleep-rt-gate = LAST READ ITEM READ TEST-GUESS COMPARE
+on sleep-rt-gate SAME -> sleep-rt-flat
+on sleep-rt-gate MORE -> sleep-rt-relist
+proc sleep-rt-relist = TEST-GUESS TODO WRITE
+# a tested line kept flat in its item, [TEST-GUESS a T b maker]
+proc sleep-rt-flat = LAST DELETE sleep-m SLOT READ sleep-m SLOT READ BODY READ REST READ gt-reweigh
+on sleep-rt-flat NONE -> carry-on
+
+# ==== back-population ========================================================
+# pad: a memory id on top (consumed). It walks from what changed (the gates in
+# that memory) along each gate's use receipts to the memories that relied on it,
+# and marks each one wrong once, so its next use takes the long way and
+# compares. Only along receipts.
+# what relied on a memory is what used what it held true: its outcome gate's Use receipts
+proc backpop = LAST READ OUTCOME READ bp-wrap
+on backpop NONE -> bp-bodyway
+proc bp-wrap = ITEM READ ln-top SPLIT LAST DELETE WAIT bp-body
+# a row with no signature (a truth shift, a kept formula): walk its body
+proc bp-bodyway = LAST READ BODY READ bp-body
+on bp-bodyway NONE -> bp-lost
+proc bp-body = LAST READ FIRST READ KIND READ
+on bp-body GATE -> bp-start
+on bp-body NUMBER -> bp-follow
+on bp-body NONE -> bp-empty
+on bp-body TEXT -> bp-odd
+on bp-body POINT -> bp-odd
+on bp-body LIST -> bp-odd
+# a row that points at another memory (a truth shift: [memory, was, now]): go there
+# only a shift whose outcome changed: one that holds the same thing before and after
+# (a point drifted, the shape redrawn) changed nothing, and nothing is walked
+gate bp-sh
+gate bp-was
+proc bp-follow = bp-hop SLOT WRITE LAST DELETE bp-sh SLOT WRITE bp-sh SLOT READ BODY READ REST READ LAST READ FIRST READ bp-was SLOT WRITE REST READ FIRST READ bp-cmp
+on bp-follow NONE -> carry-on
+proc bp-cmp = KIND READ
+on bp-cmp NUMBER -> bp-cmp-n
+on bp-cmp POINT -> bp-cmp-n
+on bp-cmp GATE -> bp-cmp-g
+on bp-cmp TEXT -> bp-cmp-g
+on bp-cmp LIST -> bp-cmp-g
+on bp-cmp NONE -> carry-on
+proc bp-cmp-g = bp-was SLOT READ COMPARE
+on bp-cmp-g SAME -> carry-on
+on bp-cmp-g MORE -> bp-go
+proc bp-cmp-n = bp-was SLOT READ COMPARE
+on bp-cmp-n SAME -> six-awake
+on bp-cmp-n MORE -> bp-n-go
+on bp-cmp-n LESS -> bp-n-go
+proc bp-n-go = LAST DELETE bp-go
+proc bp-go = bp-hop SLOT READ backpop
+proc bp-start = LAST DELETE bp-left SLOT WRITE bp-from SLOT WRITE bp-next
+proc bp-next = bp-left SLOT READ LAST READ REST READ bp-left SLOT WRITE FIRST READ bp-gate
+on bp-next NONE -> six-awake
+proc bp-gate = sec-use SECTIONS READ bp-uses
+on bp-gate NONE -> bp-next
+proc bp-uses = LAST READ FIRST READ bp-mark REST READ bp-uses
+on bp-uses NONE -> bp-used
+proc bp-used = LAST DELETE bp-next
+proc bp-mark = LAST READ bp-from SLOT READ COMPARE
+on bp-mark SAME -> bp-skip
+on bp-mark MORE -> bp-doubt
+on bp-mark LESS -> bp-doubt
+proc bp-skip = LAST DELETE LAST DELETE
+proc bp-doubt = LAST DELETE LAST READ WRONG READ bp-doubt2
+on bp-doubt NONE -> six-awake
+proc bp-doubt2 = ZERO COMPARE
+on bp-doubt2 SAME -> bp-wrong
+on bp-doubt2 MORE -> bp-skip
+on bp-doubt2 LESS -> bp-skip
+proc bp-wrong = LAST DELETE WRONG WRITE
+
+# it can't place the change (no gates, nothing to walk): climb back to the
+# problem statement, the gate the run started from, and list it as an imbalance
+# so the learning ways open what was never considered
+proc bp-empty = LAST DELETE bp-lost
+proc bp-odd = LAST DELETE LAST DELETE bp-lost
+proc bp-lost = HOME READ bp-lost2
+on bp-lost NONE -> carry-on
+proc bp-lost2 = IMBALANCE TODO WRITE
+rel sleep-mark t-kind-of SETTING
+rel sleep-room t-kind-of SETTING
+rel sleep-quiet t-kind-of SETTING
+rel sleep-few t-kind-of SETTING
+rel sleep-at t-kind-of SETTING
+rel sleep-time t-kind-of SETTING
+rel thirty-two t-kind-of SETTING
+rel six-pages t-kind-of SETTING
+
+# ---- hunger (owner, 10-19: it keeps learning on its own). When nothing on its lists is
+# due, it reads: the next line of its book goes in as its own input (who: itself), so
+# unknown words spawn, get listed and read up on, and the sentence becomes a memory the
+# learning ways work over. Paced by hunger-pace seconds; its place is book-at. All of
+# this is its own to rewrite.
+gate src-book
+gate hunger-pace val 15
+gate hunger-at init 0
+gate book-at init 1
+rel hunger-pace t-kind-of SETTING
+rel hunger-at t-kind-of SETTING
+rel book-at t-kind-of SETTING
+proc six-hungry = CLOCK hunger-at hunger-pace ADD COMPARE
+on six-hungry LESS -> six-not-yet
+on six-hungry SAME -> six-read
+on six-hungry MORE -> six-read
+proc six-not-yet = END
+proc six-read = LAST DELETE ITEM READ hunger-at CLOCK VALUE WRITE ITEM READ book-at book-at one ADD VALUE WRITE SOURCED MADE WRITE ITEM READ src-book book-at one SUB core-check-call CALL six-heard
+on six-read NONE -> END
+proc six-heard = HEAR

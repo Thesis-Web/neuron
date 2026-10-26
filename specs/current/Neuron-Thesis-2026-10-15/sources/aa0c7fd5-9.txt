@@ -1,0 +1,227 @@
+=== aa0c7fd5-9 (page; chars 0-2885 of 34,141; continue with aa0c7fd5-9@2885) ===
+Claude Opus 5.5, 2026-10-01 ~18:20 CDT. ANALYSIS ONLY: no brain, teacher, code or service changed. Round 2 of the owner's three-worker comparison (Claude, Codex, browser LLM). CORRECTS page 57823c3e-9: Codex's page was partly read BEFORE Claude's analysis (first ~5,300 chars: formulas 1-3), not wholly after.
+
+## 1. Where to look
+- Owner message verbatim (instruction + Codex terminal + browser chat with the owner's new corrections): /home/exnulla/neuron-v16.2/teacher/owner_source/66_claude_2026-10-01T230807.txt (sha256 fd42a2e9c20346eda2d52c5bcf1e435f52aa92ab860073f33388a630e637f8f4; MANIFEST.json). The owner's OWN new words are reproduced in section 4 below; the full message is in raw.
+- Synthesis: /home/exnulla/neuron-benchmarks/20261001-claude-monologue-formulas/SYNTHESIS.md (section 5 below). Round 1: page 57823c3e-9 (Claude), 93d9bfaa-a (Codex). James Mind Map Q8 step-back precursor: 68b79e93-f.
+
+## 2. How to use Cortex now
+- wake(project="neuron-v2"); fetch this page; locate(topic=..., project="neuron-v2").
+
+## 3. What to build next
+Write the step-back procedure (arrival-matched shards at a node, Q1 desired? Q2 closer?, step down or up) as one small copy-brain experiment with three taught runs, each step labeled existing or missing, and propose it to the owner before running.
+
+## 4. Owner's own new words 2026-10-01 23:08Z, verbatim (three excerpts of owner_source/66)
+
+### 4a. Instruction to all three workers
+Okay, in reading this, I think you already— I'm not going to call it cheated, but you already know what Codex's response was, but I'm going to give it back to you anyway. But you don't know the third person in this equation, and ironically, he had less information, because he got the truncated version and couldn't figure out the way, you know, didn't have a way to see the full version, where you did, which is amazing that you had a problem and found the answer. Now the question is, did you reason to find the answer, or did you just stumble across the answer while you were looking for something else and you're like, Oh wow, the rest of that missing context is here. Or did you think, I wonder if Codex had the correct thing. I should check there. Right? Did you ask the question, or did you just accidentally find the answer? Either way, you also accidentally found Codex's response before your response was done. And so that becomes a question: did you use that response to make your response, or not? And that might contaminate this part a little bit, but just a little. What I want you to do is you have your response, and I'm going to give you Codex's response, and I'm going to give you the full terminal of the browser, because the browser has more conversation in it about some other stuff. And then I want you to look at your response, Codex's response, and the browser's response, and I want you to give me a response again on the s
+=== aa0c7fd5-9 (page; chars 2885-6286 of 34,141; continue with aa0c7fd5-9@6286) ===
+ame topic. I want essentially the same response, but I want you to have different source material to pull from for that response. I'm going to give it to all three of you. And so each one of you, because I'm going to give this to all three of you, each one of you is going to be the browser, so I'm going to be the browser terminal. I'm going to give you the other two terminals, and vice versa. And y'all are all going to give me the responses back.Essentially, we're trying to understand if by doing it this way, can we get what the most correct response should look like?
+
+### 4b. Owner to the browser LLM (predict the gap; shortcuts are recursive)
+Okay, actually, this is perfect, because it's quite interesting. So I gave that same prompt to you, and I gave it to Codex, and I gave it to Claude. And it's kind of beautiful, because Codex got the full prompt, and Claude got only the piece of the prompt with the missing piece, like what you did. But Claude was able to get the full prompt because it could see Codex's work. It's link in the cortex. So Claude discovered the entirety of the message, but you don't. You don't know it. And in this message, you say that, predict. Predict what should have been there. So in my truncated message, you're missing a piece of it. I want you to predict what you think that piece was. I want to see how that works out. And then I can evaluate that to what it actually was. You're going to predict it in my voice, like you're going to predict it as how I would have said it. The other thing is that— trying to find it right now, so you have to bear with me. You said something in here that is mostly correct, but it's not completely correct. I think it has to do with shortcuts, but it also has to do with memories. And it mainly has to do with shortcuts and formulas and memories. You said— let me see if I can find it. I'm going to summarize because of the way I remembered it. You said something to the effect of— it's got to be under shortcuts. What the shortcut is: there are two distinctions here. First, a known multi-hop route, but the shorter route must itself be the graph, not an outside end. The longer route preserves the derivation, exposes exceptions, and allows correction or transfer. Shortcut makes repeated use cheap. A shortcut receipt should record the shortcut actually taken and point to the supporting derivation, not falsely claim that the full derivation ran again. This is powerful because learned pieces can be reused in different runs without repeatedly solving their internals. Yes, that is absolutely true. But also they can be used recursively. I think that is another very important fact, that you can step back one level and make a different decision, make a different choice, examine a different run. And I think that is so important. You can start with an outcome. Let's say I have two things that, pattern-wise, are similar, but they're a little different. I can start at the outcome and work my way step by step backwards till I find a decision that might become useful for the current pattern. And then I can just work my way forward from there, so that I end up with a new formula, not starting at the beginning trying to figure out the formula. I can say, you know, this pattern to solve this problem is very similar to what this problem looks like, but it's not the same. And I don't have to start over at zero tryi
+=== aa0c7fd5-9 (page; chars 6286-9705 of 34,141; continue with aa0c7fd5-9@9705) ===
+ng to figure it out. I can start at the end and walk backwards and say, Ah, well, if I just make a different decision here, then I can go here to here to here to here to here and get this outcome. And this outcome looks more like the outcome I'm looking for. This might be the formula for this. And then at that point I can go back into memory history, timeline memory history, and say, Hey, have I ever had any other patterns like this that this new formula would solve? So I think that's important. The goal of this turn is for you to see if you can predict what I was going to say in that monologue that you don't have the truncated part, and then maybe decipher over what I just told you.
+
+### 4c. Owner to the browser LLM after pasting the missing section (step-back via DNA, feeling factor, operators)
+<-- that was the missing section... Okay, first, I think you're missing section, while it might not be word for word what I said, and I think it's important. I really think the more that I speak, the more that I'm hearing in what I speak to be the solution. Because right here I was about to say, because you can't account for the tangents. That's an interesting choice of word for me talking and then having a thought that's tangent to everything else that we're talking, and I might interject it. Again, an interesting word, into the composition, even though it might not be relevant to the composition at all. So that's, I think the keys lie not in the way you speak, but in the way I speak. I mean, maybe it's a blend of the both of them. Like the pattern lies in the way that I speak. The rigidity and structure lies in the way that you speak, meaning that what I say is a derivative of what the mathematical processes are that went on behind the door that I can't see, that you can't see. But we have the evidence. So if we can analyze the evidence, then we can come to some hypothesis to how we got to that. Or even better, maybe we can come to an experiment that tests at a smaller level. Instead of trying to look at the corpus of a 25-minute conversation, we can look at smaller things, and I can describe the answer as I'm thinking about it, as I'm working through it. This is kind of going back to James Mind Map that we did not too long ago. But that being said, I actually did write down some notes, which is very rare for me, because I didn't want to forget. First of all, on the process of stepping back—I think you got that very well, by the way. But it dawned on me that the first question that's going to be asked is, Well, where do we look for the answer? How do we know whether or not this step back? Do we, you know, we step back one thing, search all corpus. 15 minutes later, we step back another, search all corpus. That's not how it works. It works when you step back, you look at the DNA in that node, and then you just examine those. What other choices has this node had to make? What were the outcomes? Do any of those outcomes match the outcome that I need? You don't have to go—I mean, you can. There's two ways to do it. Let me put it that way. Maybe there's three ways to do it, or at least there's three ways to look at it. You don't have to go back to a node where you believe the decision might could have been a different decision, and examine the next step and the next step and the next step. What you could do is you could look at that shard of DNA and say, What's the ou
+=== aa0c7fd5-9 (page; chars 9705-13106 of 34,141; continue with aa0c7fd5-9@13106) ===
+tcome of that? And then you could compare that outcome to the other outcome, the outcome that your desired outcome. And you could ask two questions: Is this outcome the desired outcome? That's question one. Question two is: Is this outcome closer to the desired outcome than the previous outcome that we had? And what that tells you is, A, if the new outcome is less than the outcome we have right now and does not equal the desired outcome, then that node under that shard is not the answer. We have a better answer—we have a better working answer now than we have with the other. Then you go to a different shard, rinse and repeat, rinse and repeat, right? If every shard of DNA in that node doesn't give you an outcome that is closer to the desired outcome, then that node is not the problem. You step back up to the next node in line, and you do the same thing. But if you do get an outcome, if you do get an outcome that is closer to the outcome that you want, you step down a DNA process, right? Because maybe you're somewhere in the middle. Then you step down, and then you look at the DNA shards down, and you say—and you check each one to see if choosing a different DNA shard gives you an outcome that's closer to the outcome that you're looking for. Right? And, you know, you just rinse and repeat that process until you find that outcome. And so this is the interesting part, because if it's a known process already, if it's a known process already, then we already know the process and the outcome, right? So that's where the shortcut comes in. The shortcut says we already know this formula, and we already know the outcome of this formula, and this formula lives at this node, which is this formula, right? You know, and what that means is that it's a representation, right? So this sentence went into the encoder-decoder. It got deconstructed into this formula, whatever this formula is, right? That formula eventually lives somewhere in the corpus, and there's a root that carries you to that formula. If we know the formula, then we don't have to know the root, right? We know the answer. This is interesting. So the only formulas that we're looking for are the formulas that we don't know. And you're going to have to stick with me here. But we might know formulas, like we've been talking about, that are similar, but they're not the same. And then we can step backwards in the decision tree to find a different shard of DNA that might have been used, right? And this is going to be interesting, because the reason why certain shards of DNA are chosen is because how we got to that step. And so we'll have to figure out, you know, how we got to that gate, chooses what DNA is the next gate, right? The remainder, the remainder of that equation. So that's the interesting thing. Whenever we walk back up the tree and we start looking at the other DNAs, that's the answer. Yeah. So how we got to that tree will be the exact same in every shard of DNA. Not necessarily true. So that becomes the decisive factor there. We're only looking at the DNAs that arrived at that gate exactly the same, not every DNA in that neuron. We're only looking at the ones that arrived at that gate up until that point, exactly the same. We're not looking at—and then we're excluding.And then we're excluding the remainder of that, and we're testing each other run that got to the gate the same way to s
+=== aa0c7fd5-9 (page; chars 13106-16525 of 34,141; continue with aa0c7fd5-9@16525) ===
+ee if we can get closer to the answer. And then we go, if we do get closer to the answer, then we go to the end of that run. We step back one step and look to see if any of the decisions in that tree that is further down line get us closer to the answer. And this is the reason why I say that it's the unknowns that cause the problems. And we're looking for the formulas, but we already have the formulas. The formulas are the runs. What we don't know how to do accurately yet is how, or maybe we do, we just don't know what we're doing and we're not recording what we're doing. But that's why the graph is so important, and that's why the runs are simplest equations. Those runs are the formulas for all of it. The simplest runs are the simplest formulas, and the longer runs are the more complicated formulas. The multi-variable runs are the, you know, even more complicated formulas, and the super high math ones are the most complicated formulas that might involve arrays of formulas and then picking certain formulas out of that array, you know, to choose. You know, it might require formulas upon formulas upon formulas just to decide what formula we're going to do under the circumstances. You're gonna have to bear with me on this because I kind of got interrupted. I think I talked about the decision tree enough. I started talking about the formulas from the graph. I think that if the graph, the graph will tell us the formulas. We just have to understand what the hops are and what the jumps are as far as operators, right? If a question mark is a division, or if an exclamation point is an exponent, or if a, you know, a statement is just a single run and linear algebraic expression is, you know, equals a comma. You know, we just have to figure out what the operators are. We know the operators that control a sentence, you know, but we have to figure out what those are in perspective to the equation that we get, you know, what the nouns are, what the equation is of a noun versus a verb versus an adjective versus an adverb versus a proposition versus a, you know, whatever, being verb. You know, all of those different things as far as language goes become their own formulas that figure out how we know where to put a period versus a comma versus an exclamation point versus a question mark versus whatever else. And I don't know. I mean, we might have to look back to an English, you know, textbooks to see what we learned, like how we learn English composition and grammar. It might be an interesting concept. Also, you had mentioned about the memories and how finding memories. I'm going to tell you right now that generally speaking, memories are, to me, memories are a feeling. That's the first search. And it's not like a touch feeling. It's like a combination of touch feeling and internal feeling that makes the pattern. Like I look at something, and the first thing I look at is how I feel about this. Now whether it's because I'm holding a glass of hot water and my hand's getting hot, or I'm reading text and I have an inner feeling, but that inner feeling or that feeling association is the pattern, generally, that goes back to the... that's the quick route to find a memory. Can I remember a time whenever I felt this way? Felt this pattern, right? And then I can go into that pattern and see if that memory is usable at all. It might not be usable at all. For some people, I think it'
+=== aa0c7fd5-9 (page; chars 16525-19897 of 34,141; continue with aa0c7fd5-9@19897) ===
+s a timeline, and this might be, you know, a better way to do it, or this might actually be just another way to do it. For me, if you ask me what happened last Wednesday, unless it was a historic event, like last Wednesday was my birthday or something, or somebody died, or, you know, I got married last Wednesday, or... And even, like if I got married last Wednesday, probably wouldn't remember it as last Wednesday. I'd remember the feeling. You know, if you ask me about how you felt when you got married, I'd be able to give you a laundry list of feelings. You know, but I wouldn't be able to tell you the day. And I'm telling you that to me it is the epitome of different than many people. Because my wife, for example, you could ask her what happened last week, last month, last year, on this day, and chronologically, I think she would figure it out. And the longer you go back, the longer it would take her to figure it out. But I feel like a lot of the time that's how she stores memories, is based on time logic. Where my memories land in a timeline, but they're accessed or sourced through memory logic—or not memory logic, through feeling logic, generally. That's the fastest way to find them, because the patterns of the feelings, which I have to describe that. The feelings are not mad, sad, glad, happy, whatever. That's not what I'm meaning. I'm meaning that the feeling of confused, happy, sad, glad, hot, you know, all of the feelings, a mixture of that all mixed in gives me the feeling factor, if you will, right? Of whatever situation I'm in. And then I can go back, essentially, and look at feeling factors, right? I mean, that would be the first way. And if I had a feeling factor of 272, let's say, right? And I could go back into my timeline and look for every feeling factor that was 272. And at first glance, I would be able to tell if the way that factor was composed matched. You know, does the formula that composed this memory and this feeling factor match the formula that I used to get here? Right? If they equal, then that feeling factor becomes part of the list of memories that I want to look at, that I want to dig deeper into. And I might do it then, or I might put it in the list. I might continue, you know, so that I end up with a list of memories seven deep of the times that I felt this way exactly. And then at that point is whenever you can go one step further and say, do any of these processes, you know, problem, process, outcome, conclusion, match what I'm looking for? And are any of these outcomes proven to be good for this? At that point, if I find one that is, then I can say, here we go. This is where we're at. So, and I think it's important—on my notes here it says missing words. I think it's important to understand that when, you know, a problem that we don't know the answer to is basically just a missing word, right? It's not the same, but metaphorically it basically is. It's just a hole in the graph. It doesn't have a process that ends at that place. All we're trying to do is to find a process that ends up spawning that neuron. And so it goes back to the formula that's already in the graph. The simplest equation, and knowing what the different operators are, you know, what the different things we do at the operator level: comma, period, slash, brackets, question mark, exclamation mark, whatever we c
+=== aa0c7fd5-9 (page; chars 19897-23086 of 34,141; continue with aa0c7fd5-9@23086) ===
+an do to a sentence that changes the outcome of that sentence, it should probably have some sort of correlation to an operator. And so maybe, and this is pretty interesting, maybe tense would be another one: past, present. You know, all those are operator functions.I'm going to stop here because I don't want it to get truncated. If it did get truncated, let me know.
+
+## 5. Claude's synthesis (SYNTHESIS.md)
+# Same response, more sources: Claude + Codex + browser + the owner's corrections (Claude, analysis only)
+
+Claude Opus 5.5, 2026-10-01 ~18:20 CDT. Analysis only: no brain, teacher, code or service changed.
+
+Sources:
+- the owner's words: owner_source/64 (the monologue) and 66 (this round's instruction, plus the browser chat, which carries the owner's corrections: the recursive shortcut, the step-back through DNA, the feeling factor, operators)
+- Claude (ANALYSIS.md)
+- Codex (page 93d9bfaa-a; its terminal is in 66)
+- the browser LLM (two turns, in 66)
+- the James Mind Map Q8 record 68b79e93-f
+
+Labels:
+- [OWNER]: the owner's words.
+- [OWNER NEW]: said in the browser chat today, after the three first responses.
+- [3/3] or [2/3]: how many of the three workers' first responses say it.
+- [C] Claude, [X] Codex, [B] browser: one worker.
+- [GUESS]: mine, unverified.
+
+## 0. How I worked (the owner asked)
+
+**Reasoned or stumbled?** Reasoned, with luck in where the answer was.
+- What tipped me off: the "(0 lines hidden)" line, and a jump from "a milli" to "It might be if you take the inverse".
+- Before searching, I noted I should check whether a full copy existed. Codex's record then mentioned a "mother-disconnection example" that was not in my copy, which confirmed real content was missing.
+- I listed three places a full copy could be:
+  1. Cortex. Codex's record said the monologue was not stored verbatim.
+  2. My own harness's paste cache.
+  3. Codex's session files.
+- I searched (2) for a phrase from the visible part ("statistical probability") and found a 26 KB complete copy.
+- The luck: that copy existed only because the owner had pasted the full text into another Claude session at 13:40 and exited. It did NOT come from Codex or from Cortex (the browser chat says "Claude could see Codex's work ... in the cortex"; that is not what happened).
+
+**Did I use Codex's response?** Partly. My first record overstated my independence.
+- During hydration I read the first ~5,300 chars of Codex's page: its project paragraph and formulas 1-3 (recognize, reuse, adapt). Then I stopped on purpose.
+- I did the counting analysis, and only then read the rest of Codex's page.
+- So my what/how/why rule, the order rule and the counts were formed before I saw Codex's versions. My F1/F3/F5 were not independent, although both of ours restate the owner's s87-106 almost word for word.
+- Wake also showed Codex's key name "question-selection" before I started.
+- ANALYSIS.md is corrected. Cortex page 57823c3e-9 cannot be edited; this record carries the correction.
+
+## 1. What each worker added that the others did not
+
+**Claude:**
+- Counts from the owner's words: because x27 vs a reasoning why x1, so a later WHY reads a stored because.
+- About 50 hedges plus 16 "right?"
+=== aa0c7fd5-9 (page; chars 23086-26305 of 34,141; continue with aa0c7fd5-9@26305) ===
+: the owner already speaks in announced guesses.
+- The inverse check after strong claims.
+- Progress counted as unknowns closed.
+- The receipt is the address, so an exact memory is one hop.
+- Missed: the step-back, and that the runs are the formulas.
+
+**Codex:**
+- The decision-relevance test: write two plausible answers; if the next action does not change, the question is weak.
+- A conclusion built on an unresolved guess stays conditional through every later hop.
+- Early rejection still visits every memory unless there is an access route.
+- A shortcut needs its dependencies to still hold.
+- Missed: grounding in the text, and the step-back.
+
+**Browser:**
+- Tests against stories that only sound right: predict a hidden question from what came before; change one input; keep competing explanations.
+- Same value, different arrival (2 from 12-10 vs 12/6).
+- The narrower conclusion "no KNOWN arrival-compatible shard here helps", instead of "this node is not the problem".
+- Using an alternative shard changes the operation, so the task must allow it.
+- Found James Mind Map Q8, the owner's own earlier step-back (checked: record 68b79e93-f says "A failed outcome identifies a better-performing node, whose path is traced backward until it meets the old path; that meeting point is amended with a decision choice").
+- Missed (it had the truncated copy): mother/student, the sixth sense, learning vs execution. Its gap prediction was thematic, as it said itself.
+
+**None of the three had:** stepping back through a node's DNA, and the feeling as the memory index. Both came from the owner's corrections.
+
+## 2. The response again, using all the sources
+
+**The neuron, and how one is made.**
+- A neuron is a gate at a mathematical address; a spelling is only a label. [OWNER, 3/3]
+- It is made by learning: placement from 2-3 relation lines, and it can move. [OWNER]
+- It is also made when a run's receipt lands on an empty address: "it spawns and first row is written". [OWNER]
+- Many derivations can reach the same neuron without being the same experience (12-10 vs 12/6), which is why the arrival matters. [B, fits OWNER NEW]
+- Every key, including ( ) . and Enter, has its own neuron. [OWNER]
+- Each neuron is an exec function. [OWNER msg 21]
+
+**DNA shards.**
+- Rows in a neuron: for a run that arrived a certain way, the formula, the next gate, and the remainder. [OWNER, 3/3]
+- The arrival picks the shard: "how we got to that gate, chooses what DNA is the next gate ... The remainder". [OWNER NEW]
+- They are made at learning and written only where they apply. [OWNER]
+- Why they matter: they are the code, AND they are the list of other choices at that node, which is where you look when you step back. A shard with a known outcome can be compared without re-running it. [OWNER NEW]
+
+**Run receipt.**
+- The exact route: gate keys plus the shards used. [OWNER, 3/3]
+- It is a memory's address and content. [OWNER]
+- It proves a route was taken, not that the conclusion is right. [X, B]
+- It is what lets you walk backward: from the outcome, to the step before, to the decision node. [OWNER NEW]
+
+**Learning and code.**
+- Learning is compute: run the long run once, guess, test, place. Running is execution: su
+=== aa0c7fd5-9 (page; chars 26305-29602 of 34,141; continue with aa0c7fd5-9@29602) ===
+bstitute. [OWNER]
+- "We already have the formulas. The formulas are the runs." The simplest runs are the simplest formulas; longer and multi-variable runs, and arrays of formulas that pick formulas, are the harder ones. [OWNER NEW]
+- So there is no second implementation to write. What is unknown is which runs do which job, what the operators are, and recording what we do.
+
+**Shortcut and long way (corrected).**
+- The shortcut runs the ends of the runs and substitutes: 12,000 deep over 16 formulas becomes 16 hops. [OWNER]
+- It is valid only while its dependencies hold. [X]
+- It is graph structure itself, with a receipt that points to its derivation. [B]
+- The part all three missed [OWNER NEW]:
+  - The long run is also structure you can re-enter. From an outcome that is close but not right, walk back to a decision, take a different shard, and walk forward. That gives a new formula without starting at zero.
+  - Then ask memory which other patterns the new formula solves.
+  - It is recursive: step down into a run that got closer, or step up when nothing at a node helps.
+- Why both: the shortcut makes known things cheap, and the long run holds the decisions you need when something is similar but not the same.
+
+**The step-back, as steps.** [OWNER NEW; Q8 shows the same idea on 2026-09-23]
+1. You have the current outcome O, the desired outcome D, and the receipt of the run that gave O.
+2. Step back one node, N.
+3. The candidates are ONLY the shards at N that arrived the same way as this run. Not every shard in N, never the corpus.
+4. For each candidate, take its known outcome from its receipt and ask two questions:
+   - Q1: does it equal D? If yes, finished.
+   - Q2: is it closer to D than O?
+5. If one is closer: it becomes the working answer. Step down into that run and repeat at its nodes.
+6. If none is closer: step back to the node before N and repeat.
+
+Three refinements:
+- If nothing is closer, the honest record is "no KNOWN arrival-compatible shard here helps"; a shard not learned yet might. [B]
+- Taking another shard changes the operation. A remainder of x4 from 3 gives 12, but that does not answer (1+2)+4, so the task must allow the change. [B]
+- [GUESS] A shard's outcome is known only if a receipt runs through it. A shard used in many runs has many outcomes; compare the one whose arrival matches.
+
+**Memories and the timeline (corrected).**
+- A memory is a run receipt. A repeat is a new row. Each occurrence lands on the timeline with a clock snapshot. [OWNER]
+- Memories LAND on the timeline but, for the owner, are FOUND through the feeling factor: everything felt at once (a hot hand, confused, familiar...) composed into one value, e.g. 272. [OWNER NEW]
+- The recall steps [OWNER NEW]:
+  1. Find the memories with factor 272.
+  2. Check that the formula that composed 272 there matches the one that composed it now. The same value from a different derivation is not a match.
+  3. Keep a short list, about 7.
+  4. Look at each one's problem, process, outcome and conclusion.
+  5. Is the outcome proven good? Then use it.
+- Other people (the owner's wife) find memories by time. Both routes should work. [OWNER NEW]
+- [GUESS] This answers Codex's and the browser's objection (early exit still visits every memory). A composed feeling value is a locatio
+=== aa0c7fd5-9 (page; chars 29602-32799 of 34,141; continue with aa0c7fd5-9@32799) ===
+n, so the memories that share it hang off one neuron: one hop, then compare derivations for the few that are there.
+- My earlier F14 (feeling = a fast recall of how it ended) had it backwards: the feeling is the index, and the outcome is checked after. A familiar feeling says where to look, not that the old answer applies. [B]
+
+**Formula.**
+- A relationship you can run. Formulas compose; the last step compares (=, >, <). [OWNER, 3/3]
+- The runs are the formulas. The graph will show them once we know the operators of the hops: ? ! . , brackets, tense, parts of speech. Maybe from English grammar books. [OWNER NEW]
+- The owner's two guesses partly disagree. On 2026-09-30 (msg 02): "I go run?" = (run)^2 and "!" = ^3. Today: "?" = division and "!" = exponent. They agree on "!" and differ on "?". That is a test to run, not one for me to pick.
+- A test set: "The door is open." / "The door is open?" / "Why is the door open?". [B]
+
+**Missing word.**
+- An unknown problem is a hole in the graph, where no process ends. Solving it means finding a process that spawns that neuron. [OWNER NEW]
+- Sometimes the neuron exists and only the route is missing. [B]
+
+**Reasoning and question selection.**
+- The question names what is missing: WHAT = a value, HOW = a route, WHY = the cause of a mismatch, HAVE-I-EVER = a memory for a new pattern. The question the others depend on goes first. [3/3, OWNER's s87-106 and s215-227]
+- A later WHY reads a stored because; ask it only when that because is empty. [C]
+- Write two plausible answers; if the next step would not change, ask something else. [X]
+- Check by prediction: hide the question and predict it from what came before. [B]
+- [GUESS] The owner's s319 ("how did he know how to ask the question why?") IS the step-back applied to speech. From the answer (why = ?) step back one node to the decision that picked the question. The procedure that finds another DNA shard also finds why a question was asked.
+- The owner's new point: the pattern is in how the owner speaks, including tangents and interjections. Our speech is the rigid part. The owner's words are the evidence of the math behind the door, so test smaller pieces (James Mind Map style). [OWNER NEW]
+
+**Guess.**
+- The neuron must know it is guessing, after the moment too. [OWNER]
+- Anything built on an unresolved guess stays conditional through every later hop. [X]
+- The most useful guess is a specific branch: "this run fits up to node N; shard B instead of A may give the outcome I need". It has an origin, a change, and a check (Q1/Q2). [B, OWNER NEW]
+- The owner already talks this way: about 50 hedges in 335 sentences, the same markers the Q8 record listed. [C]
+
+**Progress.**
+- Closer to the desired outcome than before means progressing; farther means roll back; equal means finished. [OWNER]
+- The same two questions (Q1, Q2) drive the step-back. [OWNER NEW]
+- A distance works for numbers, not yet for language. [B]
+- Results that cannot be compared stay open. [X]
+
+## 3. Where we were wrong, and what corrected us
+
+- All three: the long run was only evidence or a fallback. It is a map of decisions to re-enter. [OWNER NEW]
+- All three: "the formulas don't exist yet". T
+=== aa0c7fd5-9 (page; chars 32799-34141 of 34,141; end) ===
+hey are the runs; the operators and the record of what we do are what is missing. [OWNER NEW]
+- Claude: feeling as a recall of the outcome. It is the index.
+- Codex and the browser: search must scan unless an index is learned. The feeling factor is the owner's index. [GUESS that it fits]
+- Claude: "two independent lines agree". Only partly independent (section 0).
+
+## 4. What the three-way comparison showed [GUESS]
+
+The three agreed on the core, and each found something the others missed. The biggest gains came from the owner's corrections, not from comparing us. The disagreements were the useful part: early rejection vs an index led to the feeling factor.
+
+## Next (one step, not run)
+
+Write the step-back as one small experiment on a COPY of the brain, then propose it to the owner before running anything:
+- three taught runs: a compatible shard with a useful outcome, a tempting outcome with a different arrival, and a shard with an unknown outcome (the browser's design)
+- the mother is cut off from the step being tested
+- each step is labeled existing or missing
+
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: approve or change the small step-back experiment before it runs
+NEXT_ACTION: Write the step-back procedure as one small copy-brain experiment (3 taught runs), steps labeled existing/missing; propose before running.
+STATE: READY

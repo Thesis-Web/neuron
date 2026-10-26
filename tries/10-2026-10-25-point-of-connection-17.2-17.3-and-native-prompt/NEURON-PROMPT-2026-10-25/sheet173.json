@@ -1,0 +1,182 @@
+[
+ [
+  "teach learn:",
+  "learn: = INSERT INTO var ( run , name , value ) VALUES ( :run , ':x' , trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) ) ; INSERT INTO source ( word , run ) SELECT :x , :run WHERE NOT EXISTS ( SELECT 1 FROM definition WHERE word = :x AND src <> 'node' ) ; SELECT count ( * ) FROM memory WHERE mark LIKE 'definition%' AND run IN ( SELECT id FROM run WHERE kind = 'defrow' AND subject = :x ) ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "teach define:",
+  "define: = INSERT INTO var ( run , name , value ) VALUES ( :run , ':x' , trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) ) ; SELECT substr ( line , instr ( line , '/build' ) + 7 ) FROM memory WHERE mark LIKE 'definition%' AND run IN ( SELECT id FROM run WHERE kind = 'defrow' AND subject = :x ) ORDER BY id LIMIT 1 ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "teach run:",
+  "run: = INSERT INTO input ( line , direction , parent , kind ) SELECT trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) , 'heard' , :run , 'line' WHERE trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) <> '' ;"
+ ],
+ [
+  "teach test:",
+  "test: = INSERT INTO input ( line , direction , parent , kind ) SELECT trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) , 'heard' , :run , 'test' WHERE trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) <> '' ; SELECT value FROM var WHERE run = :run AND name = ':test' ORDER BY id DESC LIMIT 1 ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "teach build:",
+  "build: = INSERT INTO var ( run , name , value ) VALUES ( :run , ':x' , trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) ) ; INSERT INTO input ( line , direction , parent , kind , subject , word ) SELECT 'return' || char ( 32 ) || 'from' || char ( 32 ) || 'build' || char ( 32 ) || d.word || char ( 32 ) || 'from' || char ( 32 ) || d.src || char ( 32 ) || '/build' || char ( 32 ) || d.words , d.word , :run , 'defrow' , d.word , 'build:' FROM definition d WHERE d.word = :x AND d.src <> 'node' AND trim ( coalesce ( d.words , '' ) ) <> '' AND NOT EXISTS ( SELECT 1 FROM run r WHERE r.kind = 'defrow' AND r.subject = d.word AND substr ( r.line , instr ( r.line , '/build' ) + 7 ) = d.words ) LIMIT 8 ; SELECT count ( * ) FROM memory WHERE mark LIKE 'definition%' AND run IN ( SELECT id FROM run WHERE kind = 'defrow' AND subject = :x ) ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "teach meaning:",
+  "meaning: = INSERT INTO var ( run , name , value ) VALUES ( :run , ':x' , trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) ) ; SELECT :x || char ( 32 ) || 'place' || char ( 32 ) || coalesce ( ( SELECT x || ',' || y || ',' || z FROM place WHERE word = :x AND ended = 0 ORDER BY id DESC LIMIT 1 ) , 'none' ) || char ( 32 ) || 'definitions' || char ( 32 ) || ( SELECT count ( * ) FROM memory WHERE mark LIKE 'definition%' AND run IN ( SELECT id FROM run WHERE kind = 'defrow' AND subject = :x ) ) || char ( 32 ) || 'formula' || char ( 32 ) || coalesce ( ( SELECT origin FROM formula WHERE word = :x AND ended = 0 ) , 'none' ) ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "teach print:",
+  "print: = SELECT 'path' || char ( 32 ) || coalesce ( ( SELECT group_concat ( e.word , char ( 32 ) ) FROM receipt r JOIN encoder e ON e.gate = r.gate WHERE r.run = :prev ) , '' ) || char ( 32 ) || 'sheet' || char ( 32 ) || coalesce ( ( SELECT group_concat ( name || '=' || coalesce ( value , '' ) , ';' ) FROM var WHERE run = :prev ) , '' ) ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "teach backpop:",
+  "backpop: = INSERT INTO place ( word , x , y , z , t ) SELECT d.word , 10 * coalesce ( ( SELECT CAST ( m.text AS INTEGER ) FROM definition m WHERE m.word = d.word AND m.src = 'measured' AND m.hw LIKE d.word || ':rows' ORDER BY m.id LIMIT 1 ) , 0 ) , 10 * coalesce ( ( SELECT CAST ( m.text AS INTEGER ) FROM definition m WHERE m.word = d.word AND m.src = 'measured' AND m.hw LIKE d.word || ':structure' ORDER BY m.id LIMIT 1 ) , 0 ) , 10 * coalesce ( ( SELECT CAST ( m.text AS INTEGER ) FROM definition m WHERE m.word = d.word AND m.src = 'measured' AND m.hw LIKE d.word || ':text' ORDER BY m.id LIMIT 1 ) , 0 ) , ( SELECT coalesce ( max ( id ) , 0 ) FROM event ) FROM ( SELECT DISTINCT word FROM definition WHERE src = 'measured' ) d WHERE NOT EXISTS ( SELECT 1 FROM place p WHERE p.word = d.word AND p.ended = 0 ) ; SELECT count ( * ) FROM place WHERE ended = 0 ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "teach place:",
+  "place: = INSERT INTO var ( run , name , value ) VALUES ( :run , ':x' , trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) ) ; INSERT INTO place ( word , x , y , z , t ) SELECT :x , 10 * coalesce ( ( SELECT CAST ( text AS INTEGER ) FROM definition WHERE word = :x AND src = 'measured' AND hw LIKE :x || ':rows' ORDER BY id LIMIT 1 ) , 0 ) , 10 * coalesce ( ( SELECT CAST ( text AS INTEGER ) FROM definition WHERE word = :x AND src = 'measured' AND hw LIKE :x || ':structure' ORDER BY id LIMIT 1 ) , 0 ) , 10 * coalesce ( ( SELECT CAST ( text AS INTEGER ) FROM definition WHERE word = :x AND src = 'measured' AND hw LIKE :x || ':text' ORDER BY id LIMIT 1 ) , 0 ) , ( SELECT coalesce ( max ( id ) , 0 ) FROM event ) ;"
+ ],
+ [
+  "bind learn :",
+  "learn : -> learn:"
+ ],
+ [
+  "bind define :",
+  "define : -> define:"
+ ],
+ [
+  "bind run :",
+  "run : -> run:"
+ ],
+ [
+  "bind test :",
+  "test : -> test:"
+ ],
+ [
+  "bind build :",
+  "build : -> build:"
+ ],
+ [
+  "bind find meaning :",
+  "find meaning : -> meaning:"
+ ],
+ [
+  "bind print run :",
+  "print run : -> print:"
+ ],
+ [
+  "bind run backpop",
+  "run backpop -> backpop:"
+ ],
+ [
+  "bind place :",
+  "place : -> place:"
+ ],
+ [
+  "teach find:",
+  "find: = INSERT INTO var ( run , name , value ) VALUES ( :run , ':what' , trim ( CASE WHEN substr ( trim ( :after ) , 1 , 1 ) = ':' THEN substr ( trim ( :after ) , 2 ) ELSE :after END ) ) ; INSERT INTO var ( run , name , value ) VALUES ( :run , ':kind' , substr ( :what || char ( 32 ) , 1 , instr ( :what || char ( 32 ) , char ( 32 ) ) - 1 ) ) ; INSERT INTO var ( run , name , value ) VALUES ( :run , ':arg' , replace ( trim ( substr ( :what || char ( 32 ) , instr ( :what || char ( 32 ) , char ( 32 ) ) + 1 ) ) , '\"' , '' ) ) ; SELECT CASE :kind WHEN 'memory' THEN ( SELECT group_concat ( 'memory' || char ( 32 ) || m.id || ':' || char ( 32 ) || m.line || char ( 32 ) || '=' || char ( 32 ) || coalesce ( m.output , '' ) , char ( 10 ) ) FROM ( SELECT m.id , m.line , m.output FROM memory m WHERE :arg = 'last' OR ( char ( 32 ) || m.line || char ( 32 ) ) LIKE '%' || char ( 32 ) || :arg || char ( 32 ) || '%' ORDER BY m.id DESC LIMIT CASE WHEN :arg = 'last' THEN 1 ELSE 5 END ) m ) WHEN 'formula' THEN ( SELECT group_concat ( f.word || char ( 32 ) || '=' || char ( 32 ) || substr ( coalesce ( ( SELECT group_concat ( e.word , char ( 32 ) ) FROM receipt r JOIN encoder e ON e.gate = r.gate WHERE r.run = f.run ) , '' ) , 1 , 300 ) , char ( 10 ) ) FROM ( SELECT word , run FROM formula WHERE ended = 0 AND ( :arg = 'last' OR word LIKE '%' || :arg || '%' ) ORDER BY id DESC LIMIT CASE WHEN :arg = 'last' THEN 1 ELSE 5 END ) f ) WHEN 'definition' THEN ( SELECT group_concat ( mark || ':' || char ( 32 ) || substr ( line , instr ( line , '/build' ) + 7 , 120 ) , char ( 10 ) ) FROM ( SELECT m.mark , m.line FROM memory m JOIN run r ON r.id = m.run WHERE r.kind = 'defrow' AND r.subject = :arg AND m.mark LIKE 'definition%' ORDER BY m.id LIMIT 8 ) ) WHEN 'relation' THEN ( SELECT group_concat ( a || char ( 32 ) || rel || char ( 32 ) || b , ';' ) FROM relation WHERE a = :arg OR b = :arg ) WHEN 'place' THEN ( SELECT word || char ( 32 ) || x || ',' || y || ',' || z FROM place WHERE word = :arg AND ended = 0 ORDER BY id DESC LIMIT 1 ) END ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "teach apply:",
+  "apply: = INSERT INTO var ( run , name , value ) VALUES ( :run , ':what' , trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) ) ; INSERT INTO var ( run , name , value ) VALUES ( :run , ':a' , substr ( :what || char ( 32 ) , 1 , instr ( :what || char ( 32 ) , char ( 32 ) ) - 1 ) ) ; INSERT INTO var ( run , name , value ) VALUES ( :run , ':rest' , trim ( substr ( :what || char ( 32 ) , instr ( :what || char ( 32 ) , char ( 32 ) ) + 1 ) ) ) ; INSERT INTO relation ( a , rel , b ) SELECT :a , rtrim ( substr ( :rest , 1 , length ( :rest ) - length ( replace ( :rest , rtrim ( :rest , replace ( :rest , char ( 32 ) , '' ) ) , '' ) ) ) ) , replace ( :rest , rtrim ( :rest , replace ( :rest , char ( 32 ) , '' ) ) , '' ) WHERE :rest <> '' AND instr ( :rest , char ( 32 ) ) > 0 ; INSERT INTO relation ( a , rel , b ) SELECT :a , rtrim ( substr ( text , 1 , length ( text ) - length ( replace ( text , rtrim ( text , replace ( text , char ( 32 ) , '' ) ) , '' ) ) ) ) , replace ( text , rtrim ( text , replace ( text , char ( 32 ) , '' ) ) , '' ) FROM definition WHERE word = :a AND src = 'map' AND :rest = '' ; SELECT count ( * ) FROM relation WHERE a = :a ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "teach redefine:",
+  "redefine: = INSERT INTO var ( run , name , value ) VALUES ( :run , ':x' , trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) ) ; UPDATE memory SET mark = mark || char ( 32 ) || 'wrong' WHERE id = ( SELECT min ( id ) FROM memory WHERE mark LIKE 'definition%' AND mark NOT LIKE '%wrong' AND run IN ( SELECT id FROM run WHERE kind = 'defrow' AND subject = :x ) ) ; UPDATE memory SET ended = 1 WHERE ended = 0 AND direction = 'heard' AND line LIKE '%' || :x || '%' ; SELECT substr ( line , instr ( line , '/build' ) + 7 ) FROM memory WHERE mark LIKE 'definition%' AND mark NOT LIKE '%wrong' AND run IN ( SELECT id FROM run WHERE kind = 'defrow' AND subject = :x ) ORDER BY id LIMIT 1 ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "re-teach define: (skips definitions marked wrong)",
+  "define: = INSERT INTO var ( run , name , value ) VALUES ( :run , ':x' , trim ( substr ( :after , instr ( :after , ':' ) + 1 ) ) ) ; SELECT substr ( line , instr ( line , '/build' ) + 7 ) FROM memory WHERE mark LIKE 'definition%' AND mark NOT LIKE '%wrong' AND run IN ( SELECT id FROM run WHERE kind = 'defrow' AND subject = :x ) ORDER BY id LIMIT 1 ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "re-teach backpop: (alike meanings get new formulas and triggers)",
+  "backpop: = INSERT INTO formula ( word , run , origin ) SELECT r.b , f.run , 'backpop' FROM relation r JOIN formula f ON f.word = r.a AND f.ended = 0 WHERE r.rel IN ( 'like' , 'alike' , 'similar' ) AND NOT EXISTS ( SELECT 1 FROM formula g WHERE g.word = r.b AND g.ended = 0 ) ; INSERT INTO formula ( word , run , origin ) SELECT r.a , f.run , 'backpop' FROM relation r JOIN formula f ON f.word = r.b AND f.ended = 0 WHERE r.rel IN ( 'like' , 'alike' , 'similar' ) AND NOT EXISTS ( SELECT 1 FROM formula g WHERE g.word = r.a AND g.ended = 0 ) ; INSERT INTO var ( run , name , value ) VALUES ( :run , ':a' , ( SELECT a FROM relation WHERE rel IN ( 'like' , 'alike' , 'similar' ) ORDER BY id DESC LIMIT 1 ) ) ; INSERT INTO var ( run , name , value ) VALUES ( :run , ':ag' , 'g' || ( SELECT gate FROM encoder WHERE word = :a ) ) ; INSERT INTO bindrow ( gate , arrival , remainder , trig , run ) SELECT ( SELECT gate FROM encoder WHERE word = r.b ) , d.arrival , d.remainder , d.trigger , :run FROM :ag d , relation r WHERE r.a = :a AND r.rel IN ( 'like' , 'alike' , 'similar' ) AND d.trigger IS NOT NULL AND ( SELECT gate FROM encoder WHERE word = r.b ) IS NOT NULL ; SELECT ( SELECT count ( * ) FROM formula WHERE origin = 'backpop' ) || char ( 32 ) || 'formulas' || char ( 32 ) || ( SELECT count ( * ) FROM bindrow WHERE run = :run ) || char ( 32 ) || 'rows' ; INSERT INTO say ( run , text ) VALUES ( :run , :found ) ;"
+ ],
+ [
+  "bind find :",
+  "find : -> find:"
+ ],
+ [
+  "bind find memory",
+  "find memory -> find:"
+ ],
+ [
+  "bind find formula",
+  "find formula -> find:"
+ ],
+ [
+  "bind find definition",
+  "find definition -> find:"
+ ],
+ [
+  "bind find relation",
+  "find relation -> find:"
+ ],
+ [
+  "bind find place",
+  "find place -> find:"
+ ],
+ [
+  "bind apply :",
+  "apply : -> apply:"
+ ],
+ [
+  "bind redefine :",
+  "redefine : -> redefine:"
+ ],
+ [
+  "learn : store",
+  "learn : store"
+ ],
+ [
+  "find : memory last",
+  "find : memory last"
+ ],
+ [
+  "find memory \"store\"",
+  "find memory \"store\""
+ ],
+ [
+  "find formula last",
+  "find formula last"
+ ],
+ [
+  "find formula \"learn:\"",
+  "find formula \"learn:\""
+ ],
+ [
+  "apply : store",
+  "apply : store"
+ ],
+ [
+  "find relation store",
+  "find relation store"
+ ],
+ [
+  "apply : learn like study",
+  "apply : learn like study"
+ ],
+ [
+  "run backpop",
+  "run backpop"
+ ],
+ [
+  "study : cat",
+  "study : cat"
+ ],
+ [
+  "define : store",
+  "define : store"
+ ],
+ [
+  "redefine : store",
+  "redefine : store"
+ ],
+ [
+  "define : store",
+  "define : store"
+ ],
+ [
+  "find definition store",
+  "find definition store"
+ ]
+]

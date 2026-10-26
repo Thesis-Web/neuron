@@ -1,0 +1,421 @@
+{
+ "version": "v12-plan-2026-09-26",
+ "tags": {
+  "BUILT": "exists in neuron-v11",
+  "DESIGN": "stated by the owner",
+  "PROPOSED": "Claude's mechanism, not yet ruled on",
+  "OPEN": "undecided; do not build",
+  "untagged": "PROPOSED unless it quotes the owner or v11"
+ },
+ "born_with": {
+  "tag": "DESIGN",
+  "neuron": "0",
+  "sheets": [
+   "hearing",
+   "sight",
+   "touch",
+   "smell",
+   "taste",
+   "internal"
+  ],
+  "signals": [
+   {
+    "name": "smile",
+    "meaning": "a desire was satisfied (meaning PROPOSED; the owner defined cry, crying, screaming)"
+   },
+   {
+    "name": "cry",
+    "meaning": "I desire something"
+   },
+   {
+    "name": "crying",
+    "meaning": "you gave me something, it was not what I desired"
+   },
+   {
+    "name": "screaming",
+    "meaning": "you gave me something else, still not what I desired"
+   }
+  ],
+  "rules": [
+   "idea rule: values of an observed equation become variables (BUILT v9)",
+   "constructor principle: a claim holds if it holds at the base and survives every constructor (BUILT v10)",
+   "observe: the change-set of cells each turn is the student's input (DESIGN)",
+   "obligation: the smallest open desire becomes the next signal or question (BUILT, re-scoped)"
+  ],
+  "heads": {
+   "tag": "OPEN",
+   "list": [
+    "cons/nil (sequences; BUILT in v11)",
+    "isa/said (fact heads; BUILT in v11)",
+    "true/false (BUILT in v11)"
+   ],
+   "note": "whether V12 is born with these or must earn them is undecided"
+  }
+ },
+ "sheets": [
+  {
+   "key": "hearing",
+   "question": "what was said, by whom",
+   "cols": [
+    "WHO",
+    "KIND",
+    "SAID",
+    "APPLY"
+   ],
+   "tag": "DESIGN (sheet) / PROPOSED (columns)"
+  },
+  {
+   "key": "sight",
+   "question": "where in the structure",
+   "cols": [
+    "ENTERED AT",
+    "BORN",
+    "TOUCHED",
+    "MERGED"
+   ],
+   "tag": "DESIGN / PROPOSED"
+  },
+  {
+   "key": "touch",
+   "question": "how much contact",
+   "cols": [
+    "STEPS",
+    "SECONDS",
+    "LANES",
+    "BRAKES"
+   ],
+   "tag": "DESIGN / PROPOSED"
+  },
+  {
+   "key": "smell",
+   "question": "with what, using what",
+   "cols": [
+    "LAWS USED",
+    "LESSON",
+    "RECEIPT"
+   ],
+   "tag": "DESIGN / PROPOSED"
+  },
+  {
+   "key": "taste",
+   "question": "to what effect",
+   "cols": [
+    "STATUS",
+    "DNA+",
+    "PROVED",
+    "RIGHT/WRONG"
+   ],
+   "tag": "DESIGN / PROPOSED"
+  },
+  {
+   "key": "internal",
+   "question": "why",
+   "cols": [
+    "EVENT",
+    "CAUSE",
+    "EXPECTED",
+    "QUESTION"
+   ],
+   "tag": "DESIGN / PROPOSED"
+  }
+ ],
+ "voice": {
+  "tag": "DESIGN (levels exist) / PROPOSED (the specific gates)",
+  "levels": [
+   {
+    "level": 0,
+    "name": "signals",
+    "can_emit": "smile \u00b7 cry \u00b7 crying \u00b7 screaming",
+    "unlock": "born with it"
+   },
+   {
+    "level": 1,
+    "name": "point",
+    "can_emit": "the id of a cell or neuron it wants attention on",
+    "unlock": "first change-set it observes that contains a cell it wrote itself (first 'me do')"
+   },
+   {
+    "level": 2,
+    "name": "echo",
+    "can_emit": "an expression it holds, verbatim (a stored term)",
+    "unlock": "it applies a teacher's row itself and the resulting change matches the teacher's earlier demonstration"
+   },
+   {
+    "level": 3,
+    "name": "answer",
+    "can_emit": "a computed value with its receipt",
+    "unlock": "it proves its first law by induction, unaided"
+   },
+   {
+    "level": 4,
+    "name": "explain",
+    "can_emit": "a why: the cause chain behind a change",
+    "unlock": "it answers a teacher's 'why did you gain neurons' with a complete receipt, unaided"
+   },
+   {
+    "level": 5,
+    "name": "speak",
+    "can_emit": "sentences: cons chains of words as gates",
+    "unlock": "a word gate acquires a DNA path to a numeric gate (the word cluster joins 0), unaided"
+   }
+  ]
+ },
+ "receipt": {
+  "tag": "DESIGN (numbers) / PROPOSED (grammar)",
+  "form": "n<neuron#>\u00b7i<gate#>\u00b7s<shard#>\u00b7o<gate#> repeated; ends when o == i",
+  "example": "n1\u00b7i0\u00b7s1\u00b7o1 \u00b7 n2\u00b7i1\u00b7s3\u00b7o1 (the sketch's run 2, receipt 01131)",
+  "rule": "neuron numbers, gate numbers and shard numbers are each one global counter; the gate's expression is its graph location"
+ },
+ "stages": [
+  {
+   "id": "S0",
+   "name": "birth",
+   "learned_turns": [
+    0,
+    0
+   ],
+   "teacher_turns_max": 5,
+   "who_writes": "nobody",
+   "teacher": "starts the student; writes nothing",
+   "student": "one neuron, six blank sheets, four signals; emits cry at end of turn (PROPOSED: an open desire, nothing to satisfy it)",
+   "expect": [
+    "neuron count 1",
+    "all sheets empty",
+    "voice level 0",
+    "structure signature recorded"
+   ],
+   "voice": 0,
+   "v11_turns": [
+    1,
+    1
+   ]
+  },
+  {
+   "id": "S1",
+   "name": "constructors",
+   "learned_turns": [
+    1,
+    4
+   ],
+   "teacher_turns_max": 20,
+   "who_writes": "teacher, then student (garbage)",
+   "teacher": "writes op S/1 on 0 to hearing with APPLY=install, in front of the student; then op P/1 on 0; v11 declared P at turn 12",
+   "student": "observes hearing row, then sight/touch rows change; emits smile when its open desire (something to observe) is met",
+   "expect": [
+    "S and P states born",
+    "sight rows show BORN > 0 with WHO=structure, caused by a teacher row",
+    "student's first cell write attempt may be garbage; the structure records it with WHO=student; the teacher writes RIGHT/WRONG=wrong",
+    "voice level 1 when the change-set contains a cell the student wrote"
+   ],
+   "voice": 1,
+   "v11_turns": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "S2",
+   "name": "addition",
+   "learned_turns": [
+    5,
+    16
+   ],
+   "teacher_turns_max": 60,
+   "who_writes": "teacher, then student",
+   "teacher": "writes x+0 -> x, x+S(y) -> S(x+y), S(P(x)) -> x, P(S(x)) -> x, x+P(y) -> P(x+y); asks 1+1?, 2+3?; asks who/what/why of each change; asks 'can you apply the next one yourself'",
+   "student": "answers by applying rows itself (APPLY with WHO=student); proves S/P lemmas, left zero, commutativity from its own cases",
+   "expect": [
+    "2 lemmas proved unaided in this range (v11 turn 15); left zero and commutativity followed at v11 turn 20",
+    "voice level 1 then 2",
+    "at least one wrong self-installed belief, corrected by the teacher and recorded as an episode"
+   ],
+   "voice": 2,
+   "v11_turns": [
+    4,
+    15
+   ]
+  },
+  {
+   "id": "S3",
+   "name": "negation and subtraction",
+   "learned_turns": [
+    17,
+    24
+   ],
+   "teacher_turns_max": 40,
+   "who_writes": "student",
+   "teacher": "writes neg(0), neg(S(x)), neg(P(x)), x - y -> x + neg(y); asks 3 - 5?; asks why the answer is negative",
+   "student": "applies, computes 3-5 = P(P(0)), answers why with a receipt",
+   "expect": [
+    "subtraction answers with receipts",
+    "voice level 3 on first unaided proof in this stage"
+   ],
+   "voice": 3,
+   "v11_turns": [
+    16,
+    20
+   ]
+  },
+  {
+   "id": "S4",
+   "name": "multiplication and powers",
+   "learned_turns": [
+    25,
+    34
+   ],
+   "teacher_turns_max": 40,
+   "who_writes": "student",
+   "teacher": "writes x*0, x*S(y), x*P(y), x^0, x^S(y); asks 7*8?, 2^10?; then asks 'why did you gain neurons' (968 births measured in v11; the question was not asked in v11)",
+   "student": "computes 2^10 by unary; answers the why from its receipt (the answer text is OPEN \u2014 not scripted)",
+   "expect": [
+    "2^10 = 1024 with ~968 births (measured in v11)",
+    "voice level 4 when the why is answered from the receipt",
+    "the internal sheet's CAUSE for the births is filled by the student, not by the structure"
+   ],
+   "voice": 4,
+   "v11_turns": [
+    21,
+    29
+   ]
+  },
+  {
+   "id": "S5",
+   "name": "positional notation",
+   "learned_turns": [
+    35,
+    44
+   ],
+   "teacher_turns_max": 60,
+   "who_writes": "student",
+   "teacher": "writes digit constructors and carry laws with revisit; asks 100*100?; asks 'which route did you take and why'",
+   "student": "recomputes known unary arrivals through the cheaper route; unary routes stay in DNA as provenance",
+   "expect": [
+    "100*100 answers without the depth brake",
+    "why 100*100 shows the positional route; unary route for 2^10 still recoverable from DNA",
+    "no neuron deleted"
+   ],
+   "voice": 4,
+   "v11_turns": null
+  },
+  {
+   "id": "S6",
+   "name": "division, gcd, fractions",
+   "learned_turns": [
+    45,
+    56
+   ],
+   "teacher_turns_max": 60,
+   "who_writes": "student",
+   "teacher": "writes three-way compare, long division by repeated subtraction, Euclid gcd, lowest terms (v7 laws)",
+   "student": "applies; proposes and proves at least one law about division unaided",
+   "expect": [
+    "10100/2, gcd, lowest terms answer",
+    "one unaided proof in this stage",
+    "a wrong belief about division is installed, contradicted, retracted, and recorded"
+   ],
+   "voice": 4,
+   "v11_turns": null
+  },
+  {
+   "id": "S7",
+   "name": "order, logic, conditionals",
+   "learned_turns": [
+    57,
+    68
+   ],
+   "teacher_turns_max": 60,
+   "who_writes": "student",
+   "teacher": "writes lt/eq/gt over numbers, and/or/not over true/false, if(c, a, b); asks is 3 < 5?, is (3<5) and (2<1)?",
+   "student": "computes truth values; proves de Morgan or a similar law from cases",
+   "expect": [
+    "boolean laws proved unaided",
+    "if reduces only when its condition settles"
+   ],
+   "voice": 4,
+   "v11_turns": null
+  },
+  {
+   "id": "S8",
+   "name": "counting, sets, ratio",
+   "learned_turns": [
+    69,
+    84
+   ],
+   "teacher_turns_max": 80,
+   "who_writes": "student",
+   "teacher": "writes lists (cons/nil) of numbers, length, member, count-if, and ratio as a pair (num, den) in lowest terms; asks 'of these six outcomes how many are even' and 'what fraction'",
+   "student": "computes counts and ratios; the pair (favorable, total) is the first probability",
+   "expect": [
+    "ratio answers in lowest terms",
+    "student names the pair as a fraction using its own word once taught"
+   ],
+   "voice": 4,
+   "v11_turns": null
+  },
+  {
+   "id": "S9",
+   "name": "probability and statistics",
+   "learned_turns": [
+    85,
+    104
+   ],
+   "teacher_turns_max": 100,
+   "who_writes": "student",
+   "teacher": "writes sum, mean as sum/length, frequency table, and probability of an event as count-if/length; asks about coin and die lists; asks 'what do you expect' then shows the outcome",
+   "student": "computes means and probabilities; records EXPECTED vs outcome on the internal sheet; a refuted expectation becomes a why",
+   "expect": [
+    "mean and P(event) over given lists",
+    "EXPECTED column populated by the student",
+    "a refuted expectation asked about unaided"
+   ],
+   "voice": 4,
+   "v11_turns": null
+  },
+  {
+   "id": "S10",
+   "name": "words as gates",
+   "learned_turns": [
+    105,
+    128
+   ],
+   "teacher_turns_max": 75,
+   "who_writes": "student",
+   "teacher": "writes sentences and facts (isa) as in v11; then asks the student to relate a word to a number it already holds (three apples, three forks)",
+   "student": "connects a word gate to a numeric gate by a DNA row it writes itself; voice level 5",
+   "expect": [
+    "the word cluster reaches 0 by at least one DNA path",
+    "voice level 5: the student emits a sentence",
+    "the 'three of a kind' idea appears as a hypothesis from co-arrival"
+   ],
+   "voice": 5,
+   "v11_turns": [
+    32,
+    51
+   ]
+  }
+ ],
+ "structure_locked": [
+  "terms and canonical form",
+  "identity_of (exact identity)",
+  "DNA keyed by (gate, remainder)",
+  "arrival forms and inverse binding",
+  "watches (local back-population)",
+  "reduce (leftmost-innermost, incremental, size brake)",
+  "induction (propose only) and proof by constructor principle",
+  "memory tiers",
+  "sheet schema and the APPLY action",
+  "observer loop",
+  "voice channel and its level gates",
+  "receipt numbering",
+  "teacher protocol"
+ ],
+ "learned_mutable": [
+  "rows on the six sheets",
+  "laws (taught, proved, believed)",
+  "DNA rows",
+  "neurons",
+  "relations rows (later)",
+  "the student's own APPLY decisions",
+  "voice level reached"
+ ]
+}

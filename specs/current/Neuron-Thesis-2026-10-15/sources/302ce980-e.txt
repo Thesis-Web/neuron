@@ -1,0 +1,160 @@
+=== 302ce980-e (page; chars 0-3173 of 10,100; continue with 302ce980-e@3173) ===
+## 1. Where to look
+- Evidence: /home/exnulla/neuron-benchmarks/20261002-claude-stepback/
+  - FINDINGS.md (what the brain stores; what graph code can read)
+  - compare_lessons.py, stepback_lessons.py (the lessons)
+  - test_*.py (copy tests with an oracle)
+  - teach_*_live.py, live-checks*.json (live deploys)
+  - before-live-*.db (backups)
+- Owner texts byte-exact: teacher/owner_source/72 (search ladder, outcome formula, epiphany; "yes proceed"), 73 (answers: build the need as neuron code; build the comparator now).
+- TASK_CHECKLIST.md updated: STANDARD FIX rule; COMPARE-NS-013 and STEPBACK-NS-014 LIVE v1; new ROWS-NS-040 and ARRIVAL-NS-041; SEARCH ladder; EPIPHANY-NS-039.
+
+## 2. How to use Cortex now
+- wake(project="neuron-v2"); the plan line names the next tasks; the brain's new programs:
+  - home/talk.sh --run cmp_judge_run 'D CURRENT NEW'
+  - home/talk.sh --run sb_run 'S R D'
+
+## 3. What to build next
+ROWS-NS-040: a word lists its own formulas as neuron runs (forward-only, laid at learning), so step-back drops its supplied candidate list.
+
+## 4. Owner texts 72 and 73, verbatim
+and no big sweeps or searches inside the brain, targeted small searches that run fast if prove fruitless, expand to a slightly more broad search, think search feelings and pattern in memories, then search formulas via pattern match, then search substitution of known linguistic to formula build patterns,, etc... search is basically do we know this pattern, can it work for what we need, can we adjust a similar pattern to fit this pattern, if we simply don't know can we look at the pattern of the words to build the formula, if that fails can we us know smaller graph formulas to build a pattern to fit the problem, use the process formula ... expected outcome = outcome or current outcome < new outcome | desired outcome adobt new outcome as geeting closer, but still need to find more to make new outcome = desired outcome, current state outcome > new outcome | desired outcome we are geeting further from desired outcome, so keep current state outcome and move on with the experiment to expand it to new outcome = desired outcome... now I think part of 6 th sense is ephimany .. or it has a list that stay active of desired outcomes that we don't know the answer to yet, and checks each new outcome under the same premise to desired outcomes of those tasks, the part we are working on right now the new formula might not work for it, but we might accidently solve a desired outcome with a new formula trying to solve a different problem, and we might be No that won't work for that... but HOLY SHIT it does work for the whole in the graph we couldn't figure out, or what ever else was left open "unknown" at this time. we could preload this with check list desired outcomes, and then while one part of the brain is working on a precise task, if we accidently find something that fixes something else, we can save ourselves double work later. after these, yes proceed
+
+The user answered: "Step-back needs to read route rows (the same-arrival alternatives at a node) and each run's outcome, but no graph instruction can read them today. The graph QUERY reads only tables th
+=== 302ce980-e (page; chars 3173-6216 of 10,100; continue with 302ce980-e@6216) ===
+at have a storage descriptor. How should I give the brain that access under your no-new-Python rule?"="can you not add a run (which becomes the formula) for this... I.e. you figure out what the py you think you need does? then do that with the graph, and name the graph point or points in  the decoder... essentially expand the neuron "code base" to include this capibility... (this should be the standard fix) ... Neuron code can't do this... what does the py code actually do... why can't neuron code actually do... (what does it need) build that that need.. use neuron code to fix the problem... this likely means adding tons of nuerons firguring out the formulas, then using short cuts and substition to make it work at speed. second ... .this is not a blanket "sweep" I hope this is a search based on a question first .. correct... <---I am probably reading your output wrong on that, but just incase I am not.... it sounds like neuron needs a code run fomula (or group of formulas that is READ , and a run formula for ROUTE and a run formula for ROWS ... what I think y'all keep missing is everything is built on building blocks, py,sql,c#,ts,java... all has basic functions that add up or someother operator that makes a much larger formula.... also you don't understand a (function = formula) where as a function is a formula, but a formula does not have to be a function. (kinda like a square to a rectangle analogy) ... anyway <--- remember my suggestions are pseudo code, expample. procceed", "Your question 2, 'is the new outcome closer to the desired outcome than the current one?', needs a comparison, and the graph code has only equality today. How should 'closer' be built?"="I think we always choose not push blockers down the river, so 2 is probably more correct.. meaning if we don't have it, but can build it , we should build it, so we have it, and can use it now, and later if we need it for a different function. ". Read the answers carefully — they may request clarification, changes, or that you not proceed — and follow what they actually say.
+
+## 5. Results
+COMPARE-NS-013 v1:
+- 50 lessons; 518 checks on a copy, 0 failed; median 25.6 ms.
+- Live checks: [
+ {
+  "program": "cmp_judge_run",
+  "args": "10 7 9",
+  "want": "cmp_nearer",
+  "got": "cmp_nearer"
+ },
+ {
+  "program": "cmp_judge_run",
+  "args": "10 7 6",
+  "want": "cmp_farther",
+  "got": "cmp_farther"
+ },
+ {
+  "program": "cmp_judge_run",
+  "args": "10 7 10",
+  "want": "cmp_reached",
+  "got": "cmp_reached"
+ },
+ {
+  "program": "cmp_judge_run",
+  "args": "10 12 8",
+  "want": "cmp_level",
+  "got": "cmp_level"
+ },
+ {
+  "program": "cmp_less_run",
+  "args": "13 200",
+  "want": "cmp_yes",
+  "got": "cmp_yes"
+ },
+ {
+  "program": "cmp_absdiff_run",
+  "args": "3 255",
+  "want": "252",
+  "got": "252"
+ }
+]
+
+
+STEPBACK-NS-014 v1, on a copy:
+- ['summer', 'opposite', 'winter']: want opposite got opposite (19.7 ms)
+- ['summer', 'opposite', 'autumn']: want nextseason got nextseason (43.3 ms)
+- ['summer', 'opposite', 'spring']: want opposite nextseason got opposite 
+=== 302ce980-e (page; chars 6216-9140 of 10,100; continue with 302ce980-e@9140) ===
+nextseason (20.3 ms)
+- ['summer', 'nextseason', 'winter']: want opposite got opposite (19.3 ms)
+- ['winter', 'opposite', 'spring']: want nextseason got nextseason (20.7 ms)
+- ['autumn', 'nextseason', 'summer']: want opposite nextseason got opposite nextseason (20.2 ms)
+- ['big', 'opposite', 'huge']: want very got very (21.8 ms)
+- ['hot', 'opposite', 'scorching']: want very got very (19.4 ms)
+- ['summer', 'opposite', 'big']: want sb_unknown got sb_unknown (22.0 ms)
+- ['fast', 'opposite', 'rapid']: want very got very (20.0 ms)
+
+STEPBACK-NS-014 v1, live checks: [
+ {
+  "program": "sb_run",
+  "args": "summer opposite autumn",
+  "want": "nextseason",
+  "got": "nextseason"
+ },
+ {
+  "program": "sb_run",
+  "args": "summer opposite spring",
+  "want": "opposite nextseason",
+  "got": "opposite nextseason"
+ },
+ {
+  "program": "sb_run",
+  "args": "big opposite huge",
+  "want": "very",
+  "got": "very"
+ },
+ {
+  "program": "sb_run",
+  "args": "summer opposite big",
+  "want": "sb_unknown",
+  "got": "sb_unknown"
+ }
+]
+
+
+## 6. FINDINGS.md
+# STEPBACK-NS-014: what the brain stores and what graph code can read (2026-10-02, Claude)
+
+Read-only map. Queries ran on a copy (/tmp/claude-1000/stepback-map/copy.db). The rail and the live brain were not touched.
+
+## The data is there
+Every run's route is stored step by step.
+- `occurrence.cells.route` is the ordered list of route rows (physics.py:500).
+- Each route row is `dna` kind='route' with these columns:
+  - gate_id
+  - arrival_gate = the receipt of the completed prefix
+  - key_gate
+  - dest_gate
+  - out_gate = the next arrival
+  - via = the shard id
+  - shape j/f/l
+- Rows are written by physics._step (:91-110) through substrate.add_route (:417).
+
+The owner's "DNAs that arrived at that gate exactly the same" is exactly `dna WHERE kind='route' AND gate_id=? AND arrival_gate=? AND until_event IS NULL`. The index `dna_route` already serves that lookup.
+
+Example: 'summer opposite ?' (event 15001)
+- route rows 101289 → 101393 (via shard 101392: summer -opposite-> winter) → 101452
+- memory neuron 11491 (keys summer, opposite, ?)
+- occurrence 344521, outcome ANSWERED, out [winter]
+- At (summer, arrival [summer]) there are 10 sibling route rows. One is `?` → [summer ?], with 5 occurrences: the first ANSWERED, the next 4 UNRESOLVED.
+
+Facts a step-back must respect:
+- A shard is chosen by (gate, key). The arrival chooses the cached route row, which names the shard.
+- Actions, stored-run steps and `--run` programs lay no route rows.
+- Outcome is per occurrence. Lessons and corrections create occurrences too (check event.meta.why).
+- Shards never taken from an arrival have no route row and no known outcome.
+- At ROOT the sibling set is 2,858 rows. Stepping back to ROOT is a big search, which the owner forbids (72). Stop one node short of it.
+
+## What graph code cannot do today
+- No opcode reads route, occurrence or mail rows. QUERY's descriptors are graph data
+=== 302ce980-e (page; chars 9140-10100 of 10,100; end) ===
+, but its SQL is fixed in substrate.py:462-480. It reaches only tables with a `storage_interface` row (today: graph_entries, timenode).
+- No opcode compares "closer". EQ is the only comparison; `<` and `>` exist only inside QUERY.
+- A run's outcome (occurrence.out_gate, cells.out) is not linked anywhere a run can hop to.
+- The no-Python teaching route exists: `means` lessons with @ROLE tokens (learn.py:1250-1271), as rn_/rc_ are taught.
+
+## So
+Q1 ("is this the desired outcome?") is buildable as runs once the route siblings and outcomes are readable. Q2 ("is it closer?") also needs a comparison, which today exists only as Python inside QUERY.
+
+
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: ARRIVAL-NS-041: should the arrival choose the DNA (the owner's model) when V16.2 chooses by (gate, key)?
+NEXT_ACTION: Build ROWS-NS-040 (a word lists its own formulas as neuron runs, laid at learning) on a copy, then live, then drop step-back's supplied list.
+STATE: READY

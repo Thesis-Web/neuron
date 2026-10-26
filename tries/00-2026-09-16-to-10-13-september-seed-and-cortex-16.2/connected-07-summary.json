@@ -1,0 +1,669 @@
+{
+  "runs": [
+    {
+      "id": 1,
+      "parent": null,
+      "actor": "seed",
+      "realm": 0,
+      "state": "done",
+      "steps": 19349,
+      "result": 45
+    },
+    {
+      "id": 2,
+      "parent": null,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 120712,
+      "result": 11456
+    },
+    {
+      "id": 3,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10824
+    },
+    {
+      "id": 4,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10858
+    },
+    {
+      "id": 5,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10886
+    },
+    {
+      "id": 6,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10912
+    },
+    {
+      "id": 7,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10824
+    },
+    {
+      "id": 8,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10858
+    },
+    {
+      "id": 9,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10886
+    },
+    {
+      "id": 10,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10912
+    },
+    {
+      "id": 11,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 124,
+      "result": 11006
+    },
+    {
+      "id": 12,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 680,
+      "result": 11053
+    },
+    {
+      "id": 13,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 10781,
+      "result": 2229
+    },
+    {
+      "id": 14,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10824
+    },
+    {
+      "id": 15,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10858
+    },
+    {
+      "id": 16,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10886
+    },
+    {
+      "id": 17,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10912
+    },
+    {
+      "id": 18,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 124,
+      "result": 11223
+    },
+    {
+      "id": 19,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 680,
+      "result": 11053
+    },
+    {
+      "id": 20,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 10793,
+      "result": 2229
+    },
+    {
+      "id": 21,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10824
+    },
+    {
+      "id": 22,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10858
+    },
+    {
+      "id": 23,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 150,
+      "result": 10886
+    },
+    {
+      "id": 24,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 124,
+      "result": 11384
+    },
+    {
+      "id": 25,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 680,
+      "result": 11053
+    },
+    {
+      "id": 26,
+      "parent": 2,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 979596,
+      "result": 1914
+    },
+    {
+      "id": 27,
+      "parent": 26,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 3597813,
+      "result": 1914
+    },
+    {
+      "id": 28,
+      "parent": 27,
+      "actor": "trial",
+      "realm": 28,
+      "state": "done",
+      "steps": 3905177,
+      "result": 24667
+    },
+    {
+      "id": 29,
+      "parent": 27,
+      "actor": "trial",
+      "realm": 29,
+      "state": "done",
+      "steps": 39701,
+      "result": 43
+    },
+    {
+      "id": 30,
+      "parent": 27,
+      "actor": "trial",
+      "realm": 30,
+      "state": "done",
+      "steps": 3904151,
+      "result": 24667
+    },
+    {
+      "id": 31,
+      "parent": 27,
+      "actor": "trial",
+      "realm": 31,
+      "state": "done",
+      "steps": 37143,
+      "result": 30381
+    },
+    {
+      "id": 32,
+      "parent": 27,
+      "actor": "trial",
+      "realm": 32,
+      "state": "done",
+      "steps": 3905177,
+      "result": 24667
+    },
+    {
+      "id": 33,
+      "parent": 27,
+      "actor": "trial",
+      "realm": 33,
+      "state": "done",
+      "steps": 38966,
+      "result": 43
+    },
+    {
+      "id": 34,
+      "parent": 27,
+      "actor": "trial",
+      "realm": 34,
+      "state": "done",
+      "steps": 37344,
+      "result": 36181
+    },
+    {
+      "id": 35,
+      "parent": 27,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 1117,
+      "result": 1914
+    },
+    {
+      "id": 36,
+      "parent": 27,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 1259,
+      "result": 1914
+    },
+    {
+      "id": 37,
+      "parent": 35,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 53020,
+      "result": 1914
+    },
+    {
+      "id": 38,
+      "parent": 36,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 839600,
+      "result": 1914
+    },
+    {
+      "id": 39,
+      "parent": 37,
+      "actor": "trial",
+      "realm": 39,
+      "state": "done",
+      "steps": 78,
+      "result": 931
+    },
+    {
+      "id": 40,
+      "parent": 37,
+      "actor": "trial",
+      "realm": 40,
+      "state": "done",
+      "steps": 78,
+      "result": 931
+    },
+    {
+      "id": 41,
+      "parent": 38,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 660818,
+      "result": 1914
+    },
+    {
+      "id": 42,
+      "parent": 41,
+      "actor": "trial",
+      "realm": 42,
+      "state": "done",
+      "steps": 1822,
+      "result": 574
+    },
+    {
+      "id": 43,
+      "parent": 41,
+      "actor": "trial",
+      "realm": 43,
+      "state": "done",
+      "steps": 1822,
+      "result": 596
+    },
+    {
+      "id": 44,
+      "parent": 41,
+      "actor": "trial",
+      "realm": 44,
+      "state": "done",
+      "steps": 1822,
+      "result": 778
+    },
+    {
+      "id": 45,
+      "parent": 27,
+      "actor": "trial",
+      "realm": 45,
+      "state": "done",
+      "steps": 670,
+      "result": 931
+    },
+    {
+      "id": 46,
+      "parent": 27,
+      "actor": "trial",
+      "realm": 46,
+      "state": "done",
+      "steps": 3939,
+      "result": 574
+    },
+    {
+      "id": 47,
+      "parent": 27,
+      "actor": "trial",
+      "realm": 47,
+      "state": "done",
+      "steps": 7430,
+      "result": 596
+    },
+    {
+      "id": 48,
+      "parent": 27,
+      "actor": "trial",
+      "realm": 48,
+      "state": "done",
+      "steps": 11143,
+      "result": 778
+    },
+    {
+      "id": 49,
+      "parent": 27,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 233,
+      "result": 1
+    },
+    {
+      "id": 50,
+      "parent": null,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 50107,
+      "result": 41135
+    },
+    {
+      "id": 51,
+      "parent": 50,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 4344,
+      "result": 41145
+    },
+    {
+      "id": 52,
+      "parent": 50,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 4672,
+      "result": 41153
+    },
+    {
+      "id": 53,
+      "parent": 50,
+      "actor": "trial",
+      "realm": 53,
+      "state": "done",
+      "steps": 27904,
+      "result": 41228
+    },
+    {
+      "id": 54,
+      "parent": 50,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 313,
+      "result": 41259
+    },
+    {
+      "id": 55,
+      "parent": 50,
+      "actor": "trial",
+      "realm": 55,
+      "state": "done",
+      "steps": 510864,
+      "result": 41640
+    },
+    {
+      "id": 56,
+      "parent": 50,
+      "actor": "trial",
+      "realm": 56,
+      "state": "done",
+      "steps": 17140,
+      "result": 42228
+    },
+    {
+      "id": 57,
+      "parent": null,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 46569,
+      "result": 42353
+    },
+    {
+      "id": 58,
+      "parent": 57,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 4344,
+      "result": 42361
+    },
+    {
+      "id": 59,
+      "parent": 57,
+      "actor": "owner",
+      "realm": 0,
+      "state": "done",
+      "steps": 4672,
+      "result": 42365
+    },
+    {
+      "id": 60,
+      "parent": 57,
+      "actor": "trial",
+      "realm": 60,
+      "state": "done",
+      "steps": 23614,
+      "result": 5962
+    },
+    {
+      "id": 61,
+      "parent": 57,
+      "actor": "trial",
+      "realm": 61,
+      "state": "done",
+      "steps": 17140,
+      "result": 42228
+    }
+  ],
+  "graph_events": {
+    "language-shard": 7,
+    "label-reference": 70,
+    "literal-effect": 78,
+    "observation-not-truth": 4,
+    "inquiry-required": 1,
+    "history-check": 3,
+    "knowledge-check": 3,
+    "source-request": 3,
+    "search-open": 5,
+    "retired-search": 2,
+    "observational-alternative-not-identity": 348,
+    "search-resource-yield": 2,
+    "expression-consequence": 47,
+    "expression-resource-yield": 1,
+    "constructor-selection": 1,
+    "reduction-inapplicable": 11,
+    "self-generated-discriminating-inquiry": 4,
+    "speech-candidate-effect": 1274,
+    "speech-purpose-satisfied": 4,
+    "expression-formula-step": 24,
+    "encoded-utterance-does-not-mean-purpose": 2,
+    "expression-construction-failed": 2,
+    "unexpressed-purpose-retained": 2,
+    "encoded-utterance-roundtrip": 4,
+    "new-communicative-procedure": 2,
+    "communicative-purpose": 4,
+    "learned-expression-used": 2,
+    "operative-subproblem-relationship": 3,
+    "trial-basis": 9,
+    "candidate-consequence": 9,
+    "executable-revision": 3,
+    "new-executable-capability": 3,
+    "recursive-program-constructed": 1,
+    "recursive-process-acquired": 1,
+    "applicability-shard": 1,
+    "question-findings-used": 2,
+    "execution-basis": 1,
+    "occurrence": 2,
+    "memory-formed": 1,
+    "derived-consolidation": 1,
+    "reconstructed-recollection": 1,
+    "shortcut-use": 1
+  },
+  "physical_faults": [
+    {
+      "id": 3691,
+      "run": 27,
+      "payload": "{\"fault\":16952,\"control\":562}"
+    },
+    {
+      "id": 3693,
+      "run": 27,
+      "payload": "{\"fault\":16952,\"control\":562}"
+    },
+    {
+      "id": 3694,
+      "run": 27,
+      "payload": "{\"fault\":16952,\"control\":562}"
+    },
+    {
+      "id": 3695,
+      "run": 27,
+      "payload": "{\"fault\":16952,\"control\":562}"
+    },
+    {
+      "id": 3843,
+      "run": 27,
+      "payload": "{\"fault\":16952,\"control\":562}"
+    },
+    {
+      "id": 3844,
+      "run": 27,
+      "payload": "{\"fault\":16952,\"control\":562}"
+    },
+    {
+      "id": 3845,
+      "run": 27,
+      "payload": "{\"fault\":16952,\"control\":562}"
+    },
+    {
+      "id": 3847,
+      "run": 27,
+      "payload": "{\"fault\":16952,\"control\":562}"
+    },
+    {
+      "id": 40411,
+      "run": 41,
+      "payload": "{\"fault\":16952,\"control\":562}"
+    }
+  ],
+  "counts": {
+    "object": 1588,
+    "term": 42446,
+    "event": 42300,
+    "revision": 29055,
+    "outbox": 4
+  },
+  "outputs": [
+    {
+      "id": 1,
+      "text": "\"\" ? is learn tally\n"
+    },
+    {
+      "id": 2,
+      "text": "\"c\" ? is learn tally\n"
+    },
+    {
+      "id": 3,
+      "text": "6 maybe\n"
+    },
+    {
+      "id": 4,
+      "text": "6 maybe\n"
+    }
+  ]
+}

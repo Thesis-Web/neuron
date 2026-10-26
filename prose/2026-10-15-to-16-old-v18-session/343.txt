@@ -1,0 +1,4 @@
+... /neuron /neuron2 /cortex ... on the walker... we have had problems here... I think a walker is a chat bot thing...because everytime we add it, 10 turns later we have a chat bot... instead it I understand it correct a walker is just a process that does the things? and those are the formulas in the neuron.. the entire neuron system is a walker.... or at the very least the sixth is the walker... but I don't know for sure yet, but I think if you use a walker you are telling the brain what to do.... and from that point on it can only do what its told,,,, it cannot think for itself, choose and decide
+
+
+(saved Thu Oct 15 14:52:18 CDT 2026, session 69692be7 (neuron-v18 hand-build), extracted verbatim from line 8 of the session .jsonl; the pasted tail of my 342 reply before it is not saved)

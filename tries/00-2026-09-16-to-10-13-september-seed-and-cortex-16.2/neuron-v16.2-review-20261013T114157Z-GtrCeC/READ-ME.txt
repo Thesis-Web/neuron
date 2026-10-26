@@ -1,0 +1,33 @@
+NEURON V16.2 REVIEW CAPTURE
+Started UTC: 2026-10-13T11:41:57Z
+Source directory: /home/exnulla
+Part limit: 450000000 bytes (default 450 MB decimal; below 512 MB).
+
+Scope: the entire selected directory, with NO path exclusions. Includes hidden
+files, .git, dependencies, logs, old artifacts and local database files.
+Symlinks are stored as links, NOT followed. See SYMLINKS.tsv for targets.
+External database servers/volumes and other directories are NOT captured.
+No services, tests, project code, or database commands are started by this script.
+No source files are intentionally written or deleted. No secrets are redacted.
+
+Pause the builders and stop Neuron normally BEFORE capture. Reading a live
+project is not an atomic database snapshot. A passed archive check establishes
+archive integrity, not application/database consistency.
+
+DIRECTORY-SIZES.txt: allocated directory sizes, two levels deep.
+LARGEST-FILES.tsv: 150 largest regular files, logical bytes and relative paths.
+TAR-LOG.txt: archiver diagnostics; live sockets are not normal stored files.
+
+Upload ALL .part-* files plus SHA256SUMS.txt, READ-ME.txt,
+DIRECTORY-SIZES.txt, LARGEST-FILES.tsv, SYMLINKS.tsv and TAR-LOG.txt.
+Only consider the capture ready when VERIFIED.txt exists and FAILED.txt does not.
+
+To verify after downloading all parts into one directory:
+  sha256sum -c SHA256SUMS.txt
+
+To reconstruct the original compressed tar (needs additional disk space):
+  cat -- neuron-v16.2.tar.gz.part-* > neuron-v16.2.tar.gz
+
+To extract directly into a NEW empty review directory instead:
+  mkdir neuron-review-extracted
+  cat -- neuron-v16.2.tar.gz.part-* | tar -xzf - -C neuron-review-extracted

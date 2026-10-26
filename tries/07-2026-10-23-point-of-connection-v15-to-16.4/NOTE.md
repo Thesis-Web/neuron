@@ -1,0 +1,17 @@
+# 07. Point Of Connection v15 to 16.4 (2026-10-23, 00:42 to 13:54)
+
+**Status: "The told block is born here."** (versions audit). Everything from v13 to 17.3 is one lineage: a rule block written in v15 and carried forward byte for byte. "There is nothing in that lineage to step back to." 16.4 is the companion of the reference draft, which was written the same day.
+
+**v15** (row 8). First SQLite neurons as tables `g<N>` with view `land_N`, a miss trigger, and a SQL trigger per DNA row (`hop_<gate>_<shard>`); 377 hand-laid statements (110 tables, 107 triggers, 73 views); `born_go` births by template inside the trigger through a silent `mother(…, NULL, NULL)`; mother in JS with regex `.inbox` routing, silent mode, six canned narrations, row formatting; 21 rule groups: memory exact match, `UPDATE memory SET output = expected` on a wrong answer, an SQL-verb list, nesting cap 3, LIMIT 8, agree (two sources), 3 receipts → 'learned', formulas stored as text. Scores: yes, half, no, no.
+
+**v16 = 16.1 = 16.2 = 16.3 = 16.4** (row 9). Told block and host byte-identical across all five (381 statements); only the drawing changed. From v15: formula = pointer to the run that taught it (no stored text); `memwrong` keeps a history of being wrong; decide reruns the long way when the line before changed (the owner's way, chosen by test E9 against the alternative). Still: the teacher's expected answer overwrites the brain's own when wrong; per-row hop triggers; silent template births; LIMIT 8; agree; the SQL-verb rule; a nesting cap; a proc counter.
+
+**The owner's words.** 10-23, on v15's fixed positions: "you are choosing to place things like a control freak instead of building the system correct to do the work itself". 10-23, on 16.3's layout: "this seems like it might be manipulated to look a specific way... if the graph is correct then where points sit mean something... if not the graph is meaningless". 10-23: "neurons don't hold canned text? ever". 10-23: "no do not tell the brain its name yet." 10-24: "everything after 16.4 just doesn't work... looks like regression"; 10-24 22:18: "in 16.4 it looked correct but it wasn't because it was done correct". 10-23 (the dictation, reference draft §12): "Generally, when a builder decides, it's wrong."
+
+**His design decisions of 10-23** (from the memory of that turn): nothing hand-placed in the graph, only origin; meanings are not only silicon and can differ per DNA row and per run; ports should be neurons; a wrong memory hop is corrected by a reasoning run, not a told rule; I/you is a perspective of the senses.
+
+**Tests.** `tests/NEURON-v15-CHECKS-AND-EXPERIMENTS-2026-10-23.md` and `NEURON-v16-CHECKS-AND-EXPERIMENTS-2026-10-23.md`: 56 checks with controls; E9 decide; E10 define; E11 before/after; E12 "as" (no form works: words fire before the key after them is built); the v16 graph with origin as the only placed point; the browser stack limit (a too-deep line is undone and rerun on the main thread).
+
+**Files.** The six pages; `NEURON-v16-TOLD-BLOCK-2026-10-23.sql` (the 381 statements); `NEURON-v16.4-SOURCES-2026-10-23.tar.gz` (the generator, tests, the owner's verbatim messages of the turn, rebuild instructions).
+
+**Measured, from the draft §9.** "define store" (new words) made 522 schema changes; learning took 13.2 s in the page, 4.8 s native; the same line again from memory 0.015 s. "Until a rule ties place to meaning, a point's x, y, z means nothing measured."

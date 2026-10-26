@@ -1,0 +1,28 @@
+=== 6dfe407e-e (page; chars 0-3766 of 3,766; end) ===
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: none for this hydration and task selection. Owner 74 answers the older arrival question; do not resurrect it as unanswered.
+NEXT_ACTION: Codex: continue PROOF-NS-001 by checking the archived pre-claim evidence for little (reported events 287, 589, 1256), recording what was supplied versus inferred.
+STATE: READY
+
+## 1. Where to look
+Hydration test and task selection completed 2026-10-02, Codex.
+Project/book neuron-v2; active implementation rail /home/exnulla/neuron-v16.2, living brain home/. No historical project was woken.
+Read the three scope perspectives, NEURON_NEXT_SESSION.md, latest wake page 302ce980-e in full, then TASK_CHECKLIST.md. Followed the newer checklist correction to teacher/owner_source/74_claude_2026-10-02T221943.txt.
+Claude's latest recorded lane is ROWS-NS-040 / STEPBACK-NS-014. Owner 74 and checklist additionally cover ARRIVAL-NS-041, PREFIX-NS-042 and SPAWNDEF-NS-043. Treat these as Claude-adjacent work; this session does not claim an instantaneous view of his in-flight actions.
+Selected independent Codex task: PROOF-NS-001, a read-only audit of prior learning claims, starting with little. No implementation task or live experiment was started.
+Initial audit sources: Cortex page 9a40db66-b and /home/exnulla/neuron-benchmarks/20260930-claude-nameless-place/RESULTS.md.
+That archived report states little was taught at event 589 (small alike little), its location and derived part-of-speech preceded the label at event 287, and an explicit definition was taught at event 1256. It explicitly narrows the later large opposite little result to a relation guess/confirmation, not acquisition of a new word.
+These are independently read archived assertions, NOT independently verified event/database observations. PROOF-NS-001 remains open; this is its first bounded source-review slice.
+
+## 2. How to use Cortex now
+wake(project="neuron-v2") once per orientation; this session did so once.
+locate(topic="little", project="neuron-v2") then fetch its location IDs for scoped evidence.
+fetch(locations=["302ce980-e"]) and continuations recover Claude's prior handoff; owner 74/checklist are newer corrections.
+Hydration finding: live wake correctly serves amended owner intent/plan rather than the old registration seed. START HERE still claims wake serves the old seed and has an obsolete next section. Latest stored handoff also predates owner 74: its proposed newly laid formula list and unanswered arrival question are superseded by that correction. No retrieval call failed. Shared hydration files were not edited.
+No brain, runtime, Python, teacher lessons, shared checklist or Claude files were changed; no messages or workers were launched.
+
+Whole-project scope: cognition through persistent executable and revisable graph structure; neuron runs are formulas/code, arrival-sensitive DNA supplies local continuations, receipts and timeline preserve experience, known work is reused and reopened for adaptation, guesses retain provenance, and reasoning/learning must increasingly operate within the student without the mother. Language is an initial interface; the intended substrate includes logic, tools, compilers, memory and eventually self-initiated learning. These are goals, not demonstrated completion.
+Codex rail: reasoning and its evidence boundary, currently PROOF-NS-001. Preserve additive living-brain work; owner formulas are pseudocode. No new Python may hide missing student cognition.
+
+## 3. What to build next
+Codex: continue PROOF-NS-001 by checking archived pre-claim evidence for little against the reported event chronology; retain the narrower relation-inference claim unless stronger evidence supports it. Leave Claude's ROWS/step-back implementation lane undisturbed.

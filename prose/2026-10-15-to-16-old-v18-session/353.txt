@@ -1,0 +1,4 @@
+ok indeterminate of what you just said, we need to try again, so what is the first step in the new build?
+
+
+(saved Thu Oct 15 18:30:36 CDT 2026, session 69692be7 (neuron-v18 hand-build), extracted verbatim from line 547 of the session .jsonl)

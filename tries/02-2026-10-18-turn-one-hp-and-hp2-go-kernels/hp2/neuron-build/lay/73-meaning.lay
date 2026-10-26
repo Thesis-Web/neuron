@@ -1,0 +1,648 @@
+# 73 meaning: how a new word gets its meaning (meaning blueprint §5, §6, §7, §10).
+# One shared gate, `mean` (SPLIT, subject = a gate). One pass of the loop for it:
+#   gap -> spec: no spec in sec-sources: split spec-for, list it on GAP again, end.
+#   compile: each sense of each spec (a heard gate list; the source's own "#" ends a
+#     sense) becomes a candidate: the defining words that have a meaning (a process or
+#     a value), in order, with one hole (`something`) for each stretch of words that
+#     have none. A sense with no part at all can't compile: its words go on GAP (the
+#     compile needs them). The candidate is a spawned process gate, made GUESS, with a
+#     record memory (mn-rec); the word's sec-action names it, its sec-built the parts.
+#   test: on each use of the word (its sec-use receipts) it hasn't tried yet: the gate
+#     before the word is what is in hand; the candidate is run on it; balance asks
+#     whether the result sits closer to the word (where its held lines put it) than
+#     what was in hand: balanced or closer = right, further = wrong, maybe = no test.
+#   hold: mn-min tests or more, right > wrong. understood: held, a right test on a use
+#     that came after it was held, and its parts in mn-agree or more sources' specs.
+#   wire: the word's process becomes [candidate] (passing the word runs it); a second
+#     held sense, the word already wired, goes on the shard of the arrival it was right
+#     in (never overwritten). backpop follows (ln-mark).
+#   use: a wired word is a hop through its candidate; mean on it compiles nothing again.
+# Everything here is a first guess the brain can rewrite: the settings are gates.
+
+gate src-specs
+gate gap-need
+gate spec-for
+gate backpop
+gate core-check-proc
+gate ln-top
+gate ln-stop
+gate ln-mark
+gate balance
+gate bal-last
+gate balanced
+gate closer
+gate further
+gate maybe
+gate something
+gate key-hash
+gate f-later
+gate guess-balance
+gate CONTRADICTED
+gate ln-tried
+gate land-end
+gate source-check
+gate mean
+gate TOLD
+gate someone
+
+# settings
+gate mn-min val 2
+rel mn-min t-kind-of SETTING
+gate mn-agree val 2
+rel mn-agree t-kind-of SETTING
+gate mn-cap val 8
+gate mn-flight val 60
+rel mn-flight t-kind-of SETTING
+gate mn-rounds val 2
+rel mn-rounds t-kind-of SETTING
+gate mn-drop val 6
+rel mn-drop t-kind-of SETTING
+gate mn-busy
+gate mn-ci
+gate mn-civ
+gate mn-rnd
+gate mn-tries
+gate mn-trv
+gate mn-dropped
+gate mn-len val 3
+rel mn-len t-kind-of SETTING
+rel mn-cap t-kind-of SETTING
+
+# states (on a candidate's mn-state section), sections, the record kind
+gate mn-held
+gate mn-understood
+gate mn-open
+gate mn-state
+gate mn-tested
+gate mn-after
+gate mn-agreed
+gate mn-wired
+gate mn-rec
+gate mn-fence
+
+# slots
+gate mn-w
+gate mn-C
+gate mn-R
+gate mn-L
+gate mn-L0
+gate mn-S
+gate mn-P
+gate mn-g
+gate mn-ph
+gate mn-np
+gate mn-fin
+gate mn-CL
+gate mn-SV
+gate mn-n
+gate mn-UL
+gate mn-M
+gate mn-k
+gate mn-x
+gate mn-pv
+gate mn-pq
+gate mn-lp
+gate mn-lq
+gate mn-vd
+gate mn-ok
+gate mn-xr
+gate mn-fl
+gate mn-fo
+gate mn-rd
+gate mn-rdon
+gate mn-mark
+gate mn-lim
+gate mn-cutting
+gate mn-hl
+gate mn-hx
+gate mn-he
+gate mn-na
+gate mn-AL
+gate mn-AS
+gate mn-AP
+
+# ---- membership. pad: x list (list on top), consumed -> YES or NO
+proc mn-in = mn-hl SLOT WRITE mn-hx SLOT WRITE mn-in1
+proc mn-in1 = mn-hl SLOT READ FIRST READ mn-in2
+on mn-in1 NONE -> mn-no
+proc mn-in2 = mn-he SLOT WRITE mn-hl SLOT READ REST READ mn-hl SLOT WRITE ITEM READ mn-fence mn-he SLOT READ mn-hx SLOT READ COMPARE
+on mn-in2 SAME -> mn-in-yes
+on mn-in2 MORE -> mn-in-next
+on mn-in2 LESS -> mn-in-next
+proc mn-in-yes = mn-unf ITEM READ YES
+proc mn-in-next = mn-unf mn-in1
+proc mn-no = ITEM READ NO
+# drop what COMPARE pushed (a distance) and the fence
+proc mn-unf = KIND READ
+on mn-unf GATE -> mn-unf1
+on mn-unf NUMBER -> mn-unf2
+on mn-unf POINT -> mn-unf2
+on mn-unf LIST -> mn-unf2
+on mn-unf TEXT -> mn-unf2
+on mn-unf NONE -> carry-on
+proc mn-unf1 = LAST DELETE
+proc mn-unf2 = LAST DELETE LAST DELETE
+
+# ==== the entry =============================================================
+proc mean = SUBJ READ mn-kind
+on mean NONE -> ln-stop
+proc mn-kind = KIND READ
+on mn-kind GATE -> mn-fl0
+on mn-kind NUMBER -> ln-stop
+on mn-kind TEXT -> ln-stop
+on mn-kind POINT -> ln-stop
+on mn-kind LIST -> ln-stop
+# one pass in flight per word: a pass stamps the word (mn-busy, the clock) and clears it
+# when its tests are done; a pass that finds a stamp younger than mn-flight seconds lists
+# the word on GAP and ends (a read-up or a spec coming in starts no second pass)
+proc mn-fl0 = LAST READ mn-w SLOT WRITE mn-w SLOT READ mn-busy SECTION READ mn-fl1
+on mn-fl0 NONE -> mn-fl-go
+proc mn-fl1 = mn-flight ADD CLOCK COMPARE
+on mn-fl1 MORE -> mn-fl-busy
+on mn-fl1 SAME -> mn-fl-go2
+on mn-fl1 LESS -> mn-fl-go2
+proc mn-fl-busy = LAST DELETE mn-w SLOT READ GAP TODO WRITE END
+proc mn-fl-go2 = LAST DELETE mn-fl-go
+proc mn-fl-go = mn-w0
+proc mn-stamp = mn-w SLOT READ mn-busy CLOCK SECTION WRITE
+proc mn-unst = mn-w SLOT READ mn-busy ZERO SECTION WRITE
+# wired already? then only a meaning not yet understood is tested again (no compile)
+# a first guess (a root, a prime, a wired meaning): its record is balanced first
+# (guess-balance, 28-roots). Still a guess: nothing to learn now. Contradicted: it is
+# refit from its spec by this loop; the old formula stays on record (ln-tried)
+proc mn-w0 = mn-w SLOT WRITE mn-w SLOT READ sec-truth SECTION READ mn-tr
+on mn-w0 NONE -> mn-w0b
+proc mn-tr = LAST READ ITEM READ GUESS COMPARE
+on mn-tr SAME -> mn-tr-g
+on mn-tr MORE -> mn-tr2
+proc mn-tr-g = LAST DELETE mn-w SLOT READ ITEM READ guess-balance SPLIT LAST DELETE mn-w0c
+proc mn-w0c = mn-w SLOT READ mn-wired SECTION READ mn-w1
+on mn-w0c NONE -> ln-stop
+proc mn-tr2 = ITEM READ CONTRADICTED COMPARE
+on mn-tr2 SAME -> mn-tr-c
+on mn-tr2 MORE -> mn-w0b
+proc mn-tr-c = mn-w SLOT READ ITEM READ guess-balance SPLIT LAST DELETE mn-spec
+proc mn-w0b = mn-w SLOT READ mn-wired SECTION READ mn-w1
+on mn-w0b NONE -> mn-spec
+proc mn-w1 = LAST READ mn-C SLOT WRITE ITEM READ mn-open COMPARE
+on mn-w1 SAME -> mn-spec
+on mn-w1 MORE -> mn-w2
+proc mn-w2 = mn-C SLOT READ mn-state SECTION READ mn-w2b
+on mn-w2 NONE -> ln-stop
+proc mn-w2b = ITEM READ mn-understood COMPARE
+on mn-w2b SAME -> ln-stop
+on mn-w2b MORE -> mn-w3
+proc mn-w3 = mn-stamp mn-C SLOT READ ITEM READ mn-cand SPLIT LAST DELETE WAIT LAST DELETE mn-unst END
+
+# ==== 1. gap -> spec ========================================================
+proc mn-spec = mn-w SLOT READ sec-sources SECTIONS READ mn-sp1
+on mn-spec NONE -> mn-gap
+# no spec heard yet: if one has been gathered already (spec-for counts them in src-specs),
+# its lines are still being heard, so the gap waits; otherwise one is asked for
+proc mn-gap = mn-w SLOT READ src-specs SECTION READ mn-gap-had
+on mn-gap NONE -> mn-gap-ask
+proc mn-gap-had = LAST DELETE mn-w SLOT READ GAP TODO WRITE END
+proc mn-gap-ask = mn-w SLOT READ ITEM READ spec-for SPLIT LAST DELETE mn-w SLOT READ GAP TODO WRITE END
+# each heard gate list in sec-sources is a spec: compiled on its own branch
+# one spec list is compiled a pass (the next one not yet compiled, mn-ci on the word);
+# its candidates are tested before the next list is compiled
+proc mn-sp1 = mn-stamp mn-SV SLOT WRITE ZERO mn-n SLOT WRITE mn-w SLOT READ mn-ci SECTION READ mn-sp1c
+on mn-sp1 NONE -> mn-sp1z
+proc mn-sp1z = ZERO mn-sp1c
+proc mn-sp1c = mn-civ SLOT WRITE mn-sp2
+proc mn-sp2 = mn-SV SLOT READ FIRST READ mn-sp3
+on mn-sp2 NONE -> mn-sp-end
+proc mn-sp3 = mn-SV SLOT READ REST READ mn-SV SLOT WRITE KIND READ
+on mn-sp3 LIST -> mn-sp4
+on mn-sp3 GATE -> mn-sp-skip
+on mn-sp3 NUMBER -> mn-sp-skip
+on mn-sp3 TEXT -> mn-sp-skip
+on mn-sp3 POINT -> mn-sp-skip
+proc mn-sp-skip = LAST DELETE mn-sp2
+# a spec is compiled at sizes 1 .. mn-len parts a sense (a formula starts short; which
+# size balances is for the tests): one branch per size
+proc mn-sp4 = mn-n SLOT READ mn-civ SLOT READ COMPARE
+on mn-sp4 SAME -> mn-sp4c
+on mn-sp4 MORE -> mn-sp6
+on mn-sp4 LESS -> mn-sp6
+proc mn-sp4c = LAST DELETE mn-w SLOT READ mn-ci mn-n SLOT READ one ADD SECTION WRITE one mn-lim SLOT WRITE mn-sp5
+proc mn-sp5 = ITEM READ mn-sense SPLIT mn-lim SLOT READ one ADD LAST READ mn-lim SLOT WRITE mn-len COMPARE
+on mn-sp5 MORE -> mn-sp6
+on mn-sp5 SAME -> mn-sp5b
+on mn-sp5 LESS -> mn-sp5b
+proc mn-sp5b = LAST DELETE mn-sp5
+proc mn-sp6 = LAST DELETE LAST DELETE mn-n SLOT READ one ADD mn-n SLOT WRITE mn-sp2
+proc mn-sp-end = WAIT LAST DELETE mn-n SLOT READ ZERO COMPARE
+on mn-sp-end SAME -> mn-sp-none
+on mn-sp-end MORE -> mn-test
+on mn-sp-end LESS -> mn-sp-none
+proc mn-sp-none = LAST DELETE mn-gap
+# ==== 3. test every candidate the word holds, each on its own branch
+# candidates are tested one after another; a second round (mn-rounds) tries again the
+# uses a read-up held back in the first; then the stamp is cleared
+proc mn-test = LAST DELETE one mn-rnd SLOT WRITE mn-tround
+proc mn-tround = mn-w SLOT READ sec-action SECTIONS READ mn-ts1
+on mn-tround NONE -> mn-pass-end
+proc mn-ts1 = mn-CL SLOT WRITE mn-ts2
+proc mn-ts2 = mn-CL SLOT READ FIRST READ mn-ts3
+on mn-ts2 NONE -> mn-tr-next
+proc mn-ts3 = mn-CL SLOT READ REST READ mn-CL SLOT WRITE LAST READ mn-state SECTION READ mn-ts4
+on mn-ts3 NONE -> mn-ts5
+proc mn-ts4 = ITEM READ mn-dropped COMPARE
+on mn-ts4 SAME -> mn-ts-skip
+on mn-ts4 MORE -> mn-ts5
+proc mn-ts-skip = LAST DELETE mn-ts2
+proc mn-ts5 = ITEM READ mn-cand SPLIT LAST DELETE WAIT LAST DELETE mn-ts2
+proc mn-tr-next = mn-rnd SLOT READ mn-rounds COMPARE
+on mn-tr-next LESS -> mn-tr-again
+on mn-tr-next SAME -> mn-tr-done
+on mn-tr-next MORE -> mn-tr-done
+proc mn-tr-again = LAST DELETE mn-rnd SLOT READ one ADD mn-rnd SLOT WRITE mn-tround
+proc mn-tr-done = LAST DELETE mn-pass-end
+proc mn-pass-end = mn-unst END
+
+# ==== 2. compile one spec (split; pad: the gate list) =======================
+proc mn-sense = LAST READ mn-S SLOT WRITE mn-L SLOT WRITE ITEM READ NO mn-fin SLOT WRITE ITEM READ NO mn-cutting SLOT WRITE mn-fresh mn-s1
+proc mn-fresh = ITEM READ NO mn-ph SLOT WRITE ZERO mn-np SLOT WRITE mn-L SLOT READ mn-L0 SLOT WRITE
+proc mn-s1 = mn-L SLOT READ FIRST READ mn-s2
+on mn-s1 NONE -> mn-last
+proc mn-last = ITEM READ YES mn-fin SLOT WRITE mn-flush
+proc mn-s2 = mn-g SLOT WRITE mn-L SLOT READ REST READ mn-L SLOT WRITE mn-g SLOT READ KIND READ
+on mn-s2 GATE -> mn-s3
+on mn-s2 NUMBER -> mn-s2d
+on mn-s2 TEXT -> mn-s2d
+on mn-s2 POINT -> mn-s2d
+on mn-s2 LIST -> mn-s2d
+proc mn-s2d = LAST DELETE mn-s1
+# the source's sense mark ends a sense; the word itself is not its own part
+proc mn-s3 = ITEM READ key-hash COMPARE
+on mn-s3 SAME -> mn-flush
+on mn-s3 MORE -> mn-s4
+proc mn-s4 = mn-g SLOT READ mn-w SLOT READ COMPARE
+on mn-s4 SAME -> mn-s1
+on mn-s4 MORE -> mn-s4h
+# the hole primes are holes, not parts: a formula of holes does nothing
+proc mn-s4h = mn-g SLOT READ ITEM READ something COMPARE
+on mn-s4h SAME -> mn-hole
+on mn-s4h MORE -> mn-s4i
+proc mn-s4i = mn-g SLOT READ ITEM READ someone COMPARE
+on mn-s4i SAME -> mn-hole
+on mn-s4i MORE -> mn-s5
+# a defining word with a meaning (a process, a value) is a part
+proc mn-s5 = mn-g SLOT READ PROC READ mn-part
+on mn-s5 NONE -> mn-s6
+proc mn-s6 = mn-g SLOT READ VALUE READ mn-part
+on mn-s6 NONE -> mn-hole
+proc mn-part = LAST DELETE mn-g SLOT READ ITEM READ ln-top SPLIT LAST DELETE ITEM READ NO mn-ph SLOT WRITE mn-np SLOT READ one ADD mn-np SLOT WRITE mn-lim-chk
+# one hole for a stretch of words with no meaning
+proc mn-hole = mn-ph SLOT READ ITEM READ YES COMPARE
+on mn-hole SAME -> mn-s1
+on mn-hole MORE -> mn-hole1
+proc mn-hole1 = ITEM READ something ITEM READ ln-top SPLIT LAST DELETE ITEM READ YES mn-ph SLOT WRITE mn-s1
+# the end of a sense: its parts, landed in order
+proc mn-flush = WAIT mn-np SLOT READ ZERO COMPARE
+on mn-flush SAME -> mn-need
+on mn-flush MORE -> mn-mk
+on mn-flush LESS -> mn-need
+proc mn-next = mn-fin SLOT READ ITEM READ YES COMPARE
+on mn-next SAME -> ln-stop
+on mn-next MORE -> mn-next2
+proc mn-next2 = mn-cutting SLOT READ ITEM READ YES COMPARE
+on mn-next2 SAME -> mn-skip
+on mn-next2 MORE -> mn-next3
+proc mn-next3 = mn-fresh mn-s1
+# this branch's size reached: the formula is made, the rest of the sense is passed over
+proc mn-lim-chk = mn-np SLOT READ mn-lim SLOT READ COMPARE
+on mn-lim-chk SAME -> mn-cut
+on mn-lim-chk LESS -> mn-lim-go
+on mn-lim-chk MORE -> mn-lim-go
+proc mn-lim-go = LAST DELETE mn-s1
+proc mn-cut = LAST DELETE ITEM READ YES mn-cutting SLOT WRITE mn-flush
+proc mn-skip = ITEM READ NO mn-cutting SLOT WRITE mn-sk1
+proc mn-sk1 = mn-L SLOT READ FIRST READ mn-sk2
+on mn-sk1 NONE -> ln-stop
+proc mn-sk2 = mn-L SLOT READ REST READ mn-L SLOT WRITE ITEM READ key-hash COMPARE
+on mn-sk2 SAME -> mn-next3
+on mn-sk2 MORE -> mn-sk1
+# no part at all: the compile needs these words; each goes on GAP (once)
+proc mn-need = LAST DELETE LAST DELETE mn-nd1
+proc mn-nd1 = mn-L0 SLOT READ FIRST READ mn-nd2
+on mn-nd1 NONE -> mn-next
+proc mn-nd2 = mn-g SLOT WRITE mn-L0 SLOT READ REST READ mn-L0 SLOT WRITE mn-g SLOT READ KIND READ
+on mn-nd2 GATE -> mn-nd3
+on mn-nd2 NUMBER -> mn-nd-drop
+on mn-nd2 TEXT -> mn-nd-drop
+on mn-nd2 POINT -> mn-nd-drop
+on mn-nd2 LIST -> mn-nd-drop
+proc mn-nd-drop = LAST DELETE mn-nd1
+proc mn-nd3 = ITEM READ key-hash COMPARE
+on mn-nd3 SAME -> mn-next
+on mn-nd3 MORE -> mn-nd4
+proc mn-nd4 = mn-g SLOT READ mn-w SLOT READ COMPARE
+on mn-nd4 SAME -> mn-nd1
+on mn-nd4 MORE -> mn-nd5
+proc mn-nd5 = mn-g SLOT READ GAP TODO WRITE mn-nd1
+# the same string held already: nothing new (spent once)
+proc mn-mk = LAST DELETE mn-P SLOT WRITE mn-w SLOT READ sec-action SECTIONS READ mn-dd
+on mn-mk NONE -> mn-make
+proc mn-dd = mn-CL SLOT WRITE mn-dd1
+proc mn-dd1 = mn-CL SLOT READ FIRST READ mn-dd2
+on mn-dd1 NONE -> mn-make
+proc mn-dd2 = mn-CL SLOT READ REST READ mn-CL SLOT WRITE PROC READ mn-dd3
+on mn-dd2 NONE -> mn-dd1
+proc mn-dd3 = mn-P SLOT READ COMPARE
+on mn-dd3 SAME -> mn-next
+on mn-dd3 MORE -> mn-dd1
+# the candidate: a guess, a process of the parts, its record, the word's sections
+proc mn-make = GUESS MADE WRITE mn-w SLOT READ POINT READ f-later SPAWN mn-mk2
+on mn-make NONE -> mn-next
+proc mn-mk2 = mn-C SLOT WRITE mn-C SLOT READ mn-P SLOT READ core-check-proc PROC WRITE mn-mk3
+on mn-mk2 NONE -> mn-next
+proc mn-mk3 = mn-w SLOT READ sec-action mn-C SLOT READ SECTION WRITE mn-w SLOT READ sec-built mn-P SLOT READ SECTION WRITE mn-C SLOT READ sec-built mn-S SLOT READ SECTION WRITE mn-C SLOT READ mn-state ITEM READ GUESS SECTION WRITE mn-C SLOT READ mn-rec TODO WRITE mn-next
+
+# ==== 3. test one candidate (split; pad: C) =================================
+proc mn-cand = mn-C SLOT WRITE mn-C SLOT READ mn-tries SECTION READ mn-cd1
+on mn-cand NONE -> mn-cd0
+proc mn-cd0 = ZERO mn-cd1
+proc mn-cd1 = one ADD LAST READ mn-trv SLOT WRITE mn-C SLOT READ mn-tries mn-trv SLOT READ SECTION WRITE LAST DELETE mn-C SLOT READ mn-rec HOME FIND mn-c1
+on mn-cd1 NONE -> ln-stop
+# uses are walked oldest first; the newest use tested (mn-tested, latest) is the mark:
+# only uses after it are new to this candidate (an index read, no walk of the tested list)
+proc mn-c1 = mn-R SLOT WRITE mn-cap mn-k SLOT WRITE mn-C SLOT READ mn-tested SECTION READ mn-c1m
+on mn-c1 NONE -> mn-c1z
+proc mn-c1z = ZERO mn-c1m
+proc mn-c1m = mn-mark SLOT WRITE mn-w SLOT READ sec-use SECTIONS READ mn-c2
+on mn-c1m NONE -> mn-hold
+proc mn-c2 = mn-UL SLOT WRITE mn-u1
+proc mn-u1 = mn-UL SLOT READ FIRST READ mn-u2
+on mn-u1 NONE -> mn-hold
+proc mn-u2 = mn-M SLOT WRITE mn-UL SLOT READ REST READ mn-UL SLOT WRITE mn-M SLOT READ mn-mark SLOT READ COMPARE
+on mn-u2 MORE -> mn-u2y
+on mn-u2 SAME -> mn-u2n
+on mn-u2 LESS -> mn-u2n
+proc mn-u2y = LAST DELETE mn-u5
+proc mn-u2n = LAST DELETE mn-u1
+proc mn-u5 = mn-k SLOT READ ZERO COMPARE
+on mn-u5 SAME -> mn-u5z
+on mn-u5 LESS -> mn-u5z
+on mn-u5 MORE -> mn-u6
+proc mn-u5z = LAST DELETE mn-hold
+proc mn-u6 = LAST DELETE mn-k SLOT READ one SUB mn-k SLOT WRITE mn-M SLOT READ MSIG READ mn-u7
+on mn-u6 NONE -> mn-u1
+# the use: each gate before the word in it is, in turn, what is in hand; the candidate
+# is run on it, and balance asks whether what it made sits nearer the word (where its
+# held lines put it) than what was in hand. Right when one comes closer or balances;
+# wrong when every one goes further; no test when nothing could be measured.
+proc mn-u7 = ITEM READ NO mn-rdon SLOT WRITE mn-S SLOT WRITE ITEM READ HEAR mn-pv SLOT WRITE ITEM READ NONE mn-ok SLOT WRITE mn-v1
+proc mn-v1 = mn-S SLOT READ FIRST READ mn-v2
+on mn-v1 NONE -> mn-verdict
+proc mn-v2 = mn-x SLOT WRITE mn-S SLOT READ REST READ mn-S SLOT WRITE mn-x SLOT READ mn-w SLOT READ COMPARE
+on mn-v2 SAME -> mn-verdict
+on mn-v2 MORE -> mn-v2b
+on mn-v2 LESS -> mn-v2b
+proc mn-v2b = mn-pv SLOT READ mn-pq SLOT WRITE mn-x SLOT READ mn-pv SLOT WRITE mn-x SLOT READ KIND READ
+on mn-v2b GATE -> mn-try
+on mn-v2b NUMBER -> mn-v-drop
+on mn-v2b TEXT -> mn-v-drop
+on mn-v2b POINT -> mn-v-drop
+on mn-v2b LIST -> mn-v-drop
+proc mn-v-drop = LAST DELETE mn-v1
+proc mn-try = POINT READ mn-w SLOT READ POINT READ COMPARE
+on mn-try SAME -> mn-t1
+on mn-try MORE -> mn-t1
+on mn-try NONE -> mn-v1
+proc mn-t1 = bal-last SLOT WRITE ITEM READ mn-fence mn-x SLOT READ ITEM READ mn-run SPLIT LAST DELETE LAST DELETE WAIT FIRST READ mn-t2
+on mn-t1 NONE -> mn-made-none
+# know before guessing: the candidate made nothing on the gate in hand. It reads up on
+# that gate (source-check, one source, the ask order) once per gate per candidate, and a
+# new pass of mean follows the read; this use is not marked tested, so it is tried again
+proc mn-made-none = mn-C SLOT READ mn-rd SECTIONS READ mn-mn1
+on mn-made-none NONE -> mn-mn-read
+proc mn-mn1 = mn-hl SLOT WRITE mn-x SLOT READ mn-hl SLOT READ mn-in mn-mn2
+proc mn-mn2 = ITEM READ YES COMPARE
+on mn-mn2 SAME -> mn-v1
+on mn-mn2 MORE -> mn-mn-read
+proc mn-mn-read = mn-C SLOT READ mn-rd mn-x SLOT READ SECTION WRITE ITEM READ YES mn-rdon SLOT WRITE mn-x SLOT READ ITEM READ mn-readup SPLIT LAST DELETE WAIT LAST DELETE mn-v1
+proc mn-readup = SUBJ READ ITEM READ source-check SPLIT LAST DELETE WAIT LAST DELETE END
+# the run (split; pad: what is in hand): the candidate is heard as an inner word (passing
+# it runs it); what it made is the top of the pad above the fence (what is in hand sits
+# on a fence, so nothing the run inherited below it can be taken for its result) that
+# is not an unfilled hole. Nothing made above the fence: nothing lands (no test)
+proc mn-run = mn-C SLOT READ HEAR mn-run2
+proc mn-run2 = LAST READ ITEM READ mn-fence COMPARE
+on mn-run2 SAME -> ln-stop
+on mn-run2 MORE -> mn-run4
+on mn-run2 NONE -> ln-stop
+proc mn-run4 = LAST READ ITEM READ something COMPARE
+on mn-run4 SAME -> mn-run3
+on mn-run4 MORE -> mn-run5
+proc mn-run5 = LAST READ ITEM READ someone COMPARE
+on mn-run5 SAME -> mn-run3
+on mn-run5 MORE -> land-end
+proc mn-run3 = LAST DELETE mn-run2
+# what it made is measured only when the meaning acted: not what was in hand again, and
+# not one of its own parts holding itself (a part that found nothing to act on)
+proc mn-t2 = mn-xr SLOT WRITE mn-xr SLOT READ KIND READ
+on mn-t2 GATE -> mn-t2g
+on mn-t2 NUMBER -> mn-t2x
+on mn-t2 TEXT -> mn-t2x
+on mn-t2 POINT -> mn-t2x
+on mn-t2 LIST -> mn-t2x
+proc mn-t2x = LAST DELETE mn-v1
+proc mn-t2g = mn-x SLOT READ COMPARE
+on mn-t2g SAME -> mn-made-none
+on mn-t2g MORE -> mn-t2b
+proc mn-t2b = mn-xr SLOT READ mn-C SLOT READ PROC READ mn-in mn-t2c
+proc mn-t2c = ITEM READ YES COMPARE
+on mn-t2c SAME -> mn-made-none
+on mn-t2c MORE -> mn-t2m
+# and only a word the brain holds, not a told gate (an outcome YES/NO, a prime, a key):
+# a verdict or a structure gate sits nowhere a word's lines put it
+proc mn-t2m = mn-xr SLOT READ MADE READ mn-t2n
+on mn-t2m NONE -> mn-v1
+proc mn-t2n = ITEM READ TOLD COMPARE
+on mn-t2n SAME -> mn-v1
+on mn-t2n MORE -> mn-t2d
+proc mn-t2d = mn-xr SLOT READ mn-w SLOT READ balance mn-t3
+proc mn-t3 = mn-vd SLOT WRITE mn-vd SLOT READ ITEM READ further COMPARE
+on mn-t3 SAME -> mn-t-far
+on mn-t3 MORE -> mn-t4
+proc mn-t4 = mn-vd SLOT READ ITEM READ maybe COMPARE
+on mn-t4 SAME -> mn-v1
+on mn-t4 MORE -> mn-t-near
+proc mn-t-near = ITEM READ YES mn-ok SLOT WRITE mn-pv SLOT READ mn-lp SLOT WRITE mn-pq SLOT READ mn-lq SLOT WRITE mn-v1
+proc mn-t-far = mn-ok SLOT READ ITEM READ YES COMPARE
+on mn-t-far SAME -> mn-v1
+on mn-t-far MORE -> mn-t-far2
+proc mn-t-far2 = ITEM READ NO mn-ok SLOT WRITE mn-v1
+proc mn-verdict = mn-ok SLOT READ ITEM READ YES COMPARE
+on mn-verdict SAME -> mn-right
+on mn-verdict MORE -> mn-verdict2
+proc mn-verdict2 = mn-ok SLOT READ ITEM READ NO COMPARE
+on mn-verdict2 SAME -> mn-wrong
+on mn-verdict2 MORE -> mn-nv
+proc mn-nv = mn-rdon SLOT READ ITEM READ YES COMPARE
+on mn-nv SAME -> mn-hold
+on mn-nv MORE -> mn-nv2
+proc mn-nv2 = mn-mark-it mn-u1
+proc mn-mark-it = mn-C SLOT READ mn-tested mn-M SLOT READ SECTION WRITE
+# a use is counted once: passes of mean can run side by side (a read-up starts one), so
+# the mark is read again just before counting; a use another pass has counted is left
+proc mn-right = mn-C SLOT READ mn-tested SECTION READ mn-r2
+on mn-right NONE -> mn-r-ok
+proc mn-r2 = mn-M SLOT READ COMPARE
+on mn-r2 LESS -> mn-r-ok2
+on mn-r2 SAME -> mn-stale
+on mn-r2 MORE -> mn-stale
+proc mn-stale = LAST DELETE END
+proc mn-r-ok2 = LAST DELETE mn-r-ok
+proc mn-r-ok = mn-mark-it mn-R SLOT READ RIGHT WRITE mn-unseen mn-u1
+proc mn-wrong = mn-C SLOT READ mn-tested SECTION READ mn-w2x
+on mn-wrong NONE -> mn-w-ok
+proc mn-w2x = mn-M SLOT READ COMPARE
+on mn-w2x LESS -> mn-w-ok2
+on mn-w2x SAME -> mn-stale
+on mn-w2x MORE -> mn-stale
+proc mn-w-ok2 = LAST DELETE mn-w-ok
+proc mn-w-ok = mn-mark-it mn-R SLOT READ WRONG WRITE mn-u1
+# a right test on a use that came after the candidate was held: it worked unseen
+proc mn-unseen = mn-C SLOT READ mn-state SECTION READ mn-unseen2
+on mn-unseen NONE -> carry-on
+proc mn-unseen2 = ITEM READ mn-held COMPARE
+on mn-unseen2 SAME -> mn-un2
+on mn-unseen2 MORE -> carry-on
+proc mn-un2 = mn-C SLOT READ mn-after mn-M SLOT READ SECTION WRITE
+
+# ==== 4. hold -> understood =================================================
+proc mn-hold = mn-C SLOT READ mn-state SECTION READ mn-h0
+on mn-hold NONE -> mn-h1
+proc mn-h0 = LAST READ ITEM READ mn-held COMPARE
+on mn-h0 SAME -> mn-h-held
+on mn-h0 MORE -> mn-h0b
+proc mn-h0b = ITEM READ mn-understood COMPARE
+on mn-h0b SAME -> mn-rev
+on mn-h0b MORE -> mn-h1
+proc mn-h-held = LAST DELETE mn-rev mn-und
+proc mn-h1 = mn-R SLOT READ RIGHT READ mn-R SLOT READ WRONG READ ADD mn-min COMPARE
+on mn-h1 LESS -> mn-h-few
+# too few tests: a candidate never tested after mn-drop tries is dropped from the tests
+# (kept on record, state mn-dropped)
+proc mn-h-few = LAST DELETE mn-R SLOT READ RIGHT READ mn-R SLOT READ WRONG READ ADD ZERO COMPARE
+on mn-h-few SAME -> mn-hf2
+on mn-h-few MORE -> mn-h-end
+on mn-h-few LESS -> mn-h-end
+proc mn-hf2 = LAST DELETE mn-trv SLOT READ mn-drop COMPARE
+on mn-hf2 LESS -> mn-h-end
+on mn-hf2 SAME -> mn-hf3
+on mn-hf2 MORE -> mn-hf3
+proc mn-hf3 = LAST DELETE mn-C SLOT READ mn-state ITEM READ mn-dropped SECTION WRITE END
+on mn-h1 SAME -> mn-h2
+on mn-h1 MORE -> mn-h2
+proc mn-h-end = LAST DELETE END
+proc mn-h2 = LAST DELETE mn-R SLOT READ RIGHT READ mn-R SLOT READ WRONG READ COMPARE
+on mn-h2 MORE -> mn-hold-it
+on mn-h2 SAME -> mn-h-end
+on mn-h2 LESS -> mn-h-end
+proc mn-hold-it = LAST DELETE mn-C SLOT READ mn-state ITEM READ mn-held SECTION WRITE mn-wire mn-relist
+# held, not yet understood: the word stays on GAP for a use it hasn't seen
+proc mn-relist = mn-w SLOT READ GAP TODO WRITE END
+# understood: held, right on an unseen use, its parts in mn-agree sources' specs
+proc mn-und = mn-C SLOT READ mn-after SECTIONS READ mn-ud1
+on mn-und NONE -> mn-relist
+# agreement runs on its own branch: one branch per spec list, each landing YES when the
+# list holds every part of the candidate
+proc mn-ud1 = LAST DELETE ITEM READ mn-agw SPLIT END
+proc mn-ud2 = mn-C SLOT READ mn-agreed mn-na SLOT READ SECTION WRITE mn-na SLOT READ mn-ud3
+proc mn-ud3 = mn-agree COMPARE
+on mn-ud3 SAME -> mn-ud-yes
+on mn-ud3 MORE -> mn-ud-yes
+on mn-ud3 LESS -> mn-ud-no
+proc mn-ud-no = LAST DELETE mn-relist
+proc mn-ud-yes = LAST DELETE mn-C SLOT READ mn-state ITEM READ mn-understood SECTION WRITE END
+# revision: a held meaning its tests now go against (wrong > right) is reopened
+proc mn-rev = mn-R SLOT READ WRONG READ mn-R SLOT READ RIGHT READ COMPARE
+on mn-rev MORE -> mn-reopen-c
+on mn-rev SAME -> mn-rev-ok
+on mn-rev LESS -> mn-rev-ok
+proc mn-rev-ok = LAST DELETE
+proc mn-reopen-c = LAST DELETE mn-C SLOT READ mn-state ITEM READ mn-open SECTION WRITE mn-w SLOT READ mn-reopen END
+# reopen (pad: a word, consumed): listed again, and backpop walks from its wiring.
+# Called on a truth shift, a correction or a contradicting source as well.
+proc mn-reopen = LAST READ mn-w SLOT WRITE mn-wired ITEM READ mn-open SECTION WRITE mn-w SLOT READ GAP TODO WRITE mn-w SLOT READ ln-mark
+
+# agreement (split): how many spec lists hold every part of C
+proc mn-agw = mn-w SLOT READ sec-sources SECTIONS READ mn-ag1
+on mn-agw NONE -> ln-stop
+proc mn-ag1 = mn-AL SLOT WRITE mn-ag2
+proc mn-ag2 = mn-AL SLOT READ FIRST READ mn-ag3
+on mn-ag2 NONE -> mn-ag-wait
+proc mn-ag3 = mn-AL SLOT READ REST READ mn-AL SLOT WRITE KIND READ
+on mn-ag3 LIST -> mn-ag4
+on mn-ag3 GATE -> mn-ag-skip
+on mn-ag3 NUMBER -> mn-ag-skip
+on mn-ag3 TEXT -> mn-ag-skip
+on mn-ag3 POINT -> mn-ag-skip
+proc mn-ag-skip = LAST DELETE mn-ag2
+proc mn-ag4 = ITEM READ mn-ag-one SPLIT LAST DELETE mn-ag2
+proc mn-ag-wait = WAIT mn-AL SLOT WRITE ZERO mn-na SLOT WRITE mn-ac1
+proc mn-ac1 = mn-AL SLOT READ FIRST READ mn-ac2
+on mn-ac1 NONE -> mn-ud2
+proc mn-ac2 = mn-AL SLOT READ REST READ mn-AL SLOT WRITE ITEM READ YES COMPARE
+on mn-ac2 SAME -> mn-ac3
+on mn-ac2 MORE -> mn-ac1
+proc mn-ac3 = mn-na SLOT READ one ADD mn-na SLOT WRITE mn-ac1
+# one spec list (split; pad: the list)
+proc mn-ag-one = mn-AS SLOT WRITE mn-C SLOT READ PROC READ mn-AP SLOT WRITE mn-ag5
+on mn-ag-one NONE -> ln-stop
+proc mn-ag5 = mn-AP SLOT READ FIRST READ mn-ag6
+on mn-ag5 NONE -> mn-ag-yes
+proc mn-ag6 = mn-AP SLOT READ REST READ mn-AP SLOT WRITE LAST READ ITEM READ something COMPARE
+on mn-ag6 SAME -> mn-ag-hole
+on mn-ag6 MORE -> mn-ag7
+proc mn-ag-hole = LAST DELETE mn-ag5
+proc mn-ag7 = mn-AS SLOT READ mn-in mn-ag8
+proc mn-ag8 = ITEM READ YES COMPARE
+on mn-ag8 SAME -> mn-ag5
+on mn-ag8 MORE -> mn-ag-no
+proc mn-ag-yes = ITEM READ YES land-end
+proc mn-ag-no = ITEM READ NO land-end
+
+# ==== 5. wire ===============================================================
+proc mn-wire = mn-w SLOT READ mn-wired SECTION READ mn-wi0
+on mn-wire NONE -> mn-wi1
+proc mn-wi0 = LAST READ ITEM READ mn-open COMPARE
+on mn-wi0 SAME -> mn-wi-drop
+on mn-wi0 MORE -> mn-sense2
+proc mn-wi1 = mn-w SLOT READ PROC READ mn-old
+on mn-wi1 NONE -> mn-wi1b
+proc mn-old = mn-fo SLOT WRITE mn-w SLOT READ ln-tried mn-fo SLOT READ SECTION WRITE mn-wi1b
+proc mn-wi1b = DERIVED MADE WRITE mn-C SLOT READ ITEM READ ln-top SPLIT LAST DELETE ITEM READ mn-unhole ITEM READ ln-top SPLIT LAST DELETE WAIT mn-wi2
+# the word's string is [C mn-unhole]: a hole C left unfilled is not left on the pad as a
+# held process (the end of the run would run it again and again)
+proc mn-unhole = KIND READ
+on mn-unhole GATE -> mn-uh2
+on mn-unhole NUMBER -> carry-on
+on mn-unhole TEXT -> carry-on
+on mn-unhole POINT -> carry-on
+on mn-unhole LIST -> carry-on
+on mn-unhole NONE -> carry-on
+proc mn-uh2 = LAST READ ITEM READ something COMPARE
+on mn-uh2 SAME -> mn-uh3
+on mn-uh2 MORE -> carry-on
+proc mn-uh3 = LAST DELETE
+proc mn-wi2 = mn-fl SLOT WRITE mn-w SLOT READ mn-fl SLOT READ core-check-proc PROC WRITE mn-wi3
+on mn-wi2 NONE -> mn-h-end
+proc mn-wi3 = mn-w SLOT READ mn-wired mn-C SLOT READ SECTION WRITE mn-w SLOT READ sec-truth ITEM READ GUESS SECTION WRITE mn-C SLOT READ ln-mark
+# 7. a second sense: the word already runs another meaning. When that one has failed
+# somewhere (wrong on a use), this one goes on the shard of the arrival it was last
+# right in (the gate before the word, and its arrival); the first is never overwritten.
+# When the wired one has not failed, this one is only held (a formula on record)
+proc mn-wi-drop = LAST DELETE mn-wi1
+proc mn-sense2 = mn-rec HOME FIND mn-s2a
+on mn-sense2 NONE -> ln-stop
+proc mn-s2a = WRONG READ ZERO COMPARE
+on mn-s2a SAME -> mn-s2-held
+on mn-s2a MORE -> mn-s2-wire
+on mn-s2a LESS -> mn-s2-held
+proc mn-s2-held = LAST DELETE END
+proc mn-s2-wire = LAST DELETE DERIVED MADE WRITE mn-lp SLOT READ mn-lq SLOT READ mn-w SLOT READ mn-C SLOT READ SHARD WRITE mn-C SLOT READ ln-mark

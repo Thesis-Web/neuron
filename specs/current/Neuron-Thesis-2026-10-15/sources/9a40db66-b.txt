@@ -1,0 +1,29 @@
+=== 9a40db66-b (page; chars 0-2920 of 2,920; end) ===
+## 1. Where to look
+
+- Rail /home/exnulla/neuron-v16.2; living brain home/cortex.db, life 28.
+- Evidence: /home/exnulla/neuron-benchmarks/20260930-claude-nameless-place/RESULTS.md (the honest answer about 'little', patch, before/, nameless_lab.py, backup living_before_life28.db).
+- Lessons teacher/additions_2026-09-30h..l.json. Owner texts teacher/owner_source/35-51.
+- Try: home/talk.sh "little more ?"; home/talk.sh "tall opposite ?"; home/talk.sh "cooler ?".
+
+## 2. How to use Cortex now
+
+- wake(project="neuron-v2") once; fetch the page it names; locate(topic, project="neuron-v2") for older records.
+- Hand-off block: heading `## LOOP_HANDOFF v1`, then only OWNER_QUESTIONS, NEXT_ACTION, STATE (READY|DONE|BLOCKED).
+
+## Owner text 51, verbatim (sha256 2db67e59c50816b1)
+
+~~~~
+i ───────────────────────────┼────────────────────────────────────────────────────────┤
+│ "large opposite ?" after  │ "little", now a taught line; opposite's record went to │
+│ I answered "yes"          │  66 lines ---- does this have a definiton? you didn't mention that it was taught the definition. and how did the encoder know "little" for that expression if it's unknown? sounds susspect.. I would have expected it's to guess.. and since we don't want to show the "gates" it would send the gate to the encoder,, the encoder/decoder wouldn't know that word? but it would know the words in the defintion the brain made? So .. I don't know the word, but I guess the definition is (it's made up guess) <-- not you supplied... I have a location for this word but i don't know the word, if you tell me the word and affirm I will learn it, if my definition is wrong update me with this ---> definition schema card... (this will be a location in the neurons, with a definition also, but the encoder and decoder will hold that card (it's likely different for different languages... i.e. spanish is masculine / feminine .. I like the progress, but you have to be careful not to feed it answers and call it learning.. try again and teach it to recite the definition it thinks it is... and then you  might have something,,, a guess can be wrong and that's ok,, but it will show how well it can use it's formulas for similie and metaphor, tense, like terms or what ever formulas it now inverse... it should be able to find the other words that relate to that spot, and then look at the defintions, and use formulas to come up with an idea of what the definition of that word is... try that again.
+~~~~
+
+## 3. What to build next
+
+Claude (questions): propose the per-language card (the encoder/decoder holds a word's card; the neuron holds the place and definition) and a way to hold a word never heard, then build on copies. Codex: its own next action in its record.
+
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: none
+NEXT_ACTION: Claude: propose the per-language word card and holding a never-heard word; Codex: its resumable-work next step.
+STATE: READY

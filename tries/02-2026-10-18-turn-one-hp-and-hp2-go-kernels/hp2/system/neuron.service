@@ -1,0 +1,23 @@
+[Unit]
+Description=Neuron, turn one
+After=network-online.target dictd.service
+Wants=network-online.target
+
+[Service]
+User=neuron
+Group=neuron
+Environment=NEURON_HOME=/home/neuron
+ExecStart=/usr/local/bin/neuron live
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/neuron
+PrivateTmp=yes
+MemoryMax=4G
+CPUQuota=150%
+TasksMax=256
+
+[Install]
+WantedBy=multi-user.target

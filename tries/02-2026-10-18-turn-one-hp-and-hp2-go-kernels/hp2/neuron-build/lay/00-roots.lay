@@ -1,0 +1,183 @@
+# 00 roots: the origin, the axes, the physics gates, and the nouns of the store.
+# These are structure, not meaning. Every row here is marked told.
+
+# zero is gate 0, at the origin: the point every scale starts from (blueprint §5.4)
+gate ZERO at 0 0 0 val 0
+gate x-axis at 1 0 0
+gate y-axis at 0 1 0
+gate z-axis at 0 0 1
+
+# ---- the physics gates: passing one performs it on the silicon (blueprint §4.3)
+gate GO phys GO
+gate SPLIT phys SPLIT
+gate LAND phys LAND
+gate WAIT phys WAIT
+gate END phys END
+gate READ phys READ
+gate WRITE phys WRITE
+gate SPAWN phys SPAWN
+gate DELETE phys DELETE
+gate MOVE phys MOVE
+gate FIND phys FIND
+gate ADD phys ADD
+gate SUB phys SUB
+gate MUL phys MUL
+gate DIV phys DIV
+gate COMPARE phys COMPARE
+gate CLOCK phys CLOCK
+gate HEAR phys HEAR
+gate SAY phys SAY
+gate CALL phys CALL
+
+# ---- what READ, WRITE, FIND, DELETE and MOVE reach (the rows of the store)
+gate ITEM
+gate LAST
+gate KIND
+gate KINDAT
+gate MAT
+gate MFROM
+gate MHEAD
+gate SUBJ
+gate WANT
+gate WHO
+gate WHAT
+gate WHERE
+gate WHY
+gate MODE
+gate MEMID
+gate START
+gate MINE
+gate SLOT
+gate MSIG
+gate SIG
+gate TRAIL
+gate REL
+gate RELS
+gate STRENGTH
+gate STATE
+gate POINT
+gate VALUE
+gate VALUES
+gate LABEL
+gate LABELS
+gate SECTION
+gate SECTIONS
+gate PROC
+gate USUAL
+gate WORTH
+gate SHARD
+gate OUTCOME
+gate BODY
+gate RIGHT
+gate WRONG
+gate SEEN
+gate HOME
+gate TIME
+# BEGAN: a memory id -> when it began (its first moment on the timeline)
+gate BEGAN
+# TIME-END: (with FIND) the time of the last entry a timeline page holds
+gate TIME-END
+gate TIER
+gate MADE
+gate SIZE
+gate ACTIVE
+gate COUNT
+gate FIRST
+gate REST
+gate TRUST
+gate GROUNDED
+gate MEM
+gate TOUCH
+gate SHIFT
+gate TODO
+gate NEAR
+gate SHAPE
+gate FID
+
+# ---- outcomes a test puts at the head of the remainder
+gate NONE
+gate SAME
+gate MORE
+gate LESS
+gate GATE
+gate NUMBER
+gate TEXT
+gate LIST
+gate OUTCOME-KIND
+# yes = x, no = 1/x (owner's pseudocode; inversion is p/|p|², so x=2 puts no at 0.5)
+gate YES at 2 0 0
+gate NO at 0.5 0 0
+
+# ---- how a row came to be (every row carries one)
+gate TOLD
+gate SOURCED
+gate DERIVED
+gate SPAWNED
+gate GUESS
+# ---- relationship states
+gate BELIEF
+gate GROUNDED-STATE
+gate CONTRADICTED
+# ---- memory tiers and fidelity
+gate PERSISTENT
+gate LONG
+gate EXACT
+gate CONDENSED
+gate HIGHLIGHTS
+# ---- memory kinds
+gate RUN
+gate DEF
+gate BIRTH
+gate LAID
+gate BORN
+gate TOLDEND
+gate RESUMED
+gate PARKED
+gate CORRECTION
+# the sixth's lists (blueprint §12.1)
+gate GAP
+gate IMBALANCE
+gate TEST-GUESS
+gate QUESTION
+gate SLOW
+
+# ---- the nine sections of every definition (blueprint §6.4)
+gate sec-address
+gate sec-labels
+gate sec-sources
+gate sec-built
+gate sec-rels
+gate sec-action
+gate sec-use
+gate sec-truth
+gate sec-derived
+
+# ---- told values the brain can read and change (blueprint §2.8, §12.2)
+# resting beat in ms; steps per beat; the watchdog's step count; worth kept per level of SPLIT;
+# seconds before a listed item is due again (doubling with each try); live runs before the rest park;
+# the grid cell (two meanings closer than this is an imbalance)
+gate BEAT val 1000
+gate BUDGET val 3000
+gate STUCK val 4000
+gate DEPTH val 0.5
+gate PATIENCE val 30
+gate PARK val 400
+# PARK-WAIT: beats a run past PARK waits without a step before it goes to the parked list
+gate PARK-WAIT val 600
+gate CELL val 0.02
+# beats a WAIT holds for its branch runs (one parked on a source counts) before it goes on with what landed
+gate WAITBEATS val 30
+# live runs at or below which a beat has spare capacity for the sixth
+gate SPARE val 0
+# steps a run takes in a row before the next run (by worth) gets its turn
+gate SLICE val 64
+# how many memories a FIND gives at once: a page of a list, of the timeline, of runs shaped alike
+gate PAGE val 32
+gate TIME-PAGE val 64
+# ACTS-CAP: bytes acts.log (the watch record) grows to before it goes to acts.log.1 and starts again
+gate ACTS-CAP val 268435456
+gate SHAPE-PAGE val 16
+# how many gates a run's trail keeps; a source's call: seconds it may take, bytes of answer kept
+gate TRAIL-CAP val 512
+gate CALL-WAIT val 30
+gate CALL-CAP val 16000

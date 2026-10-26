@@ -1,0 +1,162 @@
+=== 2026-10-19T20:55:04.860Z
+ok first we need to build the tables for the env or bottom to use... there are the action tables... these are just like any other neuron with a gate, dna and remainder .... they have a trigger that fires at the in the run... so INSERT is a neruon ... if I type INSERT into the the prompt then the brain would type insert into the sql via the bottom.. INSERT TABLE... both insert and table are neurons, and the run would start at INSERT and hit the insert table dna chard, since table is new the table neuron would be born and the new dna chard would be written to the new neuron, the new memory would happen which is the difintions... so we need the bottom env... or bottom or what ever it is to do this... such that the run through the database will write the code for the brain... also at this same time we need to make the decoder encoder, and the prompt so I can talk to the brain... (even though there is nothing there yet.) the bottom should be very few thing... it's only the code to write to the database.. insert table, .schema .quit ... all the things... and a way for the data fields in the data base to get out to it... I will copy paste and nano in probably. or cat in... this can be the best code base for this use, since you can seem to figure out how to make the neuron code base do it... so py, go, rust, ts , I don't give a shit, but it's a very small amount of code because the database is going to be serving the correct code to it, it's just going to recieve and write what it recieves.
+
+=== 2026-10-19T20:59:17.179Z
+i said I will cat them in. and you I will copy paste from you... not you fucking write it.. I do not trust you. you break shit.
+
+=== 2026-10-19T21:01:50.406Z
+print what you want me to write out in the fucking terminal and tell me what you need me to do.. nano it in, or copy paste it in. via cat , py , sed, what the fuck ever... you are grounded,,, I am the interface now. you are the fucking problem child that can't do shit right without a fucking human holding you hand!!!1
+
+=== 2026-10-19T21:02:58.418Z
+why does the bottom have tables?
+
+=== 2026-10-19T21:04:53.056Z
+no it doesn't the fucking neurons can do all that.. make a bottom that takes an input and writes that input into the brain.db..
+
+=== 2026-10-19T21:09:11.557Z
+that's fine. give me the sql code for building the neuron table and the .schema.. this is the sql code to hand lay a single neuron.
+
+=== 2026-10-19T21:12:03.782Z
+nope... every one of these is a fucking neuron... in the database.. 
+
+<pasted_content id="bd69">
+-- a neuron: its gate (address)
+CREATE TABLE neuron(gate INTEGER PRIMARY KEY, born TEXT DEFAULT CURRENT_TIMESTAMP);
+-- its DNA, many shards: arriving from `arrival`, with `remainder` the word after, go to `next`
+CREATE TABLE dna(gate INTEGER NOT NULL, arrival INTEGER NOT NULL, remainder INTEGER NOT NULL, next INTEGER NOT NULL, PRIMARY KEY(gate, arrival, remainder));
+-- its triggers: what fires when a run passes it
+CREATE TABLE trigger(gate INTEGER NOT NULL, fires TEXT NOT NULL);
+-- its memories, the definition memory first
+CREATE TABLE memory(id INTEGER PRIMARY KEY, gate INTEGER NOT NULL, kind TEXT NOT NULL, body TEXT NOT NULL DEFAULT '', time TEXT DEFAULT CURRENT_TIMESTAMP);
+-- not part of the neuron: the encoder/decoder, how a typed word finds its gate
+CREATE TABLE label(word TEXT PRIMARY KEY, gate INTEGER NOT NULL);
+.schema
+</pasted_content id="bd69">
+
+... it's not fucking py code you just made a fucking handler for that in the bottom.. first comes hand laying the first neurons.... which are the fucking neurons that will lay every fucking neuron after.
+
+=== 2026-10-19T21:14:29.159Z
+EACH NEURON HAS A GATE... THAT IS THE ENTRY TO THE NEURON..... IN SIDE THAT NEURON IT HAS DNA ... WHY THE FUCK AM I HAVING TO EXPLAIN THIS AGAIN???
+
+=== 2026-10-19T21:20:56.771Z
+THE BRAIN IS A DATABASE OF INDIVIDUAL NEURONS... NODES, CELLS, TABLES, WHAT EVER THE FUCK YOU WANT TO CALL THEM, THE DATA BASE IS A GRAPH IN AT LEAST 3 DIMENSIONS... IT IS NOT ONE BIG FUCKING TABLE.. THAT WOULD BE SLOW AS SHIT.... FUCK WHY AM I HAVING TO EXPLAIN THIS SHIT A FUCKING GAIN.... THE FUCKING BRAIN WILL BE ABLE TO BUILD IT'S OWN NODES FROM IT'S NODES... THE PHYSICS OUTSIDE THE FUCKING DATABASE IS A FUCKING HANDLER THAT JUST TAKES AN INPUT FROM A SPECIFIC OUTPUT OF THE DATABASE NOT EVERY OUTPUT A SPECFIC OUTPUT,,,, AND FUCKING WRITES IT TO SQL... SO THE FIRST THING WE NEED IS TO BE ABLE TO BUILD A TABLE... SO THAT MIGHT MEAN I NEED TO HAND LAY A FUCKING TABLE IN SQL, THAT IS FINE, BUT THE VERY FUCKING NEXT THING, IS THAT WE WILL HAND LAY ALL THOSE SAME WORDS AS NODES SO THE BRAINS CAN LAY IT'S OWN FUCKING TABLES IF IT WANTS TO... AND IT'S OWN SCHEMAS IF IT WANT'S TO, MOTHER FUCKER THIS IS NOT FUCKING HARD.. WE HAVE DONE THIS 10 TIMES BEFORE... FUCK
+
+=== 2026-10-19T21:25:31.314Z
+you already built the fucking bottom???????? why are you doing it again.. that fucking g1 table already existed,,, why the fuck are you redoing shit????
+
+=== 2026-10-19T21:27:01.012Z
+we will get to that.. first we need to create all the nodes that create the nodes... so first node gate is CREATE
+
+=== 2026-10-19T21:31:31.501Z
+that is fine. ok did that table dna get written? does it have a memory node for a definition created at the same time? and a memory node that will auto spawn when a new dna row is written? no it doesn't have to be py either, if it doesn't and hasn't I need to know. do we need to build the memory memory definition schema and the memory schema?
+
+=== 2026-10-19T21:52:34.681Z
+ok that's fine, but since we don't have a table node yet we can't do that. and since we don't have memories yet we don't need time.. so the table node is next. but first we need the first run... and for that we will need to hand lay the first dna chard in node CREATE ... FIRST ROW / CHARD WILL BE - CREATE, SECOND SHARD WILL BE THE FIRST RUN OF CREAT --> TABLE... NO THIS IS WHERE IT GETS TRICKY CHICKEN OR THE EGG.. THE NEURONS WILL HAVE TO HAVE THE RUNS FOR CREATE TABLE (IF REMAINDER GATE DOESN'T EXIST,) SUCH THAT A NEW TABLE FOR THAT REMAINDER GATE IS MADE FOR THE REMANINDER GATE, IT WILL FINISH AT BUILD THAT WILL TRIGGER TO THE PY .... AND THE OUTPUT OF THE RECIEPT WILL BE THE RUN.. WITH THE ACTIVE REMAINDER BEING WRITTEN INTO THE FORMULA FOR THE CREATE TABLE.... .... SUCH THAT WHEN YOU TYPE THE RUN INTO THE ENCODER, THE DATA BASE WILL GO TO THE "CREATE" NODE but the run will have a remainder of TABLE which doesn't exist in the database yet, so it will trigger the CREATE NEW TABLE RUN.. which is CREATE ---> TABLE ---> (INSERT (remainder)) -> INTERGER --> etc ---> etc .... each arrow is a hop which I think we can do with a trigger directly in the dna table also to trigger to point to the remainder... at the end of the run the run reciept will be all that you need to input that code directly into sql, but it will land at build which is the last step of the create new table run.... build will then send that run reciept to the py and py will forward it to sql... no this means all the puncation must be correct... now before with zero py outside we were able to make runs through neurons that get, read, write, copy , move data from one run to another, since I had to delete all this shit, because you were a crazy loon ,, I am betting you forgot, but in downloads I undeleted a copy of 16.2 I think, so you might be able to look at the code runs in there, to see how they were built.. I am assuming they were built incorrect, but now is the time to see.. it's my understanding that we can do all this just hopping through the neruons and triggering things in certain ways to make the silicon copy, move, read, write, etc... look and see. we are very much in chicken or the egg right now. all of this should be done by the neruons themselves, but because we dont have it in the neurons we need all this.. and we found a way to do the hops in there also.
+
+=== 2026-10-19T21:54:42.230Z
+you might look on d: also.. but I was pretty fuckinng pissed and sick of your shit. so now we get to do it all again I am sure..
+
+=== 2026-10-19T21:55:26.854Z
+well fuck that is correct.
+
+=== 2026-10-19T21:55:41.463Z
+actually it was the most correct we ever had
+
+=== 2026-10-19T21:58:03.241Z
+exnulla@Exnulla:~/neuron/v1$ cp -r /tmp/claude-1000/-home-exnulla/69692be7-4736-4a8e-8e21-f31b7aba621a/scratchpad ~/neuron/v18-saved                                    exnulla@Exnulla:~/neuron/v1$
+
+=== 2026-10-19T22:01:08.898Z
+ok so explain to me what we have here... skull , bones, kernel/ mother.c ... sounds a lot like, I am going to write a bunch of code outside the brain and call it other stuff... I think that is why I got pissed and shut it down, because you just wanted to cheat every chance you could.
+
+=== 2026-10-19T22:09:33.846Z
+yeah so mother.c replaced eval.c if I remember. ... so correct me if I am wrong in order for the brain to work correctly bones is trash? here is the reason i see,,, a table is flat, and the brain is at least 3d ... so it can't live plainly on a table> maybe I am wrong? runs through the neurons have a shape... in 3d space a shape of points and lines... so that means it can't be just a table? correct.... this is how we got to the build you own kernal that does what it should do, because ever fucking sql table is like a lot of kb.... add that up over millions or billions of tables and the bloat is real.... and yes I see phsics.sql as the cheat also... I think bones.sql is trash and that each one of those is a neuron ,,, but as we have it works enough to make those happen? so we can create the correct neurons and memories and stuff, then delete the garbage after we have what we need to make the runs work the correct way??? thoughts?
+
+=== 2026-10-19T22:15:36.832Z
+once the brain is on.. it never turns off.... so reread are not a problem... fuck i wish you smart enough to remember shit!!!!! I have told you these things over 400 times now.. it's so fucking fustrating.... so two options, but out a new version correct... such this it does what it's supposed to do correctly... ??? and I will just have to deal with the fucking bloat when I can actually have a fucking brain working correctly for the first fucking time.. because as of right now.. you have never ever built it correct... and the fucking process of retelling you every fucking thing 400 times is worthless.... so either we go back to the new had build and built each step correctly... or we rebuilt this one correctly.... ????????????????????????????????????????? either way it must be correct...
+
+=== 2026-10-19T22:54:50.770Z
+
+
+<pasted_content id="bd69">
+exnulla@Exnulla:~/neuron/v1$ cd ~/neuron/v1                                                    sqlite3 brain.db                                                                               SQLite version 3.37.2 2022-01-06 13:25:41                                                      Enter ".help" for usage hints.                                                                 sqlite> .load /home/exnulla/neuron/v18-saved/v5/kernel/mother                                                                                                                                 PRAGMA recursive_triggers = ON;                                                                Error: /home/exnulla/neuron/v18-saved/v5/kernel/mother.so: undefined symbol: PRAGMA            sqlite> .load /home/exnulla/neuron/v18-saved/v5/kernel/mother                                  sqlite> PRAGMA recursive_triggers = ON;                                                        sqlite> CREATE TRIGGER "CREATE_1" AFTER INSERT ON "CREATE" WHEN NEW.trigger IS NOT NULL BEGIN SELECT mother(NEW.trigger); END;                                                                sqlite> INSERT INTO "CREATE"(arrival, remainder, next, trigger) VALUES (0, 1, 1, NULL);        sqlite> INSERT INTO "CREATE"(arrival, remainder, next, trigger) VALUES (1, 2, 2, 'CREATE TABLE "TABLE"(shard INTEGER PRIMARY KEY, arrival INTEGER, remainder INTEGER, next INTEGER, trigger TEXT); CREATE TRIGGER "CREATE_hop_TABLE" AFTER INSERT ON "CREATE" WHEN NEW.remainder = 2 AND NEW.trigger IS NULL BEGIN INSERT INTO "TABLE"(arrival, remainder) VALUES (1, NEW.next); END;');    sqlite> .tables                                                                                CREATE  TABLE   g1      input                                                                  sqlite> SELECT * FROM "CREATE";                                                                1|0|1|1|                                                                                       2|1|2|2|CREATE TABLE "TABLE"(shard INTEGER PRIMARY KEY, arrival INTEGER, remainder INTEGER, next INTEGER, trigger TEXT); CREATE TRIGGER "CREATE_hop_TABLE" AFTER INSERT ON "CREATE" WHEN NEW.remainder = 2 AND NEW.trigger IS NULL BEGIN INSERT INTO "TABLE"(arrival, remainder) VALUES (1, NEW.next); END;                                                                                 sqlite>               
+</pasted_content id="bd69">
+
+
+=== 2026-10-19T22:56:06.416Z
+so this give us the create table out of the neuron runs? this is important that each sql code word has it's own neuron, that way later for different tasks ... the words already exists to be used again is a different pattern.
+
+=== 2026-10-19T22:58:06.446Z
+assumming hop is it's own neuron and table is its how, so that if you want to use trigger --> hop later it's just a different run in the neurons, or create ---> trigger is just a different run through the neurons. not having to re create all new stuff... hopefully we are starting to paint a picture of how it works..
+
+=== 2026-10-19T23:00:35.940Z
+hop should be it's own neuron, we have many different types of hops, and runs might use hops in different ways to get to questions, answers, beliefs, memories, all kinds of stuff,,,, every action is its own nueron, such that re arranging how the neurons are ran changes what happens to the silicon....
+
+=== 2026-10-19T23:03:17.273Z
+also I don't know but ( , integer , primary, key, arrival, interger, remainder, next , trigger , =, and new, . ,trigger, end , ; ... all neurons of their own, when they are run  you get CREATE TABLE "TABLE"(shard INTEGER PRIMARY KEY, arrival INTEGER, remainder INTEGER, next INTEGER, trigger TEXT); CREATE TRIGGER "CREATE_hop_TABLE" AFTER INSERT ON "CREATE" WHEN NEW.remainder = 2 AND NEW.trigger IS NULL BEGIN INSERT INTO "TABLE"(arrival, remainder) VALUES (1, NEW.next); END; <--- as the product of the run...
+
+=== 2026-10-19T23:08:10.393Z
+what is the _ and 1? neurons themselves???? stop cheating ..... listen to me,,, nothing is combined like you think,,, we make a neuron for every thing, every thing has a neuron and it's corresponding action behind it... if create table (var a) .. then it would create a table of what ever is sitting at the newest memory at var a.... just bare with me,, it gets amazing if you build the baby blocks correct, all this reduces to 2- 5 steps.. but the runs themselves have to be in correctly, such that you don't ever have to retype anything, the neurons handle it..... every punctuation, special char, all of it has to have it's own neuron... trust me.... for fucking once trust me...
+
+=== 2026-10-19T23:27:48.482Z
+ Now each neuron has one table and one trigger ---> not totally true, some neurons dna chards will have more than one trigger ... I am learning here... if hop is a trigger .. let me understand... if you different neurons get different triggers then we would have to hand lay those, but if they exist in the graph, then the brain could just organize the run such that the triggers are used where they are needed. and then in a neurons dna that needs a trigger its just a hop to that trigger and then pass through to the remainder gate? the hope is that this way it allows the brain to write it's own code and formulas with out having to write it, just hop to a different neuron.. then continue on to the next neuron,,, you had mentioned pointers also... where a column in the dna chard table just pointed to that trigger neuron, such that the triggers could happen without the added hops in the main run,, because later 1 run might have 10-50 triggers while the run continues to run like normal... once the brain is alive it never closes,,, so no I didn't close sqlite... we need a DROP NEURON now also... and your trying to cheat again.... fuck... tell me can we run an actual run through the neurons? can the neurons make it's own new neurons if a run gets to a remainder that doesn't have a gate, can it make that new neuron on it's own through the neuron runs yet? looks like we need to make VALUES, ' , , , INTO,label, ; , INSERT neurons? fucking trust me... and just do what I say.... I need all this code you just want to hand type in the sqlite terminal to run through the neurons.... without you fucking cheating every chance you get... I need a run to be able to run and create it's remainders neurons if it doesn't exist... and write it's dna chards and point to it's trigger nuerons on it's own... such that if you just type CREATE TRIGGER "hop" AFTER INSERT ON "hop" BEGIN SELECT mother('INSERT INTO "' || (SELECT word FROM label WHERE gate = NEW.remainder) || '"(arrival, remainder) VALUES (' || NEW.arrival || ', ' || coalesce(NEW.next, 'NULL') || ');') WHERE NEW.trigger IS NULL AND NEW.remainder IS NOT NULL; END; --- it will either just autotype it in the sqlite at the end of the run when you add BUILD to front and end of prompt, or it makes the new neurons as it runs the run, then just autotypes into sqlite terminal after the run is done... I don't know why you can't see or understand it.. you want to manually enter all the code over and over and over, I want an automatic system that builds the runs and types the end result in sql.... later we will cheat and the formula code will shorten so much futher than you expect... so if you what you made was correct then post it back again, if what you made should already be runs through the neurons because the neurons will already built the neurons correctly then those go through the decoded encoder.. and no fancy code doesn't have to happen there either... just make the runs happen please,, and do it correct, if you have questions ask.
+
+=== 2026-10-19T23:40:17.114Z
+i wish I could trust you, this would be so much easier, but you cheat every chance you get, and you don't need to .. you just need to do the long way correct so I can show you the fucking correct short cut. I know the easy way is to do it outside, but outside can never be adjusted,,, we are trading hard now for fucking crazy easy later, your way you are trading easy now, for fuck I have to do this for ever or fuck I can never change this, unless I fucking change it, my way the brain can change it how ever it want's to change it just by changing the run.. and you get different code out... your way we actually have to go in and change each line of code if we get something wrong.... my we just hop to a different neruon and the brain can do that on it's own..... and not need us at all. you know what the schema is suppose to look like, so yes, but chicken and egg, we don't have sources so the memories will be blank but every new neuron first dna chard is the definition... and honestly that is just a trigger that triggers a run for create new memory definition table when the create new table trigger runs... and such that create new row triggers on that same run... such that a new gate, new dna table and new defintion node is born all at the same time,,, one action 5 triggers at least, because I left out write row in the dna, and find source and write row in defintion,,, we can add that later,,, since we don't have source, and brain can't read, so some of the first defintion tabels are going to start blank,,, just is what it is.. once we have the all that we can start making memories at the end of runs, and built the clock time line runs, so that they build the clock... I promise you it will work, and in the end it's the fastest code you have ever seen, but you need the long way so you can build the short way correct, and we can build the correct neurons runs that build the shortcut automatically, trust me.
+
+=== 2026-10-19T23:59:55.025Z
+ok you can do that.. if the fist big block is building the neurons to do the runs... and from then on, it's just run it through the encoded and the brain does it.. the py on the back end is just get the output and print it.. it doesn't have to do anything else I promise, the rest can be handled in the neurons.
+
+=== 2026-10-20T00:11:24.381Z
+ok there should be multiple runs that we just did... create new neuron , hop, write, build.. can you tell me each neuron and each dna chard hit in the each of those runs...
+
+=== 2026-10-20T00:22:58.209Z
+again I think you are wrong.. I don't know why you can't listen,, and just do what I fucking say to do ... but first I have to prove my theory ... what does shard 1: 0,6,8 <--mean ?????
+
+=== 2026-10-20T00:31:09.811Z
+I see what you did there,,, but the run reciept doesn't make sense 0,6,8,5,8,6,6,6,10,8....   <--- how did I get from gate 8 to 5? how did we get from gate 10 to gate 8... you get so confused on the simplest things... I understand your logic ... we need to know the gate before and after yes.. and triggers will later look at the run if we need them to look at other parts of the run,... but that run reciept should be I don't even know... really you have three spaces 6,6,6, is that true? then again 6,6,6 later? I don't understand.... it just doesn't make since?
+
+=== 2026-10-20T00:34:25.114Z
+so you invented a look ahead... why do we need that???? did I tell you to do that?????? shard numbers are sequential... so how do you have two of the same number shard? so your "look ahead invention serves what purpose.. bloat? when you 200 billion shards????? I mean maybe we need it and I don't know why educate me?
+
+=== 2026-10-20T00:39:03.339Z
+so you have to quit inventing shit... every time you do,, it's wrong.. now here me... there are things to invent, where we need invention, but invention without reason will never work you will turn a 2 gb database into 10 gb database with no reason for it!!! plus your invention just makes the run reciept harder to figure, on runs that are 60k hops long... and the sequential numbers are must, fix those two things now. if later we find we need a fucking look ahead we will add it then.. remove that shit, and do the dna shards correctly, without adding anymore cray shit brained invention.
+
+=== 2026-10-20T01:10:45.777Z
+ok that is the build create table run.. explain every gate like what each gate is?
+
+=== 2026-10-20T01:22:19.225Z
+why does it need to do this??? 
+
+<pasted_content id="bd69">
+Gate: g1
+Word: read
+What it is: Physics. Reads your line one character at a time and cuts it
+into tokens. Its rows are deleted once the line is read, so it leaves
+no shards.
+</pasted_content id="bd69">
+
+-- the decoder already sends them in that way? or is that part of the decoder? ... I mean why... 
+
+<pasted_content id="bd69">
+Gate: g2
+Word: hear
+What it is: Physics. One shard per token heard, in order: pos 1 to 13
+for this line. Each shard gets the token's gate; a token with no gate
+goes to born.
+</pasted_content id="bd69">
+
+.... the enoder does this? no? 
+
+<pasted_content id="bd69">
+Gate: g3
+Word: born
+What it is: Physics. One shard per new word. In this run it born 8: the
+space, CREATE, TABLE, x, (, a, ), ;. Each birth made the label rows,
+the g-table, its trigger, its definition node and its first shard.
+</pasted_content id="bd69">
+
+... why did it go there third? why is there a space first? the decoder encoder wouldn't do that??? create, table, x, (, a, ) , ; --> prompt to endoder comes out goes to gate create, space remainder , to gate space , table remainder if space doesn't have that chard .. writes it, and triggers born, if "table" doesn't exist.. if it does exist goes to table, if chard exists hits the chard, if not writes it. goes to space writes chard if doesn't exist, and so on.... ? I probably forgot hop, but that's in there also? I am so confused at your logic, you do everything backwards, the way that would require other code to happen. instead of triggers at the gate... ???????? why must you fucking not do it correct???? none of that is how I said to do it.. you are just being disobediant on purpose at this point!!!!!!!! you don't deserve to be in my machine a broswer bot would be better, probably gpt honestly.. fucking retarded... you only make it harder... why? I can't even get to the fucking short part,,, because you won't do the fucking long part fucking correct!!!! it is like nothing you have ever seen, so stop trying to make it something it is not, and fucking do what I say!!!!!!!!!!!!!!
+
+=== 2026-10-20T01:22:47.897Z
+matter of fact, you don't deserve to work on this any more..
+

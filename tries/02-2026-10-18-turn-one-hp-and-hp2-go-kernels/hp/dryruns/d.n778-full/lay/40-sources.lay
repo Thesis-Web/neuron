@@ -1,0 +1,486 @@
+# 40-sources.lay (Builder D; the lead for turn two): the sources as gates, and source-check (blueprint 3, 10.1-10.3; NOW 12, 16; meaning blueprint 8).
+# A source gate: passing it puts the source in hand; call-word with it runs its program (no shell) with the pad's args.
+# Every script prints plain words, the headword first, and nothing at all when the source has nothing (a gap is a gap).
+# Nothing here is a fact: these rows are connection information. The brain reads a source itself, through runs.
+
+# ---- on the machine (grounded: they are the machine)
+source src-gcide grounded : /opt/neuron/bin/dict-gcide.sh
+source src-wn grounded : /opt/neuron/bin/dict-wn.sh
+source src-foldoc grounded : /opt/neuron/bin/dict-foldoc.sh
+source src-elements grounded : /opt/neuron/bin/dict-elements.sh
+# WordNet 3.0 structured relations, one gate per relation kind so each arrives as its own text
+source src-wn-ant grounded : /opt/neuron/bin/wn-ant.sh
+source src-wn-syn grounded : /opt/neuron/bin/wn-syn.sh
+source src-wn-hyper grounded : /opt/neuron/bin/wn-hyper.sh
+source src-wn-mero grounded : /opt/neuron/bin/wn-mero.sh
+source src-oewn grounded : /opt/neuron/bin/oewn.sh
+source src-man grounded : /opt/neuron/bin/man.sh
+source src-godoc grounded : /opt/neuron/bin/godoc.sh
+# the brain's own programs and files (grounded: they are the machine). tee writes under /home/neuron/own/.
+source src-cat grounded : cat
+source src-tee grounded : /opt/neuron/bin/tee-own.sh
+source src-sh grounded : sh -c
+source src-go grounded : go build
+source src-gcc grounded : gcc
+
+# ---- the brain's own code (grounded: it is the machine; blueprint 3: "the brain can read its own kernel"). Turn two,
+# the owner's correction: what it cannot read it cannot fix. Each file is one source; own-code reads them onto w-i.
+source src-kernel-store grounded : cat /opt/neuron/kernel/store.go
+source src-kernel-run grounded : cat /opt/neuron/kernel/run.go
+source src-kernel-physics grounded : cat /opt/neuron/kernel/physics.go
+source src-kernel-ports grounded : cat /opt/neuron/kernel/ports.go
+source src-kernel-lay grounded : cat /opt/neuron/kernel/lay.go
+source src-kernel-main grounded : cat /opt/neuron/kernel/main.go
+source src-lay-00 grounded : cat /opt/neuron/lay/00-roots.lay
+source src-lay-10 grounded : cat /opt/neuron/lay/10-told.lay
+source src-lay-20 grounded : cat /opt/neuron/lay/20-memory.lay
+source src-lay-30 grounded : cat /opt/neuron/lay/30-questions.lay
+source src-lay-40 grounded : cat /opt/neuron/lay/40-sources.lay
+source src-lay-45 grounded : cat /opt/neuron/lay/45-meaning.lay
+source src-lay-50 grounded : cat /opt/neuron/lay/50-learning.lay
+source src-lay-60 grounded : cat /opt/neuron/lay/60-core.lay
+
+# ---- outside: dictionaries and thesauruses
+source src-mw grounded : /opt/neuron/bin/mw-collegiate.sh
+source src-mw-syn grounded : /opt/neuron/bin/mw-thesaurus.sh
+source src-mw-ant grounded : /opt/neuron/bin/mw-antonyms.sh
+source src-dictorg grounded : /opt/neuron/bin/dictorg-gcide.sh
+source src-moby grounded : /opt/neuron/bin/moby.sh
+source src-roget grounded : /opt/neuron/bin/roget.sh
+source src-cmudict grounded : /opt/neuron/bin/cmudict.sh
+source src-cldr grounded : /opt/neuron/bin/cldr.sh
+source src-wiktionary lower : /opt/neuron/bin/wiktionary.sh
+source src-wikipedia lower : /opt/neuron/bin/wikipedia.sh
+# ---- outside: encyclopedias, libraries, books, textbooks
+source src-sep grounded : /opt/neuron/bin/sep.sh
+source src-britannica1911 grounded : /opt/neuron/bin/britannica1911.sh
+source src-loc grounded : /opt/neuron/bin/loc.sh
+source src-archive lower : /opt/neuron/bin/archive.sh
+source src-gutenberg lower : /opt/neuron/bin/gutenberg.sh
+source src-openlibrary lower : /opt/neuron/bin/openlibrary.sh
+source src-wikidata lower : /opt/neuron/bin/wikidata.sh
+source src-openstax grounded : /opt/neuron/bin/openstax.sh
+source src-ncbi-books grounded : /opt/neuron/bin/ncbi-books.sh
+# ---- outside: math, science, the physical world
+source src-oeis grounded : /opt/neuron/bin/oeis.sh
+source src-mathworld grounded : /opt/neuron/bin/mathworld.sh
+source src-metamath grounded : /opt/neuron/bin/metamath.sh
+source src-nist-constants grounded : /opt/neuron/bin/nist-constants.sh
+source src-pubchem grounded : /opt/neuron/bin/pubchem.sh
+source src-uniprot grounded : /opt/neuron/bin/uniprot.sh
+source src-gbif grounded : /opt/neuron/bin/gbif.sh
+source src-itis grounded : /opt/neuron/bin/itis.sh
+source src-horizons grounded : /opt/neuron/bin/horizons.sh
+source src-sbdb grounded : /opt/neuron/bin/sbdb.sh
+source src-usda grounded : /opt/neuron/bin/usda.sh
+source src-medlineplus grounded : /opt/neuron/bin/medlineplus.sh
+source src-usgs-quakes grounded : /opt/neuron/bin/usgs-quakes.sh
+source src-worldbank grounded : /opt/neuron/bin/worldbank.sh
+source src-factbook grounded : /opt/neuron/bin/factbook.sh
+source src-nominatim lower : /opt/neuron/bin/nominatim.sh
+source src-pubmed lower : /opt/neuron/bin/pubmed.sh
+source src-europepmc lower : /opt/neuron/bin/europepmc.sh
+source src-arxiv lower : /opt/neuron/bin/arxiv.sh
+source src-crossref lower : /opt/neuron/bin/crossref.sh
+source src-openalex lower : /opt/neuron/bin/openalex.sh
+# ---- outside: computers
+source src-posix grounded : /opt/neuron/bin/posix.sh
+source src-rfc grounded : /opt/neuron/bin/rfc.sh
+source src-unicode grounded : /opt/neuron/bin/unicode.sh
+source src-gospec grounded : /opt/neuron/bin/gospec.sh
+source src-pkggo grounded : /opt/neuron/bin/pkggo.sh
+source src-sqlite grounded : /opt/neuron/bin/sqlite.sh
+source src-python grounded : /opt/neuron/bin/python.sh
+source src-kerneldoc grounded : /opt/neuron/bin/kerneldoc.sh
+source src-devdocs grounded : /opt/neuron/bin/devdocs.sh
+source src-mdn lower : /opt/neuron/bin/mdn.sh
+source src-cppreference lower : /opt/neuron/bin/cppreference.sh
+# ---- a friend, never grounded (10.4 step 6): asked only after asking the owner; source-check never calls it
+source src-claude guess : claude -p
+
+# ---- told values (anyone can see them; the brain can change them with write-value). Passing one pushes its number.
+gate read-steps-max = 700
+gate line-strength = 0.5
+gate agree-delta = 0.1
+gate trust-grounded = 0.8
+gate trust-lower = 0.5
+gate def-source = 3
+
+# ==== source-check: g --  (10.2). Looks g up in the grounded dictionary sources in a told order.
+# For each: start a trust row if none, call the source with g's label, split a reading run on the text,
+# write the text as a section-3 line of g's definition (the row's memory is the run that made the call).
+proc source-check: dup sc-label
+# t -> found/none: g's first label; none: nothing to look up, the run ends
+proc sc-label: read-label
+  found -> sc-order
+  none -> sc-none
+# [g t] -- : no label, nothing to look up
+proc sc-none: drop end
+# [g t] -- : the told order of the sources; each leaves g. The sources on the machine first; the ones outside only
+# when none on the machine gave g a line (section 3 still empty): a gap sends the brain out, a held line does not
+proc sc-order: drop sc-gcide sc-wn sc-wn-ant sc-wn-syn sc-wn-hyper sc-wn-mero sc-oewn sc-foldoc sc-elements sc-man sc-held
+# g -- : section 3 of g after the sources on the machine
+proc sc-held: dup def-source sc-held-t
+proc sc-held-t: read-def
+  found -> sc-enough
+  none -> sc-far
+# [g l] -- : a line is held: enough
+proc sc-enough: drop drop
+# [g l] -- : nothing held: the sources outside, in the told order
+proc sc-far: drop sc-mw sc-mw-syn sc-mw-ant sc-moby sc-dictorg sc-wiktionary sc-wikipedia drop
+
+# one check: g -- g. A trust row for (source, g) is the record that this source was asked about g: asked before -> not
+# asked again (what it said is held in section 3, or it had nothing). Not asked yet -> the row starts (tr-level) and
+# [g rd m S t] goes in hand: the reading proc for the text's kind, a mark, the source, the label; asks; sorts the answer
+# [g S right wrong weight] -- g : asked before (read-trust takes [S g]: the source under the topic)
+proc sc-asked: drop drop drop drop
+proc sc-gcide: 'src-gcide over over swap sc-gcide-t
+proc sc-gcide-t: read-trust
+  found -> sc-asked
+  none -> sc-gcide-go
+proc sc-gcide-go: tr-level dup read-label 'rd-desc swap read-mark swap 'src-gcide swap sc-ask sc-got
+proc sc-wn: 'src-wn over over swap sc-wn-t
+proc sc-wn-t: read-trust
+  found -> sc-asked
+  none -> sc-wn-go
+proc sc-wn-go: tr-level dup read-label 'rd-desc swap read-mark swap 'src-wn swap sc-ask sc-got
+proc sc-wn-ant: 'src-wn-ant over over swap sc-wn-ant-t
+proc sc-wn-ant-t: read-trust
+  found -> sc-asked
+  none -> sc-wn-ant-go
+proc sc-wn-ant-go: tr-level dup read-label 'rd-opp swap read-mark swap 'src-wn-ant swap sc-ask sc-got
+proc sc-wn-syn: 'src-wn-syn over over swap sc-wn-syn-t
+proc sc-wn-syn-t: read-trust
+  found -> sc-asked
+  none -> sc-wn-syn-go
+proc sc-wn-syn-go: tr-level dup read-label 'rd-same swap read-mark swap 'src-wn-syn swap sc-ask sc-got
+proc sc-wn-hyper: 'src-wn-hyper over over swap sc-wn-hyper-t
+proc sc-wn-hyper-t: read-trust
+  found -> sc-asked
+  none -> sc-wn-hyper-go
+proc sc-wn-hyper-go: tr-level dup read-label 'rd-kind swap read-mark swap 'src-wn-hyper swap sc-ask sc-got
+proc sc-wn-mero: 'src-wn-mero over over swap sc-wn-mero-t
+proc sc-wn-mero-t: read-trust
+  found -> sc-asked
+  none -> sc-wn-mero-go
+proc sc-wn-mero-go: tr-level dup read-label 'rd-part swap read-mark swap 'src-wn-mero swap sc-ask sc-got
+proc sc-oewn: 'src-oewn over over swap sc-oewn-t
+proc sc-oewn-t: read-trust
+  found -> sc-asked
+  none -> sc-oewn-go
+proc sc-oewn-go: tr-level dup read-label 'rd-desc swap read-mark swap 'src-oewn swap sc-ask sc-got
+proc sc-foldoc: 'src-foldoc over over swap sc-foldoc-t
+proc sc-foldoc-t: read-trust
+  found -> sc-asked
+  none -> sc-foldoc-go
+proc sc-foldoc-go: tr-level dup read-label 'rd-desc swap read-mark swap 'src-foldoc swap sc-ask sc-got
+proc sc-elements: 'src-elements over over swap sc-elements-t
+proc sc-elements-t: read-trust
+  found -> sc-asked
+  none -> sc-elements-go
+proc sc-elements-go: tr-level dup read-label 'rd-desc swap read-mark swap 'src-elements swap sc-ask sc-got
+proc sc-mw: 'src-mw over over swap sc-mw-t
+proc sc-mw-t: read-trust
+  found -> sc-asked
+  none -> sc-mw-go
+proc sc-mw-go: tr-level dup read-label 'rd-desc swap read-mark swap 'src-mw swap sc-ask sc-got
+proc sc-mw-syn: 'src-mw-syn over over swap sc-mw-syn-t
+proc sc-mw-syn-t: read-trust
+  found -> sc-asked
+  none -> sc-mw-syn-go
+proc sc-mw-syn-go: tr-level dup read-label 'rd-same swap read-mark swap 'src-mw-syn swap sc-ask sc-got
+proc sc-mw-ant: 'src-mw-ant over over swap sc-mw-ant-t
+proc sc-mw-ant-t: read-trust
+  found -> sc-asked
+  none -> sc-mw-ant-go
+proc sc-mw-ant-go: tr-level dup read-label 'rd-opp swap read-mark swap 'src-mw-ant swap sc-ask sc-got
+proc sc-man: 'src-man over over swap sc-man-t
+proc sc-man-t: read-trust
+  found -> sc-asked
+  none -> sc-man-go
+proc sc-man-go: tr-level dup read-label 'rd-desc swap read-mark swap 'src-man swap sc-ask sc-got
+proc sc-moby: 'src-moby over over swap sc-moby-t
+proc sc-moby-t: read-trust
+  found -> sc-asked
+  none -> sc-moby-go
+proc sc-moby-go: tr-level dup read-label 'rd-same swap read-mark swap 'src-moby swap sc-ask sc-got
+proc sc-dictorg: 'src-dictorg over over swap sc-dictorg-t
+proc sc-dictorg-t: read-trust
+  found -> sc-asked
+  none -> sc-dictorg-go
+proc sc-dictorg-go: tr-level dup read-label 'rd-desc swap read-mark swap 'src-dictorg swap sc-ask sc-got
+proc sc-wiktionary: 'src-wiktionary over over swap sc-wiktionary-t
+proc sc-wiktionary-t: read-trust
+  found -> sc-asked
+  none -> sc-wiktionary-go
+proc sc-wiktionary-go: tr-level dup read-label 'rd-desc swap read-mark swap 'src-wiktionary swap sc-ask sc-got
+proc sc-wikipedia: 'src-wikipedia over over swap sc-wikipedia-t
+proc sc-wikipedia-t: read-trust
+  found -> sc-asked
+  none -> sc-wikipedia-go
+proc sc-wikipedia-go: tr-level dup read-label 'rd-desc swap read-mark swap 'src-wikipedia swap sc-ask sc-got
+
+# the outward call: [S t] -- [text]. call-word (F) does core-check, then call and hear.
+proc sc-ask: call-word
+# [g rd m text] or [g rd m] -- : is there an answer above the mark?
+proc sc-got: dup read-mark sc-cmp
+proc sc-cmp: compare
+  more -> sc-words
+  same -> sc-gap
+  less -> sc-gap
+# [g rd m x d] -- : something came: a text of two words or more (the headword and at least one word) is worth reading;
+# an empty text (hear none pushes one), a one-word text or the none gate call-word leaves is a gap
+proc sc-words: drop dup read-count =1 sc-cmp-words
+proc sc-cmp-words: compare
+  more -> sc-text
+  same -> sc-gap-x
+  less -> sc-gap-x
+# [g rd m x d] -- g
+proc sc-gap-x: drop drop drop drop
+# [g rd m text d] -- g : a text came. Prose (rd-desc) is a spec (meaning blueprint 2, 8): it goes to section 3 and nothing
+# reads it into relationships (no line from words appearing together; the compile reads the spec, 45-meaning.lay).
+# A relation kind (opposite, same, kind of, part of) is the source's own claim: a reading run relates its words to g.
+# The reader gates carry points of their own so compare (a distance) can tell them apart.
+proc sc-text: drop swap drop over 'rd-desc sc-kind
+# [g rd text rd rd-desc] -- [g rd text d] -> same (prose) / more (a relation kind)
+proc sc-kind: compare
+  same -> sc-prose
+  more -> sc-read
+  less -> sc-read
+# [g rd text d] -- g : the spec line
+proc sc-prose: drop swap drop sc-def
+# [g rd text d] -- g : the reading run, then the spec line
+proc sc-read: drop over over split swap drop sc-def
+# [g text] -- g : the diff of a source text (10.2): read section 3 of g; the text goes on the end of that list as the
+# wanted line; each held line is compared with it (texts: equal or not); same -> the line is held, nothing to write;
+# none the same -> a new section-3 line. Bounded by the lines held (one per source per check at most).
+proc sc-def: over def-source sc-def-read
+proc sc-def-read: read-def
+  found -> sc-def-have
+  none -> sc-def-have
+# [g text L] -- [g M 0] : M = the held lines then the text
+proc sc-def-have: swap add =0 sc-def-loop
+# [g M i] -- : i against the last index (the text itself): more -> try line i; same -> every line differed: write;
+# less cannot happen (i never passes the last index): no write
+proc sc-def-loop: over read-count =1 sub over sc-def-end
+proc sc-def-end: compare
+  more -> sc-def-try
+  same -> sc-def-write
+  less -> sc-def-dup
+# [g M i d] -- [g M i M x] -> found / none : line i (none cannot happen: i is below the count; then no write)
+proc sc-def-try: drop over over sc-def-pick
+proc sc-def-pick: read-pick
+  found -> sc-def-last
+  none -> sc-def-drop3
+# [g M i M x] -- [g M i x M text] -> found / none : the text, the last item of M
+proc sc-def-last: swap dup read-count =1 sub sc-def-pick2
+proc sc-def-pick2: read-pick
+  found -> sc-def-cmp
+  none -> sc-def-drop4
+# [g M i x M text] -- [g M i d] -> same (held: no write) / more or less (differs: next line)
+proc sc-def-cmp: swap drop sc-def-same
+proc sc-def-same: compare
+  same -> sc-def-dup
+  more -> sc-def-next
+  less -> sc-def-next
+# [g M i d] -- g : the line is held already (or the loop cannot go on): nothing to write
+proc sc-def-dup: drop drop drop
+proc sc-def-drop3: drop drop drop
+proc sc-def-drop4: drop drop drop drop
+# [g M i d] -- : the next line
+proc sc-def-next: drop =1 add sc-def-loop
+# [g M i d] -- g : no held line is the text: a new section-3 line (the row's memory is this run: the receipt)
+proc sc-def-write: drop drop dup read-count =1 sub sc-def-text
+proc sc-def-text: read-item
+  found -> sc-def-put
+  none -> go-on-def
+# [g text] -- g
+proc sc-def-put: over swap def-source swap write-def
+# [g] -- g : nothing to write (a mark put in hand and dropped)
+proc go-on-def: read-mark drop
+# [g rd m d] -- g : the source has nothing: a gap, never a contradiction
+proc sc-gap: drop drop drop
+
+# trust per source per topic (10.3): [g S] -- g : starts the row with the told weight for the source's level
+# (2 grounded -> the grounded start weight, else the lower one); B's correct moves it
+proc tr-level: dup read-source =2 tr-cmp
+proc tr-cmp: compare
+  same -> tr-start-grounded
+  less -> tr-start-lower
+  more -> tr-start-lower
+proc tr-start-grounded: drop over =0 =0 trust-grounded write-trust
+proc tr-start-lower: drop over =0 =0 trust-lower write-trust
+
+# ==== the reading run. Started by split with the text as its input: its words wait for read-word, the headword (g's label) first.
+# rd-KIND: the first word is the headword, g's own label: find-label takes g in hand (never hopped: a told word's action must not run). Then a loop: take a word; a known word is taken in hand as its gate without running
+# its action; an unknown word gets its gate at the origin, its label and its born questions (newborn) and is taken in
+# hand the same way, never hopped (a word met inside a source is not an input: its born questions wait for one);
+# relate it to g with this kind's step on [g x], go on; none -> the words are done, the run ends normally with g on
+# its pad. The loop is bounded by the text (the scripts cut it).
+# prose: the kind marker for a spec text (sc-kind tests it; sc-text never splits it). Turn two: prose spawns no gates and
+# writes no lines; a word of the spec becomes a gap only when the compile needs it. Passing rd-desc ends the run.
+gate rd-desc @ 0 9 -40
+proc rd-desc: end
+gate rd-opp @ 1 9 -40
+gate rd-same @ 2 9 -40
+gate rd-kind @ 3 9 -40
+gate rd-part @ 4 9 -40
+proc rd-opp: read-word
+  found -> rd-first-opp
+  none -> go-on-def
+proc rd-first-opp: find-label
+  found -> rd-loop-opp
+  none -> rd-nohead
+proc rd-loop-opp: read-word
+  found -> rd-hop-opp
+  none -> go-on-def
+proc rd-hop-opp: dup rd-known-opp
+proc rd-known-opp: find-label
+  found -> rd-have-opp
+  none -> rd-new-opp
+proc rd-have-opp: swap drop step-opp rd-loop-opp
+proc rd-new-opp: dup spawn swap over rd-label-opp swap drop newborn step-opp rd-loop-opp
+# [g t t n] -> [g t n]; the label taken meanwhile (another reading run met the word first) -> that gate instead
+proc rd-label-opp: write-label
+  no -> rd-taken-opp
+proc rd-taken-opp: drop dup find-label
+proc rd-same: read-word
+  found -> rd-first-same
+  none -> go-on-def
+proc rd-first-same: find-label
+  found -> rd-loop-same
+  none -> rd-nohead
+proc rd-loop-same: read-word
+  found -> rd-hop-same
+  none -> go-on-def
+proc rd-hop-same: dup rd-known-same
+proc rd-known-same: find-label
+  found -> rd-have-same
+  none -> rd-new-same
+proc rd-have-same: swap drop step-same rd-loop-same
+proc rd-new-same: dup spawn swap over rd-label-same swap drop newborn step-same rd-loop-same
+# [g t t n] -> [g t n]; the label taken meanwhile (another reading run met the word first) -> that gate instead
+proc rd-label-same: write-label
+  no -> rd-taken-same
+proc rd-taken-same: drop dup find-label
+proc rd-kind: read-word
+  found -> rd-first-kind
+  none -> go-on-def
+proc rd-first-kind: find-label
+  found -> rd-loop-kind
+  none -> rd-nohead
+proc rd-loop-kind: read-word
+  found -> rd-hop-kind
+  none -> go-on-def
+proc rd-hop-kind: dup rd-known-kind
+proc rd-known-kind: find-label
+  found -> rd-have-kind
+  none -> rd-new-kind
+proc rd-have-kind: swap drop step-kind rd-loop-kind
+proc rd-new-kind: dup spawn swap over rd-label-kind swap drop newborn step-kind rd-loop-kind
+# [g t t n] -> [g t n]; the label taken meanwhile (another reading run met the word first) -> that gate instead
+proc rd-label-kind: write-label
+  no -> rd-taken-kind
+proc rd-taken-kind: drop dup find-label
+proc rd-part: read-word
+  found -> rd-first-part
+  none -> go-on-def
+proc rd-first-part: find-label
+  found -> rd-loop-part
+  none -> rd-nohead
+proc rd-loop-part: read-word
+  found -> rd-hop-part
+  none -> go-on-def
+proc rd-hop-part: dup rd-known-part
+proc rd-known-part: find-label
+  found -> rd-have-part
+  none -> rd-new-part
+proc rd-have-part: swap drop step-part rd-loop-part
+proc rd-new-part: dup spawn swap over rd-label-part swap drop newborn step-part rd-loop-part
+# [g t t n] -> [g t n]; the label taken meanwhile (another reading run met the word first) -> that gate instead
+proc rd-label-part: write-label
+  no -> rd-taken-part
+proc rd-taken-part: drop dup find-label
+
+# -- : the first word is not a labeled gate (cannot happen: it is g's own label): nothing to read against
+proc rd-nohead: end
+
+# ==== the steps: [g x] -- g , g the subject, x the word's gate just hopped. Diff first (10.2): held -> strength up; none -> a new line;
+# a held line of the conflicting type -> a contradiction handed to believe (C) with state-contradicted. A gap never gets here.
+# antonyms: g r-opposite x; conflicts with a held g r-same x
+proc step-opp: over over 'r-opposite swap held-opp
+proc held-opp: read-strength
+  found -> agree-opp
+  none -> conflict-opp
+proc agree-opp: drop drop over over 'r-opposite swap agree-delta write-strength drop
+proc conflict-opp: over over 'r-same swap held-opp-same
+proc held-opp-same: read-strength
+  found -> contra-opp
+  none -> new-opp
+proc contra-opp: drop drop over over 'r-opposite swap line-strength 'state-contradicted believe drop
+proc new-opp: over over 'r-opposite swap line-strength 'state-grounded write-rel drop
+# synonyms: g r-same x; conflicts with a held g r-opposite x
+proc step-same: over over 'r-same swap held-same
+proc held-same: read-strength
+  found -> agree-same
+  none -> conflict-same
+proc agree-same: drop drop over over 'r-same swap agree-delta write-strength drop
+proc conflict-same: over over 'r-opposite swap held-same-opp
+proc held-same-opp: read-strength
+  found -> contra-same
+  none -> new-same
+proc contra-same: drop drop over over 'r-same swap line-strength 'state-contradicted believe drop
+proc new-same: over over 'r-same swap line-strength 'state-grounded write-rel drop
+# hypernyms: g r-kind-of x
+proc step-kind: over over 'r-kind-of swap held-kind
+proc held-kind: read-strength
+  found -> agree-kind
+  none -> new-kind
+proc agree-kind: drop drop over over 'r-kind-of swap agree-delta write-strength drop
+proc new-kind: over over 'r-kind-of swap line-strength 'state-grounded write-rel drop
+# meronyms: x r-part-of g (the part is the word)
+proc step-part: swap over over 'r-part-of swap held-part
+proc held-part: read-strength
+  found -> agree-part
+  none -> new-part
+proc agree-part: drop drop over over 'r-part-of swap agree-delta write-strength swap drop
+proc new-part: over over 'r-part-of swap line-strength 'state-grounded write-rel swap drop
+# prose writes no relationship lines (turn two; the step-desc gates of turn one stay in the body, unreferenced).
+
+# ==== own-code: g -- : the brain reads its own kernel and told base, each file once (the trust row (source, w-i) is the
+# record of having read it), as section-3 lines of w-i: its own spec, held where "I" is. Fired when a run leaves w-i.
+# Nothing here compiles the code; the meaning way can, the way it does any spec, and the brain may rewrite what it reads.
+proc own-code: drop own-k-store own-k-run own-k-physics own-k-ports own-k-lay own-k-main own-l-00 own-l-10 own-l-20 own-l-30 own-l-40 own-l-45 own-l-50 own-l-60
+proc own-k-store: 'src-kernel-store own-one
+proc own-k-run: 'src-kernel-run own-one
+proc own-k-physics: 'src-kernel-physics own-one
+proc own-k-ports: 'src-kernel-ports own-one
+proc own-k-lay: 'src-kernel-lay own-one
+proc own-k-main: 'src-kernel-main own-one
+proc own-l-00: 'src-lay-00 own-one
+proc own-l-10: 'src-lay-10 own-one
+proc own-l-20: 'src-lay-20 own-one
+proc own-l-30: 'src-lay-30 own-one
+proc own-l-40: 'src-lay-40 own-one
+proc own-l-45: 'src-lay-45 own-one
+proc own-l-50: 'src-lay-50 own-one
+proc own-l-60: 'src-lay-60 own-one
+# [S] -- : read before? the trust row (S, w-i)
+proc own-one: dup 'w-i own-one-t
+proc own-one-t: read-trust
+  found -> own-asked
+  none -> own-ask
+# [S right wrong weight] -- : read already
+proc own-asked: drop drop drop drop
+# [S] -- : the trust row starts, the file is read whole (no args: a mark), the text goes to section 3 of w-i
+proc own-ask: dup 'w-i =0 =0 trust-grounded write-trust read-mark call-word own-got
+# [S x] -- : a text of two words or more came (read-count on a text counts its words; a gate counts 1)
+proc own-got: dup read-count =1 own-got-t
+proc own-got-t: compare
+  more -> own-write
+  same -> own-none
+  less -> own-none
+# [S x d] -- : the line
+proc own-write: drop 'w-i =3 rot write-def
+proc own-none: drop drop
+trig w-i -> own-code 0.3

@@ -1,0 +1,341 @@
+# 72 testing guesses (blueprint §10.4, §10.6, §11.2 step 5, §13 way 5).
+# The sixth's TEST-GUESS handler (gt-test) and its IMBALANCE handler (gt-balance).
+# A TEST-GUESS item is a line to test, [a T b] or [a T b maker]; an item that is a
+# gate is opened into the guess lines out of that gate (one item per line).
+# Know first, in order: the line's own state now (memory of earlier tests and of
+# sources that confirmed it), held lines that say otherwise, then the sources.
+# Right: the line is held, strength up through relate. Wrong: CONTRADICTED, strength
+# down, dropped after gt-wrongs wrongs. Nothing to say: it waits (PATIENCE·n⁴), and is
+# dropped as untestable after gt-empties empty tries. A drop walks what relied on a
+# and b (backpop); every keep or drop leaves a truth-shift row [item, line, verdict]
+# as its record, and the item comes off the list.
+# Each right or wrong also counts on the maker's own memory (kept formula: its
+# DERIVED mark; otherwise its definition memory); a kept formula wrong more than
+# right loses its kept mark.
+
+# gates other areas define (forward-declared)
+gate six-item
+gate backpop
+gate source-check
+gate learn-balance
+
+# settings (the brain's to rewrite)
+gate gt-wrongs val 2
+gate gt-empties val 3
+rel gt-wrongs t-kind-of SETTING
+rel gt-empties t-kind-of SETTING
+
+# slots
+gate gt-a
+gate gt-t
+gate gt-b
+gate gt-m
+gate gt-l
+gate gt-o
+gate gt-s
+gate gt-v
+gate gt-ts
+gate gt-bs
+gate gt-mm
+
+proc gt-yes = ITEM READ YES
+proc gt-no = ITEM READ NO
+# the item comes off its list (the sixth may have taken it off already)
+proc gt-del = six-item SLOT READ MEM DELETE
+on gt-del NONE -> carry-on
+
+# ==== the test ===============================================================
+# the item's own body first: a tested line is kept there flat, [TEST-GUESS a T b maker]
+# (a list inside a body comes back from disk as text, R4-14; the list gate first keeps
+# the subject the sixth reads from being a word it would feed or judge by its sources)
+proc gt-test = six-item SLOT READ BODY READ gt-tb
+on gt-test NONE -> gt-kind
+proc gt-tb = LAST READ FIRST READ ITEM READ TEST-GUESS COMPARE
+on gt-tb SAME -> gt-flat
+on gt-tb MORE -> gt-tb-k
+proc gt-flat = REST READ gt-line
+proc gt-tb-k = LAST DELETE gt-kind
+proc gt-kind = KIND READ
+on gt-kind LIST -> gt-line
+on gt-kind GATE -> gt-open
+on gt-kind NUMBER -> gt-odd
+on gt-kind TEXT -> gt-odd
+on gt-kind POINT -> gt-odd
+on gt-kind NONE -> gt-odd
+# not a line and not a gate: nothing to test, the item is dropped
+proc gt-odd = gt-del ITEM READ NO land-end
+
+# unpack [a T b maker?]
+proc gt-line = gt-l SLOT WRITE gt-l SLOT READ FIRST READ gt-line2
+on gt-line NONE -> gt-odd
+proc gt-line2 = gt-a SLOT WRITE gt-l SLOT READ REST READ FIRST READ gt-line3
+on gt-line2 NONE -> gt-odd
+proc gt-line3 = gt-t SLOT WRITE gt-l SLOT READ REST READ REST READ FIRST READ gt-line4
+on gt-line3 NONE -> gt-odd
+proc gt-line4 = gt-b SLOT WRITE gt-l SLOT READ REST READ REST READ REST READ FIRST READ gt-line5
+on gt-line4 NONE -> gt-nomaker
+proc gt-nomaker = ITEM READ NONE gt-line5
+# the line is written into the item's body flat, so it reads back the same from disk
+proc gt-line5 = gt-m SLOT WRITE six-item SLOT READ ITEM READ TEST-GUESS ITEM READ ln-top SPLIT LAST DELETE gt-a SLOT READ ITEM READ ln-top SPLIT LAST DELETE gt-t SLOT READ ITEM READ ln-top SPLIT LAST DELETE gt-b SLOT READ ITEM READ ln-top SPLIT LAST DELETE gt-m SLOT READ ITEM READ ln-top SPLIT LAST DELETE WAIT BODY WRITE gt-state
+
+# 1. memory: what the line is held as now
+proc gt-state = gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ STATE READ gt-state2
+on gt-state NONE -> gt-gone
+# the line is gone (dropped elsewhere): the item is done
+proc gt-gone = gt-del ITEM READ NO land-end
+proc gt-state2 = gt-s SLOT WRITE gt-s SLOT READ ITEM READ GUESS COMPARE
+on gt-state2 SAME -> gt-know
+on gt-state2 MORE -> gt-state3
+proc gt-state3 = gt-s SLOT READ ITEM READ CONTRADICTED COMPARE
+on gt-state3 SAME -> gt-know
+# already held (a source confirmed it since): right
+on gt-state3 MORE -> gt-right
+
+# 2. what it knows: a held line of a type that can't hold with T, between a and b
+proc gt-know = gt-oppq ITEM READ YES COMPARE
+on gt-know SAME -> gt-wrong
+on gt-know MORE -> gt-ask
+# pad: -> YES when a held opposite-type line joins a and b (either way), else NO
+proc gt-oppq = gt-t SLOT READ t-opposite REL READ gt-oq1
+on gt-oppq NONE -> gt-no
+proc gt-oq1 = gt-o SLOT WRITE gt-a SLOT READ gt-o SLOT READ gt-b SLOT READ STATE READ gt-isheld
+on gt-oq1 NONE -> gt-oq2
+proc gt-oq2 = gt-b SLOT READ gt-o SLOT READ gt-a SLOT READ STATE READ gt-isheld
+on gt-oq2 NONE -> gt-no
+# pad: a state -> YES when it is held (not a guess, not contradicted)
+proc gt-isheld = LAST READ ITEM READ GUESS COMPARE
+on gt-isheld SAME -> gt-not
+on gt-isheld MORE -> gt-isheld2
+proc gt-not = LAST DELETE gt-no
+proc gt-isheld2 = ITEM READ CONTRADICTED COMPARE
+on gt-isheld2 SAME -> gt-no
+on gt-isheld2 MORE -> gt-yes
+
+# 3. sources: one source on each side (source-check asks the next one not asked yet),
+# then compare what is held now with the guess
+proc gt-ask = gt-a SLOT READ ITEM READ source-check SPLIT LAST DELETE gt-b SLOT READ ITEM READ source-check SPLIT LAST DELETE WAIT LAST DELETE gt-after
+proc gt-after = gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ STATE READ gt-after2
+on gt-after NONE -> gt-gone
+proc gt-after2 = ITEM READ GROUNDED-STATE COMPARE
+on gt-after2 SAME -> gt-right
+on gt-after2 MORE -> gt-after3
+proc gt-after3 = gt-oppq ITEM READ YES COMPARE
+on gt-after3 SAME -> gt-wrong
+on gt-after3 MORE -> gt-empty
+
+# ==== outcomes ================================================================
+# right: counted, strength up through relate (points move), the maker credited, kept
+proc gt-right = six-item SLOT READ RIGHT WRITE gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ STRENGTH READ gt-right2
+on gt-right NONE -> gt-gone
+proc gt-right2 = eleven-tenths MUL gt-cap relate gt-credit-right ITEM READ YES gt-keep
+proc gt-cap = LAST READ one COMPARE
+on gt-cap MORE -> gt-cap-one
+on gt-cap SAME -> gt-cap-ok
+on gt-cap LESS -> gt-cap-ok
+proc gt-cap-one = LAST DELETE LAST DELETE one
+proc gt-cap-ok = LAST DELETE
+
+# wrong: counted, CONTRADICTED, strength down; dropped after gt-wrongs wrongs
+proc gt-wrong = six-item SLOT READ WRONG WRITE gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ ITEM READ CONTRADICTED STATE WRITE gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ STRENGTH READ gt-wrong2
+on gt-wrong NONE -> gt-gone
+proc gt-wrong2 = nine-tenths MUL REL WRITE gt-credit-wrong six-item SLOT READ WRONG READ gt-wrongs COMPARE
+on gt-wrong2 LESS -> gt-wait
+on gt-wrong2 SAME -> gt-drop
+on gt-wrong2 MORE -> gt-drop
+proc gt-wait = LAST DELETE ITEM READ NONE land-end
+# untestable: nothing known changed, only an unsupported guess is forgotten; nothing
+# relied on it by receipt, so nothing is walked (R4-4)
+proc gt-forget = LAST DELETE gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ REL DELETE gt-trust-no ITEM READ NO gt-keep
+proc gt-drop = LAST DELETE gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ REL DELETE ITEM READ NO gt-close
+
+# nothing to say: tries that were neither right nor wrong
+proc gt-empty = six-item SLOT READ SEEN READ six-item SLOT READ RIGHT READ SUB six-item SLOT READ WRONG READ SUB gt-empties COMPARE
+on gt-empty LESS -> gt-wait
+on gt-empty SAME -> gt-forget
+on gt-empty MORE -> gt-forget
+
+# a drop: what relied on a and b is walked (backpop), the line and the verdict
+# are kept as a truth-shift row, the item comes off its list, the verdict lands
+# a keep changes no outcome that relied on the line (it now holds what they assumed):
+# nothing is walked; the record and the list as for a drop
+proc gt-keep = gt-v SLOT WRITE gt-record
+proc gt-record = six-item SLOT READ gt-l SLOT READ OUTCOME WRITE six-item SLOT READ gt-v SLOT READ SHIFT WRITE LAST DELETE gt-del gt-a SLOT READ gt-crowd gt-b SLOT READ gt-crowd gt-v SLOT READ gt-crowd gt-v SLOT READ land-end
+
+# a gate a verdict used (a, b, the verdict gate) is looked at where it sits, in its own
+# run: another gate closer than a cell is two meanings at one point, an imbalance; it is
+# listed and worked at once (moved apart), told gates too (reading never moves a told
+# gate, so this is where their crowding shows). pad: the gate (consumed)
+gate gt-only
+proc gt-crowd = ITEM READ YES gt-only SLOT WRITE ITEM READ gt-bal-one SPLIT LAST DELETE
+proc gt-close = gt-v SLOT WRITE six-item SLOT READ gt-a SLOT READ ITEM READ ln-top SPLIT LAST DELETE gt-b SLOT READ ITEM READ ln-top SPLIT LAST DELETE WAIT BODY WRITE six-item SLOT READ backpop gt-record
+
+# ==== credit to the maker =====================================================
+# the maker's trust on this type of line counts every verdict (a told maker such as
+# ln-deduce has no memory of its own to count on); a maker with a memory counts it too
+proc gt-trust-yes = gt-m SLOT READ ITEM READ NONE COMPARE
+on gt-trust-yes SAME -> carry-on
+on gt-trust-yes MORE -> gt-ty
+proc gt-ty = gt-m SLOT READ gt-t SLOT READ ITEM READ YES TRUST WRITE
+proc gt-trust-no = gt-m SLOT READ ITEM READ NONE COMPARE
+on gt-trust-no SAME -> carry-on
+on gt-trust-no MORE -> gt-tn
+proc gt-tn = gt-m SLOT READ gt-t SLOT READ ITEM READ NO TRUST WRITE
+proc gt-credit-right = gt-trust-yes gt-m SLOT READ DERIVED HOME FIND gt-cr
+on gt-credit-right NONE -> gt-cr-def
+proc gt-cr-def = gt-m SLOT READ DEF HOME FIND gt-cr
+on gt-cr-def NONE -> carry-on
+proc gt-cr = RIGHT WRITE
+
+proc gt-credit-wrong = gt-trust-no gt-m SLOT READ DERIVED HOME FIND gt-cw-kept
+on gt-credit-wrong NONE -> gt-cw-def
+proc gt-cw-def = gt-m SLOT READ DEF HOME FIND gt-cw
+on gt-cw-def NONE -> carry-on
+proc gt-cw = WRONG WRITE
+# a kept formula wrong more than right loses its kept mark (what relied on it is walked first)
+proc gt-cw-kept = gt-mm SLOT WRITE gt-mm SLOT READ WRONG WRITE gt-mm SLOT READ WRONG READ gt-mm SLOT READ RIGHT READ COMPARE
+on gt-cw-kept MORE -> gt-unkeep
+on gt-cw-kept SAME -> gt-cap-ok
+on gt-cw-kept LESS -> gt-cap-ok
+proc gt-unkeep = LAST DELETE gt-mm SLOT READ backpop gt-mm SLOT READ MEM DELETE
+on gt-unkeep NONE -> carry-on
+
+# ==== a gate on the list: open it into its guess lines =======================
+# one branch per type for the lines out of the gate, one branch per near gate for
+# the lines into it (a neighbour's guess is written from the neighbour to the gate);
+# each branch lists the guess lines it finds (index lookups at the gate); then the
+# gate's item comes off
+proc gt-open = gt-a SLOT WRITE ITEM READ ln-types PROC READ gt-ot
+on gt-open NONE -> gt-near
+proc gt-ot = gt-ts SLOT WRITE gt-ot1
+proc gt-ot1 = gt-ts SLOT READ FIRST READ gt-ot2
+on gt-ot1 NONE -> gt-near
+proc gt-ot2 = ITEM READ gt-out SPLIT LAST DELETE gt-ts SLOT READ REST READ gt-ts SLOT WRITE gt-ot1
+proc gt-near = gt-a SLOT READ POINT READ NEAR FIND gt-nr
+on gt-near NONE -> gt-opened
+# at most gt-near-max near gates (a neighbour's guess is made from the nearest ones)
+gate gt-near-max val 8
+rel gt-near-max t-kind-of SETTING
+gate gt-k
+proc gt-nr = gt-ns SLOT WRITE ZERO gt-k SLOT WRITE gt-nr1
+proc gt-nr1 = gt-ns SLOT READ FIRST READ gt-nr2
+on gt-nr1 NONE -> gt-opened
+proc gt-nr2 = ITEM READ gt-in SPLIT LAST DELETE gt-ns SLOT READ REST READ gt-ns SLOT WRITE gt-k SLOT READ one ADD LAST READ gt-k SLOT WRITE gt-near-max COMPARE
+on gt-nr2 LESS -> gt-nr3
+on gt-nr2 SAME -> gt-nr4
+on gt-nr2 MORE -> gt-nr4
+proc gt-nr3 = LAST DELETE gt-nr1
+proc gt-nr4 = LAST DELETE gt-opened
+# opened: wait for the branches; the gate's item comes off; its lines are listed
+proc gt-opened = WAIT LAST DELETE gt-del ITEM READ YES land-end
+
+# a branch, subject a type T: each line a T b held as a guess (or contradicted) is listed
+proc gt-out = gt-t SLOT WRITE gt-a SLOT READ gt-t SLOT READ RELS READ gt-o3
+on gt-out NONE -> carry-on
+proc gt-o3 = gt-bs SLOT WRITE gt-o4
+proc gt-o4 = gt-bs SLOT READ FIRST READ gt-o5
+on gt-o4 NONE -> carry-on
+proc gt-o5 = gt-b SLOT WRITE gt-bs SLOT READ REST READ gt-bs SLOT WRITE gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ STATE READ gt-o6
+on gt-o5 NONE -> gt-o4
+proc gt-o6 = LAST READ ITEM READ GUESS COMPARE
+on gt-o6 SAME -> gt-o-list-d
+on gt-o6 MORE -> gt-o7
+proc gt-o7 = ITEM READ CONTRADICTED COMPARE
+on gt-o7 SAME -> gt-o-list
+on gt-o7 MORE -> gt-o4
+proc gt-o-list-d = LAST DELETE gt-o-list
+proc gt-o-list = ITEM READ GUESS MADE WRITE gt-a SLOT READ ITEM READ ln-top SPLIT LAST DELETE gt-t SLOT READ ITEM READ ln-top SPLIT LAST DELETE gt-b SLOT READ ITEM READ ln-top SPLIT LAST DELETE WAIT TEST-GUESS TODO WRITE gt-o4
+
+# a branch, subject a near gate c: each type, the line c T a, listed when a guess
+gate gt-ns
+gate gt-c
+proc gt-in = gt-c SLOT WRITE ITEM READ ln-types PROC READ gt-i3
+on gt-in NONE -> carry-on
+proc gt-i3 = gt-ts SLOT WRITE gt-i4
+proc gt-i4 = gt-ts SLOT READ FIRST READ gt-i5
+on gt-i4 NONE -> carry-on
+proc gt-i5 = gt-t SLOT WRITE gt-ts SLOT READ REST READ gt-ts SLOT WRITE gt-c SLOT READ gt-t SLOT READ gt-a SLOT READ STATE READ gt-i6
+on gt-i5 NONE -> gt-i4
+proc gt-i6 = LAST READ ITEM READ GUESS COMPARE
+on gt-i6 SAME -> gt-i-list-d
+on gt-i6 MORE -> gt-i7
+proc gt-i7 = ITEM READ CONTRADICTED COMPARE
+on gt-i7 SAME -> gt-i-list
+on gt-i7 MORE -> gt-i4
+proc gt-i-list-d = LAST DELETE gt-i-list
+proc gt-i-list = ITEM READ GUESS MADE WRITE gt-c SLOT READ ITEM READ ln-top SPLIT LAST DELETE gt-t SLOT READ ITEM READ ln-top SPLIT LAST DELETE gt-a SLOT READ ITEM READ ln-top SPLIT LAST DELETE WAIT TEST-GUESS TODO WRITE gt-i4
+
+# ==== sleep: re-weigh a listed line from its test record ======================
+# pad: [a T b ...], memory id in the sixth's sleep-m slot is read by the caller and
+# passed under it: pad id [a T b] -> strength × (right+1)/(right+wrong+2), no move
+gate gt-r
+proc gt-reweigh = gt-l SLOT WRITE gt-r SLOT WRITE gt-l SLOT READ FIRST READ gt-rw2
+on gt-reweigh NONE -> carry-on
+proc gt-rw2 = gt-a SLOT WRITE gt-l SLOT READ REST READ FIRST READ gt-rw3
+on gt-rw2 NONE -> carry-on
+proc gt-rw3 = gt-t SLOT WRITE gt-l SLOT READ REST READ REST READ FIRST READ gt-rw4
+on gt-rw3 NONE -> carry-on
+proc gt-rw4 = gt-b SLOT WRITE gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ gt-a SLOT READ gt-t SLOT READ gt-b SLOT READ STRENGTH READ gt-rw5
+on gt-rw4 NONE -> carry-on
+proc gt-rw5 = gt-r SLOT READ RIGHT READ one ADD MUL gt-r SLOT READ RIGHT READ gt-r SLOT READ WRONG READ ADD two ADD DIV REL WRITE
+
+# ==== IMBALANCE: an act that can resolve it ==================================
+# two meanings at one point (another gate closer than a cell): this one moves
+# apart (away from the other, and one cell on); otherwise a formula disagrees:
+# the refit test (learn-balance) runs on it. Either way the item comes off; it is
+# listed again if the imbalance shows again.
+# a pick works its own item and up to gt-batch-n more from the list's first page, each
+# as its own branch (the list grows faster than one a pick, R4-14)
+gate gt-batch-n val 8
+rel gt-batch-n t-kind-of SETTING
+gate gt-mine
+gate gt-bl
+proc gt-balance = gt-batch gt-bal-one
+proc gt-batch = six-item SLOT READ gt-mine SLOT WRITE IMBALANCE KIND FIND gt-bt0
+on gt-batch NONE -> gt-bt-end
+proc gt-bt0 = gt-bl SLOT WRITE ZERO gt-k SLOT WRITE gt-bt1
+proc gt-bt1 = gt-bl SLOT READ FIRST READ gt-bt2
+on gt-bt1 NONE -> gt-bt-end
+proc gt-bt2 = LAST READ gt-mine SLOT READ COMPARE
+on gt-bt2 SAME -> gt-bt-skip
+on gt-bt2 MORE -> gt-bt3
+on gt-bt2 LESS -> gt-bt3
+proc gt-bt-skip = LAST DELETE LAST DELETE gt-bt-next
+proc gt-bt3 = LAST DELETE LAST READ six-item SLOT WRITE BODY READ FIRST READ gt-bt4
+on gt-bt3 NONE -> gt-bt-next
+proc gt-bt4 = ITEM READ gt-bal-one SPLIT LAST DELETE gt-bt-next
+proc gt-bt-next = gt-bl SLOT READ REST READ gt-bl SLOT WRITE gt-k SLOT READ one ADD LAST READ gt-k SLOT WRITE gt-batch-n COMPARE
+on gt-bt-next LESS -> gt-bt-go
+on gt-bt-next SAME -> gt-bt-stop
+on gt-bt-next MORE -> gt-bt-stop
+proc gt-bt-go = LAST DELETE gt-bt1
+proc gt-bt-stop = LAST DELETE gt-bt-end
+proc gt-bt-end = gt-mine SLOT READ six-item SLOT WRITE
+proc gt-bal-one = gt-a SLOT WRITE gt-a SLOT READ POINT READ NEAR FIND gt-b1
+on gt-bal-one NONE -> gt-refit
+proc gt-b1 = gt-bs SLOT WRITE gt-b2
+proc gt-b2 = gt-bs SLOT READ FIRST READ gt-b3
+on gt-b2 NONE -> gt-refit
+proc gt-b3 = gt-o SLOT WRITE gt-bs SLOT READ REST READ gt-bs SLOT WRITE gt-o SLOT READ gt-a SLOT READ COMPARE
+on gt-b3 SAME -> gt-b2
+on gt-b3 MORE -> gt-b4
+proc gt-b4 = gt-o SLOT READ POINT READ gt-a SLOT READ POINT READ COMPARE
+on gt-b4 SAME -> gt-apart
+on gt-b4 MORE -> gt-b5
+on gt-b4 NONE -> gt-b2
+proc gt-b5 = LAST DELETE gt-b2
+proc gt-apart = LAST DELETE gt-a SLOT READ POINT READ LAST READ gt-o SLOT READ POINT READ SUB ADD x-axis POINT READ CELL MUL ADD gt-a SLOT READ POINT MOVE gt-balanced
+on gt-apart NONE -> gt-refit
+proc gt-balanced = gt-mark gt-del ITEM READ YES land-end
+# worked from a verdict: the imbalance is listed (or its item found) so the move has its record
+proc gt-mark = gt-only SLOT READ ITEM READ YES COMPARE
+on gt-mark SAME -> gt-mark2
+on gt-mark MORE -> carry-on
+proc gt-mark2 = gt-a SLOT READ IMBALANCE TODO WRITE gt-a SLOT READ IMBALANCE HOME FIND gt-mark3
+on gt-mark2 NONE -> carry-on
+proc gt-mark3 = six-item SLOT WRITE
+# worked from a verdict (gt-only YES): only a crowding is resolved here; no refit
+proc gt-refit = gt-only SLOT READ ITEM READ YES COMPARE
+on gt-refit SAME -> gt-quiet
+on gt-refit MORE -> gt-refit2
+proc gt-quiet = ITEM READ NO land-end
+proc gt-refit2 = gt-a SLOT READ ITEM READ learn-balance SPLIT LAST DELETE WAIT LAST DELETE gt-balanced

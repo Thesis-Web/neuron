@@ -1,0 +1,825 @@
+# 50-learning.lay: learning (13), back-population (10.5), back-propagation and sleep (9.6), the sixth (12.1).
+# Builder E. Fills learn, backpop, sleep, sixth from 00-roots.lay. Names from A (w-something, r-opposite,
+# r-kind-of, r-same, r-cause, r-derived-from, plus, times) and from B/C/D (hc, source-check,
+# ask-what-is, balance, correct, newborn) are used, never laid here. Turn two (builder E2): the sixth splits the
+# roots handle `meaning` (M, 45-meaning.lay) on a gap row, and the fit way moves its offset gate instead of spawning one.
+# Every test is first in its own small proc and every outcome of it has a branch (an outcome with no
+# shard would go the miss way). Pads are written as [bottom .. top].
+
+# ---- told values (visible; the brain may change them with write-value)
+gate learn-batch = 8
+# passing it puts 8 on the pad: how many of the day's memories one sleep searches for formulas
+gate guess-step = 0.1
+# passing it puts 0.1 on the pad: how much a guessed line gains or loses when re-weighed in sleep
+gate long-run = 12
+# passing it puts 12 on the pad: a memory seen this often, right and never wrong, earns a shortcut
+gate backpop-batch = 8
+# passing it puts 8 on the pad: how many relying memories one back-population rewrites
+gate day = 86400000
+# passing it puts a day in ms on the pad: how far back sleep searches for formulas
+
+# ================= learn: n -- ; the five ways on memory n, in order, each ending early when it does not apply
+proc learn: learn-gen learn-fit learn-short learn-self-cut learn-deduce drop
+# passing learn: generalize, fit, shortcut, on-itself cutting, deduction, on memory n; each leaves n for the next
+
+
+# ---- fit a relationship's formula (13.2): for A r-kind-of B, where the fwd formula sends A against B's point;
+# off by more than a cell -> the offset gate the fwd formula names (item 0 of its string) is shifted by the miss:
+# while it is still the told root z-axis (never moved) a new offset gate is spawned there and fwd/back are rewritten
+# to name it; once it is a gate the brain made, that gate is moved and nothing is rewritten. Either way the refit
+# stays a guess (the guesses row, same key each time) until the sixth's guess list tests it.
+proc learn-fit: dup learn-fit-t
+# passing learn-fit: [n] -> [n sig home body outcome]
+proc learn-fit-t: read-row
+  found -> fit-home
+  none -> learn-keep
+proc fit-home: drop drop swap drop dup 'r-kind-of fit-home-t
+# passing fit-home: [n A] -> [n A l]: the gates A is a kind of
+proc fit-home-t: read-rel
+  found -> fit-b
+  none -> self-drop2
+proc fit-b: =0 fit-b-t
+# passing fit-b: [n A l] -> [n A B]: the first pair
+proc fit-b-t: read-item
+  found -> fit-pred
+  none -> self-drop1
+proc fit-pred: read-point swap read-point 'r-kind-of.fwd write-rest fit-miss
+# passing fit-pred: [n A B] -> [n Bp Ap] -> runs the type's fwd formula on A's point -> [n Bp pred]
+proc fit-miss: over over fit-miss-t
+# passing fit-miss: [n Bp pred] -> [n Bp pred d]: how far the formula lands from B
+proc fit-miss-t: compare
+  same -> fit-ok
+  more -> fit-refit
+  less -> fit-ok
+proc fit-ok: drop drop drop
+# passing fit-ok: the formula already fits this pair; back to [n]
+proc fit-refit: drop sub fit-offset
+# passing fit-refit: [n Bp pred d] -> [n miss]: the miss Bp-pred the formula has to shift by
+proc fit-offset: 'r-kind-of.fwd fit-offset-t
+# passing fit-offset: [n miss] -> [n miss kind l]: the fwd formula's binding kind and its string as a list of gates
+proc fit-offset-t: read-bind
+  found -> fit-offset2
+  none -> fit-drop1
+proc fit-drop1: drop
+# passing fit-drop1: no formula to refit, or no offset gate in it; back to [n]
+proc fit-offset2: swap drop =0 fit-offset2-t
+# passing fit-offset2: [n miss kind l] -> [n miss g0]: item 0 of the formula is the offset gate (z-axis when told)
+proc fit-offset2-t: read-item
+  found -> fit-which
+  none -> fit-drop1
+proc fit-which: dup read-made drop 'z-axis read-made drop fit-which-t
+# passing fit-which: [n miss g0] -> [n miss g0 made0 madez]: is the offset gate made the way the told root z-axis is?
+# (compare on two gates is a distance, so the made texts are compared: told against told is same, spawned is not)
+proc fit-which-t: compare
+  same -> fit-spawn
+  more -> fit-move
+  less -> fit-move
+proc fit-spawn: drop read-point add spawn fit-write
+# passing fit-spawn: [n miss g0 d] -> the told root is never moved: a new gate at g0's point + miss -> [n g]
+proc fit-move: drop dup read-point rot add over swap move fit-guess
+# passing fit-move: [n miss g0 d] -> [n g0 g0 g0point+miss] -> move g0 there: the formula already names g0, so
+# nothing is rewritten; only the guesses row is written again -> [n]
+proc fit-write: 'r-kind-of.fwd over 'read-point 'add =3 read-list write-proc 'r-kind-of.back over 'read-point 'sub =3 read-list write-proc fit-guess
+# passing fit-write: [n g] -> write-proc r-kind-of.fwd [g read-point add], r-kind-of.back [g read-point sub]
+proc fit-guess: 'guesses 'r-kind-of.fwd over 'state-guess read-self write-row drop drop
+# passing fit-guess: a guesses row home=r-kind-of.fwd key=g: the refit stays a guess until the next pair tests it; [n]
+
+# ---- shortcut (13.3, 9.4): a long run that always came out right gets a direct shard, receipt kept
+proc learn-short: dup learn-short-t
+proc learn-short-t: read-mem
+  found -> short-counts
+  none -> learn-keep
+# passing learn-short: reads the memory's counts: [n outcome seen right wrong last]
+proc learn-keep: dup drop
+# passing learn-keep: nothing to do on this way; n stays for the next way
+proc short-counts: drop rot long-run short-counts-t
+proc short-counts-t: compare
+  less -> short-no
+  same -> short-no
+  more -> short-wrongs
+# passing short-counts: keeps [n outcome seen right wrong]... reduced to [n outcome seen wrong d]; seen over the told mark?
+proc short-no: drop drop drop drop
+# passing short-no: not long enough: back to [n]
+proc short-wrongs: drop swap drop =0 short-wrongs-t
+proc short-wrongs-t: compare
+  more -> short-no2
+  less -> short-no2
+  same -> short-lay
+# passing short-wrongs: [n outcome wrong] -> [n outcome d]: wrong must be zero
+proc short-no2: drop drop
+# passing short-no2: it was wrong once: no shortcut; back to [n]
+proc short-lay: drop dup short-lay-t
+proc short-lay-t: read-row
+  found -> short-shard
+  none -> learn-keep
+# passing short-lay: [n outcome] -> [n n sig home body outcome]
+proc short-shard: row-home-out short-shard-t
+proc short-shard-t: find-label
+  found -> short-write
+  none -> short-drop2
+# passing short-shard: [n n home outcome] -> [n n home g]: the outcome text's gate: the shortcut lands there
+proc short-drop2: drop drop drop
+# passing short-drop2: the outcome has no gate to land on: back to [n]
+proc short-write: dup 'short-write2 swap 'gen-pop swap =3 read-list write-rest dup write-shard drop
+# passing short-write: [n n home g] -> runs short-write2 (receipt, arrival), gen-pop (g back), then
+# write-shard home -1 g g: the direct way from the run's first gate to its outcome; back to [n]
+proc gen-pop: read-next
+# passing gen-pop: takes the next item of the remainder back onto the pad as data
+proc short-write2: drop over over swap write-receipt =-1
+# passing short-write2: [n n home g] -> write-receipt home n (the shortcut keeps the long run as its receipt, 9.4),
+# then the arrival -1 (the gate's usual way): [n n home -1]
+
+# ---- row-home-out: m sig home body outcome -- m home outcome : the two fields a rewrite needs
+proc row-home-out: swap drop =3 read-list dup =1 row-home-out-t
+proc row-home-out-t: read-item
+  found -> rho2
+  none -> rho-none
+# passing row-home-out: [m sig home body out] -> [m [sig home out] home]
+proc rho2: swap =2 rho2-t
+proc rho2-t: read-item
+  found -> gen-go
+  none -> rho-none
+# passing rho2: [m l home] -> [m home out]
+proc rho-none: drop
+# passing rho-none: a row with fewer fields than a run memory has
+
+# ---- on itself (13.5): a question that never lands loses worth; two steps that cancel get cut
+proc learn-self-cut: dup learn-self-cut-t
+proc learn-self-cut-t: read-mem
+  found -> self-land
+  none -> learn-keep
+# passing learn-self-cut: [n] -> [n outcome seen right wrong last]
+proc self-land: drop drop drop drop self-land-t
+proc self-land-t: find-label
+  found -> self-landed
+  none -> self-never
+# passing self-land: [n outcome] -> did the outcome ever land on a gate? (none: a question that never lands)
+proc self-landed: drop
+# passing self-landed: it lands; nothing to cut here; back to [n]
+proc self-never: dup self-never-t
+proc self-never-t: read-row
+  found -> self-lower
+  none -> learn-keep
+# passing self-never: [n] -> [n n sig home body outcome]
+proc self-lower: drop drop swap drop swap drop dup self-lower-t
+proc self-lower-t: read-trig
+  found -> self-lower-do
+  none -> self-drop2
+# passing self-lower: [n home] -> the usual triggers of the home gate: [n home l]
+proc self-drop1: drop
+# passing self-drop1: no trigger to lower; back to [n]
+proc self-lower-do: =0 self-lower-do-t
+proc self-lower-do-t: read-item
+  found -> self-lower-one
+  none -> self-drop1
+# passing self-lower-do: [n home l] -> [n home l [proc worth]]
+proc self-lower-one: dup =0 self-lower-one-t
+proc self-lower-one-t: read-item
+  found -> self-lower-w
+  none -> self-drop2
+# passing self-lower-one: [n home [proc worth]] -> [n home pw proc]
+proc self-drop2: drop drop
+# passing self-drop2: back to [n]
+proc self-lower-w: swap =1 self-lower-w-t
+proc self-lower-w-t: read-item
+  found -> self-lower-write
+  none -> self-drop2
+# passing self-lower-w: [n home proc pw] -> [n home proc worth]
+proc self-lower-write: guess-step sub write-trig
+# passing self-lower-write: [n home proc worth] -> write-trig home proc (worth - step): the question loses worth
+
+# ---- deduce (11.3): A r-kind-of B and B r-cause C -> A r-cause C as a guess, with a guesses row
+proc learn-deduce: dup learn-deduce-t
+proc learn-deduce-t: read-row
+  found -> deduce-home
+  none -> learn-keep
+# passing learn-deduce: [n] -> [n sig home body outcome]
+proc deduce-home: drop drop swap drop dup 'r-kind-of deduce-home-t
+proc deduce-home-t: read-rel
+  found -> deduce-b
+  none -> self-drop2
+# passing deduce-home: [n home] -> [n A l]: what A is a kind of
+proc deduce-b: =0 deduce-b-t
+proc deduce-b-t: read-item
+  found -> deduce-c
+  none -> self-drop1
+# passing deduce-b: [n A l] -> [n A l B]
+proc deduce-c: 'r-cause deduce-c-t
+proc deduce-c-t: read-rel
+  found -> deduce-c1
+  none -> self-drop2
+# passing deduce-c: [n A B] -> [n A l]: what B causes
+proc deduce-c1: =0 deduce-c1-t
+proc deduce-c1-t: read-item
+  found -> deduce-write
+  none -> self-drop1
+# passing deduce-c1: [n A l] -> [n A l C]
+proc deduce-write: over over 'r-cause swap =0.5 'state-guess write-rel 'guesses swap over 'state-guess read-self write-row drop drop
+# passing deduce-write: [n A C] -> write-rel A r-cause C 0.5 state-guess; write-row guesses home=A key=C outcome=state-guess
+# body=this memory; back to [n]
+
+# ================= generalize (13.1): n -- n ; from a memory id, with read-input (its gates and shape)
+proc learn-gen: dup learn-gen-t
+# passing learn-gen: [n] -> [n l shape]: the memory's own input gates and its shape
+proc learn-gen-t: read-input
+  found -> gen-shape
+  none -> learn-keep
+proc gen-shape: dup read-count =0 gen-shape-t
+# passing gen-shape: [n l shape] -> has this memory a shape at all (a bare branch run has none)?
+proc gen-shape-t: compare
+  more -> gen-find
+  same -> gen-none2
+  less -> gen-none2
+proc gen-none2: drop drop drop
+# passing gen-none2: back to [n]
+proc gen-find: drop dup gen-find-t
+# passing gen-find: [n l shape] -> [n l shape mates]: other memories with the same shape
+proc gen-find-t: find-shape
+  found -> gen-mate
+  none -> gen-none2
+proc gen-mate: =0 gen-mate-t
+# passing gen-mate: [n l shape mates] -> [n l shape mates m1]: the first mate
+proc gen-mate-t: read-item
+  found -> gen-mate2
+  none -> gen-none3
+proc gen-none3: drop drop drop drop
+# passing gen-none3: back to [n]
+proc gen-mate2: swap drop dup gen-mate2-t
+# passing gen-mate2: [n l shape m1] -> [n l m1 l1 shape1]: the mate's own gates (read-item took the mates list)
+proc gen-mate2-t: read-input
+  found -> gen-same
+  none -> gen-none2
+proc gen-same: drop rot over over gen-same-t
+# passing gen-same: [n l m1 l1] -> [n m1 l1 l l1] -> compare the two gate lists: d = places that differ
+proc gen-same-t: compare
+  same -> gen-self
+  more -> gen-build
+  less -> gen-self
+proc gen-self: drop drop drop drop
+# passing gen-self: the mate has the same gates: nothing to generalize; back to [n]
+proc gen-build: drop swap =1 read-list swap =0 gen-walk
+# passing gen-build: [n m1 l1 l] -> [n m1 acc l 0]: the formula starts as [l1] (the mate's gates ride as item 0;
+# write-proc keeps only gates), then walk my gates from the first
+proc gen-walk: over over gen-walk-t
+# passing gen-walk: [n m1 acc l i] -> is there an i-th gate? (read-pick keeps the list)
+proc gen-walk-t: read-pick
+  found -> gen-take1
+  none -> gen-keep
+proc gen-take1: swap drop rot rot =2 read-list swap rot =0 gen-pick-t
+# passing gen-take1: [n m1 acc l i l g] -> [n m1 P g acc]: packs l and i as P, then picks l1 out of acc
+proc gen-pick-t: read-pick
+  found -> gen-hole
+  none -> gen-pick-none
+proc gen-pick-none: drop drop end
+# passing gen-pick-none: a formula with no mate list: cannot happen; the run ends
+proc gen-hole: rot dup =1 read-list rot dup read-count rot rot swap gen-hole-t
+# passing gen-hole: [n m1 P g acc l1] -> [n m1 P acc g c d1]: c = count(l1), d1 = items of l1 and [g] that disagree
+proc gen-hole-t: compare
+  same -> gen-hole-cnt
+  more -> gen-hole-cnt
+  less -> gen-hole-cnt
+proc gen-hole-cnt: swap sub =0 gen-cnt-t
+# passing gen-hole-cnt: [n m1 P acc g c d1] -> [n m1 P acc g dd]: dd = d1 - c, under zero means the mate holds g
+proc gen-cnt-t: compare
+  less -> gen-shared
+  more -> gen-is-hole
+  same -> gen-is-hole
+proc gen-shared: drop add gen-next
+# passing gen-shared: [n m1 P acc g d] -> [n m1 P acc+g]: a shared gate stays in the formula
+proc gen-is-hole: drop drop 'w-something add gen-next
+# passing gen-is-hole: [n m1 P acc g d] -> [n m1 P acc+w-something]: a hole is a something
+proc gen-next: swap =0 gen-next-t
+# passing gen-next: [n m1 P acc] -> [n m1 acc P l]: unpacks l
+proc gen-next-t: read-pick
+  found -> gen-next2
+  none -> gen-pick-none
+proc gen-next2: swap =1 gen-next2-t
+# passing gen-next2: [n m1 acc P l] -> [n m1 acc l P i]
+proc gen-next2-t: read-pick
+  found -> gen-next3
+  none -> gen-pick-none
+proc gen-next3: swap drop =1 add gen-walk
+# passing gen-next3: [n m1 acc l P i] -> [n m1 acc l i+1]: the next gate
+proc gen-keep: drop drop drop gen-made
+# passing gen-keep: [n m1 acc l i l] -> [n m1 acc]: the formula is built; before a gate is made for it, was one
+# already kept from these two memories (turn two, E's open check)? The kernel indexes receipts by gate only, so the
+# check is two index lookups on the guesses list, whose rows the generalize way keys by the pair [n m1]
+proc gen-made: rot rot over over =2 read-list 'guesses swap gen-made-t
+# passing gen-made: [n m1 acc] -> [acc n m1 guesses [n m1]]: a formula already kept from this pair?
+proc gen-made-t: find-rowkey
+  found -> gen-made-skip
+  none -> gen-made2
+proc gen-made-skip: drop drop swap drop
+# passing gen-made-skip: [acc n m1 row] -> [n]: already made from these; nothing is spawned
+proc gen-made2: over over swap =2 read-list 'guesses swap gen-made2-t
+# passing gen-made2: [acc n m1] -> [acc n m1 guesses [m1 n]]: a formula already kept from the pair the other way round?
+proc gen-made2-t: find-rowkey
+  found -> gen-made-skip
+  none -> gen-keep-do
+proc gen-keep-do: rot spawn newborn swap over swap write-proc gen-keep2
+# passing gen-keep-do: [acc n m1] -> [n m1 acc] -> [n m1 g]: spawns the formula gate, gives it its born questions,
+# binds the string (the PROC line)
+proc gen-keep2: over over swap write-receipt rot rot over over =2 read-list swap drop gen-row
+# passing gen-keep2: [n m1 g] -> write-receipt g m1 (the mate) -> [g n m1] -> [g n K]: the row key K = [n m1]; m1 is
+# not needed after its receipt
+proc gen-row: rot swap over 'guesses swap rot 'state-guess read-self write-row drop gen-keep3
+# passing gen-row: [g n K] -> [n g guesses g K] -> a guesses row home=g key=[n m1] outcome=state-guess (a formula stays
+# a guess until the sixth tests it awake; keyed by the pair so gen-made can find it: the sixth and sleep-weigh read
+# the row's home, not its key) -> [n g]
+proc gen-keep3: 'ask-what-is over split over over swap write-receipt drop
+# passing gen-keep3: [n g] -> splits ask-what-is on g (its own run parks the question); write-receipt g n:
+# the kept formula's lineage (9.4); back to [n]
+
+# ================= backpop: g -- ; walks the receipts from g to the memories that relied on it (bounded), and in
+# each memory's trail deletes the shards that led out of g (the old way); the next run lays the new way
+proc backpop: dup backpop-t
+# passing backpop: [g] -> [g l]: the memories that relied on g
+proc backpop-t: read-use
+  found -> bp-walk
+  none -> bp-none
+proc bp-none: drop
+# passing bp-none: nothing relied on g
+proc bp-walk: =0 bp-loop
+# passing bp-walk: [g l] -> [g l i]
+proc bp-loop: over over bp-loop-t
+# passing bp-loop: [g l i] -> [g l i l m]: the i-th relying memory
+proc bp-loop-t: read-pick
+  found -> bp-one
+  none -> bp-done
+proc bp-done: drop drop drop drop
+# passing bp-done: the list ran out; [g l i l] -> []
+proc bp-one: swap drop dup 'changed write-outcome dup bp-one-t
+# passing bp-one: [g l i m] -> marks m changed -> [g l i m t]: its trail as [gate arrival head] steps
+proc bp-one-t: read-trailof
+  found -> bp-pack
+  none -> bp-next0
+proc bp-next0: drop bp-next
+# passing bp-next0: a memory with no trail: on to the next
+proc bp-pack: swap =3 read-list swap rot swap =0 bp-step
+# passing bp-pack: [g l i m t] -> [P g t 0] with P = [l i m]: walk the trail from its first step
+proc bp-step: over over bp-step-t
+# passing bp-step: [P g t j] -> [P g t j t s]
+proc bp-step-t: read-pick
+  found -> bp-s
+  none -> bp-trail-done
+proc bp-trail-done: drop drop drop bp-next
+# passing bp-trail-done: [P g t j t] -> [P g]: this trail is done
+proc bp-s: swap drop =0 bp-s-t
+# passing bp-s: [P g t j s] -> [P g t j s gate]: the step's gate
+proc bp-s-t: read-pick
+  found -> bp-s-cmp
+  none -> bp-s-skip
+proc bp-s-skip: drop bp-j
+# passing bp-s-skip: a step with no gate: next step
+proc bp-s-cmp: rot drop rot over bp-s-cmp-t
+# passing bp-s-cmp: [P g t j s gate] -> [P g t s gate g] (j dropped, taken again from s's place later) -> is this step at g?
+proc bp-s-cmp-t: compare
+  same -> bp-del
+  more -> bp-keep
+  less -> bp-keep
+proc bp-keep: drop drop drop bp-j2
+# passing bp-keep: [P g t s gate d] -> [P g t]: a step elsewhere stays
+proc bp-del: drop drop =1 bp-del-t
+# passing bp-del: [P g t s gate d] -> [P g t s arr]
+proc bp-del-t: read-pick
+  found -> bp-del2
+  none -> bp-s-skip
+proc bp-del2: swap =2 bp-del2-t
+# passing bp-del2: [P g t s arr] -> [P g t arr s head]
+proc bp-del2-t: read-pick
+  found -> bp-del3
+  none -> bp-s-skip
+proc bp-del3: swap =0 bp-del3-t
+# passing bp-del3: [P g t arr s head] -> [P g t arr head s gate]
+proc bp-del3-t: read-pick
+  found -> bp-del4
+  none -> bp-s-skip
+proc bp-del4: swap drop rot rot delete-shard bp-j2
+# passing bp-del4: [P g t arr head gate] -> delete-shard gate arr head: the way this memory took out of g is gone
+proc bp-j2: over =0 bp-j2-t
+# passing bp-j2: [P g t] -> [P g t T0]: j is rebuilt from the count already walked: the walk is bounded by the trail
+proc bp-j2-t: read-count
+  found -> bp-j3
+  none -> bp-j3
+proc bp-j3: drop =1 bp-step
+# passing bp-j3: on to the next step (see note in the report: the step index restarts at 1 after a delete)
+proc bp-j: drop drop =1 add bp-step
+# passing bp-j: [P g t j s] -> [P g t j+1]
+proc bp-next: swap =2 bp-next-t
+# passing bp-next: [P g] -> [g P m]: the memory just walked (kept in P)
+proc bp-next-t: read-pick
+  found -> bp-next2
+  none -> bp-none
+proc bp-next2: drop =1 bp-next2-t
+# passing bp-next2: [g P m] -> [g P i]
+proc bp-next2-t: read-pick
+  found -> bp-next3
+  none -> bp-none
+proc bp-next3: =1 add swap =0 bp-next3-t
+# passing bp-next3: [g P i] -> [g i+1 P l]
+proc bp-next3-t: read-pick
+  found -> bp-next4
+  none -> bp-none
+proc bp-next4: swap drop swap dup backpop-batch bp-next4-t
+# passing bp-next4: [g i+1 P l] -> [g l i+1 i+1 batch] -> stop at the told batch
+proc bp-next4-t: compare
+  less -> bp-loop
+  same -> bp-done2
+  more -> bp-done2
+proc bp-done2: drop drop drop drop
+# passing bp-done2: the batch is spent; back to []
+
+# ---- changed: a name in hand for a memory whose way was rewritten
+gate changed
+# passing changed puts the name in hand (the outcome written on a back-populated memory)
+
+# ================= sleep: -- ; entered only after a person said yes to the brain's sleep-ask
+proc sleep: hc sleep-weigh sleep-search
+# passing sleep: the HC (B), re-weighing guesses, then the day's runs searched for formulas
+proc sleep-weigh: 'guesses sleep-weigh-t
+proc sleep-weigh-t: find-row
+  found -> weigh-one
+  none -> sleep-go
+# passing sleep-weigh: the oldest guess waiting
+proc sleep-go: dup drop
+# passing sleep-go: goes on
+proc weigh-one: dup weigh-one-t
+proc weigh-one-t: read-row
+  found -> weigh-mem
+  none -> weigh-drop
+# passing weigh-one: [n] -> [n key home body outcome]
+proc weigh-drop: drop
+# passing weigh-drop: back to []
+proc weigh-mem: drop drop swap drop dup weigh-mem-t
+proc weigh-mem-t: read-use
+  found -> weigh-use
+  none -> weigh-drop2
+# passing weigh-mem: [n home] -> [n home l]: the memories the guessed gate was used in
+proc weigh-drop2: drop drop
+# passing weigh-drop2: back to []
+proc weigh-use: =0 weigh-use-t
+proc weigh-use-t: read-item
+  found -> weigh-counts
+  none -> weigh-drop2
+# passing weigh-use: [n home l] -> [n home l m]
+proc weigh-counts: weigh-counts-t
+proc weigh-counts-t: read-mem
+  found -> weigh-rw
+  none -> weigh-drop2
+# passing weigh-counts: [n home m] -> [n home outcome seen right wrong last]
+proc weigh-rw: drop rot drop weigh-rw-t
+proc weigh-rw-t: compare
+  more -> weigh-up
+  less -> weigh-down
+  same -> weigh-drop3
+# passing weigh-rw: [n home outcome right wrong] -> [n home outcome d]: right against wrong
+proc weigh-drop3: drop drop drop
+# passing weigh-drop3: even: nothing moves
+proc weigh-up: drop drop 'r-derived-from over guess-step write-strength drop
+# passing weigh-up: [n home outcome] -> write-strength home r-derived-from home +step: the guess gains
+proc weigh-down: drop drop 'r-derived-from over =0 guess-step sub write-strength drop
+# passing weigh-down: the guess loses a step
+proc sleep-search: clock dup day sub swap sleep-search-t
+proc sleep-search-t: find-time
+  found -> search-walk
+  none -> sleep-go
+# passing sleep-search: [] -> [l]: the day's memories
+proc search-walk: =0 swap dup read-count =1 sub search-loop
+# passing search-walk: [l] -> [c l i]: none learned on yet; the newest memory first
+proc search-loop: over over search-loop-t
+proc search-loop-t: read-item
+  found -> search-one
+  none -> search-done
+# passing search-loop: [c l i] -> [c l i m]
+proc search-done: drop drop drop
+# passing search-done: the day ran out
+proc search-one: dup search-root-t
+# passing search-one: [c l i m] -> [c l i m l t] (a root run: its own input and shape) / [c l i m] (a question run)
+proc search-root-t: read-input
+  found -> search-root
+  none -> search-skip
+proc search-root: read-count =0 search-root-cmp
+# passing search-root: [c l i m l t] -> [c l i m l d]: a shape with words is a root run's; a question run borrows one
+proc search-root-cmp: compare
+  more -> search-learn
+  same -> search-skip2
+  less -> search-skip2
+proc search-learn: drop drop learn rot =1 add dup learn-batch search-one-t
+proc search-one-t: compare
+  less -> search-next
+  same -> search-done4
+  more -> search-done4
+# passing search-learn: learn on m (shortcut, cut, deduce; a formula found asleep stays a guess), count on: [l i c d]
+proc search-skip2: drop drop search-skip
+proc search-skip: drop =1 sub search-loop
+# passing search-skip: [c l i m] -> [c l i-1]: not a run of the day's own: the next older memory
+proc search-next: drop rot rot =1 sub search-loop
+# passing search-next: [l i c d] -> [c l i-1]: the next older memory
+proc search-done4: drop drop drop drop
+# passing search-done4: the batch is done
+
+# ---- sleep starts when the yes answers the sleep-ask question (B writes a questions row keyed by it)
+proc sleep-yes: read-why
+  found -> sleep-why
+  none -> sleep-no
+# passing sleep-yes: the memory this yes answers
+proc sleep-no: drop end
+# passing sleep-no: a yes to something else: not sleep
+proc sleep-why: 'questions swap sleep-why-t
+proc sleep-why-t: find-rowkey
+  found -> sleep-do
+  none -> sleep-no
+# passing sleep-why: is the why memory the sleep-ask question?
+proc sleep-do: drop drop sleep end
+# passing sleep-do: the brain sleeps, and the run ends without writing
+trig yes -> sleep-yes 0.5
+# leaving yes asks: was that a yes to sleeping?
+trig ask-sleep -> sleep
+# a person saying "sleep" (B's ask-sleep gate) is the yes to the brain's ask: it sleeps
+
+# ---- a correction (B's correct) starts back-population from the memory that was wrong
+proc backpop-from-why: read-why
+  found -> bp-why
+  none -> sleep-no
+# passing backpop-from-why: the memory the no answers
+proc bp-why: read-row
+  found -> bp-why-home
+  none -> sleep-no
+# passing bp-why: [m] -> [sig home body outcome]
+proc bp-why-home: drop drop swap drop backpop end
+# passing bp-why-home: back-populates from the home gate of the corrected memory
+trig no -> backpop-from-why 0.5
+# leaving no asks: what relied on the thing just corrected?
+
+# ---- two meanings at one point (5.6): laid as a trig on newborn
+proc two-at-one-point: dup two-placed-t
+# passing two-at-one-point: [g] -> [g l]: g's relationships; none means it is not placed yet (5.5: it sits at the origin
+# until something pulls it), so there is nothing to balance
+proc two-placed-t: read-rels
+  found -> two-placed
+  none -> two-none
+proc two-placed: drop dup read-point two-at-one-point-t
+# passing two-placed: [g l] -> [g p]: g's point
+proc two-at-one-point-t: find-point
+  found -> two-check
+  none -> two-none
+# passing two-at-one-point-t: [g p] -> [g l]: the gates in g's cell and its neighbours
+proc two-none: drop drop
+# passing two-none: alone there
+proc two-check: read-count =1 two-check-t
+proc two-check-t: compare
+  more -> two-write
+  same -> two-ok
+  less -> two-ok
+# passing two-check: [g n] -> [g d]: more than g itself there?
+proc two-ok: drop drop
+# passing two-ok: only g sits there
+proc two-write: drop 'imbalance swap dup 'state-guess read-self write-row drop
+# passing two-write: writes an imbalance row home=g key=g: which formula put these here?
+trig newborn -> two-at-one-point 0.5
+# leaving newborn asks: does this new gate share a cell?
+
+# ---- the rest before a re-pick: a row touched more recently than retry-after is skipped, so the lists drain oldest first
+gate retry-after = 60000
+# passing it puts 60000 ms on the pad: how long a picked row rests before the sixth may pick it again
+proc six-last: dup six-last-t
+# passing six-last: [n] -> [n last cutoff] (or [n 0 1] when the row cannot be read)
+proc six-last-t: read-mem
+  found -> six-last2
+  none -> six-last-none
+proc six-last2: swap drop swap drop swap drop swap drop clock retry-after sub
+# passing six-last2: [n outcome seen right wrong last] -> [n last now-retry]
+proc six-last-none: =0 =1
+# passing six-last-none: no counts: treated as old
+
+# ================= sixth: -- ; one pick per beat, in this told order (turn two): gap, shift, imbalance, guesses,
+# questions, parked, slow. Meanings first (meaning blueprint 8): a gap is a missing meaning, and the sixth spends
+# its spare beats on those before anything else; each list's -fresh test skips to the next list
+proc sixth: six-gap
+# passing sixth: picks one input from the lists and feeds it in; ends writing nothing when all are empty
+proc six-shift: 'kind-shift six-shift-t
+proc six-shift-t: find-row
+  found -> six-shift-fresh
+  none -> six-imb
+proc six-shift-fresh: six-last six-shift-fresh-t
+# passing six-shift-fresh: [n] -> [n last cutoff]: was this row touched within the told rest?
+proc six-shift-fresh-t: compare
+  more -> six-shift-skip
+  less -> six-shift-go
+  same -> six-shift-go
+proc six-shift-skip: drop drop six-imb
+# passing six-shift-skip: too recent: the next list (a question comes back only after a rest)
+proc six-shift-go: drop six-shift-do
+# passing six-shift-go: old enough: picked
+# passing six-shift: a truth shift waiting for back-population
+proc six-shift-do: dup six-shift-do-t
+proc six-shift-do-t: read-row
+  found -> six-shift-bp
+  none -> six-del
+# passing six-shift-do: [n] -> [n sig home body outcome]
+proc six-del: delete-row end
+# passing six-del: the row is handled; the beat ends
+proc six-shift-bp: drop drop swap drop 'backpop swap split delete-row end
+# passing six-shift-bp: [n home] -> split backpop on the home gate; the row drains
+proc six-gap: 'gap six-gap-t
+proc six-gap-t: find-row
+  found -> six-gap-fresh
+  none -> six-shift
+proc six-gap-fresh: six-last six-gap-fresh-t
+# passing six-gap-fresh: [n] -> [n last cutoff]: was this row touched within the told rest?
+proc six-gap-fresh-t: compare
+  more -> six-gap-skip
+  less -> six-gap-go
+  same -> six-gap-go
+proc six-gap-skip: drop drop six-shift
+# passing six-gap-skip: too recent: the next list (a question comes back only after a rest)
+proc six-gap-go: drop six-gap-do
+# passing six-gap-go: old enough: picked
+# passing six-gap: the oldest gap
+proc six-gap-do: dup six-gap-do-t
+proc six-gap-do-t: read-row
+  found -> six-gap-mean
+  none -> six-del
+# passing six-gap-do: [n] -> [n sig home body outcome]
+proc six-gap-mean: drop drop swap drop 'meaning swap split end
+# passing six-gap-mean: [n key home body outcome] -> splits the meaning way (M: gap, spec, compile, test, wire) on the
+# row's home gate. The gap row is the meaning way's own: meaning writes it again while the sources have not answered
+# (bounded by its told tries) and deletes it when the word is wired or the tries run out (lead, merge)
+proc six-gap-ans: drop drop swap drop 'meaning swap split delete-row end
+# passing six-gap-ans: [n key home body outcome] -> a parked question (six-q-do, six-parked-go) goes the meaning way
+# too, and its row drains here
+proc six-imb: 'imbalance six-imb-t
+proc six-imb-t: find-row
+  found -> six-imb-fresh
+  none -> six-guess
+proc six-imb-fresh: six-last six-imb-fresh-t
+# passing six-imb-fresh: [n] -> [n last cutoff]: was this row touched within the told rest?
+proc six-imb-fresh-t: compare
+  more -> six-imb-skip
+  less -> six-imb-go
+  same -> six-imb-go
+proc six-imb-skip: drop drop six-guess
+# passing six-imb-skip: too recent: the next list (a question comes back only after a rest)
+proc six-imb-go: drop six-imb-do
+# passing six-imb-go: old enough: picked
+# passing six-imb: the oldest imbalance
+proc six-imb-do: dup six-imb-do-t
+proc six-imb-do-t: read-row
+  found -> six-imb-src
+  none -> six-del
+# passing six-imb-do: [n] -> [n sig home body outcome]
+proc six-imb-src: drop drop drop drop dup learn delete-row end
+# passing six-imb-src: [n sig home body outcome] -> learn on the row (5.6: which formula put these here? the fit way
+# refits the type's formula); the row drains. Reading sources about a crowded point is not an answer to it.
+proc six-guess: 'guesses six-guess-t
+proc six-guess-t: find-row
+  found -> six-guess-fresh
+  none -> six-q
+proc six-guess-fresh: six-last six-guess-fresh-t
+# passing six-guess-fresh: [n] -> [n last cutoff]: was this row touched within the told rest?
+proc six-guess-fresh-t: compare
+  more -> six-guess-skip
+  less -> six-guess-go
+  same -> six-guess-go
+proc six-guess-skip: drop drop six-q
+# passing six-guess-skip: too recent: the next list (a question comes back only after a rest)
+proc six-guess-go: drop six-guess-do
+# passing six-guess-go: old enough: picked
+# passing six-guess: the oldest guess waiting to be tested
+proc six-guess-do: dup six-guess-do-t
+proc six-guess-do-t: read-row
+  found -> six-guess-run
+  none -> six-del
+# passing six-guess-do: [n] -> [n sig home body outcome]
+proc six-guess-run: drop drop swap drop dup split wait six-guess-mark
+# passing six-guess-run: [n home] -> runs the guessed gate on a quiet branch with itself as subject, waits for it
+proc six-guess-mark: read-pad =3 six-guess-mark-t
+proc six-guess-mark-t: compare
+  more -> six-guess-landed
+  same -> six-guess-untested
+  less -> six-guess-untested
+# passing six-guess-mark: did the branch land anything? [n home x] or [n home]
+proc six-guess-untested: drop dup six-guess-touch-t
+# passing six-guess-untested: [n home] -> [n] -> nothing landed: the guess stays a guess; the row is written again
+# (same key, same row: last = now) so it rests retry-after before the sixth picks it again (lead, merge: before this
+# the row's last never moved and one untestable guess took every idle beat), the beat ends
+proc six-guess-touch-t: read-row
+  found -> six-guess-touch
+  none -> six-del
+# [n key home body outcome] -> [n]: the row written again as it stands (kind guesses, home, key, outcome, body)
+proc six-guess-touch: =4 read-list 'guesses over =1 read-item rot dup =0 read-item swap dup =3 read-item swap =2 read-item write-row drop drop end
+proc six-guess-landed: swap six-guess-landed-t
+proc six-guess-landed-t: read-use
+  found -> six-guess-cmp
+  none -> six-guess-drop
+# passing six-guess-landed: [n home x] -> [n x l]: the memories the guess came from
+proc six-guess-drop: drop drop delete-row end
+# passing six-guess-drop: a guess with no lineage cannot be tested against anything; it is dropped
+proc six-guess-cmp: =0 six-guess-cmp-t
+proc six-guess-cmp-t: read-item
+  found -> six-guess-cmp2
+  none -> six-guess-drop
+# passing six-guess-cmp: [n x l] -> [n x l m]
+proc six-guess-cmp2: dup six-guess-cmp2-t
+proc six-guess-cmp2-t: read-mem
+  found -> six-guess-bal
+  none -> six-guess-drop
+# passing six-guess-cmp2: [n x m] -> [n x m outcome seen right wrong last]
+proc six-guess-bal: drop drop drop drop rot swap six-guess-bal-t
+proc six-guess-bal-t: compare
+  same -> six-guess-yes
+  more -> six-guess-no
+  less -> six-guess-no
+# passing six-guess-bal: [n x m outcome] -> [n m x outcome] -> compare x with the memory's outcome (balance is a process, not a test); m stays for the mark
+proc six-guess-yes: drop 'yes write-mark end
+# passing six-guess-yes: [n m d] -> write-mark m yes: the guess predicted it: marked right; it stays until re-weighed in sleep
+proc six-guess-no: drop 'no write-mark end
+# passing six-guess-no: the guess missed: marked wrong
+proc six-q: 'questions six-q-t
+proc six-q-t: find-row
+  found -> six-q-fresh
+  none -> six-parked
+proc six-q-fresh: six-last six-q-fresh-t
+# passing six-q-fresh: [n] -> [n last cutoff]: was this row touched within the told rest?
+proc six-q-fresh-t: compare
+  more -> six-q-skip
+  less -> six-q-go
+  same -> six-q-go
+proc six-q-skip: drop drop six-parked
+# passing six-q-skip: too recent: the next list (a question comes back only after a rest)
+proc six-q-go: drop six-q-do
+# passing six-q-go: old enough: picked
+# passing six-q: the oldest parked question
+proc six-q-do: dup six-q-do-t
+proc six-q-do-t: read-row
+  found -> six-q-used
+  none -> six-del
+# passing six-q-do: [n] -> [n sig home body outcome]: answered the way a gap is, when an input has used the word
+# [n key home body outcome] -> [n L home l] -> found (the home gate was in someone's input) / none
+proc six-q-used: =4 read-list dup =1 read-item six-q-used-t
+proc six-q-used-t: read-use
+  found -> six-q-go-on
+  none -> six-q-unused
+# [n L l] (read-use took home) -> [n home] -> the question goes the meaning way and the row drains
+proc six-q-go-on: drop =1 read-item 'meaning swap split delete-row end
+# [n L l] (read-use took home and left an empty list) -> []: a question about a word no input ever used (a word met inside a source text in turn
+# one) waits for an input: the row is dropped here and asked again when an input uses the word (lead, merge: the
+# sixth would otherwise read the sources for 16,700 dictionary words, the bulk-import flood of turn one)
+proc six-q-unused: drop drop six-del
+proc six-parked: 'kind-parked six-parked-t
+proc six-parked-t: find-row
+  found -> six-parked-fresh
+  none -> six-slow
+proc six-parked-fresh: six-last six-parked-fresh-t
+# passing six-parked-fresh: [n] -> [n last cutoff]: was this row touched within the told rest?
+proc six-parked-fresh-t: compare
+  more -> six-parked-skip
+  less -> six-parked-go
+  same -> six-parked-go
+proc six-parked-skip: drop drop six-slow
+# passing six-parked-skip: too recent: the next list (a question comes back only after a rest)
+proc six-parked-go: drop six-q-do
+# passing six-parked-go: old enough: picked
+# passing six-parked: a run the kernel parked for lack of worth: answered the way a question is
+proc six-slow: 'slow six-slow-t
+proc six-slow-t: find-row
+  found -> six-slow-fresh
+  none -> six-idle
+proc six-slow-fresh: six-last six-slow-fresh-t
+# passing six-slow-fresh: [n] -> [n last cutoff]: was this row touched within the told rest?
+proc six-slow-fresh-t: compare
+  more -> six-slow-skip
+  less -> six-slow-go
+  same -> six-slow-go
+proc six-slow-skip: drop drop six-idle
+# passing six-slow-skip: too recent: the next list (a question comes back only after a rest)
+proc six-slow-go: drop six-slow-do
+# passing six-slow-go: old enough: picked
+# passing six-slow: the oldest slow process
+proc six-slow-do: dup six-slow-do-t
+proc six-slow-do-t: read-row
+  found -> six-slow-learn
+  none -> six-del
+# passing six-slow-do: [n] -> [n sig home body outcome]
+proc six-slow-learn: drop drop swap six-slow-mark
+# passing six-slow-learn: [n sig home body outcome] -> [n home sig]: the word in hand when the run was slow, and the sig
+# [n home sig] -> [n home sig guesses home] -> found (the word has a formula: it is marked wrong once) / none
+proc six-slow-mark: over 'guesses swap six-slow-mark-t
+proc six-slow-mark-t: find-rowkey
+  found -> six-slow-wrong
+  none -> six-slow-learn-t
+# [n home sig r] -> [n home sig]: a slow run with this word in hand is the word's formula fouling the run (the owner,
+# 14:10: the brain must see what is wrong and fix it; the meaning way unwires a formula whose wrongs lead)
+proc six-slow-wrong: 'no write-mark six-slow-learn-t
+proc six-slow-learn-t: find-sig
+  found -> six-slow-learn-go
+  none -> six-slow-none
+proc six-slow-none: drop delete-row end
+# passing six-slow-none: [n home] -> no run memory for this sig: the row is dropped; the beat ends
+# passing six-slow-learn: [n home sig] -> [n home m]: the slow run's memory
+proc six-slow-learn-go: learn drop delete-row end
+# passing six-slow-learn-go: learn on it (a shortcut if it earned one); the row drains
+proc six-idle: end
+# passing six-idle: every list is empty: the beat ends and nothing is written
+proc gen-go: dup drop
+# passing gen-go: goes on

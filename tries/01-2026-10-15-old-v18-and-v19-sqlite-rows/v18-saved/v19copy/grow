@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# grow: lay the bones once and run the first run (time begins; zero is born at place 0).
+# An existing brain.db is kept under a dated name, never deleted.
+set -euo pipefail
+cd "$(dirname "$0")"
+[ -f kernel/eval.so ] || gcc -O2 -fPIC -shared kernel/eval.c -o kernel/eval.so
+if [ -e brain.db ]; then mv brain.db "brain.$(date +%Y%m%d-%H%M%S).db"; fi
+sqlite3 -bail brain.db ".load ./kernel/eval" "PRAGMA recursive_triggers = ON;" ".read bones.sql"
+sqlite3 brain.db "SELECT 'moment ' || born || ': neuron ' || id || ' born at place ' || gate FROM neuron WHERE gate IS NOT NULL;"

@@ -1,0 +1,19 @@
+# 13. Build sheet 2, egg3 (2026-10-25 late evening, 20:38; the sheet revised 10-26 00:13)
+
+**Status: evidence, not the base. The last standing code.** The comparison the audit team asked for found that 11 of its 21 chain steps contradict the owner's words: `../../audits/NEURON-SPEC-VS-BUILD-2-COMPARISON-2026-10-25.md`.
+
+**What it is.** The 10-25 sheet rebuilt to the rebuttal: no `later`, no `output`, no `secondary`; numbers only (every table a neuron owns is named by its own gate number; `input.text` NULLed after encoding; cells numeric); mother's reply to a BUILD and a source's outbox rows come back as runs in `input`; replays arrive from `said`; a run ending with no remainder fires `end`'s bound run; typed runs: the born run, the end run (three BUILD pairs: memory cell, memory row, timeline row), the define run (four pairs). `mother.c` 70 lines; `gen_egg3.py` → `egg.sql` (221 tables, 76 views, 77 triggers); `BORN-RUN.txt` (559 tokens); `bottom.py`; `look.sql`; `sources/`; `run_chain.sh` (lays a fresh egg and types every line of the sheet, logging line and answer); `timing.sh`; `CHAIN-LOG.txt` and `CHAIN-LOG-hp.txt` (hub and hp, identical rows); `TIMING-LOG.txt`.
+
+**Measured** (hub 3.37.2 and hp 3.46.1): birth 0.36 to 0.46 s on the hub, 0.60 s on hp; define dog: 8 WordNet returns as runs, 8 pointers, 68 s; 592 / 1,200 / 2,400 tokens: 0.67 / 1.82 / 5.77 s (the per-hop cost grows with the remainder carried as text; the 10-25 sheet's "does not grow" was wrong); shards one sequence, 842; no column outside the encoder holds text; a DNA table used as its own gate crashes SQLite on both versions (`hp-run/gate_table_test.sql`, `gt.db`).
+
+**The audit the owner pasted, 10-26:** five errors, one cause: "The architecture converted open questions into fixed implementation rules, then used successful execution to validate those rules"; prescribed next step: the five-column comparison before any implementation.
+
+**The owner's words, 10-26.** "the trigger doesn't have to write anything inside the graph,, that is why we have a write run through the neurons... the trigger just triggers that run,, often used with the copy run, and cut run". "gate trigger one, none or many per neuron row... the only way we have found that a trigger is needed is with a say key... hop neuron is just a hop neuron... different dna row". The data sheet "just lives in a cell in the memory row"; tripped triggers declare cells; returns fill cells; complete → the larger formulas run; output to timeline, user or mother from the same memory table. "/build was invented as encoder code... the last build 'word' was the build neuron... routing information for the mother". "no remainder triggers memory, memory triggers timeline and it just stops". And: "i'll fucking do it from now on."
+
+**What the comparison leaves to him** (the unknown column): one trigger column or two; born inline or retry; mother inside the run or after; the physical form of a sheet in the memory row; the compile of several definitions; digits in words and case; the "say key"; whether a view over the DNA table is tolerated until his own kernel.
+
+**Mistakes recorded** (checklist #81 to #90): a marker invented instead of rereading his 10-23 words; the BUILD pair found by parity; "tokenizer"; a loop I caused patched with a third invention and written up as his design's property; one source called "narrower"; the clock as a column default; a "can't" tested on one version; every hand-laid trigger writes; the landing physics called "the gate trigger, one per neuron".
+
+**`hp-run/`.** What differed on hp: `brain.db` (6 MB, after the chain ran there), `gt.db` and `gate_table_test.sql` (the crash test), `mother.so` (built on hp), `sources/*.db` (built on hp's SQLite; the `.tsv` they were built from are in the folder here, identical).
+
+**Dropped as duplicate:** `NEURON-BUILD-SHEET-2-2026-10-25 - Copy` (a folder, every file byte-identical; made in Explorer on 10-26 14:31).

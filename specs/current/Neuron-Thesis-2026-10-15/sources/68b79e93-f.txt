@@ -1,0 +1,59 @@
+=== 68b79e93-f (page; chars 0-3303 of 5,914; continue with 68b79e93-f@3303) ===
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: none
+NEXT_ACTION: Ask Q9 (FOLLOW-UP): Before an outcome or another person proves it, how do you tell the difference between a missing variable in the right tree and being in the wrong tree entirely? Chosen because Q8 exposed two distinct correction modes—adding a missing variable and changing the whole tree—but did not yet identify the pre-outcome signal that distinguishes them.
+STATE: READY
+
+## Question asked
+Q8 (MISFIT): Think of a recent time when a piece of a domain did not fit the structure you had mapped over it, before you could say what the structure was. What did you notice first, in the moment, and what did you do with the piece that did not fit?
+Prediction: Expected a felt or structural misfit signal followed by a local repair; instead the answer reframed adoption as so highly filtered and provisional that post-adoption surprise is rare, then supplied two repair modes: add a missing variable or re-root into a different tree.
+
+## Source structures used
+The owner explicitly used a neuron graph with back-population, a git-like decision tree, a three-dimensional object whose microfacets offer different views, and code/tests as an analogy for the limits of mathematical proof.
+The baker example supplied an observed system in which a hidden human-state variable can replace an apparently sufficient environmental explanation.
+
+## Mapped relations
+Problem becomes the root; suspected variables and questions become nodes and branches; evidence constrains traversal; candidate solutions are leaves ranked by completeness, efficiency, durability, and energy.
+A failed outcome identifies a better-performing node, whose path is traced backward until it meets the old path; that meeting point is amended with a decision choice.
+A newly supplied microfacet can show that the entire root/frame was wrong, causing the owner to run a different tree and then back-populate the missed view.
+
+## Guess markers
+Exact marked uncertainty included “I'm guessing,” “I don't know,” “maybe,” “I guess,” “probably,” “let's say,” “in my opinion,” and “I might.”
+The owner also explicitly treats every accepted proposition as containing some unmeasured remainder; mathematical consistency or a passing test establishes that something could be true, not that it is absolutely true.
+The statement that post-adoption error happens “almost never” is experiential and unmeasured, but it is linguistically bounded rather than asserted as absolute.
+
+## What was skipped
+The owner did not describe a visceral misfit sensation, resentment, defense of the old conclusion, or a wholesale restart that discards the old path.
+They do not accept a new answer because they or another person chose it; observed success makes it the working answer, after which they investigate why.
+They avoid declaring absolute truth and delay deeper conclusions beyond the branch depth for which evidence is available.
+
+## Candidate invariants
+provisional-high-threshold-adoption: adoption follows unusually deep form-fit filtering, yet every adopted belief remains suspect to a due degree | scientific provisionalism / hypothesis testing | an outcome stops working | the old answer is replaced when the new outcome supplies evidence.
+backpopulate-to-divergence: when a working answer changes, tr
+=== 68b79e93-f (page; chars 3303-5914 of 5,914; end) ===
+ace old and new paths backward to their meeting node and add the missing decision | neuron graph / git tree | the same branch would again select the failed answer | the newly revealed variable becomes a choice at the shared node.
+unknown-is-not-excluded: a variable absent because it was unknowable is distinct from one tested and ruled out | experimental diagnosis | failure reveals an unmodeled causal variable | the baker's tiredness or poor timing enters only after the outcome exposes it.
+wrong-tree-reframes-whole-space: a new viewing plane can replace the problem tree and reveal solutions unreachable from the former root | 3D object / microfacet window | another view produces a coherent new solution space | another person points to a face the owner did not know existed.
+solution-quality-exceeds-solves: choose among solving leaves by efficiency, completeness, durability, and energy, not mere problem removal | optimization over a decision tree | a solution works but is wasteful, partial, or fragile | nine solutions are ranked by their properties.
+
+## Problem statement movement
+PS1 SUPPORTS: the answer gives a repeatable mechanism from problem framing through variables, evidence, branching, outcome, and back-population.
+PS2 SUPPORTS: it distinguishes local misfit repair (a missing variable) from structural misfit (the wrong tree/view plane).
+PS3 SUPPORTS: guess markers are both linguistic and epistemic; unmeasured residue prevents absolute truth.
+PS4 SUPPORTS: the owner names what is skipped—ego defense, resentment, premature certainty, and conclusions beyond the evidenced depth.
+
+## Next question and why
+Q9 (FOLLOW-UP): Before an outcome or another person proves it, how do you tell the difference between a missing variable in the right tree and being in the wrong tree entirely?
+This targets the unresolved discriminator exposed by Q8: whether the owner can detect local-versus-global structural error before external disconfirmation.
+
+## 1. Where to look
+Q8 (MISFIT); raw of this chapter holds the owner's answer verbatim.
+
+## 2. How to use Cortex now
+wake: get the bounded current handoff.
+locate Card draft: find the newest cumulative card only when the queued question needs it.
+fetch: read that one located draft.
+close_out: write the next verbatim answer and analysis once.
+
+## 3. What to build next
+Ask Q9 (FOLLOW-UP): Before an outcome or another person proves it, how do you tell the difference between a missing variable in the right tree and being in the wrong tree entirely? It should isolate the earliest discriminator between local branch repair and global re-framing.

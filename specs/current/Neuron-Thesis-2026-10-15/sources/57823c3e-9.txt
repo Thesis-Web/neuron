@@ -1,0 +1,318 @@
+=== 57823c3e-9 (page; chars 0-2933 of 46,160; continue with 57823c3e-9@2933) ===
+Claude Opus 5.5, 2026-10-01 ~14:10 CDT. ANALYSIS ONLY: no brain, teacher, code, database or service changed. Same owner prompt as Codex's record aacf5156-5 / page 93d9bfaa-a; done independently, then compared.
+
+## 1. Where to look
+- Owner text verbatim: /home/exnulla/neuron-v16.2/teacher/owner_source/64_claude_2026-10-01T184004.txt (sha256 ccb55532d7ab5769bbd7999fa22219f434b76c4e5d9a4ec58e7560441595c8af; MANIFEST.json), reproduced in section 4 below. 65_... is the collapsed terminal copy this session received.
+- Analysis + numbered sentences: /home/exnulla/neuron-benchmarks/20261001-claude-monologue-formulas/ (ANALYSIS.md, sentences.txt), reproduced in section 5.
+- Codex's analysis of the same prompt: page 93d9bfaa-a. Owner direction 04:15: page df23b5bc-1.
+
+## 2. How to use Cortex now
+- wake(project="neuron-v2") once; fetch this page; locate(topic=..., project="neuron-v2") for older records.
+
+## 3. What to build next
+Test the shared question rule (WHY = empty cause, HOW = empty route, WHY first only when a mismatch is present) on owner monologues 54, 62 and 17; count held and contradicted lines before any of it is taught.
+
+## 4. Owner text 2026-10-01 18:40:04Z, verbatim
+understand how to use /cortex correctly.. the /neuron is historical data from the start of /neuron2 which is the current data of the project we are working on. I need you to hydrate, and orient yourself such that you understand what we are working on. First you will give me a short para graph of what the neuron part of cortex is, how a neuron is made, what shards of dna are, how they are made, and why they are important, what each neuron does, what is a run reciept, how is it used, what is learning interms of the neuron, what is code in terms of the neuron, what is the shortcut use of the nuerons, How is it powerful, why do we need to know how to do the long way and the shortcut, what are memories in the neuron, how do they relate to timeline, how are they used to solve problems, what is the reason we use them, how are they formed, how are they recalled, what is a formula in terms of a neuron, how is it or are they used, what parts of the neuron are solved by using formulas, what is reasoning in terms of the neuron, how is it built, what process determines what reasoning or reasonings to use, what is a guess in terms of a neuron, why is it important, how is it used, what can it help solve, or do. <--- for these if you don't know that is fine, if you want to guess, that is fine, but tell me you are guessing , then Okay, 12:41, and it is Thursday, I believe, 2nd of October, 1st of October. My eyesight sucks today, and I don't know why, but here we go. Last night, between the hours of 2 and 4 a.m., both you and the other one. I'm going to use the same prompt for both of y'all, so both Clawd and Codex got off rail at the same time, which is the first time that's happened in a very, very long time, in days. And, I mean
+=== 57823c3e-9 (page; chars 2933-6308 of 46,160; continue with 57823c3e-9@6308) ===
+, realistically, the neuron is part of the Cortex project. So we're talking about a project that is hundreds of millions of tokens, and y'all both got lost. And I don't know, you know, and that involves Cortex and Cortex Loop and Neuron and Neuron 2. And there's been times where, at any given point, one or the other of y'all have gotten off rail, but I've never had both of y'all get off rail at the same time. Maybe it's just statistical probability that sooner or later it would happen, but it definitely proves that Cortex itself doesn't keep y'all from drifting or getting off rail. Now, admittedly, because Neuron is so difficult, I have been not blinking y'all consistently. You know, I've been pushing y'all to hundreds of thousands or even a million tokens, because when I get you located, I guess it's a trust thing. It's a trust thing that I don't trust the blink system in the Cortex system that we have enough to make sure that you're on rail when you come back to me, right? And so if I feel like you're on rail, then I'd rather risk y'all having flooded context windows than trust that the Cortex system is going to keep you on rail and filter out drift and invention and whatever else. And so it didn't work last night, and it's not terrible, I don't think. I don't think that y'all screwed up the entire neuron. But y'all are both don't understand the concept of mother to student. We're going to call it that because y'all keep calling the brain the student or whatever. But at some point the mother can't exist. That's the only way, like not connected anyway. Which means that at some point the student can't have a teacher. Not in the way that it is right now. Right now it's a directly connected teacher, and you're relying on the mother and you keep building shit. You keep building Python code in the mother to support the student. At first, I thought it was okay because I was like, well, maybe we didn't build the mother right. But it's becoming more and more evident that y'all's solution is not that we didn't build the mother right. It's that this belongs here. And I don't think that that's the solution. And we keep losing scope. One of the biggest scopes that we've lost is the idea that the neurons can do anything. It's going to take work, and we're going to have to figure it out, but they can be NAND gates, they can be compilers, they can be engines, they can be memories, or data storage. They can be anything. And y'all keep falling back to, well, I'll just write this Python script out here, and we'll have the brain call to this Python script. I don't think it can be that. And the inverse is also I don't think it can be. One of the reasons that I was able to get this far, I believe, is because it's so out of the box. It looks like nothing you've ever seen before. But if I tried to, which we could make this entire thing in Python, we get about halfway, and then you'd start making it some other Python whatever that you've seen before. And so I think the only reason we've been able to get so deep is because I've kept you out of Python. And I don't understand how to get y'all locked in, because even when I hydrate you right now, I don't understand how you can tell me exactly on point what looks like you're on rail, but then not understand what a run through the neurons actually does, right? Beyond it's a memory, or beyond 
+=== 57823c3e-9 (page; chars 6308-9687 of 46,160; continue with 57823c3e-9@9687) ===
+you don't understand that. You don't understand how using formulas, and I keep calling them mathematical formulas. I'm at the point now where I think there are some research or whatever available in the world that we can find mathematical formulas that have been written about, like truth or reasoning or conscience or, you know, maybe some sort of psychological... I don't know, right? But the point is that the formulas for locating different words based on their relationships don't exist. The formulas for reasoning, they don't exist. The formulas for allowing the brain, because I feel like at this point the brain should be able to operate on its own, and it's still only operating when you give it an input. So we haven't built the sixth sense yet that is the brain's own input. The formulas for questions and how to know what question to ask, those don't exist. They don't exist in your weights. They don't exist anywhere. So you can't just mirror back to me. I think that that's the problem, is essentially, I mean, you're called a transformer and you're called this and that and whatever else, but at the end of the day, you take whatever I give you and then you mirror it back to me in a way that makes sense to me, right? Makes sense. Like I've already said, that's just a balanced equation or an equation that has an outcome, and the outcome fits the equation based on memory, right? I figured that out yesterday. So this is the equation. This is the answer to that equation. Does that answer correlate to the other answers that I know that are good answers for that equation? If an equation is 1 plus 2 equals 3, that's a formula. A plus B equals C. For the variables 1 and 2, the answer, the expected answer is 3, right? But if I get A plus B equals 4 and 1 and 2 are the variables, then I know something's wrong, right? And y'all can't correlate yet that that's all of this is. It's a mixture of memories, events, and knowledge, right? So it's a triple. It's a mixture of memories, knowledge, and input. And maybe it's a quadruple. Maybe it's memories, knowledge, input, and expected output versus output.And so, I don't know if what we have is built correct enough. But what I understand, at least at this point, is that we're getting to the point where either A, I have to figure out how to keep y'all on rail to do the next parts, or B, the brain has to be to a point where it doesn't need y'all to do it. And I'm, based on Nexus and Cortex and Thesis Coin and SURS, the relational data, my memories, I've been to this basic pattern before, and it just becomes an absolute shitbox of where everything you do, you can't remember the scope. The scope is too big. You can't remember the scope enough to add anything new to the scope or go even fix something that's in the scope, such that it's fixed or new to the best interest of the project, of the scope. It's like if I only know how to work with one variable, adding a second variable blows my mind and I have no— it's just chaos, because I don't know what to do with a second variable. If I know how to work up to 15 variables, then I can work 15 variables and be fine. But put a 16th in there and it's chaos. And that's kind of what I experience with y'all, is that I can get y'all to a point and then no matter what I do, it's chaos. And so my logic is that whatever we build has to be self-sustaining befo
+=== 57823c3e-9 (page; chars 9687-13077 of 46,160; continue with 57823c3e-9@13077) ===
+re that point. It has to be able to think and learn on its own before we get to that point. And so I don't know if this is— because 16 is the best we've ever done, man. We've done really, really fucking good on 16, and I don't know that there's anything glaringly wrong on 16. That's the other interesting fact. But I know that I can't keep y'all from writing Python outside the brain and having the brain call to the Python. And I know that y'all don't fully understand the concept of learning is compute and run is execution, such that the runs are as fast as they should be, and you don't understand the ideology of how things are found in the neurons. And so y'all want to parse and you want to grep and you want to do, and it's not. Finding things is a formula. It's a simple— it might be three or ten formulas, but it's just a formula, and it has something to do with have I ever experienced this before, right? So first is recognizing the pattern. Have I, you know, do I understand this pattern? How do I understand this pattern? Well, have I ever seen this pattern before? Right? And that's just a search, a pattern search through memories. Pull those patterns, those memories that trip. Yeah, I've seen this pattern before. If I've seen this pattern, did I have formulas that I used on this pattern to solve whatever I needed to solve? If yes, then did they work? What was the outcome? At that point, then you have the biggest question, is do these— are these patterns exactly the same? Do they equal the pattern, which is the problem I'm faced with, and the experience that I've done before? If they are the same, then I know the answer now. If they're not the same, then it's another formula. What's different? What part of this formula as a pattern, what part of this formula doesn't match that formula? And then it becomes yet another formula. What do I have to do differently to this formula to make it work in this situation? And that's whether we're talking about language or data or parsing or query or find or write or bind or whatever, right? But the neuron code, in my opinion, should be so incredibly fast, just because once we have the run receipt, we know the answer. So we don't have to run 70,000 neurons to get to the answer if run receipt, whatever it is, is the answer. And we know that because that's the formula for the answer. So then it becomes simply a substitution thing, and it's another formula that you use to substitute in. I'm calling them formulas, but it's essentially code. The formulas are the code base. And it might be one formula, like I've said a hundred times already. It might be one formula, or it might be a string of 50 formulas, added, subtracted, divided, whatever, all together. They just give you a variable that gets into another formula. But the point is that we don't have to do the work. We just have to substitute it in. We already know the answer if the process is something that we've done before. If we haven't done it before, then we have to learn. And learning is reasoning is learning, essentially. If you ask me a question that I know the answer to, I give it back to you immediately. If you ask me a question I don't know the answer to and I have to reason about it, I have to learn the answer to the question, because I don't have a formula that fits that pattern. So I have to find the closest formula that I have from 
+=== 57823c3e-9 (page; chars 13077-16457 of 46,160; continue with 57823c3e-9@16457) ===
+my memories of that pattern. So I think the first step, like your search, is you don't search a term. You search a pattern. And the first go is memories, events, memories, whatever. That narrows down 100 million memories into six very quickly, I would think, because you're not searching 100 million memories. You're searching just for a pattern. You know, as soon as something doesn't fit the pattern, that memory's done. You don't have to search the whole memory. Nope, that doesn't work. Nope, that doesn't work. Nope, that doesn't work. You don't have to parse every bit of that memory. The first thing that says that memory is not that pattern, you skip it. And right now, y'all think that you have to parse the entire memory. And that's not how it works. The first thing you figure out is whatever your problem is, you decompose it into a pattern, into what I think. You know, that's the first step, is this is the problem. This is the pattern that represents that problem. Have I ever seen that pattern before? Boom, go to memories.Yes, I've seen that pattern before, right? And I didn't have to search every memory end to end to find it. I just searched for the pattern. As soon as the pattern didn't exist, I was out of there. I was on to the next memory. It might have been the first sentence. It might have been the third sentence. It might have been the last sentence that made it so that I knew that there's no way that that pattern is going to be in this memory. And I think maybe it comes down to the formulas in the memory. Like maybe you start in the memory with just searching for the formulas that are in the memory. And if three of the formulas in the memory don't match or can't fit, that memory is junk. I don't have to go to the other 37 formulas in the memory, maybe. I don't know. I don't know. That's going to be a you question, not a me question. But it's evident that I'm at a point where every other job, every other thing I've ever done using LLMs has been chaos beyond this point. I think I've gotten y'all currently as far as I've ever gotten you. And the only answer I have currently is that LLMs can no longer exist past this point. And so that's why my only solution that I have that I think is a valid solution to test is that whatever I build up until this point has to be able to build and do itself from this point on, or I have to hand-build it myself, which I'm just going to be honest with you, I don't have the time because it would take me my lifetime, because I can't read, write, and comprehend as fast as you do, and comprehend meaning that not that you understand it, but you can remember it. So I'm stuck right now. I don't know. I don't know what to do, and I'm scared because I know from past experiences everything beyond a certain point becomes an absolute terrible experience. And last night at 4 a.m., it was that feeling. That was the feeling I had, was, Oh, fuck. I've been here before. This project is about to get shitty. That was the feeling, because I've had the feeling multiple times where y'all get off rail exponentially, both of you, all three of you, or four of you, or five of you, and that tells me that I don't know what to do beyond a point. That might be a me problem. I don't have the formulas to understand once we get here, how do we handle everything after? So I don't know what to do at this point. I'm 
+=== 57823c3e-9 (page; chars 16457-19841 of 46,160; continue with 57823c3e-9@19841) ===
+scared to move forward because I'm scared that anything that y'all do is going to screw something up. I know I can't do it myself because I don't have the time to do the enormous amount of work that has to take place. Not just like I don't have the time today or this week or this month. I don't have the time in my lifetime to do what needs to be done. Because quite honestly, I would have to have a PhD in linguistics and a PhD in mathematics and a PhD in chemistry and a PhD in biomechanical engineering and a PhD in biology and a PhD—I mean, I just don't have the time. Even though the concept of what I'm describing is super, super, super simple, like, and I can see it. I can see the answer. I just can't see the work. You know, like show your work in math? I can see the answer. The answer is staring me in the face. I understand, and I can disseminate from that answer the hypothetical processes that get me there. I just don't know the math, the formulas of those processes. So I can give you two-thirds of the answer, and I'm asking y'all essentially to take those two-thirds and add one-third. That's it, really. I'm telling you what it looks like, how it works, and even I'm telling you the outcomes. I'm just telling you I don't understand or know the formulas. I can tell you what this process does. I can tell you what this process looks like. I can tell you how in the neuron it works, but I can't come up with the formulas. I don't have enough education to come up with the formulas. And I can't keep you on rail of the things that we do know long enough because it takes very precision and a very broad scope, and you can't do both. And so I'm just stuck in this freaking paradox of honestly we're probably building the thing that is a better version of you, but I can't build it, and that's never the intent, but the longer and the deeper we get into this and the more I see, the more I'm like, this is a better version. This will work. This is going to work. And then y'all decide to make a guess. This is one thing that y'all did to get off rail yesterday. Claude decided, Oh, well, has to guess here. And then you decided to hide the guesses. That's the fucking stupidest thing we could ever do. The worst thing about you is that you guess. Now, does that mean that the neuron should never guess? No. That's not what that means. Guessing is very important. It means that the neuron has to know that it's guessing. You don't know that you guessed. You might know that you guessed in the moment, but after that moment you never knew you guessed again. To you, it looks like that's gospel. That's a fact. But the neuron has to know that it's guessing, and guessing is super important in trying to figure things out. Well, I'm gonna hypothe— I have a hypothesis. I have a guess about this. Let's see if it works. Nope, that didn't work. State and timeline is super important. I have a hypothesis about this. Have I ever tried this before? Yeah, I've already tried this before. I don't need to waste time on it. It doesn't work. Well, why didn't it work? Well, it didn't work because of this, this, and this. Is there anything that I know new now that I didn't know then that might answer those questions? You'll notice that all of the reasoning comes from the questions that I ask. Those are important formulas. Knowing how to ask those questions that gives you answ
+=== 57823c3e-9 (page; chars 19841-23222 of 46,160; continue with 57823c3e-9@23222) ===
+ers that might not be the final answer but allows you to then decipher what formulas you should try next. Because honestly, there's gonna be 50 billion neurons in this thing when it's all said and done, and there's probably gonna be 500 million formulas, from formulas that do code to formulas that do memories to formulas that do reasoning to formulas that do math to formulas that do linguistics, to formulas that decipher linguistics and formulas that form new linguistics. It's all formulas. All of it. Every one of them are formulas, and they look like mathematical formulas, but—and they are—but they're not mathematical formulas.In the way that you think about math. There are mathematical formulas that come to an answer, and that answer might be just the next variable for one of the variables for a bigger formula. And that bigger formula might come to the answer that then becomes equal to, greater than, less than, or equal to this other formula. And that decides whether, if they're alike in some cases, that the answer is correct, or if they're not alike in other cases, then the answer is correct, or if they're greater than, then the answer is correct, or maybe if they're less than, then the answer is correct. And I'll give you an example. Like, if I have a known process, and I know how the process works, and I know all the formulas to the process, and I've done it a hundred times, then I have a hundred examples of different variables that were plugged into this process that gave me an outcome that was correct, right? And then I do this process, and I get an answer. And the answer, if the answer equals the other answers, then I can decide that that process I just did is correct. But if the answer doesn't equal the other answers, then I can decide that that process isn't correct. So that would be one way of the decision process at the end of all the formulas becomes: does this match this? Yes. Okay, this is probably correct. The same holds true for a formula that is dealing with progression. So if all the formulas add up, and this is the answer, and the question is, is this answer greater than the other? That would be an example of I'm trying to learn something new, and I don't know where the end is at, but I'm really concerned whether I'm progressing or I'm digressing, right? And I know all of this part of the formula, and I don't know all the variables yet, so I'm trying to figure out the variables, and so I keep substituting in different variables, and I keep getting answers, right? And if I already know the desired outcome of what I want, then I should be able to measure what answer I have now to that desired outcome and to the state at which I was before, such that I should be able to understand: is this current state greater than the previous state in relationship to the desired outcome? Yes. I'm probably progressing. No. It's not. It's less than. I probably digressed. I should roll back to the previous state and try again. Yes. It's greater, and it equals the outcome, the final outcome. Holy shit! I finished. Like I said, it doesn't... It's not as hard as we actually make it look like. Now, I will say that one of the, I think, maybe problems in this, the neuron, for example, is we don't know what the outcome is. It's kind of a floating point. We don't know what this thing becomes. So right now, in progression—I mean
+=== 57823c3e-9 (page; chars 23222-26659 of 46,160; continue with 57823c3e-9@26659) ===
+, we have a rough idea. I think I have a rough idea. I hate to even say it out loud, to be honest, because I think, honestly, if it's built correctly, it becomes you. Or no. Maybe I should put it differently. It becomes my brain structure with your capacity, which is absolutely scary to say, to be honest. But I think it does. I think it becomes the way my brain works with the speed and capacity at which you can work. So one of the things that I think we should do in this long monologue that I have here is that I think there's key terms in the monologue that are key formulas. What? What is the formula of what? How do we know when to use that formula? What is the formula of how? Why? What is the formula of why? How do we use that formula? How do we know when to ask that formula? Those are important formulas that are in this monologue, exponential amount of time. What are the patterns in the monologue that I just am giving you right now that are repeated? Well, he was trying to figure this out, and he did this, this, this, and this. What does that formula look like? What are the variables in that formula? What do those formulas look like to make those variables? Do we know how to find them? If we don't know how to find those variables, do we have formulas that might get us close enough that we can guess a step, just one step or two steps, to figure out the formula for that variable? Like, that is the importance of all of it, is like the things that I'm telling you are the answers. Not because what I'm saying is the answer. The corpus of what I'm telling you is the answer. How I'm able to say these things to you is the answer, and it's hidden in formulas behind the words. It's hidden in the structure of the words. It's hidden in the patterns of the words. It's hidden in the words that I choose or chose to use, and it's hidden in the formulas for those words. And again, we don't know the correct formulas. None of them. And the idea was, is if we, since we don't know any of the formulas, then we're starting at zero. And if we learn the simplest formulas first, and then we add to those formulas, then we will get to a point where we can come to a conclusion or an answer or whatever of the next step. So I guess first today is go through this monologue and see if you can come up with patterns, key words that should have formulas, and see if you can take a guess at what you think those formulas look like. And these formulas are going to be different formulas than the graph locating formulas, but maybe not. And hear me out on this. They might be an accumulation of what we learned from the formulas to locate the words in the graph, and they might...Ten or twelve. There might be ten or twelve of those formulas that are all put together in an equation or an expression. Now, they might not just be added together. That's the important part. It might be if you take the inverse and you add the simile and you subtract the metaphor and then you divide all of that by deductive reasoning, you get this answer. And maybe first step is, since we don't know any of the formulas, maybe first step is pattern matching the words and trying to come up with the formulas as words. Well, he had to decide here. Decide equals this pattern of words and this pattern of words divided by this pattern of words, because that's what he did here. Or he had to figure out why. Well, what did he explain in this monologue? 
+=== 57823c3e-9 (page; chars 26659-29902 of 46,160; continue with 57823c3e-9@29902) ===
+Why equals? Or maybe even more likely is: how did he know how to ask the question why? So equals Y is question mark, right? meaning that we don't know what caused me to ask why, but the answer is in this monologue in a pattern. Because basically I'm just dumping my thoughts into the microphone, so that as I work through the problem, the formula should be there. And the formula is not going to be X plus Y over Z in this monologue. The formula is going to be the words, or the sentences, or the patterns of those sentences that tripped a switch that said why, or how, or what process. So let's see if the two of you can do this. That's the question, is if the two of you can figure out how this monologue is made up in formula form. And I think that it would be a deduction, or decomposition, whereas you first figure out what the patterns are in the monologue, and then you figure out what the key terms are that are the most interesting things that we don't understand how we got to that. And then you use the words and the patterns or the sentences in the monologue to understand what the variables are, and then you decomposition that into what do we know what the formula is for that variable. And if we don't, then we start looking at that variable and figuring out what the formula is to find that variable. And it might be for this. At that point we might still be in the terms of words, patterns, sentences. And then from there, we go the next step. Once we know how to find all the variables and we know the formula of words above the variables, we end up with a formula of words that equals Y, or how he decided to ask why here, or how he decided to ask how here, and why he decided to ask how first and why second, or why did he decide to ask why first and how second. And what those answers— what formula do those answers fit into that either progresses or digresses the situation. I think that's the task for this session.
+
+## 5. Claude's analysis (ANALYSIS.md)
+# The owner's 2026-10-01 monologue in formula form (Claude, analysis only)
+
+Claude Opus 5.5, 2026-10-01 ~13:45-14:10 CDT. ANALYSIS ONLY: no brain, teacher, code, database or
+service changed. Every formula below is MY GUESS read out of the owner's words, announced with the
+lines that back it. None is a learned neuron formula and none is approved.
+
+Source: owner_source/64_claude_2026-10-01T184004.txt (full text, sha256 ccb55532...), the same as
+monologue_full.txt here. sentences.txt numbers its 335 sentences; "s108" below = sentence 108.
+The copy this session received (65_..., prompt_as_received_by_this_session.txt) had its middle
+collapsed by the terminal; the full text was recovered from ~/.claude/paste-cache.
+
+## Step 1: patterns that repeat (counted)
+
+| marker in the words | count | what it looks like |
+|---|---|---|
+| "because" | 27 | a reason attached at the moment of a choice, a feeling or a strong claim |
+| "why" asked as his own reasoning question | 1 (s225) | after "Yeah, I've already tried this... It doesn't work" |
+| maybe / I think / I don't know / I guess, I believe | 14 / 16 / 16 / 4 = 50 | confidence marks on his own claims, about one sentence in seven |
+| "right?" tag | 16 | asks the listener to confirm what he just said |
+| if ..
+=== 57823c3e-9 (page; chars 29902-33026 of 46,160; continue with 57823c3e-9@33026) ===
+. then | 34 | branches: same/not same, yes/no, greater/less |
+| "Nope, that doesn't work" | 3 in a row (s132-134) | acts out leaving a memory at its first mismatch |
+| have I ever ... before? | 5 (s87, s91, s100, s142, s221) | always the FIRST question about a new problem or hypothesis |
+| formula / pattern / memory | 74 / 35 / 26 | the key nouns |
+| a known example given with "like" | 1+2=3 (s59-62), 15 vs 16 variables (s74-76), show your work (s182) | explains a new idea with an old one of the same shape |
+
+The monologue's shape:
+- s3-83: a failure (both workers went off rail) is explained with because-clauses. Then a HOW (s70), then a decision (s78).
+- s84-158: the process for finding things. No why at all.
+- s159-198: feeling and being stuck ("I don't have the formulas").
+- s199-230: guessing and hypotheses. The only reasoning WHY is here.
+- s231-264: deciding by comparing (= for a known process, > for progress, roll back when <).
+- s265-275: the goal is not known ("a floating point"), and he corrects himself.
+- s276-335: the task.
+
+## Step 2: key terms that should each have a formula
+
+recognize (have I ever), outcome, same/match, different, adapt, substitute (shortcut), learn,
+what, how, why, because, what's new since, decide, progress/digress/roll back/finished, guess
+(announced), inverse/scope check, feeling, explain-by-example, capacity/chaos, the brain's own input.
+
+## Step 3+4: variables and the formulas, in words
+
+Each formula has the words that trip it, the formula, and its evidence.
+
+**F1 HAVE-I-EVER (recognize).** Tripped by a new problem or a new hypothesis ("this is the
+problem", "I have a hypothesis"). The formula: problem → its pattern → memories whose formulas
+match that pattern, checked one formula at a time. A memory is dropped at its first mismatch
+("if three of the formulas in the memory don't match ... that memory is junk", s154).
+Evidence: s87, s91, s93-95, s139-148, s221. 6 lines, plus msg 54 (the compressor).
+Neuron reading (guess): owner msg 02 already contains the exact case. A run receipt is the
+memory's address: "if it exists its dna gets a new row". So HAVE-I-EVER for an EXACT pattern is
+one hop (does a memory neuron exist at this receipt?), not a search. The near match compares the
+terms of the receipt (gate keys + shards) and exits at the first terms that cannot fit.
+Codex's caution, which I accept: early exit inside each memory still visits every memory unless
+the pattern itself routes you to the few candidates. So the route must come from the address.
+
+**F2 OUTCOME.** Tripped by a recall hit. "did they work? What was the outcome?" (s96-98).
+OUTCOME(memory) = the result stored with that occurrence. 3 lines (s97, s98, s240).
+Needs: every memory row carries its outcome (and what was expected).
+
+**F3 SAME / MATCH.** Tripped by a hit that has an outcome. SAME = pattern(now) equals
+pattern(then) (s99-101). If same, the answer is known: SUBSTITUTE the variables into the known
+formula (the shortcut, s108-119). MATCH = new answer compared with the remembered good answers
+("1 plus 2 equals 3 ... A plus B equals 4 ... something's wrong", s58-6
+=== 57823c3e-9 (page; chars 33026-36226 of 46,160; continue with 57823c3e-9@36226) ===
+2, s240-246). The result is
+"probably correct" (s246), a guess with a mark, not a fact. 2 segments agree.
+
+**F4 WHAT (one variable).** Tripped by an empty value inside a chain he already has: "What was
+the outcome?" (s98), "What's different?" (s103), "what part of this formula doesn't match"
+(s104), "What do I have to do differently" (s106). WHAT(x) = the test that measures x (the
+owner's voltmeter, msg 54). 4 lines.
+
+**F5 DIFFERENT → ADAPT.** Tripped by "not the same". DIFF = the terms of now that do not match
+then (s103-104). ADAPT = change only the part of the formula that depends on that term, then test
+it (s105-106). 1 segment. Same idea as msg 54's isolator ("if we find a part of the formula that
+doesn't math ... we need to go look at this variable").
+
+**F6 WHY (cause).** Tripped by an outcome that is not the expected one ("It doesn't work",
+"got off rail", "something's wrong"), when the cause is not in hand.
+- In this monologue the only spoken reasoning WHY is s225, right after a recalled failure (s222-224).
+- "because" appears 27 times. He answers the why at the moment he chooses, feels or claims
+  something, before anyone asks: s10 (not blinking ← Neuron is difficult), s11 (pushing tokens ←
+  trust), s165/s170 (scared ← past experiences), s123 (must learn ← no formula fits).
+- So at recall time a WHY is mostly a READ, not a computation. s226 "it didn't work because of
+  this, this, and this" reads the reason stored with the old attempt.
+- FORMULA (guess): the memory row = pattern + formula used + outcome + because.
+  WHY(memory) = its because. Only when that is empty does a real WHY get asked, which means a
+  hypothesis (an announced guess) and a test.
+- A relevance factor: s2 "My eyesight sucks today, and I don't know why, but here we go" asks a
+  why and drops it, because nothing he is deciding depends on that cause. s225 is pursued because
+  the cause decides whether to retry (s227). WHY = (expected ≠ observed) × (cause unknown) ×
+  (cause is a variable of what I'm deciding). Codex wrote the same test independently: "if both
+  answers lead to the same action, the question has weak value".
+- Tested on all 63 earlier owner messages (6 why-questions). A mismatch word was in the question
+  or in the two sentences before it 3/6 times (msg 54 twice, msg 56). The other three, by MY
+  reading, are also expected ≠ observed or a result given without its reason: "Why five
+  databases?" (03), "this formula tells me these two words are similar, can you tell me why?" (15),
+  "why don't you just write audits to neurons?" (30). So it is 3/6 by keyword and 6/6 by reading,
+  and the second is softer evidence. Refined: WHY = an observation that does not fit what I
+  expected, OR an answer handed over without its because.
+
+**F7 WHAT'S-NEW-SINCE (retry gate).** Tripped by a remembered failure whose because is known: "Is
+there anything that I know new now that I didn't know then that might answer those questions?"
+(s227). RETRY = (the because-variables of that failure) ∩ (what changed between that timeline
+point and now) is not empty. Needs the state at a timeline point ("State and timeline is super
+important", s219). 1 line (+ msg 54 "let's try this .
+=== 57823c3e-9 (page; chars 36226-39410 of 46,160; continue with 57823c3e-9@39410) ===
+.. with the expectation that it's not going
+to work"). Weak guess.
+
+**F8 HOW (route).** Tripped by a goal (or an outcome he sees) with no process that reaches it:
+"figure out how to keep y'all on rail" (s70), "How do I understand this pattern?" (s90), "how do
+we handle everything after?" right after "I don't have the formulas" (s172), "I can see the
+answer. I just can't see the work" (s179-186), "I don't understand how you can..." (s39).
+HOW = goal known × no remembered formula that gets from here to it. 5 lines.
+
+**F9 ORDER: why first, or how first?** Three segments of this monologue agree:
+- s3-83: a mismatch is already on the table (both drifted). The becauses (the why) come first
+  (s10-69), then HOW (s70), then DECIDE (s78).
+- s84-158: no mismatch. A HOW/HAVE-I-EVER chain, and no why at all.
+- s215-227: a hypothesis (a how to try), then "tried before?", then it failed, and only THEN WHY (s225).
+- FORMULA (guess): ask WHY first if a mismatch is present; otherwise HOW first, and WHY appears only
+  after a try fails. My reason: the cause is one of the variables of the fix. Find the variable
+  that does not "math" before choosing what to change (msg 54, Ohm's law). Codex's trace reaches
+  the same rule from the other side: "ask a prerequisite question before a question that depends
+  on its answer". 3 segments + an independent worker agree.
+
+**F10 DECIDE.** In s70-78 there are two options (A: keep the workers on rail, B: the brain no
+longer needs them). He weighs them against the remembered outcome of the same pattern in Nexus,
+Cortex, Thesis Coin and SURS (s71-77: chaos at the 16th variable). He picks the option that does
+not lead to the remembered failure (s78 "my logic is ... self-sustaining before that point"), and
+keeps it as something to test (s162 "a valid solution to test"). In s240-246: decide = MATCH with
+the hundred earlier answers. DECIDE = options × (each option's remembered outcome for this
+pattern), then choose and keep it marked as a hypothesis. 2 segments.
+
+**F11 PROGRESS / DIGRESS.** From s247-262: PROGRESS = distance(previous state, goal) −
+distance(current state, goal).
+- More than 0: progressing.
+- Less than 0: digressed, so roll back to the previous state and try again (s258).
+- Distance 0: finished (s260-262).
+
+The problem is that the goal is "a floating point" (s265-267). His fix is to place the goal the
+way a word is placed: refine it by its relations, correcting as he goes (s270-273 "it becomes
+you. Or no. Maybe I should put it differently. It becomes my brain structure with your
+capacity").
+
+The owner's last question (s334), as a guess: an answer PROGRESSES when it fills an empty variable
+the goal formula needs (Ohm's law: know two of three and the third is computed, no test needed).
+It DIGRESSES when it opens new empty variables without filling a needed one, or when it fills one
+with an unmarked guess that later fails MATCH (a hidden guess comes back as a new WHY). FINISHED
+= no empty variables, and MATCH holds. Progress over questions = (empty variables before) −
+(empty variables after).
+
+**F12 GUESS, announced.** s199-220, and the owner's own speech: 50 confidence marks in 335
+sentences, plus 16 
+=== 57823c3e-9 (page; chars 39410-42574 of 46,160; continue with 57823c3e-9@42574) ===
+"right?". CLAIM = content × confidence mark, and the mark stays after the
+moment (s210-214). "right?" is the same move as the brain's GUESS line ("..., test hypothesis ?").
+The owner speaks the way he asked the brain to speak.
+
+**F13 INVERSE / SCOPE CHECK.** After a strong claim, he tests its inverse or how far it reaches:
+- s32-34: "I don't think it can be that. And the inverse is also I don't think it can be."
+- s204-207: "The worst thing about you is that you guess. Now, does that mean that the neuron
+  should never guess? No."
+- s270-273: "it becomes you. Or no. Maybe I should put it differently."
+
+Tripped by strong words (worst, only, can't, never, all). The formula: ask the inverse or "does
+that mean always/never?", then keep the bounded form. This is his own "take the inverse" (s312).
+3 lines.
+
+**F14 FEELING = a fast recall of how this pattern ended before.** s165-170: "scared because I
+know from past experiences ... that feeling ... Oh, fuck. I've been here before. This project is
+about to get shitty ... because I've had the feeling multiple times." FEELING = pattern(now) ≈
+pattern(then) × outcome(then), arriving before any reasoning. That is a run receipt's answer
+without re-running the run, a shortcut. 1 segment (+ msg 02: happy/sad as part of a run's
+expression; msg 54: satisfaction/praise/consequence are formulas). Guess.
+
+**F15 EXPLAIN BY A KNOWN EXAMPLE (metaphor).** s59-62, s74-76, s109, s182; msg 54 (Ohm's law,
+the compressor); msg 62 (long and short division). EXPLAIN(new) = a known example with the same
+pattern + "like". Msg 54 says it outright: "we can speak in metaphor about processes that pattern
+match to other processes". 4+ lines.
+
+**F16 REPEATING = WEIGHT.** The main claims are said 3-10 times in different words: "we already
+know the answer, just substitute" (s108-119), "search the pattern, skip a memory at its first
+mismatch" (s125-155). The more independent ways a claim is said, the more fixed it is, the same
+way a word is held in place by more relation lines. Guess.
+
+**F17 CAPACITY / CHAOS.** s74-77, s159, s170: chaos when the variables to hold outnumber what
+the worker can hold (15 is fine, the 16th is chaos). His conclusion (s78-79): the brain must
+carry its own variables before that point. My reading: the neuron escapes the limit because it
+does not hold variables. It recalls them by pattern, and a known chain collapses to one
+substituted value ("They just give you a variable that gets into another formula", s116).
+
+**F18 THE BRAIN'S OWN INPUT (sixth sense).** s46-48 sit next to each other: "the brain should be
+able to operate on its own ... So we haven't built the sixth sense yet that is the brain's own
+input. The formulas for questions and how to know what question to ask, those don't exist."
+Guess: the sixth sense IS the question selector running on the brain's own state. An empty
+variable (an open question, an unexpected outcome, an untested guess) is the brain's own input.
+1 adjacency only.
+
+## Step 5: the question selector, combined
+
+The question word names the type of the variable that is empty:
+
+| empty variable | question |
+|---|---|
+| no memory link for a new pattern 
+=== 57823c3e-9 (page; chars 42574-46160 of 46,160; end) ===
+| HAVE I EVER ...? |
+| a value inside a known chain | WHAT ...? |
+| a route between here and a goal | HOW ...? |
+| a cause behind a mismatch | WHY ...? (read the stored because first; ask only if it is empty) |
+| is a recalled answer still valid? | SAME? / WHAT'S NEW SINCE THEN? |
+| after a strong claim | DOES THAT MEAN ...? (inverse) |
+
+After any answer: MATCH (=) or PROGRESS (> / <), then keep, roll back, or finished.
+
+The owner's s319, "how did he know how to ask the question why?", answered: he asked WHY only
+when a recalled attempt had not given the wanted outcome AND the answer would change what he did
+next (retry or not). The words that tripped it were "It doesn't work" (s224), right after "I've
+already tried this before" (s222). Everywhere else the why was answered before it was asked, with
+"because", at the moment he chose or felt something.
+
+## Step 6: how this lands on the neuron
+
+From the records; not live-verified this session.
+
+| status | piece |
+|---|---|
+| EXISTING | memory neuron per receipt (spawn or append a row) = HAVE-I-EVER for an exact pattern |
+| EXISTING | timeline + clock snapshot per occurrence |
+| EXISTING | `recall` / `X recall recount` |
+| EXISTING | UNSURE answer ("teach me rock opposite") = a WHAT for an empty relation |
+| EXISTING | GUESS line with percent, and yes confirms it |
+| EXISTING | brain-made proposal questions ("folded undo unfolded ?") |
+| MISSING | an outcome and a because on each memory row |
+| MISSING | pattern recall over memory terms with early exit, routed by the address (never the whole corpus) |
+| MISSING | WHY as a read of the stored because |
+| MISSING | WHAT'S-NEW-SINCE (state difference between two timeline points) |
+| MISSING | PROGRESS |
+| MISSING | the selector by empty-variable type |
+| MISSING | self-input |
+
+Each missing piece is a formula plus the runs that make it, inside the brain.
+
+## Agreement with Codex (page 93d9bfaa-a, written ~13:44, read AFTER this analysis was formed)
+
+AGREE (two independent lines to the same point):
+- WHY = expected ≠ observed.
+- HOW = goal known and route missing.
+- WHAT = identify a needed variable.
+- The question asked = the missing prerequisite.
+- Order = a prerequisite first, no universal order.
+- Retry only if what blocked it has changed.
+- Progress = compare before and after against the goal, and roll back on regression.
+- Guess = mark it, then test it.
+- Self-input = an unresolved need becomes an internal event.
+
+ADDED HERE:
+- because ×27 vs why ×1, so WHY is mostly a READ of a because stored at decision time.
+- 50 confidence marks + 16 "right?" = the owner already speaks in announced guesses.
+- The inverse/scope check (3 lines).
+- Feeling = a fast recall of a past outcome.
+- Repeating = weight.
+- Progress counted as empty variables closed.
+- The why test on 63 earlier messages (3/6 keyword, 6/6 by reading).
+
+DIFFERENT EMPHASIS: Codex warns that early exit still visits every memory without an access
+route. I answer it with the owner's own msg 02: the receipt IS the address, so the exact pattern
+is a hop.
+
+## Next single step (analysis, not implementation)
+
+Test F6/F8/F9 (why = empty cause, how = empty route, why-first only when a mismatch is present) on
+the owner's other long monologues (msgs 54, 62, 17). Count held and contradicted lines before any
+of it is taught to the brain.
+
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: none required; formulas F1-F18 are announced guesses awaiting owner assessment
+NEXT_ACTION: Test the why/how question rule on owner monologues 54, 62, 17; count held vs contradicted before teaching.
+STATE: READY

@@ -1,0 +1,483 @@
+# 70 learning: the five ways (blueprint §13). One act of learning is the brain
+# finding a new formula on its own and making it run. Each way is a few short
+# strings of gates; what a way finds is written in mode DERIVED (a deduction in
+# GUESS), tested on rows it was not built from before it is kept, and kept as
+# something that runs: a process string, a type's action section, or a shard.
+# A kept formula calls backpop with a memory id. The heavy work runs as a split
+# branch, so the caller's pad is left as it was (except what the entry consumes).
+
+# gates other areas define (forward-declared)
+gate backpop
+gate ask-name
+gate source-check
+gate core-check-proc
+gate f-same
+gate f-negate
+gate f-invert
+gate f-shrink
+gate f-grow
+gate f-later
+gate f-earlier
+gate f-near
+gate f-far
+gate nine-tenths
+gate one
+gate two
+# the language way (71-patterns): a line hops through a formula it holds, else searches
+gate lp-go
+gate lp-hop
+
+# slots (each run has its own; split runs get a copy)
+gate ln-o
+gate ln-ms
+gate ln-sa
+gate ln-oa
+gate ln-ob
+gate ln-oc
+gate ln-m1
+gate ln-m2
+gate ln-x
+gate ln-y
+gate ln-ha
+gate ln-hb
+gate ln-hc
+gate ln-h
+gate ln-op
+gate ln-inv
+gate ln-c
+gate ln-f
+gate ln-fl
+gate ln-t
+gate ln-fa
+gate ln-fb
+gate ln-dc
+gate ln-cur
+gate ln-bf
+gate ln-bd
+gate ln-d
+gate ln-p
+gate ln-m
+gate ln-l
+gate ln-t1
+gate ln-t2
+gate ln-f1
+gate ln-f2
+gate ln-vt
+gate ln-wg
+gate ln-wq
+gate ln-cl
+gate ln-cx
+gate ln-cy
+gate ln-s
+gate ln-pl
+# the probe point the cancel test runs two steps on
+gate ln-probe at 1 1 1
+
+# a split run that lands the top of its pad: the way a list is built
+proc ln-top =
+proc ln-stop = END
+# what a kept formula changed (pad: the gate, consumed): a DERIVED memory at the
+# gate whose body is the gate, and backpop walks from it along the use receipts
+proc ln-mark = LAST READ DERIVED TODO WRITE DERIVED HOME FIND backpop
+on ln-mark NONE -> carry-on
+
+# the candidates (process strings read as lists, never run): the relationship
+# formulas a fit tries, and the types a refit walks. The brain can rewrite them.
+proc ln-forms = f-same f-negate f-invert f-shrink f-grow f-later f-earlier f-near f-far
+proc ln-types = t-same t-opposite t-kind-of t-part-of t-like t-cause t-before t-used-for t-describes t-supports t-contradicts t-derived-from
+
+# ==== 1. generalize ==========================================================
+# Called inside a root run that came from input, the run's outcome on top (left
+# there). A run seen before is a hop (its memory exists): nothing to learn.
+# A new one notes how its outcome was reached (the outcome's sec-built = this
+# signature), then, if runs shaped like it are remembered, a branch compares
+# signatures: the first hole, and what links hole to outcome (one more? twice?
+# the math words, with the constant fitted from the first pair), tested on a
+# third run; kept as a new spawned process [constant word], label asked later.
+# Lines of words go the language way too (71-patterns: lp-go, lp-hop).
+proc ln-general = SIG FIND ln-gen-seen
+on ln-general NONE -> ln-gen-go
+# a line seen before is a hop to its memory. A pattern it fits is still looked for
+# (lp-hop: the formulas on its gates, else the pages): it may have been read before
+# pattern learning could see it, or before the lines that join its words were held
+proc ln-gen-seen = LAST DELETE SIG READ ITEM READ lp-hop SPLIT LAST DELETE
+proc ln-gen-go = LAST READ KIND READ
+on ln-gen-go GATE -> ln-gen-gate
+on ln-gen-go NUMBER -> ln-gen-drop
+on ln-gen-go TEXT -> ln-gen-drop
+on ln-gen-go POINT -> ln-gen-drop
+on ln-gen-go LIST -> ln-gen-drop
+on ln-gen-go NONE -> carry-on
+proc ln-gen-drop = LAST DELETE
+proc ln-gen-gate = SIG READ SHAPE FIND ln-gen-split
+on ln-gen-gate NONE -> ln-gen-note
+proc ln-gen-split = ITEM READ ln-gw SPLIT ITEM READ lp-go SPLIT LAST DELETE LAST DELETE LAST DELETE
+proc ln-gen-note = ITEM READ ln-gn SPLIT ITEM READ lp-hop SPLIT LAST DELETE LAST DELETE
+proc ln-gn = ln-sa SLOT WRITE ln-oa SLOT WRITE ln-note END
+proc ln-note = ln-oa SLOT READ sec-built ln-sa SLOT READ SECTION WRITE
+on ln-note NONE -> carry-on
+
+# the branch: pad outcome, signature, list of like-shaped memories. The first
+# memory's outcome, and the signatures that reached it, give the pair to build from
+proc ln-gw = ln-ms SLOT WRITE ln-sa SLOT WRITE ln-oa SLOT WRITE ln-note ln-gw2
+proc ln-gw2 = ln-ms SLOT READ FIRST READ ln-gw2b
+on ln-gw2 NONE -> ln-stop
+proc ln-gw2b = LAST READ ln-m1 SLOT WRITE OUTCOME READ ln-gw2c
+on ln-gw2b NONE -> ln-stop
+proc ln-gw2c = LAST READ ln-ob SLOT WRITE sec-built SECTIONS READ ln-gw2d
+on ln-gw2c NONE -> ln-stop
+proc ln-gw2d = ITEM READ ln-pw SPLIT LAST DELETE WAIT ln-gw2e
+proc ln-gw2e = LAST READ FIRST READ ln-gw2f
+on ln-gw2e NONE -> ln-stop
+proc ln-gw2f = ln-hb SLOT WRITE REST READ FIRST READ ln-gw2g
+on ln-gw2f NONE -> ln-stop
+proc ln-gw2g = ln-ha SLOT WRITE ln-gw5
+# one more (ADD, constant by SUB), else times (MUL, constant by DIV)
+proc ln-gw5 = ITEM READ ADD ln-op SLOT WRITE ITEM READ SUB ln-inv SLOT WRITE ln-link COMPARE
+on ln-gw5 SAME -> ln-gw-test
+on ln-gw5 MORE -> ln-gw-mul
+on ln-gw5 LESS -> ln-gw-mul
+on ln-gw5 NONE -> ln-gw-mul
+proc ln-gw-mul = LAST DELETE ITEM READ MUL ln-op SLOT WRITE ITEM READ DIV ln-inv SLOT WRITE ln-link COMPARE
+on ln-gw-mul SAME -> ln-gw-test
+on ln-gw-mul MORE -> ln-stop
+on ln-gw-mul LESS -> ln-stop
+on ln-gw-mul NONE -> ln-stop
+
+# a partner (split run; pad: a list of signatures): the first one that differs
+# from this run's signature in exactly one place lands the two gates there
+# (its gate, then this run's); none: it ends with nothing landed
+proc ln-pw = ln-pl SLOT WRITE ln-pnext
+proc ln-pnext = ln-pl SLOT READ FIRST READ ln-pn2
+on ln-pnext NONE -> ln-stop
+proc ln-pn2 = ln-y SLOT WRITE ln-pl SLOT READ REST READ ln-pl SLOT WRITE ln-sa SLOT READ ln-x SLOT WRITE ln-pstep
+proc ln-pstep = ln-x SLOT READ FIRST READ ln-pstep2
+on ln-pstep NONE -> ln-pnext
+proc ln-pstep2 = ln-y SLOT READ FIRST READ ln-pstep3
+on ln-pstep2 NONE -> ln-pnext
+proc ln-pstep3 = COMPARE
+on ln-pstep3 SAME -> ln-pstep-next
+on ln-pstep3 MORE -> ln-pone
+proc ln-pstep-next = ln-x SLOT READ REST READ ln-x SLOT WRITE ln-y SLOT READ REST READ ln-y SLOT WRITE ln-pstep
+proc ln-pone = ln-x SLOT READ REST READ ln-y SLOT READ REST READ COMPARE
+on ln-pone SAME -> ln-pland
+on ln-pone MORE -> ln-pnext
+proc ln-pland = LAST DELETE ln-x SLOT READ FIRST READ ln-y SLOT READ FIRST READ LAND LAND END
+
+# the link: the constant from the first pair (the inverse word run as a branch),
+# then a prediction for the second pair; pad -> prediction, actual
+proc ln-link = ln-oa SLOT READ VALUE READ ln-ha SLOT READ VALUE READ ln-link2
+on ln-link NONE -> ln-stop
+proc ln-link2 = ln-inv SLOT READ SPLIT LAST DELETE LAST DELETE WAIT ln-c SLOT WRITE ln-hb SLOT READ ln-h SLOT WRITE ln-ob SLOT READ ln-o SLOT WRITE ln-predict
+proc ln-predict = ln-h SLOT READ VALUE READ ln-c SLOT READ ln-op SLOT READ SPLIT LAST DELETE LAST DELETE WAIT ln-o SLOT READ VALUE READ
+on ln-predict NONE -> ln-stop
+
+# the test: the next like-shaped memory, a pair it was not built from, same hole place
+proc ln-gw-test = LAST DELETE ln-ms SLOT READ REST READ FIRST READ ln-gw-t2
+on ln-gw-test NONE -> ln-stop
+proc ln-gw-t2 = LAST READ ln-m2 SLOT WRITE OUTCOME READ ln-gw-t3
+on ln-gw-t2 NONE -> ln-stop
+proc ln-gw-t3 = LAST READ ln-oc SLOT WRITE sec-built SECTIONS READ ln-gw-t3b
+on ln-gw-t3 NONE -> ln-stop
+proc ln-gw-t3b = ITEM READ ln-pw SPLIT LAST DELETE WAIT ln-gw-t3c
+proc ln-gw-t3c = LAST READ FIRST READ ln-gw-t3d
+on ln-gw-t3c NONE -> ln-stop
+proc ln-gw-t3d = ln-hc SLOT WRITE REST READ FIRST READ ln-ha SLOT READ COMPARE
+on ln-gw-t3d SAME -> ln-gw-t5
+on ln-gw-t3d MORE -> ln-stop
+on ln-gw-t3d NONE -> ln-stop
+proc ln-gw-t5 = ln-hc SLOT READ ln-h SLOT WRITE ln-oc SLOT READ ln-o SLOT WRITE ln-predict COMPARE
+on ln-gw-t5 SAME -> ln-gw-keep
+on ln-gw-t5 MORE -> ln-stop
+on ln-gw-t5 LESS -> ln-stop
+on ln-gw-t5 NONE -> ln-stop
+
+# keep: the constant's gate (found by value, or spawned), the string [constant word]
+# on a spawned gate, receipts to the runs it explains, one use, backpop, ask its name
+proc ln-gw-keep = LAST DELETE DERIVED MADE WRITE ln-cgate
+proc ln-cgate = ln-c SLOT READ number-gate ln-cg2
+proc ln-cg2 = LAST READ ITEM READ NONE COMPARE
+on ln-cg2 SAME -> ln-cg-none
+on ln-cg2 MORE -> ln-gw-k2
+proc ln-cg-none = LAST DELETE ln-cnew
+proc ln-cnew = SPAWN LAST READ ln-c SLOT READ VALUE WRITE ln-gw-k2
+gate ln-cg
+# already known? a formula used with this constant whose word is this one: no new
+# formula (learning is spent once), only receipts to the runs it explains
+gate ln-kl
+gate ln-kf
+proc ln-gw-k2 = ln-cg SLOT WRITE ln-cg SLOT READ t-used-for RELS READ ln-kn-walk
+on ln-gw-k2 NONE -> ln-gw-k2b
+proc ln-kn-walk = ln-kl SLOT WRITE ln-kn-next
+proc ln-kn-next = ln-kl SLOT READ FIRST READ ln-kn-chk
+on ln-kn-next NONE -> ln-gw-k2b
+proc ln-kn-chk = ln-kf SLOT WRITE ln-kf SLOT READ PROC READ REST READ FIRST READ ln-op SLOT READ COMPARE
+on ln-kn-chk SAME -> ln-kn-have
+on ln-kn-chk MORE -> ln-kn-skip
+proc ln-kn-skip = ln-kl SLOT READ REST READ ln-kl SLOT WRITE ln-kn-next
+proc ln-kn-have = ln-kf SLOT READ sec-derived ln-m1 SLOT READ SECTION WRITE ln-kf SLOT READ sec-derived ln-m2 SLOT READ SECTION WRITE END
+proc ln-gw-k2b = ln-cg SLOT READ ITEM READ ln-top SPLIT LAST DELETE ln-op SLOT READ ITEM READ ln-top SPLIT LAST DELETE WAIT ln-gw-k3
+proc ln-gw-k3 = ln-fl SLOT WRITE SPAWN ln-f SLOT WRITE ln-f SLOT READ ln-fl SLOT READ core-check-proc PROC WRITE ln-gw-k4
+on ln-gw-k3 NONE -> ln-stop
+proc ln-gw-k4 = ln-f SLOT READ sec-derived ln-m1 SLOT READ SECTION WRITE ln-f SLOT READ sec-derived ln-m2 SLOT READ SECTION WRITE ln-m1 SLOT READ RIGHT WRITE ln-m2 SLOT READ RIGHT WRITE ln-cg SLOT READ t-used-for ln-f SLOT READ one REL WRITE ln-f SLOT READ t-derived-from ln-cg SLOT READ nine-tenths relate ln-gw-use
+proc ln-gw-use = ln-ha SLOT READ VALUE READ ln-f SLOT READ SPLIT LAST DELETE WAIT ln-oa SLOT READ VALUE READ COMPARE
+on ln-gw-use SAME -> ln-gw-done
+on ln-gw-use MORE -> ln-gw-done
+on ln-gw-use LESS -> ln-gw-done
+on ln-gw-use NONE -> ln-gw-done
+proc ln-gw-done = LAST DELETE ln-f SLOT READ ln-mark ln-f SLOT READ ITEM READ ask-name SPLIT END
+
+# ==== 2. fit a relationship's formula ========================================
+# pad: a t (consumed). From a's strongest pair of type t, each candidate formula
+# sends a's point somewhere; the one that lands nearest b is the best. If it is
+# not the type's held formula, it is tested on the pair from b, and kept as the
+# type's action (what relate and reach run) when it beats the held one there.
+proc ln-fit = ITEM READ ln-fw SPLIT LAST DELETE LAST DELETE
+proc ln-fw = ln-t SLOT WRITE ln-fa SLOT WRITE ln-fw2
+proc ln-fw2 = ln-fa SLOT READ ln-t SLOT READ REL READ ln-fw3
+on ln-fw2 NONE -> ln-stop
+proc ln-fw3 = ln-fb SLOT WRITE ln-t SLOT READ sec-action SECTION READ ln-fw4
+on ln-fw3 NONE -> ln-stop
+proc ln-fw4 = ln-cur SLOT WRITE ITEM READ ln-forms PROC READ ln-fl SLOT WRITE ln-cur SLOT READ ln-f SLOT WRITE ln-fdist ln-bd SLOT WRITE ln-cur SLOT READ ln-bf SLOT WRITE ln-floop
+# how far the formula in ln-f sends a's point from b's: pad -> the distance
+proc ln-fdist = ln-fa SLOT READ POINT READ ln-f SLOT READ SPLIT LAST DELETE WAIT ln-fb SLOT READ POINT READ COMPARE
+on ln-fdist SAME -> carry-on
+on ln-fdist MORE -> carry-on
+on ln-fdist NONE -> carry-on
+proc ln-floop = ln-fl SLOT READ FIRST READ ln-floop2
+on ln-floop NONE -> ln-fdone
+proc ln-floop2 = ln-f SLOT WRITE ln-fl SLOT READ REST READ ln-fl SLOT WRITE ln-fdist ln-fcheck
+proc ln-fcheck = LAST READ KIND READ
+on ln-fcheck NUMBER -> ln-fcmp
+on ln-fcheck GATE -> ln-floop
+on ln-fcheck LIST -> ln-floop
+on ln-fcheck POINT -> ln-floop
+on ln-fcheck TEXT -> ln-floop
+on ln-fcheck NONE -> ln-floop
+proc ln-fcmp = ln-d SLOT WRITE ln-bd SLOT READ COMPARE
+on ln-fcmp LESS -> ln-fbest
+on ln-fcmp SAME -> ln-fnext
+on ln-fcmp MORE -> ln-fnext
+proc ln-fbest = LAST DELETE ln-d SLOT READ ln-bd SLOT WRITE ln-f SLOT READ ln-bf SLOT WRITE ln-floop
+proc ln-fnext = LAST DELETE ln-floop
+# the held formula is still the best: nothing to learn
+proc ln-fdone = ln-bf SLOT READ ln-cur SLOT READ COMPARE
+on ln-fdone SAME -> ln-stop
+on ln-fdone MORE -> ln-ftest
+# the refit is a guess until it is tested on a page of the pairs already held for
+# the type (a's pairs and b's pairs, RELS pages): adopted only when it places them
+# closer in total than the held formula, over at least ln-pmin pairs; otherwise it
+# is written down as tried and wrong (ln-tried), and the held formula stays. The page
+# also holds the pairs every formula the type adopted won on (ln-wa, ln-wb on the
+# type, all of them), so a new formula has to place those too
+gate ln-acc
+gate ln-pn
+gate ln-pg
+gate ln-px
+gate ln-pa
+gate ln-pb
+gate ln-tried
+gate ln-wa
+gate ln-wb
+gate ln-wls
+gate ln-pmin val 2
+rel ln-pmin t-kind-of SETTING
+proc ln-psum = ln-px SLOT WRITE ln-px SLOT READ ln-t SLOT READ RELS READ ln-ps1
+on ln-psum NONE -> carry-on
+proc ln-ps1 = ln-pg SLOT WRITE ln-px SLOT READ ln-fa SLOT WRITE ln-ps2
+proc ln-ps2 = ln-pg SLOT READ FIRST READ ln-ps3
+on ln-ps2 NONE -> carry-on
+proc ln-ps3 = ln-fb SLOT WRITE ln-pg SLOT READ REST READ ln-pg SLOT WRITE ln-fdist ln-ps4
+proc ln-ps4 = LAST READ KIND READ
+on ln-ps4 NUMBER -> ln-ps5
+on ln-ps4 GATE -> ln-ps-skip
+on ln-ps4 LIST -> ln-ps-skip
+on ln-ps4 POINT -> ln-ps-skip
+on ln-ps4 TEXT -> ln-ps-skip
+on ln-ps4 NONE -> ln-ps2
+proc ln-ps-skip = LAST DELETE ln-ps2
+proc ln-ps5 = LAST DELETE ln-acc SLOT READ ADD ln-acc SLOT WRITE ln-pn SLOT READ one ADD ln-pn SLOT WRITE ln-ps2
+# pad: a formula (consumed) -> its total distance over the page
+proc ln-ptot = ln-f SLOT WRITE ZERO ln-acc SLOT WRITE ZERO ln-pn SLOT WRITE ln-pa SLOT READ ln-psum ln-pb SLOT READ ln-psum ln-wpage ln-acc SLOT READ
+proc ln-wpage = ln-t SLOT READ ln-wa SECTIONS READ ln-wl
+on ln-wpage NONE -> ln-wpage3
+proc ln-wl = ln-wls SLOT WRITE ln-wl1
+proc ln-wl1 = ln-wls SLOT READ FIRST READ ln-wl2
+on ln-wl1 NONE -> ln-wpage3
+proc ln-wl2 = ln-wls SLOT READ REST READ ln-wls SLOT WRITE ln-psum ln-wl1
+proc ln-wpage3 = ln-t SLOT READ ln-wb SECTIONS READ ln-wm
+on ln-wpage3 NONE -> carry-on
+proc ln-wm = ln-wls SLOT WRITE ln-wm1
+proc ln-wm1 = ln-wls SLOT READ FIRST READ ln-wm2
+on ln-wm1 NONE -> carry-on
+proc ln-wm2 = ln-wls SLOT READ REST READ ln-wls SLOT WRITE ln-psum ln-wm1
+proc ln-ftest = ln-fa SLOT READ ln-pa SLOT WRITE ln-fb SLOT READ ln-pb SLOT WRITE ln-cur SLOT READ ln-ptot ln-d SLOT WRITE ln-bf SLOT READ ln-ptot ln-d SLOT READ COMPARE
+on ln-ftest LESS -> ln-fenough
+on ln-ftest SAME -> ln-ftried
+on ln-ftest MORE -> ln-ftried
+on ln-ftest NONE -> ln-stop
+proc ln-ftried = LAST DELETE ln-t SLOT READ ln-tried ln-bf SLOT READ SECTION WRITE END
+proc ln-fenough = LAST DELETE ln-pn SLOT READ ln-pmin COMPARE
+on ln-fenough LESS -> ln-fshort
+on ln-fenough SAME -> ln-fkeep
+on ln-fenough MORE -> ln-fkeep
+proc ln-fshort = LAST DELETE END
+proc ln-fkeep = LAST DELETE DERIVED MADE WRITE ln-t SLOT READ sec-action ln-bf SLOT READ SECTION WRITE ln-fk2
+proc ln-fk2 = ln-t SLOT READ ln-wa ln-pa SLOT READ SECTION WRITE ln-t SLOT READ ln-wb ln-pb SLOT READ SECTION WRITE ln-t SLOT READ ln-mark ln-t SLOT READ
+
+# ==== 3. shortcut ============================================================
+# pad: a process gate P (consumed). When the latest run that used P has been
+# seen again and again and never marked wrong, P's long string moves to a
+# spawned gate (its receipt: that run's memory), and P becomes [SIG FIND ln-hop]
+# with a shard that sends "not found" to the long string. The next run with the
+# same input hops to its memory's outcome; a new input takes the long way.
+proc ln-short = ITEM READ ln-sw SPLIT LAST DELETE
+proc ln-hop = OUTCOME READ
+on ln-hop NONE -> carry-on
+proc ln-sw = ln-p SLOT WRITE ln-p SLOT READ PROC READ FIRST READ ln-sw2
+on ln-sw NONE -> ln-stop
+# already a shortcut
+proc ln-sw2 = ITEM READ SIG COMPARE
+on ln-sw2 SAME -> ln-stop
+on ln-sw2 MORE -> ln-sw3
+proc ln-sw3 = ln-p SLOT READ sec-use SECTION READ ln-sw4
+on ln-sw3 NONE -> ln-stop
+proc ln-sw4 = LAST READ ln-m SLOT WRITE SEEN READ two COMPARE
+on ln-sw4 LESS -> ln-stop
+on ln-sw4 SAME -> ln-sw5
+on ln-sw4 MORE -> ln-sw5
+proc ln-sw5 = ln-m SLOT READ WRONG READ ZERO COMPARE
+on ln-sw5 SAME -> ln-sw6
+on ln-sw5 MORE -> ln-stop
+on ln-sw5 LESS -> ln-stop
+proc ln-sw6 = DERIVED MADE WRITE SPAWN ln-l SLOT WRITE ln-l SLOT READ ln-p SLOT READ PROC READ core-check-proc PROC WRITE ln-sw7
+on ln-sw6 NONE -> ln-stop
+proc ln-sw7 = ln-l SLOT READ sec-derived ln-m SLOT READ SECTION WRITE ln-sw8
+proc ln-sw8 = ITEM READ SIG ITEM READ ln-top SPLIT LAST DELETE ITEM READ FIND ITEM READ ln-top SPLIT LAST DELETE ITEM READ ln-hop ITEM READ ln-top SPLIT LAST DELETE WAIT ln-p SLOT READ core-check-proc PROC WRITE ln-sw9
+on ln-sw8 NONE -> ln-stop
+proc ln-sw9 = ITEM READ FIND ln-p SLOT READ ITEM READ NONE ln-l SLOT READ SHARD WRITE ln-l SLOT READ ln-mark ln-p SLOT READ
+
+# ==== 4. deduce and derive ===================================================
+# deduce, pad: a t (consumed). a is a kind of B and B t C: maybe a t C. Written
+# as a guess (strength = the product of the two) and listed to be tested.
+proc ln-deduce = ITEM READ ln-dw SPLIT LAST DELETE LAST DELETE
+proc ln-dw = ln-t SLOT WRITE ln-fa SLOT WRITE ln-fa SLOT READ t-kind-of REL READ ln-dw2
+on ln-dw NONE -> ln-stop
+proc ln-dw2 = LAST READ ln-fb SLOT WRITE ln-t SLOT READ REL READ ln-dw3
+on ln-dw2 NONE -> ln-stop
+proc ln-dw3 = ln-dc SLOT WRITE ln-fa SLOT READ ln-t SLOT READ ln-dc SLOT READ STRENGTH READ ln-stop
+on ln-dw3 NONE -> ln-dw4
+proc ln-dw4 = ln-fa SLOT READ t-kind-of ln-fb SLOT READ STRENGTH READ ln-fb SLOT READ ln-t SLOT READ ln-dc SLOT READ STRENGTH READ MUL ln-dw5
+gate ln-gline
+proc ln-dw5 = GUESS MADE WRITE ln-fa SLOT READ ln-t SLOT READ ln-dc SLOT READ REL WRITE ln-fa SLOT READ ln-t SLOT READ ln-dc SLOT READ ITEM READ ln-deduce ln-gline
+# a guess goes on TEST-GUESS as the line it is, with its maker. pad: a T b maker (consumed)
+gate ln-gm
+gate ln-ga
+gate ln-gt
+gate ln-gb
+proc ln-gline = ln-gm SLOT WRITE ln-gb SLOT WRITE ln-gt SLOT WRITE ln-ga SLOT WRITE ln-ga SLOT READ ITEM READ ln-top SPLIT LAST DELETE ln-gt SLOT READ ITEM READ ln-top SPLIT LAST DELETE ln-gb SLOT READ ITEM READ ln-top SPLIT LAST DELETE ln-gm SLOT READ ITEM READ ln-top SPLIT LAST DELETE WAIT TEST-GUESS TODO WRITE
+
+# derive, pad: a t1 t2 (consumed). a t1 b and b t2 c: the two formulas composed
+# into one string [f1 f2]; kept when it sends a nearer c than a is, as the action
+# of a new type, with "t1 then t2 is T" held as a line (rel t1 t2 T) so the next
+# time the composition is a hop. a T c is written as a guess and listed.
+proc ln-derive = ITEM READ ln-vw SPLIT LAST DELETE LAST DELETE LAST DELETE
+proc ln-vw = ln-t2 SLOT WRITE ln-t1 SLOT WRITE ln-fa SLOT WRITE ln-fa SLOT READ ln-t1 SLOT READ REL READ ln-vw3
+on ln-vw NONE -> ln-stop
+proc ln-vw3 = ln-fb SLOT WRITE ln-fb SLOT READ ln-t2 SLOT READ REL READ ln-vw4
+on ln-vw3 NONE -> ln-stop
+proc ln-vw4 = ln-dc SLOT WRITE ln-t1 SLOT READ ln-t2 SLOT READ REL READ ln-vw-have
+on ln-vw4 NONE -> ln-vw5
+proc ln-vw-have = ln-vt SLOT WRITE ln-vrel
+proc ln-vw5 = ln-t1 SLOT READ sec-action SECTION READ ln-vw5b
+on ln-vw5 NONE -> ln-stop
+proc ln-vw5b = ln-f1 SLOT WRITE ln-t2 SLOT READ sec-action SECTION READ ln-vw5c
+on ln-vw5b NONE -> ln-stop
+proc ln-vw5c = ln-f2 SLOT WRITE ln-vw6
+proc ln-vw6 = ln-fa SLOT READ POINT READ ln-dc SLOT READ POINT READ COMPARE
+on ln-vw6 SAME -> ln-stop
+on ln-vw6 MORE -> ln-vw7
+on ln-vw6 NONE -> ln-stop
+proc ln-vw7 = ln-d SLOT WRITE ln-fa SLOT READ POINT READ ln-f1 SLOT READ SPLIT LAST DELETE WAIT FIRST READ ln-f2 SLOT READ SPLIT LAST DELETE WAIT FIRST READ ln-dc SLOT READ POINT READ COMPARE
+on ln-vw7 SAME -> ln-vw8
+on ln-vw7 MORE -> ln-vw7b
+on ln-vw7 NONE -> ln-stop
+proc ln-vw7b = ln-d SLOT READ COMPARE
+on ln-vw7b LESS -> ln-vw8
+on ln-vw7b SAME -> ln-stop
+on ln-vw7b MORE -> ln-stop
+proc ln-vw8 = DERIVED MADE WRITE ln-f1 SLOT READ ITEM READ ln-top SPLIT LAST DELETE ln-f2 SLOT READ ITEM READ ln-top SPLIT LAST DELETE WAIT SPAWN ln-f SLOT WRITE ln-f SLOT READ core-check-proc PROC WRITE ln-vw9
+on ln-vw8 NONE -> ln-stop
+proc ln-vw9 = SPAWN ln-vt SLOT WRITE ln-vt SLOT READ sec-action ln-f SLOT READ SECTION WRITE ln-t1 SLOT READ ln-t2 SLOT READ ln-vt SLOT READ one REL WRITE ln-f SLOT READ ln-mark ln-vrel
+proc ln-vrel = GUESS MADE WRITE ln-fa SLOT READ ln-vt SLOT READ ln-dc SLOT READ one REL WRITE ln-fa SLOT READ ln-vt SLOT READ ln-dc SLOT READ ITEM READ ln-derive ln-gline
+
+# ==== 5. on itself ===========================================================
+# a question that never lands loses worth. pad: g q (consumed): q's worth on g × 0.9
+proc ln-weaken = ln-wq SLOT WRITE ln-wg SLOT WRITE ln-wg SLOT READ ln-wq SLOT READ WORTH READ ln-weaken2
+on ln-weaken NONE -> carry-on
+proc ln-weaken2 = nine-tenths MUL ln-wg SLOT READ ln-wq SLOT READ USUAL WRITE
+on ln-weaken2 NONE -> carry-on
+
+# two steps that cancel get cut. pad: P (consumed). When the first two steps of
+# P are both processes and running them one after the other on the probe point
+# brings it back to where it was (within a cell), they are cut; then again.
+proc ln-cut = ITEM READ ln-cw SPLIT LAST DELETE
+proc ln-cw = ln-p SLOT WRITE ln-p SLOT READ PROC READ ln-cw2
+on ln-cw NONE -> ln-stop
+proc ln-cw2 = LAST READ ln-cl SLOT WRITE FIRST READ ln-cx SLOT WRITE ln-cl SLOT READ REST READ FIRST READ ln-cw3
+on ln-cw2 NONE -> ln-stop
+proc ln-cw3 = ln-cy SLOT WRITE ln-cx SLOT READ PROC READ ln-cy SLOT READ PROC READ ln-cw3b
+on ln-cw3 NONE -> ln-stop
+proc ln-cw3b = LAST DELETE LAST DELETE ln-cw4
+proc ln-cw4 = ITEM READ ln-probe POINT READ ln-cx SLOT READ SPLIT LAST DELETE WAIT FIRST READ ln-cy SLOT READ SPLIT LAST DELETE WAIT FIRST READ ITEM READ ln-probe POINT READ COMPARE
+on ln-cw4 SAME -> ln-cw5
+on ln-cw4 MORE -> ln-stop
+on ln-cw4 NONE -> ln-stop
+proc ln-cw5 = LAST DELETE ln-cl SLOT READ REST READ REST READ ln-cw6
+on ln-cw5 NONE -> ln-stop
+proc ln-cw6 = LAST READ COUNT READ ZERO COMPARE
+on ln-cw6 SAME -> ln-cw-empty
+on ln-cw6 MORE -> ln-cw7
+# nothing left: the process becomes the one that does nothing
+proc ln-cw-empty = LAST DELETE LAST DELETE ITEM READ carry-on ITEM READ ln-top SPLIT LAST DELETE WAIT ZERO ln-cw7
+proc ln-cw7 = LAST DELETE DERIVED MADE WRITE ln-p SLOT READ core-check-proc PROC WRITE ln-cw8
+on ln-cw7 NONE -> ln-stop
+proc ln-cw8 = ln-p SLOT READ ln-mark ln-p SLOT READ ln-cw
+
+# a slow process gets a shortcut, and its cancelling steps cut
+proc ln-self = LAST READ ln-short LAST READ ln-cut
+
+# ==== the sixth's handlers (75 names them; each is split with the item's subject on top)
+# SLOW: the gate where a stuck run started
+proc learn-self = LAST READ KIND READ
+on learn-self GATE -> ln-self
+on learn-self NUMBER -> ln-stop
+on learn-self TEXT -> ln-stop
+on learn-self POINT -> ln-stop
+on learn-self LIST -> ln-stop
+on learn-self NONE -> ln-stop
+
+# IMBALANCE: refit the formula of every type the gate holds a line of
+proc learn-balance = ln-s SLOT WRITE ITEM READ ln-types PROC READ ln-bal
+proc ln-bal = LAST READ FIRST READ ln-bal2
+on ln-bal NONE -> ln-stop
+proc ln-bal2 = ln-t SLOT WRITE ln-s SLOT READ ln-t SLOT READ ITEM READ ln-fw SPLIT LAST DELETE LAST DELETE REST READ ln-bal
+
+# TEST-GUESS: a guess is tested against what it can read: sources on its subject,
+# and a deduction from it (what follows if it holds)
+proc learn-test = LAST READ ITEM READ source-check SPLIT LAST DELETE LAST READ ITEM READ t-kind-of ln-deduce
+
+# sleep: over the day's runs (a page from the timeline), each one done again and
+# again and never wrong has the gate it started from refit and its steps cut
+proc learn-search = CLOCK ln-day SUB CLOCK TIME FIND ln-search
+on learn-search NONE -> ln-stop
+gate ln-day val 86400
+proc ln-search = LAST READ FIRST READ ln-search2
+on ln-search NONE -> ln-stop
+proc ln-search2 = LAST READ SEEN READ two COMPARE
+on ln-search2 MORE -> ln-search3
+on ln-search2 SAME -> ln-search-no
+on ln-search2 LESS -> ln-search-no
+proc ln-search-no = LAST DELETE LAST DELETE REST READ ln-search
+proc ln-search3 = LAST DELETE HOME READ ITEM READ learn-balance SPLIT ln-cut REST READ ln-search
+rel ln-day t-kind-of SETTING

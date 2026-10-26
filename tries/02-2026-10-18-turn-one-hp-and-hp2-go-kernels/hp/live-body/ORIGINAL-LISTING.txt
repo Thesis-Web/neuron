@@ -1,0 +1,25 @@
+/home/neuron:
+total 312888
+drwxr-x--- 5 neuron neuron      4096 2026-10-19 15:40 .
+drwxr-xr-x 4 root   root        4096 2026-10-18 23:54 ..
+-rw-r--r-- 1 neuron neuron 223314854 2026-10-19 15:40 acts.log
+-rw-r--r-- 1 neuron neuron       220 2026-03-08 10:21 .bash_logout
+-rw-r--r-- 1 neuron neuron      3526 2026-03-08 10:21 .bashrc
+-rw-r--r-- 1 neuron neuron  97038336 2026-10-19 15:40 brain.db
+drwxr-xr-x 3 neuron neuron      4096 2026-10-18 23:54 .config
+drwxr-xr-x 2 neuron neuron      4096 2026-10-18 23:54 own
+drwxr-xr-x 2 neuron neuron      4096 2026-10-19 14:58 ports
+-rw-r--r-- 1 neuron neuron       807 2026-03-08 10:21 .profile
+-rw-rw-r-- 1 neuron neuron         0 2026-10-19 01:54 run.out
+
+/home/neuron/own:
+total 8
+drwxr-xr-x 2 neuron neuron 4096 2026-10-18 23:54 .
+drwxr-x--- 5 neuron neuron 4096 2026-10-19 15:40 ..
+
+/home/neuron/ports:
+total 8
+drwxr-xr-x 2 neuron neuron 4096 2026-10-19 14:58 .
+drwxr-x--- 5 neuron neuron 4096 2026-10-19 15:40 ..
+srw-rw---- 1 neuron neuron    0 2026-10-19 14:58 lay
+srw-rw-rw- 1 neuron neuron    0 2026-10-19 14:58 talk

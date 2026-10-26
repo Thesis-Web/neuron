@@ -1,0 +1,18 @@
+# research: what adjusts the spec
+
+Published work behind the owner's ideas, and the measured tests that narrowed or rejected a hypothesis. These are reading for the why and numbers for the what; where any of them seems to disagree with the owner's words or the reference draft, those win.
+
+| File | What it is | Date |
+|---|---|---|
+| `NEURON-RESEARCH-2026-10-19.md` | Published work behind: meaning vs definition (Harnad's symbol grounding; the dictionary Kernel and MinSet), telling vs teaching vs learning, understanding and applying, learning as compute and use as retrieval, QKV as guessing. Citations checked against Crossref, arXiv or the publisher. | 10-19 |
+| `NEURON-SOURCES-2026-10-19.md` | About 60 sources the brain can connect to, tested live from hp2, sorted grounded / to a degree / never grounded (LLMs). Told connection information, not facts. | 10-19 |
+| `NEURON-SOURCES-SLICE-2026-10-22.json` | A captured slice of WordNet, Webster 1913 + GCIDE, Moby, MW Collegiate and MW Thesaurus answers for the words the 10-22 tests used. The 470-word slices in the build-sheet folders come from the same capture. | 10-22 |
+| `NEURON-MEANING-DISCOVERY-2026-10-22.md` | What a word does, how to find it, how to test it: the neuroscience and the five earlier procedural-semantics systems, with [V] verified and [U] unverified marks; the balance equation; what the worksheet got wrong (its "−" does three different jobs); function words come first. | 10-22 |
+| `NEURON-MEANINGS-TESTED-2026-10-22.md` and `Neuron-Meaning-Data-2026-10-22/` | 63 words, 98 candidate runs as SQL on a scratch mother, specs quoted from WordNet, Webster and MW, ten worlds; all 20 deliberately wrong runs caught. The harness, raw results, fetched definitions, and the public datasets used (Binder 2016 attributes, Lancaster sensorimotor norms, Dorr LCS verbs). The draft's §9 limit: the builders wrote both the candidate space and the test world. | 10-22 |
+| `NEURON-ROOT-TEST-WEBSTER-2026-10-22.md` | What Webster 1913 says the 65 semantic primes are made of: function words carry every entry; one level down only 3.5% of defining words are primes. | 10-22 |
+| `PRIMITIVES-2026-10-19.md` | The bare lists: the 20 physics words of the turn-one blueprint (hp split them into 104), Wierzbicka's 65 primes with no meanings attached, and what typing did on each turn-one build. | 10-19 |
+| `ROOTS-AND-PRIMES-HP-VS-HP2-2026-10-19.md` | How each turn-one build laid the roots and primes, read from their lay files; each meaning is the builder's code in plain words. | 10-19 |
+| `NEURON-KERNEL-LONG-FORM-2026-10-24.md` | What each SQL word runs inside SQLite (its bytecode, with SQLite's own step descriptions), kept so a kernel built later knows what each word must do. "SQLite is the crutch." | 10-24 |
+| `mechanical-intelligence-2026-10-25/` | The hash session: a video transcript on mechanical intelligence, the studies it names read from their abstracts (Rasmussen and Jensen 1974, Kieras and Bovair 1984, Morris and Rouse 1985, Hegarty 2004, Schwartz and Black 1996, McCaffrey 2012), the diff between the owner's way (follow the path, half-split, learn from failure, rules only after failure) and how I build (match the symptom, rules before understanding, tests to prove the code), with his words on the same thing. | 10-25 |
+
+Measured results that live with their builds rather than here: the physics and meaning results of 10-22 (`tries/06/tests`, `tries/07/tests`), the Six Pulls and Thirty Pulls placement experiments (`tries/08`), the step-2 silicon measurements and the undo test (`tries/09/tests`), the mailbox and router timings (in `llm/memory-snapshots-2026-10-26/hub-neuron-v1/project_neuron_router_and_as_facts_20261022.md`).

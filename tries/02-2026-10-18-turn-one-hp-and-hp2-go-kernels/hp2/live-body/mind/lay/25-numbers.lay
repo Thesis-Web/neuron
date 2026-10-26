@@ -1,0 +1,123 @@
+# 25 numbers and operators (blueprint §5.7, §7.6, §16). Zero, one and two,
+# nothing more. The operators are gates whose action section names the silicon
+# word they hold; equals checks memory first and does the held operation only
+# on a miss.
+
+gate ZERO
+gate one val 1
+gate two val 2
+label key "0" ZERO
+label en "zero" ZERO
+label key "1" one
+label en "one" one
+label key "2" two
+label en "two" two
+
+gate plus
+gate minus
+gate times
+gate divided
+sect plus sec-action ADD
+sect minus sec-action SUB
+sect times sec-action MUL
+sect divided sec-action DIV
+label key "+" plus
+label en "plus" plus
+label key "-" minus
+label en "minus" minus
+label key "*" times
+label en "times" times
+label key "/" divided
+label key "÷" divided
+label en "divided" divided
+
+gate equals
+label key "=" equals
+label en "equals" equals
+
+# equals: have I done this before? (FIND by the run's signature)
+proc equals = SIG FIND equals-recall
+on equals NONE -> equals-sub
+# not done before: a known substitution formula (one learned for this second value, whose
+# word is this operator's), plugged in and run there; else the long way
+gate eq-c
+gate eq-f
+gate eq-fl
+proc equals-sub = SIG READ REST READ REST READ FIRST READ eq-sub2
+on equals-sub NONE -> equals-long
+proc eq-sub2 = eq-c SLOT WRITE eq-c SLOT READ t-used-for RELS READ eq-sub3
+on eq-sub2 NONE -> equals-long
+proc eq-sub3 = eq-fl SLOT WRITE eq-try
+proc eq-try = eq-fl SLOT READ FIRST READ eq-try2
+on eq-try NONE -> equals-long
+proc eq-try2 = eq-f SLOT WRITE eq-f SLOT READ PROC READ REST READ FIRST READ eq-try3
+on eq-try2 NONE -> eq-next
+proc eq-try3 = SIG READ REST READ FIRST READ sec-action SECTION READ COMPARE
+on eq-try3 SAME -> eq-apply
+on eq-try3 MORE -> eq-next
+on eq-try3 NONE -> eq-next-d
+proc eq-next-d = LAST DELETE eq-next
+proc eq-next = eq-fl SLOT READ REST READ eq-fl SLOT WRITE eq-try
+proc eq-apply = ITEM READ YES eq-used SLOT WRITE LAST DELETE eq-f SLOT READ SPLIT WAIT equals-got
+# found: is it wrong more than it is right? if not, the answer is a hop
+gate eq-m
+gate eq-used
+gate recall
+proc equals-recall = eq-m SLOT WRITE eq-m SLOT READ WRONG READ eq-m SLOT READ RIGHT READ COMPARE
+on equals-recall SAME -> equals-hop
+on equals-recall LESS -> equals-hop
+on equals-recall MORE -> equals-doubt
+# a memory hop redraws the memory's shape from today's points (a changed shape is a truth shift)
+proc equals-hop = LAST DELETE eq-m SLOT READ recall OUTCOME READ equals-say
+# a doubted memory (wrong more than right): the long way runs again. Its own re-run never
+# marks it right (R4-5): agreeing with an answer a person said no to proves nothing (the
+# value may be right and the name wrong); a different answer is a new outcome, which the
+# end of the run files as a truth shift. Only a person's yes marks it right.
+proc equals-doubt = LAST DELETE equals-long
+# the long way: the operator's held word runs as a branch on the values, then
+# FIND the gate that holds the result, or spawn one
+proc equals-long = sec-action SECTION READ SPLIT WAIT equals-got
+# the branch landed nothing (divide by zero, no values): "I got this far" — it asks
+# where it got stuck and ends without a memory, so nothing false is kept
+proc equals-got = LAST READ COUNT READ ZERO COMPARE
+on equals-got SAME -> equals-unknown
+on equals-got MORE -> equals-find
+proc equals-unknown = LAST DELETE LAST DELETE ITEM READ equals ITEM READ dunno SPLIT END
+proc equals-find = LAST DELETE LAST READ number-gate equals-ng
+proc equals-ng = LAST READ ITEM READ NONE COMPARE
+on equals-ng SAME -> equals-ng-none
+on equals-ng MORE -> equals-found
+proc equals-ng-none = LAST DELETE equals-new
+proc equals-found = equals-say
+# a new number spawns next to its first operand ("comes after" it), and is checked for a crowd
+proc equals-new = born LAST READ VALUE WRITE LAST READ sec-built SIG READ SECTION WRITE LAST READ t-derived-from SIG READ FIRST READ nine-tenths relate equals-say
+# saying the answer: never in a run tree the brain started itself (nobody is there, R4-11).
+# A name that another number also holds is not said for this one (it may be the lie, R4-5):
+# the value is said instead, and the clash is listed as an imbalance at the gate. (Another
+# sense of the word, a gate holding no number, is no clash.)
+gate eqs-g
+gate eqs-l
+proc equals-say = MINE READ
+on equals-say YES -> carry-on
+on equals-say NO -> eq-say2
+proc eq-say2 = LAST READ eqs-g SLOT WRITE LAST READ LABEL READ eq-say3
+on eq-say2 NONE -> eq-say-g
+proc eq-say3 = LABELS FIND eqs-l SLOT WRITE eq-walk
+proc eq-walk = eqs-l SLOT READ LAST READ REST READ eqs-l SLOT WRITE FIRST READ eq-one
+# the list ran out (REST of an empty list leaves it on the pad)
+on eq-walk NONE -> eq-walk-end
+proc eq-walk-end = LAST DELETE eq-say-g
+proc eq-one = VALUE READ eq-one2
+on eq-one NONE -> eq-walk
+proc eq-one2 = eqs-g SLOT READ VALUE READ COMPARE
+on eq-one2 SAME -> eq-same
+on eq-one2 MORE -> eq-clash
+on eq-one2 LESS -> eq-clash
+proc eq-same = LAST DELETE eq-walk
+proc eq-clash = LAST DELETE eq-say-v
+proc eq-say-g = LAST READ core-check SAY
+on eq-say-g NONE -> ask-name
+proc eq-say-v = LAST READ IMBALANCE TODO WRITE LAST READ VALUE READ core-check SAY
+
+# a gate with no label is not said: ask what it is called, and list it as a gap
+gate ask-name

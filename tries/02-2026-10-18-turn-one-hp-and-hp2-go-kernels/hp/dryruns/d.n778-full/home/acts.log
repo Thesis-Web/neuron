@@ -1,0 +1,436 @@
+14:31:34.350 LAY 00-roots.lay rows=335
+14:31:34.352 LAY 10-told.lay rows=846
+14:31:34.354 LAY 20-memory.lay rows=796
+14:31:34.360 LAY 30-questions.lay rows=1072
+14:31:34.365 LAY 40-sources.lay rows=1098
+14:31:34.389 LAY 45-meaning.lay rows=1564
+14:31:34.407 LAY 50-learning.lay rows=1572
+14:31:34.412 LAY 60-core.lay rows=406
+14:31:34.412 BORN gates=1685
+14:31:34.858 COMMIT rows=1 beat=1 runs=1
+14:31:34.862 COMMIT rows=2 beat=2 runs=0
+14:31:38.860 HEAR run=5 who=builder what="i"
+14:31:38.860 SPLIT run=5 -> run=6 at=152 subject=#135 worth=0.500
+14:31:38.860 SPLIT run=5 -> run=7 at=605 subject=#303 worth=0.500
+14:31:38.860 SPLIT run=5 -> run=8 at=635 subject=#303 worth=0.300
+14:31:38.860 SPLIT run=5 -> run=9 at=1009 subject=#303 worth=0.300
+14:31:38.861 SPLIT run=7 -> run=10 at=148 subject=#303 worth=0.400
+14:31:38.862 MEM run=8 mem=20 seen=1 outcome=i
+14:31:38.862 LAND run=8 -> run=5 20
+14:31:38.885 COMMIT rows=121 beat=6 runs=4
+14:31:38.885 MEM run=7 mem=19 seen=1 outcome=#109
+14:31:38.885 LAND run=7 -> run=5 19
+14:31:38.885 CALL run=9 src-kernel-store []
+14:31:38.885 CALL run=10 src-gcide ["i"]
+14:31:38.886 MEM run=5 mem=17 seen=1 outcome=1
+14:31:38.911 COMMIT rows=202 beat=7 runs=2
+14:31:38.912 CALL run=9 src-kernel-run []
+14:31:38.913 CALL run=10 src-wn ["i"]
+14:31:38.929 COMMIT rows=8 beat=8 runs=2
+14:31:38.931 CALL run=9 src-kernel-physics []
+14:31:38.936 COMMIT rows=3 beat=9 runs=2
+14:31:38.937 CALL run=9 src-kernel-ports []
+14:31:38.938 CALL run=10 src-wn-ant ["i"]
+14:31:38.944 COMMIT rows=6 beat=10 runs=2
+14:31:38.957 SPLIT run=10 -> run=11 at=950 subject="i one i ane" worth=0.320
+14:31:38.957 REL run=11 303 #291 288 strength=0.50 state=grounded
+14:31:38.957 REL run=11 303 #291 303 strength=0.50 state=grounded
+14:31:38.957 SPAWN run=11 gate=1685 at=0 0 0
+14:31:38.957 LABEL run=11 "ane" -> 1685
+14:31:38.957 SPLIT run=11 -> run=12 at=1523 subject=#1685 worth=0.160
+14:31:38.957 REL run=11 303 #291 1685 strength=0.50 state=grounded
+14:31:38.958 MEM run=12 mem=29 seen=1 outcome=#109
+14:31:38.958 CALL run=9 src-kernel-lay []
+14:31:38.958 LAND run=12 -> run=11 29
+14:31:38.958 MEM run=11 mem=27 seen=1 outcome=29
+14:31:38.958 LAND run=11 -> run=10 27
+14:31:38.958 CALL run=10 src-wn-syn ["i"]
+14:31:38.986 COMMIT rows=198 beat=11 runs=2
+14:31:38.986 SPLIT run=10 -> run=13 at=951 subject="i iodine iodin atomic number one ace single unity one ane" worth=0.320
+14:31:38.987 SPAWN run=13 gate=1686 at=0 0 0
+14:31:38.987 LABEL run=13 "iodine" -> 1686
+14:31:38.987 SPLIT run=13 -> run=14 at=1523 subject=#1686 worth=0.160
+14:31:38.987 MEM run=14 mem=34 seen=1 outcome=#109
+14:31:38.987 REL run=13 303 #290 1686 strength=0.50 state=grounded
+14:31:38.987 LAND run=14 -> run=13 34
+14:31:38.987 SPAWN run=13 gate=1687 at=0 0 0
+14:31:38.987 LABEL run=13 "iodin" -> 1687
+14:31:38.987 SPLIT run=13 -> run=15 at=1523 subject=#1687 worth=0.160
+14:31:38.987 REL run=13 303 #290 1687 strength=0.50 state=grounded
+14:31:38.987 SPAWN run=13 gate=1688 at=0 0 0
+14:31:38.987 LABEL run=13 "atomic" -> 1688
+14:31:38.987 SPLIT run=13 -> run=16 at=1523 subject=#1688 worth=0.160
+14:31:38.987 MEM run=15 mem=34 seen=2 outcome=#109
+14:31:38.988 LAND run=15 -> run=13 34
+14:31:38.988 REL run=13 303 #290 1688 strength=0.50 state=grounded
+14:31:38.988 CALL run=9 src-kernel-main []
+14:31:38.988 SPAWN run=13 gate=1689 at=0 0 0
+14:31:38.988 LABEL run=13 "number" -> 1689
+14:31:38.988 SPLIT run=13 -> run=17 at=1523 subject=#1689 worth=0.160
+14:31:38.988 MEM run=16 mem=34 seen=3 outcome=#109
+14:31:38.988 LAND run=16 -> run=13 34
+14:31:38.988 REL run=13 303 #290 1689 strength=0.50 state=grounded
+14:31:38.988 MEM run=17 mem=34 seen=4 outcome=#109
+14:31:38.988 LAND run=17 -> run=13 34
+14:31:38.988 REL run=13 303 #290 288 strength=0.50 state=contradicted
+14:31:38.988 CALL run=10 src-wn-hyper ["i"]
+14:31:39.010 COMMIT rows=115 beat=12 runs=3
+14:31:39.010 SPLIT run=10 -> run=18 at=952 subject="i chemical element element halogen digit figure letter letter of the alphabet alphabetic character" worth=0.320
+14:31:39.010 SPAWN run=18 gate=1690 at=0 0 0
+14:31:39.010 LABEL run=18 "chemical" -> 1690
+14:31:39.010 SAY run=13 "because #145 yes"
+14:31:39.010 SPLIT run=18 -> run=19 at=1523 subject=#1690 worth=0.160
+14:31:39.010 SPAWN run=13 gate=1691 at=0 0 0
+14:31:39.011 MEM run=19 mem=41 seen=1 outcome=#109
+14:31:39.011 LABEL run=13 "ace" -> 1691
+14:31:39.011 SPLIT run=13 -> run=20 at=1523 subject=#1691 worth=0.160
+14:31:39.011 MOVE gate=1690 -> 0 0 1
+14:31:39.011 REL run=18 303 #293 1690 strength=0.50 state=grounded
+14:31:39.011 LAND run=19 -> run=18 41
+14:31:39.011 REL run=13 288 #290 1691 strength=0.50 state=grounded
+14:31:39.011 SPAWN run=13 gate=1692 at=0 0 0
+14:31:39.011 SPAWN run=18 gate=1693 at=0 0 0
+14:31:39.011 LABEL run=18 "element" -> 1693
+14:31:39.011 SPLIT run=18 -> run=21 at=1523 subject=#1693 worth=0.160
+14:31:39.011 LABEL run=13 "single" -> 1692
+14:31:39.011 SPLIT run=13 -> run=22 at=1523 subject=#1692 worth=0.160
+14:31:39.011 MEM run=20 mem=34 seen=5 outcome=#109
+14:31:39.011 MOVE gate=1693 -> 0 0 1
+14:31:39.011 REL run=18 303 #293 1693 strength=0.50 state=grounded
+14:31:39.011 LAND run=20 -> run=13 34
+14:31:39.011 REL run=13 288 #290 1692 strength=0.50 state=grounded
+14:31:39.011 SPAWN run=13 gate=1694 at=0 0 0
+14:31:39.011 MEM run=21 mem=41 seen=2 outcome=#109
+14:31:39.011 LABEL run=13 "unity" -> 1694
+14:31:39.011 SPLIT run=13 -> run=23 at=1523 subject=#1694 worth=0.160
+14:31:39.012 LAND run=21 -> run=18 41
+14:31:39.012 MEM run=22 mem=34 seen=6 outcome=#109
+14:31:39.012 LAND run=22 -> run=13 34
+14:31:39.012 SPAWN run=18 gate=1695 at=0 0 0
+14:31:39.012 LABEL run=18 "halogen" -> 1695
+14:31:39.012 SPLIT run=18 -> run=24 at=1523 subject=#1695 worth=0.160
+14:31:39.012 CALL run=9 src-lay-00 []
+14:31:39.012 REL run=13 288 #290 1694 strength=0.50 state=grounded
+14:31:39.012 MEM run=23 mem=34 seen=7 outcome=#109
+14:31:39.012 REL run=13 288 #290 288 strength=0.50 state=grounded
+14:31:39.012 MOVE gate=1695 -> 0 0 1
+14:31:39.012 REL run=18 303 #293 1695 strength=0.50 state=grounded
+14:31:39.012 LAND run=23 -> run=13 34
+14:31:39.012 SPAWN run=18 gate=1696 at=0 0 0
+14:31:39.012 LABEL run=18 "digit" -> 1696
+14:31:39.012 SPLIT run=18 -> run=25 at=1523 subject=#1696 worth=0.160
+14:31:39.012 MEM run=24 mem=41 seen=3 outcome=#109
+14:31:39.012 REL run=13 288 #290 1685 strength=0.50 state=grounded
+14:31:39.012 LAND run=24 -> run=18 41
+14:31:39.025 COMMIT rows=150 beat=13 runs=5
+14:31:39.025 MOVE gate=1696 -> 0 0 1
+14:31:39.025 REL run=18 303 #293 1696 strength=0.50 state=grounded
+14:31:39.025 SPAWN run=18 gate=1697 at=0 0 0
+14:31:39.026 LABEL run=18 "figure" -> 1697
+14:31:39.027 MEM run=13 mem=32 seen=1 outcome=34
+14:31:39.027 SPLIT run=18 -> run=26 at=1523 subject=#1697 worth=0.160
+14:31:39.028 MEM run=25 mem=41 seen=4 outcome=#109
+14:31:39.028 LAND run=13 -> run=10 32
+14:31:39.028 LAND run=25 -> run=18 41
+14:31:39.028 MOVE gate=1697 -> 0 0 1
+14:31:39.028 REL run=18 303 #293 1697 strength=0.50 state=grounded
+14:31:39.028 SPAWN run=18 gate=1698 at=0 0 0
+14:31:39.028 LABEL run=18 "letter" -> 1698
+14:31:39.028 SPLIT run=18 -> run=27 at=1523 subject=#1698 worth=0.160
+14:31:39.028 MEM run=26 mem=41 seen=5 outcome=#109
+14:31:39.028 LAND run=26 -> run=18 41
+14:31:39.028 MOVE gate=1698 -> 0 0 1
+14:31:39.028 REL run=18 303 #293 1698 strength=0.50 state=grounded
+14:31:39.028 MEM run=27 mem=41 seen=6 outcome=#109
+14:31:39.028 SPAWN run=18 gate=1699 at=0 0 0
+14:31:39.028 LABEL run=18 "of" -> 1699
+14:31:39.028 SPLIT run=18 -> run=28 at=1523 subject=#1699 worth=0.160
+14:31:39.028 LAND run=27 -> run=18 41
+14:31:39.028 MOVE gate=1699 -> 0 0 1
+14:31:39.028 REL run=18 303 #293 1699 strength=0.50 state=grounded
+14:31:39.028 SPAWN run=18 gate=1700 at=0 0 0
+14:31:39.028 LABEL run=18 "the" -> 1700
+14:31:39.028 SPLIT run=18 -> run=29 at=1523 subject=#1700 worth=0.160
+14:31:39.028 MEM run=28 mem=41 seen=7 outcome=#109
+14:31:39.028 LAND run=28 -> run=18 41
+14:31:39.028 MOVE gate=1700 -> 0 0 1
+14:31:39.028 REL run=18 303 #293 1700 strength=0.50 state=grounded
+14:31:39.029 CALL run=10 src-wn-mero ["i"]
+14:31:39.029 SPAWN run=18 gate=1701 at=0 0 0
+14:31:39.029 LABEL run=18 "alphabet" -> 1701
+14:31:39.029 SPLIT run=18 -> run=30 at=1523 subject=#1701 worth=0.160
+14:31:39.029 MEM run=29 mem=41 seen=8 outcome=#109
+14:31:39.029 LAND run=29 -> run=18 41
+14:31:39.029 MOVE gate=1701 -> 0 0 1
+14:31:39.029 REL run=18 303 #293 1701 strength=0.50 state=grounded
+14:31:39.029 CALL run=9 src-lay-10 []
+14:31:39.029 SPAWN run=18 gate=1702 at=0 0 0
+14:31:39.029 LABEL run=18 "alphabetic" -> 1702
+14:31:39.029 SPLIT run=18 -> run=31 at=1523 subject=#1702 worth=0.160
+14:31:39.029 MEM run=30 mem=41 seen=9 outcome=#109
+14:31:39.029 LAND run=30 -> run=18 41
+14:31:39.029 MOVE gate=1702 -> 0 0 1
+14:31:39.029 REL run=18 303 #293 1702 strength=0.50 state=grounded
+14:31:39.029 SPAWN run=18 gate=1703 at=0 0 0
+14:31:39.029 LABEL run=18 "character" -> 1703
+14:31:39.029 SPLIT run=18 -> run=32 at=1523 subject=#1703 worth=0.160
+14:31:39.029 MEM run=31 mem=41 seen=10 outcome=#109
+14:31:39.029 LAND run=31 -> run=18 41
+14:31:39.029 MOVE gate=1703 -> 0 0 1
+14:31:39.029 REL run=18 303 #293 1703 strength=0.50 state=grounded
+14:31:39.029 MEM run=32 mem=41 seen=11 outcome=#109
+14:31:39.029 LAND run=32 -> run=18 41
+14:31:39.030 MEM run=18 mem=39 seen=1 outcome=41
+14:31:39.030 LAND run=18 -> run=10 39
+14:31:39.072 COMMIT rows=497 beat=14 runs=2
+14:31:39.075 CALL run=9 src-lay-20 []
+14:31:39.075 CALL run=10 src-oewn ["i"]
+14:31:39.081 COMMIT rows=6 beat=15 runs=2
+14:31:39.082 CALL run=9 src-lay-30 []
+14:31:39.085 COMMIT rows=3 beat=16 runs=2
+14:31:39.085 CALL run=9 src-lay-40 []
+14:31:39.089 COMMIT rows=3 beat=17 runs=2
+14:31:39.089 CALL run=9 src-lay-45 []
+14:31:39.096 COMMIT rows=3 beat=18 runs=2
+14:31:39.097 CALL run=9 src-lay-50 []
+14:31:39.102 COMMIT rows=3 beat=19 runs=2
+14:31:39.102 CALL run=9 src-lay-60 []
+14:31:39.107 COMMIT rows=3 beat=20 runs=2
+14:31:39.115 MEM run=9 mem=21 seen=1 outcome=#109
+14:31:39.139 COMMIT rows=278 beat=21 runs=1
+14:31:39.160 CALL run=10 src-foldoc ["i"]
+14:31:39.166 COMMIT rows=3 beat=23 runs=1
+14:31:39.222 CALL run=10 src-elements ["i"]
+14:31:39.229 COMMIT rows=2 beat=26 runs=1
+14:31:39.283 CALL run=10 src-man ["i"]
+14:31:39.291 COMMIT rows=2 beat=29 runs=1
+14:31:39.308 MEM run=10 mem=23 seen=1 outcome=39
+14:31:39.340 COMMIT rows=410 beat=30 runs=0
+14:31:40.309 COMMIT rows=1 beat=31 runs=1
+14:31:41.310 HEAR run=34 who=builder what="coffee"
+14:31:41.310 SPAWN run=34 gate=1704 at=0 0 0
+14:31:41.310 LABEL run=34 "coffee" -> 1704
+14:31:41.310 SPLIT run=34 -> run=35 at=1523 subject=#1704 worth=0.500
+14:31:41.310 MEM run=35 mem=62 seen=1 outcome=#109
+14:31:41.310 SPLIT run=34 -> run=36 at=152 subject=#135 worth=0.500
+14:31:41.310 LAND run=35 -> run=34 62
+14:31:41.310 SPLIT run=34 -> run=37 at=605 subject=#1704 worth=0.500
+14:31:41.310 SPLIT run=34 -> run=38 at=141 subject=#1704 worth=0.600
+14:31:41.310 SPLIT run=34 -> run=39 at=147 subject=#1704 worth=0.400
+14:31:41.310 SPLIT run=34 -> run=40 at=635 subject=#1704 worth=0.300
+14:31:41.310 SPLIT run=37 -> run=41 at=148 subject=#1704 worth=0.400
+14:31:41.311 MEM run=40 mem=69 seen=1 outcome=coffee
+14:31:41.311 LAND run=40 -> run=34 69
+14:31:41.311 SPLIT run=39 -> run=42 at=148 subject=[] worth=0.320
+14:31:41.311 LAND run=39 -> run=34 []
+14:31:41.311 SAY run=38 "coffee what ?"
+14:31:41.312 CALL run=41 src-gcide ["coffee"]
+14:31:41.312 MEM run=38 mem=67 seen=1 outcome=coffee
+14:31:41.312 LAND run=38 -> run=34 67
+14:31:41.313 MEM run=39 mem=68 seen=1 outcome=
+14:31:41.313 LAND run=39 -> run=34 68
+14:31:41.347 COMMIT rows=350 beat=33 runs=3
+14:31:41.348 MEM run=37 mem=66 seen=1 outcome=#109
+14:31:41.348 LAND run=37 -> run=34 66
+14:31:41.348 CALL run=41 src-wn ["coffee"]
+14:31:41.348 SAY run=34 "coffee"
+14:31:41.349 MEM run=34 mem=60 seen=1 outcome=coffee
+14:31:41.387 COMMIT rows=358 beat=34 runs=1
+14:31:41.388 CALL run=41 src-wn-ant ["coffee"]
+14:31:41.395 COMMIT rows=2 beat=35 runs=1
+14:31:41.408 CALL run=41 src-wn-syn ["coffee"]
+14:31:41.421 COMMIT rows=2 beat=36 runs=1
+14:31:41.428 SPLIT run=41 -> run=43 at=951 subject="coffee java tree bean berry chocolate deep brown umber burnt umber" worth=0.320
+14:31:41.429 SPAWN run=43 gate=1705 at=0 0 0
+14:31:41.429 LABEL run=43 "java" -> 1705
+14:31:41.429 SPLIT run=43 -> run=44 at=1523 subject=#1705 worth=0.160
+14:31:41.429 REL run=43 1704 #290 1705 strength=0.50 state=grounded
+14:31:41.429 SPAWN run=43 gate=1706 at=0 0 0
+14:31:41.429 LABEL run=43 "tree" -> 1706
+14:31:41.429 SPLIT run=43 -> run=45 at=1523 subject=#1706 worth=0.160
+14:31:41.429 MEM run=44 mem=80 seen=1 outcome=#109
+14:31:41.429 LAND run=44 -> run=43 80
+14:31:41.429 REL run=43 1704 #290 1706 strength=0.50 state=grounded
+14:31:41.429 SPAWN run=43 gate=1707 at=0 0 0
+14:31:41.429 LABEL run=43 "bean" -> 1707
+14:31:41.429 SPLIT run=43 -> run=46 at=1523 subject=#1707 worth=0.160
+14:31:41.429 MEM run=45 mem=80 seen=2 outcome=#109
+14:31:41.429 LAND run=45 -> run=43 80
+14:31:41.429 REL run=43 1704 #290 1707 strength=0.50 state=grounded
+14:31:41.429 SPAWN run=43 gate=1708 at=0 0 0
+14:31:41.429 LABEL run=43 "berry" -> 1708
+14:31:41.429 SPLIT run=43 -> run=47 at=1523 subject=#1708 worth=0.160
+14:31:41.429 MEM run=46 mem=80 seen=3 outcome=#109
+14:31:41.429 LAND run=46 -> run=43 80
+14:31:41.429 REL run=43 1704 #290 1708 strength=0.50 state=grounded
+14:31:41.429 SPAWN run=43 gate=1709 at=0 0 0
+14:31:41.429 LABEL run=43 "chocolate" -> 1709
+14:31:41.429 SPLIT run=43 -> run=48 at=1523 subject=#1709 worth=0.160
+14:31:41.430 MEM run=47 mem=80 seen=4 outcome=#109
+14:31:41.430 LAND run=47 -> run=43 80
+14:31:41.430 REL run=43 1704 #290 1709 strength=0.50 state=grounded
+14:31:41.430 SPAWN run=43 gate=1710 at=0 0 0
+14:31:41.430 LABEL run=43 "deep" -> 1710
+14:31:41.430 SPLIT run=43 -> run=49 at=1523 subject=#1710 worth=0.160
+14:31:41.430 MEM run=48 mem=80 seen=5 outcome=#109
+14:31:41.430 LAND run=48 -> run=43 80
+14:31:41.430 CALL run=41 src-wn-hyper ["coffee"]
+14:31:41.430 REL run=43 1704 #290 1710 strength=0.50 state=grounded
+14:31:41.430 SPAWN run=43 gate=1711 at=0 0 0
+14:31:41.430 LABEL run=43 "brown" -> 1711
+14:31:41.430 SPLIT run=43 -> run=50 at=1523 subject=#1711 worth=0.160
+14:31:41.430 MEM run=49 mem=80 seen=6 outcome=#109
+14:31:41.430 LAND run=49 -> run=43 80
+14:31:41.430 REL run=43 1704 #290 1711 strength=0.50 state=grounded
+14:31:41.430 SPAWN run=43 gate=1712 at=0 0 0
+14:31:41.430 LABEL run=43 "umber" -> 1712
+14:31:41.430 SPLIT run=43 -> run=51 at=1523 subject=#1712 worth=0.160
+14:31:41.430 MEM run=50 mem=80 seen=7 outcome=#109
+14:31:41.430 LAND run=50 -> run=43 80
+14:31:41.430 REL run=43 1704 #290 1712 strength=0.50 state=grounded
+14:31:41.430 SPAWN run=43 gate=1713 at=0 0 0
+14:31:41.430 LABEL run=43 "burnt" -> 1713
+14:31:41.430 SPLIT run=43 -> run=52 at=1523 subject=#1713 worth=0.160
+14:31:41.430 MEM run=51 mem=80 seen=8 outcome=#109
+14:31:41.431 LAND run=51 -> run=43 80
+14:31:41.431 REL run=43 1704 #290 1713 strength=0.50 state=grounded
+14:31:41.431 MEM run=52 mem=80 seen=9 outcome=#109
+14:31:41.431 LAND run=52 -> run=43 80
+14:31:41.432 MEM run=43 mem=78 seen=1 outcome=80
+14:31:41.432 LAND run=43 -> run=41 78
+14:31:41.462 COMMIT rows=286 beat=37 runs=1
+14:31:41.462 SPLIT run=41 -> run=53 at=952 subject="coffee beverage drink drinkable potable tree seed brown brownness" worth=0.320
+14:31:41.462 SPAWN run=53 gate=1714 at=0 0 0
+14:31:41.462 LABEL run=53 "beverage" -> 1714
+14:31:41.462 SPLIT run=53 -> run=54 at=1523 subject=#1714 worth=0.160
+14:31:41.462 MOVE gate=1704 -> 0 0 -0.0980392
+14:31:41.462 MOVE gate=1714 -> 0 0 0.901961
+14:31:41.462 REL run=53 1704 #293 1714 strength=0.50 state=grounded
+14:31:41.462 SPAWN run=53 gate=1715 at=0 0 0
+14:31:41.462 LABEL run=53 "drink" -> 1715
+14:31:41.462 SPLIT run=53 -> run=55 at=1523 subject=#1715 worth=0.160
+14:31:41.462 MEM run=54 mem=94 seen=1 outcome=#109
+14:31:41.462 LAND run=54 -> run=53 94
+14:31:41.463 MOVE gate=1715 -> 0 0 0.901961
+14:31:41.463 REL run=53 1704 #293 1715 strength=0.50 state=grounded
+14:31:41.463 SPAWN run=53 gate=1716 at=0 0 0
+14:31:41.463 LABEL run=53 "drinkable" -> 1716
+14:31:41.463 SPLIT run=53 -> run=56 at=1523 subject=#1716 worth=0.160
+14:31:41.463 MEM run=55 mem=94 seen=2 outcome=#109
+14:31:41.463 LAND run=55 -> run=53 94
+14:31:41.463 MOVE gate=1716 -> 0 0 0.901961
+14:31:41.463 REL run=53 1704 #293 1716 strength=0.50 state=grounded
+14:31:41.463 SPAWN run=53 gate=1717 at=0 0 0
+14:31:41.463 LABEL run=53 "potable" -> 1717
+14:31:41.463 SPLIT run=53 -> run=57 at=1523 subject=#1717 worth=0.160
+14:31:41.463 MEM run=56 mem=94 seen=3 outcome=#109
+14:31:41.463 LAND run=56 -> run=53 94
+14:31:41.463 MOVE gate=1717 -> 0 0 0.901961
+14:31:41.463 REL run=53 1704 #293 1717 strength=0.50 state=grounded
+14:31:41.464 MOVE gate=1706 -> 0 0 0.401961
+14:31:41.464 REL run=53 1704 #293 1706 strength=0.50 state=grounded
+14:31:41.464 MEM run=57 mem=94 seen=4 outcome=#109
+14:31:41.464 SPAWN run=53 gate=1718 at=0 0 0
+14:31:41.464 LABEL run=53 "seed" -> 1718
+14:31:41.464 LAND run=57 -> run=53 94
+14:31:41.464 SPLIT run=53 -> run=58 at=1523 subject=#1718 worth=0.160
+14:31:41.464 MOVE gate=1704 -> 0 0 -0.104489
+14:31:41.464 MOVE gate=1718 -> 0 0 0.895511
+14:31:41.464 REL run=53 1704 #293 1718 strength=0.50 state=grounded
+14:31:41.464 MOVE gate=1711 -> 0 0 0.395511
+14:31:41.464 REL run=53 1704 #293 1711 strength=0.50 state=grounded
+14:31:41.464 SPAWN run=53 gate=1719 at=0 0 0
+14:31:41.464 LABEL run=53 "brownness" -> 1719
+14:31:41.464 MEM run=58 mem=94 seen=5 outcome=#109
+14:31:41.465 SPLIT run=53 -> run=59 at=1523 subject=#1719 worth=0.160
+14:31:41.465 LAND run=58 -> run=53 94
+14:31:41.465 MOVE gate=1704 -> 0 0 -0.110564
+14:31:41.465 MOVE gate=1719 -> 0 0 0.889436
+14:31:41.465 REL run=53 1704 #293 1719 strength=0.50 state=grounded
+14:31:41.465 CALL run=41 src-wn-mero ["coffee"]
+14:31:41.465 MEM run=59 mem=94 seen=6 outcome=#109
+14:31:41.465 LAND run=59 -> run=53 94
+14:31:41.465 MEM run=53 mem=92 seen=1 outcome=94
+14:31:41.465 LAND run=53 -> run=41 92
+14:31:41.489 COMMIT rows=214 beat=38 runs=1
+14:31:41.489 SPLIT run=41 -> run=60 at=953 subject="coffee bean berry caffeine caffein bean berry" worth=0.320
+14:31:41.489 MOVE gate=1707 -> -0.5 0 -0.110564
+14:31:41.489 MOVE gate=1704 -> 0 0 -0.067769
+14:31:41.489 REL run=60 1707 #294 1704 strength=0.50 state=grounded
+14:31:41.489 MOVE gate=1708 -> -0.5 0 -0.067769
+14:31:41.489 MOVE gate=1704 -> 0 0 -0.0712986
+14:31:41.489 REL run=60 1708 #294 1704 strength=0.50 state=grounded
+14:31:41.490 SPAWN run=60 gate=1720 at=0 0 0
+14:31:41.490 LABEL run=60 "caffeine" -> 1720
+14:31:41.490 SPLIT run=60 -> run=61 at=1523 subject=#1720 worth=0.160
+14:31:41.490 MOVE gate=1720 -> -1 0 -0.0712986
+14:31:41.490 REL run=60 1720 #294 1704 strength=0.50 state=grounded
+14:31:41.490 MEM run=61 mem=105 seen=1 outcome=#109
+14:31:41.490 SPAWN run=60 gate=1721 at=0 0 0
+14:31:41.490 LABEL run=60 "caffein" -> 1721
+14:31:41.490 LAND run=61 -> run=60 105
+14:31:41.490 SPLIT run=60 -> run=62 at=1523 subject=#1721 worth=0.160
+14:31:41.490 MOVE gate=1721 -> -1 0 -0.0712986
+14:31:41.490 REL run=60 1721 #294 1704 strength=0.50 state=grounded
+14:31:41.490 MOVE gate=1707 -> -0.545455 0 -0.0712986
+14:31:41.490 MOVE gate=1704 -> 5.18796e-18 0 -0.0676289
+14:31:41.490 MEM run=62 mem=105 seen=2 outcome=#109
+14:31:41.490 LAND run=62 -> run=60 105
+14:31:41.490 MOVE gate=1708 -> -0.545455 0 -0.0676289
+14:31:41.490 MOVE gate=1704 -> 1.02798e-17 0 -0.067616
+14:31:41.491 MEM run=60 mem=103 seen=1 outcome=105
+14:31:41.491 LAND run=60 -> run=41 103
+14:31:41.491 CALL run=41 src-oewn ["coffee"]
+14:31:41.514 COMMIT rows=219 beat=39 runs=1
+14:31:41.556 CALL run=41 src-foldoc ["coffee"]
+14:31:41.561 COMMIT rows=2 beat=42 runs=1
+14:31:41.617 CALL run=41 src-elements ["coffee"]
+14:31:41.625 COMMIT rows=1 beat=45 runs=1
+14:31:41.679 CALL run=41 src-man ["coffee"]
+14:31:41.689 COMMIT rows=1 beat=48 runs=1
+14:31:41.704 MEM run=41 mem=71 seen=1 outcome=103
+14:31:41.732 COMMIT rows=411 beat=49 runs=0
+14:31:42.705 COMMIT rows=1 beat=51 runs=0
+14:31:43.701 HEAR run=64 who=builder what="coffee"
+14:31:43.701 SPLIT run=64 -> run=65 at=152 subject=#135 worth=0.500
+14:31:43.701 SPLIT run=64 -> run=66 at=605 subject=#1704 worth=0.500
+14:31:43.701 SPLIT run=64 -> run=67 at=141 subject=#1704 worth=0.600
+14:31:43.701 SPLIT run=64 -> run=68 at=147 subject=#1704 worth=0.500
+14:31:43.701 SPLIT run=64 -> run=69 at=635 subject=#1704 worth=0.300
+14:31:43.701 LAND run=68 -> run=64 #1704
+14:31:43.701 SPLIT run=66 -> run=70 at=158 subject=#1704 worth=0.400
+14:31:43.701 MEM run=67 mem=112 seen=1 outcome=#109
+14:31:43.702 MEM run=69 mem=114 seen=1 outcome=coffee
+14:31:43.702 LAND run=69 -> run=64 114
+14:31:43.702 LAND run=67 -> run=64 112
+14:31:43.702 SPLIT run=70 -> run=71 at=1096 subject="coffee coffee cof fee k add f e k o f f e n turk qahveh ar qahuah wine coffee a decoction of berries cf caf e the beans or berries pyrenes obtained from the drupes of a small evergreen tree of the genus coffea growing in abyssinia arabia persia and other warm regions of asia and africa and also in tropical america webster pjc the coffee tree webster note there are several species of the coffee tree as coffea arabica coffea canephora coffea occidentalis and coffea liberica the white fragrant flowers grow in clusters at the root of the leaves and the fruit is a red or purple cherrylike drupe with sweet pulp usually containing two pyrenes commercially called beans or berries webster the beverage made by decoction of the roasted and ground berry of the coffee tree webster they have in turkey a drink called coffee this drink comforteth the brain and heart and helpeth digestion bacon webster a cup of coffee especially one served in a restaurant as we each had two donuts and a coffee three coffees to go pjc a social gathering at which coffee is served with optional other foods or refreshments pjc a color" worth=0.320
+14:31:43.702 MEM run=68 mem=113 seen=1 outcome=coffee
+14:31:43.702 SPLIT run=70 -> run=72 at=1096 subject="coffee coffee n a beverage consisting of an infusion of ground coffee beans he ordered a cup of coffee syn coffee java any of several small trees and shrubs native to the tropical old world yielding coffee beans syn coffee coffee tree a seed of the coffee tree ground to make coffee syn coffee bean coffee berry coffee a medium brown to dark brown color syn chocolate coffee deep brown umber burnt umber" worth=0.320
+14:31:43.702 LAND run=68 -> run=64 113
+14:31:43.702 SPLIT run=70 -> run=73 at=1096 subject="coffee java tree bean berry chocolate deep brown umber burnt umber" worth=0.320
+14:31:43.702 SPLIT run=70 -> run=74 at=1096 subject="coffee beverage drink drinkable potable tree seed brown brownness" worth=0.320
+14:31:43.702 SPLIT run=70 -> run=75 at=1096 subject="coffee bean berry caffeine caffein bean berry" worth=0.320
+14:31:43.703 SPLIT run=70 -> run=76 at=1096 subject="coffee coffee java n n n n n n n n n n n n n s n n s n n beverage consisting of an infusion of ground coffee beans he ordered cup of coffee coffee coffee tree n p n n n n any of several small trees and shrubs native to the tropical old world yielding coffee beans coffee bean coffee berry coffee n s n p n seed of the coffee tree ground to make coffee" worth=0.320
+14:31:43.724 COMMIT rows=121 beat=52 runs=9
+14:31:43.724 MEM run=66 mem=111 seen=1 outcome=#109
+14:31:43.724 LAND run=66 -> run=64 111
+14:31:43.725 LAND run=75 -> run=70 [[#306 #306 #306 #306 #306 #306] 0]
+14:31:43.725 LAND run=74 -> run=70 [[#306 #306 #306 #306 #306 #306 #306 #306] 0]
+14:31:43.725 LAND run=73 -> run=70 [[#306 #306 #306 #306 #306 #306 #306 #306 #306 #306] 0]
+14:31:43.743 COMMIT rows=99 beat=53 runs=5
+14:31:43.744 SAY run=64 "coffee coffee"
+14:31:43.744 MEM run=64 mem=60 seen=2 outcome=coffee
+14:31:43.770 COMMIT rows=242 beat=54 runs=4
+14:31:43.773 LAND run=72 -> run=70 [[#306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #324 #306 #306 #306 #306 #338 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #338 #306 #306 #306 #306 #306 #306 #306 #338 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306] 4]
+14:31:43.774 LAND run=76 -> run=70 [[#306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #324 #306 #306 #306 #306 #338 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #338 #306] 3]
+14:31:43.775 LAND run=71 -> run=70 [[#306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #324 #306 #306 #306 #306 #306 #306 #306 #362 #306 #306 #306 #306 #313 #306 #306 #306 #306 #306 #306 #306 #306 #362 #306 #306 #306 #306 #306 #306 #306 #306 #340 #341 #306 #306 #306 #306 #306 #374 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #362 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #341 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #289 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #362 #306 #306 #306 #306 #311 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #306 #288 #306 #362 #306 #306 #374 #306 #306 #306 #289 #306 #306 #306 #306 #306 #338 #306 #306 #306 #306 #306 #306 #306 #341 #306 #306 #306 #313 #306 #306 #306 #306 #306 #306] 19]
+14:31:43.778 COMMIT rows=1 beat=58 runs=1
+14:31:43.784 COMMIT rows=2 beat=59 runs=1
+14:31:43.786 PROC run=70 gate=1704 string=324 338
+14:31:43.786 SPLIT run=70 -> run=77 at=1684 subject=#97 worth=0.200
+14:31:43.786 MEM run=77 mem=126 seen=1 outcome=#109
+14:31:43.786 LAND run=77 -> run=70 126
+14:31:43.786 MARK run=70 mem=127 yes
+14:31:43.793 MEM run=70 mem=115 seen=1 outcome=126
+14:31:43.851 COMMIT rows=499 beat=61 runs=0
+14:31:44.791 COMMIT rows=1 beat=63 runs=0

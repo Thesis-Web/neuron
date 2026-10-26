@@ -1,0 +1,615 @@
+is	is	like am
+am	am	like is
+is	is	like are
+are	are	like is
+part	part	like piece
+piece	piece	like part
+part	part	like element
+element	element	like part
+part	part	like share
+share	share	like part
+opposite	opposite	like antonymous
+antonymous	antonymous	like opposite
+meaning	meaning	like sense
+sense	sense	like meaning
+people	people	like folk
+folk	folk	like people
+people	people	like masses
+masses	masses	like people
+people	people	like humans
+humans	humans	like people
+place	place	like spot
+spot	spot	like place
+place	place	like lay
+lay	lay	like place
+place	place	like put
+put	put	like place
+position	position	like place
+space	space	like gap
+gap	gap	like space
+time	time	like period
+period	period	like time
+a	a	like an
+an	an	like a
+some	some	like several
+several	several	like some
+many	many	like numerous
+numerous	numerous	like many
+many	many	like various
+various	various	like many
+many	many	like lots
+lots	lots	like many
+little	little	like small
+small	small	like little
+little	little	like tiny
+tiny	tiny	like little
+more	more	like additional
+additional	additional	like more
+less	less	like fewer
+fewer	fewer	like less
+other	other	like else
+else	else	like other
+other	other	like different
+different	different	like other
+mine	mine	like quarry
+quarry	quarry	like mine
+you	you	like thou
+thou	thou	like you
+do	do	like perform
+perform	perform	like do
+do	do	like ut
+ut	ut	like do
+do	do	like doh
+doh	doh	like do
+can	can	like canister
+canister	canister	like can
+can	can	like crapper
+crapper	crapper	like can
+above	above	like overhead
+overhead	overhead	like above
+above	above	like supra
+supra	supra	like above
+below	below	like beneath
+beneath	beneath	like below
+below	below	like underneath
+underneath	underneath	like below
+near	near	like close
+close	close	like near
+near	near	like handy
+handy	handy	like near
+near	near	like approach
+approach	approach	like near
+far	far	like outlying
+outlying	outlying	like far
+far	far	like distant
+distant	distant	like far
+far	far	like remote
+remote	remote	like far
+before	before	like beforehand
+beforehand	beforehand	like before
+before	before	like previously
+previously	previously	like before
+before	before	like earlier
+earlier	earlier	like before
+inside	inside	like interior
+interior	interior	like inside
+inside	inside	like inwards
+inwards	inwards	like inside
+inside	inside	like inner
+inner	inner	like inside
+here	here	like herein
+herein	herein	like here
+here	here	like hither
+hither	hither	like here
+there	there	like yonder
+yonder	yonder	like there
+there	there	like thither
+thither	thither	like there
+because	because	like cos
+cos	cos	like because
+because	because	like cuz
+cuz	cuz	like because
+if	if	like supposing
+supposing	supposing	like if
+why	why	like wherefore
+wherefore	wherefore	like why
+now	now	like immediately
+immediately	immediately	like now
+now	now	like nowadays
+nowadays	nowadays	like now
+very	very	like terribly
+terribly	terribly	like very
+very	very	like awfully
+awfully	awfully	like very
+very	very	like extremely
+extremely	extremely	like very
+one	one	like ane
+ane	ane	like one
+one	one	like ace
+ace	ace	like one
+two	two	like pair
+pair	pair	like two
+two	two	like twain
+twain	twain	like two
+say	say	like mention
+mention	mention	like say
+say	say	like tell
+tell	tell	like say
+say	say	like claim
+claim	claim	like say
+words	words	like lyric
+lyric	lyric	like words
+words	words	like speech
+speech	speech	like words
+words	words	like text
+text	text	like words
+make	make	like construct
+construct	construct	like make
+make	make	like BUILD
+BUILD	BUILD	like make
+make	make	like generate
+generate	generate	like make
+CREATE	CREATE	like make
+things	things	like stuff
+stuff	stuff	like things
+things	things	like objects
+objects	objects	like things
+see	see	like witness
+witness	witness	like see
+see	see	like look
+look	look	like see
+know	know	like recognize
+recognize	recognize	like know
+know	know	like recognise
+recognise	recognise	like know
+know	know	like understand
+understand	understand	like know
+go	go	like move
+move	move	like go
+think	think	like guess
+guess	guess	like think
+think	think	like suppose
+suppose	suppose	like think
+think	think	like believe
+believe	believe	like think
+feel	feel	like texture
+texture	texture	like feel
+feeling	feeling	like sense
+sense	sense	like feeling
+begin	begin	like start
+start	start	like begin
+want	want	like wish
+wish	wish	like want
+want	want	like deprivation
+deprivation	deprivation	like want
+kept	kept	like stored
+stored	stored	like kept
+start	start	like source
+source	source	like start
+start	start	like activate
+activate	activate	like start
+beginning	beginning	like start
+body	body	like organisation
+organisation	organisation	like body
+body	body	like corpse
+corpse	corpse	like body
+good	good	like virtuous
+virtuous	virtuous	like good
+good	good	like fine
+fine	fine	like good
+good	good	like favorable
+favorable	favorable	like good
+great	great	like large
+large	large	like great
+move	move	like shift
+shift	shift	like move
+move	move	like transfer
+transfer	transfer	like move
+write	write	like record
+record	record	like write
+put	put	like lay
+lay	lay	like put
+put	put	like INSERT
+INSERT	INSERT	like put
+same	same	like indistinguishable
+indistinguishable	indistinguishable	like same
+same	same	like equal
+equal	equal	like same
+same	same	like identical
+identical	identical	like same
+live	live	like survive
+survive	survive	like live
+live	live	like inhabit
+inhabit	inhabit	like live
+live	live	like dwell
+dwell	dwell	like live
+small	small	like tiny
+tiny	tiny	like small
+small	small	like minor
+minor	minor	like small
+trivial	trivial	like small
+end	end	like goal
+goal	goal	like end
+end	end	like finish
+finish	finish	like end
+end	end	like tip
+tip	tip	like end
+walk	walk	like stroll
+stroll	stroll	like walk
+walk	walk	like walkway
+walkway	walkway	like walk
+walk	walk	like shuffle
+shuffle	shuffle	like walk
+friendly	friendly	like kind
+kind	kind	like friendly
+like	like	like enjoy
+enjoy	enjoy	like like
+happen	happen	like occur
+occur	occur	like happen
+happen	happen	like materialize
+materialize	materialize	like happen
+happen	happen	like befall
+befall	befall	like happen
+side	side	like lateral
+lateral	lateral	like side
+side	side	like aspect
+aspect	aspect	like side
+side	side	like edge
+edge	edge	like side
+read	read	like decipher
+decipher	decipher	like read
+moment	moment	like instant
+instant	instant	like moment
+moment	moment	like mo
+mo	mo	like moment
+moment	moment	like juncture
+juncture	juncture	like moment
+understand	understand	like decipher
+decipher	decipher	like understand
+die	die	like perish
+perish	perish	like die
+die	die	like dice
+dice	dice	like die
+BUILD	BUILD	like construct
+construct	construct	like BUILD
+BUILD	BUILD	like physique
+physique	physique	like BUILD
+large	large	like spacious
+spacious	spacious	like large
+large	large	like considerable
+considerable	considerable	like large
+big	big	like large
+CREATE	CREATE	like generate
+generate	generate	like CREATE
+CREATE	CREATE	like invent
+invent	invent	like CREATE
+decide	decide	like choose
+choose	choose	like decide
+decide	decide	like judge
+judge	judge	like decide
+decide	decide	like conclude
+conclude	conclude	like decide
+wish	wish	like desire
+desire	desire	like wish
+different	different	like distinct
+distinct	distinct	like different
+different	different	like conflicting
+conflicting	conflicting	like different
+varied	varied	like different
+kind	kind	like compassionate
+compassionate	compassionate	like kind
+kind	kind	like thoughtful
+thoughtful	thoughtful	like kind
+big	big	like spacious
+spacious	spacious	like big
+big	big	like considerable
+considerable	considerable	like big
+sense	sense	like nous
+nous	nous	like sense
+explain	explain	like define
+define	define	like explain
+perhaps	perhaps	like possibly
+possibly	possibly	like perhaps
+perhaps	perhaps	like perchance
+perchance	perchance	like perhaps
+perhaps	perhaps	like maybe
+maybe	maybe	like perhaps
+order	order	like command
+command	command	like order
+order	order	like arrange
+arrange	arrange	like order
+days	days	like times
+times	times	like days
+recognize	recognize	like recognise
+recognise	recognise	like recognize
+mother	mother	like mom
+mom	mom	like mother
+mother	mother	like mum
+mum	mum	like mother
+mother	mother	like mummy
+mummy	mummy	like mother
+true	true	like real
+real	real	like true
+true	true	like legitimate
+legitimate	legitimate	like true
+true	true	like faithful
+faithful	faithful	like true
+period	period	like times
+times	times	like period
+product	product	like OUTPUT
+OUTPUT	OUTPUT	like product
+suppose	suppose	like guess
+guess	guess	like suppose
+TABLE	TABLE	like counter
+counter	counter	like TABLE
+touch	touch	like butt
+butt	butt	like touch
+touch	touch	like tinge
+tinge	tinge	like touch
+touch	touch	like contact
+contact	contact	like touch
+compare	compare	like equate
+equate	equate	like compare
+compare	compare	like contrast
+contrast	contrast	like compare
+source	source	like informant
+informant	informant	like source
+source	source	like origin
+origin	origin	like source
+fine	fine	like okay
+okay	okay	like fine
+piece	piece	like fragment
+fragment	fragment	like piece
+bad	bad	like harmful
+harmful	harmful	like bad
+bad	bad	like evil
+evil	evil	like bad
+bad	bad	like awful
+awful	awful	like bad
+wicked	wicked	like bad
+store	store	like shop
+shop	shop	like store
+store	store	like outlet
+outlet	outlet	like store
+store	store	like mart
+mart	mart	like store
+times	times	like multiplication
+multiplication	multiplication	like times
+maybe	maybe	like perchance
+perchance	perchance	like maybe
+maybe	maybe	like possibly
+possibly	possibly	like maybe
+text	text	like script
+script	script	like text
+text	text	like textbook
+textbook	textbook	like text
+dictionary	dictionary	like lexicon
+lexicon	lexicon	like dictionary
+memory	memory	like remembrance
+remembrance	remembrance	like memory
+memory	memory	like recollection
+recollection	recollection	like memory
+link	link	like relation
+relation	relation	like link
+possibly	possibly	like perchance
+perchance	perchance	like possibly
+relation	relation	like kinsman
+kinsman	kinsman	like relation
+evil	evil	like wicked
+wicked	wicked	like evil
+shop	shop	like outlet
+outlet	outlet	like shop
+beliefs	beliefs	like VALUES
+VALUES	VALUES	like beliefs
+someone	someone	like somebody
+somebody	somebody	like someone
+origin	origin	like beginning
+beginning	beginning	like origin
+spark	spark	like trigger
+trigger	trigger	like spark
+minor	minor	like trivial
+trivial	trivial	like minor
+cruel	cruel	like heartless
+heartless	heartless	like cruel
+dwell	dwell	like inhabit
+inhabit	inhabit	like dwell
+fragment	fragment	like shard
+shard	shard	like fragment
+terribly	terribly	like awfully
+awfully	awfully	like terribly
+tuck	tuck	like INSERT
+INSERT	INSERT	like tuck
+unexpected	unexpected	like unforeseen
+unforeseen	unforeseen	like unexpected
+expected	expected	like anticipated
+anticipated	anticipated	like expected
+expected	expected	like awaited
+awaited	awaited	like expected
+expected	expected	like supposed
+supposed	supposed	like expected
+formerly	formerly	like earlier
+earlier	earlier	like formerly
+offset	offset	like balance
+balance	balance	like offset
+recollection	recollection	like remembrance
+remembrance	remembrance	like recollection
+splinter	splinter	like shard
+shard	shard	like splinter
+splinter	splinter	like sliver
+sliver	sliver	like splinter
+symmetry	symmetry	like balance
+balance	balance	like symmetry
+activate	activate	like trigger
+trigger	trigger	like activate
+earlier	earlier	like previous
+previous	previous	like earlier
+beforehand	beforehand	like earlier
+previous	previous	like preceding
+preceding	preceding	like previous
+pair	pair	like twain
+twain	twain	like pair
+distant	distant	like outlying
+outlying	outlying	like distant
+distant	distant	like remote
+remote	remote	like distant
+identical	identical	like indistinguishable
+indistinguishable	indistinguishable	like identical
+root	root	like rummage
+rummage	rummage	like root
+productivity	productivity	like OUTPUT
+OUTPUT	OUTPUT	like productivity
+OUTPUT	OUTPUT	like readout
+readout	readout	like OUTPUT
+remote	remote	like outlying
+outlying	outlying	like remote
+false	false	like fabricated
+fabricated	fabricated	like false
+trigger	trigger	like actuate
+actuate	actuate	like trigger
+mom	mom	like mum
+mum	mum	like mom
+sliver	sliver	like shard
+shard	shard	like sliver
+doh	doh	like ut
+ut	ut	like doh
+mum	mum	like mummy
+mummy	mummy	like mum
+cos	cos	like cuz
+cuz	cuz	like cos
+underneath	underneath	like beneath
+beneath	beneath	like underneath
+acknowledgment	acknowledgment	like acknowledgement
+acknowledgement	acknowledgement	like acknowledgment
+whole	whole	opposite of part
+alike	alike	opposite of opposite
+opposite	opposite	opposite of alike
+alike	alike	opposite of different
+this	this	opposite of that
+that	that	opposite of this
+some	some	opposite of none
+none	none	opposite of some
+all	all	opposite of none
+none	none	opposite of all
+few	few	opposite of many
+single	single	opposite of many
+few	few	opposite of numerous
+numerous	numerous	opposite of few
+few	few	opposite of lots
+lots	lots	opposite of few
+little	little	opposite of big
+more	more	opposite of fewer
+fewer	fewer	opposite of more
+more	more	opposite of less
+less	less	opposite of more
+can	can	opposite of cannot
+cannot	cannot	opposite of can
+above	above	opposite of below
+below	below	opposite of above
+beneath	beneath	opposite of above
+underneath	underneath	opposite of above
+overhead	overhead	opposite of below
+close	close	opposite of far
+handy	handy	opposite of far
+afterwards	afterwards	opposite of before
+afterward	afterward	opposite of before
+after	after	opposite of before
+outside	outside	opposite of inside
+surface	surface	opposite of inside
+here	here	opposite of there
+there	there	opposite of here
+gone	gone	opposite of here
+now	now	opposite of formerly
+formerly	formerly	opposite of now
+then	then	opposite of now
+dislike	dislike	opposite of like
+like	like	opposite of dislike
+ignore	ignore	opposite of know
+go	go	opposite of stay
+stay	stay	opposite of go
+begin	begin	opposite of end
+finish	finish	opposite of start
+evil	evil	opposite of good
+wicked	wicked	opposite of good
+run	run	opposite of walk
+great	great	opposite of small
+stay	stay	opposite of move
+write	write	opposite of erase
+erase	erase	opposite of write
+die	die	opposite of live
+spacious	spacious	opposite of small
+beginning	beginning	opposite of end
+origin	origin	opposite of end
+remove	remove	opposite of INSERT
+INSERT	INSERT	opposite of remove
+like	like	opposite of hate
+hate	hate	opposite of like
+close	close	opposite of distant
+raze	raze	opposite of BUILD
+destroy	destroy	opposite of BUILD
+nothing	nothing	opposite of something
+something	something	opposite of nothing
+destroy	destroy	opposite of CREATE
+indistinguishable	indistinguishable	opposite of different
+equal	equal	opposite of different
+identical	identical	opposite of different
+similar	similar	opposite of different
+cruel	cruel	opposite of kind
+heartless	heartless	opposite of kind
+next	next	opposite of previous
+previous	previous	opposite of next
+poppycock	poppycock	opposite of sense
+hogwash	hogwash	opposite of sense
+order	order	opposite of mess
+mess	mess	opposite of order
+chaos	chaos	opposite of order
+father	father	opposite of mother
+false	false	opposite of true
+fabricated	fabricated	opposite of true
+enjoy	enjoy	opposite of hate
+hate	hate	opposite of enjoy
+dead	dead	opposite of born
+born	born	opposite of dead
+real	real	opposite of false
+false	false	opposite of real
+destroy	destroy	opposite of construct
+construct	construct	opposite of destroy
+okay	okay	opposite of bad
+memory	memory	opposite of forgetfulness
+forgetfulness	forgetfulness	opposite of memory
+cruel	cruel	opposite of compassionate
+compassionate	compassionate	opposite of cruel
+unexpected	unexpected	opposite of expected
+unforeseen	unforeseen	opposite of expected
+afterwards	afterwards	opposite of beforehand
+beforehand	beforehand	opposite of afterwards
+balance	balance	opposite of imbalance
+imbalance	imbalance	opposite of balance
+branch	branch	opposite of root
+root	root	opposite of branch
+extract	extract	opposite of INSERT
+input	input	opposite of OUTPUT
+virtuous	virtuous	opposite of wicked
+heartless	heartless	opposite of compassionate
+compassionate	compassionate	opposite of heartless
+alike	alike	a kind of word
+opposite	opposite	a kind of word
+next	next	a kind of word
+TABLE	TABLE	a kind of furniture
+dictionary	dictionary	a kind of book
+someone	someone	a kind of person
+fragment	fragment	a kind of part
+VALUES	VALUES	a kind of belief
+receipt	receipt	a kind of paper
+vowel	vowel	a kind of letter
+I	I	a kind of vowel
+I	I	a kind of letter
+mom	mom	a kind of person
+mart	mart	a kind of shop
+physique	physique	a kind of body
+informant	informant	a kind of person
+quarry	quarry	a kind of place
+timeline	timeline	a kind of chart
+textbook	textbook	a kind of book
+juncture	juncture	a kind of time
+mo	mo	a kind of time
+cuz	cuz	a kind of word

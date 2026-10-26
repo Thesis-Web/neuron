@@ -1,0 +1,428 @@
+# 20-memory.lay (Builder B): the miss way, the end of a run, memory, the HC seed, asking for sleep,
+# the correction path and the timeline question. Fills from 00-roots: miss end-of-run remember hc sleep-ask correct.
+# Pad notation in comments: [a b] is the pad with b on top; "--" what the proc leaves; "->" the outcome it puts at the head.
+# Every test is the first gate of its own small proc, so its branch shards are keyed by that proc and clash with nothing.
+
+# ---- told values (the brain can change them with write-value)
+# passing it puts a day in ms on the pad: how old a memory is before the HC condenses it; the span of "when"
+gate a-day = 86400000
+# passing it puts 20 on the pad: how many memories one HC call condenses
+gate hc-batch = 20
+# passing it puts 2 on the pad: seen fewer times than this is cold, and goes to long-term
+gate hc-cold = 2
+# passing it puts 500 on the pad: the active memory count past which the brain asks for sleep
+gate sleep-mark = 500
+# passing it puts an hour in ms on the pad: a quiet longer than this asks for sleep
+gate quiet-mark = 3600000
+# passing it puts 10 on the pad: how many memories "when" says
+gate when-batch = 10
+
+# ---- the miss way (blueprint 7.3). The kernel enters with [at from at from head]; head is a gate or a raw word.
+# [at from at from h] -- : decides the case and ends in go
+proc miss: miss-look
+# [.. h] -- [.. h g] -> found (h has a gate) / none (a raw word)
+proc miss-look: dup miss-known
+proc miss-known: find-label
+  found -> miss-gate
+  none -> miss-word
+
+# case: the head has a gate. Is it an outcome gate the process never planned for? An outcome gate lies on the
+# outcomes' own line in the graph: its distance to found plus its distance to no equals the span found..no.
+# [at from at from h g] -- [at from at from g d1] : distance from found (the head copy is dropped, the gate kept)
+proc miss-gate: swap drop dup read-point 'found read-point miss-d1
+proc miss-d1: compare
+  same -> miss-d2
+  more -> miss-d2
+  less -> miss-d2
+# [.. g d1] -- [.. g d1 d2] : distance from no
+proc miss-d2: over read-point 'no read-point miss-d3
+proc miss-d3: compare
+  same -> miss-sum
+  more -> miss-sum
+  less -> miss-sum
+# [.. g d1 d2] -- [.. g s span] : the sum, and the span found..no read from their points
+proc miss-sum: add 'found read-point 'no read-point miss-span
+proc miss-span: compare
+  same -> miss-on-line
+  more -> miss-on-line
+  less -> miss-on-line
+# [.. g s span] -- [.. g d] -> same (on the line: an outcome) / more / less (an ordinary gate)
+proc miss-on-line: compare
+  same -> miss-outcome
+  more -> miss-lay
+  less -> miss-lay
+
+# [at from at from g d] -- : lays the way (at, from, g -> g) and resumes the run
+proc miss-lay: drop dup write-shard go
+
+# [at from at from g d] -- [at from questions at at] : an outcome nobody planned for: lays the way to the outcome
+# itself so the run goes on, then prepares the questions row (I don't know what to do here) on the gate it arrived at
+proc miss-outcome: drop dup write-shard over 'questions swap dup miss-head
+# [.. questions at at] -- [.. questions at at g] -> found : the outcome that arrived, read again from the head
+proc miss-head: read-head
+  found -> miss-ask
+  none -> miss-lost
+# [at from questions at at g] -- : writes the questions row (home: the gate, key: the gate, outcome and body: the outcome) for the sixth, resumes
+proc miss-ask: dup write-row drop go
+# [at from questions at at] -- : no head to read (cannot happen inside a miss): resumes anyway
+proc miss-lost: drop drop drop go
+
+# case: a word with no gate. Spawns one at the origin (5.5: a newborn with no relationships sits there until something
+# pulls it), labels it with the word, gives it its born questions and gap row (newborn, Builder C), lays the way.
+# [at from at from t] -- [at from at from g]
+proc miss-word: spawn swap over write-label newborn miss-born
+# [at from at from g] -- : the question run gets g; the way (at, from, word -> g) is laid; the run resumes
+proc miss-born: dup write-shard go
+
+# ---- the end of a run (entered once by the kernel when the remainder empties)
+# (the run's pad) -- : what is in hand when the words run out is the outcome (7.6: the answer is derived on the pad,
+# not taken from the last gate). A mark is laid over it; the question runs land above the mark while the run waits;
+# compile (Builder C) says the outcome and what landed and leaves the said list (a question run keeps the newest
+# landing, else its own outcome); end-said drops the said list; remember writes the memory with the outcome in hand.
+proc end-of-run: end-top wait compile end-said remember end
+# [.. x] -- [.. x m] : the top of the pad under a mark; an empty pad -> the none gate
+proc end-top: read-pad =0 end-top-t
+proc end-top-t: compare
+  more -> end-have
+  same -> end-none
+  less -> end-none
+proc end-have: drop read-mark
+proc end-none: drop 'none read-mark
+# [x l] -- [x] at root (the said list goes); [out p] -- [out] for a question run
+proc end-said: read-parent
+  found -> drop
+  none -> drop
+
+# ---- remember (9.2): the brain decides here; the kernel only stores (write-mem = WRITE.run: home m outcome -- n)
+# outcome -- n : the home gate (the first gate of the input, else the gate the run is at), then: a row with this
+# signature (same input -> same row, new time), or a new row; a root run whose shape moved writes a shift row first
+proc remember: rem-home rem-sig
+# [out] -- [out home] : walks the input as it reads now; the first item that is a gate (or a word that has one now) is home
+proc rem-home: read-words zero rem-home-step
+# [out l i] -- [out l i x] -> found / none
+proc rem-home-step: over over rem-home-item
+proc rem-home-item: read-item
+  found -> rem-home-gate
+  none -> rem-home-at
+# [out l i x] -- [out l i g] -> found (a gate, or a word with a gate now) / none (a raw word, a number, a mark)
+proc rem-home-gate: find-label
+  found -> rem-home-take
+  none -> rem-home-next
+# [out l i g] -- [out g]
+proc rem-home-take: swap drop swap drop
+# [out l i] -- [out l i+1] : on to the next item
+proc rem-home-next: =1 add rem-home-step
+# [out] -- [out at] : no gate in the input (the list and the index are gone): where the run is
+proc rem-home-at: read-at
+# [out home] -- [out home m] -> found (this input has a row) / none
+proc rem-sig: read-sig rem-sig-t
+proc rem-sig-t: find-sig
+  found -> rem-same
+  none -> rem-new
+# [out home] -- [out home 0] : a new row
+proc rem-new: zero rem-write
+# [out home m] -- [out home m p] -> found (a question run: its shape is borrowed, no shift) / none (a root run)
+proc rem-same: read-parent
+  found -> rem-same-q
+  none -> rem-shape
+proc rem-same-q: drop rem-write
+# [out home m] -- [out home m t t2] -> found : the row's shape and this run's shape now
+proc rem-shape: dup rem-shape-t
+proc rem-shape-t: read-input
+  found -> rem-shape-cmp
+  none -> rem-write
+proc rem-shape-cmp: swap drop read-shape rem-shape-same
+# [out home m t t2] -- [out home m d] -> same (the truth stands) / more (the shape moved: a truth shift, 9.3)
+proc rem-shape-same: compare
+  same -> rem-stands
+  more -> rem-shift
+  less -> rem-shift
+proc rem-stands: drop rem-write
+# [out home m d] -- [out home m] : the shift row: kind shift, home, key = this signature, outcome = the row it came from,
+# body = the shape now (written as the row's outcome too, then the outcome is set to the old row's id). The sixth picks it up.
+proc rem-shift: drop over over 'kind-shift rot read-sig read-shape dup write-row swap write-outcome rem-write
+# [out home m] -- [n] : stores the trail and the outcome
+proc rem-write: rot write-mem remember-up
+# [n] -- [n p] -> found (a question run) / none (a main run)
+proc remember-up: read-parent
+  found -> remember-land
+  none -> remember-why
+# [n p] -- [n] : lands this memory's id on the parent run's pad
+proc remember-land: drop dup land
+# [n] -- [n why] -> found / none : the memory this run answered
+proc remember-why: read-why
+  found -> remember-row
+  none -> go-on
+# [n why] -- [n key home body outcome] -> found / none
+proc remember-row: read-row
+  found -> remember-receipt
+  none -> go-on
+# [n key home body outcome] -- [n] : a use receipt from the answered memory's home gate to this memory
+proc remember-receipt: drop drop swap drop over write-receipt
+# -- : nothing more to attach: goes on (a mark put in hand and dropped)
+proc go-on: read-mark drop
+
+# ---- the HC seed (9.4, 9.6): condenses memories older than about a day to highlights, moves cold ones to long-term.
+# -- : finds the memories from the beginning of time up to a day ago (an index seek on the timeline) and condenses
+# up to hc-batch of them
+proc hc: zero clock a-day sub hc-find
+proc hc-find: find-time
+  found -> hc-start
+  none -> drop
+# [l] -- : walks the list from item 0
+proc hc-start: zero hc-step
+# [l i] -- [l i n] -> found / none : the next memory
+proc hc-step: over over hc-item
+proc hc-item: read-item
+  found -> hc-one
+  none -> hc-done
+# [l i n] -- [l i+1] : condenses one, counts it
+proc hc-one: hc-body =1 add hc-more
+# [l i] -- [l i d] -> less (under the batch: on to the next) / same / more (the batch is done)
+proc hc-more: dup hc-batch hc-under
+proc hc-under: compare
+  less -> hc-loop
+  same -> hc-stop
+  more -> hc-stop
+proc hc-loop: drop hc-step
+proc hc-stop: drop hc-done
+# [l i] -- : the walk is over
+proc hc-done: drop drop
+
+# [n] -- : condenses memory n if it is a run memory (its signature finds it on the run index), then cold -> long-term
+proc hc-body: dup dup dup hc-row
+# [n n n n] -- [n n n key home body outcome] -> found / none
+proc hc-row: read-row
+  found -> hc-isrun
+  none -> hc-skip
+# [n n n key home body outcome] -- [n n n m] -> found (a run memory has this signature) / none (a list row: left alone)
+proc hc-isrun: drop drop drop hc-sig
+proc hc-sig: find-sig
+  found -> hc-same
+  none -> hc-skip
+# [n n n m] -- [n n d] -> same (n is that run memory) / more / less (a row sharing a key: left alone)
+proc hc-same: compare
+  same -> hc-high
+  more -> hc-skip
+  less -> hc-skip
+# [n n n] -- : not a run memory, nothing to condense
+proc hc-skip: drop drop drop
+# [n n d] -- [n n kind tier] -> found / none : a run memory: which tier is it in?
+proc hc-high: drop dup hc-kind
+proc hc-kind: read-memkind
+  found -> hc-tier
+  none -> drop
+# the word for the persistent tier, so a memory's tier text can be compared with it (a gate never equals a text)
+label tier-persistent persistent
+# [n n kind tier] -- [n n tier t] -> found : the persistent tier's own word
+proc hc-tier: swap drop 'tier-persistent hc-tier-word
+proc hc-tier-word: read-label
+  found -> hc-tier-cmp
+  none -> hc-skip
+# [n n tier t] -- [n n d] -> same (persistent: never condensed or moved) / more (active or long: condense)
+proc hc-tier-cmp: compare
+  same -> hc-skip
+  more -> hc-condense
+  less -> hc-condense
+# [n n d] -- [n n n n n] : five copies: the row, the input, the trail, the body write, the cold check
+proc hc-condense: drop dup dup dup hc-row2
+# [n n n n n] -- [n n n n key home body outcome] -> found / none
+proc hc-row2: read-row
+  found -> hc-shape
+  none -> hc-drop4
+# [n n n n key home body outcome] -- [n n n out l t] -> found : keeps the outcome, reads the input gates and the shape
+proc hc-shape: swap drop rot drop swap drop swap hc-input
+proc hc-input: read-input
+  found -> hc-trail
+  none -> hc-drop4
+# [n n n out l t] -- [n n out t l] -> found : keeps the shape, reads the trail as a list
+proc hc-trail: swap drop rot hc-trailof
+proc hc-trailof: read-trailof
+  found -> hc-start-of
+  none -> hc-no-trail
+# [n n out t l] -- [n n] : no trail to condense (a run that ended early); only the cold check
+proc hc-no-trail: drop drop drop hc-cold-test
+# [n n out t l] -- [n n out t l g1] -> found : the first step of the trail, then its gate: the start
+proc hc-start-of: dup zero hc-pick1
+proc hc-pick1: read-item
+  found -> hc-start-gate
+  none -> hc-drop5
+proc hc-start-gate: zero hc-pick2
+proc hc-pick2: read-item
+  found -> hc-end-of
+  none -> hc-drop5
+# [n n out t l g1] -- [n n out t g1 g2] -> found : the last step of the trail, then its gate: the end
+proc hc-end-of: swap dup read-count =1 sub hc-pick3
+proc hc-pick3: read-item
+  found -> hc-end-gate
+  none -> hc-drop5
+proc hc-end-gate: zero hc-pick4
+proc hc-pick4: read-item
+  found -> hc-write
+  none -> hc-drop5
+# [n n out t g1 g2] -- [n n] : the highlights (outcome, shape, start gate, end gate) replace the exact trail
+proc hc-write: =4 read-list 'fid-highlights write-body dup hc-cold-test
+# [n n] -- [n outcome seen right wrong last] -> found / none : the rough counts
+proc hc-cold-test: read-mem
+  found -> hc-counts
+  none -> drop
+# [n outcome seen right wrong last] -- [n d] -> less (cold) / same / more (warm)
+proc hc-counts: drop drop drop swap drop hc-cold hc-cold-cmp
+proc hc-cold-cmp: compare
+  less -> hc-freeze
+  same -> hc-keep
+  more -> hc-keep
+# [n d] -- : a cold memory goes to long-term
+proc hc-freeze: drop 'tier-long move-mem
+# [n d] -- : a warm one, or a persistent one, stays where it is
+proc hc-keep: drop drop
+proc hc-drop4: drop drop drop drop
+proc hc-drop5: drop drop drop drop drop
+
+# ---- asking for sleep (9.6): never on a timer. Checked whenever a run leaves the talk port (every input): the kernel
+# rests only when no run is alive after a beat, so a trigger on the self port would keep the brain spinning.
+# passing it puts the gate itself on the pad: the brain's word for sleep; a run through it (someone said it) is the
+# person's yes to sleeping: E's sleep (the HC, the re-weighing, the search for formulas) is triggered on it in 50-learning
+gate ask-sleep
+label ask-sleep sleep
+trig talk -> sleep-ask
+# [talk] -- : compares the active count with the mark, else the quiet with the quiet mark; ends writing nothing when nothing is due
+proc sleep-ask: drop read-size sleep-size
+# [gates mems active] -- [gates mems d] -> more (past the mark) / same / less
+proc sleep-size: sleep-mark sleep-over
+proc sleep-over: compare
+  more -> sleep-full
+  same -> sleep-quiet
+  less -> sleep-quiet
+# [gates mems d] -- : active memory passed the mark
+proc sleep-full: drop drop drop sleep-now
+# [gates mems d] -- : is anything on the timeline in the last quiet-mark? nothing -> a long quiet
+proc sleep-quiet: drop drop drop clock quiet-mark sub clock sleep-recent
+proc sleep-recent: find-time
+  found -> end
+  none -> sleep-still
+# [l] -- : a long quiet
+proc sleep-still: drop sleep-now
+# -- : asks once: if the questions row already stands, ends writing nothing
+proc sleep-now: 'questions 'ask-sleep sleep-asked
+proc sleep-asked: find-rowkey
+  found -> end
+  none -> sleep-write
+# -- : writes the questions row (sleep) for the sixth and says it in gates: i want sleep (say-word, Builder F)
+proc sleep-write: 'questions 'ask-sleep dup dup dup write-row drop read-mark 'w-i 'w-want 'ask-sleep say-word end
+
+# ---- the correction path (10.5): a person's yes or no
+# n yes/no -- : marks memory n (and the shards in its trail) right or wrong; on no, goes back to memory and sources
+# for why: answer (Builder C) runs on the memory's home gate as a question run
+proc correct: over over write-mark correct-which
+# [n o] -- [n d] -> same (it was no) / more (yes)
+proc correct-which: 'no correct-no-test
+proc correct-no-test: compare
+  same -> correct-why
+  more -> correct-done
+  less -> correct-done
+proc correct-done: drop drop
+# [n d] -- [n key home body outcome] -> found / none : the memory that was wrong
+proc correct-why: drop correct-row
+proc correct-row: read-row
+  found -> correct-back
+  none -> go-on
+# [key home body outcome] -- : answer on the home gate: back to memory, knowns, history and sources for why
+proc correct-back: drop drop swap drop 'answer swap split
+# the inputs "yes" and "no" are the outcome gates (Builder A labels them): a run leaving one fires the correction
+trig yes -> correct-find
+trig no -> correct-find
+# [o] -- : the memory this input answers (why) is corrected by o; no why -> ends writing nothing
+proc correct-find: read-why
+  found -> correct-swap
+  none -> end
+proc correct-swap: swap correct
+
+# ---- the timeline question (9.5): "what did you do <when>?" at root means find-time
+trig w-when -> when-ask
+# passing it puts an hour in ms on the pad: how far back a bare "when" looks (the brain can change it with write-value)
+gate when-span = 3600000
+# [w-when] -- : the told span up to this input's time, as the two times
+proc when-ask: drop read-when dup when-span sub swap when-did
+# [from to] -- : finds the memories between the two times (an index seek) and says up to when-batch of them, newest first;
+# the loop runs on [c l i]: c said so far (under the list, untouched by the walk), l the memories, i the index
+proc when-did: when-find
+proc when-find: find-time
+  found -> when-start
+  none -> drop
+# [l] -- [0 l count-1] : no said yet; the newest memory first
+proc when-start: =0 swap dup read-count =1 sub when-step
+# [l i] -- [l i n] -> found / none
+proc when-step: over over when-item
+proc when-item: read-item
+  found -> when-one
+  none -> when-done
+# [l i n] -- [l i+1]
+proc when-one: when-body =1 sub when-more
+# [l i n] -- [l i] : says one memory if it is a run (its key finds it on the run index: told, core, born, birth,
+# outage, parked, shift and the list kinds are not), as the gate it said if that has a label, else its home gate
+proc when-body: dup dup dup when-row
+# [l i n n n n] -- [l i n n n key home body out] -> found / none
+proc when-row: read-row
+  found -> when-isrun
+  none -> when-skip
+# [.. n n n key home body out] -- [.. n n n m] -> found (a run memory has this key) / none
+proc when-isrun: drop drop drop when-sig
+proc when-sig: find-sig
+  found -> when-same
+  none -> when-skip
+# [.. n n n m] -- [.. n n d] -> same (this is that run) / more / less (a row sharing a key)
+proc when-same: compare
+  same -> when-said
+  more -> when-skip
+  less -> when-skip
+proc when-skip: drop drop drop
+# [.. n n d] -- [.. n out seen right wrong last] -> found : the run's counts, its outcome first
+proc when-said: drop when-root
+# [l i n n] -- [l i n n l t] -> found / none : the memory's own input and shape
+proc when-root: dup when-root-t
+proc when-root-t: read-input
+  found -> when-root-ok
+  none -> when-skip2
+# [l i n n l t] -- [l i n n l d] : a shape with no words is a question run's (it borrows its parent's); a root run's has words
+proc when-root-ok: read-count =0 when-root-cmp
+proc when-root-cmp: compare
+  more -> when-root-yes
+  same -> when-root-no
+  less -> when-root-no
+proc when-root-yes: drop drop when-mem
+proc when-root-no: drop drop drop drop
+proc when-skip2: drop drop
+proc when-mem: read-mem
+  found -> when-out
+  none -> drop
+# [.. n out seen right wrong last] -- [.. n g] -> found (the outcome is a labeled gate) / none
+proc when-out: drop drop drop drop when-outgate
+proc when-outgate: find-label
+  found -> when-say-gate
+  none -> when-home
+proc when-say-gate: swap drop when-say-it
+# [.. n] -- [.. home] : no said gate (find-label took the text): the home gate
+proc when-home: when-home-row
+proc when-home-row: read-row
+  found -> when-home-gate
+  none -> go-on
+proc when-home-gate: drop drop swap drop when-say-it
+# [l i g] -- [l i] : a gate with no label is not said
+proc when-say-it: dup when-labeled
+proc when-labeled: read-label
+  found -> when-say
+  none -> drop
+# [c l i g t] -- [c+1 l i] : says the gate (say-word as a question run), lands it for the asking run, counts it
+proc when-say: drop 'say-word over split land rot =1 add rot rot
+
+# [c l i] -- [l i c d] -> less (fewer said than when-batch: on to the next) / same / more (enough said)
+proc when-more: rot dup when-batch when-under
+proc when-under: compare
+  less -> when-loop
+  same -> when-stop
+  more -> when-stop
+proc when-loop: drop rot rot when-step
+proc when-stop: drop drop drop drop
+# [c l i] --
+proc when-done: drop drop drop

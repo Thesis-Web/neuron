@@ -1,0 +1,127 @@
+=== a0da4c14-a (page; chars 0-3335 of 5,283; continue with a0da4c14-a@3335) ===
+## PROJECT_SEED v1
+PROJECT: neuron-v2
+FILES: ALIGNMENT.md, OWNER_INTENT.md, PLAN.md, WAKE.md
+INGESTED: 2026-09-24
+Provenance: owner contract excerpts; explicit registration projections labeled separately.
+
+## SEED FILE: ALIGNMENT.md
+# neuron-v2 owner registration contract
+## Problem
+The owner identified a context-contamination problem.
+A precision worker must not receive historical project state merely because a nearby project has a similar name.
+The purpose of this session is to establish a NEW persistent authority:
+    neuron-v2
+## Expected outcome
+After registration, a completely fresh worker must be able to wake neuron-v2 from Cortex and reconstruct the experiment without using this session's context.
+That fresh-worker test is the acceptance boundary.
+
+## SEED FILE: OWNER_INTENT.md
+HYPOTHESIS — owner contract, supplied 2026-09-24. Not accepted fact.
+
+There are two developmental components:
+
+    TEACHER <-> NEURON STRUCTURE
+
+The teacher is deterministic.
+
+It contains an ordered/dependency-aware mathematical curriculum.
+
+It receives the mathematical state/output produced by the neuron structure after propagation reaches its current natural stopping point.
+
+It determines which portions of its curriculum are represented by that returned mathematical state.
+
+It emits the next smallest mathematical lesson it knows how to provide.
+
+It does not enumerate arithmetic tables.
+
+It does not contain an LLM at runtime.
+
+The neuron structure contains no human-language semantics.
+
+It accepts mathematical expressions.
+
+A mathematical result can represent a gate/location.
+
+The expression that produced that gate must remain available.
+
+Multiple mathematically different expressions may reach the same gate.
+
+A neuron may exist as a terminal mathematical result even when nothing is known beyond it.
+
+Example hypothesis:
+
+    1/2
+
+may exist because mathematics produced 1/2.
+
+Its initial known state could effectively terminate as:
+
+    1/2 = 1/2
+
+Later:
+
+    2/4
+    10/20
+    50/100
+    0.5
+
+might join the same mathematical location if later learned mathematics establishes those equivalences.
+
+A newly learned mathematical capability may be applicable to many previously realized mathematical structures.
+
+Applying it may create new mathematical results.
+
+Those new results become part of the realized corpus.
+
+Their existence may cause previously learned mathematics to become newly applicable.
+
+That may create further state.
+
+Propagation should continue only where the mathematics actually applies.
+
+It should stop naturally where no further learned mathematical relation exists.
+
+The owner expects this may create nonlinear or exponential local growth.
+
+This is a hypothesis to test, not a fact.
+## SEED FILE: PLAN.md
+PINNED FIRST IMPLEMENTATION EXPERIMENT — PENDING, NOT IMPLEMENTED. Owner contract, supplied 2026-09-24.
+
+Do NOT implement this task in this registration session.
+
+Register it as the first pinned implementation experiment:
+
+    Determine and implement the smallest change required to separate
+    mathematical gate identity from implementation/storage identity.
+
+Initial observational targets:
+
+    9+9
+    1-2
+    1/2
+
+The experiment should determine whether those can become mathematical identities:
+
+    18
+    -1
+    1/2
+
+without pre-seeding those result nodes and without using floating-point a
+=== a0da4c14-a (page; chars 3335-5283 of 5,283; end) ===
+pproximations.
+
+Long-form expressions must survive.
+
+This first task MUST NOT expand into redesigning the whole V2 architecture.
+
+## Do not
+Do not use the neuron2 skill or hydrate neuron2. Do not use /home/exnulla/embryonic-cortex as authority. Do not mutate V1 or historical projects. Do not implement V2 in the registration session. Do not decide Q4 or invent N_g(E).
+## SEED FILE: WAKE.md
+OWNER AUTHORITY / PROJECT ISOLATION — neuron-v2, registered 2026-09-24.
+Neuron V2 is a new mathematical-organism experiment rooted in exact V1 evidence and the owner's separately recorded hypotheses. It is not an implementation completed by registration.
+Authority: /home/exnulla/neuron-v1/teacher.py, /home/exnulla/neuron-v1/neuron_structure.py, and the complete /home/exnulla/neuron-v1/run_0_9/ saved run. Workspace: /home/exnulla/neuron-v2. Cortex project key and book: neuron-v2.
+The owner identified context contamination: similar names must not hydrate historical project state. neuron2 and /home/exnulla/embryonic-cortex belong to older experiments containing assumptions under review; they are NOT project authority. Do not use the neuron2 skill, wake neuron2, read its SPEC/README/WAKE/PLAN/tests, or use predecessor prose handoffs. Historical comparison requires a later explicit owner request. Never mutate V1 or historical projects.
+Registration only: no V2 organism code, no V1 change, no V2 developmental experiment. The first implementation task is PENDING for a later session. Hypotheses and open questions remain distinct from observations.
+Use wake(project="neuron-v2"), then the project record index and fetch/locate. No skill is required. All registration records and exact V1 sources are persistent in Cortex. Local .registration files are receipts/audit tooling, not a substitute authority or handoff.
+Provenance: owner's registration contract supplied 2026-09-24; this paragraph is a labeled registration projection of that contract.

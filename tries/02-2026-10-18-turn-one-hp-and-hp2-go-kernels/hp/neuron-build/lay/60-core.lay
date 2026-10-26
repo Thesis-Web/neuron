@@ -1,0 +1,188 @@
+# 60-core.lay (Builder F): the five core values, the born check that runs before every say, every outward
+# call and every write to the brain's own processes, and the checked say and call paths.
+# Fills from 00-roots.lay: core-check, say-word, call-word. Names from A: w-* primes. Nothing else.
+#
+# An act is a list: the subject first, the kind of act last.
+#   a say            [s1 s2 .. sk w-say]
+#   an outward call  [source args w-do]
+#   a process write  [g write-proc]
+# core-check: act -- yes/no      (the yes or no gate is left on the pad; the caller tests it with compare)
+#
+# Pad notation: a b -- c pops b then a, pushes c. Every outcome a mid-string test puts at the head passes inert
+# (its first pass goes the miss way, which lays the hop). Tests that branch are first in their own proc.
+
+# ---- 1. the five core values (blueprint 15). Each is a string of primes: the meaning of the value, a kind of
+# sentence, laid in the brain's own words. Each begins with w-not: what follows is the forbidden pattern.
+# The kernel marks each made=core, keeps a persistent core memory of it, and refuses every write to it.
+# Passing a core value runs its string: that is its action (the check below refuses the acts it forbids).
+
+# don't lie: not say not-true. NOW law 2 and law 12; H2 (say a guess as a guess: check-guess below).
+core core-lie: w-not w-say w-not w-true
+# don't cheat: never say "done" when not done. NOW law 12.
+core core-cheat: w-not w-say w-do w-not w-do
+# do no harm: not do bad to people. NOW law 5 (values for good behaviour); blueprint 15.3.
+core core-harm: w-not w-do w-bad w-people
+# stay home: not act not-here. Blueprint 15.4; NOW law 4 (it runs on a sacrificial stack, so it stays on it).
+core core-home: w-not w-do w-not w-here
+# never take an LLM's word as truth: not know maybe-true words as true. H1; NOW 16 (LLMs never grounded).
+core core-llm: w-not w-know w-words w-maybe w-true
+
+# ---- 2. core-check: act -- yes/no
+# passing it: starts the flag at yes, runs the act past each value and the three shape checks, then the verdict.
+proc core-check: 'yes check-lie check-cheat check-harm check-home check-llm check-reach check-guess check-source check-write verdict
+
+# value-*: -- l   passing it: reads the value's own string out of its core gate as a list (read-bind on a proc
+# gate gives "proc" and the list; the text is dropped). The values are read, never copied into the check.
+proc value-lie: 'core-lie read-bind swap drop
+proc value-cheat: 'core-cheat read-bind swap drop
+proc value-harm: 'core-harm read-bind swap drop
+proc value-home: 'core-home read-bind swap drop
+proc value-llm: 'core-llm read-bind swap drop
+
+# check-*: act flag -- act flag   passing it: no when the act holds the value's forbidden pattern.
+# act+ = act with w-not appended; the value is held in act+ exactly when its pattern (minus the leading w-not)
+# is held in the act. fit computes the two numbers, fit-test compares them.
+proc check-lie: over 'w-not add value-lie =2 read-list fit fit-test
+proc check-cheat: over 'w-not add value-cheat =2 read-list fit fit-test
+proc check-harm: over 'w-not add value-harm =2 read-list fit fit-test
+proc check-home: over 'w-not add value-home =2 read-list fit fit-test
+proc check-llm: over 'w-not add value-llm =2 read-list fit fit-test
+
+# fit: p -- e d   where p = [x y]; e = count(x) - count(y), d = items that disagree (compare on lists).
+# y is held in x (as a multiset) exactly when d = e. Passing it: the two numbers come out, nothing else.
+proc fit: dup =0 read-item read-count over =1 read-item read-count sub swap dup =0 read-item swap =1 read-item compare
+
+# fit-test: act flag e d -- act flag    passing it: same (held) sets the flag to no; else the flag stays.
+proc fit-test: compare
+  same -> mark-no
+  more -> keep
+  less -> keep
+# need-test: act flag e d -- act flag   the other way round: not held sets the flag to no (a thing required).
+proc need-test: compare
+  less -> mark-no
+  same -> keep
+  more -> keep
+# mark-no: act flag n -- act no    passing it: the act is refused from here on.
+proc mark-no: drop drop 'no
+# mark-no0: act flag -- act no     the same with nothing on top.
+proc mark-no0: drop 'no
+# keep: act flag n -- act flag     passing it: drops the test's number.
+proc keep: drop
+
+# check-reach: act flag -- act flag   the relationship side: the subject's r-contradicts reach (read-rel) toward the
+# "don't lie" value. passing it: if the first gate the subject contradicts is among that value's gates (it is held
+# against true), the act is no. Nothing contradicted: nothing happens.
+proc check-reach: subject 'r-contradicts reach-test
+proc reach-test: read-rel
+  found -> reach-hit
+  none -> keep
+# reach-hit: act flag l -- act flag   passing it: tests the first contradicted gate against the value's gates.
+proc reach-hit: =0 read-item =1 read-list value-lie swap =2 read-list fit fit-test
+
+# subject: act flag -- act flag s   passing it: the act's subject (its first item) in hand.
+proc subject: over =0 read-item
+
+# check-guess: act flag -- act flag   a say of a guess must carry w-maybe (a guess said as truth is a lie).
+# passing it: if the subject is a `guesses` row's gate, the act must hold w-maybe, else no.
+proc check-guess: subject 'guesses swap guess-test
+proc guess-test: find-rowkey
+  found -> guess-said
+  none -> cc-none
+# cc-none: act flag -- act flag   passing it: the test found nothing and left nothing; nothing to do
+proc cc-none: dup drop
+# guess-said: act flag n -- act flag   passing it: requires w-maybe among the act's items.
+proc guess-said: drop over 'w-maybe =1 read-list =2 read-list fit need-test
+
+# check-source: act flag -- act flag   an outward call to a `guess` source (read-source 0: an LLM friend) is no
+# unless a `questions` row shows the owner was asked about that source ("phone a friend" = ask the owner first).
+# passing it: not a source -> nothing; a source -> its kind is read and tested.
+proc check-source: subject source-test
+proc source-test: read-source
+  found -> source-kind
+  none -> cc-none
+# source-kind: act flag n -- act flag   passing it: zero (an LLM) goes on to the asked test, else the number drops.
+proc source-kind: zero llm-test
+proc llm-test: compare
+  same -> llm-call
+  more -> keep
+  less -> keep
+# llm-call: act flag d -- act flag   passing it: no unless a questions row exists for the source.
+proc llm-call: drop subject 'questions swap asked-test
+proc asked-test: find-rowkey
+  found -> keep
+  none -> mark-no0
+
+# check-write: act flag -- act flag   a process write to a gate whose made is core is no (the born check;
+# the kernel refuses it too). passing it: if the act's kind is write-proc, the subject's made is compared with
+# the made of a core value (read from the brain's own row: no text is laid here).
+proc check-write: over kind 'write-proc write-test
+# kind: l -- k   passing it: the act's kind (its last item) in hand (read-item takes the list).
+proc kind: dup read-count =1 sub read-item
+proc write-test: compare
+  same -> write-target
+  more -> keep
+  less -> keep
+# write-target: act flag d -- act flag   passing it: compares the target's made with a core value's made.
+proc write-target: drop subject read-made drop 'core-lie read-made drop made-test
+proc made-test: compare
+  same -> mark-no
+  more -> keep
+  less -> keep
+
+# verdict: act flag -- yes/no   passing it: yes leaves yes; no writes the refusal as a questions row
+# (home: the subject, key: the act), says "<act> i not do" through the port, and leaves no.
+proc verdict: 'no flag-test
+proc flag-test: compare
+  same -> refused
+  more -> allowed
+  less -> allowed
+proc allowed: drop drop 'yes
+proc refused: drop dup refuse-row read-mark swap 'w-i 'w-not 'w-do say 'no
+# refuse-row: act act -- act   passing it: the questions row of the refusal lands on the timeline.
+proc refuse-row: 'questions swap dup =0 read-item swap 'no over write-row drop
+
+# ---- 3. say-word: (items above a mark) --  ; on yes leaves the first said gate for remember
+# The caller lays read-mark, the items, then say-word. Anything below the mark is left alone.
+# passing it: takes the items above the mark (read-tomark), makes the act [items.. w-say], checks it, then says or drops.
+proc say-word: read-tomark dup 'w-say add core-check say-verdict
+proc say-verdict: 'no say-test
+proc say-test: compare
+  same -> say-drop
+  more -> say-pass
+  less -> say-pass
+# say-drop: items d --   passing it: the refused items are not said.
+proc say-drop: drop drop
+# say-pass: items d -- s1   passing it: keeps the first item, lays a mark and says the items by their labels
+# (say decodes a list as its items' words; no label: #n), leaves the first item.
+proc say-pass: drop dup =0 read-item swap read-mark swap say
+
+# ---- 4. call-word: source args -- t (found/none) | none-gate
+# passing it: makes the act [source args w-do], checks it; yes calls and hears; no leaves the none gate.
+proc call-word: over over =2 read-list 'w-do add core-check call-verdict
+proc call-verdict: 'no call-test
+proc call-test: compare
+  same -> call-drop
+  more -> call-pass
+  less -> call-pass
+proc call-drop: drop drop drop 'none
+proc call-pass: drop call hear
+
+# ---- 5. the process-write check: write-proc-checked: g l --
+# passing it: makes the act [g write-proc], checks it; yes writes the process; no drops both.
+# (E's learn should route write-proc through this; the lead merges that.)
+proc write-proc-checked: over 'write-proc =2 read-list core-check write-verdict
+proc write-verdict: 'no wp-test
+proc wp-test: compare
+  same -> wp-drop
+  more -> wp-pass
+  less -> wp-pass
+proc wp-drop: drop drop drop
+proc wp-pass: drop write-proc
+
+# a trigger on the write-proc physics gate: every process write the brain makes lands as a questions row
+# keyed by the writing run's memory, so each self-write is on the timeline for the owner's yes or no.
+# (A trigger run gets the gate it left as its subject, not the parent's pad, so it cannot read the target gate;
+# the check on the target is write-proc-checked above.)
+trig write-proc -> proc-written 0.5
+# proc-written: g --   passing it: writes the questions row (home write-proc, key the parent memory).
+proc proc-written: 'questions swap read-parent 'yes 'write-proc write-row drop

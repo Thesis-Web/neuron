@@ -1,0 +1,567 @@
+# 50 sources: the sources on and off the machine (blueprint §3, §10.1), read two ways.
+#
+# spec-for (meaning blueprint §5.2, §8): a meaning needs a spec. The brain asks a source for a
+# gate's definitions and hears each one WHOLE through the encoder, one sense (or one sentence
+# of a long one) to a reading run. What it heard goes into the gate's sec-sources as a heard
+# gate list, after the source it came from, with this run's receipt. That is the spec: a
+# description its meaning has to live up to, never the meaning, and never a line per word.
+# Two sources when it can. Then the gate goes on GAP for the meaning loop (mean, 73).
+#
+# source-check (§10.2): check-and-diff for what a source ASSERTS as a relation (WordNet's
+# antonym, hypernym, holonym, synonym, cause; a thesaurus's synonyms and antonyms). Each term
+# is diffed against what the gate holds: the same -> strength up; new -> a line added;
+# different -> a sense of its own, or a contradiction for belief. A gap is a gap.
+#
+# Neither is a reflex of birth: a word is read when a meaning or a question needs it.
+#
+# A port only fetches and flattens. It queues what the source gave, one entry a line (a
+# line past 60 words breaks at its sentences), every entry: no first sense, no cut, no stop
+# words; the kernel's CALL-CAP is the only byte cap on an answer. It answers with the
+# queue's path; each reading run hands that back to a reader port (src-spec-next /
+# src-rel-next) and gets the next line. Nothing here is a fact; it is how to reach a source.
+
+# gates other areas define
+gate mean
+gate belief
+gate ask-name
+
+# the source gates
+gate src-wn-ant
+gate src-wn-hype
+gate src-wn-holo
+gate src-wn-syn
+gate src-wn-cause
+gate src-mw-syn
+gate src-mw-ant
+gate src-wn-def
+gate src-gcide
+gate src-foldoc
+gate src-elements
+gate src-man
+gate src-mw-coll
+gate src-openstax
+gate src-wiktionary
+gate src-wikipedia
+gate src-moby
+gate src-wikidata
+gate src-oeis
+gate src-codata
+gate src-godoc
+gate src-oewn-def
+gate src-oewn-syn
+gate src-oewn-ant
+gate src-vera
+gate src-fd-eng-fra
+gate src-roget
+gate src-sep
+gate src-eb1911
+gate src-mathworld
+gate src-pubchem
+gate src-uniprot
+gate src-gbif
+gate src-itis
+gate src-sbdb
+gate src-medlineplus
+gate src-ncbi-books
+gate src-rfc
+gate src-unicode
+gate src-pubmed
+gate src-europepmc
+gate src-arxiv
+gate src-nominatim
+gate src-mdn
+gate src-openlibrary
+gate src-internetarchive
+gate src-spec-next
+gate src-rel-next
+# ---- the ports for asserted relations (source-check reads these)
+source src-wn-ant grounded "wn %s -antsn -antsv -antsa -antsr 2>/dev/null | awk '/^Sense/{print o; o=\"\"; n=1; next} /^$/{n=0} n&&/=>/{sub(/^ *=> */,\"\"); o=o $0 \", \"; next} n&&/\\(vs\\. /{s=$0; sub(/.*\\(vs\\. /,\"\",s); sub(/\\).*/,\"\",s); o=o s \", \"} END{print o}' | LC_ALL=C sed 's/([^)]*)//g;s/[^A-Za-z,]\\{1,\\}/ /g;s/ *, */, /g;s/^[ ,]*//;s/[ ,]*$//' | { d=rel/wn-ant; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ $(wc -l < $f) -gt 1 ] && sed -i 's/$/ #/' $f; [ -s $f ] && echo $f; }"
+source src-wn-hype grounded "wn %s -hypen -hypev 2>/dev/null | awk '/^Sense/{print o; o=\"\"; next} match($0,/^ *=> /) && RLENGTH==10 {sub(/^ *=> /,\"\"); o=o $0 \", \"} END{print o}' | LC_ALL=C sed 's/([^)]*)//g;s/[^A-Za-z,]\\{1,\\}/ /g;s/ *, */, /g;s/^[ ,]*//;s/[ ,]*$//' | { d=rel/wn-hype; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ $(wc -l < $f) -gt 1 ] && sed -i 's/$/ #/' $f; [ -s $f ] && echo $f; }"
+source src-wn-holo grounded "wn %s -holon 2>/dev/null | awk '/^Sense/{print o; o=\"\"; next} /^ *(PART|MEMBER|SUBSTANCE) OF: /{sub(/^ *[A-Z]+ OF: /,\"\"); o=o $0 \", \"} END{print o}' | LC_ALL=C sed 's/([^)]*)//g;s/[^A-Za-z,]\\{1,\\}/ /g;s/ *, */, /g;s/^[ ,]*//;s/[ ,]*$//' | { d=rel/wn-holo; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ $(wc -l < $f) -gt 1 ] && sed -i 's/$/ #/' $f; [ -s $f ] && echo $f; }"
+source src-wn-syn grounded "wn %s -synsn -synsv -synsa -synsr 2>/dev/null | awk '/^Sense/{getline; sub(/\\(vs\\..*/,\"\"); print}' | LC_ALL=C sed 's/([^)]*)//g;s/[^A-Za-z,]\\{1,\\}/ /g;s/ *, */, /g;s/^[ ,]*//;s/[ ,]*$//' | { d=rel/wn-syn; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ $(wc -l < $f) -gt 1 ] && sed -i 's/$/ #/' $f; [ -s $f ] && echo $f; }"
+source src-wn-cause grounded "wn %s -causv 2>/dev/null | awk '/^Sense/{print o; o=\"\"; next} match($0,/^ *=> /) && RLENGTH==10 {sub(/^ *=> /,\"\"); o=o $0 \", \"} END{print o}' | LC_ALL=C sed 's/([^)]*)//g;s/[^A-Za-z,]\\{1,\\}/ /g;s/ *, */, /g;s/^[ ,]*//;s/[ ,]*$//' | { d=rel/wn-cause; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ $(wc -l < $f) -gt 1 ] && sed -i 's/$/ #/' $f; [ -s $f ] && echo $f; }"
+source src-mw-syn grounded "K=$(cat /home/neuron/.config/merriam-webster/mw_thesaurus.key 2>/dev/null); [ ${#K} -gt 0 ] && curl -s -m 15 https://www.dictionaryapi.com/api/v3/references/thesaurus/json/$(jq -rn --arg w %s '$w|@uri')?key=$K | jq -r '.[]? | objects | .meta.syns[]? | join(\", \")' 2>/dev/null | LC_ALL=C sed 's/([^)]*)//g;s/[^A-Za-z,]\\{1,\\}/ /g;s/ *, */, /g;s/^[ ,]*//;s/[ ,]*$//' | { d=rel/mw-syn; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ $(wc -l < $f) -gt 1 ] && sed -i 's/$/ #/' $f; [ -s $f ] && echo $f; }"
+source src-mw-ant grounded "K=$(cat /home/neuron/.config/merriam-webster/mw_thesaurus.key 2>/dev/null); [ ${#K} -gt 0 ] && curl -s -m 15 https://www.dictionaryapi.com/api/v3/references/thesaurus/json/$(jq -rn --arg w %s '$w|@uri')?key=$K | jq -r '.[]? | objects | .meta.ants[]? | join(\", \")' 2>/dev/null | LC_ALL=C sed 's/([^)]*)//g;s/[^A-Za-z,]\\{1,\\}/ /g;s/ *, */, /g;s/^[ ,]*//;s/[ ,]*$//' | { d=rel/mw-ant; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ $(wc -l < $f) -gt 1 ] && sed -i 's/$/ #/' $f; [ -s $f ] && echo $f; }"
+source src-moby grounded "curl -s -m 15 dict://dict.org/d:%s:moby-thesaurus | tr -d '\\r' | sed -n '/^151/,/^\\.$/p' | sed '1,2d;$d' | tr '\\n' ' ' | tr ',' '\\n' | awk 'NF{o=o $0 \",\"; n++} n==20{print o; o=\"\"; n=0} END{print o}' | LC_ALL=C sed 's/([^)]*)//g;s/[^A-Za-z,]\\{1,\\}/ /g;s/ *, */, /g;s/^[ ,]*//;s/[ ,]*$//' | { d=rel/moby; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ $(wc -l < $f) -gt 1 ] && sed -i 's/$/ #/' $f; [ -s $f ] && echo $f; }"
+source src-oewn-syn grounded "exec 2>/dev/null; WNSEARCHDIR=/srv/sources/wordnet/oewn-2025/english-wordnet-2025/oewn2025 wn %s -synsn -synsv -synsa -synsr 2>/dev/null | awk '/^Sense [0-9]+$/{n=0;i=1;next} /^[0-9]+ senses? of /||/ of (noun|verb|adj|adv) /{i=0;next} i&&/^[^ \\t]/{n++; if(n==1) print}' | LC_ALL=C sed 's/([^)]*)//g;s/[^A-Za-z,]\\{1,\\}/ /g;s/ *, */, /g;s/^[ ,]*//;s/[ ,]*$//' | { d=rel/oewn-syn; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ $(wc -l < $f) -gt 1 ] && sed -i 's/$/ #/' $f; [ -s $f ] && echo $f; }"
+source src-oewn-ant grounded "exec 2>/dev/null; WNSEARCHDIR=/srv/sources/wordnet/oewn-2025/english-wordnet-2025/oewn2025 wn %s -antsn -antsv -antsa -antsr 2>/dev/null | awk '/^Sense [0-9]+$/{n=0;i=1;next} /^[0-9]+ senses? of /||/ of (noun|verb|adj|adv) /{i=0;next} i&&/^[^ \\t]/{n++; if(n==2) print}' | sed 's/^INDIRECT.*-> //' | LC_ALL=C sed 's/([^)]*)//g;s/[^A-Za-z,]\\{1,\\}/ /g;s/ *, */, /g;s/^[ ,]*//;s/[ ,]*$//' | { d=rel/oewn-ant; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ $(wc -l < $f) -gt 1 ] && sed -i 's/$/ #/' $f; [ -s $f ] && echo $f; }"
+# ---- the ports for definitions (spec-for reads these)
+source src-wn-def grounded "dict -d wn %s 2>/dev/null | sed '1,4d' | awk '/^ *(n|v|adj|adv)? *[0-9]*: /{if(i)print s; i=1; s=$0; sub(/^ *(n|v|adj|adv)? *[0-9]*: /,\"\",s); next} i{s=s \" \" $0} END{if(i)print s}' | sed 's/\\[[^]]*\\]//g' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/wn-def; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-oewn-def grounded "exec 2>/dev/null; WNSEARCHDIR=/srv/sources/wordnet/oewn-2025/english-wordnet-2025/oewn2025 wn %s -over 2>/dev/null | grep -E '^[0-9]+\\. ' | sed 's/^[0-9]*\\. ([0-9]*) //;s/^[0-9]*\\. //' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/oewn-def; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-gcide grounded "dict -d gcide %s 2>/dev/null | sed '1,4d' | grep -v '^From ' | tr '\\n' ' ' | sed 's/\\[[^]]*\\]//g;s/\\\\[^\\\\]*\\\\//g;s/--[A-Z][a-z]*\\.//g;s/ [0-9]\\{1,2\\}\\. /\\n/g' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/gcide; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-foldoc grounded "dict -d foldoc %s 2>/dev/null | sed '1,4d' | tr '\\n' ' ' | sed 's/<[^>]*>//g;s/([0-9-]*)//g;s/ [0-9]\\{1,2\\}\\. /\\n/g' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/foldoc; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-elements grounded "dict -d elements %s 2>/dev/null | sed '1,4d' | tr '\\n' ' ' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/elements; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-man grounded "man -P cat %s 2>/dev/null | col -b | awk '/^[A-Z]/{i=($0 ~ /^(NAME|DESCRIPTION)/); next} i' | awk 'BEGIN{RS=\"\"} {gsub(/\\n/,\" \"); print}' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/man; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-mw-coll grounded "K=$(cat /home/neuron/.config/merriam-webster/mw_collegiate.key 2>/dev/null); [ ${#K} -gt 0 ] && curl -s -m 15 https://www.dictionaryapi.com/api/v3/references/collegiate/json/$(jq -rn --arg w %s '$w|@uri')?key=$K | jq -r '.[]? | objects | .shortdef[]?' 2>/dev/null | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/mw-coll; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-openstax grounded "curl -s -m 15 'https://openstax.org/apps/cms/api/v2/pages/?type=books.Book&fields=title&limit=200' | jq -r '.items[].title' 2>/dev/null | grep -iw -- %s | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/openstax; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-wiktionary ungrounded "curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' https://en.wiktionary.org/api/rest_v1/page/definition/$(jq -rn --arg w %s '$w|@uri') | jq -r '.en[]? | select(.language|ascii_downcase|startswith(\"english\")) | .definitions[]? | .definition' 2>/dev/null | sed 's/<[^>]*>//g' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/wiktionary; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-wikipedia ungrounded "curl -s -L -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' https://en.wikipedia.org/api/rest_v1/page/summary/$(jq -rn --arg w %s '$w|@uri') | jq -r '.extract // empty' 2>/dev/null | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/wikipedia; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-wikidata ungrounded "curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' 'https://www.wikidata.org/w/api.php?action=wbsearchentities&language=en&format=json&limit=1&search='$(jq -rn --arg w %s '$w|@uri') | jq -r '.search[0].description // empty' 2>/dev/null | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/wikidata; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-oeis grounded "curl -s -m 15 'https://oeis.org/search?fmt=json&q='$(jq -rn --arg w %s '$w|@uri') | jq -r '(if type==\"array\" then . else (.results // []) end)[]? | .name' 2>/dev/null | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z0-9.]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/oeis; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-codata grounded "curl -s -m 20 https://physics.nist.gov/cuu/Constants/Table/allascii.txt | grep -i -m1 -w -- %s | tr -s ' ' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z0-9.]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/codata; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-godoc grounded "go doc %s 2>/dev/null | awk 'BEGIN{RS=\"\"} {gsub(/\\n/,\" \"); print}' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/godoc; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-vera grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"dict://dict.org/d:$(jq -rn --arg w %s '$w|@uri'):vera\" | tr -d '\\r' | awk '/^151 /{i=1;e=\"\";next} i&&/^\\.$/{print e;i=0;next} i{e=e\" \"$0}' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/vera; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-fd-eng-fra grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"dict://dict.org/d:$(jq -rn --arg w %s '$w|@uri'):fd-eng-fra\" | tr -d '\\r' | awk '/^151 /{i=1;e=\"\";next} i&&/^\\.$/{print e;i=0;next} i{e=e\" \"$0}' | LC_ALL=C.UTF-8 sed 's/[^[:alpha:]]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/fd-eng-fra; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-roget grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' https://www.gutenberg.org/cache/epub/10681/pg10681.txt | tr -d '\\r' | tr '\\n' ' ' | sed 's/ \\(N\\|V\\|Adj\\|Adv\\|Phr\\|Int\\)\\. /;/g;s/\\. \\{2,\\}/;/g;s/&c//g;s/\\[[^]]*\\]//g' | tr ';' '\\n' | grep -iwF -- %s | LC_ALL=C sed 's/([^)]*)//g;s/[^A-Za-z,]\\{1,\\}/ /g;s/ *, */, /g;s/^[ ,]*//;s/[ ,]*$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/roget; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-sep grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' -f \"https://plato.stanford.edu/entries/$(jq -rn --arg w %s '$w|ascii_downcase|gsub(\" \";\"-\")|@uri')/\" | tr -d '\\r' | sed -n '/<div id=\"preamble\">/,/<\\/div>/p' | tr '\\n' ' ' | sed 's/<[^>]*>/ /g;s/&[a-zA-Z0-9#]*;/ /g' | awk 'NF' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/sep; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-eb1911 grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://en.wikisource.org/w/api.php?action=query&list=search&srlimit=10&format=json&srsearch=$(jq -rn --arg w %s '$w+\" prefix:1911 Encyclopædia Britannica/\"|@uri')\" | jq -r '.query.search[]? | (.title|sub(\"^1911 Encyclop[^/]*/\";\"\")) + \" \" + (.snippet|gsub(\"<[^>]*>\";\"\")|gsub(\"&[a-z#0-9]+;\";\" \")|gsub(\"\\\\n\";\" \"))' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/eb1911; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-mathworld grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' -f \"https://mathworld.wolfram.com/$(jq -rn --arg w %s '$w|split(\" \")|map((.[:1]|ascii_upcase)+.[1:])|join(\"\")|@uri').html\" | grep -o '<meta name=\"description\" content=\"[^\"]*\"' | sed 's/^<meta name=\"description\" content=\"//;s/&[a-zA-Z0-9#]*;/ /g' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/mathworld; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-pubchem grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' -f \"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/$(jq -rn --arg w %s '$w|@uri')/property/Title,IUPACName,MolecularFormula,MolecularWeight/JSON\" | jq -r '.PropertyTable.Properties[]? | [\"Title\", .Title, \"IUPACName\", .IUPACName, \"MolecularFormula\", .MolecularFormula, \"MolecularWeight\", .MolecularWeight] | map(tostring) | join(\" \")' | LC_ALL=C sed 's/[^A-Za-z0-9.]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z0-9.]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/pubchem; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-uniprot grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://rest.uniprot.org/uniprotkb/search?format=json&size=8&fields=protein_name,organism_name,cc_function&query=$(jq -rn --arg w %s '$w+\" AND reviewed:true\"|@uri')\" | jq -r '.results[]? | [.proteinDescription.recommendedName.fullName.value // empty, \"organism\", .organism.scientificName // empty, (.comments[]? | select(.commentType==\"FUNCTION\") | .texts[]?.value)] | join(\" \")' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/uniprot; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-gbif grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://api.gbif.org/v1/species/match?name=$(jq -rn --arg w %s '$w|@uri')\" | jq -r 'select(.matchType != \"NONE\" and .matchType != null) | [[.scientificName], [\"rank\", .rank], [\"status\", .status], [\"kingdom\", .kingdom], [\"phylum\", .phylum], [\"class\", .class], [\"order\", .order], [\"family\", .family], [\"genus\", .genus]] | map(select(.[-1] != null) | join(\" \")) | join(\" \")' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/gbif; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-itis grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://www.itis.gov/ITISWebService/jsonservice/searchByScientificName?srchKey=$(jq -rn --arg w %s '$w|@uri')\" | jq -r '.scientificNames[]? | select(. != null) | [.combinedName, .author, \"kingdom\", .kingdom] | map(. // empty) | join(\" \")' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/itis; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-sbdb grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://ssd-api.jpl.nasa.gov/sbdb.api?phys-par=1&sstr=$(jq -rn --arg w %s '$w|@uri')\" | jq -r 'if .object then ([.object.fullname, \"orbit class\", .object.orbit_class.name] + [.phys_par[]? | .title + \" \" + .value + \" \" + (.units // \"\")] | join(\" \")) else (.list[]?.name) end' | LC_ALL=C sed 's/[^A-Za-z0-9.]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z0-9.]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/sbdb; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-medlineplus grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://wsearch.nlm.nih.gov/ws/query?db=healthTopics&retmax=5&term=$(jq -rn --arg w %s '$w|@uri')\" | tr -d '\\r' | tr '\\n' ' ' | sed 's/<document /\\n<document /g' | grep '^<document ' | sed -nE 's/.*<content name=\"title\">([^<]*)<\\/content>.*<content name=\"FullSummary\">([^<]*)<\\/content>.*/\\1 \\2/p' | sed 's/&lt;[^&]*&gt;/ /g;s/&[a-zA-Z0-9#]*;/ /g;s/<[^>]*>/ /g' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/medlineplus; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-ncbi-books grounded "exec 2>/dev/null; ids=$(curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=books&retmode=json&retmax=10&sort=relevance&term=$(jq -rn --arg w %s '$w|@uri')\" | jq -r '.esearchresult.idlist? // [] | join(\",\")'); [ -n \"$ids\" ] && sleep 1 && curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=books&retmode=json&id=$ids\" | jq -r '.result as $r | $r.uids[]? | $r[.] | .title + \" \" + ((.bookinfo // \"\") | (capture(\"<Parent[^>]*><Title>(?<t>[^<]*)</Title>\").t)? // \"\")' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/ncbi-books; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-rfc grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' -f \"https://www.rfc-editor.org/rfc/rfc$(jq -rn --arg w %s '$w|ascii_downcase|ltrimstr(\"rfc\")|ltrimstr(\" \")|@uri').json\" | jq -r '[.title // \"\", .abstract // \"\", ((.keywords // []) | join(\" \"))] | join(\" \") | gsub(\"\\\\s+\";\" \")' | sed 's/<[^>]*>/ /g' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z0-9.]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/rfc; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-unicode grounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' -f \"https://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt\" | cut -d';' -f2,11 | tr ';' ' ' | grep -iwF -- %s | grep -v '^<' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/unicode; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-pubmed ungrounded "exec 2>/dev/null; ids=$(curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=10&sort=relevance&term=$(jq -rn --arg w %s '$w|@uri')\" | jq -r '.esearchresult.idlist? // [] | join(\",\")'); [ -n \"$ids\" ] && sleep 1 && curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&id=$ids\" | jq -r '.result as $r | $r.uids[]? | $r[.].title // empty' | sed 's/<[^>]*>/ /g;s/&[a-zA-Z0-9#]*;/ /g' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/pubmed; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-europepmc ungrounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://www.ebi.ac.uk/europepmc/webservices/rest/search?format=json&pageSize=10&query=$(jq -rn --arg w %s '$w|@uri')\" | jq -r '.resultList.result[]?.title // empty' | sed 's/<[^>]*>/ /g;s/&[a-zA-Z0-9#]*;/ /g' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/europepmc; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-arxiv ungrounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://export.arxiv.org/api/query?max_results=10&search_query=all:$(jq -rn --arg w %s '$w|@uri')\" | tr -d '\\r' | tr '\\n' ' ' | sed 's/<entry>/\\n<entry>/g' | grep '^<entry>' | sed -nE 's/.*<title>([^<]*)<\\/title>.*/\\1/p' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/arxiv; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-nominatim ungrounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://nominatim.openstreetmap.org/search?format=json&limit=10&q=$(jq -rn --arg w %s '$w|@uri')\" | jq -r '.[]? | .display_name + \" \" + (.type // \"\")' | LC_ALL=C.UTF-8 sed 's/[^[:alpha:]]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/nominatim; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-mdn ungrounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://developer.mozilla.org/api/v1/search?size=10&locale=en-US&q=$(jq -rn --arg w %s '$w|@uri')\" | jq -r '.documents[]? | (.title // \"\") + \" \" + (.summary // \"\" | gsub(\"\\\\s+\";\" \"))' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/mdn; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-openlibrary ungrounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' \"https://openlibrary.org/search.json?limit=10&fields=title,author_name&q=$(jq -rn --arg w %s '$w|@uri')\" | jq -r '.docs[]? | (.title // \"\") + \" by \" + ((.author_name // []) | join(\" \"))' | sed 's/ by $//' | LC_ALL=C.UTF-8 sed 's/[^[:alpha:]]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/openlibrary; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+source src-internetarchive ungrounded "exec 2>/dev/null; curl -s -m 15 -A 'neuron-hp2/1 (a learning program; one lookup at a time)' -g \"https://archive.org/advancedsearch.php?fl[]=title&rows=20&output=json&q=$(jq -rn --arg w %s '\"(\"+$w+\") AND mediatype:texts\"|@uri')\" | jq -r '.response.docs[]? | (.title // \"\" | if type==\"array\" then join(\" \") else . end)' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | awk 'NF>60{gsub(/[.;] /,\"&\\n\")} 1' | LC_ALL=C sed 's/[^A-Za-z]\\{1,\\}/ /g;s/^ *//;s/ *$//' | { d=spec/internetarchive; mkdir -p $d; f=$d/$(echo %s | tr -c A-Za-z0-9 _); awk NF > $f; [ -s $f ] && echo $f; }"
+# ---- the readers: the query is a queue's path (what its port answered); they give the next
+# queued line and take it off the queue. Nothing queued: nothing said.
+source src-spec-next grounded "f=%s; case $f in spec/*/*) ;; *) exit;; esac; case $f in *..*) exit;; esac; [ -s $f ] && head -n 1 $f && sed -i 1d $f"
+source src-rel-next grounded "f=%s; case $f in rel/*/*) ;; *) exit;; esac; case $f in *..*) exit;; esac; [ -s $f ] && head -n 1 $f && sed -i 1d $f"
+
+# which type each relation port feeds (the source asserts lines of this type)
+rel src-wn-ant t-used-for t-opposite
+rel src-wn-hype t-used-for t-kind-of
+rel src-wn-holo t-used-for t-part-of
+rel src-wn-syn t-used-for t-same
+rel src-wn-cause t-used-for t-cause
+rel src-mw-syn t-used-for t-same
+rel src-mw-ant t-used-for t-opposite
+rel src-moby t-used-for t-same
+rel src-oewn-syn t-used-for t-same
+rel src-oewn-ant t-used-for t-opposite
+
+# types that cannot both hold, the other way round (10-types lays one way)
+rel t-opposite t-opposite t-same
+rel t-contradicts t-opposite t-supports
+unrel t-cause t-opposite t-before
+
+# ---- the ask orders: what each gives is derived from these, strongest asked first. The
+# strengths are told worth numbers; right and wrong move them (src-order-up/down).
+gate source-check
+gate spec-for
+rel source-check t-derived-from src-wn-ant 0.95
+rel source-check t-derived-from src-wn-hype 0.9
+rel source-check t-derived-from src-wn-syn 0.85
+rel source-check t-derived-from src-wn-holo 0.8
+rel source-check t-derived-from src-wn-cause 0.75
+rel source-check t-derived-from src-moby 0.58
+rel source-check t-derived-from src-oewn-ant 0.57
+rel source-check t-derived-from src-oewn-syn 0.56
+rel source-check t-derived-from src-mw-ant 0.1
+rel source-check t-derived-from src-mw-syn 0.09
+rel spec-for t-derived-from src-wn-def 0.6
+rel spec-for t-derived-from src-oewn-def 0.54
+rel spec-for t-derived-from src-gcide 0.5
+rel spec-for t-derived-from src-foldoc 0.45
+rel spec-for t-derived-from src-elements 0.4
+rel spec-for t-derived-from src-man 0.35
+rel spec-for t-derived-from src-oeis 0.33
+rel spec-for t-derived-from src-codata 0.32
+rel spec-for t-derived-from src-godoc 0.31
+rel spec-for t-derived-from src-openstax 0.3
+rel spec-for t-derived-from src-roget 0.29
+rel spec-for t-derived-from src-sep 0.28
+rel spec-for t-derived-from src-eb1911 0.27
+rel spec-for t-derived-from src-mathworld 0.26
+rel spec-for t-derived-from src-vera 0.25
+rel spec-for t-derived-from src-pubchem 0.24
+rel spec-for t-derived-from src-uniprot 0.23
+rel spec-for t-derived-from src-gbif 0.22
+rel spec-for t-derived-from src-itis 0.21
+rel spec-for t-derived-from src-wiktionary 0.2
+rel spec-for t-derived-from src-sbdb 0.195
+rel spec-for t-derived-from src-medlineplus 0.19
+rel spec-for t-derived-from src-ncbi-books 0.18
+rel spec-for t-derived-from src-rfc 0.17
+rel spec-for t-derived-from src-unicode 0.16
+rel spec-for t-derived-from src-wikipedia 0.15
+rel spec-for t-derived-from src-wikidata 0.12
+rel spec-for t-derived-from src-mw-coll 0.08
+rel spec-for t-derived-from src-pubmed 0.07
+rel spec-for t-derived-from src-europepmc 0.065
+rel spec-for t-derived-from src-arxiv 0.06
+rel spec-for t-derived-from src-nominatim 0.055
+rel spec-for t-derived-from src-mdn 0.05
+rel spec-for t-derived-from src-openlibrary 0.045
+rel spec-for t-derived-from src-internetarchive 0.04
+rel spec-for t-derived-from src-fd-eng-fra 0.035
+# a definition port is not a relation port: taken off source-check's order (a re-lay)
+unrel source-check t-derived-from src-wn-def
+unrel source-check t-derived-from src-oewn-def
+unrel source-check t-derived-from src-gcide
+unrel source-check t-derived-from src-foldoc
+unrel source-check t-derived-from src-elements
+unrel source-check t-derived-from src-man
+unrel source-check t-derived-from src-oeis
+unrel source-check t-derived-from src-codata
+unrel source-check t-derived-from src-godoc
+unrel source-check t-derived-from src-openstax
+unrel source-check t-derived-from src-roget
+unrel source-check t-derived-from src-sep
+unrel source-check t-derived-from src-eb1911
+unrel source-check t-derived-from src-mathworld
+unrel source-check t-derived-from src-vera
+unrel source-check t-derived-from src-pubchem
+unrel source-check t-derived-from src-uniprot
+unrel source-check t-derived-from src-gbif
+unrel source-check t-derived-from src-itis
+unrel source-check t-derived-from src-wiktionary
+unrel source-check t-derived-from src-sbdb
+unrel source-check t-derived-from src-medlineplus
+unrel source-check t-derived-from src-ncbi-books
+unrel source-check t-derived-from src-rfc
+unrel source-check t-derived-from src-unicode
+unrel source-check t-derived-from src-wikipedia
+unrel source-check t-derived-from src-wikidata
+unrel source-check t-derived-from src-mw-coll
+unrel source-check t-derived-from src-pubmed
+unrel source-check t-derived-from src-europepmc
+unrel source-check t-derived-from src-arxiv
+unrel source-check t-derived-from src-nominatim
+unrel source-check t-derived-from src-mdn
+unrel source-check t-derived-from src-openlibrary
+unrel source-check t-derived-from src-internetarchive
+unrel source-check t-derived-from src-fd-eng-fra
+# a port told to answer for numbers is asked only about a gate holding a number, with it (R4-1)
+gate src-asks
+sect src-oeis src-asks NUMBER
+sect src-rfc src-asks NUMBER
+
+# slots (the run's own scratch)
+gate src-asker
+gate src-g
+gate src-word
+gate src-src
+gate src-text
+gate src-top
+gate src-type
+gate src-w
+gate src-old
+gate src-c
+gate src-n0
+gate src-list
+gate src-n
+gate src-senses
+# the mark under what a reading run hears
+gate src-mark
+# on a gate: how many sources have given it a spec
+gate src-specs
+
+# ---- the start. SPLIT either with subject = the gate. One CALL per run: the strongest port
+# in the asker's order not yet asked about this gate (each asked port leaves a t-asked line
+# on the gate, so the next run asks the next one). source-check lands the source it read
+# (the gate itself when it found nothing); spec-for lists the gate on GAP when it is done.
+# A test is the last physics word of its process; what follows it is a call.
+proc source-check = ITEM READ source-check src-asker SLOT WRITE SUBJ READ src-keep-g
+on source-check NONE -> carry-on
+proc spec-for = ITEM READ spec-for src-asker SLOT WRITE SUBJ READ src-keep-g
+on spec-for NONE -> carry-on
+proc src-keep-g = src-g SLOT WRITE src-label
+# a gate with no name can't be looked up: ask its name
+proc src-label = src-g SLOT READ LABEL READ src-keep-word
+on src-label NONE -> src-noname
+proc src-keep-word = src-word SLOT WRITE src-ways
+proc src-noname = src-g SLOT READ ask-name src-g SLOT READ
+proc src-ways = src-asker SLOT READ t-derived-from RELS READ src-pick
+on src-ways NONE -> carry-on
+proc src-pick = LAST READ FIRST READ src-keep-src
+on src-pick NONE -> src-done
+proc src-keep-src = src-src SLOT WRITE src-asked
+proc src-done = LAST DELETE src-g SLOT READ src-fin-none
+proc src-asked = src-g SLOT READ t-asked src-src SLOT READ STRENGTH READ src-skip
+on src-asked NONE -> src-kind
+proc src-kind = src-src SLOT READ src-asks SECTION READ src-kind-n
+on src-kind NONE -> src-quota
+proc src-kind-n = ITEM READ NUMBER COMPARE
+on src-kind-n SAME -> src-kind-v
+on src-kind-n MORE -> src-quota
+proc src-kind-v = src-g SLOT READ VALUE READ src-kind-ok
+on src-kind-v NONE -> src-skip-q
+proc src-kind-ok = src-word SLOT WRITE src-quota
+proc src-skip = LAST DELETE REST READ src-pick
+# a port with a daily quota (the owner's key, used up for everyone when spent) is asked
+# only for a person: never by a run the brain started itself
+proc src-quota = src-src SLOT READ VALUE READ src-quota-n
+on src-quota NONE -> src-ask
+proc src-quota-n = LAST DELETE MINE READ
+on src-quota-n YES -> src-skip-q
+on src-quota-n NO -> src-ask
+proc src-skip-q = REST READ src-pick
+
+# ask it. The asked line goes on first. A grounded port is read in mode SOURCED; an
+# ungrounded one only by the brain's own choice (DERIVED), and the core check turns that
+# run to GUESS (what it gives is held as a guess).
+proc src-ask = LAST DELETE src-g SLOT READ t-asked src-src SLOT READ one REL WRITE SOURCED MADE WRITE src-ask-g
+proc src-ask-g = src-word SLOT READ src-src SLOT READ GROUNDED READ
+on src-ask-g YES -> src-call
+on src-ask-g NO -> src-derived
+on src-ask-g NONE -> src-gap
+proc src-derived = DERIVED MADE WRITE src-call
+proc src-call = core-check-call CALL src-heard
+on src-call NONE -> src-nothing
+# saying nothing is a gap: it moves nothing. spec-for goes on to the next port (a new run)
+proc src-nothing = src-g SLOT READ src-fin-nil
+# not a source: a gap, never a contradiction
+proc src-gap = src-g SLOT READ
+
+# it answered: the gate is derived from it, and trust is kept under a topic
+proc src-heard = src-text SLOT WRITE src-g SLOT READ t-derived-from src-src SLOT READ one REL WRITE src-topic
+# the topic trust is kept under: what the gate is a kind of, else the gate itself
+proc src-topic = src-g SLOT READ t-kind-of REL READ src-keep-top
+on src-topic NONE -> src-topic-self
+proc src-keep-top = src-top SLOT WRITE src-path
+proc src-topic-self = src-g SLOT READ src-top SLOT WRITE src-path
+# a port that feeds a type asserts lines of that type; any other gives a definition (the
+# source gate goes into the spec first, so each heard list after it is that source's)
+proc src-path = src-src SLOT READ t-used-for REL READ src-keep-type
+on src-path NONE -> src-spec
+proc src-keep-type = src-type SLOT WRITE src-rd-loop
+proc src-spec = src-g SLOT READ sec-sources src-src SLOT READ SECTION WRITE src-rd-loop
+# read what it queued (its answer is the queue, handed to the reader port as it came):
+# one reading run a line, each waited for; a run that lands NO found
+# the queue empty. (One that died landed nothing: the next line is read all the same.)
+proc src-rd-loop = src-g SLOT READ ITEM READ src-rd SPLIT LAST DELETE WAIT src-rd-got
+proc src-rd-got = ITEM READ NO COMPARE
+on src-rd-got SAME -> src-rd-over
+on src-rd-got MORE -> src-rd-loop
+proc src-rd-over = src-src SLOT READ src-fin
+
+# ---- spec-for's ends. A source gave a spec: counted on the gate. Under two, the next port
+# (a new run, one CALL each); two or more, or no port left: the gate goes on GAP for mean.
+proc src-fin = src-asker SLOT READ ITEM READ spec-for COMPARE
+on src-fin SAME -> src-fin-spec
+on src-fin MORE -> carry-on
+proc src-fin-spec = src-g SLOT READ src-specs SECTION READ src-fin-add
+on src-fin-spec NONE -> src-fin-1
+proc src-fin-add = one ADD src-fin-n
+proc src-fin-1 = one src-fin-n
+proc src-fin-n = src-n SLOT WRITE src-g SLOT READ src-specs src-n SLOT READ SECTION WRITE src-n SLOT READ two COMPARE
+on src-fin-n LESS -> src-again
+on src-fin-n SAME -> src-gap-list
+on src-fin-n MORE -> src-gap-list
+proc src-again = LAST DELETE src-g SLOT READ ITEM READ spec-for SPLIT LAST DELETE
+# the spec is in: the meaning loop goes on with it now (mean), rather than waiting its
+# turn behind every other gap; the gap stays listed in case this pass can't finish
+proc src-gap-list = LAST DELETE src-g SLOT READ LAST READ GAP TODO WRITE ITEM READ mean SPLIT LAST DELETE
+proc src-fin-nil = src-asker SLOT READ ITEM READ spec-for COMPARE
+on src-fin-nil SAME -> src-again-nil
+on src-fin-nil MORE -> carry-on
+proc src-again-nil = src-g SLOT READ ITEM READ spec-for SPLIT LAST DELETE
+proc src-fin-none = src-asker SLOT READ ITEM READ spec-for COMPARE
+on src-fin-none SAME -> src-gap-none
+on src-fin-none MORE -> carry-on
+proc src-gap-none = src-g SLOT READ GAP TODO WRITE
+
+# ---- a reading run (SPLIT with subject = the gate; the asker's slots): one CALL, the next
+# queued line. It lands YES when it read one, NO when the queue was empty.
+proc src-rd = src-type SLOT READ src-rd-r
+on src-rd NONE -> src-rd-s
+proc src-rd-r = LAST DELETE ITEM READ NO src-senses SLOT WRITE src-text SLOT READ ITEM READ src-rel-next core-check-call CALL src-rd-rel
+on src-rd-r NONE -> src-rd-empty
+proc src-rd-s = src-text SLOT READ ITEM READ src-spec-next core-check-call CALL src-rd-spec
+on src-rd-s NONE -> src-rd-empty
+proc src-rd-empty = ITEM READ NO
+proc src-rd-yes = ITEM READ YES
+# a definition line: heard whole through the encoder (every word, in its order; what
+# passing each word does, it does), in a hearing run of its own. Its heard gate list is
+# that run's input after what it had before (SIG), and that list goes into the spec. A
+# line whose words end the hearing (an "if" with a no in hand ends a run) is kept in the
+# spec as the text it was, so the spec still shows every entry the source gave.
+proc src-rd-spec = src-text SLOT WRITE src-g SLOT READ ITEM READ src-hear SPLIT LAST DELETE WAIT src-rd-heard
+proc src-rd-heard = FIRST READ src-rd-h2
+on src-rd-heard NONE -> src-rd-text
+proc src-rd-h2 = ITEM READ YES COMPARE
+on src-rd-h2 SAME -> src-rd-yes
+on src-rd-h2 MORE -> src-rd-text
+proc src-rd-text = src-g SLOT READ sec-sources src-text SLOT READ SECTION WRITE src-rd-yes
+proc src-hear = SIG READ COUNT READ src-n0 SLOT WRITE src-text SLOT READ HEAR src-rd-list
+proc src-rd-list = SIG READ src-rd-skip
+proc src-rd-skip = src-n0 SLOT READ ZERO COMPARE
+on src-rd-skip SAME -> src-rd-keep
+on src-rd-skip MORE -> src-rd-skip1
+on src-rd-skip LESS -> src-rd-keep
+proc src-rd-skip1 = LAST DELETE src-n0 SLOT READ one SUB src-n0 SLOT WRITE REST READ src-rd-skip
+# filed: it says so at once (what the words left on its pad is its own, and goes with it)
+proc src-rd-keep = LAST DELETE src-list SLOT WRITE src-g SLOT READ sec-sources src-list SLOT READ SECTION WRITE ITEM READ YES LAND END
+# a relation line: its terms, diffed
+proc src-rd-rel = src-text SLOT WRITE src-fresh src-mark src-text SLOT READ HEAR src-each
+
+# how much each port is asked first comes from its record of being right: a term it gives
+# that agrees with a line held grounded moves it up the asker's order (x1.1, never above
+# one); one that contradicts a line held grounded moves it down (x0.9, never below the
+# floor). Answering at all moves nothing.
+proc src-order-up = src-asker SLOT READ t-derived-from src-src SLOT READ src-asker SLOT READ t-derived-from src-src SLOT READ STRENGTH READ eleven-tenths MUL src-cap
+proc src-cap = LAST READ one COMPARE
+on src-cap MORE -> src-cap-one
+on src-cap SAME -> src-cap-ok
+on src-cap LESS -> src-cap-ok
+proc src-cap-one = LAST DELETE LAST DELETE one REL WRITE
+proc src-cap-ok = LAST DELETE REL WRITE
+proc src-order-down = src-asker SLOT READ t-derived-from src-src SLOT READ src-asker SLOT READ t-derived-from src-src SLOT READ STRENGTH READ nine-tenths MUL src-flo
+proc src-flo = LAST READ worth-floor COMPARE
+on src-flo LESS -> src-flo-up
+on src-flo SAME -> src-cap-ok
+on src-flo MORE -> src-cap-ok
+proc src-flo-up = LAST DELETE LAST DELETE worth-floor REL WRITE
+proc src-trust = src-src SLOT READ src-top SLOT READ trust-weight
+# the same: strength goes toward one by the source's trust
+proc src-up = src-old SLOT READ one src-old SLOT READ SUB src-trust MUL ADD
+# agreeing with a line held grounded (another source's, before this one rewrote it) is
+# being right on this topic; agreeing with a guess tests the guess, not the source
+proc src-agree = src-st SLOT READ ITEM READ GROUNDED-STATE COMPARE
+on src-agree SAME -> src-right
+on src-agree MORE -> carry-on
+proc src-right = src-src SLOT READ src-top SLOT READ ITEM READ YES TRUST WRITE src-order-up
+# relate's own slots and write, with its placing split off. A told gate (a prime, a key, a
+# number, a type) is laid, not read: a line read from a source is written, but it doesn't
+# drag a told gate's point (R4-2)
+proc src-relate = s-str SLOT WRITE s-b SLOT WRITE s-type SLOT WRITE s-a SLOT WRITE relate-write src-place
+proc src-place = s-a SLOT READ MADE READ ITEM READ TOLD COMPARE
+on src-place SAME -> carry-on
+on src-place MORE -> src-place2
+proc src-place2 = s-b SLOT READ MADE READ ITEM READ TOLD COMPARE
+on src-place2 SAME -> carry-on
+on src-place2 MORE -> src-place3
+proc src-place3 = ITEM READ place SPLIT
+
+# ---- the diff, for the terms a source asserts: gate TYPE term. Each outcome is marked on
+# the gate checked: agreed, added or contradicted, holding the term, with the receipt.
+gate sec-agreed
+gate sec-added
+gate sec-contradicted
+proc src-m-agree = src-sg SLOT READ sec-agreed src-w SLOT READ SECTION WRITE
+proc src-m-add = src-sg SLOT READ sec-added src-w SLOT READ SECTION WRITE
+proc src-m-contra = src-sg SLOT READ sec-contradicted src-w SLOT READ SECTION WRITE
+# The reading, a term at a time. What the line said is on the pad above the mark, last
+# word on top: a comma ends a term, the number key "#" ends the entry. A term of one word is one gate and is diffed; a term
+# of more words is not one gate and makes no line. The lines go on src-sg: the gate
+# itself, or a second gate with the same label when this entry contradicts what the gate
+# holds while the source gives the spelling more than one entry (two meanings, not one
+# wrong line).
+gate src-cand
+gate src-none
+gate src-multi
+gate src-sg
+gate src-st
+proc src-fresh = src-none src-cand SLOT WRITE src-g SLOT READ src-sg SLOT WRITE
+proc src-each = LAST READ src-mark COMPARE
+on src-each SAME -> src-last
+on src-each MORE -> src-diff
+proc src-last = src-flush src-rd-done
+proc src-rd-done = LAST DELETE src-rd-yes
+proc src-diff = KIND READ
+on src-diff GATE -> src-sep
+on src-diff NUMBER -> src-drop
+on src-diff TEXT -> src-drop
+on src-diff POINT -> src-drop
+on src-diff LIST -> src-drop
+proc src-drop = LAST DELETE src-multi src-cand SLOT WRITE src-each
+proc src-sep = LAST READ key-comma COMPARE
+on src-sep SAME -> src-comma
+on src-sep MORE -> src-sep2
+proc src-comma = LAST DELETE src-flush src-each
+proc src-sep2 = LAST READ key-hash COMPARE
+on src-sep2 SAME -> src-hash
+on src-sep2 MORE -> src-wd
+# the number key: the source gives the spelling more than one entry (read first: it ends the line)
+proc src-hash = LAST DELETE src-flush src-sense-end ITEM READ YES src-senses SLOT WRITE src-each
+proc src-wd = src-cand SLOT READ src-none COMPARE
+on src-wd SAME -> src-wd-one
+on src-wd MORE -> src-drop
+proc src-wd-one = src-cand SLOT WRITE src-each
+# a term ends: one word is diffed, more is nothing
+proc src-flush = src-cand SLOT READ src-none COMPARE
+on src-flush SAME -> carry-on
+on src-flush MORE -> src-fl2
+proc src-fl2 = src-cand SLOT READ src-multi COMPARE
+on src-fl2 SAME -> src-fl-reset
+on src-fl2 MORE -> src-fl3
+proc src-fl-reset = src-none src-cand SLOT WRITE
+proc src-fl3 = src-cand SLOT READ src-none src-cand SLOT WRITE src-word-in
+proc src-sense-end = src-g SLOT READ src-sg SLOT WRITE
+proc src-word-in = src-w SLOT WRITE src-w SLOT READ src-g SLOT READ COMPARE
+on src-word-in SAME -> carry-on
+on src-word-in MORE -> src-held
+proc src-held = src-sg SLOT READ src-type SLOT READ src-w SLOT READ STRENGTH READ src-same
+on src-held NONE -> src-other
+proc src-same = src-old SLOT WRITE src-sg SLOT READ src-type SLOT READ src-w SLOT READ STATE READ src-st SLOT WRITE src-sg SLOT READ src-type SLOT READ src-w SLOT READ src-up src-relate src-agree src-m-agree src-confirm
+# not held this way: is it held the other way (a type that can't hold with this one)?
+proc src-other = src-type SLOT READ t-opposite REL READ src-keep-c
+on src-other NONE -> src-new
+proc src-keep-c = src-c SLOT WRITE src-crossed
+proc src-crossed = src-sg SLOT READ src-c SLOT READ src-w SLOT READ STRENGTH READ src-contra
+on src-crossed NONE -> src-new
+# a new line also starts a deduction from it (its own formulas over what it read; a guess
+# until tested)
+gate ln-deduce
+proc src-new = src-sg SLOT READ src-type SLOT READ src-w SLOT READ src-trust src-relate src-m-add src-sg SLOT READ src-type SLOT READ ITEM READ ln-deduce SPLIT LAST DELETE LAST DELETE
+# different. If the source gives this spelling more than one entry, it isn't saying two
+# things about one meaning: the spelling has two meanings (NOW §4). This entry gets a gate
+# of its own, with the same label, born where the gate is (its lines then move it), and its
+# lines go there. A source with one entry for it contradicts what is held: belief.
+proc src-contra = LAST DELETE src-senses SLOT READ ITEM READ YES COMPARE
+on src-contra SAME -> src-elsewhere
+on src-contra MORE -> src-belief
+# first: does another gate with this label already hold this line? Then that meaning has
+# its gate already, and this entry is that one's (nothing new is born)
+proc src-elsewhere = src-word SLOT READ LABELS FIND src-ew-each
+on src-elsewhere NONE -> src-split2
+proc src-ew-each = LAST READ FIRST READ src-ew-has
+on src-ew-each NONE -> src-ew-none
+proc src-ew-has = src-type SLOT READ src-w SLOT READ STRENGTH READ src-ew-found
+on src-ew-has NONE -> src-ew-next
+proc src-ew-found = LAST DELETE LAST DELETE
+proc src-ew-next = REST READ src-ew-each
+proc src-ew-none = LAST DELETE src-split2
+proc src-split2 = src-word SLOT READ src-g SLOT READ POINT READ SPAWN LAST READ src-sg SLOT WRITE LABEL WRITE src-new
+# belief gets the claim (a type b) as a branch with this run's slots: src-src the source,
+# src-c the type held now. Contradicting a line held grounded is this source being wrong
+# on this topic (the record belief weighs next time) and moves it down the ask order.
+proc src-belief = src-g SLOT READ src-type SLOT READ src-w SLOT READ ITEM READ belief SPLIT LAST DELETE LAST DELETE LAST DELETE src-m-contra src-wrong
+proc src-wrong = src-sg SLOT READ src-c SLOT READ src-w SLOT READ STATE READ ITEM READ GROUNDED-STATE COMPARE
+on src-wrong SAME -> src-wrong-g
+on src-wrong MORE -> carry-on
+proc src-wrong-g = src-src SLOT READ src-top SLOT READ ITEM READ NO TRUST WRITE src-order-down
+# a line held (perhaps only as a guess) that a grounded source now says too is tested and
+# confirmed: it is held grounded from here on
+proc src-confirm = MODE READ ITEM READ SOURCED COMPARE
+on src-confirm SAME -> src-ground
+on src-confirm MORE -> carry-on
+proc src-ground = src-sg SLOT READ src-type SLOT READ src-w SLOT READ GROUNDED-STATE STATE WRITE
+on src-ground NONE -> carry-on
+# ---- the brain's own programs (blueprint §4.3 CALL: "run a program, including one the
+# brain wrote itself"). Ungrounded ports: do-no-harm lets only runs the brain started
+# itself reach them. own-write takes "name text…" and writes text to own/name;
+# own-run runs own/name and gives back what it printed; own-list lists own/.
+gate src-own-write
+gate src-own-run
+gate src-own-list
+source src-own-write ungrounded echo %s | { read -r n c; echo $c > /home/neuron/own/$(basename $n) && echo written $(basename $n); }
+source src-own-run ungrounded cd /home/neuron/own && timeout 10 sh ./$(basename %s) 2>&1 | head -c 300
+source src-own-list ungrounded ls /home/neuron/own | head -50 | tr '\n' ' '
+
+# ---- a reference book to read, a line at a time, by its own choice (McGuffey's First and
+# Second Eclectic Readers, Project Gutenberg 14640 and 14668: a primer for its language).
+# The query is the line number; the brain keeps its own place (book-at in 75-sixth).
+gate src-book
+source src-book grounded sed -n %sp /home/neuron/books/mcguffey-readers.txt
+
+# ---- the owner's Merriam-Webster keys have a daily limit (NEURON-SOURCES: "non-commercial
+# use is free, with a daily limit"). A source gate holding a value has that many calls a
+# day; the port refuses the rest. A setting, not a number it means.
+gate src-mw-coll val 400
+gate src-mw-ant val 400
+gate src-mw-syn val 400
+rel src-mw-coll t-kind-of SETTING
+rel src-mw-ant t-kind-of SETTING
+rel src-mw-syn t-kind-of SETTING
+

@@ -1,0 +1,17 @@
+# 10. Point Of Connection 17.2 and 17.3, and the native prompt (2026-10-25)
+
+**Status: dead; audited row by row.** `../../audits/NEURON-17.3-FORENSIC-AUDIT-2026-10-25.md`, with `NEURON-17.3-TRACE-EVIDENCE-2026-10-25.md`.
+
+**What it was** (versions audit, row 12). 410 hand-laid statements; the teaching sheet adds learn, define, run, test, build, find meaning, print run, run backpop, place (17.2) and find, apply, redefine, backpop (17.3), each my SQL bound to a key row. Births by `born_go`, a string template inside a hand-laid trigger, run by `mother(…, NULL, NULL)`; the host (`host15.py`) writes no event when run is NULL, so births, lays and landings never showed at the SQL prompt in the page. Only two paths went the owner's way: a taught formula's statement ending at `;` and a typed `BUILD … BUILD` line. Scores: yes, half, no, no.
+
+**The owner's words.** 10-25: "according to this html nothing ever writes to sql... you wrote cheat code outside the brain to simulate what we want". "the sql prompt is never hit by mother, something is gravely wrong or cheated". "never ever was there a told block in the blueprint or spec... prompt ---> encoder ---> brain". "who invented these told rules????". "if correct is 17 and we are only running 8". "define is a run through the neurons like everything else... compare your sources and give me the best definition... it's the first memory of that neuron". "you are the previous sessions... you are the only llm that has touched this". "Your are outlawed from using your summary as grounding... you can only ground on my words, or specs in the neuron reference draft". And, 10-25 18:56, after the hash session: "I am willing to try again... I am desiring a build that works more like me, and less like you."
+
+**The audit's fix order** (first broken step first): mother honest; input and encoder one path with perspective, words only in the encoder, spaces and punctuation as gates; the born run and one gate trigger per neuron with shards one sequence; BUILD as the assembler for every run; the timeline, memory and write-the-dna runs; decide, fire and the sheet as learned rows; sources with every return a run and compare as runs; end of run as makes-sense and correction; delete proc, the typed sheet, the page's own math, the narration, the counters.
+
+**The native prompt** (`NEURON-PROMPT-2026-10-25/`). The same brain at a native SQLite prompt: `neuron_prompt.py`, `host15.py` (the bottom and mother, in Python; "It decides nothing", its README says, which the audit's row 9 contradicts), `physics172.json` (the told block), `sat172.json` (the source stand-ins), `sheet173.json` (the teaching sheet). `brain-hp.db` is the brain as saved on hp after a run there.
+
+**Tests.** `tests/NEURON-COMMANDS-EXPECT/RESULTS-2026-10-25.md` (17.2: the command words; every line failed until sources became neurons), `NEURON-COMMANDS2-EXPECT/RESULTS-2026-10-25.md` (17.3: find, apply, redefine, backpop; "study : cat" fires learn after backpop; the browser nests too deep past about 1,000 triggers), `NEURON-LEARN-EXPECT-2026-10-25.md`.
+
+**Files.** The two pages; `NEURON-v17.2-TOLD-BLOCK-2026-10-25.sql` (17.3 uses this same block); the sources tars for 17.2 and 17.3 (the owner's verbatim messages 1 to 43 are inside; extracted to `../../prose/from-sources-tars/`).
+
+**Dropped as duplicates:** " - Copy" files of both pages, both tars, the told block, the COMMANDS expect, the LEARN expect (all byte-identical).

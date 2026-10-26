@@ -1,0 +1,3 @@
+# earlyoom on hp: kill the biggest memory user before the machine freezes, so ssh survives.
+# The brain (user neuron, process "neuron") is preferred; the owner's services are avoided.
+EARLYOOM_ARGS="-m 4 -s 10 -r 300 --prefer ^neuron$ --avoid ^(postgres|postmaster|ollama|sshd|systemd|systemd-journal|dictd|claude|node)$"

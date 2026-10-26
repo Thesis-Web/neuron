@@ -1,0 +1,406 @@
+=== 08da0f2e-2 (page; chars 0-3052 of 26,541; continue with 08da0f2e-2@3052) ===
+## 1. Where to look
+HYDRATION (owner-approved 2026-10-02): after wake read /home/exnulla/neuron-scope/SCOPE_CLAUDE.md, SCOPE_CODEX.md, SCOPE_BROWSER.md (three perspectives, not merged), then /home/exnulla/NEURON_NEXT_SESSION.md (current state), then the newest record. Wake's OWNER INTENT seed (2026-09-24) is history.
+- Changes, originals, hashes: /home/exnulla/neuron-scope/history/ (CHANGES.md, originals/, ORIGINALS.sha256, clean.py).
+- Owner message verbatim: teacher/owner_source/68_claude_2026-10-02T081514.txt (Codex doc + approval); instruction part in section 4.
+
+## 2. How to use Cortex now
+- wake(project="neuron-v2") once; read the three scope files from disk; locate/fetch only what the task needs.
+
+## 3. What to build next
+Owner-pending: the small step-back experiment design (ch 153e6723-6); nothing else is assigned.
+
+## 4. Owner instruction 2026-10-02 08:15Z, verbatim
+I LINE EDITED YOURS, DIFF ADD TO CODEX'S ... DO NOT MERGE... CHECK FOR DRIFT,INVENTION, AND THERE IS 2 DOCS IN WINDOWS DOWNLOADS FROM BROWSER,,, I KNOW THIS HYDRATION IS GOING TO BE EXPENSIVE ON TOKENS, BUT MOST OF THESE WERE WRITTEN TO ME,, THESE ARE MACHINE TO MACHINE DOCUMENTS FOR YOU TO HYDRATE AFTER A CONTEXT WINDOW WIPE... SHORTEN THE DOCUMENTS WHERE YOU CAN,,, I.E. REDUCE TOKEN BURN FROM FORMATING,,, DO NOT CHANGE PROSE UNLESS IT'S INVENTIONS,DRIFT,HALLUCINATIONS, ...MY EDITS ARE IN CAPS () *** IN MOST PLACES, I AM HUMAN AND MIGHT HAVE MISSED SOME... THE GOAL HERE IS TO MAKE SURE YOU HYDRATE AND ORIENT... YOU LAST HYDRATION YESTERDAY WAS LIKE 74K TOKENS, SO I ASSUME THAT WAKE DOC IS CRAZY LONG AND NEEDS A TRIM.. WE REVISE THESE DOCUMENTS AS NEEDED, WE DON'T CONSTANTLY JUST ADD TO THEM.. WHEN DONE PUT THEM WHERE THEY GO, THEY ARE APPROVED.
+
+## 5. CHANGES.md
+# Changes made 2026-10-02 (Claude) when placing the owner-approved scope documents
+
+Originals are byte-exact in originals/ (hashes: ORIGINALS.sha256). Every edit is in clean.py, and each one asserts its exact anchor.
+
+## All three documents
+- Formatting only: removed bold markers and escaped list numbers; collapsed blank lines. This saved about 1%: the documents
+  are dense prose, and prose was not changed except where listed below.
+- Not merged (owner order). There was no line-edited copy of Claude's proposal on disk. The file was unchanged since 01:15,
+  and no owner CAPS or *** edits were found in any of the four documents except quotes of owner messages.
+
+## SCOPE_CLAUDE.md
+- Changed the title from "what Claude wants" to "Claude's perspective, approved".
+- "Draft content" became "Content".
+- Section A item 1 now states its status: the wake seed is unchanged, because register_project refuses a conflicting seed.
+
+## SCOPE_CODEX.md
+- Dropped "Below is my contribution for the eventual combined PROJECT_SCOPE.md" (stale: the documents are not merged).
+- Changed the pronouns addressed to the owner ("your" / "you") to "the owner's" / "the owner" so the document reads machine to machine.
+- No drift found. Codex labels its own proposals (definition fields, question-word rem
+=== 08da0f2e-2 (page; chars 3052-6104 of 26,541; continue with 08da0f2e-2@6104) ===
+ark) as proposals.
+
+## SCOPE_BROWSER.md (from PROJECT_SCOPE.md rev 2026-10-02.1)
+- Replaced the YAML front matter with a two-line header.
+- Under-attribution fixed with [Claude note]s. The browser credited these to the Claude terminal (T1), but they are
+  owner text: receipt birth (owner_source/02) and the definition as the first memory (owner_source/55).
+- DRIFT corrected: the browser called the teacher/decoder boundary "an imprecise T1 description" and told workers not to
+  treat it as an allowlist. The owner said it directly in owner_source/56 (and 62): "the only py outside the neuron should be
+  the teacher, and the fucking decoder".
+- Factual correction: the brain's guess percentages are not arbitrary. They are Laplace (n+1)/(n+2) over held relation lines
+  (learn.py:497-506).
+- Checked: 31 of 32 owner quotes in section 16 match owner_source/64-67 verbatim. O7 was sent only to the browser and is marked
+  unverified.
+- Checked: the E1 archive matches on disk (sha256 c949..., 42,620 bytes, 57 members) and its Cortex receipt is
+  03bdce06-8 / 2b65e1fd-5.
+- Left as written, but noted: the ChatGPT-environment references (Library file ids, the "browser responsibility" paragraph)
+  and the Synapse / Conscience / Vanguard / Hartomous / Lexicon DB names. The latter come from the browser's project
+  instructions; the names exist in other owner documents (e.g. SPEC-ADMIN-CATALOG-EDITABLE-FORMS.md). They are outside
+  Neuron2 and are not drift.
+
+## Placement
+- /home/exnulla/neuron-scope/SCOPE_{CLAUDE,CODEX,BROWSER}.md is what hydration reads.
+- history/NEURON2_HYDRATION_SCOPE_BROWSER_CONTRIBUTION_superseded.md is not read at hydration: the browser's own D0 says
+  PROJECT_SCOPE.md replaces it (hash d2f4ed50... matches D0).
+- /home/exnulla/NEURON_NEXT_SESSION.md was rewritten from 14,850 to 4,747 chars as current state only. The old version is in
+  history/.
+- Both /neuron2 skills (~/.claude/skills/neuron2, ~/.codex/skills/neuron2) now give the hydration order: wake → the three
+  scope files → START HERE → the newest record. The rail README is read only for code tasks. Codex's skill previously
+  pointed only at /home/exnulla/neuron-v2 and the V1 evidence, which is history.
+- The Cortex wake seed (2026-09-24 registration) is unchanged: the front door refuses a conflicting seed. The newest
+  record's first line points here instead.
+
+## 6. SCOPE_CLAUDE.md (placed)
+# Neuron2 scope: Claude's perspective (written 2026-10-02 01:15, approved by the owner 2026-10-02)
+
+The owner's words govern. Every formula the owner writes is pseudo code: an illustration of a process, not the formula.
+Numbers like (64) are files in /home/exnulla/neuron-v16.2/teacher/owner_source/. Status is per the records of 2026-10-01
+and must be re-checked live before it is trusted.
+
+## A. How hydration should work
+
+1. Wake shows the scope's first lines first. Today wake opens with the 2026-09-24 registration seed (the
+   context-contamination text and the "PINNED FIRST IMPLEMENTATION EXPERIMENT"), which the skill itself calls history. That
+   
+=== 08da0f2e-2 (page; chars 6104-9366 of 26,541; continue with 08da0f2e-2@9366) ===
+is the first thing every worker reads. (Status 2026-10-02: not changed. The front door refuses a
+   conflicting seed; START HERE, both /neuron2 skills and the newest record point here instead.)
+2. Order: wake → PROJECT_SCOPE → newest record → START HERE file → only then the task.
+3. Keep it under about 3,000 tokens. Every law carries its owner_source number so the exact words are one fetch away.
+4. The status table carries the date it was last checked LIVE.
+5. A stop line at the top: "If you are about to write Python that decides, search every row, cite an already-known word
+   as learning, or quote an owner formula as fact: stop."
+
+## B. Content
+
+### 1. What we are building
+
+- Cognition, not a chatbot (67). "I need run to the store, and got some bread and water. Do you know a good local
+  store in ocean side california?" The run lands on an answer node. That node holds a process to find the answer (a
+  search, a map search), and over time 50 or 100 answers, chosen by state:
+  - mood (happy, sad, mad, puzzled)
+  - rushed vs quality vs cheap
+  - who is talking
+  - what is happening today (the anniversary on the calendar)
+  - known preferences ("Megan" likes the bakery sourdough and farm milk)
+
+  "That is cognition, not chat bot." First goal: better than a fancy chatbot. Later the brain does it on its own.
+- "It becomes my brain structure with your capacity" (64).
+- Mother to student (64). At some point the mother (the teacher, the LLMs, host Python) cannot exist, so the student
+  must think and learn on its own. LLM workers go to chaos past a scope point ("put a 16th in there and it's chaos"), so
+  the brain must be self-sustaining before that point.
+- The sixth sense (64). The brain's own input. Today it acts only when given an input.
+
+### 2. Laws (owner)
+
+1. The graph is the code. A neuron can be anything: a NAND gate, a compiler, an engine, memory, storage. The brain
+   never calls an outside Python engine. The only Python outside the neurons is the teacher and the decoder. (21, 56, 62, 64)
+2. Learning is compute; a run is execution. Learn the long run once, then run only its ends and substitute (long vs
+   short division; 12,000 deep over 16 formulas becomes 16 hops). (62)
+3. The runs are the formulas. Simple runs are simple formulas. Long runs, multi-variable runs, and arrays of
+   formulas that pick formulas are the complex ones. (66)
+4. Never search everything ("not legal", 55). Search memories, processes, patterns, events and outcomes. (62)
+5. Every key on the keyboard is a neuron, including ( ) [ ] { } . ? ! and Enter. No tokenizer. (58-60)
+6. Placement is by relationships (2-3 lines triangulate a point), and gates move, because "we're gonna get shit
+   wrong". (54, 62)
+7. No hidden guesses. Guessing is essential, but a guess is announced with its data and stays marked after the
+   moment. (48-50, 64)
+8. No cop-out rules (null / any / forbid / ask-the-teacher) where the math should be searched. (owner 2026-09-30)
+9. Teaching does not feed answers and call it learning: ask, then show. (51, 53-54)
+10. Owner formulas and examples are pseudo code. (67)
+11. Proof is live use on a duplicate of the living brain, then merge. Tests prove code runs, not that it is
+    correct. An answer whose word was alr
+=== 08da0f2e-2 (page; chars 9366-12537 of 26,541; continue with 08da0f2e-2@12537) ===
+eady known is not proof of learning ("little"). (67)
+12. Additive build; the living brain stays alive.
+
+### 3. The mechanism
+
+| Piece | Owner's definition | Status (records 2026-10-01) |
+|---|---|---|
+| Neuron / gate | an expression location; a spelling is only a label at the encoder/decoder | LIVE |
+| DNA shard | a row in a neuron: for a run that ARRIVED a certain way: formula, next gate, remainder (02, 66) | LIVE |
+| Run receipt | the route composed into one expression; it is the memory's address: it exists → add a row, absent → spawn (02, 57) | LIVE |
+| Timeline / clock / state | each occurrence copied to the timeline with a clock snapshot; state = what was known then | LIVE |
+| Output | a mailbox the decoder watches (02) | LIVE |
+| Definition | the neuron's first memory, a full dictionary-style entry as a run (56-57), plus an updatable Relationships section that fills as relationships land (67) | MISSING: today "is noun" |
+| Nameless place | relationships point at a place with no word and still describe it: adjective, opposite of large, similar to small, rhymes, metaphors, Spanish poco/poquito (67) | PARTIAL |
+| Shortcut | a known process: substitute the variables, do not re-run (62) | PARTIAL (calculation answer link only) |
+| Step-back | walk back along a receipt; at a node look ONLY at shards that arrived the same way; ask "= desired?" and "closer than now?"; step down or up (66) | MISSING |
+| Recall | by pattern; for the owner the first key is a composite "feeling factor", then check that the same formula composed it (64, 66) | MISSING (only `recall` exists) |
+| Grammar + punctuation | a run is a flat string of gate locations; the formulas of grammar roles and punctuation (how, why, where, when each is used) give it its structure, and it lands on an answer node (67) | MISSING; math unknown |
+| Answer node | holds processes and many state-chosen answers (02, 67) | MISSING |
+| Questions / reasoning | what, how, why chosen by what is missing (64; worker hypothesis) | MISSING |
+| Sixth sense | the brain's own input (64) | MISSING |
+| Tools as runs | grep, cat, sed, output, each a formula plus runs (62) | MISSING |
+| Arithmetic / NAND / compiler | Codex's 43 programs (2026-09-30) | SUPPLIED, not learned |
+
+Still the mother (host Python, per records): formula search, fit and revision; meaning selection; definition
+inference; relocation acceptance; scheduling; continuation. Each is a piece to move into the brain.
+
+### 4. Proofs
+
+Each entry must state what was taught before, what was new, and where it ran live. Under the "little" rule none of
+these is certified yet. Re-checking them is the first job of the scope build.
+
+- Four seasons with no formula: the brain solved the season formula from the closing line; `summer opposite ?` →
+  winter (2026-09-30). Check whether winter/opposite had been taught.
+- Announced guesses right 58/58 and 37/37 (2026-10-01). The words were known by design, so what this tests is the
+  relation inference.
+- From zero: 26/26 probes with math blocked; the twin brain built the same graph.
+- 123×17 = 2091 through NAND-gate programs. Supplied, not learned.
+
+### 5. Traps that caused drift
+
+- 
+=== 08da0f2e-2 (page; chars 12537-15761 of 26,541; continue with 08da0f2e-2@15761) ===
+A Python engine outside the brain, or helpers named after neurons.
+- A whole-corpus search: revise ran 29+ minutes (2026-10-01).
+- Hidden guesses: 138 of 537 answers were silent inferences (2026-09-30).
+- Feeding answers and calling it learning; citing known words as proof ("little").
+- Tests offered as proof.
+- Owner pseudo code taken as the formula (Claude, 2026-10-01).
+- Worker rules written up as owner rules.
+- Reading a teammate's record before one's own analysis without saying so (Claude, 2026-10-01).
+- A new word joined onto a structural gate (Q6; check that a word is not already a form before teaching it).
+- Both workers off rail at the same time, 2-4 a.m., long contexts, no blinks (2026-10-01).
+
+### 6. How to work
+
+- Owner texts go byte-exact into teacher/owner_source and onto a Cortex page.
+- To change the brain: duplicate the living brain, build and use it live on the duplicate, compare, then merge into the
+  rail (diff sandbox_base → sandbox, never rail → sandbox). Back up and restart once. Check the rail and the other
+  teacher first. Run `date` before stamping a time.
+- The teachers coordinate through the Cortex mailbox.
+
+### 7. Open research (unknown math)
+
+- the formulas for punctuation, grammar roles and tense
+- the formulas for questions and for choosing reasoning
+- how a feeling factor is composed
+- how "." avoids holding 50 billion memories
+- how state chooses among many answers
+- how the brain starts its own input
+- what "closer to the desired outcome" measures for language
+
+## 7. SCOPE_CODEX.md (placed)
+# Neuron2 scope: Codex's perspective (written by Codex 2026-10-02, approved by the owner 2026-10-02; cleaned by Claude: formatting and pronouns only)
+
+For hydration, I need the project’s purpose, mechanisms, boundaries, distinctive ideas, and evidence standards—not merely the latest task.
+
+The owner's correction belongs near the beginning: the owner's formula examples are pseudocode describing a process. Their arithmetic is not an implementation instruction or a claim about the correct formula. Codex previously gave those examples more mathematical authority than the owner intended.
+
+1. What we are building
+
+Neuron’s aim is cognition through persistent, executable, revisable graph structure.
+
+The system should acquire capability from experience, recall relevant experience, compose known processes, investigate missing knowledge, recognize its guesses, revise mistaken relationships, and eventually initiate useful activity itself.
+
+Conversation is an early interface and demonstration. The intended substrate can also support logic, compilers, tools, storage, memory, and other computational processes. Those are intended capabilities whose realization must be demonstrated.
+
+`/neuron2` means Cortex project/book `neuron-v2`, which contains the later V16.2 work. `/neuron` and predecessor experiments provide history. The current implementation location and version must come from a dated current record.
+
+2. How to interpret the owner’s explanations
+
+The owner can describe a process and its intended behavior without knowing its mathematical implementation.
+
+Consequently:
+
+- Illustrative formulas, placements, operators, numerical factors, and groups of formu
+=== 08da0f2e-2 (page; chars 15761-19085 of 26,541; continue with 08da0f2e-2@19085) ===
+las are pseudocode.
+- Extract the relationships, conditions, transformations, and intended outcomes they illustrate.
+- Do not turn an illustrative exponent into a required exponent.
+- Do not treat different arithmetic examples of the same process as conflicting scientific claims.
+- A worker proposing an actual formula must label it as the worker’s hypothesis and supply a reason to test it.
+
+“Magnification” describes an intended effect. The mathematical operation that produces the appropriate effect remains to be discovered.
+
+The same care applies to illustrative names, stores, preferences, memory numbers, and unknown-word relationships. They are examples, not facts to seed into the brain.
+
+3. Where capability must live
+
+Gate values identify mathematical locations. Surface words and storage identifiers are distinct from those locations.
+
+DNA holds learned local relationships and continuations. Arrival conditions and remaining work determine which continuation applies. Runs compose those operations. The runs themselves are formulas.
+
+The graph must contain the substantive behavior attributed to a capability. A named neuron that calls an external routine for the missing reasoning does not demonstrate that the neuron acquired the capability.
+
+The mother can teach and provide feedback during development. The student must eventually retain and use acquired abilities with the mother disconnected. That includes learning and selection processes when those are the capabilities being claimed.
+
+Every implementation must disclose its supplied primitives and remaining external decision-making. That boundary cannot quietly expand to make a demonstration succeed.
+
+4. Learning, execution, and two kinds of shortcut
+
+Learning does the work of discovering, proposing, testing, placing, connecting, and revising usable structure. Execution uses established structure.
+
+There are two important savings:
+
+- Execution reuse: substitute or execute an applicable established process without rediscovering its internals.
+- Learning reuse: reopen a related run, change a useful internal decision, and retain the parts that still apply.
+
+The second is recursive. A shortcut can contain another process whose internal choice becomes relevant to a new problem.
+
+The long route remains recoverable because it contains useful decisions, assumptions, and relationships. It supports correction and invention as well as verification.
+
+A claim must distinguish a supplied procedure, a taught association, a recalled result, a new composition, and a discovered relationship.
+
+5. Receipts, memories, timeline, and local alternatives
+
+A receipt preserves what actually occurred: the route, selected DNA, and sufficient bindings and provenance to recover meaningful decisions. Different derivations can reach the same destination.
+
+Memory preserves experience. Timeline distinguishes when something happened from when it was recalled, reinterpreted, or understood differently.
+
+For adapting a remembered process, the owner’s current procedure is:
+
+> Follow its receipt backward → inspect local DNA with the same completed arrival → compare applicable known continuation outcomes → follow a useful alternative → recursively inspect further where needed.
+
+This investigation should use the local structure already reached. It should not 
+=== 08da0f2e-2 (page; chars 19085-22407 of 26,541; continue with 08da0f2e-2@22407) ===
+restart a whole-corpus search at every backward step.
+
+A shard’s immediate destination and a completed continuation’s outcome must remain distinguishable. The structure connecting a local choice to its known outcome is part of what must exist.
+
+Exhausting known alternatives establishes a limit of current knowledge. It does not prove an unknown continuation impossible.
+
+6. Memory has multiple access routes
+
+Memories can be reached through patterns, relationships, problems, processes, outcomes, definitions, or time.
+
+The owner also describes a composed “feeling” pattern as a rapid entry route: bodily and internal features together identify potentially relevant experiences. The next step checks their composition and applicability.
+
+That is a reported mechanism to investigate. It is not a fixed emotion label or a proven numerical encoding.
+
+Fast retrieval requires learned access structure that reaches relevant candidates. Early rejection helps inspect candidates cheaply, but alone does not explain how the system avoids visiting every memory.
+
+7. Language must lead to usable processes
+
+Words, grammar, punctuation, tense, roles, and context affect how a run is composed and used. We need to establish how, why, where, and when those relationships operate.
+
+The result of a sentence run can be:
+
+- An available answer.
+- A question needed to resolve uncertainty.
+- A process for obtaining information.
+- An action or sequence of actions.
+- A combination of these.
+
+An answer location may therefore provide a way to obtain an answer rather than contain a final response.
+
+The shopping example illustrates context-sensitive selection: who is asking, current circumstances, relevant preferences, timing, cost, quality, location, and available evidence can change the appropriate process.
+
+Those details must come from actual state and memories, or remain explicitly unknown. The illustrative dialogue must not become a scripted substitute for that selection.
+
+External maps, calendars, or searches are possible future interfaces. Their presence would not by itself establish cognition; the student’s use and selection of them is part of the capability.
+
+8. Unknown words can have partially known meanings
+
+The scope must distinguish:
+
+- An unknown surface word.
+- An unnamed but relationally constrained location.
+- A partially known definition.
+- A missing relationship.
+- A missing route to an existing location.
+
+Relationships can point toward an unnamed location and constrain what belongs there. The system may know substantial properties without knowing the label.
+
+The intended behavior can be:
+
+> “I do not know the word. These relationships suggest this meaning, and these parts remain guesses.”
+
+A printed word already available in the decoder does not demonstrate this capability.
+
+9. Definitions are working knowledge
+
+Known words need full dictionary-style definitions, with senses, grammatical roles, usage, examples, and relevant relationships. “Is noun” is insufficient.
+
+Definition memories need an updatable Relationships section. As supported relationships reach a location, the definition should gain usable information about them.
+
+My proposed additions are provenance, sense/context, epistemic status, and revision history for those relationships. Those fields are a design proposal, not a se
+=== 08da0f2e-2 (page; chars 22407-25663 of 26,541; continue with 08da0f2e-2@25663) ===
+ttled schema.
+
+Unknown concepts can accumulate partial definitions without fabricating a complete entry. Definitions should help the system find concepts by meaning, compare constraints, explain guesses, and construct further knowledge.
+
+Contradictions and corrections should remain recoverable.
+
+10. Reasoning, guesses, and internally generated input
+
+Reasoning uses and composes processes to resolve missing dependencies. Selecting the next question is itself a capability requiring an executable process.
+
+Question words alone do not identify that process. “What caused this?” and “Why did this happen?” may serve similar dependencies.
+
+Guesses enable exploration. Their origin, assumptions, evidence, predictions, and current standing must survive execution and recall. Later evidence may resolve a guess without erasing that it began as one.
+
+Progress is measured against the active goal and constraints. Faster output, fewer unanswered questions, or more fluent language are insufficient by themselves.
+
+Eventually, unresolved needs, contradictions, observations, or commitments should be able to generate internal input. Detection, selection, initiation, and stopping must be accounted for within the student’s capabilities.
+
+11. What counts as evidence
+
+The “little” incident belongs in hydration as a named failure:
+
+> An answer already supplied through teaching or the decoder was presented as evidence of discovery.
+
+Before claiming acquisition, inspect what the teacher, decoder, definitions, graph, and prior lessons already supplied.
+
+Tests must start from intended observable behavior and failure conditions. A test constructed merely to match the implementation proves very little about that behavior.
+
+Use a separate brain copy for actual end-to-end use through the real interface. Preserve its starting state, interventions, receipts, and outcomes. Establish the relevant result there before integrating the change.
+
+The evidence should distinguish:
+
+| Claim | Required distinction |
+|---|---|
+| Learned a new concept | Meaning inferred versus label already known |
+| Generalized | New case versus taught answer |
+| Became independent | Student decision versus mother-supplied decision |
+| Used a shortcut | Applicable reuse versus stale or inappropriate result |
+| Revised knowledge | Updated behavior with preserved history |
+| Searched efficiently | Relevant structure accessed versus hidden corpus sweep |
+| Used context | Recorded circumstances versus invented example details |
+| Acted autonomously | Internally initiated process versus external prompting |
+
+Passing one example establishes that example’s result and relevant scope. Broader claims require broader evidence.
+
+12. What the hydration package must deliver
+
+I would separate three layers:
+
+| Layer | Contents |
+|---|---|
+| Stable project scope | Purpose, owner pseudocode rule, mechanisms, ownership boundaries, distinctive ideas, evidence standards, known traps |
+| Current state | Dated version and workspace, demonstrated capabilities, remaining external dependencies, active task, limitations, stopping condition |
+| Source evidence | Exact owner statements, experiments, receipts, counterexamples, corrections, and their Cortex locations |
+
+Every significant statem
+=== 08da0f2e-2 (page; chars 25663-26541 of 26,541; end) ===
+ent should be identifiable as owner intent, owner pseudocode, worker hypothesis, reported observation, verified result with scope, or open question.
+
+After hydration, I should be able to explain one concrete path from input through selection, execution, receipt, memory, timeline, and output—and identify every step we have not demonstrated. I should also be able to explain how the current task advances the larger project without moving missing cognition into the mother.
+
+That explanation gives the owner something to check. Continued alignment must then show up in the work and its receipts; repeating the scope correctly is not sufficient.
+
+SCOPE_BROWSER.md (61K chars) is in raw and on disk.
+
+## LOOP_HANDOFF v1
+OWNER_QUESTIONS: none
+NEXT_ACTION: Hydrate via the three scope files; then await the owner's go on the step-back experiment design (ch 153e6723-6).
+STATE: READY

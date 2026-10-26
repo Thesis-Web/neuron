@@ -1,0 +1,486 @@
+# 10-told.lay: the told base of words. Builder A, 2026-10-19.
+# The 65 primes as actions over the physics words, the early-word labels, zero/one/two, the operators,
+# the relationship types with first-guess formulas, and the told relationships the blueprint names (§16).
+# Every row is told. No definitions, no facts, no sentences. A prime with no honest action is a plain gate
+# (a name in hand) and is listed as a gap in the report. Each line says what passing the gate does.
+
+# ---- small helpers used by many primes (each: what passing it does)
+# puts the outcome yes in hand (on the pad as data)
+proc in-yes: 'yes
+# puts the outcome no in hand
+proc in-no: 'no
+# takes the first item of the list in hand (found/none at the head)
+proc in-first: zero read-item
+
+# ---- the hole way (turn two, first guess; meaning blueprint 3: a hole is a slot waiting for a thing).
+# A hole's string is `read-from hole`: read-from as the first token of a proc puts the proc gate itself in hand
+# (its arrival is the proc gate), so both holes share one way and a hole is any gate whose string is this one.
+# hole: [.. h] -- [..] or [.. h] : a gate under the hole that is not itself a hole fills it (the thing stays in
+# hand, the hole is dropped); nothing under it, or a number, text, list, mark, or another hole -> the hole stays
+proc hole: read-pad one hole-count
+# [.. h n 1] -> [.. h d]: the pad count against one. same: the hole alone, it stays (d dropped); more: look under
+proc hole-count: compare
+  same -> drop
+  more -> hole-under
+  less -> drop
+# [.. x h d] -> [.. x h x]: a copy of the thing under the hole, to ask whether it is a gate
+proc hole-under: drop over hole-isgate
+# [.. x h x] -> [.. x h x] when x is a gate (found); a non-gate is consumed (none, [.. x h]) and the hole stays
+proc hole-isgate: find-label
+  found -> hole-gate
+# [.. x h x] -> [.. x h t l]: x's own way (kind, string). A bare gate (none) has no way: it fills the hole
+proc hole-gate: read-bind
+  found -> hole-way
+  none -> drop
+# [.. x h t l] -> [.. x h l l2]: the hole's own string next to x's (read-bind on h passes its found inert)
+proc hole-way: swap drop over read-bind swap drop hole-eq
+# [.. x h l l2] -> [.. x h d]: the strings disagree in 0 items -> x acts as a hole: the hole stays; else x fills it
+proc hole-eq: compare
+  same -> drop
+  more -> hole-fill
+  less -> hole-fill
+# [.. x h d] -> [.. x]: the hole is filled by x
+proc hole-fill: drop drop
+
+# ---- yes and no are the outcome gates from roots (names in hand). Their words point there.
+label yes yes
+label no no
+
+# ---- numbers (zero is in roots). Passing one puts 1 on the pad; two puts 2.
+gate one = 1
+gate two = 2
+label zero zero 0
+label one one 1
+label two two 2
+
+# ---- relationship types: a formula each way (point in, point out). First guesses the brain refits (§5.2).
+# passing a reltype with a gate in hand reaches the related gates: stored lines first, then the formula.
+# same place
+reltype r-same fwd: =1 mul back: =1 mul
+# yes = x, no = 1/x: inversion through the unit sphere
+reltype r-opposite fwd: =1 swap div back: =1 swap div
+# on = y, off = -y: negation
+reltype r-contradicts fwd: =-1 mul back: =-1 mul
+# a kind sits one step up z
+reltype r-kind-of fwd: z-axis read-point add back: z-axis read-point sub
+# the whole sits one step along x
+reltype r-part-of fwd: x-axis read-point add back: x-axis read-point sub
+# like = nearly the same place, scaled a little
+reltype r-like fwd: =0.9 mul back: =0.9 div
+# the effect sits two steps later in y
+reltype r-cause fwd: y-axis read-point =2 mul add back: y-axis read-point =2 mul sub
+# earlier = one step back in y
+reltype r-before fwd: y-axis read-point sub back: y-axis read-point add
+# later = one step on in y
+reltype r-after fwd: y-axis read-point add back: y-axis read-point sub
+# the use is the thing scaled out
+reltype r-used-for fwd: =2 mul back: =2 div
+# a description sits halfway in
+reltype r-describes fwd: =0.5 mul back: =0.5 div
+# support = same direction, further out
+reltype r-supports fwd: =1.5 mul back: =1.5 div
+# derived = one step along x and z
+reltype r-derived-from fwd: x-axis read-point add z-axis read-point add back: x-axis read-point sub z-axis read-point sub
+
+# ---- the primes. Each is a proc whose string is the action; w-<prime> as BRIEF-COMMON §B names them.
+
+# substantives
+# I: the brain's own state in hand (gates, memories, active)
+proc w-i: read-size
+label w-i i me
+# YOU: the who of this input in hand
+proc w-you: read-who
+label w-you you
+# SOMEONE: the who-hole (first guess, turn two): a gate in hand that is not a hole fills it, else the hole itself in hand
+proc w-someone: read-from hole
+label w-someone someone
+# SOMETHING: the what-hole (first guess, turn two): a gate in hand that is not a hole fills it, else the hole itself in hand
+proc w-something: read-from hole
+label w-something something thing a
+# PEOPLE: more than one someone: two who-holes in one list in hand (someone + someone, the worksheet's x + x; first guess, turn two)
+proc w-people: 'w-someone 'w-someone two read-list
+label w-people people
+# BODY: the point of the thing in hand, where it physically is (first guess, turn two; the same string as where)
+proc w-body: read-point
+label w-body body
+
+# relational
+# KIND: reaches the kinds of the thing in hand
+proc w-kind: r-kind-of
+label w-kind kind
+# PART: reaches what the thing in hand is part of
+proc w-part: r-part-of
+label w-part part
+
+# determiners
+# THIS: the run's subject (the pad top) taken in hand again
+proc w-this: dup
+label w-this this
+# THE SAME: compares the two things in hand; same/more/less at the head
+proc w-same: compare
+label w-same same
+# OTHER: reaches what stands opposite the thing in hand
+proc w-other: r-opposite
+label w-other other else
+
+# quantifiers (one and two are above)
+# SOME: counts what is in hand and tests it against zero
+proc w-some: read-count zero some-test
+# more than zero -> yes in hand, else no
+proc some-test: compare
+  more -> in-yes
+  same -> in-no
+  less -> in-no
+label w-some some
+# ALL: everything on the pad gathered into one list in hand
+proc w-all: read-pad read-list
+label w-all all
+# MUCH/MANY: how much is in hand, as a count
+proc w-much: read-count
+label w-much much many
+# LITTLE/FEW: only the first of what is in hand
+proc w-little: in-first
+label w-little little few
+
+# evaluators: toward or away from the want (compare directly; the balance handle is C's)
+# GOOD: the thing in hand against the want: balanced with it -> yes in hand, off -> no
+proc w-good: read-want good-test
+# the thing in hand compared with the want (d = thing - want)
+proc good-test: compare
+  same -> in-yes
+  more -> in-no
+  less -> in-no
+label w-good good
+# BAD: the thing in hand against the want: off it either way -> yes in hand, balanced -> no
+proc w-bad: read-want bad-test
+# the thing in hand compared with the want
+proc bad-test: compare
+  same -> in-no
+  more -> in-yes
+  less -> in-yes
+label w-bad bad
+
+# descriptors: scale for degree
+# BIG: the value or point in hand scaled out by two
+proc w-big: =2 mul
+label w-big big
+# SMALL: the value or point in hand scaled in by two
+proc w-small: =2 div
+label w-small small
+
+# mental
+# THINK: splits a question run (the ladder) on the thing in hand
+proc w-think: 'answer swap split
+label w-think think
+# KNOW: finds the memories the thing in hand was used in (found/none)
+proc w-know: read-use
+label w-know know
+# WANT: the thing in hand becomes the run's want
+proc w-want: write-want
+label w-want want
+# DON'T WANT: the opposite of the thing in hand becomes the want
+# (no label: the encoder splits "don't" at the apostrophe and no honest single word was found; a gap, turn two)
+proc w-dont-want: r-opposite write-want
+# FEEL: the thing in hand against the want, if there is one
+proc w-feel: feel-look
+# a want in hand -> balance; none -> nothing felt, the thing is let go
+proc feel-look: read-want
+  found -> balance
+  none -> drop
+label w-feel feel
+# SEE: what the run was given (the input) in hand
+proc w-see: read-what
+label w-see see
+# HEAR: takes the answer to this run's last call (found/none)
+proc w-hear: hear
+label w-hear hear
+
+# speech
+# SAY: says what is in hand through the say handle (core-check first)
+proc w-say: say-word
+label w-say say
+# WORDS: the word for the thing in hand (found/none)
+proc w-words: read-label
+label w-words words word
+# TRUE: how grounded the thing in hand is (2, 1, 0)
+proc w-true: read-source
+label w-true true
+
+# actions, events, movement
+# DO: runs the gate in hand and keeps it as the subject
+proc w-do: dup write-rest
+label w-do do
+# HAPPEN: the memories between this input's time and now
+proc w-happen: read-when clock find-time
+label w-happen happen
+# MOVE: moves the gate in hand to the point in hand
+proc w-move: move
+label w-move move to
+
+# existence, possession
+# BE SOMEWHERE: the place of the thing in hand, and what is there
+proc w-be-somewhere: read-point find-point
+label w-be-somewhere somewhere
+# THERE IS: is there a gate for the word or gate in hand (found/none)
+proc w-there-is: find-label
+label w-there-is there
+# BE (someone/something): reaches what the thing in hand is the same as
+proc w-be: r-same
+label w-be be is are am
+# (IS) MINE: the who of this input in hand next to the thing: what is mine belongs to the one speaking (first guess, turn two; the same string as you)
+proc w-mine: read-who
+label w-mine mine my
+
+# life and death
+# LIVE: the brain's own running runs now, in hand: it lives while it runs, and die ends the run (first guess, turn two)
+proc w-live: read-size swap drop swap drop
+label w-live live
+# DIE: this run stops; nothing is written
+proc w-die: end
+label w-die die
+
+# time
+# WHEN/TIME: the time of this input in hand
+proc w-when: read-when
+label w-when when time
+# NOW: the time now in hand
+proc w-now: clock
+label w-now now
+# BEFORE: the first time in hand less than the second -> yes in hand
+proc w-before: compare
+  less -> in-yes
+  same -> in-no
+  more -> in-no
+label w-before before
+# AFTER: the first time in hand more than the second -> yes in hand
+proc w-after: compare
+  more -> in-yes
+  same -> in-no
+  less -> in-no
+label w-after after
+# a long told span in ms (thirty days) and a short one (a minute): first guesses (turn two) the brain can rewrite with write-value
+gate long-span = 2592000000
+gate short-span = 60000
+# A LONG TIME: the time a long told span past now, in hand (the worksheet's now ++; first guess, turn two)
+proc w-long-time: clock long-span add
+# the label is a first guess (turn two): long is on the owner's list of words to find, taken as this prime's word
+# A SHORT TIME: the time a short told span before now, in hand (the worksheet's --now; first guess, turn two)
+proc w-short-time: clock short-span sub
+# the label is a first guess (turn two): short is on the owner's list of words to find, taken as this prime's word
+# FOR SOME TIME: this run holds until its branches land or a beat passes
+proc w-some-time: wait
+# the label is a first guess (turn two): awhile = for some time, the one honest single word (the encoder splits at spaces)
+# MOMENT: one beat (the told beat length) in hand
+proc w-moment: beat
+label w-moment moment
+
+# space
+# WHERE/PLACE: the point of the gate in hand
+proc w-where: read-point
+label w-where where place
+# HERE: the run's own where
+proc w-here: read-where
+label w-here here
+# ABOVE: what sits one step up z from the thing in hand
+proc w-above: read-point z-axis read-point add find-point
+label w-above above up
+# BELOW: what sits one step down z from the thing in hand
+proc w-below: read-point z-axis read-point sub find-point
+label w-below below down
+# FAR: the two things in hand are apart -> yes in hand
+proc w-far: compare
+  more -> in-yes
+  same -> in-no
+  less -> in-no
+label w-far far
+# NEAR: the two things in hand are at one place -> yes in hand
+proc w-near: compare
+  same -> in-yes
+  more -> in-no
+  less -> in-no
+label w-near near
+# SIDE: what sits one step along x from the thing in hand
+proc w-side: read-point x-axis read-point add find-point
+label w-side side
+# INSIDE: the gates that are part of the thing in hand (found/none)
+proc w-inside: 'r-part-of read-relin
+label w-inside inside in
+# TOUCH (contact): the two things in hand at one place -> yes in hand, apart -> no (first guess, turn two; the same test as near)
+proc w-touch: compare
+  same -> in-yes
+  more -> in-no
+  less -> in-no
+label w-touch touch
+
+# logical
+# NOT: the outcome in hand flips (yes -> no); anything else -> its opposite (the thing is kept under the test)
+proc w-not: dup 'yes not-test
+# the thing in hand against yes
+proc not-test: compare
+  same -> not-no
+  more -> not-other
+  less -> not-other
+# it was yes: no in hand
+proc not-no: drop drop in-no
+# it was not yes: the first opposite of it in hand (no -> yes by the told line)
+proc not-other: drop r-opposite in-first
+label w-not not
+# MAYBE: the guess state in hand, next to the thing it marks
+proc w-maybe: 'state-guess
+label w-maybe maybe
+# CAN: is there a way bound to the gate in hand (found/none)
+proc w-can: read-bind
+label w-can can
+# BECAUSE: how the thing in hand was made, and the memory that made it
+proc w-because: read-made
+label w-because because
+# IF: the outcome in hand goes to the head; the next shard picks the branch
+proc w-if: write-rest
+label w-if if
+
+# intensifier, augmentor
+# VERY: the value or point in hand times itself
+proc w-very: dup mul
+label w-very very
+# MORE: the first thing in hand more than the second -> yes in hand
+proc w-more: compare
+  more -> in-yes
+  same -> in-no
+  less -> in-no
+label w-more more
+
+# similarity
+# LIKE/AS/WAY: reaches what is like the thing in hand
+proc w-like: r-like
+label w-like like as
+
+# ---- question words: the prime plus the question mark (NOW §4: who = someone + ?)
+# WHO: a who-hole and a question mark in hand
+proc w-who: w-someone key-qmark
+label w-who who
+# WHAT: a thing-hole and a question mark in hand
+proc w-what: w-something key-qmark
+label w-what what
+# WHY: the making of the thing in hand, and a question mark
+proc w-why: w-because key-qmark
+label w-why why
+# HOW: the way (like) of the thing in hand, and a question mark
+proc w-how: w-like key-qmark
+label w-how how
+
+# ---- operators (§7.6, §16): each holds its operation for the value that comes after it; nothing is computed yet.
+# PLUS: the add gate in hand, held for the next value
+proc plus: 'add
+label plus + plus
+# MINUS: the sub gate in hand, held
+proc minus: 'sub
+label minus - minus
+# TIMES: the mul gate in hand, held
+proc times: 'mul
+label times * times
+# DIVIDED: the div gate in hand, held
+proc divided: 'div
+label divided / divided
+
+# EQUALS: memory first; the long way only on a miss. Pad on arrival: [a op b].
+# EQUALS: have I done this run before? (its signature)
+proc equals: read-sig eq-find
+label equals = equals
+# the memory for this signature
+proc eq-find: find-sig
+  found -> eq-known
+  none -> eq-long
+# found: its outcome and counts (a dead memory -> the long way)
+proc eq-known: read-mem
+  found -> eq-seen
+  none -> eq-long
+# [.. outcome seen right wrong]: was it right?
+proc eq-seen: drop eq-right
+# right against wrong: not wrong -> hop; wrong -> the long way again
+proc eq-right: compare
+  more -> eq-hop
+  same -> eq-hop
+  less -> eq-doubt
+# [.. outcome]: the outcome names the answer gate
+proc eq-hop: drop drop eq-name
+# the gate for that name
+proc eq-name: find-label
+  found -> eq-done
+  none -> eq-long
+# the memory was wrong: clear its counts, run the long way
+proc eq-doubt: drop drop drop eq-long eq-agree
+# [g] -- [g] : the memory of this run against the answer in hand (7.6 step 7): the same gate -> the memory is marked
+# right (two ways agreed, so the hop is back); a different one -> an imbalance row keyed by the answer (the sixth
+# returns to it); remember writes the new outcome into the row either way
+proc eq-agree: dup read-sig eq-agree-t
+proc eq-agree-t: find-sig
+  found -> eq-agree-mem
+  none -> drop
+# [g g m] -- [g g m out seen right wrong last] / [g]
+proc eq-agree-mem: dup eq-agree-read
+proc eq-agree-read: read-mem
+  found -> eq-agree-out
+  none -> eq-agree-no
+proc eq-agree-no: drop drop
+# [g g m out seen right wrong last] -- [g g m o] -> found / none (the old outcome has no gate)
+proc eq-agree-out: drop drop drop drop eq-agree-lbl
+proc eq-agree-lbl: find-label
+  found -> eq-agree-same
+  none -> eq-agree-no
+# [g g m o] -- [g m d] -> same / more / less
+proc eq-agree-same: rot eq-agree-d
+proc eq-agree-d: compare
+  same -> eq-heal
+  more -> eq-differ
+  less -> eq-differ
+# [g m d] -- [g] : marked right
+proc eq-heal: drop 'yes write-mark
+# [g m d] -- [g] : an imbalance row keyed by the answer
+proc eq-differ: drop drop dup 'imbalance swap dup dup dup write-row drop
+# [a op b] -> [a b op]: runs the held operation; the result is on the pad
+proc eq-long: swap write-rest eq-value
+# a gate holding the result?
+proc eq-value: dup find-value
+  found -> eq-have
+  none -> eq-spawn
+# [n l] -> the first gate holding it, in hand
+proc eq-have: in-first swap drop eq-done
+# [n l] -> the empty list dropped, a new gate holding n, in hand
+proc eq-spawn: drop spawn over over swap write-value swap drop eq-born
+# its born questions, and "what is this called?" as question runs
+proc eq-born: dup 'newborn swap split dup 'ask-what-is swap split eq-done
+# the answer gate in hand; the run hops to it, and the gate stays on top of the pad
+proc eq-done: dup write-rest drop
+
+# ---- told relationships the blueprint names (§16): opposite pairs among the primes and the owner's own pairing.
+# r-opposite is read from either end, so each pair is laid both ways. All told.
+rel yes r-opposite no
+rel no r-opposite yes
+rel w-good r-opposite w-bad
+rel w-bad r-opposite w-good
+rel w-big r-opposite w-small
+rel w-small r-opposite w-big
+rel w-before r-opposite w-after
+rel w-after r-opposite w-before
+rel w-above r-opposite w-below
+rel w-below r-opposite w-above
+rel w-far r-opposite w-near
+rel w-near r-opposite w-far
+rel w-live r-opposite w-die
+rel w-die r-opposite w-live
+rel w-want r-opposite w-dont-want
+rel w-dont-want r-opposite w-want
+# NOT's role: its action is built from the opposite relationship
+rel w-not r-derived-from r-opposite
+
+# ---- the owner's worksheet (meaning blueprint 2.2), as rows the brain can read: each prime derived from its root.
+# Every line is a first guess (turn two), state guess: die = -live, before = -now, after = now +, a long time = now ++,
+# a short time = --now, for some time = now + now, below = -above, near = -far. The brain refits by balance.
+rel w-die r-derived-from w-live 1 guess
+rel w-before r-derived-from w-now 1 guess
+rel w-after r-derived-from w-now 1 guess
+rel w-long-time r-derived-from w-now 1 guess
+rel w-short-time r-derived-from w-now 1 guess
+rel w-some-time r-derived-from w-now 1 guess
+rel w-below r-derived-from w-above 1 guess
+rel w-near r-derived-from w-far 1 guess

@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# look: read the brain. Everything here is a row the brain wrote, shown for a person to inspect.
+cd "$(dirname "$0")" || exit 1
+sqlite3 brain.db <<'SQL'
+.headers on
+.mode column
+SELECT 'the first run' AS what,
+       'neuron ' || id || ' born at moment ' || born || ', place ' || gate AS row
+  FROM neuron WHERE born = 1
+UNION ALL
+SELECT 'laid by hand', 'neuron 1 (makes neurons), born before time' ;
+
+SELECT w.text AS word, w.neuron AS neuron,
+       (SELECT count(*) FROM meaning x WHERE x.neuron = w.neuron) AS versions,
+       coalesce(f.expr, CASE WHEN n.does IS NULL THEN '(a value)' ELSE '(as taught)' END) AS points_to_now,
+       coalesce(m.balanced, '') AS balanced_on,
+       (SELECT count(*) FROM memory x WHERE x.op = w.neuron AND x.ended_at IS NULL) AS memories,
+       (SELECT count(*) FROM dna d WHERE d.op = w.neuron) AS shards
+  FROM word w JOIN neuron n ON n.id = w.neuron
+  LEFT JOIN meaning m ON m.neuron = n.id AND m.until_at IS NULL
+  LEFT JOIN form f ON f.neuron = m.form
+  WHERE w.text IN ('+', '-', 'x', '=')
+  ORDER BY w.neuron;
+
+SELECT (SELECT text FROM nm WHERE id = m.a) || ' ' || (SELECT text FROM word WHERE neuron = m.op ORDER BY rowid LIMIT 1) || ' '
+       || (SELECT text FROM nm WHERE id = m.b) || ' = ' || (SELECT text FROM nm WHERE id = m.neuron) AS memory,
+       m.times,
+       (SELECT group_concat(how, ' | ') FROM (
+          SELECT CASE WHEN o.shard IS NOT NULL THEN 'shortcut'
+                      WHEN mm.form IS NOT NULL THEN 'formula'
+                      ELSE 'long way (' || o.hops || ' hops)' END AS how
+            FROM occurrence o LEFT JOIN meaning mm ON mm.id = o.meaning
+            WHERE o.memory = m.id ORDER BY o.id)) AS each_time
+  FROM memory m WHERE m.ended_at IS NULL ORDER BY m.id;
+
+SELECT (SELECT text FROM nm WHERE id = mm.a) || ' ' || (SELECT text FROM word WHERE neuron = mm.op ORDER BY rowid LIMIT 1) || ' '
+       || (SELECT text FROM nm WHERE id = mm.b) AS last_long_run,
+       (SELECT group_concat(t, ' ') FROM (SELECT nm.text AS t FROM path p JOIN nm ON nm.id = p.neuron
+                                          WHERE p.occurrence = o.id ORDER BY p.n)) AS stood_on
+  FROM occurrence o JOIN memory mm ON mm.id = o.memory
+  WHERE o.id = (SELECT max(occurrence) FROM path);
+
+SELECT (SELECT count(*) FROM neuron) AS neurons,
+       (SELECT count(*) FROM neuron WHERE gate IS NOT NULL) AS numbers_placed,
+       (SELECT group_concat(gate, ' ') FROM (SELECT gate FROM neuron WHERE gate IS NOT NULL ORDER BY CAST(gate AS INTEGER))) AS which,
+       (SELECT count(*) FROM dna) AS shards,
+       (SELECT count(*) FROM TIMELINE) AS moments;
+SQL
