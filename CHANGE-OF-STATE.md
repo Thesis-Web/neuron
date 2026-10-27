@@ -60,6 +60,8 @@ The four tests are the versions audit's, in the owner's words: (1) a neuron is i
 
 Not a build, 2026-10-26: Point Of Connection 18 (`tries/15`), the 17.3 page with its rails as tabs, looking at the new v18 core of `tries/11` through a local door that types a line into v18's input table and runs SELECTs; v18 is unchanged, its scores above stand, and the audit of it (`audits/NEURON-VERSIONS-EVIDENCE-2026-10-25/CHECK-new-v18.md`) still applies. What the page shows is read from v18's tables; its positions are the page's drawing.
 
+Not a build, 2026-10-26 (evening): like and opposite taught to v18 at the prompt (`tries/16`), as the owner asked to be shown how. Four lines in the shape of `sheet18.json` (a teaching line and a bind each), typed through the tries/15 door into a copy of `brain18.db` in memory: like : store said "shop , outlet , mart", opposite : go said "stay", opposite : can bore can and said "cannot" after every source answered (71 s). The lines ask the map alone and print the map's "like"/"opposite of" lines for the word; that choice is mine and labelled in `tries/16/CHECK-like-2026-10-26.md`. v18's code is unchanged and `brain18.db` was not written; the owner's brain has them only if the owner types them.
+
 ## 3. What has been built correctly, and where (versions audit, 10-25)
 
 | Piece | Built correctly in | Never built correctly |

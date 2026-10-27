@@ -1,0 +1,18 @@
+[
+ [
+  "teach like",
+  "like = BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , 'what' , trim ( ltrim ( trim ( value ) , ':' ) ) FROM sheet WHERE run = var run AND name = 'after' BUILD BUILD INSERT INTO born ( word , run , source ) SELECT value , var run , 1 FROM sheet WHERE run = var run AND name = 'what' AND value <> '' AND value NOT IN ( SELECT word FROM label ) BUILD BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , 'dna' , 'g' || gate FROM label WHERE word = ( SELECT value FROM sheet WHERE run = var run AND name = 'what' ) BUILD BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , 'def' , 'g' || trigger FROM var dna ORDER BY shard LIMIT 1 BUILD BUILD INSERT INTO map.inbox ( word ) SELECT value FROM sheet WHERE run = var run AND name = 'what' AND NOT EXISTS ( SELECT 1 FROM var def WHERE source = ( SELECT gate FROM label WHERE word = 'map' ) ) BUILD BUILD INSERT INTO var def ( source , run , score ) SELECT ( SELECT gate FROM label WHERE word = 'map' ) , CAST ( value AS INTEGER ) , 0 FROM sheet WHERE run = var run AND name = 'map' BUILD BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , 'say' , group_concat ( w , ' , ' ) FROM ( SELECT DISTINCT di , trim ( substr ( trim ( t ) , 6 ) ) AS w FROM ( SELECT d.id AS di , group_concat ( l.word , '' ) OVER ( PARTITION BY d.id ORDER BY x.id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING ) AS t FROM var def d JOIN receipt x ON x.run = d.run JOIN label l ON l.gate = x.gate WHERE d.source = ( SELECT gate FROM label WHERE word = 'map' ) AND x.id > ( SELECT min ( id ) FROM receipt WHERE run = d.run AND gate = ( SELECT gate FROM label WHERE word = 'build' ) ) ) WHERE trim ( t ) LIKE 'like %' ORDER BY di ) BUILD"
+ ],
+ [
+  "bind like :",
+  "like : -> like"
+ ],
+ [
+  "teach opposite",
+  "opposite = BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , 'what' , trim ( ltrim ( trim ( value ) , ':' ) ) FROM sheet WHERE run = var run AND name = 'after' BUILD BUILD INSERT INTO born ( word , run , source ) SELECT value , var run , 1 FROM sheet WHERE run = var run AND name = 'what' AND value <> '' AND value NOT IN ( SELECT word FROM label ) BUILD BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , 'dna' , 'g' || gate FROM label WHERE word = ( SELECT value FROM sheet WHERE run = var run AND name = 'what' ) BUILD BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , 'def' , 'g' || trigger FROM var dna ORDER BY shard LIMIT 1 BUILD BUILD INSERT INTO map.inbox ( word ) SELECT value FROM sheet WHERE run = var run AND name = 'what' AND NOT EXISTS ( SELECT 1 FROM var def WHERE source = ( SELECT gate FROM label WHERE word = 'map' ) ) BUILD BUILD INSERT INTO var def ( source , run , score ) SELECT ( SELECT gate FROM label WHERE word = 'map' ) , CAST ( value AS INTEGER ) , 0 FROM sheet WHERE run = var run AND name = 'map' BUILD BUILD INSERT INTO sheet ( run , name , value ) SELECT var run , 'say' , group_concat ( w , ' , ' ) FROM ( SELECT DISTINCT di , trim ( substr ( trim ( t ) , 13 ) ) AS w FROM ( SELECT d.id AS di , group_concat ( l.word , '' ) OVER ( PARTITION BY d.id ORDER BY x.id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING ) AS t FROM var def d JOIN receipt x ON x.run = d.run JOIN label l ON l.gate = x.gate WHERE d.source = ( SELECT gate FROM label WHERE word = 'map' ) AND x.id > ( SELECT min ( id ) FROM receipt WHERE run = d.run AND gate = ( SELECT gate FROM label WHERE word = 'build' ) ) ) WHERE trim ( t ) LIKE 'opposite of %' ORDER BY di ) BUILD"
+ ],
+ [
+  "bind opposite :",
+  "opposite : -> opposite"
+ ]
+]
