@@ -37,7 +37,8 @@ Start it from this folder: `python3 serve18.py` (the tested brain of `tries/11`,
 - The tabs and which panel holds what.
 - Which rows become lines, and the one rest length (30) for every kind. The positions are the page's; the brain holds none.
 - The colours: grey hand-laid, blue born, orange with a formula, green definition nodes.
-- The switch that hides the space neuron's lines (most DNA rows arrive from a space or go to one, so with it on the picture is a star around the space gate; that is what v18 holds).
+- The switch that hides the space neuron's lines, and that they start off (changed the evening of 2026-10-26): 5,580 of the 8,251 lines the DNA rows give touch that one gate, so with them on the drawing is a spray from one point that covers the rest. That spray is what v18 holds; the switch shows it.
+- The view follows the drawing while it grows (the gap pushes the ball out for seconds after the page opens), until the wheel is used.
 - The four lines offered under Type are the lines of the v18 test (`test18.json`).
 - The hop count in the readout is 0-based, as 17.3 counted ticks.
 
@@ -57,3 +58,5 @@ Chromium 156 (the Playwright build cached under `~/.cache/ms-playwright`, run he
 - The door first marked the brain busy for every job, reads included, so two pages reading at once made one of them give up ("the brain is running a line"). Found by the headless check, fixed: only a typed line is busy.
 - Three times I killed my own shell with `pkill -f` or `pgrep -f` on a pattern that sat elsewhere in the same command line (the third time inside this note's text), the trap `LLM-HANDLER.md` §4.8 names. The door was finally started by a command with no process search in it; stop it by PID from a command of its own.
 - Patches that matched on backslash-u escapes in the page script failed, because the file holds the characters themselves (the shell heredoc had already turned the escapes into characters).
+- The view fitted itself for 240 frames and then stopped, while the gap was still pushing the ball of 2,004 points outward; in a wide window the view ended up inside the ball, a spray of lines to every edge. I had looked at such a render and passed it. Found when the owner called the start graph a mess (evening of 2026-10-26); the view now follows the radius until it holds still.
+- The owner's first look at the page was at Chrome's 500% zoom, which Chrome keeps per host and had kept for localhost. At that zoom the window is 757 CSS px wide, under 17.3's 900 px rule, so the rails stack under the stage and every letter is five times its size. Not the page's doing (a page cannot set or read the browser's zoom), but I had not said that a zoomed localhost would look like that; Ctrl+0 on the tab resets it.

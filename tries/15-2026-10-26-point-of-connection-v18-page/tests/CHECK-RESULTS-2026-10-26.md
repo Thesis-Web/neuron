@@ -31,3 +31,12 @@ The door: `python3 serve18.py` on `tries/11/NEURON-v18-CORE-2026-10-25/brain18.d
 
 ## What the counts say about the hand-laid block
 87 words at gates 1 to 173 and none of them has a born row. Of them the page counts 84 as hand-laid, 2 as "with a formula" (born and source: source is a column name in the born line, so it is a hand-laid token) and 1 as origin. define (gate 273) was born by typing.
+
+## The evening look, after the owner's two screenshots (`tests/cdp-check-3-2026-10-26.js`)
+The owner's screenshot of the page was 3,787 px wide with the rails stacked under the stage and every letter five times its size. Rendered headless at 757 × 384 CSS px with a device scale of 5 (Chrome's 500% zoom on a 3,787 px window) the page matched that screenshot; at 3,787 × 1,918 at scale 1 the grid was three columns (290 px, stage, 410 px). The stacking is 17.3's own rule at 900 px. So that picture was the browser's zoom for localhost, not the page.
+
+The start graph, measured through `__poc.positions()` on the tested brain:
+- 2,004 points, a solid ball: radius from origin r50 88, r95 114, max 126 drawing units; centroid at 0.5, 0.8, −3.8; one point at origin.
+- the DNA rows give 8,251 lines (3,655 arrival, 3,594 remainder, 1,002 trigger); 5,580 of them touch the space neuron (gate 11), 1,528 the comma; only 4 join two words with neither a space nor a punctuation mark at an end. The trigger lines each point at a different definition node.
+- with the space neuron's lines on: 4,612 springs; off: 2,680.
+- before the fix, at 3,787 px wide 4 s after opening, the view sat inside the ball (lines to every edge). After the fix (the view follows the radius until it holds still; the space neuron's lines start off): at 3 s and at 12 s r95 115 and the ball inside the view with dark space around it; at 1,900 px the same. No console exception.

@@ -158,7 +158,7 @@
         <h2>The graph's lines</h2>
         <label class="chk"><input type="checkbox" id="defnodes" checked> definition nodes: every word's second table (word.definition), tied to the word by its first shard's trigger column</label>
         <label class="chk"><input type="checkbox" id="deflabels"> name the definition nodes</label>
-        <label class="chk"><input type="checkbox" id="spacelines" checked> the lines of the space neuron (every DNA row that arrives from a space or goes to one; most rows do)</label>
+        <label class="chk"><input type="checkbox" id="spacelines"> the lines of the space neuron (every DNA row that arrives from a space or goes to one; most do, so with them on the drawing is a spray from that one point; they start off)</label>
         <div class="row"><label for="spacing" class="note">spacing, the drawing only</label><input type="range" id="spacing" min="1" max="100" step="1" value="21" aria-label="spacing"><span class="n" id="spv">&times;21</span></div>
         <label class="chk"><input type="checkbox" id="axes" checked> x, y and z axes over the graph, a tick every 10</label>
         <div class="row"><button id="fitall" type="button">fit all in view</button></div>
@@ -229,6 +229,7 @@
         <h2>What is this page's own, not the brain's</h2>
         <ul>
           <li>x, y, z. The brain holds no positions. The springs, the rest length 30, the space between points, the step limit and the colours are the drawing's; they say nothing measured.</li>
+          <li>The space neuron's lines start hidden: on the test brain 5,580 of the 8,251 lines the DNA rows give touch that one gate, and drawn they are a spray that covers everything else. The switch on the lines tab shows them. The view follows the drawing while it grows, until the wheel is used.</li>
           <li>The door's two calls (type a line, run a SELECT), the tabs, and the four lines offered under Type, which are the lines of the v18 test.</li>
           <li>The hand-laid block, the taught lines, mother and the source brains are v18's as they were on 2026-10-25; the audit of that build (CHECK-new-v18.md) stands.</li>
         </ul>
@@ -856,7 +857,8 @@
     var ray = new THREE.Raycaster();
     function pick(e) { var rect = canvas.getBoundingClientRect(), v = new THREE.Vector2(((e.clientX - rect.left) / rect.width) * 2 - 1, -((e.clientY - rect.top) / rect.height) * 2 + 1); ray.setFromCamera(v, camera); var hit = ray.intersectObjects(dotGroup.children.filter(function (m) { return m.visible; }), false); if (hit.length) { showNode(hit[0].object.userData.gate); showTab('panel-sel'); return; } SELG = null; $('sel').innerHTML = '<span class="m">Click a dot on the stage, or a gate under neurons.</span>'; render(T, true); }
     function resize() { var w = $('stage').clientWidth, h = $('stage').clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
-    function fit() { if (userZoomed || fitLeft <= 0) return; fitLeft--; var rs = []; Object.keys(NODE).forEach(function (k) { var n = NODE[k]; if (n.mesh && n.mesh.visible) rs.push(n.pos.length() * SP); }); if (!rs.length) return; rs.sort(function (a, b) { return a - b; }); var r = rs[Math.floor(rs.length * .95)] || rs[rs.length - 1]; var want = Math.max(40, r * 1.15 / Math.tan(20 * Math.PI / 180) / Math.min(1, camera.aspect)); dist += (want - dist) * .05; }
+    // the drawing keeps growing after it opens (the gap pushes the ball out); the view follows until the radius holds still, unless the wheel was used
+    var fitR = 0; function fit() { if (userZoomed) return; var rs = []; Object.keys(NODE).forEach(function (k) { var n = NODE[k]; if (n.mesh && n.mesh.visible) rs.push(n.pos.length() * SP); }); if (!rs.length) return; rs.sort(function (a, b) { return a - b; }); var r = rs[Math.floor(rs.length * .95)] || rs[rs.length - 1]; if (Math.abs(r - fitR) > fitR * .01) { fitR = r; fitLeft = Math.max(fitLeft, 60); } if (fitLeft <= 0) return; fitLeft--; var want = Math.max(40, r * 1.15 / Math.tan(20 * Math.PI / 180) / Math.min(1, camera.aspect)); dist += (want - dist) * .05; }
     window.addEventListener('resize', resize);
     var last = performance.now();
     function frame(now) {
