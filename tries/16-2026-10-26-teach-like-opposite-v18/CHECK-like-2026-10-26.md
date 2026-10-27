@@ -33,3 +33,12 @@ After: 82 secondary rows, 1,113 runs, 2,152 label rows, 5 formulas. No BUILD cel
 - These lines typed into the owner's own running brain (port 8018), or saved into any file.
 - What the page draws for them beyond its lists (formulas, lines typed, runs): not looked at.
 - A word the map holds under a different case (the sources match word COLLATE NOCASE; the label table does not).
+
+## Is this teaching? (the owner's question, the same evening)
+No. By the mechanism it is telling, and the brain memorized it. Measured on the copy:
+- The teaching run (998) made 848 hops, wrote 87 shards it had not seen and hit 761 it had; at its end one formula row was written: like's gate points at run 998. That is all "teach" does (input_teach, end_teach).
+- When like : store fired, fire_go read the text back from run 998's receipt and ran it again: the formula run made 848 hops on exactly the 848 shards the teaching run laid, 0 elsewhere. A verbatim replay.
+- The line like : store itself wrote 2 shards (like after heard before a space; a space after like before the colon) and hit 3. That is the only new memory the asking made.
+- Over the whole brain: 5,041 DNA rows, 1,079 with a trigger column; 1,076 are first shards pointing at a definition node, laid by the born run the same way for every neuron, and 3 point at a formula, laid by typed bind lines (define, like, opposite). None was set by the brain from anything that happened.
+- 989 words born: 4 from typed lines, 985 from text that passed through (source returns). 82 definition node rows, scored by the source formula's measure, which I wrote and typed.
+The same holds for born, source and define in sheet18.json: programs written on 10-25 and typed in. "Taught" in this folder's name and notes names v18's input_teach/end_teach mechanism, not learning. What changes what the brain does (a trigger column, a formula row) was in every case set by a typed line or by the born run; RESULTS-v18.md lists "decide" and the memory nodes at a run's end as not built, by the owner's order.
