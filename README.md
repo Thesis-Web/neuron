@@ -21,7 +21,7 @@ The owner is James. The builders were sessions of Claude (Fable and Opus) and on
 | `prose/` | The owner's words, verbatim: the all-sessions quote file (09-16 to 10-25), the by-topic file, the NOW interview, the 10-23 dictation, the words captured during the old v18 and v1 builds, his worksheet, his sketches. |
 | `research/` | Published work behind the ideas, the measured tests of meaning, the dictionary tests, the primes and roots lists, the SQLite long form, the source list, the mechanical-intelligence notes. Things that adjust the spec. |
 | `audits/` | Outside reads of a build against the spec: hp and hp2 (10-19), 17.3 forensic (10-25), every version against four tests (10-25), spec against build sheet 2 (10-25). |
-| `tries/` | Every build, in order, 00 to 14. Each folder holds the build's own files, its tests, and a NOTE with the owner's verdict and the audit's verdict. |
+| `tries/` | Every build, in order, 00 to 14, and 15, which is not a build but a page on 11's brain. Each folder holds the build's own files, its tests, and a NOTE with the owner's verdict and the audit's verdict. |
 | `llm/` | Snapshots of the model-side memory files from the hub, hp and hp2, taken 2026-10-26. The live copies stay where they were. |
 
 ## Where things came from

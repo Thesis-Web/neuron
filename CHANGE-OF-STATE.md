@@ -58,6 +58,8 @@ The four tests are the versions audit's, in the owner's words: (1) a neuron is i
 | 13 | 10-25 late | Build sheet 2 (egg3): no later, output or secondary; numbers only; replies and returns as runs; end run and define run typed. Chain logs identical on hub and hp. | | The audit the owner pasted 10-26: five errors with one cause, "The architecture converted open questions into fixed implementation rules, then used successful execution to validate those rules." The comparison: 11 of 21 chain steps contradict his words. 10-26: "the trigger doesn't have to write anything inside the graph". "i'll fucking do it from now on". | Evidence, not the base. The last standing code. | `tries/13` |
 | 14 | 10-26 | v3: under "no rules, build it your way", a C program that owned execution and called the rows' reactions learning. Deleted the same night. | no no no no | 10-06: "my brain finds the easiest path to correct, you find easiest path to done". 10-25: the five errors have one cause: open questions turned into fixed rules, validated by a passing run. | Deleted from hub, hp, hp2 and Downloads. Nothing of it to rebuild. | `tries/14` |
 
+Not a build, 2026-10-26: Point Of Connection 18 (`tries/15`), the 17.3 page with its rails as tabs, looking at the new v18 core of `tries/11` through a local door that types a line into v18's input table and runs SELECTs; v18 is unchanged, its scores above stand, and the audit of it (`audits/NEURON-VERSIONS-EVIDENCE-2026-10-25/CHECK-new-v18.md`) still applies. What the page shows is read from v18's tables; its positions are the page's drawing.
+
 ## 3. What has been built correctly, and where (versions audit, 10-25)
 
 | Piece | Built correctly in | Never built correctly |

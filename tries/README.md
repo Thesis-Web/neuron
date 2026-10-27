@@ -25,5 +25,6 @@ Version numbers were reused across three different lines, which is why the folde
 | 12 | 10-25 | `12-2026-10-25-build-sheet-1-egg2` | An instruction manual for the owner to paste in; rebutted at 00:41. |
 | 13 | 10-25 | `13-2026-10-25-build-sheet-2-egg3` | Rebuilt to the rebuttal; 11 of 21 steps contradict his words; the last standing code. |
 | 14 | 10-26 | `14-2026-10-26-v3-deleted` | A C runtime outside the brain, deleted the same night; a note and one leftover file. |
+| 15 | 10-26 | `15-2026-10-26-point-of-connection-v18-page` | Not a build: the 17.3 page with tabbed rails on the new v18 core (11), which is unchanged; a local door (serve18.py) types lines into it and reads its tables. |
 
 The four tests every build is scored on (versions audit, 10-25): (1) a neuron is its own table with DNA rows; (2) a run assembles the SQL and mother pastes it, births included; (3) mother decides nothing and works no data; (4) only the table-making neurons, the hop and the trigger are hand-laid; nothing outside the brain thinks. The scores are in `../CHANGE-OF-STATE.md` §2.
