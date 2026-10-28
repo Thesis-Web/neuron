@@ -1,6 +1,6 @@
 # define : who, walked from a fresh brain, start to finish
 
-2026-10-28. The walk that goes with `DEFINE-WHO-FULL-RUN-2026-10-28.d2` (rendered: `.svg`). Nothing here is built; it is the run as your words describe it, step by step, with the date of the words beside each step. Three tags, as in the reference draft: **[his]** your words (date given); **[reading]** my reading of your words, to keep or strike; **[open]** what your words leave to you.
+2026-10-28. The walk that goes with `DEFINE-WHO-FULL-RUN-v2-2026-10-28.d2` (rendered: `.svg`; v1 of the same day is kept beside it as the first try). Nothing here is built; it is the run as your words describe it, step by step, with the date of the words beside each step. Three tags, as in the reference draft: **[his]** your words (date given); **[reading]** my reading of your words, to keep or strike; **[open]** what your words leave to you.
 
 The standing caution holds: assume every line here is wrong until you find it correct.
 
@@ -9,7 +9,7 @@ The standing caution holds: assume every line here is wrong until you find it co
 1. **A fresh brain.** The database holds only the hand-laid core of your outline (10-25 21:50) and v1's shape (10-19): the encoder conversion table, the SQL-word neurons the born run speaks, `heard` and `said`, the space and the punctuation, the runs that lay a neuron, a DNA row, a definition node, a memory row, a sheet cell and a timeline row, the clock, the build neuron, mother, the mailboxes, the source brains, an empty sixth.db. No memories, no timeline rows, no definitions.
 2. **`define` is not in the core.** It is a symbol with no action yet (10-27 05:37: "the first one is undefined because the symbol arranged as (w)(o)(r)(d) doesn't have an action yet"). So on this line it is born like `who`. If you hold `define` as a core formula, the only change is at the third standing question (see step 2), which then says yes and jumps to the define formula: "it literally look up definition memory print" (10-25 msg 51). **[open 9]**
 3. **The three standing questions exist as runs in the core**, because a fresh brain has nothing else to ask with. **[reading; open 8]**
-4. **Gate numbers.** The core is gates 1..N in the order laid. The three new symbols get N+1, N+2, N+3: "new word new gate #" (10-26 03:50). The names in this walk are the encoder's labels; the brain holds the numbers.
+4. **Gate numbers.** In the drawing (v2) the core is gates 1..60 in the order laid (the encoder table on the drawing lists them: 1 heard, 2 said, 3 space, 4 CREATE ... 18 value, the hole ... 40 build, 41 born, 43 write, 44 copy, 46 read, 48 memory, 49 timeline, 51 ask, 52 compile, 53 decide, 54 substitute, 55 formula, 56 say, 57 know, 58 remember, 59 shape, 60 out). The three new symbols get 61, 62, 63: "new word new gate #" (10-26 03:50). Shards are one sequence; this line's first shard is 101. The names are the encoder's labels; the brain holds the numbers. In this walk N+1, N+2, N+3 are 61, 62, 63.
 5. **The DNA row's columns are your sketch's** (10-28, `User_Run_Sketch.png`): `shard id | before | trigger | call | spawn`. Your words of 10-20 00:31 add "we need to know the gate before and after"; whether "after" is a column or is read from the run's remainder is **[open 7]**. The sketch's trigger column is where the run goes on ("to gate 7,8,9"); its calls loop out and come back ("call gate 9,8,7", "call gate 6,5,4"); its spawn goes off on its own ("spawn gate 5,4,3", drawn up to the standing-question runs).
 
 ## The runs in this walk
@@ -94,6 +94,25 @@ Not on this line. "Who is, who are, who did and who was each fire a different ro
 | 5.7 | The newborn is sourced: the born run spawns the source run R3. | 10-23 P4: "Every newborn is born with at least some sources" |
 | 5.8 | **[open 1]** Then either the main run is tried again from its start (10-21 18:39) or it continues inline (10-20 01:22: "writes it, and triggers born... goes to space writes chard if doesn't exist, and so on"). Both are your words. |
 
+## 5b. How the first long run becomes the shortcut (your words of 10-28)
+
+Your correction on 10-28: "create table run is through like 50 neurons gates, and a different shard in the value neuron for each new run, each run would have to be created the long way first, then through back population the triggers or calls or jumps or hops from a run create table (value) would have to show the substitution run and the write run writing the value, then the trigger of the substitution run copying into the substitution run so that you can then skip the long run and use the formula neuron for CREATE TABLE "value " ( shard INTEGER , before INTEGER , trigger INTEGER , call INTEGER , spawn INTEGER ) <--- that is how this run is made into a shortcut, and it's done by way of the first time it works, and is correct, it triggers a decide formula run that decides what the formula is, then writes it in that runs data sheet, then the formula shortcut is just to the data sheet writing the value varible, and subtitution run grabbing that value and plugging it into the run data sheet so a new memory node can be made or a new neuron can be made."
+
+The drawing (lanes 4 and 5) draws exactly that, and this is how:
+
+| Step | What happens | Grounding |
+|---|---|---|
+| 5b.1 | **R2, the long way, for `define`.** The born run hits the SQL-word gates one symbol at a time: `CREATE TABLE " value " ( shard INTEGER , before INTEGER , trigger INTEGER , call INTEGER , spawn INTEGER ) ;` is 41 hits, and the definition node's statement another 56 (your own definition columns). Every hit is one shard, drawn where it is hit, as in your sketch. The `value` neuron (18) gets its own shard for this run; its call column holds the write run (43), which writes the value, 61, into R2's sheet cell `value`. | 10-19 21:52; 23:03; 23:08 ("create table (var a)"); your words 10-28 |
+| 5b.2 | The run lands on the build neuron (40); its row, picked by before `;` and no remainder, is the build row. The product goes to mother, to the neuron prompt, SQL answers ok, the answer fills R2's cell `reply`. The shard on 40 that ended R2 carries R2's memory node with the sheet inside. | 10-26 03:50; 10-24 msg 36 |
+| 5b.3 | **The first time it works and is correct.** ok says it ran; correct is read back: a read run (46) asks the prompt whether the table exists and fills cell `exists`. [reading: which check counts as correct is yours] | your words 10-28: "the first time it works, and is correct" |
+| 5b.4 | **The decide formula run (53)** decides what the formula is: R2's receipt with the hole marked at the value neuron's shard. It writes the formula into R2's data sheet cell `formula`. The formula is a pointer to the run, never text. | your words 10-28; 10-23 08:47: "the row holds pointers to the run through the neurons that makes that" |
+| 5b.5 | **The formula neuron (55)** gets a new row: arrived from CREATE (4), goes on to build (40), calls the write run (43) and the substitution run (54); its trigger points at the formula cell. [open: one formula neuron with a row per formula, as drawn, or a neuron per formula] | your words 10-28: "use the formula neuron for CREATE TABLE ..."; 10-23 08:47: "a pointer to the shortcut neuron formula" |
+| 5b.6 | **Back population**: the write run lays a jump on the first shard of the long run, `4.s112` (CREATE arriving from born): `jump > 55.s253`. | your words 10-28: "through back population the triggers or calls or jumps or hops from a run create table (value)..."; 10-23 P5-9 |
+| 5b.7 | **R4, the shortcut, for `:`.** born (41) → CREATE (4), whose shard now jumps to the formula row (55). The formula row calls the write run, which writes the value variable, 62, into R4's sheet; and the substitution run (54), whose call is the copy run (44): it copies the formula (R2's sheet cell `formula`, the receipt with the hole) into R4's sheet and plugs 62 into the hole. Then build (40) → mother → prompt → ok. 4 hits instead of 97. | your words 10-28: "the formula shortcut is just to the data sheet writing the value varible, and subtitution run grabbing that value and plugging it into the run data sheet"; "the trigger of the substitution run copying into the substitution run" |
+| 5b.8 | **R6 for `who`** the same way. The build neuron (40) now has three memory nodes, one per ending shard, each with its own sheet: "some neuron might have many memory tables because many of their dna shards end runs... each will have its own memory table and data runsheet in it" (your words 10-28). Every symbol born later by the definition texts (the cascade) is born this cheap way too. | your words 10-28; 10-08: "all the work was done at learning, not at runtime" |
+
+"Learned once, hopped forever" (10-22 rev17): the long way computed once and left a memory; after that, use is a jump and two small runs.
+
 ## 6. The source run (R3 define, R5 :, R7 who): the first memory is the definition
 
 | Step | What happens | Grounding |
@@ -110,6 +129,16 @@ Not on this line. "Who is, who are, who did and who was each fire a different ro
 | 6.10 | If a source has nothing, the cell stays empty and the run does not end there: it spawns a run "why did the cell not populate", and the reason becomes the output, in the brain's own choice of words. The lookup order after sources is a guess (section 10). | 10-27 03:52: "just because the cell doesn't populate it doesn't end the run, if gives the brain reason to search harder... it would spawn a new run,,, why did the cell not populate,,, and the reason would be the output... the point is that it doesn't have to say any of these, it chooses what it wants to say"; 10-23 P5-9: "memory first, then state, then sources, then guess" |
 
 For `:` the SQL docs are a source with a known action; for `define` and `who` the dictionaries, the thesaurus, WordNet and your map answer. Which lines each sends is the source's own trigger's work.
+
+## 6b. The three newborns after the line (lane 7 of the drawing)
+
+| What | Where it is drawn | Grounding |
+|---|---|---|
+| the DNA table of each newborn with the rows this line wrote | lane 7: 61 one row; 62 two rows (the line's, and the mw return run's `that > whoever`); 63 one row that ends R1 | 10-20 00:31; §12 law 13 |
+| the definition node attached to each neuron, its rows from the real source lines of the archived slice (tries/11 `sat172.json`): define: wn 1, gcide 1, mw 2 definitions and mwt 4, moby 3, map 1 `like` lines; who: wn 1 (the WHO agency, kept apart by the check), gcide 1, mw 2; `:` none | lane 7, yellow tables | 10-23 P5-9; 10-22 rev17 (neighbours) |
+| the relationship rows in the definition node: `like > gate` for define from the thesaurus, Moby and your map; for who the symbols its definitions name beside it (whom, whoever, person), their kind left open | lane 7 | 10-23 P4: "any section that can have a relationship to something else is a self-fulfilling relationship section"; law 5 |
+| the memory node on the shard of who that ended R1, with R1's whole sheet inside; a note that another run ending at another shard of who gets its own | lane 7, green table | 10-23 P2 B2; 10-26 03:50; your words 10-28 |
+| the build neuron's three memory nodes (R2, R4, R6) | lanes 4 and 5 | your words 10-28 |
 
 ## 7. The end of R1: memory, timeline, stop
 

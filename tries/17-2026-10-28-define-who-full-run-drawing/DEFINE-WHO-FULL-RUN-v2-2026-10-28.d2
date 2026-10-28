@@ -1,0 +1,831 @@
+# define : who  -  the whole run from a fresh brain, drawn 2026-10-28 (v2)
+# Every neuron is its own table. Numbers only in the tables: gates as the encoder laid them, shards one sequence.
+# The words are in the tool pins (hover the i). [his: date] = the owner's words. [reading] = mine, to strike. [open] = his call.
+direction: down
+grid-columns: 1
+grid-gap: 70
+vars: { d2-config: { layout-engine: elk } }
+classes: {
+  lane: {style.fill: "#f8fafc"; style.stroke: "#334155"; style.stroke-width: 2; style.border-radius: 8; style.font-size: 26}
+  col: {style.fill: "#ffffff"; style.stroke: "#94a3b8"; style.stroke-width: 1; style.border-radius: 6}
+  neuron: {shape: sql_table; style.fill: "#93c5fd"; style.stroke: "#eff6ff"; style.stroke-width: 2}
+  hit: {shape: sql_table; style.fill: "#bfdbfe"; style.stroke: "#f8fbff"; style.stroke-width: 1}
+  newborn: {shape: sql_table; style.fill: "#f9a8d4"; style.stroke: "#fdf2f8"; style.stroke-width: 2}
+  defn: {shape: sql_table; style.fill: "#fde047"; style.stroke: "#fefce8"; style.stroke-width: 2}
+  mem: {shape: sql_table; style.fill: "#86efac"; style.stroke: "#f0fdf4"; style.stroke-width: 2}
+  sheet: {shape: sql_table; style.fill: "#6ee7b7"; style.stroke: "#ecfdf5"; style.stroke-width: 1}
+  tl: {shape: sql_table; style.fill: "#c4b5fd"; style.stroke: "#f5f3ff"; style.stroke-width: 2}
+  encoder: {shape: sql_table; style.fill: "#cbd5e1"; style.stroke: "#f8fafc"; style.stroke-width: 2}
+  mail: {shape: queue; style.fill: "#e0f2fe"; style.stroke: "#0369a1"}
+  mother: {shape: hexagon; style.fill: "#fee2e2"; style.stroke: "#991b1b"; style.stroke-width: 2}
+  prompt: {shape: document; style.fill: "#fee2e2"; style.stroke: "#991b1b"}
+  src: {shape: package; style.fill: "#ffedd5"; style.stroke: "#c2410c"}
+  brain: {shape: package; style.fill: "#ede9fe"; style.stroke: "#7c3aed"; style.stroke-width: 2}
+  pick: {shape: diamond; style.fill: "#f1f5f9"; style.stroke: "#334155"}
+  note: {style.fill: "#fffbeb"; style.stroke: "#d4a72c"; style.font-size: 14}
+  open: {style.fill: "#ffe4e6"; style.stroke: "#be123c"; style.font-size: 14}
+  hop: {style.stroke: "#1d4ed8"; style.stroke-width: 3}
+  trig: {style.stroke: "#ea580c"; style.stroke-dash: 5; style.stroke-width: 2}
+  call: {style.stroke: "#15803d"; style.stroke-dash: 2; style.stroke-width: 2}
+  spawn: {style.stroke: "#7c3aed"; style.stroke-dash: 8; style.stroke-width: 2}
+  jump: {style.stroke: "#0f172a"; style.stroke-width: 4}
+  route: {style.stroke: "#991b1b"; style.stroke-width: 3}
+  fill: {style.stroke: "#059669"; style.stroke-dash: 2; style.stroke-width: 2}
+  readw: {style.stroke: "#64748b"; style.stroke-dash: 1; style.stroke-width: 1}
+  not: {style.stroke: "#94a3b8"; style.stroke-dash: 3; style.stroke-width: 1; style.opacity: 0.6}
+}
+legend: "KEY" {
+  class: lane
+  grid-columns: 6
+  k_neuron: "NEURON = its own table (61 · define)" {class: neuron; shard: "before > trigger | call | spawn"; tooltip: "A neuron is its own table; its name is its gate (10-19 21:14). Rows are its DNA: his sketch 10-28 gives the columns shard id | before | trigger | call | spawn. The run arrives from before, goes on to trigger, calls side runs that return, spawns runs that leave."}
+  k_hit: "one HIT of a gate in a run (the neuron drawn where it is hit)" {class: hit; shard: "before > next"; tooltip: "In a run column every box is one hit of a gate, drawn where the run hits it, as in his sketch (gate 5,6,7 drawn down the column). The row shown is the shard this run hit or wrote."}
+  k_newborn: "NEWBORN this line" {class: newborn; tooltip: "A gate that did not exist when the line arrived: born by the born run (10-20 01:22; 10-19 23:40)."}
+  k_defn: "DEFINITION NODE (born with the neuron; its first memory)" {class: defn; source: "> return run"; rel: "kind > gate"; tooltip: "10-19 23:40: a new gate, new dna table and new definition node are born at the same time. 10-23 P2: the first birth memory is the definition, pulled from the sources. Its rows: one per source line, and the relationships built from the definition table (10-23 P5-9)."}
+  k_mem: "MEMORY NODE on the shard that ended a run (the data sheet inside)" {class: mem; run: "input, source"; cell: "state, value"; tooltip: "10-23 P2 B2: each DNA shard that ends a run will have a memory table for that shard. 10-26 03:50: the data sheet just lives in a cell in the memory row. His v4 brain.db 10-27: run_memory(run, input, source) + run_sheet(run, cell, state, value). A neuron with several shards that end runs has several memory nodes (his words 10-28)."}
+  k_tl: "TIMELINE: only a memory table" {class: tl; at: "receipt > memory node, key words"; tooltip: "10-16 06:40: the timeline only gets the receipt number as a pointer, and a couple key words. 10-26 03:50: memory triggers timeline and it just stops because timeline is only a memory table."}
+  k_hop: "hop" {style.stroke: "#1d4ed8"; style.stroke-width: 3; tooltip: "The run moves to the remainder's head: before and after; the key is the remainder (§12 law 13). Blue thick wire."}
+  k_trig: "trigger" {style.stroke: "#ea580c"; style.stroke-dash: 5; tooltip: "A DNA row excites a run: one, none or many (10-26 05:12). It writes nothing itself; it excites a write, copy or cut run (10-26 03:59). Orange dashed."}
+  k_call: "call (returns)" {style.stroke: "#15803d"; style.stroke-dash: 2; tooltip: "A side run whose answer comes back to this run's cell (his sketch: 'call gate 9,8,7' loops back). Green dotted."}
+  k_spawn: "spawn (leaves)" {style.stroke: "#7c3aed"; style.stroke-dash: 8; tooltip: "A run that goes off on its own (his sketch: 'spawn gate 5,4,3' leaves). Purple dashed."}
+  k_jump: "jump (formula shortcut)" {style.stroke: "#0f172a"; style.stroke-width: 4; tooltip: "Skip the long run: go straight to the formula neuron, plug the value in (10-18 J: 'plug them in and you go to that gate'; his words 10-28: 'skip the long run and use the formula neuron'). Black thick."}
+  k_route: "carried by mother" {style.stroke: "#991b1b"; style.stroke-width: 3; tooltip: "Mother routes and traverses, decides nothing, works no data (10-23 P2). Red."}
+  k_fill: "a return fills a cell" {style.stroke: "#059669"; style.stroke-dash: 2; tooltip: "10-26 03:50: each return from the graph, from source or from another brain fills its spot on the table. Teal dotted."}
+  k_read: "a run reads a table" {style.stroke: "#64748b"; style.stroke-dash: 1; tooltip: "A read run over memory, timeline or definition nodes (standing questions, inspection). Grey dotted."}
+  k_not: "not taken on this line" {style.stroke: "#94a3b8"; style.stroke-dash: 3; tooltip: "A path his words describe that this line does not take."}
+  k_open: "OPEN: his call" {class: open; tooltip: "What his words leave to him. Listed in the last lane; not filled in."}
+}
+core: "0 · THE FRESH BRAIN: what is hand laid (his outline 10-25 21:50; v1 10-19)" {
+  class: lane
+  grid-columns: 4
+  grid-gap: 40
+  encoder: "ENCODER (the only place a symbol's spelling lives)" {
+    class: encoder
+    tooltip: "10-26 03:50: 'its a straight database conversion table with x,y,z gates in a sequential order, new word new gate #'. 10-25: 'there are no words in the graph... the encoder encodes to the brain'. The brain holds the numbers; the labels here are the encoder's. Numbers 1..60 are this drawing's numbering of the core, in the order laid."
+    g1: "heard"
+    g2: "said"
+    g3: "space"
+    g4: "CREATE"
+    g5: "TABLE"
+    g6: "\""
+    g7: "("
+    g8: ")"
+    g9: ","
+    g10: ";"
+    g11: "INTEGER"
+    g12: "TEXT"
+    g13: "shard"
+    g14: "before"
+    g15: "trigger"
+    g16: "call"
+    g17: "spawn"
+    g18: "value"
+    g19: "definition"
+    g20: "source"
+    g21: "entry"
+    g22: "sense"
+    g23: "class"
+    g24: "text"
+    g25: "example"
+    g26: "origin"
+    g27: "first_use"
+    g28: "synonyms"
+    g29: "antonyms"
+    g30: "times"
+    g31: "first_at"
+    g32: "last_at"
+    g33: "ended_at"
+    g34: "INSERT"
+    g35: "INTO"
+    g36: "VALUES"
+    g37: "SELECT"
+    g38: "FROM"
+    g39: "WHERE"
+    g40: "build"
+    g41: "born"
+    g42: "hop"
+    g43: "write"
+    g44: "copy"
+    g45: "cut"
+    g46: "read"
+    g47: "clock"
+    g48: "memory"
+    g49: "timeline"
+    g50: "cell"
+    g51: "ask"
+    g52: "compile"
+    g53: "decide"
+    g54: "substitute"
+    g55: "formula"
+    g56: "say"
+    g57: "know"
+    g58: "remember"
+    g59: "shape"
+    g60: "out"
+  }
+  schemas: "the hand-laid shapes" {
+    class: col; grid-columns: 1; grid-gap: 14
+  schema_mem: "MEMORY TABLE shape (his own hand, ~/neuron/v4/brain.db, 10-27 01:17)" {
+    class: mem
+    tooltip: "CREATE TABLE run_memory (run INTEGER PRIMARY KEY, input TEXT NOT NULL, source TEXT NOT NULL); CREATE TABLE run_sheet (run REFERENCES run_memory(run), cell INTEGER, state INTEGER DEFAULT 0 CHECK(state IN (0,1)), value TEXT, PRIMARY KEY(run,cell)). His own typing, 10-27 01:17. The sheet lives inside the memory row (10-26 03:50). One such node per shard that ends a run (10-23 P2 B2)."
+    run: "INTEGER PK"; input: "the receipt"; source: "who spoke: user, mother, sixth"; cell: "INTEGER"; state: "0 declared, 1 filled"; value: "what the return put there"
+  }
+  schema_def: "DEFINITION NODE shape (his own hand, sqlite history)" {
+    class: defn
+    tooltip: "CREATE TABLE definition (id, neuron, source, entry, sense, class, text, example, origin, first_use, synonyms, antonyms, times, first_at, last_at, ended_at). His own typing. Born with the neuron (10-19 23:40); first memory (10-23 P2); truth shift keeps the old row (10-23 P4: ended_at). Relationships are built from this table and self-populate (10-23 P5-9; P4: opposite, kind of, part, has, plural, past, present, is, same spelling, derived from, used in, prefix, suffix, modifier, mood, rhyming)."
+    source: "which source brain answered"; entry: "the headword the source sent"; sense_class: "..."; text: "pointer to the return run (gates)"; synonyms_antonyms: "..."; times_first_last_ended: "truth shift keeps the old row"; rel: "kind > gate (built from the table)"
+  }
+  schema_tl: "TIMELINE shape" {
+    class: tl
+    tooltip: "10-16 06:40: 'the timeline only gets the reciept number as a pointer, and a couple key words'. 10-26 03:50: 'timeline is only a memory table, has no dna table ahead of it'. 10-23 P3 B1: reached 'by a trigger hop. Never a sweep'."
+    id: "INTEGER PK"; at: "the clock neuron's reading (47)"; receipt: "run > memory node"; key_words: "a few gates"
+  }
+  }
+  outside: "OUTSIDE THE BRAIN" {
+    class: col; grid-columns: 1; grid-gap: 14
+    grid-columns: 2
+    m_user_in: "user > encoder" {class: mail; tooltip: "His outline 10-25 21:50: build the user input mailbox to the encoder. Populated-driven, never a timer (10-22 rev17)."}
+    m_mother_in: "mother > encoder (secondary)" {class: mail; tooltip: "His outline: the secondary input mailbox to the encoder from the mother. SQL answers and source answers come back this way (10-24 msg 36)."}
+    m_sixth_in: "sixth.db > encoder (third)" {class: mail; tooltip: "His outline: the third input mailbox to the encoder from the sixth.db."}
+    m_out: "brain > mother / brain > user (60 out)" {class: mail; tooltip: "His outline: the mailbox output from the brain to the mother and from the brain to the user. Gate 60 is the port neuron the run hits to leave (10-23 msg 1: output to sources is a dna row and trigger to port)."}
+    mother: "MOTHER" {class: mother; tooltip: "10-23 P2: the mother is just a router and a traverser. That's it... takes the output and traverses it to the sources, or to another brain, or to its own sql... picks up the outputs of whatever it traversed to and brings it back. She works no data. The name is probably wrong."}
+    prompt: "THE NEURON PROMPT (the brain's own sql prompt)" {class: prompt; tooltip: "10-24 msg 36: that output is given to the mother to route to the sql prompt and paste it in the sql prompt and hit enter, wait for the sql response... when mother is done it returns anything from sql output back to the brain as a secondary input. §2.6 his edit 10-24: a string of sql happens as a run put together by the neurons from the run table and outputed as the string to the mother."}
+    src_wn: "WordNet" {class: src; tooltip: "A source brain: a database with a corpus, an inbox, an outbox and its own trigger that does its work the moment an ask lands (10-22 rev17). In the archived slice (tries/11 sat172.json, fetched 10-22/10-25): holds 1 line for who (the WHO agency), 1 for define. The brain does not read it: the lines are delivered to the encoder as a run (10-25 msg 37)."}
+    src_gcide: "Webster 1913" {class: src; tooltip: "A source brain: a database with a corpus, an inbox, an outbox and its own trigger that does its work the moment an ask lands (10-22 rev17). In the archived slice (tries/11 sat172.json, fetched 10-22/10-25): 1 line for who, 1 for define. The brain does not read it: the lines are delivered to the encoder as a run (10-25 msg 37)."}
+    src_mw: "Merriam-Webster" {class: src; tooltip: "A source brain: a database with a corpus, an inbox, an outbox and its own trigger that does its work the moment an ask lands (10-22 rev17). In the archived slice (tries/11 sat172.json, fetched 10-22/10-25): 2 lines for who, 2 for define. The brain does not read it: the lines are delivered to the encoder as a run (10-25 msg 37)."}
+    src_mwt: "M-W thesaurus" {class: src; tooltip: "A source brain: a database with a corpus, an inbox, an outbox and its own trigger that does its work the moment an ask lands (10-22 rev17). In the archived slice (tries/11 sat172.json, fetched 10-22/10-25): 4 like-lines for define, none for who. The brain does not read it: the lines are delivered to the encoder as a run (10-25 msg 37)."}
+    src_moby: "Moby" {class: src; tooltip: "A source brain: a database with a corpus, an inbox, an outbox and its own trigger that does its work the moment an ask lands (10-22 rev17). In the archived slice (tries/11 sat172.json, fetched 10-22/10-25): 3 like-lines for define, none for who. The brain does not read it: the lines are delivered to the encoder as a run (10-25 msg 37)."}
+    src_map: "his relation map" {class: src; tooltip: "A source brain: a database with a corpus, an inbox, an outbox and its own trigger that does its work the moment an ask lands (10-22 rev17). In the archived slice (tries/11 sat172.json, fetched 10-22/10-25): 1 like-line for define, none for who. The brain does not read it: the lines are delivered to the encoder as a run (10-25 msg 37)."}
+    src_sqldoc: "SQLite docs" {class: src; tooltip: "A source brain: a database with a corpus, an inbox, an outbox and its own trigger that does its work the moment an ask lands (10-22 rev17). In the archived slice (tries/11 sat172.json, fetched 10-22/10-25): the meaning of the code words to the silicon; nothing for : in this slice. The brain does not read it: the lines are delivered to the encoder as a run (10-25 msg 37)."}
+    sixthdb: "sixth.db" {class: brain; tooltip: "10-25 msg 41: create copy brain.db rename to sixth.db run sqlite sixth.db .. update mother for mailbox to sixth, update mailbox pointer in sixth.db. Empty too, on day one."}
+    guessdb: "guessing brain" {class: brain; tooltip: "10-23 P5-9: lookup order memory, then state, then sources, then a guess; guesses announced, never lost. 10-23 03:18: the guessing/invention brain... if that word comes back was wrong from the sixth with reasons why it didn't work, then the guessing brain can back prop again over the adjusted corpus and come up with another good guess."}
+  }
+  notes: "" {
+    class: col; grid-columns: 1; grid-gap: 14
+  core_note: "the core's own neurons are gates 1..60 (the encoder table, left).\nEach is its own table with hand-laid DNA rows and a definition node\nfed from the SQL docs. Later a core word becomes a row in the real word's neuron." {class: note; tooltip: "10-19 21:20: hand lay a table, then hand lay those same words as nodes so the brain lays its own tables. 10-19 23:03: ( , integer, primary, key... all neurons of their own. 10-23 P2 B3: core words become a row in the DNA of the actual word neuron: create, at certain row, is the core word function. 10-27 05:05: the first core will break the rules... later that should cease to exist when the words and dna and memories, and timeline exist to replace them."}
+  }
+}
+line: "1 · THE LINE ARRIVES: prompt > encoder > brain (10-25: never a told block between)" {
+  class: lane
+  typed: "user types   define : who" {shape: page; tooltip: "Lands in the user input mailbox (his outline 10-25 21:50)."}
+  enc: "encoder: define > 61 (new)   space > 3   : > 62 (new)   space > 3   who > 63 (new)" {class: encoder; tooltip: "A symbol with no gate gets the next number; nothing else is figured here (10-26 03:50; 10-23 P2: the encoder never guesses a word or does work). Who is speaking is part of the input: user, heard (10-26 03:50; §2.1)."}
+  r1: "input row R1" {class: sheet; run: "1"; gates: "61 3 62 3 63"; arrival: "1 (heard)"; speaker: "user"; clock: "t0 (47)"; tooltip: "The main run's input row. The clock neuron (47) is hit on every run and its reading goes into the run's meta (10-26 03:50). The remainder is the rest of the line as gate numbers; its head is the key at every gate (10-23 P3)."}
+  typed -> enc -> r1
+}
+sq: "2 · STANDING QUESTIONS: three runs that ask before the main run runs (10-23 P3 B2; his sketch 10-28: three columns)" {
+  class: lane
+  grid-columns: 4
+  q57: "57 · know" {
+    class: col; grid-columns: 1; grid-gap: 14
+    n: "57 · know" {class: neuron; s101: "1 > - | 46 read | -"; tooltip: "SQ1 'Do I know anything about this?' (10-23 P3 B2). A read run over the gates of the input and their definition nodes. Fresh brain: 61, 62, 63 have no gate. Answer 0. The row: arrived from 1 (heard), spawned from R1’s input row; calls the read run (46); no remainder: the run ends here, so this shard has a memory node."}
+    rd: "reads: does a gate exist for 61, 62, 63? do their definition nodes hold rows?" {class: note}
+    m: "memory node on 57.s101  (this run)" {class: mem; run: "101"; input: "receipt of the question run"; source: "R1"; c_answer: "0"; tooltip: "The question is a run that ends; its memory row sits on the shard that ended it, with its one-cell sheet inside. Its answer is a cell on R1’s sheet (teal wire)."}
+    n.s101 -> rd: {class: readw}
+    n.s101 -> m: {class: trig; label: "no remainder"}
+  }
+  q58: "58 · remember" {
+    class: col; grid-columns: 1; grid-gap: 14
+    n: "58 · remember" {class: neuron; s102: "1 > - | 46 read | -"; tooltip: "SQ2 'Do I have a memory of this?' (10-23 P3 B2). 10-16: 'have I seen 1+1+1... before, yes on 10/16/26 at 6:15pm the answer was 9... instead of doing the math I just remembered the answer'. Fresh brain: no memory rows. Answer 0. The row: arrived from 1 (heard), spawned from R1’s input row; calls the read run (46); no remainder: the run ends here, so this shard has a memory node."}
+    rd: "reads: any memory node with a receipt holding 61 3 62 3 63? any timeline row?" {class: note}
+    m: "memory node on 58.s102  (this run)" {class: mem; run: "102"; input: "receipt of the question run"; source: "R1"; c_answer: "0"; tooltip: "The question is a run that ends; its memory row sits on the shard that ended it, with its one-cell sheet inside. Its answer is a cell on R1’s sheet (teal wire)."}
+    n.s102 -> rd: {class: readw}
+    n.s102 -> m: {class: trig; label: "no remainder"}
+  }
+  q59: "59 · shape" {
+    class: col; grid-columns: 1; grid-gap: 14
+    n: "59 · shape" {class: neuron; s103: "1 > - | 46 read | -"; tooltip: "SQ3 'Do I have a shortcut or a formula shortcut?' and his words 10-28: 'does this run shape match another shape I have, so I can know the first formulas to try'. 10-16: 'if no, have I done anything close to that pattern?'. 10-18 J: 'If that gate exists, you go straight to it... plug them in and you go to that gate and you run that run'. Fresh brain: nothing. Answer 0. The row: arrived from 1 (heard), spawned from R1’s input row; calls the read run (46); no remainder: the run ends here, so this shard has a memory node."}
+    rd: "reads: timeline receipts with the pattern X 3 62 3 Y? a formula row on gate 61?" {class: note}
+    m: "memory node on 59.s103  (this run)" {class: mem; run: "103"; input: "receipt of the question run"; source: "R1"; c_answer: "0"; tooltip: "The question is a run that ends; its memory row sits on the shard that ended it, with its one-cell sheet inside. Its answer is a cell on R1’s sheet (teal wire)."}
+    n.s103 -> rd: {class: readw}
+    n.s103 -> m: {class: trig; label: "no remainder"}
+  }
+  path: "which path" {
+    class: col; grid-columns: 1; grid-gap: 14
+  pick: "all three 0\n> the long way" {class: pick; tooltip: "10-23 P3 B2: 'if they all come back no, then we have to go the long way... yes, we know something, yes, we have a shortcut, and yes, we have a formula shortcut, then we go the formula shortcut path. If the belief and the truth part of that shows that we can do the shortcut path and the formula shortcut path correctly. If not, then we still have to hash out the long way.'"}
+  short: "shortcut: one hop to the memory" {class: note; tooltip: "Not taken on this line. 10-23 P3 B2."}
+  formula_path: "formula shortcut: plug the cells in,\njump to the formula's gate, run it there" {class: note; tooltip: "Not taken on this line (nothing bound to 61 yet). 10-18 J; 10-23 P3 B2."}
+  }
+  q57.m -> path.pick: {class: fill}
+  q58.m -> path.pick: {class: fill}
+  q59.m -> path.pick: {class: fill}
+  path.pick -> path.short: {class: not}
+  path.pick -> path.formula_path: {class: not}
+}
+line.r1 -> sq.q57.n: {class: spawn}
+line.r1 -> sq.q58.n: {class: spawn}
+line.r1 -> sq.q59.n: {class: spawn}
+main: "3 · THE MAIN RUN R1, the hallway: 61 > 3 > 62 > 3 > 63 (10-23 P3: it writes nothing but its receipt; the triggers do the rest)" {
+  class: lane
+  grid-columns: 2
+  hall: "the hallway, top to bottom" {
+    class: col; grid-columns: 1; grid-gap: 14
+  ha: "61 · define" {class: newborn; s104: "1 > 3 | - | -"; tooltip: "define, gate 61, born this line. The row s104: arrived from 1 (heard), goes on to 3 (space). No gate existed: the 'no gate' condition excites the born run (41). Then the write run (43) lays this shard. Its trigger column holds nothing yet: on a fresh brain define is a symbol with no action (10-27 05:37)."}
+  hb: "3 · space" {class: neuron; s105: "61 > 62 | - | -"; tooltip: "the space, gate 3, a core neuron. Its action ( ) 'is a meaning that we know happens to the graph or the silicon' (10-27 05:37). No row for (61 > 62): the write run lays s105."}
+  hc: "62 · :" {class: newborn; s106: "3 > 3 | - | -"; tooltip: ":, gate 62, born this line. 10-27 05:37: ':' might have an action depending on use; in sql it has an action we know, but a different dna row might not have the same action. On this line it has no action yet. s106: 3 > 3."}
+  hd: "3 · space" {class: neuron; s107: "62 > 63 | - | -"; tooltip: "the space again, the same neuron 3, drawn where it is hit the second time (his sketch). s107: 62 > 63."}
+  he: "63 · who" {class: newborn; s108: "3 > - | - | 48 memory"; tooltip: "who, gate 63, born this line. s108 has no remainder: 'the dna shard that has no remainder is what triggers the write of the memories' (10-15 21:50). This shard's memory node holds R1's memory row with the sheet inside. Later rows of who: 'who is, who are, who did and who was each fire a different row inside the one neuron for who' (10-22 rev17)."}
+  }
+  hall.ha.s104 -> hall.hb.s105: {class: hop}
+  hall.hb.s105 -> hall.hc.s106: {class: hop}
+  hall.hc.s106 -> hall.hd.s107: {class: hop}
+  hall.hd.s107 -> hall.he.s108: {class: hop}
+  receipt: "R1 receipt" {class: sheet; h1: "1 > 61.s104"; h2: "61 > 3.s105"; h3: "3 > 62.s106"; h4: "62 > 3.s107"; h5: "3 > 63.s108 (end)"; tooltip: "The path of gates and shards the run hit: a pointer to the run, never the run again (10-23 P2). [open] whether the receipt is written by the hop's physics or by a write run (audit 10-25 row 5)."}
+  hall.he.s108 -> receipt: {class: readw}
+}
+sq.path.pick -> main.hall.ha: {class: hop; label: "long way"}
+born61: "4 · BORN RUN R2 for 61, THE LONG WAY: a run through the SQL-word neurons, one hit per symbol, the value neuron holding the hole (10-19 21:52; 23:03; his words 10-28: 'like 50 neurons gates')" {
+  class: lane
+  grid-columns: 4
+  colA: "born, and the write run the hole calls" {
+    class: col; grid-columns: 1; grid-gap: 14
+  b41: "41 · born" {class: neuron; s109: "61 > 4 | - | 51 ask"; tooltip: "The born run. Excited by the no-gate condition at 61 (10-20 01:22). Its row: arrived from 61, goes on to 4 (CREATE); its spawn column: the ask run (51) for the newborn’s sources (’Every newborn is born with at least some sources’, 10-23 P4). It declares on R1’s sheet the cell gate.61 (empty) and its own sheet: value, text, reply (10-26 03:50: each tripped trigger declares the cells its run will fill)."}
+  w43: "43 · write" {class: neuron; s111: "18 > - | - | -"; tooltip: "The write run: a run through the neurons that writes a value into a cell or a row; the trigger excites it, it writes nothing itself (10-26 03:59: ’that is why we have a write run through the neurons... the trigger just triggers that run, often used with the copy run, and cut run’). Here it writes value = 61 into R2’s sheet cell value, both times the hole is hit."}
+  }
+  st1: "statement 1: CREATE TABLE \\\" value \\\" ( shard INTEGER , before INTEGER , trigger INTEGER , call INTEGER , spawn INTEGER ) ;   (41 hits)" {
+    class: col; grid-columns: 1; grid-gap: 14
+    h0: "4 · CREATE" {class: hit; s112: "41 > 3 | - | -"; tooltip: "First statement of the born run. hit 1 of 41 in run R2: gate 4 (CREATE), shard s112: arrived from 41, goes on to 3."}
+    h1: "3 · space" {class: hit; s113: "4 > 5 | - | -"; tooltip: "hit 2 of 41 in run R2: gate 3 (space), shard s113: arrived from 4, goes on to 5."}
+    h0.s112 -> h1.s113: {class: hop}
+    h2: "5 · TABLE" {class: hit; s114: "3 > 3 | - | -"; tooltip: "hit 3 of 41 in run R2: gate 5 (TABLE), shard s114: arrived from 3, goes on to 3."}
+    h1.s113 -> h2.s114: {class: hop}
+    h3: "3 · space" {class: hit; s115: "5 > 6 | - | -"; tooltip: "hit 4 of 41 in run R2: gate 3 (space), shard s115: arrived from 5, goes on to 6."}
+    h2.s114 -> h3.s115: {class: hop}
+    h4: "6 · \"" {class: hit; s116: "3 > 18 | - | -"; tooltip: "hit 5 of 41 in run R2: gate 6 ('), shard s116: arrived from 3, goes on to 18."}
+    h3.s115 -> h4.s116: {class: hop}
+    h5: "18 · value" {class: hit; s117: "6 > 6 | 43 write | -"; tooltip: "hit 6 of 41 in run R2: gate 18 (value), shard s117: arrived from 6, goes on to 6. The hole: 'create table (var a)... a table of what ever is sitting at the newest memory at var a' (10-19 23:08). 'a different shard in the value neuron for each new run' (his words 10-28). Its call: the write run (43) writes this run's value, 61, into the run's data sheet cell value; the substitution of the hole with the value happens from the sheet (10-24 msg 36)."}
+    h4.s116 -> h5.s117: {class: hop}
+    h6: "6 · \"" {class: hit; s118: "18 > 3 | - | -"; tooltip: "hit 7 of 41 in run R2: gate 6 ('), shard s118: arrived from 18, goes on to 3."}
+    h5.s117 -> h6.s118: {class: hop}
+    h7: "3 · space" {class: hit; s119: "6 > 7 | - | -"; tooltip: "hit 8 of 41 in run R2: gate 3 (space), shard s119: arrived from 6, goes on to 7."}
+    h6.s118 -> h7.s119: {class: hop}
+    h8: "7 · (" {class: hit; s120: "3 > 3 | - | -"; tooltip: "hit 9 of 41 in run R2: gate 7 ((), shard s120: arrived from 3, goes on to 3."}
+    h7.s119 -> h8.s120: {class: hop}
+    h9: "3 · space" {class: hit; s121: "7 > 13 | - | -"; tooltip: "hit 10 of 41 in run R2: gate 3 (space), shard s121: arrived from 7, goes on to 13."}
+    h8.s120 -> h9.s121: {class: hop}
+    h10: "13 · shard" {class: hit; s122: "3 > 3 | - | -"; tooltip: "hit 11 of 41 in run R2: gate 13 (shard), shard s122: arrived from 3, goes on to 3."}
+    h9.s121 -> h10.s122: {class: hop}
+    h11: "3 · space" {class: hit; s123: "13 > 11 | - | -"; tooltip: "hit 12 of 41 in run R2: gate 3 (space), shard s123: arrived from 13, goes on to 11."}
+    h10.s122 -> h11.s123: {class: hop}
+    h12: "11 · INTEGER" {class: hit; s124: "3 > 3 | - | -"; tooltip: "hit 13 of 41 in run R2: gate 11 (INTEGER), shard s124: arrived from 3, goes on to 3."}
+    h11.s123 -> h12.s124: {class: hop}
+    h13: "3 · space" {class: hit; s125: "11 > 9 | - | -"; tooltip: "hit 14 of 41 in run R2: gate 3 (space), shard s125: arrived from 11, goes on to 9."}
+    h12.s124 -> h13.s125: {class: hop}
+    h14: "9 · ," {class: hit; s126: "3 > 3 | - | -"; tooltip: "hit 15 of 41 in run R2: gate 9 (,), shard s126: arrived from 3, goes on to 3."}
+    h13.s125 -> h14.s126: {class: hop}
+    h15: "3 · space" {class: hit; s127: "9 > 14 | - | -"; tooltip: "hit 16 of 41 in run R2: gate 3 (space), shard s127: arrived from 9, goes on to 14."}
+    h14.s126 -> h15.s127: {class: hop}
+    h16: "14 · before" {class: hit; s128: "3 > 3 | - | -"; tooltip: "hit 17 of 41 in run R2: gate 14 (before), shard s128: arrived from 3, goes on to 3."}
+    h15.s127 -> h16.s128: {class: hop}
+    h17: "3 · space" {class: hit; s129: "14 > 11 | - | -"; tooltip: "hit 18 of 41 in run R2: gate 3 (space), shard s129: arrived from 14, goes on to 11."}
+    h16.s128 -> h17.s129: {class: hop}
+    h18: "11 · INTEGER" {class: hit; s130: "3 > 3 | - | -"; tooltip: "hit 19 of 41 in run R2: gate 11 (INTEGER), shard s130: arrived from 3, goes on to 3."}
+    h17.s129 -> h18.s130: {class: hop}
+    h19: "3 · space" {class: hit; s131: "11 > 9 | - | -"; tooltip: "hit 20 of 41 in run R2: gate 3 (space), shard s131: arrived from 11, goes on to 9."}
+    h18.s130 -> h19.s131: {class: hop}
+    h20: "9 · ," {class: hit; s132: "3 > 3 | - | -"; tooltip: "hit 21 of 41 in run R2: gate 9 (,), shard s132: arrived from 3, goes on to 3."}
+    h19.s131 -> h20.s132: {class: hop}
+    h21: "3 · space" {class: hit; s133: "9 > 15 | - | -"; tooltip: "hit 22 of 41 in run R2: gate 3 (space), shard s133: arrived from 9, goes on to 15."}
+    h20.s132 -> h21.s133: {class: hop}
+    h22: "15 · trigger" {class: hit; s134: "3 > 3 | - | -"; tooltip: "hit 23 of 41 in run R2: gate 15 (trigger), shard s134: arrived from 3, goes on to 3."}
+    h21.s133 -> h22.s134: {class: hop}
+    h23: "3 · space" {class: hit; s135: "15 > 11 | - | -"; tooltip: "hit 24 of 41 in run R2: gate 3 (space), shard s135: arrived from 15, goes on to 11."}
+    h22.s134 -> h23.s135: {class: hop}
+    h24: "11 · INTEGER" {class: hit; s136: "3 > 3 | - | -"; tooltip: "hit 25 of 41 in run R2: gate 11 (INTEGER), shard s136: arrived from 3, goes on to 3."}
+    h23.s135 -> h24.s136: {class: hop}
+    h25: "3 · space" {class: hit; s137: "11 > 9 | - | -"; tooltip: "hit 26 of 41 in run R2: gate 3 (space), shard s137: arrived from 11, goes on to 9."}
+    h24.s136 -> h25.s137: {class: hop}
+    h26: "9 · ," {class: hit; s138: "3 > 3 | - | -"; tooltip: "hit 27 of 41 in run R2: gate 9 (,), shard s138: arrived from 3, goes on to 3."}
+    h25.s137 -> h26.s138: {class: hop}
+    h27: "3 · space" {class: hit; s139: "9 > 16 | - | -"; tooltip: "hit 28 of 41 in run R2: gate 3 (space), shard s139: arrived from 9, goes on to 16."}
+    h26.s138 -> h27.s139: {class: hop}
+    h28: "16 · call" {class: hit; s140: "3 > 3 | - | -"; tooltip: "hit 29 of 41 in run R2: gate 16 (call), shard s140: arrived from 3, goes on to 3."}
+    h27.s139 -> h28.s140: {class: hop}
+    h29: "3 · space" {class: hit; s141: "16 > 11 | - | -"; tooltip: "hit 30 of 41 in run R2: gate 3 (space), shard s141: arrived from 16, goes on to 11."}
+    h28.s140 -> h29.s141: {class: hop}
+    h30: "11 · INTEGER" {class: hit; s142: "3 > 3 | - | -"; tooltip: "hit 31 of 41 in run R2: gate 11 (INTEGER), shard s142: arrived from 3, goes on to 3."}
+    h29.s141 -> h30.s142: {class: hop}
+    h31: "3 · space" {class: hit; s143: "11 > 9 | - | -"; tooltip: "hit 32 of 41 in run R2: gate 3 (space), shard s143: arrived from 11, goes on to 9."}
+    h30.s142 -> h31.s143: {class: hop}
+    h32: "9 · ," {class: hit; s144: "3 > 3 | - | -"; tooltip: "hit 33 of 41 in run R2: gate 9 (,), shard s144: arrived from 3, goes on to 3."}
+    h31.s143 -> h32.s144: {class: hop}
+    h33: "3 · space" {class: hit; s145: "9 > 17 | - | -"; tooltip: "hit 34 of 41 in run R2: gate 3 (space), shard s145: arrived from 9, goes on to 17."}
+    h32.s144 -> h33.s145: {class: hop}
+    h34: "17 · spawn" {class: hit; s146: "3 > 3 | - | -"; tooltip: "hit 35 of 41 in run R2: gate 17 (spawn), shard s146: arrived from 3, goes on to 3."}
+    h33.s145 -> h34.s146: {class: hop}
+    h35: "3 · space" {class: hit; s147: "17 > 11 | - | -"; tooltip: "hit 36 of 41 in run R2: gate 3 (space), shard s147: arrived from 17, goes on to 11."}
+    h34.s146 -> h35.s147: {class: hop}
+    h36: "11 · INTEGER" {class: hit; s148: "3 > 3 | - | -"; tooltip: "hit 37 of 41 in run R2: gate 11 (INTEGER), shard s148: arrived from 3, goes on to 3."}
+    h35.s147 -> h36.s148: {class: hop}
+    h37: "3 · space" {class: hit; s149: "11 > 8 | - | -"; tooltip: "hit 38 of 41 in run R2: gate 3 (space), shard s149: arrived from 11, goes on to 8."}
+    h36.s148 -> h37.s149: {class: hop}
+    h38: "8 · )" {class: hit; s150: "3 > 3 | - | -"; tooltip: "hit 39 of 41 in run R2: gate 8 ()), shard s150: arrived from 3, goes on to 3."}
+    h37.s149 -> h38.s150: {class: hop}
+    h39: "3 · space" {class: hit; s151: "8 > 10 | - | -"; tooltip: "hit 40 of 41 in run R2: gate 3 (space), shard s151: arrived from 8, goes on to 10."}
+    h38.s150 -> h39.s151: {class: hop}
+    h40: "10 · ;" {class: hit; s152: "3 > 40 | - | -"; tooltip: "hit 41 of 41 in run R2: gate 10 (;), shard s152: arrived from 3, goes on to 40 build."}
+    h39.s151 -> h40.s152: {class: hop}
+  }
+  st2: "statement 2: CREATE TABLE \\\" value definition \\\" ( source TEXT , ... , ended_at TEXT ) ;   (97 hits)" {
+    class: col; grid-columns: 1; grid-gap: 14
+    h0: "4 · CREATE" {class: hit; s153: "10 > 3 | - | -"; tooltip: "Second statement: the definition node, born with the neuron (10-19 23:40). The columns are his own definition table (sqlite history). hit 1 of 97 in run R2: gate 4 (CREATE), shard s153: arrived from 10, goes on to 3."}
+    h1: "3 · space" {class: hit; s154: "4 > 5 | - | -"; tooltip: "hit 2 of 97 in run R2: gate 3 (space), shard s154: arrived from 4, goes on to 5."}
+    h0.s153 -> h1.s154: {class: hop}
+    h2: "5 · TABLE" {class: hit; s155: "3 > 3 | - | -"; tooltip: "hit 3 of 97 in run R2: gate 5 (TABLE), shard s155: arrived from 3, goes on to 3."}
+    h1.s154 -> h2.s155: {class: hop}
+    h3: "3 · space" {class: hit; s156: "5 > 6 | - | -"; tooltip: "hit 4 of 97 in run R2: gate 3 (space), shard s156: arrived from 5, goes on to 6."}
+    h2.s155 -> h3.s156: {class: hop}
+    h4: "6 · \"" {class: hit; s157: "3 > 18 | - | -"; tooltip: "hit 5 of 97 in run R2: gate 6 ('), shard s157: arrived from 3, goes on to 18."}
+    h3.s156 -> h4.s157: {class: hop}
+    h5: "18 · value" {class: hit; s158: "6 > 3 | 43 write | -"; tooltip: "hit 6 of 97 in run R2: gate 18 (value), shard s158: arrived from 6, goes on to 3. The hole: 'create table (var a)... a table of what ever is sitting at the newest memory at var a' (10-19 23:08). 'a different shard in the value neuron for each new run' (his words 10-28). Its call: the write run (43) writes this run's value, 61, into the run's data sheet cell value; the substitution of the hole with the value happens from the sheet (10-24 msg 36)."}
+    h4.s157 -> h5.s158: {class: hop}
+    h6: "3 · space" {class: hit; s159: "18 > 19 | - | -"; tooltip: "hit 7 of 97 in run R2: gate 3 (space), shard s159: arrived from 18, goes on to 19."}
+    h5.s158 -> h6.s159: {class: hop}
+    h7: "19 · definition" {class: hit; s160: "3 > 6 | - | -"; tooltip: "hit 8 of 97 in run R2: gate 19 (definition), shard s160: arrived from 3, goes on to 6."}
+    h6.s159 -> h7.s160: {class: hop}
+    h8: "6 · \"" {class: hit; s161: "19 > 3 | - | -"; tooltip: "hit 9 of 97 in run R2: gate 6 ('), shard s161: arrived from 19, goes on to 3."}
+    h7.s160 -> h8.s161: {class: hop}
+    h9: "3 · space" {class: hit; s162: "6 > 7 | - | -"; tooltip: "hit 10 of 97 in run R2: gate 3 (space), shard s162: arrived from 6, goes on to 7."}
+    h8.s161 -> h9.s162: {class: hop}
+    h10: "7 · (" {class: hit; s163: "3 > 3 | - | -"; tooltip: "hit 11 of 97 in run R2: gate 7 ((), shard s163: arrived from 3, goes on to 3."}
+    h9.s162 -> h10.s163: {class: hop}
+    h11: "3 · space" {class: hit; s164: "7 > 20 | - | -"; tooltip: "hit 12 of 97 in run R2: gate 3 (space), shard s164: arrived from 7, goes on to 20."}
+    h10.s163 -> h11.s164: {class: hop}
+    h12: "20 · source" {class: hit; s165: "3 > 3 | - | -"; tooltip: "hit 13 of 97 in run R2: gate 20 (source), shard s165: arrived from 3, goes on to 3."}
+    h11.s164 -> h12.s165: {class: hop}
+    h13: "3 · space" {class: hit; s166: "20 > 12 | - | -"; tooltip: "hit 14 of 97 in run R2: gate 3 (space), shard s166: arrived from 20, goes on to 12."}
+    h12.s165 -> h13.s166: {class: hop}
+    h14: "12 · TEXT" {class: hit; s167: "3 > 3 | - | -"; tooltip: "hit 15 of 97 in run R2: gate 12 (TEXT), shard s167: arrived from 3, goes on to 3."}
+    h13.s166 -> h14.s167: {class: hop}
+    h15: "3 · space" {class: hit; s168: "12 > 9 | - | -"; tooltip: "hit 16 of 97 in run R2: gate 3 (space), shard s168: arrived from 12, goes on to 9."}
+    h14.s167 -> h15.s168: {class: hop}
+    h16: "9 · ," {class: hit; s169: "3 > 3 | - | -"; tooltip: "hit 17 of 97 in run R2: gate 9 (,), shard s169: arrived from 3, goes on to 3."}
+    h15.s168 -> h16.s169: {class: hop}
+    h17: "3 · space" {class: hit; s170: "9 > 21 | - | -"; tooltip: "hit 18 of 97 in run R2: gate 3 (space), shard s170: arrived from 9, goes on to 21."}
+    h16.s169 -> h17.s170: {class: hop}
+    h18: "21 · entry" {class: hit; s171: "3 > 3 | - | -"; tooltip: "hit 19 of 97 in run R2: gate 21 (entry), shard s171: arrived from 3, goes on to 3."}
+    h17.s170 -> h18.s171: {class: hop}
+    h19: "3 · space" {class: hit; s172: "21 > 12 | - | -"; tooltip: "hit 20 of 97 in run R2: gate 3 (space), shard s172: arrived from 21, goes on to 12."}
+    h18.s171 -> h19.s172: {class: hop}
+    h20: "12 · TEXT" {class: hit; s173: "3 > 3 | - | -"; tooltip: "hit 21 of 97 in run R2: gate 12 (TEXT), shard s173: arrived from 3, goes on to 3."}
+    h19.s172 -> h20.s173: {class: hop}
+    h21: "3 · space" {class: hit; s174: "12 > 9 | - | -"; tooltip: "hit 22 of 97 in run R2: gate 3 (space), shard s174: arrived from 12, goes on to 9."}
+    h20.s173 -> h21.s174: {class: hop}
+    h22: "9 · ," {class: hit; s175: "3 > 3 | - | -"; tooltip: "hit 23 of 97 in run R2: gate 9 (,), shard s175: arrived from 3, goes on to 3."}
+    h21.s174 -> h22.s175: {class: hop}
+    h23: "3 · space" {class: hit; s176: "9 > 22 | - | -"; tooltip: "hit 24 of 97 in run R2: gate 3 (space), shard s176: arrived from 9, goes on to 22."}
+    h22.s175 -> h23.s176: {class: hop}
+    h24: "22 · sense" {class: hit; s177: "3 > 3 | - | -"; tooltip: "hit 25 of 97 in run R2: gate 22 (sense), shard s177: arrived from 3, goes on to 3."}
+    h23.s176 -> h24.s177: {class: hop}
+    h25: "3 · space" {class: hit; s178: "22 > 12 | - | -"; tooltip: "hit 26 of 97 in run R2: gate 3 (space), shard s178: arrived from 22, goes on to 12."}
+    h24.s177 -> h25.s178: {class: hop}
+    h26: "12 · TEXT" {class: hit; s179: "3 > 3 | - | -"; tooltip: "hit 27 of 97 in run R2: gate 12 (TEXT), shard s179: arrived from 3, goes on to 3."}
+    h25.s178 -> h26.s179: {class: hop}
+    h27: "3 · space" {class: hit; s180: "12 > 9 | - | -"; tooltip: "hit 28 of 97 in run R2: gate 3 (space), shard s180: arrived from 12, goes on to 9."}
+    h26.s179 -> h27.s180: {class: hop}
+    h28: "9 · ," {class: hit; s181: "3 > 3 | - | -"; tooltip: "hit 29 of 97 in run R2: gate 9 (,), shard s181: arrived from 3, goes on to 3."}
+    h27.s180 -> h28.s181: {class: hop}
+    h29: "3 · space" {class: hit; s182: "9 > 23 | - | -"; tooltip: "hit 30 of 97 in run R2: gate 3 (space), shard s182: arrived from 9, goes on to 23."}
+    h28.s181 -> h29.s182: {class: hop}
+    h30: "23 · class" {class: hit; s183: "3 > 3 | - | -"; tooltip: "hit 31 of 97 in run R2: gate 23 (class), shard s183: arrived from 3, goes on to 3."}
+    h29.s182 -> h30.s183: {class: hop}
+    h31: "3 · space" {class: hit; s184: "23 > 12 | - | -"; tooltip: "hit 32 of 97 in run R2: gate 3 (space), shard s184: arrived from 23, goes on to 12."}
+    h30.s183 -> h31.s184: {class: hop}
+    h32: "12 · TEXT" {class: hit; s185: "3 > 3 | - | -"; tooltip: "hit 33 of 97 in run R2: gate 12 (TEXT), shard s185: arrived from 3, goes on to 3."}
+    h31.s184 -> h32.s185: {class: hop}
+    h33: "3 · space" {class: hit; s186: "12 > 9 | - | -"; tooltip: "hit 34 of 97 in run R2: gate 3 (space), shard s186: arrived from 12, goes on to 9."}
+    h32.s185 -> h33.s186: {class: hop}
+    h34: "9 · ," {class: hit; s187: "3 > 3 | - | -"; tooltip: "hit 35 of 97 in run R2: gate 9 (,), shard s187: arrived from 3, goes on to 3."}
+    h33.s186 -> h34.s187: {class: hop}
+    h35: "3 · space" {class: hit; s188: "9 > 24 | - | -"; tooltip: "hit 36 of 97 in run R2: gate 3 (space), shard s188: arrived from 9, goes on to 24."}
+    h34.s187 -> h35.s188: {class: hop}
+    h36: "24 · text" {class: hit; s189: "3 > 3 | - | -"; tooltip: "hit 37 of 97 in run R2: gate 24 (text), shard s189: arrived from 3, goes on to 3."}
+    h35.s188 -> h36.s189: {class: hop}
+    h37: "3 · space" {class: hit; s190: "24 > 12 | - | -"; tooltip: "hit 38 of 97 in run R2: gate 3 (space), shard s190: arrived from 24, goes on to 12."}
+    h36.s189 -> h37.s190: {class: hop}
+    h38: "12 · TEXT" {class: hit; s191: "3 > 3 | - | -"; tooltip: "hit 39 of 97 in run R2: gate 12 (TEXT), shard s191: arrived from 3, goes on to 3."}
+    h37.s190 -> h38.s191: {class: hop}
+    h39: "3 · space" {class: hit; s192: "12 > 9 | - | -"; tooltip: "hit 40 of 97 in run R2: gate 3 (space), shard s192: arrived from 12, goes on to 9."}
+    h38.s191 -> h39.s192: {class: hop}
+    h40: "9 · ," {class: hit; s193: "3 > 3 | - | -"; tooltip: "hit 41 of 97 in run R2: gate 9 (,), shard s193: arrived from 3, goes on to 3."}
+    h39.s192 -> h40.s193: {class: hop}
+    h41: "3 · space" {class: hit; s194: "9 > 25 | - | -"; tooltip: "hit 42 of 97 in run R2: gate 3 (space), shard s194: arrived from 9, goes on to 25."}
+    h40.s193 -> h41.s194: {class: hop}
+    h42: "25 · example" {class: hit; s195: "3 > 3 | - | -"; tooltip: "hit 43 of 97 in run R2: gate 25 (example), shard s195: arrived from 3, goes on to 3."}
+    h41.s194 -> h42.s195: {class: hop}
+    h43: "3 · space" {class: hit; s196: "25 > 12 | - | -"; tooltip: "hit 44 of 97 in run R2: gate 3 (space), shard s196: arrived from 25, goes on to 12."}
+    h42.s195 -> h43.s196: {class: hop}
+    h44: "12 · TEXT" {class: hit; s197: "3 > 3 | - | -"; tooltip: "hit 45 of 97 in run R2: gate 12 (TEXT), shard s197: arrived from 3, goes on to 3."}
+    h43.s196 -> h44.s197: {class: hop}
+    h45: "3 · space" {class: hit; s198: "12 > 9 | - | -"; tooltip: "hit 46 of 97 in run R2: gate 3 (space), shard s198: arrived from 12, goes on to 9."}
+    h44.s197 -> h45.s198: {class: hop}
+    h46: "9 · ," {class: hit; s199: "3 > 3 | - | -"; tooltip: "hit 47 of 97 in run R2: gate 9 (,), shard s199: arrived from 3, goes on to 3."}
+    h45.s198 -> h46.s199: {class: hop}
+    h47: "3 · space" {class: hit; s200: "9 > 26 | - | -"; tooltip: "hit 48 of 97 in run R2: gate 3 (space), shard s200: arrived from 9, goes on to 26."}
+    h46.s199 -> h47.s200: {class: hop}
+    h48: "26 · origin" {class: hit; s201: "3 > 3 | - | -"; tooltip: "hit 49 of 97 in run R2: gate 26 (origin), shard s201: arrived from 3, goes on to 3."}
+    h47.s200 -> h48.s201: {class: hop}
+    h49: "3 · space" {class: hit; s202: "26 > 12 | - | -"; tooltip: "hit 50 of 97 in run R2: gate 3 (space), shard s202: arrived from 26, goes on to 12."}
+    h48.s201 -> h49.s202: {class: hop}
+    h50: "12 · TEXT" {class: hit; s203: "3 > 3 | - | -"; tooltip: "hit 51 of 97 in run R2: gate 12 (TEXT), shard s203: arrived from 3, goes on to 3."}
+    h49.s202 -> h50.s203: {class: hop}
+    h51: "3 · space" {class: hit; s204: "12 > 9 | - | -"; tooltip: "hit 52 of 97 in run R2: gate 3 (space), shard s204: arrived from 12, goes on to 9."}
+    h50.s203 -> h51.s204: {class: hop}
+    h52: "9 · ," {class: hit; s205: "3 > 3 | - | -"; tooltip: "hit 53 of 97 in run R2: gate 9 (,), shard s205: arrived from 3, goes on to 3."}
+    h51.s204 -> h52.s205: {class: hop}
+    h53: "3 · space" {class: hit; s206: "9 > 27 | - | -"; tooltip: "hit 54 of 97 in run R2: gate 3 (space), shard s206: arrived from 9, goes on to 27."}
+    h52.s205 -> h53.s206: {class: hop}
+    h54: "27 · first_use" {class: hit; s207: "3 > 3 | - | -"; tooltip: "hit 55 of 97 in run R2: gate 27 (first_use), shard s207: arrived from 3, goes on to 3."}
+    h53.s206 -> h54.s207: {class: hop}
+    h55: "3 · space" {class: hit; s208: "27 > 12 | - | -"; tooltip: "hit 56 of 97 in run R2: gate 3 (space), shard s208: arrived from 27, goes on to 12."}
+    h54.s207 -> h55.s208: {class: hop}
+    h56: "12 · TEXT" {class: hit; s209: "3 > 3 | - | -"; tooltip: "hit 57 of 97 in run R2: gate 12 (TEXT), shard s209: arrived from 3, goes on to 3."}
+    h55.s208 -> h56.s209: {class: hop}
+    h57: "3 · space" {class: hit; s210: "12 > 9 | - | -"; tooltip: "hit 58 of 97 in run R2: gate 3 (space), shard s210: arrived from 12, goes on to 9."}
+    h56.s209 -> h57.s210: {class: hop}
+    h58: "9 · ," {class: hit; s211: "3 > 3 | - | -"; tooltip: "hit 59 of 97 in run R2: gate 9 (,), shard s211: arrived from 3, goes on to 3."}
+    h57.s210 -> h58.s211: {class: hop}
+    h59: "3 · space" {class: hit; s212: "9 > 28 | - | -"; tooltip: "hit 60 of 97 in run R2: gate 3 (space), shard s212: arrived from 9, goes on to 28."}
+    h58.s211 -> h59.s212: {class: hop}
+    h60: "28 · synonyms" {class: hit; s213: "3 > 3 | - | -"; tooltip: "hit 61 of 97 in run R2: gate 28 (synonyms), shard s213: arrived from 3, goes on to 3."}
+    h59.s212 -> h60.s213: {class: hop}
+    h61: "3 · space" {class: hit; s214: "28 > 12 | - | -"; tooltip: "hit 62 of 97 in run R2: gate 3 (space), shard s214: arrived from 28, goes on to 12."}
+    h60.s213 -> h61.s214: {class: hop}
+    h62: "12 · TEXT" {class: hit; s215: "3 > 3 | - | -"; tooltip: "hit 63 of 97 in run R2: gate 12 (TEXT), shard s215: arrived from 3, goes on to 3."}
+    h61.s214 -> h62.s215: {class: hop}
+    h63: "3 · space" {class: hit; s216: "12 > 9 | - | -"; tooltip: "hit 64 of 97 in run R2: gate 3 (space), shard s216: arrived from 12, goes on to 9."}
+    h62.s215 -> h63.s216: {class: hop}
+    h64: "9 · ," {class: hit; s217: "3 > 3 | - | -"; tooltip: "hit 65 of 97 in run R2: gate 9 (,), shard s217: arrived from 3, goes on to 3."}
+    h63.s216 -> h64.s217: {class: hop}
+    h65: "3 · space" {class: hit; s218: "9 > 29 | - | -"; tooltip: "hit 66 of 97 in run R2: gate 3 (space), shard s218: arrived from 9, goes on to 29."}
+    h64.s217 -> h65.s218: {class: hop}
+    h66: "29 · antonyms" {class: hit; s219: "3 > 3 | - | -"; tooltip: "hit 67 of 97 in run R2: gate 29 (antonyms), shard s219: arrived from 3, goes on to 3."}
+    h65.s218 -> h66.s219: {class: hop}
+    h67: "3 · space" {class: hit; s220: "29 > 12 | - | -"; tooltip: "hit 68 of 97 in run R2: gate 3 (space), shard s220: arrived from 29, goes on to 12."}
+    h66.s219 -> h67.s220: {class: hop}
+    h68: "12 · TEXT" {class: hit; s221: "3 > 3 | - | -"; tooltip: "hit 69 of 97 in run R2: gate 12 (TEXT), shard s221: arrived from 3, goes on to 3."}
+    h67.s220 -> h68.s221: {class: hop}
+    h69: "3 · space" {class: hit; s222: "12 > 9 | - | -"; tooltip: "hit 70 of 97 in run R2: gate 3 (space), shard s222: arrived from 12, goes on to 9."}
+    h68.s221 -> h69.s222: {class: hop}
+    h70: "9 · ," {class: hit; s223: "3 > 3 | - | -"; tooltip: "hit 71 of 97 in run R2: gate 9 (,), shard s223: arrived from 3, goes on to 3."}
+    h69.s222 -> h70.s223: {class: hop}
+    h71: "3 · space" {class: hit; s224: "9 > 30 | - | -"; tooltip: "hit 72 of 97 in run R2: gate 3 (space), shard s224: arrived from 9, goes on to 30."}
+    h70.s223 -> h71.s224: {class: hop}
+    h72: "30 · times" {class: hit; s225: "3 > 3 | - | -"; tooltip: "hit 73 of 97 in run R2: gate 30 (times), shard s225: arrived from 3, goes on to 3."}
+    h71.s224 -> h72.s225: {class: hop}
+    h73: "3 · space" {class: hit; s226: "30 > 11 | - | -"; tooltip: "hit 74 of 97 in run R2: gate 3 (space), shard s226: arrived from 30, goes on to 11."}
+    h72.s225 -> h73.s226: {class: hop}
+    h74: "11 · INTEGER" {class: hit; s227: "3 > 3 | - | -"; tooltip: "hit 75 of 97 in run R2: gate 11 (INTEGER), shard s227: arrived from 3, goes on to 3."}
+    h73.s226 -> h74.s227: {class: hop}
+    h75: "3 · space" {class: hit; s228: "11 > 9 | - | -"; tooltip: "hit 76 of 97 in run R2: gate 3 (space), shard s228: arrived from 11, goes on to 9."}
+    h74.s227 -> h75.s228: {class: hop}
+    h76: "9 · ," {class: hit; s229: "3 > 3 | - | -"; tooltip: "hit 77 of 97 in run R2: gate 9 (,), shard s229: arrived from 3, goes on to 3."}
+    h75.s228 -> h76.s229: {class: hop}
+    h77: "3 · space" {class: hit; s230: "9 > 31 | - | -"; tooltip: "hit 78 of 97 in run R2: gate 3 (space), shard s230: arrived from 9, goes on to 31."}
+    h76.s229 -> h77.s230: {class: hop}
+    h78: "31 · first_at" {class: hit; s231: "3 > 3 | - | -"; tooltip: "hit 79 of 97 in run R2: gate 31 (first_at), shard s231: arrived from 3, goes on to 3."}
+    h77.s230 -> h78.s231: {class: hop}
+    h79: "3 · space" {class: hit; s232: "31 > 12 | - | -"; tooltip: "hit 80 of 97 in run R2: gate 3 (space), shard s232: arrived from 31, goes on to 12."}
+    h78.s231 -> h79.s232: {class: hop}
+    h80: "12 · TEXT" {class: hit; s233: "3 > 3 | - | -"; tooltip: "hit 81 of 97 in run R2: gate 12 (TEXT), shard s233: arrived from 3, goes on to 3."}
+    h79.s232 -> h80.s233: {class: hop}
+    h81: "3 · space" {class: hit; s234: "12 > 9 | - | -"; tooltip: "hit 82 of 97 in run R2: gate 3 (space), shard s234: arrived from 12, goes on to 9."}
+    h80.s233 -> h81.s234: {class: hop}
+    h82: "9 · ," {class: hit; s235: "3 > 3 | - | -"; tooltip: "hit 83 of 97 in run R2: gate 9 (,), shard s235: arrived from 3, goes on to 3."}
+    h81.s234 -> h82.s235: {class: hop}
+    h83: "3 · space" {class: hit; s236: "9 > 32 | - | -"; tooltip: "hit 84 of 97 in run R2: gate 3 (space), shard s236: arrived from 9, goes on to 32."}
+    h82.s235 -> h83.s236: {class: hop}
+    h84: "32 · last_at" {class: hit; s237: "3 > 3 | - | -"; tooltip: "hit 85 of 97 in run R2: gate 32 (last_at), shard s237: arrived from 3, goes on to 3."}
+    h83.s236 -> h84.s237: {class: hop}
+    h85: "3 · space" {class: hit; s238: "32 > 12 | - | -"; tooltip: "hit 86 of 97 in run R2: gate 3 (space), shard s238: arrived from 32, goes on to 12."}
+    h84.s237 -> h85.s238: {class: hop}
+    h86: "12 · TEXT" {class: hit; s239: "3 > 3 | - | -"; tooltip: "hit 87 of 97 in run R2: gate 12 (TEXT), shard s239: arrived from 3, goes on to 3."}
+    h85.s238 -> h86.s239: {class: hop}
+    h87: "3 · space" {class: hit; s240: "12 > 9 | - | -"; tooltip: "hit 88 of 97 in run R2: gate 3 (space), shard s240: arrived from 12, goes on to 9."}
+    h86.s239 -> h87.s240: {class: hop}
+    h88: "9 · ," {class: hit; s241: "3 > 3 | - | -"; tooltip: "hit 89 of 97 in run R2: gate 9 (,), shard s241: arrived from 3, goes on to 3."}
+    h87.s240 -> h88.s241: {class: hop}
+    h89: "3 · space" {class: hit; s242: "9 > 33 | - | -"; tooltip: "hit 90 of 97 in run R2: gate 3 (space), shard s242: arrived from 9, goes on to 33."}
+    h88.s241 -> h89.s242: {class: hop}
+    h90: "33 · ended_at" {class: hit; s243: "3 > 3 | - | -"; tooltip: "hit 91 of 97 in run R2: gate 33 (ended_at), shard s243: arrived from 3, goes on to 3."}
+    h89.s242 -> h90.s243: {class: hop}
+    h91: "3 · space" {class: hit; s244: "33 > 12 | - | -"; tooltip: "hit 92 of 97 in run R2: gate 3 (space), shard s244: arrived from 33, goes on to 12."}
+    h90.s243 -> h91.s244: {class: hop}
+    h92: "12 · TEXT" {class: hit; s245: "3 > 3 | - | -"; tooltip: "hit 93 of 97 in run R2: gate 12 (TEXT), shard s245: arrived from 3, goes on to 3."}
+    h91.s244 -> h92.s245: {class: hop}
+    h93: "3 · space" {class: hit; s246: "12 > 8 | - | -"; tooltip: "hit 94 of 97 in run R2: gate 3 (space), shard s246: arrived from 12, goes on to 8."}
+    h92.s245 -> h93.s246: {class: hop}
+    h94: "8 · )" {class: hit; s247: "3 > 3 | - | -"; tooltip: "hit 95 of 97 in run R2: gate 8 ()), shard s247: arrived from 3, goes on to 3."}
+    h93.s246 -> h94.s247: {class: hop}
+    h95: "3 · space" {class: hit; s248: "8 > 10 | - | -"; tooltip: "hit 96 of 97 in run R2: gate 3 (space), shard s248: arrived from 8, goes on to 10."}
+    h94.s247 -> h95.s248: {class: hop}
+    h96: "10 · ;" {class: hit; s249: "3 > 40 | - | -"; tooltip: "hit 97 of 97 in run R2: gate 10 (;), shard s249: arrived from 3, goes on to 40 build."}
+    h95.s248 -> h96.s249: {class: hop}
+  }
+  colA.b41.s109 -> st1.h0.s112: {class: hop}
+  st1.h40.s152 -> st2.h0.s153: {class: hop; label: "; > CREATE"}
+  st1.h5.s117 -> colA.w43.s111: {class: call; label: "call"}
+  st2.h5.s158 -> colA.w43.s111: {class: call}
+  endcol: "the end of R2 and what the first correct long run sets off" {
+    class: col; grid-columns: 1; grid-gap: 14
+    b40: "40 · build" {class: neuron; s250: "10 > - | 60 out | 48 memory"; tooltip: "The build neuron: ’the last build word was the build neuron... routing information for the mother... build neuron = routing to sql prompt’ (10-26 03:50). Its DNA row, picked by before (10 ;) and remainder (none), is a build row ’because of how the before and remainder are set’, not by counting BUILDs. No remainder: this shard ends R2, so it carries R2’s memory node. The build neuron ends every born run, so it has one memory node per born run (his words 10-28)."}
+    text: "the product of the run: the two statements as text, hole filled from cell value = 61" {shape: page; tooltip: "10-19 23:03: the statement ’as the product of the run’. 10-24 msg 36: the run data sheet ’then produces the exact code that sql needs to run as output the same way that it forms human sentences... that output is given to the mother to route to the sql prompt’."}
+    reply: "SQL answers: ok" {class: sheet; tooltip: "The answer comes back through the mother > encoder mailbox as secondary input and fills R2’s cell reply (10-24 msg 36; 10-26 03:50). An error is not an end: ’the brain would problem solve’ (10-27 03:52)."}
+    m2: "memory node on 40.s250  (R2)" {class: mem; run: "R2"; input: "receipt: 41.s109 4.s112 ... 10.s249 40.s250"; source: "R1 (no gate at 61)"; c_value: "61"; c_text: "> the product"; c_reply: "ok"; c_exists: "1 (read run 46)"; c_formula: "> receipt with the hole at 18.s117"; c_backpop: "1"; tooltip: "R2’s memory row on the shard that ended it, with its data sheet inside (10-26 03:50; his v4 run_sheet). Cells declared by the triggers that tripped: value (write run), text and reply (build), exists (read run), formula (decide run), backpop (write run)."}
+    tl2: "timeline row: t1 | R2 > 40.s250 | 41 61" {class: tl; tooltip: "One row per run that ends: the clock reading, the receipt pointer, a couple of key words (10-16 06:40)."}
+    b40.s250 -> text
+    text -> reply: {class: route; label: "60 out > mother > neuron prompt > SQL > mother > encoder"}
+    reply -> m2: {class: fill; label: "fills reply"}
+    m2 -> tl2: {class: trig; label: "memory > timeline, stops"}
+    r46: "46 · read" {class: neuron; s251: "40 > - | 60 out | -"; tooltip: "[reading] ’the first time it works, and is correct’ (his words 10-28): ok says it ran; correct is read back: the read run asks the prompt (.schema of 61) through mother and the answer fills cell exists = 1. Which check counts as ’correct’ is his call."}
+    d53: "53 · decide (formula)" {class: neuron; s252: "46 > 43 | 44 copy | -"; tooltip: "His words 10-28: ’the first time it works, and is correct, it triggers a decide formula run that decides what the formula is, then writes it in that runs data sheet’. The decide formula run reads R2’s receipt, marks the hole (the value neuron’s shard 18.s117), and writes the formula into R2’s sheet cell formula: the receipt with the hole. The formula is a pointer to the run, never text (10-23 08:47: ’the row holds pointers to the run through the neurons that makes that’)."}
+    f55: "55 · formula" {class: neuron; s253: "4 > 40 | 43 write, 54 substitute | -"; tooltip: "The formula neuron for CREATE TABLE value ( shard INTEGER , before INTEGER , trigger INTEGER , call INTEGER , spawn INTEGER ) (his words 10-28). Its new row s253: arrived from 4 (CREATE arriving from born), goes on to 40 (build); calls the write run (43) and the substitution run (54). The row’s trigger points at R2’s sheet cell formula (the receipt with the hole). [open] one formula neuron with a row per formula, as drawn, or one neuron per formula (10-23 08:47 ’a pointer to the shortcut neuron formula’)."}
+    bp: "back population: 4.s112 gets  jump > 55.s253" {class: note; tooltip: "His words 10-28: ’through back population the triggers or calls or jumps or hops from a run create table (value) would have to show the substitution run and the write run writing the value... so that you can then skip the long run and use the formula neuron’. The write run (43) updates the first shard of the long run (CREATE arriving from born) with a jump to the formula row. 10-23 P5-9: back population is the application of a newly understood process to the other things it fits."}
+    m2 -> r46.s251: {class: trig; label: "reply ok"}
+    r46.s251 -> d53.s252: {class: trig; label: "exists = 1: first time correct"}
+    d53.s252 -> m2: {class: fill; label: "writes formula"}
+    d53.s252 -> f55.s253: {class: trig; label: "write run lays the formula row"}
+    f55.s253 -> bp: {class: trig}
+  }
+  st2.h96.s249 -> endcol.b40.s250: {class: hop}
+  colA.w43.s111 -> endcol.m2: {class: fill; label: "value = 61"}
+  endcol.bp -> st1.h0: {class: jump; label: "jump laid on 4.s112"}
+}
+main.hall.ha -> born61.colA.b41: {class: trig; label: "no gate: born"}
+born61.endcol.m2 -> main.hall.ha: {class: fill; label: "gate.61 = 61; try the run again [open: inline or retry]"}
+born_short: "5 · BORN RUNS R4 (62) and R6 (63), THE SHORTCUT: born > CREATE jumps to the formula row; write run writes the value; substitution run plugs it in; build (his words 10-28)" {
+  class: lane
+  grid-columns: 2
+  R4: "R4: born 62" {
+    class: col; grid-columns: 1; grid-gap: 14
+    b41: "41 · born" {class: neuron; s255: "62 > 4 | - | 51 ask"; tooltip: "The same born neuron, a new shard for this run: arrived from 62, goes on to 4 (CREATE); spawns the ask run (51) for the newborn's sources."}
+    c4: "4 · CREATE" {class: hit; s112: "41 > 3 | - | -   jump > 55.s253"; tooltip: "The same shard 4.s112 the long run wrote, now carrying the jump laid by back population: the long run is skipped. 10-08: ’if I know where I am standing I can hop to any point in my brain in one step... all the work was done at learning, not at runtime’."}
+    f55: "55 · formula" {class: neuron; s253: "4 > 40 | 43 write, 54 substitute | -"; tooltip: "The formula row laid after R2. Calls the write run and the substitution run; goes on to build."}
+    w43: "43 · write" {class: neuron; s258: "55 > - | - | -"; tooltip: "The write run writes the value variable, 62, into R4's sheet cell value (his words 10-28: 'the formula shortcut is just to the data sheet writing the value varible')."}
+    sub54: "54 · substitute" {class: neuron; s259: "55 > - | 44 copy | -"; tooltip: "The substitution run: ’substitution run grabbing that value and plugging it into the run data sheet so a new memory node can be made or a new neuron can be made’ (his words 10-28). Its call: the copy run (44) copies the formula (R2’s sheet cell formula, the receipt with the hole) into this run’s sheet; then the hole is filled with cell value = 62. ’the trigger of the substitution run copying into the substitution run’ (10-28)."}
+    cp44: "44 · copy" {class: neuron; s260: "54 > - | - | -"; tooltip: "Copies R2.sheet.formula into R4's sheet cell text (the receipt with the hole)."}
+    b40: "40 · build" {class: neuron; s261: "55 > - | 60 out | 48 memory"; tooltip: "The build neuron again, a new shard for R4: it ends the run, so it carries another memory node. The build neuron now holds memory nodes for R2, R4, ... one per born run."}
+    m: "memory node on 40.s261  (R4)" {class: mem; run: "R4"; input: "receipt: 41.s255 4.s112 55.s253 40.s261"; source: "R1 (no gate at 62)"; c_value: "62"; c_text: "> R2.formula with 62 in the hole"; c_reply: "ok"; tooltip: "A separate memory node on a separate ending shard of the same neuron 40, with its own sheet inside (his words 10-28)."}
+    tl: "timeline row: t | R4 > 40.s261 | 41 62" {class: tl}
+    b41.s255 -> c4.s112: {class: hop}
+    c4.s112 -> f55.s253: {class: jump; label: "jump"}
+    f55.s253 -> w43.s258: {class: call}
+    f55.s253 -> sub54.s259: {class: call}
+    sub54.s259 -> cp44.s260: {class: call}
+    w43.s258 -> m: {class: fill; label: "value = 62"}
+    cp44.s260 -> m: {class: fill; label: "text"}
+    f55.s253 -> b40.s261: {class: hop}
+    b40.s261 -> m: {class: route; label: "60 out > mother > prompt > ok > encoder > reply"}
+    m -> tl: {class: trig}
+  }
+  R6: "R6: born 63" {
+    class: col; grid-columns: 1; grid-gap: 14
+    b41: "41 · born" {class: neuron; s262: "63 > 4 | - | 51 ask"; tooltip: "The same born neuron, a new shard for this run: arrived from 63, goes on to 4 (CREATE); spawns the ask run (51) for the newborn's sources."}
+    c4: "4 · CREATE" {class: hit; s112: "41 > 3 | - | -   jump > 55.s253"; tooltip: "The same shard 4.s112 the long run wrote, now carrying the jump laid by back population: the long run is skipped. 10-08: ’if I know where I am standing I can hop to any point in my brain in one step... all the work was done at learning, not at runtime’."}
+    f55: "55 · formula" {class: neuron; s253: "4 > 40 | 43 write, 54 substitute | -"; tooltip: "The formula row laid after R2. Calls the write run and the substitution run; goes on to build."}
+    w43: "43 · write" {class: neuron; s265: "55 > - | - | -"; tooltip: "The write run writes the value variable, 63, into R6's sheet cell value (his words 10-28: 'the formula shortcut is just to the data sheet writing the value varible')."}
+    sub54: "54 · substitute" {class: neuron; s266: "55 > - | 44 copy | -"; tooltip: "The substitution run: ’substitution run grabbing that value and plugging it into the run data sheet so a new memory node can be made or a new neuron can be made’ (his words 10-28). Its call: the copy run (44) copies the formula (R2’s sheet cell formula, the receipt with the hole) into this run’s sheet; then the hole is filled with cell value = 63. ’the trigger of the substitution run copying into the substitution run’ (10-28)."}
+    cp44: "44 · copy" {class: neuron; s267: "54 > - | - | -"; tooltip: "Copies R2.sheet.formula into R6's sheet cell text (the receipt with the hole)."}
+    b40: "40 · build" {class: neuron; s268: "55 > - | 60 out | 48 memory"; tooltip: "The build neuron again, a new shard for R6: it ends the run, so it carries another memory node. The build neuron now holds memory nodes for R2, R6, ... one per born run."}
+    m: "memory node on 40.s268  (R6)" {class: mem; run: "R6"; input: "receipt: 41.s262 4.s112 55.s253 40.s268"; source: "R1 (no gate at 63)"; c_value: "63"; c_text: "> R2.formula with 63 in the hole"; c_reply: "ok"; tooltip: "A separate memory node on a separate ending shard of the same neuron 40, with its own sheet inside (his words 10-28)."}
+    tl: "timeline row: t | R6 > 40.s268 | 41 63" {class: tl}
+    b41.s262 -> c4.s112: {class: hop}
+    c4.s112 -> f55.s253: {class: jump; label: "jump"}
+    f55.s253 -> w43.s265: {class: call}
+    f55.s253 -> sub54.s266: {class: call}
+    sub54.s266 -> cp44.s267: {class: call}
+    w43.s265 -> m: {class: fill; label: "value = 63"}
+    cp44.s267 -> m: {class: fill; label: "text"}
+    f55.s253 -> b40.s268: {class: hop}
+    b40.s268 -> m: {class: route; label: "60 out > mother > prompt > ok > encoder > reply"}
+    m -> tl: {class: trig}
+  }
+}
+main.hall.hc -> born_short.R4.b41: {class: trig; label: "no gate: born"}
+main.hall.he -> born_short.R6.b41: {class: trig; label: "no gate: born"}
+born_short.R4.m -> main.hall.hc: {class: fill; label: "gate.62 = 62"}
+born_short.R6.m -> main.hall.he: {class: fill; label: "gate.63 = 63"}
+sources: "6 · SOURCE RUNS R3 (61), R5 (62), R7 (63): the newborn's first memory is its definition, pulled from every source and compared (10-23 P5-9; 10-25 msg 51). Each source run has its own sheet; one answer goes back to R1." {
+  class: lane
+  grid-columns: 3
+  src61: "source run for 61 · define" {
+    class: col; grid-columns: 1; grid-gap: 14
+    a51: "51 · ask" {class: neuron; s269: "41 > 60 | - | -"; tooltip: "The ask run, spawned by the born run. Declares its own sheet: one cell per source (wn, gcide, mw, mwt, moby, map, sqldoc) and compile; declares on R1’s sheet the cell def.61. Assembles the ask from the encoder’s label of the newborn and goes on to 60 (out): the brain > mother mailbox. The run names the sources; mother carries the ask to each one’s inbox and decides nothing (10-23 P2; 10-23 01:28 asking the sources is the brain’s decide run)."}
+    sh: "sheet of the source run (define)" {class: sheet; c_wn: "1 line(s)" ; c_gcide: "1 line(s)" ; c_mw: "2 line(s)" ; c_mwt: "4 line(s)" ; c_moby: "3 line(s)" ; c_map: "1 line(s)" ; c_sqldoc: "0: empty"; c_compile: "> definition node of 61"; tooltip: "The source run's own sheet: a cell per source, filled by each return; when no declared cell is empty the compile runs (10-26 03:50). Counts are the real lines in the archived slice (tries/11 sat172.json)."}
+    a51.s269 -> sh: {class: readw}
+    ret_wn0: "return run 1 · wn: 61 hits, 21 born, ends > memory" {class: hit; tooltip: "Return run 1 for define, from wn: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source wn run /build the definition as gates' (10-25 msg 37). 61 hits (31 symbols and the spaces); 21 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: determine the essential quality of [syn: {specify}, {define}, {delineate}, {delimit}, {delimitate}] 2: give a definition for the meaning of a word; 'Define `sadness'' 3: determine the nature of; 'What defines a good wine"}
+    ret_wn0 -> sh: {class: fill; label: "fills c_wn"}
+    a51.s269 -> ret_wn0: {class: route; label: "60 out > mother > each inbox > its trigger > outbox > mother > encoder"}
+    ret_gcide0: "return run 2 · gcide: 23 hits, 6 born, ends > memory" {class: hit; tooltip: "Return run 2 for define, from gcide: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source gcide run /build the definition as gates' (10-25 msg 37). 23 hits (12 symbols and the spaces); 6 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: To fix the bounds of; to bring to a termination; to end"}
+    ret_gcide0 -> sh: {class: fill; label: "fills c_gcide"}
+    a51.s269 -> ret_gcide0: {class: route}
+    ret_mw0: "return run 3 · mw: 19 hits, 3 born, ends > memory" {class: hit; tooltip: "Return run 3 for define, from mw: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source mw run /build the definition as gates' (10-25 msg 37). 19 hits (10 symbols and the spaces); 3 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: to determine or identify the essential qualities or meaning of"}
+    ret_mw0 -> sh: {class: fill; label: "fills c_mw"}
+    a51.s269 -> ret_mw0: {class: route}
+    ret_mw1: "return run 4 · mw: 15 hits, 4 born, ends > memory" {class: hit; tooltip: "Return run 4 for define, from mw: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source mw run /build the definition as gates' (10-25 msg 37). 15 hits (8 symbols and the spaces); 4 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: to discover and set forth the meaning of (something, such as a word)"}
+    ret_mw1 -> sh: {class: fill; label: "fills c_mw"}
+    a51.s269 -> ret_mw1: {class: route}
+    ret_mwt0: "return run 5 · mwt: 3 hits, 1 born, ends > memory" {class: hit; tooltip: "Return run 5 for define, from mwt: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source mwt run /build the definition as gates' (10-25 msg 37). 3 hits (2 symbols and the spaces); 1 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: like delineate"}
+    ret_mwt0 -> sh: {class: fill; label: "fills c_mwt"}
+    a51.s269 -> ret_mwt0: {class: route}
+    ret_mwt1: "return run 6 · mwt: 3 hits, 1 born, ends > memory" {class: hit; tooltip: "Return run 6 for define, from mwt: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source mwt run /build the definition as gates' (10-25 msg 37). 3 hits (2 symbols and the spaces); 1 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: like outline"}
+    ret_mwt1 -> sh: {class: fill; label: "fills c_mwt"}
+    a51.s269 -> ret_mwt1: {class: route}
+    ret_mwt2: "return run 7 · mwt: 3 hits, 1 born, ends > memory" {class: hit; tooltip: "Return run 7 for define, from mwt: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source mwt run /build the definition as gates' (10-25 msg 37). 3 hits (2 symbols and the spaces); 1 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: like silhouette"}
+    ret_mwt2 -> sh: {class: fill; label: "fills c_mwt"}
+    a51.s269 -> ret_mwt2: {class: route}
+    ret_mwt3: "return run 8 · mwt: 3 hits, 1 born, ends > memory" {class: hit; tooltip: "Return run 8 for define, from mwt: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source mwt run /build the definition as gates' (10-25 msg 37). 3 hits (2 symbols and the spaces); 1 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: like sketch"}
+    ret_mwt3 -> sh: {class: fill; label: "fills c_mwt"}
+    a51.s269 -> ret_mwt3: {class: route}
+    ret_moby0: "return run 9 · moby: 3 hits, 1 born, ends > memory" {class: hit; tooltip: "Return run 9 for define, from moby: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source moby run /build the definition as gates' (10-25 msg 37). 3 hits (2 symbols and the spaces); 1 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: like assign"}
+    ret_moby0 -> sh: {class: fill; label: "fills c_moby"}
+    a51.s269 -> ret_moby0: {class: route}
+    ret_moby1: "return run 10 · moby: 3 hits, 1 born, ends > memory" {class: hit; tooltip: "Return run 10 for define, from moby: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source moby run /build the definition as gates' (10-25 msg 37). 3 hits (2 symbols and the spaces); 1 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: like baptize"}
+    ret_moby1 -> sh: {class: fill; label: "fills c_moby"}
+    a51.s269 -> ret_moby1: {class: route}
+    ret_moby2: "return run 11 · moby: 5 hits, 2 born, ends > memory" {class: hit; tooltip: "Return run 11 for define, from moby: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source moby run /build the definition as gates' (10-25 msg 37). 5 hits (3 symbols and the spaces); 2 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: like be characteristic"}
+    ret_moby2 -> sh: {class: fill; label: "fills c_moby"}
+    a51.s269 -> ret_moby2: {class: route}
+    ret_map0: "return run 12 · map: 3 hits, 1 born, ends > memory" {class: hit; tooltip: "Return run 12 for define, from map: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : define from source map run /build the definition as gates' (10-25 msg 37). 3 hits (2 symbols and the spaces); 1 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 61 points at this receipt. Line: like explain"}
+    ret_map0 -> sh: {class: fill; label: "fills c_map"}
+    a51.s269 -> ret_map0: {class: route}
+    c52: "52 · compile (diff and similar)" {class: neuron; s270: "50 > 43 | 46 read, 44 copy, 45 cut | -"; tooltip: "When no declared cell is empty the larger formula runs: ’I’m going to diff those so that I hopefully can get the most accurate definition of that word. So diff and similar those... And then I’m going to build the word. I’m going to build the definition table, and I’m going to build the relationships from the definition table’ (10-23 P5-9). It reads the return runs (46), copies what agrees (44), cuts what differs (45), and the write run (43) lays the definition node rows: the neuron’s first memory (10-25 msg 51). [open 10-23 P4 B1] ’the diffs are kind of dropped or scattered and the similars are kept. But I don’t know that we’re getting a good, valid definition that way’."}
+    sh -> c52.s270: {class: trig; label: "complete"}
+  }
+  src62: "source run for 62 · :" {
+    class: col; grid-columns: 1; grid-gap: 14
+    a51: "51 · ask" {class: neuron; s271: "41 > 60 | - | -"; tooltip: "The ask run, spawned by the born run. Declares its own sheet: one cell per source (wn, gcide, mw, mwt, moby, map, sqldoc) and compile; declares on R1’s sheet the cell def.62. Assembles the ask from the encoder’s label of the newborn and goes on to 60 (out): the brain > mother mailbox. The run names the sources; mother carries the ask to each one’s inbox and decides nothing (10-23 P2; 10-23 01:28 asking the sources is the brain’s decide run)."}
+    sh: "sheet of the source run (:)" {class: sheet; c_wn: "0: empty"; c_gcide: "0: empty"; c_mw: "0: empty"; c_mwt: "0: empty"; c_moby: "0: empty"; c_map: "0: empty"; c_sqldoc: "0: empty"; c_compile: "> definition node of 62"; tooltip: "The source run's own sheet: a cell per source, filled by each return; when no declared cell is empty the compile runs (10-26 03:50). Counts are the real lines in the archived slice (tries/11 sat172.json)."}
+    a51.s271 -> sh: {class: readw}
+    empty: "every source cell stays 0: no source has :" {class: open; tooltip: "10-27 03:52: ’just because the cell doesn’t populate it doesn’t end the run, it gives the brain reason to search harder... it would spawn a new run, why did the cell not populate, and the reason would be the output... it chooses what it wants to say’. Lookup order after sources: a guess (10-23 P5-9) > the guessing brain (lane 11). In the archived slice no source holds ’:’ (the measured source holds ; and ( but not :)."}
+    sh -> empty: {class: trig; label: "no cell fills"}
+  }
+  src63: "source run for 63 · who" {
+    class: col; grid-columns: 1; grid-gap: 14
+    a51: "51 · ask" {class: neuron; s273: "41 > 60 | - | -"; tooltip: "The ask run, spawned by the born run. Declares its own sheet: one cell per source (wn, gcide, mw, mwt, moby, map, sqldoc) and compile; declares on R1’s sheet the cell def.63. Assembles the ask from the encoder’s label of the newborn and goes on to 60 (out): the brain > mother mailbox. The run names the sources; mother carries the ask to each one’s inbox and decides nothing (10-23 P2; 10-23 01:28 asking the sources is the brain’s decide run)."}
+    sh: "sheet of the source run (who)" {class: sheet; c_wn: "1 line(s)" ; c_gcide: "1 line(s)" ; c_mw: "2 line(s)" ; c_mwt: "0: empty"; c_moby: "0: empty"; c_map: "0: empty"; c_sqldoc: "0: empty"; c_compile: "> definition node of 63"; tooltip: "The source run's own sheet: a cell per source, filled by each return; when no declared cell is empty the compile runs (10-26 03:50). Counts are the real lines in the archived slice (tries/11 sat172.json)."}
+    a51.s273 -> sh: {class: readw}
+    ret_wn0: "return run 1 · wn: 41 hits, 13 born, ends > memory" {class: hit; tooltip: "Return run 1 for who, from wn: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : who from source wn run /build the definition as gates' (10-25 msg 37). 41 hits (21 symbols and the spaces); 13 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 63 points at this receipt. Line: a United Nations agency to coordinate international health activities and to help governments improve health services [syn: {World Health Organization}, {WHO}] The run checks what came back: 'is this the data I asked for?' WordNet answered with the acronym WHO, the agency, a neighbour of the symbol asked (10-22 rev17: 'Dictionaries answer with neighbours: asked for as, Webster 1913 sends So first'). The cell is filled and the compile keeps it apart."}
+    ret_wn0 -> sh: {class: fill; label: "fills c_wn"}
+    a51.s273 -> ret_wn0: {class: route; label: "60 out > mother > each inbox > its trigger > outbox > mother > encoder"}
+    ret_gcide0: "return run 2 · gcide: 65 hits, 21 born, ends > memory" {class: hit; tooltip: "Return run 2 for who, from gcide: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : who from source gcide run /build the definition as gates' (10-25 msg 37). 65 hits (33 symbols and the spaces); 21 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 63 points at this receipt. Line: Originally, an interrogative pronoun, later, a relative pronoun also; -- used always substantively, and either as singular or plural. See the Note under What, pron., 1. As interrogative pronouns, who and whom ask the que"}
+    ret_gcide0 -> sh: {class: fill; label: "fills c_gcide"}
+    a51.s273 -> ret_gcide0: {class: route}
+    ret_mw0: "return run 3 · mw: 73 hits, 20 born, ends > memory" {class: hit; tooltip: "Return run 3 for who, from mw: the source's line, scp'd/sed/cat and delivered to the encoder, arrives as a run of gates: 'return from define : who from source mw run /build the definition as gates' (10-25 msg 37). 73 hits (37 symbols and the spaces); 20 symbols had no gate and are born on the way (the cascade, 10-23 P4: 'in order to have the definitions, you have to have 500 or 1,000 words that you don't have meanings for'), each by the shortcut now. The run ends at its last symbol: its memory node sits there; the definition node row for 63 points at this receipt. Line: what or which person or persons —used as an interrogative —used by speakers on all educational levels and by many reputable writers, though disapproved by some grammarians, as the object of a verb or a following preposit"}
+    ret_mw0 -> sh: {class: fill; label: "fills c_mw"}
+    a51.s273 -> ret_mw0: {class: route}
+    ret_mw1: "return run 4 · mw, expanded: 11 hits, 2 born" {
+      class: col; grid-columns: 1; grid-gap: 14
+      h0: "65 · the" {class: newborn; s274: "60 > 3 | - | -"; tooltip: "hit 1 of 11: gate 65 (the), shard s274, arrived from 60. Gate 65 had no gate when this run arrived: born by the shortcut (R4-style), sourced in turn (not drawn: the same shape as this lane)."}
+      h1: "3 · space" {class: hit; s275: "65 > 142 | - | -"; tooltip: "hit 2 of 11: gate 3 (space), shard s275, arrived from 65."}
+      h0.s274 -> h1.s275: {class: hop}
+      h2: "142 · person" {class: newborn; s276: "3 > 3 | - | -"; tooltip: "hit 3 of 11: gate 142 (person), shard s276, arrived from 3. Gate 142 had no gate when this run arrived: born by the shortcut (R4-style), sourced in turn (not drawn: the same shape as this lane)."}
+      h1.s275 -> h2.s276: {class: hop}
+      h3: "3 · space" {class: hit; s277: "142 > 91 | - | -"; tooltip: "hit 4 of 11: gate 3 (space), shard s277, arrived from 142."}
+      h2.s276 -> h3.s277: {class: hop}
+      h4: "91 · or" {class: newborn; s278: "3 > 3 | - | -"; tooltip: "hit 5 of 11: gate 91 (or), shard s278, arrived from 3. Gate 91 had no gate when this run arrived: born by the shortcut (R4-style), sourced in turn (not drawn: the same shape as this lane)."}
+      h3.s277 -> h4.s278: {class: hop}
+      h5: "3 · space" {class: hit; s279: "91 > 143 | - | -"; tooltip: "hit 6 of 11: gate 3 (space), shard s279, arrived from 91."}
+      h4.s278 -> h5.s279: {class: hop}
+      h6: "143 · persons" {class: newborn; s280: "3 > 3 | - | -"; tooltip: "hit 7 of 11: gate 143 (persons), shard s280, arrived from 3. Gate 143 had no gate when this run arrived: born by the shortcut (R4-style), sourced in turn (not drawn: the same shape as this lane)."}
+      h5.s279 -> h6.s280: {class: hop}
+      h7: "3 · space" {class: hit; s281: "143 > 161 | - | -"; tooltip: "hit 8 of 11: gate 3 (space), shard s281, arrived from 143."}
+      h6.s280 -> h7.s281: {class: hop}
+      h8: "161 · that" {class: newborn; s282: "3 > 3 | - | -"; tooltip: "hit 9 of 11: gate 161 (that), shard s282, arrived from 3. Gate 161 had no gate when this run arrived: born by the shortcut (R4-style), sourced in turn (not drawn: the same shape as this lane)."}
+      h7.s281 -> h8.s282: {class: hop}
+      h9: "3 · space" {class: hit; s283: "161 > 162 | - | -"; tooltip: "hit 10 of 11: gate 3 (space), shard s283, arrived from 161."}
+      h8.s282 -> h9.s283: {class: hop}
+      h10: "162 · whoever" {class: newborn; s284: "3 > - | - | 48 memory"; tooltip: "hit 11 of 11: gate 162 (whoever), shard s284, arrived from 3. Gate 162 had no gate when this run arrived: born by the shortcut (R4-style), sourced in turn (not drawn: the same shape as this lane). No remainder: the return run ends here; its memory node on this shard holds the run and is what the definition node row points at."}
+      h9.s283 -> h10.s284: {class: hop}
+      m: "memory node on 162.s284  (return run 4)" {class: mem; run: "ret4"; input: "receipt: 274 275 276 277 278 279 280 281 282 283 284"; source: "mother (mw)"; tooltip: "The return run ended at its last symbol; its memory row sits there (10-15 21:50). The definition node of 63 points at it."}
+      h10.s284 -> m: {class: trig}
+    }
+    ret_mw1 -> sh: {class: fill; label: "fills c_mw"}
+    a51.s273 -> ret_mw1: {class: route}
+    c52: "52 · compile (diff and similar)" {class: neuron; s285: "50 > 43 | 46 read, 44 copy, 45 cut | -"; tooltip: "When no declared cell is empty the larger formula runs: ’I’m going to diff those so that I hopefully can get the most accurate definition of that word. So diff and similar those... And then I’m going to build the word. I’m going to build the definition table, and I’m going to build the relationships from the definition table’ (10-23 P5-9). It reads the return runs (46), copies what agrees (44), cuts what differs (45), and the write run (43) lays the definition node rows: the neuron’s first memory (10-25 msg 51). [open 10-23 P4 B1] ’the diffs are kind of dropped or scattered and the similars are kept. But I don’t know that we’re getting a good, valid definition that way’."}
+    sh -> c52.s285: {class: trig; label: "complete"}
+  }
+}
+born61.colA.b41 -> sources.src61.a51: {class: spawn; label: "spawn: sources for the newborn"}
+born_short.R4.b41 -> sources.src62.a51: {class: spawn}
+born_short.R6.b41 -> sources.src63.a51: {class: spawn}
+after: "7 · THE THREE NEWBORNS AFTER THE LINE: DNA, definition node with its rows and relationships, memory nodes per ending shard" {
+  class: lane
+  grid-columns: 3
+  n61: "61 · define" {
+    class: col; grid-columns: 1; grid-gap: 14
+    dna: "61 · define  DNA" {class: newborn; s104: "1 > 3 | - | -"; tooltip: "One row so far: the one R1 wrote. No trigger yet: define has no action until a formula is taught or learned for it (10-25 msg 51: define : dog = look up definition memory, print)."}
+    defn: "definition node of 61" {class: defn; def1: "wn: > return run (…determine the essential qual…)"; def2: "gcide: > return run (…To fix the bounds of; to bri…)"; def3: "mw: > return run (…to determine or identify the…)"; def4: "mw: > return run (…to discover and set forth th…)"; rel5: "like > 71 (delineate)"; rel6: "like > 99 (outline)"; rel7: "like > 100 (silhouette)"; rel8: "like > 101 (sketch)"; rel9: "like > 102 (assign)"; rel10: "like > 103 (baptize)"; rel11: "like > 163 (be characteristic)"; rel12: "like > 106 (explain)"; tooltip: "Rows laid by the compile from the real source lines of the archived slice: wn 1, gcide 1, mw 2 definitions; mwt 4, moby 3, map 1 'like' lines, which are relationship rows: like > the gate of the related symbol (born as they arrive). 10-23 P4: 'any section that can have a relationship to something else is a self-fulfilling relationship section. All of them.'"}
+    mem_note: "no memory node yet: no run has ended at 61" {class: note; tooltip: "Memory nodes exist only on shards that end runs (his words 10-28; 10-23 P2 B2)."}
+    dna -> defn: {class: readw; label: "born with it"}
+  }
+  n62: "62 · :" {
+    class: col; grid-columns: 1; grid-gap: 14
+    dna: "62 · :  DNA" {class: newborn; s106: "3 > 3 | - | -"; s_ret: "68 > 69 | - | -   (from the mw return run)"; tooltip: "Two rows after this line: R1's (space > space) and the mw return run's (that > whoever). Two arrivals, two rows: the key is before and remainder (§12 law 13). When two rows share one arrival, the call column holds the inspection run (lane 8)."}
+    defn: "definition node of 62" {class: defn; empty: "no rows: no source holds :"; sqldoc: "(the SQL docs would hold its action in code: the hole mark)"; tooltip: "No source in the archived slice answers for ':'. The cells stay 0 and the run searches harder (10-27 03:52) or asks the guessing brain. 10-27 05:37: in sql ':' has an action we know; on this line it has none yet."}
+    dna -> defn: {class: readw}
+  }
+  n63: "63 · who" {
+    class: col; grid-columns: 1; grid-gap: 14
+    dna: "63 · who  DNA" {class: newborn; s108: "3 > - | - | 48 memory"; later1: "(later: who is, who are, who did, who was: a row each)"; tooltip: "s108 ends R1. 10-22 rev17: ’Who is, who are, who did and who was each fire a different row inside the one neuron for who, and each row points at a different formula: a different place to look, a different thing to read, a different thing to say.’ 10-24: ’Go get me some coffee now... me who, coffee what... involves 4 questions who, what, when, where that I have to ask myself when I hear or see those words’."}
+    defn: "definition node of 63" {class: defn; def1: "wn: > return run (…a United Nations agency to coo…) [kept apart: the WHO agency]"; def2: "gcide: > return run (…Originally, an interrogative p…)"; def3: "mw: > return run (…what or which person or person…)"; def4: "mw: > return run (…the person or persons that : w…)"; rel1: "? > 139 (whom)  named beside who by gcide"; rel2: "? > 162 (whoever)  named by mw"; rel3: "? > 142 (person)  named by mw"; tooltip: "Rows from the real source lines: wn 1 (the WHO agency, kept apart by the check 'is this the data I asked for'), gcide 1, mw 2. The relationship rows: the symbols the definitions name beside who; the KIND of each relationship is not decided here (law 5: no facts from the builder's head); 10-23 P4 lists the kinds the compile builds from (kind of, part, has, plural, past, present, is, same spelling, derived from, used in...)."}
+    m1: "memory node on 63.s108  (R1, the main run)" {class: mem; run: "1"; input: "61 3 62 3 63 (receipt)"; source: "user"; c_clock: "t0"; c_speaker: "user, heard"; c_q_know: "0"; c_q_remember: "0"; c_q_shape: "0"; c_path: "long"; c_gate_61: "61"; c_def_61: "> definition node of 61"; c_gate_62: "62"; c_def_62: "0: empty, search harder"; c_gate_63: "63"; c_def_63: "> definition node of 63"; c_say: "> what was said (R8)"; tooltip: "R1’s memory row, on the shard of who that ended it, with the whole data sheet inside (10-26 03:50: ’the data sheet just lives in a cell in the memory row’; his v4 run_sheet rows). Each cell was declared by the trigger that tripped and filled by a return. A cell still 0 after every return is in is the reason to search harder, never a silent end (10-27 03:52)."}
+    m_more: "(another run ending at a different shard of who gets its own memory node here)" {class: note; tooltip: "His words 10-28: some neuron might have many memory tables because many of their dna shards end runs... each will have its own memory table and data runsheet in it."}
+    dna -> defn: {class: readw}
+    dna.s108 -> m1: {class: trig; label: "no remainder: 48 memory write run"}
+  }
+}
+sources.src61.c52 -> after.n61.defn: {class: fill; label: "lays the rows: first memory"}
+sources.src63.c52 -> after.n63.defn: {class: fill; label: "lays the rows: first memory"}
+sources.src62.empty -> after.n62.defn: {class: not}
+after.n61.defn -> after.n63.m1: {class: fill; label: "def.61"}
+after.n63.defn -> after.n63.m1: {class: fill; label: "def.63"}
+main.hall.he -> after.n63.dna: {class: readw; label: "the same neuron"}
+inspect: "8 · INSPECTION RUN: a row that decides which row to hit (10-23 P2 B1; P3 B1). On this line no gate has two rows for one arrival, so it is not called." {
+  class: lane
+  grid-columns: 3
+  i1: "the gate" {
+    class: col; grid-columns: 1; grid-gap: 14
+  gate_x: "a gate with two shards for one before" {class: neuron; sA: "x > y | 46 inspect | -"; sB: "x > z | 46 inspect | -"; tooltip: "When the hop’s read by before + remainder head cannot pick one shard, the row’s call column holds the inspection run. 10-23 P2 B1: ’that trigger says, Hey, I need to find the noun, or I need to find the verb and the noun, or I need to see if there’s any adjectives in this sentence, because that determines what row I actually have to hit inside my node. And so that trigger might look to the script and say, Oh, I have this and this and this, and then it might go back to that node and hit a different shard.’"}
+  }
+  i2: "the call" {
+    class: col; grid-columns: 1; grid-gap: 14
+  r46: "46 · read (the inspection run)" {class: neuron; s286: "x > x | - | -"; tooltip: "The inspection run: 1. reads the main run’s input row: the symbols after this gate and before it (10-20 00:31: ’triggers will later look at the run if we need them to look at other parts of the run’); 2. reads their definition nodes: class, tense, perspective; 3. reads the run’s sheet: speaker, what is known; 4. fills its own small sheet; its answer is the shard to hit; 5. returns to the gate, which hits THAT shard (10-23 P3 B1: ’run a DNA row that actually decides what DNA row that actually needs to get hit in that gate’). 10-23 P2 B2: ’it might be more efficient if the DNA row has that... so that the run table becomes more precise’ [open: an extra column on the row]."}
+  sh: "inspection sheet" {class: sheet; c_after: "gates after"; c_before: "gates before"; c_classes: "from their definition nodes"; c_answer: "> the shard to hit"}
+  }
+  i1.gate_x.sA -> i2.r46: {class: call; label: "call"}
+  i2.r46 -> i2.sh: {class: readw}
+  i2.sh -> i1.gate_x.sB: {class: call; label: "re-hit that shard"}
+}
+ending: "9 · THE END OF R1 and the TIMELINE: no remainder > memory > timeline > stop (10-26 03:50)" {
+  class: lane
+  grid-columns: 3
+  writes: "the two write runs" {
+    class: col; grid-columns: 1; grid-gap: 14
+  m48: "48 · memory (write run)" {class: neuron; s287: "63 > 49 | 44 copy | -"; tooltip: "A copy run the ending shard excites; the trigger writes nothing itself (10-26 03:59). It lays run_memory(1, receipt, user) on 63.s108 and the run_sheet rows inside it. 10-21 18:39: ’if no remainder write to memory node (temporary run data, triggered runs data, and results/outcome data)’."}
+  t49: "49 · timeline (write run)" {class: neuron; s288: "48 > - | - | -"; tooltip: "’spawns its memory, which reaches the timeline by a trigger hop. Never a sweep’ (10-23 P3 B1). One row: the clock reading, the receipt pointer, a couple of key words (10-16 06:40). Then it stops: ’timeline is only a memory table has no dna table ahead of it’ (10-26 03:50)."}
+  }
+  timeline: "TIMELINE after this line" {class: tl; r1: "t0 | SQ1 > 57.s101 | 57"; r2: "t0 | SQ2 > 58.s102 | 58"; r3: "t0 | SQ3 > 59.s103 | 59"; r4: "t1 | R2 born 61 > 40.s250 | 41 61"; r5: "t2 | R3 sources 61: 12 return runs, compile | 51 61"; r6: "t3 | R4 born 62 > 40.s261 | 41 62"; r7: "t4 | R5 sources 62: 0 returns | 51 62"; r8: "t5 | R6 born 63 > 40.s268 | 41 63"; r9: "t6 | R7 sources 63: 4 return runs, compile | 51 63"; r10: "t7 | R1 define : who > 63.s108 | 61 63"; r11: "t8 | R8 say > 56.s | 56"; tooltip: "A row per run that ended, in the order the drawing says they happen. 't' is the clock neuron's reading. The pointer is the run's memory node; the key words are a couple of gates. The born runs of the symbols inside the definitions (the cascade) add their own rows, not listed."}
+  writes.m48.s287 -> writes.t49.s288: {class: trig; label: "memory > timeline"}
+  writes.t49.s288 -> timeline: {class: fill; label: "one row; then stops"}
+}
+after.n63.m1 -> ending.writes.m48: {class: readw; label: "the row it lays"}
+output: "10 · OUTPUT: a separate mechanism from the same memory table (10-26 03:50): when no declared cell of R1 is empty" {
+  class: lane
+  grid-columns: 4
+  o1: "from the memory table" {
+    class: col; grid-columns: 1; grid-gap: 14
+  when: "no declared cell of R1 empty?" {class: pick; tooltip: "10-26 03:50: 'output is triggered by a completely separate mech from the data sheet... output to timeline and output to user, or output to mother all come from the same memory table... such that when the run's data table is complete the run can populate and finish its larger formulas'. On this line def.62 stays 0: the search-harder run (lane 6) must answer first, or the brain says so in its own words."}
+  formulas: "the larger formulas over the sheet" {class: note; tooltip: "10-23 P3 B2: substitute the cells as variables into the larger formulas that form the reasoning and the answer. On a fresh brain nothing is bound to define yet; the material is the sheet: the compiled definitions of 61 and 63 and the empty cell of 62."}
+  balance: "makes sense: desired vs current vs new" {class: note; tooltip: "10-23 P5-9 B1: 'desired equation on one side, current equation which you know is not yet the desired, and your new equation... closer or further away... progressing or digressing'. Not balanced: step back to the decision that picked this path and take another row; the failed try stays in memory marked wrong (10-22 rev17)."}
+  }
+  o2: "say and out" {
+    class: col; grid-columns: 1; grid-gap: 14
+  s56: "56 · say" {class: neuron; s289: "48 > 60 | - | -"; tooltip: "The say run. 10-26 05:12: ’the only way we have found that a trigger is needed is with a say key’ [open: what the say key is]. The reply is a tree of arrays: the first word’s array, each pick opens the next (10-23 P3 B2; 10-19: ’build choose first word array... does that balance now... ship output’). 10-27 03:52: ’it chooses what it wants to say’. No sentence is drawn here on purpose: ’define? canis? find? is not it choosing what to say’ (10-27 04:07)."}
+  dec: "DECODER: gates > symbols" {class: encoder; tooltip: "10-23 P3 B2: What comes out of the decoder? Just numbers. Just gate numbers... maybe head data: perspective, situation, topic."}
+  to_user: "brain > user mailbox" {class: mail}
+  to_sixth: "> sixth.db mailbox" {class: mail; tooltip: "10-25 msg 41: run output to sixth."}
+  }
+  o1.when -> o1.formulas -> o1.balance
+  o1.balance -> o2.s56.s289: {label: "balanced"}
+  o1.balance -> o1.formulas: {class: not; label: "digressing: another row"}
+  o2.s56.s289 -> o2.dec -> o2.to_user
+  o2.s56.s289 -> o2.to_sixth: {class: spawn}
+}
+ending.timeline -> output.o1.when: {class: trig; label: "the memory row exists"}
+after.n63.m1 -> output.o2.s56: {class: fill; label: "say > cell say"}
+others: "11 · THE SIXTH and THE GUESSING BRAIN" {
+  class: lane
+  grid-columns: 2
+  sixth: "the sixth" {
+    class: col; grid-columns: 1; grid-gap: 14
+    see: "sixth.db reads the brain: the new memory row, the timeline, the newborns, the empty cell def.62" {class: brain; tooltip: "10-23 P2: 'the me that talks to me, that runs me... asks me questions or helps me reason or observes things that I'm doing and tries to find more efficient'. 10-23 03:18: 'in the sixth its own questions and prompts from observations basically (sight) of the brain are what is driving the questions and actions to happen... Why do I do that? hmm I should test if there a better way, or check to see if that is actually correct'."}
+    ask: "it types its own line into its mailbox, speaker = sixth" {class: mail; tooltip: "What it asks is its own: 'wait why did I think that that way... or does this meaning actually make sense?' (10-23 01:28); 'why did the cell not populate' (10-27 03:52). 10-16 05:50: 'at first we would have to prompt these, but later many of these are written by the sixth'. 10-22 rev17: it reaches the main brain only through mother and mailboxes; whatever SQL it writes into the main brain is told, not learned."}
+    r9: "a new run R9 through the same hallway; SQ2 now finds R1's memory" {class: sheet}
+    see -> ask -> r9
+  }
+  guess: "the guessing brain" {
+    class: col; grid-columns: 1; grid-gap: 14
+    g_ask: "a cell no source fills (def.62) > the question goes to the guessing brain through mother" {class: mail; tooltip: "10-23 P5-9: memory first, then state, then sources, then guess."}
+    g_g: "a guess of what the meaning should be: announced, never lost" {class: brain; tooltip: "10-23 P5-9: 'I don't know; I have a guess I believe is likely; would you like to test it?' 10-15 21:17: 'Always state that this is a guess or belief not known source truth'."}
+    g_wrong: "the sixth says why it was wrong > back prop over the adjusted corpus > guess again until it balances" {class: brain; tooltip: "10-23 03:18."}
+    g_ask -> g_g: {class: route}
+    g_g -> g_wrong: {class: not}
+  }
+}
+output.o2.to_sixth -> others.sixth.see: {class: route}
+others.sixth.r9 -> line.r1: {class: hop; label: "a new line, speaker = sixth"}
+sources.src62.empty -> others.guess.g_ask: {class: spawn; label: "search harder"}
+others.guess.g_g -> after.n63.m1: {class: fill; label: "def.62 = a guess, marked"}
+open: "12 · WHAT HIS WORDS LEAVE OPEN (his calls, not filled)" {
+  class: lane
+  grid-columns: 5
+  o1: "1. born inline or retry" {class: open; tooltip: "10-20 01:22 'writes it, and triggers born... goes to space' (inline) vs 10-21 18:39 'traverse back to the run start and try run again' (retry). Both his."}
+  o2: "2. the receipt: physics or write run" {class: open; tooltip: "Audit 10-25 row 5: whether the hop's physics writes the receipt row or a write run does."}
+  o3: "3. the sheet's physical form" {class: open; tooltip: "10-26 03:50: rows pointed to by the memory row, a table per run, or one cell. His v4 brain.db holds run_sheet rows keyed by run; the drawing follows that."}
+  o4: "4. the compile" {class: open; tooltip: "10-23 P4 B1: 'I don't know that the compile is correct yet'. Diff and similar as drawn is his sketch of it, not a formula."}
+  o5: "5. sourcing depth of the cascade" {class: open; tooltip: "10-23 P4: 'everything expands so fast'. Every symbol born from a definition text is sourced in turn; how deep is his call."}
+  o6: "6. the say key" {class: open; tooltip: "10-26 05:12: 'the only way we have found that a trigger is needed is with a say key'. Not found in his words before that line."}
+  o7: "7. one formula neuron or many" {class: open; tooltip: "Drawn: one formula neuron (55) with a row per formula. 10-23 08:47 says 'a pointer to the shortcut neuron formula for that'. His call."}
+  o8: "8. what counts as 'correct' the first time" {class: open; tooltip: "His words 10-28: 'the first time it works, and is correct'. Drawn as: ok + a read run finds the table. His call."}
+  o9: "9. the standing questions in the core" {class: open; tooltip: "10-23 P3 B2 'maybe those three questions'. Drawn as core neurons 57, 58, 59 because a fresh brain has nothing else to ask with."}
+  o10: "10. define in the core or not" {class: open; tooltip: "Drawn: not in the core; born on this line (10-27 05:37). If in the core, SQ3 says yes and the run jumps to its formula: 'look up definition memory print' (10-25 msg 51)."}
+}
