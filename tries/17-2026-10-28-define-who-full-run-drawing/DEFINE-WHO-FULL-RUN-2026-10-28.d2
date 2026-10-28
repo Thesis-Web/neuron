@@ -1,0 +1,575 @@
+# define : who  --  the whole run from a fresh brain, drawn 2026-10-28
+# Every box carries the date of the owner's words it rests on. [reading] marks my reading of his words.
+# [open] marks what his words leave to him. Nothing here is a build; it is the run as his words describe it.
+
+direction: down
+grid-columns: 1
+grid-gap: 80
+
+classes: {
+  hop: {style.stroke: "#1f6feb"; style.stroke-width: 3}
+  trig: {style.stroke: "#e36209"; style.stroke-dash: 5; style.stroke-width: 2}
+  call: {style.stroke: "#2da44e"; style.stroke-dash: 2; style.stroke-width: 2}
+  spawn: {style.stroke: "#8250df"; style.stroke-dash: 8; style.stroke-width: 2}
+  mother: {style.stroke: "#cf222e"; style.stroke-width: 3}
+  fill: {style.stroke: "#1b7c83"; style.stroke-dash: 2; style.stroke-width: 2}
+  not: {style.stroke: "#8c959f"; style.stroke-dash: 3; style.stroke-width: 1; style.opacity: 0.6}
+  run: {style.border-radius: 12; style.fill: "#fff8e6"; style.stroke: "#9a6700"}
+  side: {style.border-radius: 12; style.fill: "#eef7ee"; style.stroke: "#2da44e"}
+  lane: {style.fill: "#f6f8fa"; style.stroke: "#57606a"; style.font-size: 22}
+  his: {style.fill: "#fffbe6"; style.stroke: "#d4a72c"; style.font-size: 14}
+  open: {style.fill: "#ffebe9"; style.stroke: "#cf222e"; style.font-size: 14}
+  tab: {shape: sql_table}
+  mail: {shape: queue; style.fill: "#e7f3ff"}
+  brain: {shape: package; style.fill: "#f3e8ff"}
+}
+
+title: |||md
+  # define : who  -  one run, start to finish, from a fresh brain
+  Drawn 2026-10-28 from the owner's words (dates on every box). The brain holds gate numbers only; the names here are  
+  the encoder's labels.
+  Edge key:  **thick blue** = the run hops (before and after; the key is the remainder)  -  **orange dashed** = a DNA  
+  row's trigger excites a run  -  **green dotted** = a call: a side run that brings its answer back to a cell  -  
+  **purple dashed** = a spawn: a run that goes off on its own  -  **red** = carried by mother (she routes, decides  
+  nothing)  -  **teal dotted** = a return fills a declared cell  -  **grey** = a path not taken on this run.
+||| {near: top-center}
+
+legend: {
+  class: lane
+  label: "Key, in his words"
+  k1: |||md
+  **symbol / label / meaning / action** (10-27 05:37): a neuron is a symbol that labels one meaning, and the meaning  
+  is an action. A symbol with no action yet is undefined.
+  **gate** = the neuron's address, its own table (10-19 21:14). One meaning, one gate (10-23 P2).
+  **DNA row (shard)** = one row of that table. His sketch 10-28: `shard id | before | trigger | call | spawn`. Shards  
+  are one sequence, no look-ahead (10-20 00:34).
+  **remainder** = the rest of the line as gate numbers; its head is the key at every gate (10-23 P3).
+  **hop** = the run moves to the remainder's head; "hit the shard if it exists, else write it" (10-20 01:22).
+  **trigger** = what a row excites: one, none or many (10-26 05:12). It writes nothing itself; it excites a write,  
+  copy or cut run (10-26 03:59).
+  **call** = a side run whose answer comes back to this run's cell (his sketch: "call gate 9,8,7" loops back).
+  **spawn** = a run that goes off on its own (his sketch: "spawn gate 5,4,3" leaves).
+  **jump** = the formula shortcut: plug the cells in and go straight to the formula's gate (10-18 J; 10-01 "formula  
+  jump/hop") [reading].
+  **data sheet** = the run's worksheet; each tripped trigger declares the cells its run will fill; each return fills  
+  its spot; complete = no declared cell empty (10-26 03:50).
+  **memory node** = the table on the DNA row that ended a run; the sheet lives inside it (10-23 P2; 10-26 03:50).  
+  **receipt** = the path of gates and shards, a pointer, never a copy (10-23 P2). **timeline** = receipt pointer + a  
+  few key words (10-16 06:40).
+  **mother** = a router and a traverser, that's it (10-23 P2). **the sixth** = the inner me, its own brain, its own  
+  mailbox (10-23 P2; 10-25 21:50).
+  |||
+}
+
+core: {
+  class: lane
+  grid-columns: 4
+  grid-gap: 40
+  label: "0. THE FRESH BRAIN before the line is typed: what is hand laid, and nothing more"
+  note: |||md
+  His build outline 10-25 21:50, twelve lines: the database with its env handler; hand lay the neuron table and  
+  schema; the definition table and schema; the memory table and schema; the run data sheet table, schema, self  
+  population mechanisms; mother and the mailbox system; the sources by their mailboxes; mailbox listeners (push,  
+  never a timer); output mailboxes brain-to-mother and brain-to-user; input mailboxes user-to-encoder,  
+  mother-to-encoder (secondary), sixth.db-to-encoder (third).
+  10-27 05:05: "the first core will break the rules... those words in neuron tables at first exist... but later that  
+  should cease to exist when the words and dna and memories, and timeline exist to replace them as dna rows and the  
+  encoder exists."
+  10-19 21:20: hand lay a table, then hand lay those same words as nodes so the brain lays its own tables.
+  ||| {class: his}
+
+  encoder: {
+    class: tab
+    label: "ENCODER: a straight conversion table, new symbol new gate # (10-26 03:50). The only place a symbol's"
+    tooltip: "spelling lives (10-25: no words in the graph)."
+    gate: "INTEGER, sequential"
+    symbol: "the label as typed"
+  }
+  coreneurons: |||md
+  **Hand-laid neurons** (v1 10-19; 10-19 23:03 "( , integer, primary, key... all neurons of their own"; 10-19 23:08  
+  "every punctuation, special char, all of it has to have its own neuron"):
+  - the symbols the born run speaks: `CREATE` `TABLE` `(` `)` `,` `;` `"` `INTEGER` `TEXT` `INSERT` `INTO` `VALUES`  
+    `SELECT` `FROM` `WHERE` `UPDATE` `SET` `DELETE` and the **space** (10-16: "the space bar is an input, so it is a  
+    neuron")
+  - `heard` and `said`: the two arrivals of a first symbol (10-23 §2.1)
+  - the runs the brain needs to lay its own: **born** (gate + DNA table + definition node, 10-19 23:40), **hop**,  
+    **write row**, **copy**, **cut**, **read** (10-26 03:59; §0 handoff), **memory write**, **timeline write**,  
+    **declare cell**, **ask source**, **clock** (10-26 03:50 "clock was hit on every run"), **build** (the routing  
+    neuron, 10-26 03:50)
+  - the three **standing questions** as runs, so the first line can ask them (10-23 P3 B2) [reading: hand laid, because  
+    a fresh brain has nothing else to ask with]
+
+  Each is a table with DNA rows; a core word later becomes a row in the real word's neuron (10-23 P2 B3: "create, at  
+  certain row, is the core word function").
+  ||| {class: his}
+
+  memtab: {
+    class: tab
+    label: "MEMORY TABLE schema (his own hand, ~/neuron/v4/brain.db, 10-27 01:17): run_memory + run_sheet. The"
+    tooltip: "sheet lives inside the memory row."
+    run_memory_run: "INTEGER PK"
+    run_memory_input: "the receipt / the line as gates"
+    run_memory_source: "who spoke: user, mother, sixth"
+    run_sheet_run: "-> run_memory"
+    run_sheet_cell: "INTEGER"
+    run_sheet_state: "0 declared, 1 filled"
+    run_sheet_value: "what the return put there"
+  }
+  deftab: {
+    class: tab
+    label: "DEFINITION NODE schema (his own hand, sqlite history): one per neuron, born with it"
+    source: "which source brain answered"
+    entry_sense_class: "what the source holds"
+    text_example_origin_first_use: "..."
+    synonyms_antonyms: "..."
+    times_first_at_last_at_ended_at: "truth shift keeps the old row (10-23 P4)"
+  }
+  tltab: {
+    class: tab
+    label: "TIMELINE: only a memory table, no DNA table ahead of it (10-26 03:50)"
+    id: "INTEGER PK"
+    at: "the clock neuron's reading"
+    receipt: "pointer to the run's memory row"
+    key_words: "a few gate numbers (10-16 06:40)"
+  }
+  mailboxes: {
+    grid-columns: 5
+    label: "MAILBOXES (his outline 10-25 21:50): populated-driven, never a timer (10-22 rev17)"
+    user_in: {class: mail; label: "user -> encoder"}
+    mother_in: {class: mail; label: "mother -> encoder (secondary input)"}
+    sixth_in: {class: mail; label: "sixth.db -> encoder (third input)"}
+    out_mother: {class: mail; label: "brain -> mother"}
+    out_user: {class: mail; label: "brain -> user"}
+  }
+  mother: {
+    shape: hexagon
+    label: "MOTHER: takes the brain's output and puts it somewhere: the sources, another brain, or the brain's\nown SQL prompt; picks up what comes back (10-23 P2). Works no data. Carries when a mailbox is\npopulated."
+    style.fill: "#ffd8d8"
+  }
+  prompt: {
+    shape: document
+    label: "THE NEURON PROMPT: the brain's own SQL prompt. Mother pastes the string the run assembled and hits\nenter; what SQL answers comes back as secondary input (10-24 msg 36; §2.6 owner edit 10-24)."
+  }
+  sources: {
+    grid-columns: 4
+    label: "SOURCE BRAINS: each a database with a corpus, an inbox, an outbox and its own trigger that does its\nwork the moment an ask lands (10-22 rev17; 10-25 msg 37)"
+    wn: {class: brain; label: "WordNet"}
+    web: {class: brain; label: "Webster 1913"}
+    mw: {class: brain; label: "Merriam-Webster"}
+    mwt: {class: brain; label: "M-W thesaurus"}
+    moby: {class: brain; label: "Moby"}
+    sqldoc: {class: brain; label: "SQLite docs (the meaning of the code words to the silicon)"}
+    map: {class: brain; label: "his relation map"}
+  }
+  sixthdb: {class: brain; label: "sixth.db: a copy of brain.db with its own mailbox (10-25 msg 41). Empty too, on day one."}
+  guessdb: {class: brain; label: "GUESSING BRAIN: a very small corpus; guesses announced, never lost (10-23 P5-9; 10-23 03:18)"}
+}
+
+step0: {
+  class: lane
+  label: "1. THE LINE ARRIVES: prompt -> encoder -> brain (10-25: never a told block in between)"
+  typed: {label: "user types:  define : who"; shape: page}
+  enc: |||md
+  **Encoder** looks each symbol up; a symbol with no gate gets the next number. Nothing else is figured here (10-26  
+  03:50).
+  `define` -> **new**, gate N+1  -  ` ` -> core gate (space)  -  `:` -> **new**, gate N+2  -  ` ` -> space  -  `who`  
+  -> **new**, gate N+3
+  Who is speaking is part of the input: **user**, arrival **heard** (10-26 03:50; §2.1). The **clock** neuron is hit  
+  and its reading goes into the run's meta (10-26 03:50).
+  ||| {class: his}
+  inrow: {
+    class: tab
+    label: "the input run row (R1, the main run)"
+    run: "1"
+    gates: "[define, space, colon, space, who] as numbers"
+    arrival: "heard"
+    speaker: "user"
+    clock: "t0"
+  }
+  typed -> enc -> inrow
+}
+
+standing: {
+  class: lane
+  direction: right
+  label: "2. THE STANDING QUESTIONS: three runs that ask before the main run runs (10-23 P3 B2: \"searched on\nevery run, just very fast\"; his sketch 10-28: three columns)"
+  q1: {
+    class: side
+    label: "SQ1  Do I know anything about this?\nreads: does a gate exist for each symbol? does its definition node hold rows?\nfresh brain: define, colon, who have no gate -> NO"
+  }
+  q2: {
+    class: side
+    label: "SQ2  Do I have a memory of this?\nreads: any memory node holding a receipt with this gate sequence? any timeline row?\nfresh brain: no memory rows at all -> NO"
+  }
+  q3: {
+    class: side
+    label: "SQ3  Does this run's shape match a shape I have? Do I have a shortcut or a formula shortcut?\nreads: receipts in the timeline with the pattern X : Y; a DNA row of the first gate whose trigger points at a run\nfresh brain: nothing to match -> NO"
+  }
+  decide: {
+    shape: diamond
+    label: "all three NO\n-> the long way (10-23 P3 B2)"
+  }
+  shortcut: {label: "one hop to the memory (shortcut) [not taken]"; class: not}
+  formula: {label: "plug the cells into the formula, JUMP to its gate, run it there (formula shortcut) [not taken]\nonly if belief and truth show the shortcut can be done correctly (10-23 P3 B2)"; class: not}
+  cells: |||md
+  Each question is a run that ends; its answer is a **cell on R1's sheet**: `q.know = no`, `q.memory = no`, `q.shape  
+  = no`, `path = long`.
+  10-15 21:17: "every input is a problem... do I know this type of problem, do I know how to solve it, any diff  
+  between this problem and the others I have solved like it."
+  10-16: "have I seen 1+1+1... before? yes... instead of doing the math I just remembered the answer... if no, have I  
+  done anything close to that pattern?"
+  ||| {class: his}
+  q1 -> decide: {class: fill}
+  q2 -> decide: {class: fill}
+  q3 -> decide: {class: fill}
+  decide -> shortcut: {class: not; label: "yes: memory"}
+  decide -> formula: {class: not; label: "yes: formula"}
+}
+
+main: {
+  class: lane
+  label: "3. THE MAIN RUN R1, the hallway: bang, bang, bang (10-23 P3). It writes nothing but its receipt; the\ntriggers do the rest."
+  direction: right
+
+  g_define: {
+    class: run
+    label: "gate define (N+1)"
+    arrive: "arrive: before = heard, remainder head = space"
+    dna: |||md
+    **DNA table of define** (born this run)
+
+    | shard | before | trigger | call | spawn |
+    |---|---|---|---|---|
+    | s1 (written by the write run) | heard | space | (none yet) | (none yet) |
+
+    no gate existed -> **born** (R2). Then 0 rows match (heard, space) -> the **write run** lays s1 (10-21 18:39: build  
+    + new + dna run writes the shard, then "traverse back to the run start and try run again").
+    |||
+    arrive -> dna
+  }
+  g_sp1: {
+    class: run
+    label: "gate space (core)"
+    dna: |||md
+    | shard | before | trigger | call | spawn |
+    |---|---|---|---|---|
+    | s2 | define | colon | | |
+
+    space has rows from the born run's own text (before CREATE, after TABLE...). None for (define, colon) -> write s2.  
+    ( ) is "a meaning that we know happens to the graph or the silicon" (10-27 05:37).
+    |||
+  }
+  g_colon: {
+    class: run
+    label: "gate : (N+2)"
+    dna: |||md
+    | shard | before | trigger | call | spawn |
+    |---|---|---|---|---|
+    | s3 | space | space | | |
+
+    no gate -> **born** (R4). 10-27 05:37: ":" "might have an action depending on use... in sql it has an action we  
+    know, but a different dna row might not have the same action." On this line it has no action yet.
+    |||
+  }
+  g_sp2: {
+    class: run
+    label: "gate space (core)"
+    dna: |||md
+    | shard | before | trigger | call | spawn |
+    |---|---|---|---|---|
+    | s4 | colon | who | | |
+    |||
+  }
+  g_who: {
+    class: run
+    label: "gate who (N+3)  -  the run ends here"
+    dna: |||md
+    | shard | before | trigger | call | spawn |
+    |---|---|---|---|---|
+    | s5 | space | (no remainder) | | memory write run |
+
+    no gate -> **born** (R6). No remainder -> this shard is the end: "the dna shard that has no remainder is what  
+    triggers the write of the memories" (10-15 21:50). The memory node of s5 is where R1's memory row lives.
+    |||
+  }
+  g_define -> g_sp1: {class: hop; label: "hop: key = remainder"}
+  g_sp1 -> g_colon: {class: hop}
+  g_colon -> g_sp2: {class: hop}
+  g_sp2 -> g_who: {class: hop}
+
+  receipt: {
+    class: tab
+    label: "R1's RECEIPT (the path, a pointer, never a copy; 10-23 P2)"
+    hop1: "heard -> define / s1"
+    hop2: "define -> space / s2"
+    hop3: "space -> colon / s3"
+    hop4: "colon -> space / s4"
+    hop5: "space -> who / s5 (end)"
+  }
+  g_who -> receipt: {class: fill; label: "[open 10-25 audit row 5: receipt by physics or by a write run]"}
+}
+
+inspect: {
+  class: lane
+  label: "4. INSPECTION RUNS: a row that decides which row to hit (10-23 P2 B1; P3 B1). Called from a gate's\ncall column when more than one shard answers the same before."
+  how: |||md
+  10-23 P2 B1: "that trigger says, Hey, I need to find the noun, or I need to find the verb and the noun, or I need  
+  to see if there's any adjectives in this sentence, because that determines what row I actually have to hit inside  
+  my node. And so that trigger might look to the script... and then it might go back to that node and hit a different  
+  shard... one specific gate run a short loop almost, where it runs something to determine what it actually really  
+  needs to run."
+  10-20 00:31: "triggers will later look at the run if we need them to look at other parts of the run."
+  ||| {class: his}
+  r_insp: {
+    class: side
+    label: "INSPECTION RUN (a call; has its own small sheet)\n1. read R1's input row: the symbols after this gate and before it\n2. read their definition nodes: class (noun, verb, modifier...), tense, perspective\n3. read R1's sheet: speaker, what is already known\n4. its cells fill -> its answer = the shard to hit\n5. return to the gate; the gate hits THAT shard (re-hit)"
+  }
+  onthisrun: |||md
+  **On this line from a fresh brain:** every gate has 0 or 1 rows for its arrival, so there is nothing to choose  
+  between and no inspection is called; the hop's own read (before + remainder head) finds nothing and the write run  
+  lays the shard.
+  **When it starts to matter:** the second time `:` is used with a different meaning (the ask mark here, a hole mark  
+  in a build run), or when `who` is heard as a question and as a word being defined: two shards, same before. Then  
+  the call column of the gate's rows holds the inspection run, and the sheet gets the extra column the row needs  
+  (10-23 P2 B2: "I think it might be more efficient if the DNA row has that... so that the run table becomes more  
+  precise").
+  ||| {class: his}
+  r_insp -> onthisrun: {class: call; label: "answer back to the gate"}
+}
+
+born: {
+  class: lane
+  label: "5. THE BORN RUN (R2 for define, R4 for colon, R6 for who): a run through the SQL-word neurons that\nmother pastes. A side run with its own sheet; its answer goes back to one cell of R1."
+  direction: right
+  b_decl: {
+    class: side
+    label: "tripped: 'gate does not exist'\n-> declares on R1's sheet: cell gate.<symbol> (empty)\n-> declares its own sheet: text, mother's reply (10-26 03:50)"
+  }
+  b_run: {
+    class: run
+    label: "the run through the core gates, one hop per symbol (10-19 21:52; 23:03):\nCREATE TABLE \" N+1 \" ( shard INTEGER , before INTEGER , trigger INTEGER , call INTEGER , spawn INTEGER ) ;\nCREATE TABLE \" N+1 definition \" ( source , entry , sense , class , text , ... ) ;\n'the active remainder being written into the formula' = the new gate number is a hole the sheet fills (10-19 21:52; 10-19 23:08 'create table (var a)')"
+  }
+  b_build: {
+    class: run
+    label: "the build neuron: 'routing information for the mother' (10-26 03:50).\nIts DNA row (before = ';', remainder none) is a build row because of how before and remainder are set, not by counting BUILDs."
+  }
+  b_text: {shape: page; label: "the assembled string, the product of the run (10-19 23:03)"}
+  b_reply: {
+    class: side
+    label: "SQL answers 'ok' (or the error text) -> secondary mailbox -> encoder -> fills the born run's cell 'reply'.\nAn error is not an end: 'the brain would problem solve' (10-27 03:52)"
+  }
+  b_end: {
+    class: side
+    label: "R2 ends (no remainder) -> its memory row (its sheet inside) on its ending shard -> timeline receipt.\nIts answer fills R1's cell gate.define = N+1."
+  }
+  b_retry: {
+    shape: diamond
+    label: "[open: his call] 10-21 18:39 'traverse back to the run start and try run again' or 10-20 01:22\ninline 'writes it, and triggers born... goes to space'"
+  }
+  b_decl -> b_run: {class: trig; label: "excites"}
+  b_run -> b_build: {class: hop}
+  b_build -> b_text
+  b_text -> b_reply: {class: mother; label: "out_mother -> mother -> neuron prompt -> SQL -> mother -> mother_in"}
+  b_reply -> b_end: {class: fill}
+  b_end -> b_retry
+  b_end -> source_start: {class: spawn; label: "every newborn is born with at least some sources (10-23 P4)"}
+  source_start: {class: side; label: "spawn: ask the sources for the newborn (R3 / R5 / R7)"}
+}
+
+source: {
+  class: lane
+  label: "6. THE SOURCE RUN (R3 define, R5 colon, R7 who): the newborn's first memory is its definition,\npulled from all the sources and compared (10-23 P5-9; 10-25 msg 51). Own sheet; one answer back to\nR1."
+  direction: right
+  s_decl: {
+    class: side
+    label: "declares its own sheet: one cell per source (wordnet, webster, mw, mwt, moby, sqldoc, map) + compile\ndeclares on R1's sheet: cell def.<symbol> (empty)"
+  }
+  s_ask: {
+    class: run
+    label: "the ask run assembles the question from the encoder's label of the newborn\n(10-25 msg 37: the words are 'scp'd, sed, cat from the docs and delivered to the encoder')"
+  }
+  s_route: {
+    shape: hexagon
+    style.fill: "#ffd8d8"
+    label: "mother carries the ask into every source's inbox (she decides nothing about which: the run named them)"
+  }
+  s_trig: {
+    class: brain
+    label: "each source's OWN trigger copies its lines for the symbol into its outbox -> populated -> mother\npicks it up, empties it, carries it back (10-22 rev17)"
+  }
+  s_return: {
+    class: run
+    label: "RETURN RUN, one per source answer, through the encoder:\n'return from define : who from source wordnet run /build the definition' as gates (10-25 msg 37)\nevery new symbol in the definition text gets a gate -> born (the cascade: 10-23 P4 'everything expands so fast') [open: how deep a newborn born from a definition is sourced]\nthe return run ends -> its memory; the definition node row for who points at that receipt"
+  }
+  s_check: |||md
+  What comes back is checked by the run, not by mother (10-22 rev17): is this the data I asked for (dictionaries  
+  answer with neighbours: asked for `as`, Webster sends `So` first)? is it what I needed (it must fill the cell the  
+  run opened)? did I ask wrong (an empty reply opens that question)?
+  ||| {class: his}
+  s_fill: {class: side; label: "each return fills its spot: wordnet = receipt of return run, webster = ..., map = ..."}
+  s_compile: {
+    class: run
+    label: "when no declared cell is empty -> the larger formula runs (10-26 03:50):\nCOMPILE = diff and similar across the sources -> 'the most accurate definition' (10-23 P5-9) -> written as the definition node's rows = the neuron's first memory (10-23 P2; 10-25 msg 51)\nthen relationships are built from the definition table and self-populate (10-23 P5-9; P4)"
+  }
+  s_open: {class: open; label: "[open 10-23 P4 B1] 'the diffs are kind of dropped or scattered and the similars are kept. But I don't know that we're getting a good, valid definition that way... if the definitions are wrong, then the description of the meaning is wrong.'"}
+  s_empty: {
+    class: side
+    label: "a cell that does not populate does not end the run: 'it gives the brain reason to search harder... it would spawn a new run, why did the cell not populate, and the reason would be the output' (10-27 03:52).\nlookup order: memory, then state, then sources, then a guess (10-23 P5-9) -> the guessing brain"
+  }
+  s_back: {class: side; label: "answer back to R1's cell def.<symbol> = pointer to the compiled definition (the memory, never a copy)"}
+  s_decl -> s_ask: {class: trig}
+  s_ask -> s_route: {class: mother; label: "out_mother"}
+  s_route -> s_trig: {class: mother}
+  s_trig -> s_return: {class: mother; label: "outbox populated -> mother_in -> encoder"}
+  s_return -> s_check
+  s_check -> s_fill: {class: fill}
+  s_fill -> s_compile: {class: trig; label: "complete"}
+  s_compile -> s_open
+  s_compile -> s_back: {class: call}
+  s_fill -> s_empty: {class: not; label: "a source has nothing"}
+}
+
+ending: {
+  class: lane
+  label: "7. THE END OF R1: no remainder -> memory -> timeline -> stop (10-26 03:50: 'no remainder triggers\nmemory, memory triggers timeline and it just stops')"
+  direction: right
+  e_mem: {
+    class: run
+    label: "MEMORY WRITE RUN (a copy run the end shard excites; the trigger writes nothing itself, 10-26 03:59):\nrun_memory row for R1 in the memory node of who's s5 (10-23 P2: 'a memory table for the DNA row that ended it')\nrun_sheet rows inside it: every declared cell with its state and value (10-26 03:50: 'the data sheet just lives in a cell in the memory row')"
+  }
+  e_tl: {
+    class: run
+    label: "TIMELINE WRITE RUN: one row: at = clock reading, receipt = pointer to R1's memory row, a few key words as gates (10-16 06:40; 10-23 P3 B2)\n'by a trigger hop. Never a sweep' (10-23 P3)"
+  }
+  e_stop: {shape: oval; label: "stops: the timeline is only a memory table, no DNA table ahead of it (10-26 03:50)"}
+  e_note: |||md
+  The side runs do the same when they end: R2..R7, the return runs and the three standing questions each get a memory  
+  row on their own ending shard and a timeline receipt. 10-23 P3: "we're just going to have to be careful with bloat  
+  on how all that works" [open: condensing].
+  ||| {class: his}
+  e_mem -> e_tl: {class: trig} 
+  e_tl -> e_stop
+}
+
+sheet: {
+  class: tab
+  label: "R1's DATA SHEET as it stands when complete (lives in R1's memory row). Each cell was declared by the"
+  tooltip: "trigger that tripped and filled by a return."
+  clock: "t0 (clock neuron)"
+  speaker: "user / heard"
+  q_know: "no (SQ1)"
+  q_memory: "no (SQ2)"
+  q_shape: "no (SQ3)"
+  path: "long"
+  gate_define: "N+1 (R2)"
+  def_define: "-> compiled definition of define (R3)"
+  gate_colon: "N+2 (R4)"
+  def_colon: "-> compiled definition of : (R5)"
+  gate_who: "N+3 (R6)"
+  def_who: "-> compiled definition of who (R7)"
+  say: "what was said (R8)"
+}
+
+output: {
+  class: lane
+  label: "8. OUTPUT: 'a completely separate mech from the data sheet... output to timeline and output to user,\nor output to mother all come from the same memory table' (10-26 03:50)"
+  direction: right
+  o_when: {shape: diamond; label: "no declared cell of R1 empty?"}
+  o_formula: {
+    class: run
+    label: "the larger formulas run over the sheet (10-23 P3 B2: substitute the cells as variables).\nOn a fresh brain nothing is bound to define yet: the symbol define has no action (10-27 05:37). The material the brain has is the sheet: the three compiled definitions."
+  }
+  o_balance: {
+    class: run
+    label: "MAKES SENSE: desired equation vs current vs new; closer = progressing, further = digressing (10-23 P5-9 B1).\nnot balanced -> step back to the decision that picked this path, take another row; the failed try stays in memory marked wrong (10-22 rev17)"
+  }
+  o_say: {
+    class: run
+    label: "SAY RUN (the say key: 'the only way we have found that a trigger is needed is with a say key', 10-26 05:12) [open: what the say key is]\nthe reply is a tree of arrays: first word array, each pick opens the next (10-23 P3 B2; 10-19 'build choose first word array')\n'it chooses what it wants to say' (10-27 03:52): no fixed sentence anywhere"
+  }
+  o_dec: {shape: document; label: "DECODER: gate numbers -> symbols, maybe head data (perspective, topic) (10-23 P3 B2)"}
+  o_user: {class: mail; label: "brain -> user mailbox"}
+  o_sixth: {class: mail; label: "-> sixth.db mailbox (10-25 msg 41: 'run output to sixth')"}
+  o_when -> o_formula: {label: "yes"}
+  o_formula -> o_balance
+  o_balance -> o_say: {label: "balanced"}
+  o_balance -> o_formula: {class: not; label: "digressing: another row"}
+  o_say -> o_dec -> o_user
+  o_say -> o_sixth: {class: spawn}
+}
+
+sixth: {
+  class: lane
+  label: "9. THE SIXTH: 'the me that talks to me... asks me questions... observes things that I'm doing'\n(10-23 P2). Its own brain, reached only through mother and its mailbox (10-22 rev17)."
+  x_see: {class: brain; label: "sixth.db reads the brain: the new memory row, the timeline row, the three newborns, the empty cells (10-23 03:18: 'its own questions and prompts from observations (sight) of the brain')"}
+  x_ask: {
+    class: run
+    label: "it forms its own line and types it into its mailbox, speaker = sixth (10-26 03:50).\nIn his words, what it asks is its own: 'why did I think that way... does this meaning actually make sense' (10-23 01:28); 'Why do I do that? hmm I should test if there a better way' (10-23 03:18); 'why did the cell not populate' (10-27 03:52).\nOn day one it is a copy of the empty brain: it can observe and ask; the questions it can ask are the runs it holds."
+  }
+  x_mail: {class: mail; label: "sixth.db -> encoder (third input mailbox)"}
+  x_new: {class: run; label: "a new run R9, arrival = sixth: the same hallway, standing questions first (SQ2 now finds R1's memory)"}
+  x_note: |||md
+  10-22 rev17 caution: whatever SQL the sixth writes into the main brain is **told, not learned**; the line between  
+  correcting a brain and doing its thinking for it is where earlier builds went wrong.
+  10-16 05:50: "at first we would have to prompt these, but later many of these are written by the sixth."
+  ||| {class: his}
+  x_see -> x_ask -> x_mail -> x_new
+}
+
+guess: {
+  class: lane
+  label: "10. THE GUESSING BRAIN: asked only after memory, state and sources came back empty (10-23 P5-9:\n'memory, then state, then sources, then a guess')"
+  g_ask: {class: run; label: "a cell that cannot fill from sources -> the run sends the question to the guessing brain's mailbox (through mother)"}
+  g_guess: {class: brain; label: "the guessing brain, a very small corpus, makes a guess of what the meaning should be; the guess is announced and never lost: 'I don't know; I have a guess I believe is likely; would you like to test it?' (10-23 P5-9)"}
+  g_wrong: {class: brain; label: "if the sixth says it was wrong, with the reasons, the guessing brain back-props over the adjusted corpus and guesses again, holding state of what it tried (10-23 03:18)"}
+  g_back: {class: side; label: "the guess fills the cell marked as a guess, never as source truth (10-15 21:17: 'Always state that this is a guess or belief not known source truth')"}
+  g_ask -> g_guess: {class: mother}
+  g_guess -> g_back: {class: fill}
+  g_wrong -> g_guess: {class: not; label: "guess again"}
+}
+
+grounding: {
+  class: lane
+  label: "What his words leave open, for him to call (not filled in here)"
+  o: |||md
+  1. **born inline or retry from the run start** (10-20 01:22 vs 10-21 18:39): both are his words.
+  2. **the receipt**: written by the hop's physics or by a write run (audit 10-25 row 5).
+  3. **the physical form of the sheet in the memory row**: rows pointed to by the row, a table per run, or one cell  
+     (10-26 03:50 "or hell maybe it just lives there"). His own v4 brain.db holds it as run_sheet rows keyed by run.
+  4. **the compile** of several definitions (10-23 P4 B1: "I don't know that the compile is correct yet").
+  5. **how deep a newborn born from a definition text is sourced** (10-23 P4: "everything expands so fast").
+  6. **the say key** (10-26 05:12): not found in his quoted words before that line.
+  7. **one trigger column or two** (10-23 08:47: the row holds the pointer to the run; his sketch 10-28 shows trigger,  
+     call, spawn as three columns).
+  8. **the standing questions**: hand laid in the core or taught on the first line? (10-23 P3 B2: "maybe those three  
+     questions that are searched on every run").
+  9. **whether `define` is in the core** as a formula shortcut. Here it is not: on a fresh brain it is a symbol with no  
+     action yet, so this run births it. If it is, the only change is at SQ3: yes -> jump to the define formula, which is  
+     "look up definition memory, print" (10-25 msg 51).
+  10. **the clock**: a neuron hit on every run (10-26 03:50); what it does to the silicon is physics.
+  |||
+}
+
+# cross-lane edges
+step0.inrow -> standing.q1: {class: spawn; label: "spawned before the main run (his sketch: 'spawn gate 5,4,3' -> standing questions runs)"}
+step0.inrow -> standing.q2: {class: spawn}
+step0.inrow -> standing.q3: {class: spawn}
+standing.decide -> main.g_define: {class: hop; label: "the long way: land on the first gate"}
+main.g_define -> born.b_decl: {class: trig; label: "no gate: born (R2)"}
+main.g_colon -> born.b_decl: {class: trig; label: "no gate: born (R4)"}
+main.g_who -> born.b_decl: {class: trig; label: "no gate: born (R6)"}
+born.b_retry -> main.g_define: {class: hop; label: "try the run again from the start [open]"}
+born.source_start -> source.s_decl: {class: spawn}
+born.b_end -> sheet: {class: fill; label: "fills gate.<symbol>"}
+source.s_back -> sheet: {class: fill; label: "fills def.<symbol>"}
+standing.decide -> sheet: {class: fill; label: "q.know, q.memory, q.shape, path"}
+main.g_define -> inspect.r_insp: {class: call; label: "call (when >1 shard answers)"}
+main.g_who -> ending.e_mem: {class: trig; label: "no remainder"}
+sheet -> ending.e_mem: {class: fill; label: "the sheet is inside the memory row"}
+ending.e_tl -> output.o_when: {class: trig; label: "the memory row exists; when its sheet completes"}
+source.s_empty -> guess.g_ask: {class: spawn}
+guess.g_back -> sheet: {class: fill}
+output.o_sixth -> sixth.x_see: {class: mother}
+sixth.x_new -> step0.inrow: {class: hop; label: "a new line, speaker = sixth"}
+output.o_say -> sheet: {class: fill; label: "say"}
+core.mother -> born.b_text: {class: not; label: "the one function beside SQLite"}
