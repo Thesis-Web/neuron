@@ -1,0 +1,33 @@
+# FIRST-30-LINES-2026-10-28.txt: thirty lines to type after LINES-v5.txt, in order. "6> " = the sixth's prompt. {run:k} = the run line k of
+# THIS file started; {gate:x} = the gate of x in main's encoder, {gate6:x} in the sixth's. No run number is written here by hand: where a
+# formula is copied onto another shard, the line reads it from the DNA row that holds it (define's, the sixth's seen).
+define : dog
+define : dog
+dog
+define : cat
+BUILD SELECT count ( * ) FROM rel ; BUILD
+BUILD SELECT gate , symbol FROM label WHERE gate > 930 ; BUILD
+define : UPDATE
+define : DROP
+define : ;
+define : zzzq
+define : Health
+incorrect : {run:11}
+correct : {run:11}
+6> seen {run:10}
+6> BUILD UPDATE sixth."{gate6:seen}" SET call = ( SELECT call FROM sixth."{gate6:seen}" WHERE before = 6 AND trigger = 3 ) WHERE before = 1 AND trigger = 3 ; BUILD
+6> seen {run:10}
+6> BUILD SELECT count ( * ) FROM main.run_sheet WHERE state = 0 ; BUILD
+BUILD UPDATE "{gate:dog}" SET call = ( SELECT call FROM "{gate:define}" WHERE before = 1 AND trigger = 3 ) WHERE before = 1 AND trigger IS NULL ; BUILD
+dog
+BUILD UPDATE "{gate:dog}" SET call = NULL WHERE before = 1 AND trigger IS NULL ; BUILD
+the dog
+the dog is on the mat
+define : mat
+BUILD SELECT run , gate , shard FROM run_memory WHERE gate = {gate:dog} ; BUILD
+BUILD SELECT at , run , key1 , key2 FROM timeline ORDER BY id DESC LIMIT 5 ; BUILD
+BUILD SELECT count ( * ) FROM hop ; BUILD
+BUILD SELECT text , error FROM refused ; BUILD
+BUILD INSERT INTO rel ( gate , kind , other , run ) VALUES ( {gate:dog} , {gate:like} , {gate:cat} , 0 ) ; BUILD
+define : like
+6> BUILD SELECT count ( * ) FROM sixth.run_memory ; BUILD

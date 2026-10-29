@@ -1,0 +1,87 @@
+# LINES-v5.txt (2026-10-28): the lines typed at the two prompts, in order; "6> " marks the sixth's prompt. Every line is told (typed);
+# the brain lays the rows. The comment above each gives its grounding; "mine" marks a choice that is the teacher's. {run:k} is the run
+# number that line k started, {gate:x} the gate of symbol x, read back from the brain by the teacher. The fresh egg's gates named here:
+# heard 1, said 2, space 3, mother 4, sixth 5, main 6, wn..measured 7..14, guess 15, born 16, me 19, above 20, newgate 21, reply 22,
+# what 23, def 24, say 25, know 26, remember 27, shape 28, BUILD 29, ":" 68.
+# --- the sixth first: its born run, the long way, and its bind (10-25 msg 41: a copy of brain.db with its own mailbox)
+# 1. The born run in the sixth, qualified with its own name because mother pastes at the one prompt (this first long run creates tables literally named newgate; the hole is unfilled).
+6> BUILD CREATE TABLE sixth."newgate" ( shard INTEGER PRIMARY KEY , before INTEGER , trigger INTEGER , call INTEGER , spawn INTEGER , times INTEGER ) ; CREATE TABLE sixth."newgate.node" ( id INTEGER PRIMARY KEY , source INTEGER , run INTEGER ) ; BUILD
+# 2. Bind: the sixth's born row 0 calls run 1 (10-19 23:27; sheet 2 S3: the brain writes its own DNA through the prompt).
+6> BUILD UPDATE sixth."16" SET call = {run:1} WHERE before IS NULL AND trigger IS NULL ; BUILD
+# --- main: the born run and its bind (10-19 21:52, 23:03; the owner's sketch 10-28 for the DNA columns; 10-19 23:40 the definition node born with the neuron)
+# 3. The born run, the long way. Its reply "ok" cannot run yet: ok has no gate and born is not bound; that return stays a run with no end (chicken and egg, 10-27 05:05).
+BUILD CREATE TABLE "newgate" ( shard INTEGER PRIMARY KEY , before INTEGER , trigger INTEGER , call INTEGER , spawn INTEGER , times INTEGER ) ; CREATE TABLE "newgate.node" ( id INTEGER PRIMARY KEY , source INTEGER , run INTEGER ) ; BUILD
+# 4. Bind born's row 0 to run 3. From here every new symbol is born by the brain (its reply "ok" is the first).
+BUILD UPDATE "16" SET call = {run:3} WHERE before IS NULL AND trigger IS NULL ; BUILD
+# --- the standing questions, built from the hand-laid tools (10-23 P3 B2; 10-28: "the simplest way for the brain to ask these at first"); the SQL is mine
+# 5. know: how many gates of the line I am under have a return that ended about them (a definition row laid) / how many gates; remember: the newest earlier memory with the same line as gates; shape: has the first gate's shard, as hit before from heard with the same next, ever carried a call (a formula proven: used)?
+BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM seq s WHERE s.run = above AND EXISTS ( SELECT 1 FROM run r JOIN run_memory m ON m.run = r.id WHERE r.kind = 3 AND r.about = s.gate ) ) || '/' || ( SELECT count ( * ) FROM seq WHERE run = above ) ; BUILD BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 27 , 1 , coalesce ( ( SELECT max ( m.run ) FROM run_memory m WHERE m.run < above AND m.input = ( SELECT group_concat ( gate , ' ' ) FROM ( SELECT gate FROM seq WHERE run = above ORDER BY pos ) ) ) , 0 ) ; BUILD BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 28 , 1 , coalesce ( ( SELECT h.call FROM hit h WHERE h.gate = ( SELECT gate FROM seq WHERE run = above AND pos = 1 ) AND h.before = 1 AND h.next IS ( SELECT gate FROM seq WHERE run = above AND pos = 2 ) AND h.call IS NOT NULL ORDER BY h.id DESC LIMIT 1 ) , 0 ) ; BUILD
+# 6. Bind heard's row 0 to the questions: every line heard begins with them (10-28: "it all circles back to the standing questions").
+BUILD UPDATE "1" SET call = {run:5} WHERE before IS NULL AND trigger IS NULL ; BUILD
+# 7. A first word, to see the questions answer and the birth: who is born; nothing asks the sources yet.
+who
+# --- the ask and the define run (10-23 P5-9: the dictionary, the thesaurus, WordNet, compared; 10-25 msg 51; 10-26 02:47 no limit); the SQL is mine
+# 8. The ask: declare cell def (24) on the run I am under, and put its "what" into every source's inbox with the key (run, cell, about, the symbol).
+BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 24 , 0 , NULL ) ; INSERT INTO wn.inbox ( run , cell , about , word ) SELECT above , 24 , what , symbol FROM label WHERE gate = what ; INSERT INTO gcide.inbox ( run , cell , about , word ) SELECT above , 24 , what , symbol FROM label WHERE gate = what ; INSERT INTO mw.inbox ( run , cell , about , word ) SELECT above , 24 , what , symbol FROM label WHERE gate = what ; INSERT INTO mwt.inbox ( run , cell , about , word ) SELECT above , 24 , what , symbol FROM label WHERE gate = what ; INSERT INTO moby.inbox ( run , cell , about , word ) SELECT above , 24 , what , symbol FROM label WHERE gate = what ; INSERT INTO map.inbox ( run , cell , about , word ) SELECT above , 24 , what , symbol FROM label WHERE gate = what ; INSERT INTO sqldoc.inbox ( run , cell , about , word ) SELECT above , 24 , what , symbol FROM label WHERE gate = what ; INSERT INTO measured.inbox ( run , cell , about , word ) SELECT above , 24 , what , symbol FROM label WHERE gate = what ; BUILD
+# 9. The relationships table, through the brain's own prompt (10-23 P5-9: "build the relationships from the definition table"). mine: the columns.
+BUILD CREATE TABLE rel ( gate INTEGER , kind INTEGER , other INTEGER , run INTEGER , PRIMARY KEY ( gate , kind , other ) ) ; BUILD
+# 10. The define run: span 1 writes the parent's "what" (the gate after the ":" of its line) and calls the ask; span 2, after the returns are in, lays relationship rows from the thesaurus, Moby and the map lines ("like X": kind = the first gate of the return, other = its third) and the definition node already holds every return (laid by the end of each return).
+BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT INTO replay ( parent , source , kind ) VALUES ( above , {run:8} , 1 ) ; BUILD BUILD INSERT OR IGNORE INTO rel ( gate , kind , other , run ) SELECT r.about , ( SELECT gate FROM seq WHERE run = r.id AND pos = 1 ) , ( SELECT gate FROM seq WHERE run = r.id AND pos = 3 ) , r.id FROM run r WHERE r.kind = 3 AND r.arrival IN ( 10 , 11 , 12 ) AND r.parent = above ; BUILD
+# 11. define : who, before anything is bound to define: define is born; the questions answer; nothing is asked.
+define : who
+# 12. Bind define's shard (arrived from heard, going on to the space; written by line 11) to the define run.
+BUILD UPDATE "{gate:define}" SET call = {run:10} WHERE before = 1 AND trigger = 3 ; BUILD
+# 13. define : who: the sources answer; who's definition node fills; the relationships lay; remember finds line 11.
+define : who
+# --- the sixth observes (10-28: "before a run answers define? back to the user, it asks the sixth why... the sixth replies your run data sheet... is missing cells")
+# 14. The sixth's own memory of what it asked for: run, cell, and how many source returns main held then (10-28: "the failed choice remembered from the timeline and eliminated"). mine: the columns.
+6> BUILD CREATE TABLE sixth.asked ( id INTEGER PRIMARY KEY , run INTEGER , cell INTEGER , returns INTEGER , sent INTEGER DEFAULT 0 ) ; BUILD
+# 15. The sixth's observing line, run each time main tells it a run ended ("seen N"): every empty cell on any line of the user's is written into asked, unless it was already asked about with as many source returns as main holds now; each new ask becomes a line "why N cell" in main's third input. A run that failed is tried again whenever the brain knows more, until it balances, and never twice on the same knowledge (10-28). mine: the SQL.
+6> BUILD INSERT INTO sixth.asked ( run , cell , returns ) SELECT s.run , s.cell , ( SELECT count ( * ) FROM main.run WHERE kind = 3 AND arrival BETWEEN 7 AND 14 ) FROM main.run_sheet s JOIN main.run r ON r.id = s.run WHERE s.state = 0 AND r.kind = 0 AND r.arrival = 1 AND ( SELECT count ( * ) FROM main.run WHERE kind = 3 AND arrival BETWEEN 7 AND 14 ) > coalesce ( ( SELECT max ( a.returns ) FROM sixth.asked a WHERE a.run = s.run AND a.cell = s.cell ) , -1 ) ORDER BY s.run ; INSERT INTO main.third ( text ) SELECT 'why ' || run || ' ' || cell FROM sixth.asked WHERE sent = 0 ORDER BY id ; UPDATE sixth.asked SET sent = 1 WHERE sent = 0 ; BUILD
+# 16. Bind the sixth's "seen" shard (arrived from main, going on to the space) to the observing line.
+6> BUILD UPDATE sixth."{gate6:seen}" SET call = {run:15} WHERE before = 6 AND trigger = 3 ; BUILD
+# --- main's why (10-27 03:52: a cell that does not populate gives the brain reason to search harder; 10-23 P5-9: memory, state, sources, then a guess)
+# 17. The why line: push every source return's words into the guessing brain's corpus, then ask the guessing brain about the run's "what", for the cell named, telling it how many source returns the brain holds now. mine: the SQL.
+BUILD INSERT OR IGNORE INTO guess.corpus ( line , word ) SELECT DISTINCT s.run , l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run IN ( SELECT id FROM run WHERE kind = 3 AND arrival BETWEEN 7 AND 14 ) ; INSERT INTO guess.inbox ( run , cell , about , word , returns ) SELECT CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > 2 AND s.pos < ( SELECT max ( pos ) FROM seq WHERE run = above AND gate = 3 ) ORDER BY s.pos ) ) AS INTEGER ) , CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT max ( pos ) FROM seq WHERE run = above AND gate = 3 ) ORDER BY s.pos ) ) AS INTEGER ) , ( SELECT value FROM run_sheet WHERE run = CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > 2 AND s.pos < ( SELECT max ( pos ) FROM seq WHERE run = above AND gate = 3 ) ORDER BY s.pos ) ) AS INTEGER ) AND cell = 23 ) , ( SELECT symbol FROM label WHERE gate = ( SELECT value FROM run_sheet WHERE run = CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > 2 AND s.pos < ( SELECT max ( pos ) FROM seq WHERE run = above AND gate = 3 ) ORDER BY s.pos ) ) AS INTEGER ) AND cell = 23 ) ) , ( SELECT count ( * ) FROM run WHERE kind = 3 AND arrival BETWEEN 7 AND 14 ) ; BUILD
+# 18. A symbol no source holds: the cell stays empty; the sixth writes why; why is born; nothing answers yet.
+define : :
+# 19. Bind why's shard (arrived from the sixth, going on to the space) to the why line.
+BUILD UPDATE "{gate:why}" SET call = {run:17} WHERE before = 5 AND trigger = 3 ; BUILD
+# 20. Again: the sixth's why is answered by the guessing brain; the guess fills the cell, labeled by where it came from and its numbers.
+define : :
+# --- the user's answer to a guess (10-28: guesses are asked correct?/incorrect?; that answer builds the confidence; belief never over 50% on first use). mine: the amounts.
+# 21. correct : N raises the belief of the guess run N asked for; 21. incorrect : N lowers it and counts it.
+BUILD UPDATE guess.guesses SET correct = correct + 1 , solved = solved + 1 , belief = min ( 1.0 , belief + 0.25 ) WHERE asked_by = CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 1 ORDER BY s.pos ) ) AS INTEGER ) ; BUILD
+BUILD UPDATE guess.guesses SET incorrect = incorrect + 1 , belief = max ( 0.0 , belief - 0.25 ) WHERE asked_by = CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 1 ORDER BY s.pos ) ) AS INTEGER ) ; BUILD
+# 23, 24. correct : 1 and incorrect : 1, to write the shards; 25, 26: bind them.
+correct : 1
+incorrect : 1
+BUILD UPDATE "{gate:correct}" SET call = {run:21} WHERE before = 1 AND trigger = 3 ; BUILD
+BUILD UPDATE "{gate:incorrect}" SET call = {run:22} WHERE before = 1 AND trigger = 3 ; BUILD
+# 27. The guess of line 19 was wrong (the guessing brain's corpus had nothing for ":"): say so.
+incorrect : {run:20}
+# --- the circle (10-28: the first meanings describe each other; the slice's nineteen function words): each line births, sources, lays the node and the relationships
+define : the
+define : a
+define : of
+define : to
+define : or
+define : as
+define : an
+define : and
+define : by
+define : on
+define : that
+define : what
+define : which
+define : all
+define : some
+define : many
+define : see
+# --- the easy ones (10-28: the SQL words, whose action to the silicon is written in the docs and was measured)
+define : CREATE
+define : TABLE
+define : INSERT
+define : SELECT
+# --- the same line again, from memory: remember finds line 13; who's node is already full
+define : who
