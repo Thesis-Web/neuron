@@ -46,3 +46,5 @@ No build is alive. v3 (2026-10-26) was deleted at the owner's order the night it
 ## Git
 
 This folder is a git repository, initialized 2026-10-26 with everything above in the first commit. The point of the history from here on: a change of state is a commit, and an old state stays readable.
+
+- `HANDOFF-2026-10-29-teaching-through-prompt.md`: where v6 stands and the standing order for the next stretch: teaching through the prompt, words not code.
