@@ -59,3 +59,7 @@ The shard key's (NULL, NULL) for the space and the walk kept by position; the ":
 ## Not checked
 
 A define line typed through the page for a word new to every source (the sixth's why, the guess, correct/incorrect through the page: checked only at the terminal on the copy); the page on the Windows drive; Firefox, Edge, Safari; a phone; a history of more than 70,000 hits in the browser (it loads the whole receipt table once, 1.5 MB at 61,000 rows).
+
+## Changed after the owner's first look (10-29, late)
+
+The owner: "when I run a run on the v6 brain I don't see the run fire, just the neurons move... on 17.3 and 16.4 you actually see the run fire from neuron to neuron". 17.3 started play by itself the moment a line finished, from its first new tick; v6 set the history to the line's first hit and waited for the play button. Now, after a typed line, the page plays that line's run from its first hit at the speed, from the choices offered, that takes about twenty seconds (never faster than 600 hits a second); while it plays, the run tab's reads wait for the pause. The page only; the brain is untouched.

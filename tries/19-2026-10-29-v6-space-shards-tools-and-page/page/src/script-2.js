@@ -25,7 +25,7 @@
     if (!ready) return;
     if (tk === undefined || tk === null || tk < 0) tk = -1; if (tk > HIST.length - 1) tk = HIST.length - 1;
     TK = tk; var h = tk >= 0 ? HIST[tk] : null;
-    var runNow = h ? h[1] : null; if (runNow !== CUR.run) { CUR.run = runNow; var R = RUNS[runNow]; CUR.root = R ? (R.root === null ? runNow : R.root) : null; renderTree(); renderRun(); }
+    var runNow = h ? h[1] : null; if (runNow !== CUR.run) { CUR.run = runNow; var R = RUNS[runNow]; CUR.root = R ? (R.root === null ? runNow : R.root) : null; renderTree(); if (!playing) renderRun(); else runStale = true; }
     if (hasGL) {
       var spaceOn = $('spacept').checked, gl = $('ghostlabels').checked, mapOn = $('mapall').checked && MAPL, atTk = tk < 0 ? -1 : tk;
       LABLIST.forEach(function (g) { var k = String(g); if ((g === G.space && !spaceOn) || !present(g, atTk)) { hideNode(k); return; } var n = ensureNode(k); n.mesh.visible = true; if (n.label) n.label.visible = true; });
@@ -220,7 +220,7 @@
       SHOWN.unshift({ line: line, schema: r.schema, run: r.run, r: r });
       setBusy('the line ran in ' + r.seconds.toFixed(2) + ' s: ' + r.runs + ' runs, ' + fmtN(r.hits) + ' hits, ' + r.born + ' born' + (r.refused ? ', ' + r.refused + ' refused by SQLite' : '') + '. ' + fmtN(COUNTS.label) + ' gates, ' + fmtN(COUNTS.shards) + ' shards in the brain now.');
       renderAll(); renderOut(); readLines();
-      if (r.schema === 'main' && RUNS[r.run]) chooseRun(r.run, 0); else render(TK, true);
+      if (r.schema === 'main' && RUNS[r.run]) chooseRun(r.run, 0, function () { pickSpeed(r.hits); setPlay(true); }); else render(TK, true);
     }).catch(function (e) { busy = false; setBusy('the line ran, but the page could not read the brain again: ' + e.message); });
   }
   function typeLine() { var v = $('line').value.trim(); if (!v) return; var prompt = $('prompt').value; if (v.indexOf('6> ') === 0) { prompt = 'sixth'; v = v.slice(3); } $('line').value = ''; send(v, prompt); }
@@ -247,9 +247,11 @@
   }
   $('fresh').addEventListener('click', function () { if (!ready || busy) return; if (!confirm('Lay both eggs and the source brains again? The brains as they stand are overwritten in the brain folder.')) return; busy = true; setBusy('laying the eggs…'); api('/api/fresh', {}).then(function (j) { var p2 = function () { api('/api/job?id=' + j.id).then(function (x) { if (!x.done) { setTimeout(p2, 500); return; } busy = false; if (x.error) { setBusy('error: ' + x.error); return; } HIST = []; RUNHOPS = {}; FIRSTG = {}; FIRSTS = {}; RUNT0 = {}; RUNT1 = {}; HISTLAST = 0; TK = -1; SHEET = {}; TEXT = {}; CUR = { root: null, run: null }; SHOWN = []; Object.keys(NODE).forEach(function (k) { hideNode(k); }); loadBundle().then(function () { renderAll(); renderOut(); readLines(); render(-1); setBusy('fresh brains: the bare core. Type the lines under Type, one at a time.'); }); }); }; p2(); }).catch(function (e) { busy = false; setBusy(e.message); }); });
 
+  // the speed for a line just typed: the one that plays its hits in about twenty seconds, from the choices offered, never faster than 600 a second
+  function pickSpeed(hits) { var want = Math.max(8, (hits || 0) / 20), opts = [2, 8, 30, 120, 600], v = 600; for (var i = 0; i < opts.length; i++) if (opts[i] >= want) { v = opts[i]; break; } $('speed').value = String(v); }
   // ---- transport: the history is stepped hit by hit; play goes on through the brain's order, into the next run, unless told to stay in this run
-  var playing = false, acc = 0;
-  function setPlay(v) { playing = v; $('play').setAttribute('aria-pressed', String(v)); $('play').textContent = v ? 'pause' : 'play'; }
+  var playing = false, acc = 0, runStale = false;
+  function setPlay(v) { playing = v; $('play').setAttribute('aria-pressed', String(v)); $('play').textContent = v ? 'pause' : 'play'; if (!v && runStale) { runStale = false; renderRun(); } }
   $('back').addEventListener('click', function () { setPlay(false); if (TK > -1) render(TK - 1, true); });
   $('fwd').addEventListener('click', function () { setPlay(false); advance(1); });
   $('play').addEventListener('click', function () { setPlay(!playing); if (playing && TK >= HIST.length - 1) render(-1, true); });
