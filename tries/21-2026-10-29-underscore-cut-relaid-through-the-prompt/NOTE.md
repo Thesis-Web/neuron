@@ -1,0 +1,9 @@
+# 21. The underscore cut, re-laid through the prompt (2026-10-29)
+
+**Status: tried on a copy of the live brain, not typed into the live brain; the six lines are here for the owner to type.**
+
+The owner, 10-29: "underscore is just an operator like (space), +, -, /, *, **, _, ,, ., <, >, ? ... we need to know what their actions are"; and the encoder "is part of the brain's responsibility ... a call to mother should be able to route to encoder to update or change that value". The encoder of v6 is the label table and a cut rule written into three triggers (input_go, third_go, secondary_go) of each brain. The rule `GLOB '[A-Za-z_]'` treats the underscore as a letter, so json_each was one symbol; that rule was mine, from an earlier build. Because the triggers are rows of the brain, a typed BUILD line can drop and lay them again: no egg edit.
+
+`RELAY-UNDERSCORE-LINES-2026-10-29.txt` holds the six lines (three at the user's prompt, three at the sixth's), each the trigger's own text with the one change. On a copy of the live brain (`LEDGER-RELAY-ON-A-COPY`): mother answered ok to all six, 0 refused, 30 s in all; then `json_each` was cut as json | _ | each in both brains, `who` was still heard and remembered, `print sheet : 5194` still ran (`LEDGER-AFTER-RELAY-ON-A-COPY`), and a new BUILD line naming run_sheet was cut as run | _ | sheet and pasted back joined. The live brain's six triggers are byte for byte the copy's (checked through the door), so the lines fit.
+
+What the underscore's action to the silicon is, measured by this: symbols between BUILD marks are pasted as typed, so the underscore joins the symbol before and after into one name at the SQL prompt (the owner, 10-27: "in some cases its action is to + something together"); the space parts them. Symbols already in the brain that hold an underscore (run_sheet, group_concat, sqlite_master) stay as laid; lines typed after the change cut them into three. A number is one symbol per digit already.
