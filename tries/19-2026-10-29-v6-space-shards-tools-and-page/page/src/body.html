@@ -1,0 +1,240 @@
+<div class="app">
+  <header>
+    <h1>Point Of Connection v6</h1>
+    <p>The live v6 brains behind a local door, <span style="font-family:var(--mono)">serve6.py</span>: main, the sixth, the guessing brain and eight source brains, all SQLite, all triggers; mother pastes what the brain writes. The door types a line into the prompt you choose and runs the SELECTs this page asks for; it decides nothing. The stage is 17.3's: every point a gate of the encoder, every line a row the brain holds, each a spring with the kind's pull; heard, the arrival gate, is the one fixed point; a run is walked hop by hop from its receipt. Positions are this page's drawing, not the brain's. The rails are tabs.</p>
+  </header>
+
+  <aside class="left" aria-label="The graph">
+    <div class="tabs" role="tablist" data-for="left">
+      <button type="button" role="tab" data-panel="panel-lines" aria-selected="true">lines</button>
+      <button type="button" role="tab" data-panel="panel-neurons" aria-selected="false">neurons</button>
+      <button type="button" role="tab" data-panel="panel-brain" aria-selected="false">brains</button>
+      <button type="button" role="tab" data-panel="panel-read" aria-selected="false">read</button>
+    </div>
+    <div class="inner" id="panel-lines">
+      <section>
+        <h2>The graph's lines</h2>
+        <label class="chk"><input type="checkbox" id="mapall" checked> your relation map (the map source brain): every like and opposite line of every word the brain holds; a far end the brain has no gate for is a dim point</label>
+        <label class="chk"><input type="checkbox" id="ghostlabels"> name your map's words (the dim points)</label>
+        <label class="chk"><input type="checkbox" id="spacept"> draw the space neuron (one point, one shard; it sits at origin with no line)</label>
+        <label class="chk"><input type="checkbox" id="runspace"> run lines pass through the space neuron (off: the space is skipped in the drawing of a run)</label>
+        <label class="chk"><input type="checkbox" id="memall"> memory nodes of every run (on: thousands of small green points; off: only the memory nodes of the line chosen)</label>
+        <div class="row"><label for="spacing" class="note">spacing, the drawing only</label><input type="range" id="spacing" min="1" max="100" step="1" value="21" aria-label="spacing"><span class="n" id="spv">&times;21</span></div>
+        <label class="chk"><input type="checkbox" id="axes" checked> x, y and z axes over the graph, a tick every 10</label>
+        <div class="row"><button id="fitall" type="button">fit all in view</button></div>
+        <div class="row"><label for="gap" class="note">space between points, in the drawing's units</label><input type="range" id="gap" min="0" max="40" step="0.5" value="15" aria-label="space between points"><span class="n" id="gapv">15</span></div>
+        <p class="note">No two points come closer than this; a pair that does is moved apart, half each, and the lines pull the rest into place. Spacing multiplies every drawn position outward from origin; names and dots keep their size. Drag to turn, scroll to zoom.</p>
+        <div class="row"><label for="runmode" class="note">runs drawn</label><select id="runmode"><option value="cur" selected>this run only</option><option value="line">every run of this line, faint</option><option value="none">none</option></select></div>
+      </section>
+      <section>
+        <h2>Kinds of line: on, off, pull, direction</h2>
+        <div class="rels" id="reltypes"></div>
+        <p class="note">Every line is a row the brain holds. A DNA row (shard | before | trigger | call | spawn | times) in a neuron's table gives up to four: the symbol before to this one, this one to the symbol the run goes on to, and a call or spawn to the first gate of the run it replays; made-of ties a symbol that calls a run to every gate that run passes. A definition row ties a symbol to the words of the lines its sources returned; answered ties a source brain to the symbols it answered. A memory node (small, green) is a run_memory row: it sits on the shard that ended the run and is tied to the words of its line. The rest are relationship rows (rel) by their kind word, and your map. Each line is a spring: the kind's pull (its slider), times how much of that kind the brain holds; a row laid again pulls harder (17.3's pull law). A direction makes a line of that kind push its second word that way from its first, or across origin. Nothing pushes points apart except the space above; heard alone is fixed.</p>
+      </section>
+      <section>
+        <h2>Composition: R1 then R2 lands on</h2>
+        <div class="tw"><table class="cells" id="comp"></table></div>
+      </section>
+    </div>
+    <div class="inner" id="panel-neurons" hidden>
+      <section>
+        <h2>The encoder: every gate in label</h2>
+        <div class="row"><input type="text" id="nfind" placeholder="find a symbol" autocomplete="off" spellcheck="false"><select id="nrole" aria-label="which gates"><option value="all">every gate</option><option value="core">hand-laid (1 to 80)</option><option value="born">born</option><option value="call">with a call or spawn</option><option value="node">with definition rows</option><option value="rel">with relationships</option><option value="source">the source brains</option></select></div>
+        <div class="note" id="nsum"></div>
+        <div class="list" id="nlist"></div>
+        <p class="note">Gate, symbol, what it is, its DNA rows, the rows in its definition node, its relationships, its memory nodes. Click one: it is marked on the stage and read in full under Selected. The space and each punctuation mark are gates of their own.</p>
+      </section>
+    </div>
+    <div class="inner" id="panel-brain" hidden>
+      <section>
+        <h2>The brains, as they stand</h2>
+        <div class="counts" id="counts"></div>
+        <div class="kv" id="binfo"></div>
+      </section>
+      <section>
+        <h2>Sources, as the brain has heard them</h2>
+        <div class="tw"><table class="cells" id="trust"></table></div>
+        <p class="note">Asked: the symbols put into that source's inbox by the ask. Returned: the lines it sent back, each a run through the encoder. Silent: asked and nothing came back.</p>
+      </section>
+      <section>
+        <h2>Symbols with a job: shards that call or spawn a run</h2>
+        <div class="list" id="jobs"></div>
+        <p class="note">Every DNA row whose call or spawn column points at a run (a formula bound by a BUILD UPDATE), and the first symbols of that run. Click one to walk the run.</p>
+      </section>
+      <section>
+        <h2>The sixth (sixth.db)</h2>
+        <div class="kv" id="sixthcounts"></div>
+        <div class="list" id="sixthruns"></div>
+        <p class="note">What main told it (seen : N in its third input), what it asked main (why : N cell in main's third input), and its own lines.</p>
+      </section>
+      <section>
+        <h2>The guessing brain (guess.db)</h2>
+        <div class="tw"><table class="cells" id="guesses"></table></div>
+        <p class="note">Every answer it gave: the symbol, its guess, confidence, belief (at most 0.5 on first use), used, solved, correct, incorrect, the run it was asked by. The simplest co-occurrence guesser, a stand-in for the hand-built one.</p>
+      </section>
+      <section>
+        <h2>Mother's refusals</h2>
+        <div class="list" id="refused"></div>
+        <p class="note">Rows the brain wrote to its hop table that SQLite refused, with the reason. Empty when nothing was refused.</p>
+      </section>
+    </div>
+    <div class="inner" id="panel-read" hidden>
+      <section>
+        <h2>How to read the stage</h2>
+        <ul>
+          <li><b>The light point at the center is heard,</b> gate 1, the arrival gate every typed line comes from: the one fixed point. Everything else is where its lines pull it.</li>
+          <li><b>Grey points are the 80 hand-laid neurons</b> (the arrivals, the sources' gates, the cell names, the symbols of the born line). <b>Blue-grey points were born</b> by the born run. <b>Orange symbols carry a call or spawn</b> (a formula bound to a shard). <b>A point that holds definition rows is lighter.</b> <b>Teal, large: the source brains.</b> <b>Small green: memory nodes.</b> <b>Dim: words of your map the brain has no gate for.</b></li>
+          <li><b>A run is drawn through the gates of its receipt,</b> in order; the hop being stepped glows, and a flash goes from it to the gate the run goes on to and, in orange, to the first gate of the run its shard calls or spawns.</li>
+          <li><b>The stage is the brains now.</b> Every read is a SELECT through the door; nothing is replayed from a log. Stepping walks one run's receipt as the brain wrote it, and play goes on into the next run of the same line.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>What is read, from where</h2>
+        <ul>
+          <li>Points: main.label. Lines: every DNA table ("k"), the rel table, the call and spawn columns, the definition nodes ("k.node") with the return runs behind them, run_memory, and the map source's corpus.</li>
+          <li>Step: run_receipt. Run: run_sheet (the cells), the child runs (returns, calls, spawns), run_memory, timeline, out_user.</li>
+          <li>Selected: the DNA table of the gate, its definition node, the rel rows, the memory rows on its shards, the run that bore it.</li>
+          <li>Brains: sqlite_master counts of main and the sixth, the sixth's inputs, guess.guesses, the refused tables.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>What is this page's own, not the brain's</h2>
+        <ul>
+          <li>x, y, z. The brain holds no positions. The springs, the rest lengths, the space between points, the step limit and the colours are the drawing's; they say nothing measured.</li>
+          <li>The door's calls: type a line, read the graph, run a SELECT, list the lines files, lay the eggs again. The tabs.</li>
+          <li>The two lists under Type are files beside the brain (LINES-v6.txt, FIRST-RUNS-v6): clicking a line only puts it in the prompt; you press run. Nothing types a file of lines by itself.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Where it lives</h2>
+        <p class="note">tries/19: this page and serve6.py. Start the door from the page folder with <span style="font-family:var(--mono)">python3 serve6.py</span> and open <span style="font-family:var(--mono)">http://localhost:8056/</span>. On the Windows drive a line is about ten times slower than on a Linux path; copy the folder to work fast.</p>
+      </section>
+    </div>
+  </aside>
+
+  <div class="stage" id="stage">
+    <canvas id="c"></canvas>
+    <button class="atlasbtn" id="atlasbtn" type="button">atlas</button>
+    <div class="atlas" id="atlas" hidden>
+      <div class="atop"><b>Atlas: every gate, its table, its place</b><input type="text" id="afind" placeholder="find a symbol" autocomplete="off" spellcheck="false"><select id="ashow" aria-label="which gates"><option value="all">every gate</option><option value="node">with definition rows</option><option value="call">with a call or spawn</option><option value="rel">with relationships</option><option value="drawn">drawn on the stage</option></select><span class="m" id="ashown"></span><button id="arefresh" type="button">read again</button><button id="aclose" type="button">close</button></div>
+      <div class="asum" id="asum"></div>
+      <div class="atw"><table id="atable"></table></div>
+    </div>
+    <div class="hud" id="hud"><b>opening the brain's door</b></div>
+    <div class="err" id="err">This view needs WebGL. The rails still read the brain.</div>
+  </div>
+
+  <aside class="right" aria-label="The run">
+    <div class="tabs" role="tablist" data-for="right">
+      <button type="button" role="tab" data-panel="panel-type" aria-selected="true">type</button>
+      <button type="button" role="tab" data-panel="panel-step" aria-selected="false">step</button>
+      <button type="button" role="tab" data-panel="panel-run" aria-selected="false">run</button>
+      <button type="button" role="tab" data-panel="panel-sel" aria-selected="false">selected</button>
+    </div>
+    <div class="inner" id="panel-type">
+      <section>
+        <h2>Type a line</h2>
+        <div class="row"><input type="text" id="line" placeholder="define : who" autocomplete="off" spellcheck="false"><select id="prompt" aria-label="which prompt"><option value="main" selected>the user's prompt</option><option value="sixth">the sixth's prompt</option></select><button class="primary" id="run" type="button">run</button></div>
+        <div class="busy" id="busy"></div>
+        <p class="note">The user's prompt writes into main.input; the sixth's into sixth.input. <span style="font-family:var(--mono)">BUILD &hellip; BUILD</span> hands the symbols between to mother. A symbol with no gate is born first. <span style="font-family:var(--mono)">key : value</span> fires the formula bound to the key's shard: define, print dna | memory | node | sheet | table, create neuron, change trigger | call | spawn | define | meaning, correct, incorrect.</p>
+      </section>
+      <section>
+        <h2>What came out</h2>
+        <div id="out"><span class="note">Nothing typed yet in this page. The newest line's data sheet appears here, each cell read back through the encoder.</span></div>
+      </section>
+      <section>
+        <h2>Lines to type, in order: the tools (LINES-v6.txt)</h2>
+        <div class="row"><label class="chk"><input type="checkbox" id="hidetyped"> hide the lines already typed into this brain</label></div>
+        <div class="mlist" id="tsheet"></div>
+        <p class="note">Click a line: it goes into the prompt with its {run:k} and {gate:x} read from the brain; press run. A line already typed shows the run it started. The grounding of each is in the file.</p>
+      </section>
+      <section>
+        <h2>Then, lines that educate the brain (FIRST-RUNS-v6)</h2>
+        <div class="mlist" id="fsheet"></div>
+      </section>
+      <section>
+        <h2>Lines typed into this brain, newest first</h2>
+        <div class="list" id="llist"></div>
+      </section>
+      <section>
+        <h2>Start over</h2>
+        <div class="row"><button id="fresh" type="button">lay the eggs and the source brains again</button></div>
+        <p class="note">Both brains go back to the bare core (egg6.sql, egg6-sixth.sql) and the source brains are laid again from the slice. Nothing is typed. The brain files beside the door are overwritten.</p>
+      </section>
+    </div>
+    <div class="inner" id="panel-step" hidden>
+      <section>
+        <h2>Step through a run's receipt</h2>
+        <div class="row"><button id="back" type="button">&#9664; hop</button><button id="fwd" type="button">hop &#9654;</button><button id="play" type="button" aria-pressed="false">play</button>
+          <select id="speed"><option value="2">slow</option><option value="8" selected>normal</option><option value="30">fast</option><option value="120">very fast</option><option value="600">600 hits a second</option><option value="3000">3,000 hits a second</option></select><button id="spin" type="button" aria-pressed="false">turn</button></div>
+        <input type="range" id="time" min="0" max="0" value="0" aria-label="hop within the run">
+        <div class="readout" id="readout">hop 0 of 0</div>
+        <div class="row"><label for="hist" class="note">the brain's history: every hit, in the order written</label></div>
+        <input type="range" id="hist" min="0" max="0" value="0" aria-label="the brain's history">
+        <div class="readout" id="histout">hit 0 of 0</div>
+        <div class="row"><button id="tostart" type="button">from the start</button><button id="tonow" type="button">as it stands now</button><label class="chk"><input type="checkbox" id="followrun" checked> play follows into the next run</label></div>
+        <p class="note">The stage shows the brain as it stood at this hit: a point once a run has reached it, a DNA row once its shard was written, a memory node once its run ended, a relationship once its run began. From the start, with play, the neurons appear as the lines bear them and are pulled into place.</p>
+        <div class="now" id="now"><span class="k">this hop</span><span>No run chosen. Type a line, or pick one below.</span></div>
+      </section>
+      <section>
+        <h2>The runs of this line</h2>
+        <div class="row"><select id="treekind" aria-label="which runs"><option value="all">every run</option><option value="0">the line</option><option value="1">calls</option><option value="2">spawns</option><option value="3">returns</option></select><span class="note" id="treesum"></span></div>
+        <div class="list" id="tree"></div>
+        <p class="note">Every run with this root, in the brain's order and indented by depth: a call or spawn is a shard replaying a run; a return is a source's or mother's answer run through the encoder. Play goes on into the next run when one ends.</p>
+      </section>
+      <section>
+        <h2>Hop log. Click a row to go there</h2>
+        <div class="log" id="log"></div>
+      </section>
+    </div>
+    <div class="inner" id="panel-run" hidden>
+      <section>
+        <h2>This run</h2>
+        <div class="sel" id="runhead"><span class="m">No run chosen.</span></div>
+      </section>
+      <section>
+        <h2>Its data sheet (run_sheet)</h2>
+        <div class="tw"><table class="cells" id="cells"></table></div>
+      </section>
+      <section>
+        <h2>What it handed mother, and what came back</h2>
+        <div class="gaps" id="builds"><span class="note">Nothing yet.</span></div>
+        <p class="note">The symbols between a pair of BUILD gates, with the holes filled as the sheet filled them; under each, what mother answered, read back from the return run.</p>
+      </section>
+      <section>
+        <h2>Needed, and did not have</h2>
+        <div class="gaps" id="gaps"><span class="note">Nothing yet.</span></div>
+      </section>
+      <section>
+        <h2>Sources, as this run heard them</h2>
+        <div class="list" id="sources"></div>
+      </section>
+      <section>
+        <h2>Its memory and timeline row</h2>
+        <div class="kv" id="memrow"></div>
+      </section>
+    </div>
+    <div class="inner" id="panel-sel" hidden>
+      <section>
+        <h2>Selected</h2>
+        <div class="sel" id="sel"><span class="m">Click a dot on the stage, or a gate under neurons.</span></div>
+      </section>
+      <section>
+        <h2>Its DNA rows (shard | before | trigger | call | spawn | times)</h2>
+        <div class="tw"><table class="cells" id="dnarows"></table></div>
+      </section>
+      <section>
+        <h2>Its definition node: the returns, first memory</h2>
+        <div class="list" id="defrows"></div>
+      </section>
+      <section>
+        <h2>Its relationships (rel)</h2>
+        <div class="list" id="relrows"></div>
+      </section>
+      <section>
+        <h2>Memory nodes on its shards</h2>
+        <div class="list" id="memrows"></div>
+      </section>
+    </div>
+  </aside>
+</div>

@@ -1,0 +1,17 @@
+print dna : who
+print memory : who
+print node : who
+print sheet : 370
+print table : rel
+create neuron : canis
+change define : who class noun
+print sheet : 370
+change meaning : who from noun to verb
+change define : who meaning noun
+change meaning : who from noun to verb
+print sheet : 370
+change trigger : who from 68 to 68
+define : the
+define : as
+define : who
+print dna : define
