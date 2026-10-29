@@ -655,7 +655,7 @@ for i, (t, tt) in enumerate([
 edge("e8", "e1", "not", "and again", "      ")
 close("    ")
 close("  ")
-edge("after.n74.defn", "circle.ring." + cid("who"), "readw", "its 66 symbols", "  ")
+edge("after.n70.defn", "circle.ring." + cid("who"), "readw", "its 66 symbols", "  ")
 edge("meaning.mwho.dna", "circle.hyp.formula_who", "not", "the action, when derived", "  ")
 
 # ---- lane 11: the sixth
