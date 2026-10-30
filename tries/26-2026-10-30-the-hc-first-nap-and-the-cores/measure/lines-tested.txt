@@ -1,0 +1,4 @@
+# the same lines on the condensed copy (R) and the uncondensed (R2): the standing questions must answer the same
+print dna : who
+define : across
+print memory : who
