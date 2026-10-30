@@ -5,7 +5,7 @@
 import sys, os, json, socket, re, time, http.server, urllib.parse
 PORT, KPORT, PAGE = int(sys.argv[1]), int(sys.argv[2]), sys.argv[3]
 LINES = sys.argv[4] if len(sys.argv) > 4 else None; FIRST = sys.argv[5] if len(sys.argv) > 5 else None; BIND = sys.argv[6] if len(sys.argv) > 6 else '127.0.0.1'
-STARTED = time.time(); JOBS = {}; JOBN = [0]
+STARTED = time.time(); JOBS = {}; JOBN = [0]; HISTORY_CAP = int(os.environ.get('NK_HISTORY_CAP', '50000'))
 def ask(req):
     s = socket.create_connection(('127.0.0.1', KPORT)); s.sendall((req + '\n').encode()); buf = b''
     while True:
@@ -106,7 +106,12 @@ class H(http.server.BaseHTTPRequestHandler):
             if u.path == '/api/q':
                 sql = str(d.get('sql') or '').strip()
                 if not sql.upper().startswith(('SELECT', 'WITH', 'PRAGMA TABLE_INFO', 'PRAGMA DATABASE_LIST')): return self.send(400, {'error': 'only a SELECT is read through this door'})
-                return self.send(200, q(sql, d.get('params') or []))
+                params = d.get('params') or []
+                # the page's history read asks for every receipt after the last it saw; on a brain of millions this door answers the newest HISTORY_CAP
+                if sql.startswith('SELECT id, run, gate, shard FROM main.run_receipt WHERE id > ?') and params:
+                    top = q('SELECT max(id) FROM main.run_receipt')['rows'][0][0] or 0
+                    if top - int(params[0]) > HISTORY_CAP: params = [top - HISTORY_CAP]
+                return self.send(200, q(sql, params))
             if u.path == '/api/fresh': return self.send(400, {'error': "the kernel's door lays no eggs; start the kernel again"})
             return self.send(404, {'error': 'no such path'})
         except Exception as e: return self.send(500, {'error': str(e)})

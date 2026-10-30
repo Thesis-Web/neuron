@@ -40,6 +40,7 @@ static int rows_cb(void *p, int argc, char **argv, char **col){ SB *b = (SB*)p; 
 static char *run_text(const char *sql, int argc, sqlite3_value **argv){
   char *err = 0; SB got = {0};
   if(argc == 0 && strchr(sql, ';')){ if(sqlite3_exec(DB, sql, rows_cb, &got, &err) != SQLITE_OK){ char *m = sqlite3_mprintf("error: %s", err); sqlite3_free(err); free(got.s); char *r = strdup(m); sqlite3_free(m); return r; } char *r = strdup(got.n ? got.s : "ok"); free(got.s); return r; }
+  if(argc == 0){ if(sqlite3_exec(DB, sql, rows_cb, &got, &err) != SQLITE_OK){ char *m = sqlite3_mprintf("error: %s", err); sqlite3_free(err); free(got.s); char *r = strdup(m); sqlite3_free(m); return r; } char *r = strdup(got.n ? got.s : "ok"); free(got.s); return r; }
   Ent *e = get(sql, &err); sqlite3_stmt *st = e ? e->st : 0;
   if(!st){ if(err){ char *m = sqlite3_mprintf("error: %s", err); sqlite3_free(err); char *r = strdup(m); sqlite3_free(m); return r; }
     if(sqlite3_exec(DB, sql, rows_cb, &got, &err) != SQLITE_OK){ char *m = sqlite3_mprintf("error: %s", err); sqlite3_free(err); free(got.s); char *r = strdup(m); sqlite3_free(m); return r; } char *r = strdup(got.n ? got.s : "ok"); free(got.s); return r; }
@@ -53,7 +54,7 @@ static char *run_text(const char *sql, int argc, sqlite3_value **argv){
 /* where mother's time goes, per text pasted (the owner: profile every statement before reporting a run time) */
 typedef struct Prof { char *text; i64 ns, n; struct Prof *next; } Prof;
 static Prof *pbucket[NB]; static int nprof;
-static void prof_add(const char *sql, i64 ns){ unsigned h = hsh(sql); Prof *p; for(p = pbucket[h]; p; p = p->next) if(strcmp(p->text, sql) == 0){ p->ns += ns; p->n++; return; } p = malloc(sizeof(Prof)); p->text = strdup(sql); p->ns = ns; p->n = 1; p->next = pbucket[h]; pbucket[h] = p; nprof++; }
+static void prof_add(const char *sql0, i64 ns){ static char key[400]; size_t n = 0; for(const char *s = sql0; *s && n < sizeof key - 2; s++){ if(*s >= '0' && *s <= '9'){ if(n && key[n-1] == '#') continue; key[n++] = '#'; } else key[n++] = *s; } key[n] = 0; const char *sql = key; unsigned h = hsh(sql); Prof *p; for(p = pbucket[h]; p; p = p->next) if(strcmp(p->text, sql) == 0){ p->ns += ns; p->n++; return; } p = malloc(sizeof(Prof)); p->text = strdup(sql); p->ns = ns; p->n = 1; p->next = pbucket[h]; pbucket[h] = p; nprof++; }
 char *mother_paste(const char *sql){ i64 t0 = now_ns(); char *r = run_text(sql, 0, 0); prof_add(sql, now_ns() - t0); return r; }
 static void motherFunc(sqlite3_context *ctx, int argc, sqlite3_value **argv){ const char *sql = (const char*)sqlite3_value_text(argv[0]); if(!sql){ sqlite3_result_text(ctx, "error: nothing to run", -1, SQLITE_STATIC); return; } i64 t0 = now_ns(); char *r = run_text(sql, argc - 1, argv + 1); prof_add(sql, now_ns() - t0); sqlite3_result_text(ctx, r, -1, SQLITE_TRANSIENT); free(r); }
 int mother_open(Brain *main, Brain *sixth, const char **sources, int nsources, const char *srcdir){
@@ -128,7 +129,8 @@ static void do_graph(Brain *b, SB *o){
   if(sqlite3_prepare_v2(DB, q, -1, &st, 0) == SQLITE_OK){ while(sqlite3_step(st) == SQLITE_ROW){ if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%lld,%lld,%lld,%lld]", (long long)sqlite3_column_int64(st, 0), (long long)sqlite3_column_int64(st, 1), (long long)sqlite3_column_int64(st, 2), (long long)sqlite3_column_int64(st, 3)); } sqlite3_finalize(st); }
   sb_str(o, "]}");
 }
-static const char *EXPORT_TABLES[] = {"label", "neuron", "dna", "node", "run", "seq", "run_sheet", "run_receipt", "run_memory", "timeline", "input", "third", "secondary", "out_user", "refused", "hit", "clock", "shards", "complete"};
+static const char *EXPORT_TABLES[] = {"label", "neuron", "dna", "node", "run", "seq", "run_sheet", "run_receipt", "run_memory", "timeline", "input", "third", "secondary", "out_user", "refused", "hit", "clock", "shards", "complete", "hop"};
+static const char *SRCDIR = "sources"; static const char **SRCS; static int NSRCS;
 static void copy_table(sqlite3 *dst, const char *schema, const char *name, const char *ddl_cols){
   /* read the rows through mother's connection (the regions), write them as plain rows into the export */
   char *q = sqlite3_mprintf("SELECT * FROM %w.%w", schema, name); sqlite3_stmt *st = 0;
@@ -149,15 +151,44 @@ static void do_export(const char *dir, SB *o){
     sqlite3_exec(dst, "PRAGMA journal_mode = OFF; PRAGMA synchronous = OFF; BEGIN", 0, 0, 0);
     for(size_t i = 0; i < sizeof(EXPORT_TABLES) / sizeof(EXPORT_TABLES[0]); i++) copy_table(dst, names[bi], EXPORT_TABLES[i], 0);
     /* the tables the brain laid itself in this schema (rel, asked, spawned ...): plain tables, copied as they are */
-    char *q = sqlite3_mprintf("SELECT name FROM %w.sqlite_master WHERE type = 'table' AND sql NOT LIKE 'CREATE VIRTUAL%%'", names[bi]); sqlite3_stmt *st = 0;
-    if(sqlite3_prepare_v2(DB, q, -1, &st, 0) == SQLITE_OK){ while(sqlite3_step(st) == SQLITE_ROW){ copy_table(dst, names[bi], (const char*)sqlite3_column_text(st, 0), 0); } sqlite3_finalize(st); } sqlite3_free(q);
+    char *q = sqlite3_mprintf("SELECT name, sql FROM %w.sqlite_master WHERE type = 'table' AND sql NOT LIKE 'CREATE VIRTUAL%%' AND name NOT LIKE 'sqlite_%%'", names[bi]); sqlite3_stmt *st = 0;
+    sqlite3_exec(dst, "CREATE TABLE \"__ddl\" (name TEXT, sql TEXT)", 0, 0, 0); sqlite3_stmt *w = 0; sqlite3_prepare_v2(dst, "INSERT INTO \"__ddl\" VALUES (?, ?)", -1, &w, 0);
+    if(sqlite3_prepare_v2(DB, q, -1, &st, 0) == SQLITE_OK){ while(sqlite3_step(st) == SQLITE_ROW){ copy_table(dst, names[bi], (const char*)sqlite3_column_text(st, 0), 0); sqlite3_bind_text(w, 1, (const char*)sqlite3_column_text(st, 0), -1, SQLITE_TRANSIENT); sqlite3_bind_text(w, 2, (const char*)sqlite3_column_text(st, 1), -1, SQLITE_TRANSIENT); sqlite3_step(w); sqlite3_reset(w); } sqlite3_finalize(st); } sqlite3_free(q); sqlite3_finalize(w);
     sqlite3_exec(dst, "COMMIT", 0, 0, 0); sqlite3_close(dst); sqlite3_free(path);
   }
   sb_str(o, "{\"exported\":true}");
 }
 static void brain_stats(Brain *b, SB *o){
   double hop_us = b->hops_done ? (b->hop_ns - b->paste_ns) / 1000.0 / b->hops_done : 0, paste_us = b->pastes ? b->paste_ns / 1000.0 / b->pastes : 0;
-  sb_fmt(o, "{\"runs\":%lld,\"hops\":%lld,\"pending\":%d,\"gates\":%d,\"refused\":%lld,\"shards\":%lld,\"hop_us\":%.3f,\"pastes\":%lld,\"paste_us\":%.1f,\"hop_s\":%.3f,\"paste_s\":%.3f}", (long long)b->nruns, (long long)b->hops_done, pending(b), b->label.n, (long long)b->refused_n, (long long)b->shards, hop_us, (long long)b->pastes, paste_us, (b->hop_ns - b->paste_ns) / 1e9, b->paste_ns / 1e9);
+  sb_fmt(o, "{\"runs\":%lld,\"hops\":%lld,\"pending\":%d,\"gates\":%d,\"refused\":%lld,\"shards\":%lld,\"hop_us\":%.3f,\"pastes\":%lld,\"paste_us\":%.1f,\"hop_s\":%.3f,\"paste_s\":%.3f,\"returns\":%lld,\"return_us\":%.1f,\"return_s\":%.3f,\"receipts\":%lld}", (long long)b->nruns, (long long)b->hops_done, pending(b), b->label.n, (long long)b->refused_n, (long long)b->shards, hop_us, (long long)b->pastes, paste_us, (b->hop_ns - b->paste_ns) / 1e9, b->paste_ns / 1e9, (long long)b->secs, b->secs ? b->sec_ns / 1000.0 / b->secs : 0, b->sec_ns / 1e9, (long long)b->nrcs);
+}
+/* the brain's own tables (rel, asked, spawned ...) back from an export, with their DDL, into mother's connection under the schema */
+static void load_own_tables(const char *schema, const char *path){
+  sqlite3 *src = 0; if(sqlite3_open_v2(path, &src, SQLITE_OPEN_READONLY, 0) != SQLITE_OK) return;
+  sqlite3_stmt *st = 0; if(sqlite3_prepare_v2(src, "SELECT name, sql FROM \"__ddl\"", -1, &st, 0) != SQLITE_OK){ sqlite3_close(src); return; }
+  while(sqlite3_step(st) == SQLITE_ROW){
+    const char *name = (const char*)sqlite3_column_text(st, 0), *ddl = (const char*)sqlite3_column_text(st, 1); if(!name || !ddl) continue;
+    const char *p = strstr(ddl, "TABLE "); if(!p) continue;
+    char *q = sqlite3_mprintf("%.*s%w.%s", (int)(p + 6 - ddl), ddl, schema, p + 6); char *e = 0;
+    if(sqlite3_exec(DB, q, 0, 0, &e) != SQLITE_OK){ fprintf(stderr, "load %s.%s: %s\n", schema, name, e); sqlite3_free(e); sqlite3_free(q); continue; } sqlite3_free(q);
+    q = sqlite3_mprintf("SELECT * FROM \"%w\"", name); sqlite3_stmt *r = 0; if(sqlite3_prepare_v2(src, q, -1, &r, 0) != SQLITE_OK){ sqlite3_free(q); continue; } sqlite3_free(q);
+    int n = sqlite3_column_count(r); SB ins = {0}; sb_fmt(&ins, "INSERT INTO %s.\"%s\" VALUES (", schema, name); for(int i = 0; i < n; i++) sb_str(&ins, i ? ",?" : "?"); sb_str(&ins, ")");
+    sqlite3_stmt *w = 0; sqlite3_prepare_v2(DB, ins.s, -1, &w, 0); free(ins.s); i64 rows = 0;
+    while(sqlite3_step(r) == SQLITE_ROW){ for(int i = 0; i < n; i++) sqlite3_bind_value(w, i + 1, sqlite3_column_value(r, i)); sqlite3_step(w); sqlite3_reset(w); sqlite3_clear_bindings(w); rows++; }
+    sqlite3_finalize(w); sqlite3_finalize(r); fprintf(stderr, "load %s.%s: %lld rows\n", schema, name, (long long)rows);
+  }
+  sqlite3_finalize(st); sqlite3_close(src);
+}
+/* a snapshot: the export, the small source files beside it (the guesser's state), and how many journal lines were typed by then */
+static int copy_file(const char *from, const char *to){ FILE *a = fopen(from, "rb"); if(!a) return -1; FILE *z = fopen(to, "wb"); if(!z){ fclose(a); return -1; } char buf[1 << 16]; size_t n; while((n = fread(buf, 1, sizeof buf, a)) > 0) fwrite(buf, 1, n, z); fclose(a); fclose(z); return 0; }
+static void do_snapshot(const char *dir, SB *o){
+  char *mk = sqlite3_mprintf("mkdir -p '%q'", dir); if(system(mk) != 0){ sb_str(o, "{\"error\":\"mkdir\"}"); sqlite3_free(mk); return; } sqlite3_free(mk);
+  SB x = {0}; do_export(dir, &x); free(x.s);
+  int copied = 0;
+  for(int i = 0; i < NSRCS; i++){ char *from = sqlite3_mprintf("%s/%s.db", SRCDIR, SRCS[i]); FILE *f = fopen(from, "rb"); long sz = 0; if(f){ fseek(f, 0, SEEK_END); sz = ftell(f); fclose(f); } if(f && sz <= (16 << 20)){ char *to = sqlite3_mprintf("%s/%s.db", dir, SRCS[i]); if(copy_file(from, to) == 0) copied++; sqlite3_free(to); } sqlite3_free(from); }
+  long typed = 0; if(getenv("NK_JOURNAL")){ FILE *j = fopen(getenv("NK_JOURNAL"), "r"); if(j){ int ch; while((ch = fgetc(j)) != EOF) if(ch == '\n') typed++; fclose(j); } }
+  char *tp = sqlite3_mprintf("%s/typed-lines.txt", dir); FILE *t = fopen(tp, "w"); if(t){ fprintf(t, "%ld\n", typed); fclose(t); } sqlite3_free(tp);
+  sb_fmt(o, "{\"snapshot\":\"%s\",\"typed_lines\":%ld,\"source_files\":%d,\"main_runs\":%lld,\"sixth_runs\":%lld}", dir, typed, copied, (long long)MAINB.nruns, (long long)SIXTHB.nruns);
 }
 static void do_stats(SB *o){ sb_str(o, "{\"main\":"); brain_stats(&MAINB, o); sb_str(o, ",\"sixth\":"); brain_stats(&SIXTHB, o); sb_str(o, "}"); }
 
@@ -178,6 +209,7 @@ static void handle(const char *req, SB *o){
   else if(strncmp(req, "graph main", 10) == 0) do_graph(&MAINB, o);
   else if(strncmp(req, "graph sixth", 11) == 0) do_graph(&SIXTHB, o);
   else if(strncmp(req, "export ", 7) == 0) do_export(req + 7, o);
+  else if(strncmp(req, "snapshot ", 9) == 0) do_snapshot(req + 9, o);
   else if(strcmp(req, "stats") == 0) do_stats(o);
   else if(strncmp(req, "pump ", 5) == 0){ int n = atoi(req + 5); for(int i = 0; i < n; i++) pump_all(64); do_stats(o); }
   else sb_str(o, "{\"error\":\"unknown request\"}");
@@ -188,10 +220,13 @@ int main(int argc, char **argv){
   int port = atoi(argv[1]);
   if(getenv("NK_JOURNAL")){ JOURNAL = fopen(getenv("NK_JOURNAL"), "a"); if(!JOURNAL) perror(getenv("NK_JOURNAL")); }
   brain_init(&MAINB, "main", 1); brain_init(&SIXTHB, "sixth", 0); MAINB.tell = &SIXTHB;
-  lay_egg(&MAINB, argv[2]); lay_egg(&SIXTHB, argv[2]);
+  const char *load = getenv("NK_LOAD"); char *lp_main = 0, *lp_sixth = 0;
+  if(load){ lp_main = sqlite3_mprintf("%s/brain.db", load); lp_sixth = sqlite3_mprintf("%s/sixth.db", load); if(nk_load(&MAINB, lp_main) != 0 || nk_load(&SIXTHB, lp_sixth) != 0){ fprintf(stderr, "the snapshot did not load whole; stopping rather than running a brain with holes\n"); return 1; } }
+  else { lay_egg(&MAINB, argv[2]); lay_egg(&SIXTHB, argv[2]); }
   const char *defaults[] = {"wn", "gcide", "mw", "mwt", "moby", "map", "sqldoc", "measured", "guess"};
-  const char **srcs = argc > 4 ? (const char**)argv + 4 : defaults; int nsrc = argc > 4 ? argc - 4 : 9;
+  const char **srcs = argc > 4 ? (const char**)argv + 4 : defaults; int nsrc = argc > 4 ? argc - 4 : 9; SRCDIR = argv[3]; SRCS = srcs; NSRCS = nsrc;
   if(mother_open(&MAINB, &SIXTHB, srcs, nsrc, argv[3]) != 0){ fprintf(stderr, "mother could not open\n"); return 1; }
+  if(load){ load_own_tables("main", lp_main); load_own_tables("sixth", lp_sixth); sqlite3_free(lp_main); sqlite3_free(lp_sixth); }
   int s = socket(AF_INET, SOCK_STREAM, 0); int one = 1; setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &one, sizeof one);
   struct sockaddr_in a = {0}; a.sin_family = AF_INET; a.sin_port = htons(port); a.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
   if(bind(s, (struct sockaddr*)&a, sizeof a) < 0 || listen(s, 8) < 0){ perror("listen"); return 1; }

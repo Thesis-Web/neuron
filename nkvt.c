@@ -100,15 +100,17 @@ static void run_begin(Cur *c, int idx, sqlite3_value **argv){
   if(idx == 1){ i64 id = V(argv[0]); ENT_BEGIN(c, id, id); }
   else if(idx == 2){ c->k1 = V(argv[0]); ENT_BEGIN(c, 0, 0); }
   else if(idx == 3){ c->k1 = V(argv[0]); ENT_BEGIN(c, 0, 0); }
+  else if(idx == 4){ c->k1 = V(argv[0]); ENT_BEGIN(c, 0, 0); }
   else ENT_BEGIN(c, 1, c->b->nruns);
 }
 static int run_step(Cur *c){
+  if(c->idx == 4){ Neuron *n = neuron_of(c->b, (int)c->k1); if(!n) return 0; c->i++; if(c->i < n->narrived){ c->e = n->arrived[c->i]; return 1; } return 0; }
   if(c->idx == 2){ Run *p = run_of(c->b, c->k1); if(!p) return 0; c->i++; if(c->i < p->nkids){ c->e = p->kids[c->i]; return 1; } return 0; }
   if(c->idx == 3){ Neuron *n = neuron_of(c->b, (int)c->k1); if(!n) return 0; c->i++; if(c->i < n->nabout){ c->e = n->about_runs[c->i]; return 1; } return 0; }
   if(!c->started) c->started = 1; else c->e++;
   return c->e >= 1 && c->e <= c->e_end && c->e <= c->b->nruns;
 }
-static void run_col(Cur *c, sqlite3_context *x, int col){ Run *r = run_of(c->b, c->e); switch(col){ case 0: R(x, c->e); break; case 1: R(x, r->arrival); break; case 2: if(r->parent_set) R(x, r->parent); else sqlite3_result_null(x); break; case 3: R(x, r->root); break; case 4: R(x, r->kind); break; case 5: RN(x, r->cell); break; case 6: RN(x, r->about); break; case 7: R(x, r->at); break; case 8: R(x, r->moment); break; } }
+static void run_col(Cur *c, sqlite3_context *x, int col){ Run *r = run_of(c->b, c->e); switch(col){ case 0: R(x, c->e); break; case 1: R(x, r->arrival); break; case 2: if(r->parent_set) R(x, r->parent); else sqlite3_result_null(x); break; case 3: R(x, r->root); break; case 4: R(x, r->kind); break; case 5: RN(x, r->cell); break; case 6: RN(x, r->about); break; case 7: R(x, r->at); break; case 8: R(x, r->moment); break; case 9: RN(x, r->from_hit); break; case 10: if(r->build_pos >= 0) R(x, r->build_pos); else sqlite3_result_null(x); break; } }
 static i64 run_rowid(Cur *c){ return c->e; }
 static int run_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){ if(argc > 1 && sqlite3_value_type(argv[0]) != SQLITE_NULL){ Run *r = run_of(b, V(argv[0])); if(r){ r->root = V(argv[5]); } } return SQLITE_OK; }
 /* seq (run, pos, gate) */
@@ -171,7 +173,7 @@ static int th_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *ro
 static void sec_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, c->b->nsec - 1); }
 static int sec_step(Cur *c){ if(!c->started) c->started = 1; else c->e++; return c->e <= c->e_end; }
 static void sec_col(Cur *c, sqlite3_context *x, int col){ Sec *s = &c->b->sec[c->e]; switch(col){ case 0: R(x, s->id); break; case 1: R(x, s->run); break; case 2: RN(x, s->cell); break; case 3: R(x, s->gate); break; case 4: RN(x, s->about); break; case 5: RT(x, s->text); break; case 6: R(x, s->made); break; } }
-static int sec_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){ if(argc == 1 || sqlite3_value_type(argv[0]) != SQLITE_NULL) return SQLITE_OK; const char *t = (const char*)sqlite3_value_text(argv[7]); secondary_in(b, V(argv[3]), (int)V(argv[4]), (int)V(argv[5]), (int)V(argv[6]), t ? t : ""); *rowid = b->nsec; return SQLITE_OK; }
+static int sec_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){ if(argc == 1 || sqlite3_value_type(argv[0]) != SQLITE_NULL) return SQLITE_OK; const char *t = (const char*)sqlite3_value_text(argv[7]); i64 t0 = now_ns(); secondary_in(b, V(argv[3]), (int)V(argv[4]), (int)V(argv[5]), (int)V(argv[6]), t ? t : ""); b->sec_ns += now_ns() - t0; b->secs++; *rowid = b->nsec; return SQLITE_OK; }
 /* out_user (id, run, cell, value) */
 static void out_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, c->b->nout - 1); }
 static int out_step(Cur *c){ if(!c->started) c->started = 1; else c->e++; return c->e <= c->e_end; }
@@ -183,9 +185,10 @@ static void ref_col(Cur *c, sqlite3_context *x, int col){ Refused *r = &c->b->re
 /* hit (id, run, pos, gate, before, next, via, had, shard, call, spawn): every hit, as v6's hit table. Keyed by (gate, call IS NOT NULL): the
    neuron's own list of the hits on it that carried a call or spawn (the standing question shape asks exactly that). Any other read walks
    every run's receipts: before and next follow from the run's seq, via and had sit on the receipt, call and spawn as they were at the hit. */
-static void hit_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; c->i = -1; c->started = 0; if(idx == 1){ c->k1 = V(argv[0]); ENT_BEGIN(c, 0, 0); } else ENT_BEGIN(c, 0, c->b->nrcs - 1); }
+static void hit_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; c->i = -1; c->started = 0; if(idx == 1 || idx == 2){ c->k1 = V(argv[0]); ENT_BEGIN(c, 0, 0); } else if(idx == 3){ i64 id = V(argv[0]) - 1; ENT_BEGIN(c, id, (id >= 0 && id < c->b->nrcs) ? id : -1); } else ENT_BEGIN(c, 0, c->b->nrcs - 1); }
 static int hit_step(Cur *c){
   if(c->idx == 1){ Neuron *n = neuron_of(c->b, (int)c->k1); if(!n) return 0; c->i++; if(c->i < n->nhits){ c->e = n->hits[c->i]; return 1; } return 0; }
+  if(c->idx == 2){ Run *r = run_of(c->b, c->k1); if(!r) return 0; c->i++; if(c->i < r->nrc){ c->e = r->rc[c->i]; return 1; } return 0; }   /* the run's own hits, in order */
   if(!c->started) c->started = 1; else c->e++; return c->e >= 0 && c->e <= c->e_end;
 }
 static void hit_col(Cur *c, sqlite3_context *x, int col){
@@ -200,7 +203,7 @@ static i64 hit_rowid(Cur *c){ if(c->idx == 1) return c->b->hit[c->e].id; return 
 /* hop (id, text, p1, p2, p3): the stack as it stands, the row that runs next last; land (id, run, pos, gate, before, next, via): every landing, as v6's land table, read from the receipts */
 static void hop_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, c->b->nhop - 1); }
 static int hop_step(Cur *c){ if(!c->started) c->started = 1; else c->e++; return c->e <= c->e_end; }
-static void hop_col(Cur *c, sqlite3_context *x, int col){ Hop *h = &c->b->hop[c->e]; switch(col){ case 0: R(x, c->e + 1); break; case 1: RT(x, h->type == HOP_LAND ? "land" : h->type == HOP_ENDED ? "ended" : "replay"); break; case 2: R(x, h->run); break; case 3: R(x, h->type == HOP_LAND ? h->pos : (h->type == HOP_ENDED ? h->gate : h->a)); break; case 4: R(x, h->type == HOP_LAND ? h->gate : (h->type == HOP_ENDED ? h->a : h->kind)); break; } }
+static void hop_col(Cur *c, sqlite3_context *x, int col){ Hop *h = &c->b->hop[c->e]; switch(col){ case 0: R(x, c->e + 1); break; case 1: RT(x, h->type == HOP_LAND ? "land" : h->type == HOP_ENDED ? "ended" : "replay"); break; case 2: R(x, h->type); break; case 3: R(x, h->run); break; case 4: R(x, h->pos); break; case 5: R(x, h->gate); break; case 6: R(x, h->before); break; case 7: R(x, h->next); break; case 8: R(x, h->via); break; case 9: R(x, h->a); break; case 10: R(x, h->b); break; case 11: R(x, h->kind); break; case 12: R(x, h->from); break; } }
 static void land_col(Cur *c, sqlite3_context *x, int col){
   Rc *k = &c->b->rcs[c->e]; Run *r = run_of(c->b, k->run);
   int before = k->via ? (k->pos >= 1 && k->pos <= r->nseq ? r->seq[k->pos - 1] : 0) : (k->pos >= 2 && k->pos - 1 <= r->nseq ? r->seq[k->pos - 2] : 0);
@@ -229,7 +232,7 @@ static TDesc TABLES[] = {
   {"neuron", "CREATE TABLE x(gate INTEGER, born INTEGER)", 2, 1, {{0}}, {1}, neuron_begin, neuron_step, neuron_col, label_rowid, neuron_update},
   {"dna", "CREATE TABLE x(gate INTEGER, shard INTEGER, before INTEGER, trigger INTEGER, call INTEGER, spawn INTEGER, times INTEGER)", 7, 2, {{0,2,3},{0}}, {3,1}, dna_begin, dna_step, dna_col, dna_rowid, dna_update},
   {"node", "CREATE TABLE x(gate INTEGER, id INTEGER, source INTEGER, run INTEGER)", 4, 1, {{0}}, {1}, node_begin, node_step, node_col, node_rowid, node_update},
-  {"run", "CREATE TABLE x(id INTEGER, arrival INTEGER, parent INTEGER, root INTEGER, kind INTEGER, cell INTEGER, about INTEGER, at INTEGER, moment INTEGER)", 9, 3, {{0},{2},{6}}, {1,1,1}, run_begin, run_step, run_col, run_rowid, run_update},
+  {"run", "CREATE TABLE x(id INTEGER, arrival INTEGER, parent INTEGER, root INTEGER, kind INTEGER, cell INTEGER, about INTEGER, at INTEGER, moment INTEGER, from_hit INTEGER, build_pos INTEGER)", 11, 4, {{0},{2},{6},{1}}, {1,1,1,1}, run_begin, run_step, run_col, run_rowid, run_update},   /* from_hit, build_pos: the kernel's (step back; a span open at a snapshot) */
   {"seq", "CREATE TABLE x(run INTEGER, pos INTEGER, gate INTEGER)", 3, 2, {{0},{0,1}}, {1,2}, seq_begin, seq_step, seq_col, seq_rowid, seq_update},
   {"run_sheet", "CREATE TABLE x(run INTEGER, cell INTEGER, state INTEGER, value TEXT)", 4, 2, {{0},{0,1}}, {1,2}, sheet_begin, sheet_step, sheet_col, sheet_rowid, sheet_update},
   {"run_receipt", "CREATE TABLE x(id INTEGER, run INTEGER, pos INTEGER, gate INTEGER, shard INTEGER)", 5, 1, {{1}}, {1}, rc_begin, rc_step, rc_col, rc_rowid, 0},   /* + id > X / id >= X in xBestIndex */
@@ -240,8 +243,8 @@ static TDesc TABLES[] = {
   {"secondary", "CREATE TABLE x(id INTEGER, run INTEGER, cell INTEGER, gate INTEGER, about INTEGER, text TEXT, made INTEGER)", 7, 0, {{0}}, {0}, sec_begin, sec_step, sec_col, plain_rowid, sec_update},
   {"out_user", "CREATE TABLE x(id INTEGER, run INTEGER, cell INTEGER, value TEXT)", 4, 0, {{0}}, {0}, out_begin, out_step, out_col, plain_rowid, 0},
   {"refused", "CREATE TABLE x(id INTEGER, text TEXT, error TEXT)", 3, 0, {{0}}, {0}, ref_begin, ref_step, ref_col, plain_rowid, 0},
-  {"hit", "CREATE TABLE x(id INTEGER, run INTEGER, pos INTEGER, gate INTEGER, before INTEGER, next INTEGER, via INTEGER, had INTEGER, shard INTEGER, call INTEGER, spawn INTEGER)", 11, 1, {{3}}, {1}, hit_begin, hit_step, hit_col, hit_rowid, 0},
-  {"hop", "CREATE TABLE x(id INTEGER, text TEXT, p1 INTEGER, p2 INTEGER, p3 INTEGER)", 5, 0, {{0}}, {0}, hop_begin, hop_step, hop_col, plain_rowid, 0},
+  {"hit", "CREATE TABLE x(id INTEGER, run INTEGER, pos INTEGER, gate INTEGER, before INTEGER, next INTEGER, via INTEGER, had INTEGER, shard INTEGER, call INTEGER, spawn INTEGER)", 11, 3, {{3},{1},{0}}, {1,1,1}, hit_begin, hit_step, hit_col, hit_rowid, 0},
+  {"hop", "CREATE TABLE x(id INTEGER, text TEXT, type INTEGER, run INTEGER, pos INTEGER, gate INTEGER, before INTEGER, next INTEGER, via INTEGER, a INTEGER, b INTEGER, kind INTEGER, from_hit INTEGER)", 13, 0, {{0}}, {0}, hop_begin, hop_step, hop_col, plain_rowid, 0},
   {"land", "CREATE TABLE x(id INTEGER, run INTEGER, pos INTEGER, gate INTEGER, before INTEGER, next INTEGER, via INTEGER)", 7, 0, {{0}}, {0}, hit_begin, hit_step, land_col, plain_rowid, 0},
   {"clock", "CREATE TABLE x(n INTEGER)", 1, 0, {{0}}, {0}, one_begin, one_step, clock_col, plain_rowid, 0},
   {"shards", "CREATE TABLE x(n INTEGER)", 1, 0, {{0}}, {0}, one_begin, one_step, shards_col, plain_rowid, shards_update},
@@ -271,7 +274,7 @@ static int xBestIndex(sqlite3_vtab *tab, sqlite3_index_info *info){
         if(c->op == SQLITE_INDEX_CONSTRAINT_EQ || c->op == SQLITE_INDEX_CONSTRAINT_IS || c->op == SQLITE_INDEX_CONSTRAINT_ISNULL){ argpos[j] = i; found++; break; }
       }
     }
-    if(found == d->idxn[k] && strcmp(d->name, "hit") == 0){ int nn = 0; for(int i = 0; i < info->nConstraint; i++){ const struct sqlite3_index_constraint *q = &info->aConstraint[i]; if(q->usable && q->iColumn == 9 && q->op == SQLITE_INDEX_CONSTRAINT_ISNOTNULL) nn = 1; } if(!nn) found = -1; }
+    if(found == d->idxn[k] && k == 0 && strcmp(d->name, "hit") == 0){ int nn = 0; for(int i = 0; i < info->nConstraint; i++){ const struct sqlite3_index_constraint *q = &info->aConstraint[i]; if(q->usable && q->iColumn == 9 && q->op == SQLITE_INDEX_CONSTRAINT_ISNOTNULL) nn = 1; } if(!nn) found = -1; }
     if(found == d->idxn[k]){
       for(int j = 0; j < d->idxn[k]; j++){ info->aConstraintUsage[argpos[j]].argvIndex = j + 1; info->aConstraintUsage[argpos[j]].omit = 0; }
       info->idxNum = k + 1; info->estimatedCost = 1.0 + k; info->estimatedRows = 1; return SQLITE_OK;

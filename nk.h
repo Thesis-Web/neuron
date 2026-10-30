@@ -22,7 +22,7 @@ typedef struct { char **sym; int n, cap; HMap h; } Label;
 
 typedef struct { i64 id; int before, trigger; i64 call, spawn, times; } Shard;   /* before/trigger 0 = NULL */
 typedef struct { int source; i64 run; } NodeRow;
-typedef struct { int born; Shard *sh; int nsh, csh; HMap h; NodeRow *node; int nnode, cnode; i64 *about_runs; int nabout, cabout; i64 *mem_runs; int nmem, cmem; i64 *hits; int nhits, chits; } Neuron;   /* hits: the hits on this neuron that carried a call or spawn (what the standing question shape reads) */
+typedef struct { int born; Shard *sh; int nsh, csh; HMap h; NodeRow *node; int nnode, cnode; i64 *about_runs; int nabout, cabout; i64 *mem_runs; int nmem, cmem; i64 *hits; int nhits, chits; i64 *arrived; int narrived, carrived; } Neuron;   /* arrived: the runs that arrived from this gate */   /* hits: the hits on this neuron that carried a call or spawn (what the standing question shape reads) */
 
 typedef struct { int cell, state; char *value; } Cell;
 typedef struct { i64 run; int pos, gate; i64 shard; unsigned char via, had; } Rc;   /* the receipt (= the hit, whole: before/next follow from the run's seq); its id is its index + 1 */
@@ -33,6 +33,7 @@ typedef struct {
   i64 *rc; int nrc, crc;                   /* indices into the brain's receipts */
   int ended, complete, build_pos;          /* build_pos: the open BUILD mark, -1 when none */
   i64 *kids; int nkids, ckids;             /* the runs under this one, so a formula finds them by key */
+  i64 from_hit;                            /* the receipt (hit) in this brain whose call, spawn or BUILD span made this run; 0 for a line at a prompt: step back */
   /* the memory of a run that ended (the owner's shape, one per run today) */
   char *mem_input; int mem_source, mem_gate; i64 mem_shard, mem_at; int has_mem;
 } Run;
@@ -46,7 +47,7 @@ typedef struct { i64 id, run; int pos, gate, before, next, via, had; i64 shard, 
 typedef struct { int gate, kind, other; i64 run; } Rel;
 
 enum { HOP_LAND = 1, HOP_ENDED = 2, HOP_REPLAY = 3 };
-typedef struct { int type; i64 run; int pos, gate, before, next, via; i64 a, b; int kind; } Hop;
+typedef struct { int type; i64 run; int pos, gate, before, next, via; i64 a, b; int kind; i64 from; } Hop;   /* from: the receipt that pushed a replay */
 
 typedef struct Brain {
   const char *name; int is_main;
@@ -67,6 +68,8 @@ typedef struct Brain {
   HMap hith;                                /* receipt id -> index+1 into hit, for the hits that carried a call or spawn */
   i64 hops_done, refused_n;
   i64 hop_ns, paste_ns, pastes;             /* where the time goes: inside the hops, inside mother's pastes */
+  i64 cur_hit;
+  i64 sec_ns, secs;                         /* time inside the arrival of returns (secondary_in) and how many */                              /* the receipt whose span mother is pasting now (the returns it brings are made from it) */
 } Brain;
 
 /* gates of the hand-laid core (egg6) */
@@ -86,7 +89,8 @@ void   cell_set(Brain *b, i64 run, int cell, int state, const char *value);   /*
 const char *cell_get(Brain *b, i64 run, int cell);                            /* state 1 and value not null, else NULL */
 void   line_in(Brain *b, int which, const char *text);     /* which: 0 input (heard), 1 third */
 void   secondary_in(Brain *b, i64 run, int cell, int gate, int about, const char *text);
-void   replay_push(Brain *b, i64 parent, i64 source, int kind);
+void   replay_push(Brain *b, i64 parent, i64 source, int kind);          /* from a formula: made from the receipt being pasted */
+int    nk_load(Brain *b, const char *path);                /* a brain back from its export (brain.db / sixth.db): the inverse of export */
 void   pump_batch(Brain *b, int n);                        /* n hops of this brain's stack */
 int    pending(Brain *b);
 void   nk_export(Brain *b, sqlite3 *db);                   /* every table as real rows, for the diff */
