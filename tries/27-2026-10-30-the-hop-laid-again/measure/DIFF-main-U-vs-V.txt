@@ -1,0 +1,2 @@
+tables compared: 52581; identical: 52581; differing: 0
+tables only in A: ['step'] 

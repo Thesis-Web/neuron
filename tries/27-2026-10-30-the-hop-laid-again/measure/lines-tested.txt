@@ -1,0 +1,7 @@
+# the same lines on the lean hop (S) and the hop as it was (T); every table must come out the same
+define : across
+print dna : who
+create neuron : zzyzx
+BUILD SELECT count ( * ) FROM label ; BUILD
+6> BUILD SELECT 1 ; BUILD
+print sheet : 7
