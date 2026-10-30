@@ -167,7 +167,7 @@
         <div class="row"><label for="spacing" class="note">spacing, the drawing only</label><input type="range" id="spacing" min="1" max="100" step="1" value="21" aria-label="spacing"><span class="n" id="spv">&times;21</span></div>
         <label class="chk"><input type="checkbox" id="axes" checked> x, y and z axes over the graph, a tick every 10</label>
         <div class="row"><button id="fitall" type="button">fit all in view</button></div>
-        <div class="row"><label for="gap" class="note">space between points, in the drawing's units</label><input type="range" id="gap" min="0" max="40" step="0.5" value="15" aria-label="space between points"><span class="n" id="gapv">15</span></div>
+        <div class="row"><label for="gap" class="note">space between points, in the drawing's units</label><input type="range" id="gap" min="0" max="500" step="0.5" value="15" aria-label="space between points"><span class="n" id="gapv">15</span></div>
         <p class="note">No two points come closer than this; a pair that does is moved apart, half each, and the lines pull the rest into place. Spacing multiplies every drawn position outward from origin; names and dots keep their size. Drag to turn, scroll to zoom.</p>
         <div class="row"><label for="runmode" class="note">runs drawn</label><select id="runmode"><option value="cur" selected>this run only</option><option value="line">every run of this line, faint</option><option value="none">none</option></select></div>
       </section>
