@@ -197,6 +197,16 @@ static void hit_col(Cur *c, sqlite3_context *x, int col){
   switch(col){ case 0: R(x, c->e + 1); break; case 1: R(x, k->run); break; case 2: R(x, k->pos); break; case 3: R(x, k->gate); break; case 4: RN(x, before); break; case 5: RN(x, next); break; case 6: R(x, k->via); break; case 7: R(x, k->had); break; case 8: R(x, k->shard); break; case 9: RN(x, h ? h->call : 0); break; case 10: RN(x, h ? h->spawn : 0); break; }
 }
 static i64 hit_rowid(Cur *c){ if(c->idx == 1) return c->b->hit[c->e].id; return c->e + 1; }
+/* hop (id, text, p1, p2, p3): the stack as it stands, the row that runs next last; land (id, run, pos, gate, before, next, via): every landing, as v6's land table, read from the receipts */
+static void hop_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, c->b->nhop - 1); }
+static int hop_step(Cur *c){ if(!c->started) c->started = 1; else c->e++; return c->e <= c->e_end; }
+static void hop_col(Cur *c, sqlite3_context *x, int col){ Hop *h = &c->b->hop[c->e]; switch(col){ case 0: R(x, c->e + 1); break; case 1: RT(x, h->type == HOP_LAND ? "land" : h->type == HOP_ENDED ? "ended" : "replay"); break; case 2: R(x, h->run); break; case 3: R(x, h->type == HOP_LAND ? h->pos : (h->type == HOP_ENDED ? h->gate : h->a)); break; case 4: R(x, h->type == HOP_LAND ? h->gate : (h->type == HOP_ENDED ? h->a : h->kind)); break; } }
+static void land_col(Cur *c, sqlite3_context *x, int col){
+  Rc *k = &c->b->rcs[c->e]; Run *r = run_of(c->b, k->run);
+  int before = k->via ? (k->pos >= 1 && k->pos <= r->nseq ? r->seq[k->pos - 1] : 0) : (k->pos >= 2 && k->pos - 1 <= r->nseq ? r->seq[k->pos - 2] : 0);
+  int next = (k->pos + 1 <= r->nseq) ? r->seq[k->pos] : 0;
+  switch(col){ case 0: R(x, c->e + 1); break; case 1: R(x, k->run); break; case 2: R(x, k->pos); break; case 3: R(x, k->gate); break; case 4: RN(x, before); break; case 5: RN(x, next); break; case 6: R(x, k->via); break; }
+}
 /* clock (n), shards (n) */
 static void one_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, 0); }
 static int one_step(Cur *c){ if(!c->started){ c->started = 1; return 1; } return 0; }
@@ -231,6 +241,8 @@ static TDesc TABLES[] = {
   {"out_user", "CREATE TABLE x(id INTEGER, run INTEGER, cell INTEGER, value TEXT)", 4, 0, {{0}}, {0}, out_begin, out_step, out_col, plain_rowid, 0},
   {"refused", "CREATE TABLE x(id INTEGER, text TEXT, error TEXT)", 3, 0, {{0}}, {0}, ref_begin, ref_step, ref_col, plain_rowid, 0},
   {"hit", "CREATE TABLE x(id INTEGER, run INTEGER, pos INTEGER, gate INTEGER, before INTEGER, next INTEGER, via INTEGER, had INTEGER, shard INTEGER, call INTEGER, spawn INTEGER)", 11, 1, {{3}}, {1}, hit_begin, hit_step, hit_col, hit_rowid, 0},
+  {"hop", "CREATE TABLE x(id INTEGER, text TEXT, p1 INTEGER, p2 INTEGER, p3 INTEGER)", 5, 0, {{0}}, {0}, hop_begin, hop_step, hop_col, plain_rowid, 0},
+  {"land", "CREATE TABLE x(id INTEGER, run INTEGER, pos INTEGER, gate INTEGER, before INTEGER, next INTEGER, via INTEGER)", 7, 0, {{0}}, {0}, hit_begin, hit_step, land_col, plain_rowid, 0},
   {"clock", "CREATE TABLE x(n INTEGER)", 1, 0, {{0}}, {0}, one_begin, one_step, clock_col, plain_rowid, 0},
   {"shards", "CREATE TABLE x(n INTEGER)", 1, 0, {{0}}, {0}, one_begin, one_step, shards_col, plain_rowid, shards_update},
   {"complete", "CREATE TABLE x(run INTEGER)", 1, 1, {{0}}, {1}, cmp_begin, cmp_step, cmp_col, run_rowid, 0},

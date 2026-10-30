@@ -14,7 +14,21 @@ def ask(req):
         buf += d
         if buf.endswith(b'\n'): break
     s.close(); return json.loads(buf.decode())
-def q(sql): return ask('q ' + sql)
+def lit(v):
+    if v is None: return 'NULL'
+    if isinstance(v, bool): return '1' if v else '0'
+    if isinstance(v, (int, float)): return repr(v)
+    return "'" + str(v).replace("'", "''") + "'"
+def bind(sql, params):
+    # the page sends a SELECT with ? holes and their values; the kernel's socket takes one text, so the door fills the holes (outside quotes) with literals
+    if not params: return sql
+    out = []; k = 0; inq = False
+    for ch in sql:
+        if ch == "'": inq = not inq
+        if ch == '?' and not inq and k < len(params): out.append(lit(params[k])); k += 1
+        else: out.append(ch)
+    return ''.join(out)
+def q(sql, params=None): return ask('q ' + bind(sql, params))
 RUNS = []
 def fill(line):
     def r(m):
@@ -92,7 +106,7 @@ class H(http.server.BaseHTTPRequestHandler):
             if u.path == '/api/q':
                 sql = str(d.get('sql') or '').strip()
                 if not sql.upper().startswith(('SELECT', 'WITH', 'PRAGMA TABLE_INFO', 'PRAGMA DATABASE_LIST')): return self.send(400, {'error': 'only a SELECT is read through this door'})
-                return self.send(200, q(sql))
+                return self.send(200, q(sql, d.get('params') or []))
             if u.path == '/api/fresh': return self.send(400, {'error': "the kernel's door lays no eggs; start the kernel again"})
             return self.send(404, {'error': 'no such path'})
         except Exception as e: return self.send(500, {'error': str(e)})

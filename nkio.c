@@ -95,7 +95,9 @@ static void out_rows(Brain *b, i64 since, SB *o, int *first){
 static void pump_all(int batch){ pump_batch(&MAINB, batch); pump_batch(&SIXTHB, batch); }
 static double now_s(void){ struct timeval tv; gettimeofday(&tv, 0); return tv.tv_sec + tv.tv_usec / 1e6; }
 
+static FILE *JOURNAL;
 static void do_type(Brain *b, const char *text, SB *o){
+  if(JOURNAL){ fprintf(JOURNAL, "%s%s\n", b->is_main ? "" : "6> ", text); fflush(JOURNAL); }
   i64 runs0 = b->nruns, hops0 = MAINB.hops_done + SIXTHB.hops_done, gates0 = MAINB.label.n, ref0 = MAINB.refused_n + SIXTHB.refused_n, outm = MAINB.nout, outs = SIXTHB.nout;
   double t0 = now_s();
   line_in(b, 0, text);
@@ -184,6 +186,7 @@ static void handle(const char *req, SB *o){
 int main(int argc, char **argv){
   if(argc < 4){ fprintf(stderr, "usage: nk <port> <symbols file> <sources dir> [source names...]\n"); return 1; }
   int port = atoi(argv[1]);
+  if(getenv("NK_JOURNAL")){ JOURNAL = fopen(getenv("NK_JOURNAL"), "a"); if(!JOURNAL) perror(getenv("NK_JOURNAL")); }
   brain_init(&MAINB, "main", 1); brain_init(&SIXTHB, "sixth", 0); MAINB.tell = &SIXTHB;
   lay_egg(&MAINB, argv[2]); lay_egg(&SIXTHB, argv[2]);
   const char *defaults[] = {"wn", "gcide", "mw", "mwt", "moby", "map", "sqldoc", "measured", "guess"};

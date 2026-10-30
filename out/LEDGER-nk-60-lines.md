@@ -48,9 +48,9 @@
 | 16 | sixth | `6> BUILD UPDATE sixth.dna SET call = 32 WHERE gate = 92 AND ` | 74 | 2 | 49 | 0 | 0 | 0.00 | sixth run 74 · me: 74<br>sixth run 74 · reply: run 75 from mother: ok |
 | | | *--- main's why (10-27 03:52: a cell that does not populate gives the brain reason to search harder; 10-23 P5-9: memory, state, sources, then a guess)* | | | | | | | |
 | | | *17. The why line ("why : N cell"): push every source return's words into the guessing brain's corpus, then ask the guessing brain about run N's "what", for the cell named, telling it how many source returns the brain holds now. mine: the SQL.* | | | | | | | |
-| 17 | main | `BUILD INSERT OR IGNORE INTO guess.corpus ( line , word ) SEL` | 346 | 14 | 1427 | 4 | 0 | 0.00 | main run 346 · me: 346<br>main run 346 · newgate: 231<br>main run 346 · reply: run 359 from mother: error: no such column: above<br>main run 346 · know: 0/789<br>main run 346 · remember: 0<br>main run 346 · shape: 0<br>sixth run 76 · me: 76 |
+| 17 | main | `BUILD INSERT OR IGNORE INTO guess.corpus ( line , word ) SEL` | 346 | 14 | 1427 | 4 | 0 | 0.01 | main run 346 · me: 346<br>main run 346 · newgate: 231<br>main run 346 · reply: run 359 from mother: error: no such column: above<br>main run 346 · know: 0/789<br>main run 346 · remember: 0<br>main run 346 · shape: 0<br>sixth run 76 · me: 76 |
 | | | *18. A symbol no source holds: the cell stays empty; the sixth writes why; why is born; nothing answers yet.* | | | | | | | |
-| 18 | main | `define : :` | 360 | 14 | 2107 | 1 | 0 | 0.02 | main run 371 · me: 371<br>main run 371 · newgate: 232<br>sixth run 79 · me: 79<br>sixth run 82 · me: 82 |
+| 18 | main | `define : :` | 360 | 14 | 2107 | 1 | 0 | 0.03 | main run 371 · me: 371<br>main run 371 · newgate: 232<br>sixth run 79 · me: 79<br>sixth run 82 · me: 82 |
 | | | *19. Bind why's shard (arrived from the sixth, next ":") to the why line.* | | | | | | | |
 | 19 | main | `BUILD UPDATE dna SET call = 346 WHERE gate = 232 AND before ` | 374 | 6 | 558 | 0 | 0 | 0.00 | main run 374 · me: 374<br>main run 374 · reply: run 379 from mother: ok<br>main run 374 · know: 0/46<br>main run 374 · remember: 0<br>main run 374 · shape: 0<br>sixth run 85 · me: 85 |
 | | | *20. Again: the sixth's why is answered by the guessing brain; the guess fills the cell, labeled by where it came from and its numbers.* | | | | | | | |
