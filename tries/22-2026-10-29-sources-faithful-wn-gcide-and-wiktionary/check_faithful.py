@@ -121,7 +121,8 @@ def leaves(o, path, out):
     elif isinstance(o, str) and o.strip() and not MARKUP.search(path): out.append((path, o))
 
 def norm(s): return re.sub(r'\s+', ' ', s).strip()
-def check_wikt(raw, dbpath, nth, src=None):
+LEAN_PATHS = re.compile(r'(\.translations|\.descendants|\.categories|\.wikidata)')
+def check_wikt(raw, dbpath, nth, src=None, lean=False):
     import itertools
     db = sqlite3.connect(dbpath)
     checked = 0; missing = 0; examples = []; etyexp_missing = 0
@@ -134,6 +135,7 @@ def check_wikt(raw, dbpath, nth, src=None):
             out = []; leaves(d, '', out)
             lack = []
             for path, val in out:
+                if lean and LEAN_PATHS.search(path): continue
                 if path.startswith('.etymology_templates[].expansion'):
                     if norm(val) not in blob: etyexp_missing += 1
                     continue
@@ -149,5 +151,5 @@ if __name__ == '__main__':
     raw, kind, dbpath = sys.argv[1], sys.argv[2], sys.argv[3]
     if kind == 'gcide': ok = check_gcide(raw, dbpath, int(sys.argv[4]) if len(sys.argv) > 4 else None)
     elif kind == 'wn': ok = check_wn(raw, dbpath)
-    else: ok = check_wikt(raw, dbpath, int(sys.argv[4]) if len(sys.argv) > 4 else 100, sys.argv[5] if len(sys.argv) > 5 else None)
+    else: ok = check_wikt(raw, dbpath, int(sys.argv[4]) if len(sys.argv) > 4 else 100, sys.argv[5] if len(sys.argv) > 5 and not sys.argv[5].startswith('--') else None, '--lean' in sys.argv)
     print('PASS' if ok else 'FAIL')

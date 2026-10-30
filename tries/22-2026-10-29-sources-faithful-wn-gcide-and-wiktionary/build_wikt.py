@@ -7,7 +7,10 @@
 # field that only repeats another ("translation" beside "english"). Labels are kaikki's own field names, spaced.
 # Rows of an entry, in order: the head (word, part of speech, etymology, forms, pronunciation, categories ...), one row per
 # sense, a row per group of translations of a sense, and a row per list of related words at the entry level.
-# usage: python3 -I build_wikt.py <kaikki jsonl> <out.db> [gate] [--no-translations]   (gate: the symbol's gate in main, set later)
+# usage: python3 -I build_wikt.py <kaikki jsonl> <out.db> [gate] [--no-translations] [--lean]   (gate: the symbol's gate in main, set later)
+# --lean (the call of 2026-10-29 evening, the owner's to overrule): the slice the brain reads. Left out: translations (other languages' labels
+# for the meaning, which no source of the brain describes), descendants (the word's forms in other languages), categories (Wiktionary's own
+# housekeeping: 'Terms with Abkhaz translations', 'Pages with 2 entries'), wikidata ids. Everything else stays. The full file is built without it.
 import os, re, sys, json, sqlite3, time
 SHAPE = """
 CREATE TABLE me (gate INTEGER NOT NULL);
@@ -80,6 +83,7 @@ def translations_rows(head, trs, where):
         rows.append(f'{head} [translations of {where}' + (f' ({sense})' if sense else '') + ': ' + '; '.join(parts) + ']')
     return rows
 
+LEAN = False
 def entry_rows(d, with_translations=True):
     word, pos = d['word'], d.get('pos', '?')
     head = f'[word: {word}] [part of speech: {pos}]' + (f" [etymology {d['etymology_number']}]" if d.get('etymology_number') else '')
@@ -106,6 +110,7 @@ def entry_rows(d, with_translations=True):
         h.append(' [hyphenation: ' + '; '.join(x for x in hy if x) + ']')
     for k in ('wikipedia', 'wikidata', 'categories', 'source', 'original_title'):
         if d.get(k):
+            if LEAN and k in ('categories', 'wikidata'): continue
             if k == 'categories': h.append(categories(d[k]))
             elif isinstance(d[k], list): h.append(f' [{label(k)}: ' + '; '.join(ws(str(x)) for x in d[k]) + ']')
             else: h.append(f' [{label(k)}: {ws(str(d[k]))}]')
@@ -130,8 +135,9 @@ def entry_rows(d, with_translations=True):
             if sn.get(k): s.append(lst(k, sn[k]))
         if sn.get('attestations'): s.append(lst('attestations', sn['attestations']))
         for k in ('senseid', 'wikipedia', 'wikidata'):
+            if LEAN and k == 'wikidata': continue
             if sn.get(k): s.append(f' [{label(k)}: ' + '; '.join(ws(str(x)) for x in sn[k]) + ']')
-        if sn.get('categories'): s.append(categories(sn['categories']))
+        if sn.get('categories') and not LEAN: s.append(categories(sn['categories']))
         known_s = {'raw_glosses', 'glosses', 'tags', 'raw_tags', 'topics', 'qualifier', 'examples', 'attestations', 'senseid', 'wikipedia', 'wikidata', 'categories', 'translations', 'id', 'links', 'info_templates'} | set(RELS)
         for k, v in sn.items():
             if k in known_s or k in DROP: continue
@@ -143,6 +149,7 @@ def entry_rows(d, with_translations=True):
         if with_translations and sn.get('translations'):
             rows += translations_rows(head, sn['translations'], f'{pos} {n}')
     for k in RELS:
+        if LEAN and k == 'descendants': continue
         if d.get(k): rows.append(head + lst(k, d[k]))
     if with_translations and d.get('translations'):
         rows += translations_rows(head, d['translations'], pos)
@@ -151,7 +158,9 @@ def entry_rows(d, with_translations=True):
 def main():
     src, out = sys.argv[1], sys.argv[2]
     gate = int(sys.argv[3]) if len(sys.argv) > 3 and sys.argv[3].isdigit() else 0
-    with_tr = '--no-translations' not in sys.argv
+    global LEAN
+    LEAN = '--lean' in sys.argv
+    with_tr = '--no-translations' not in sys.argv and not LEAN
     if os.path.exists(out): os.remove(out)
     db = sqlite3.connect(out); db.executescript(SHAPE.format(gate=gate))
     db.execute('PRAGMA journal_mode = OFF'); db.execute('PRAGMA synchronous = OFF')
