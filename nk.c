@@ -223,7 +223,7 @@ void pump_batch(Brain *b, int n){
       case HOP_ENDED: ended(b, h.run, h.gate, h.a); break;
       case HOP_REPLAY: replay(b, h.run, h.a, h.kind, h.from); break;
     }
-    b->hop_ns += now_ns() - t0;
+    b->hop_ns += now_ns() - t0; b->hops_run++;
   }
 }
 

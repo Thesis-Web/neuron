@@ -67,7 +67,7 @@ typedef struct Brain {
   int arrival_of_third;                     /* what a line in third arrives from: the sixth (5) in main, main (6) in the sixth */
   HMap hith;                                /* receipt id -> index+1 into hit, for the hits that carried a call or spawn */
   i64 hops_done, refused_n;
-  i64 hop_ns, paste_ns, pastes;             /* where the time goes: inside the hops, inside mother's pastes */
+  i64 hop_ns, paste_ns, pastes, hops_run;  /* hops_run: hops done since this start (the mean is over these) */             /* where the time goes: inside the hops, inside mother's pastes */
   i64 cur_hit;
   i64 sec_ns, secs;                         /* time inside the arrival of returns (secondary_in) and how many */                              /* the receipt whose span mother is pasting now (the returns it brings are made from it) */
 } Brain;
