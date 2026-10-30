@@ -33,6 +33,10 @@ The two key columns and the one-row step table (SQLite's triggers cannot hold a 
 
 The floor of a hop in this brain is one paste through mother (the neuron's table must be named by number, so the statement cannot be cached across gates), one receipt, the next landing queued and taken through the mailbox (SQLite cannot chain twenty thousand triggers deep), and hit_go's ten statements. That is about 100 µs at the least. The 2 to 4 µs of a row written inside a transaction, the spacebar, would need the shard found without naming a table (one DNA table with a gate column: a birth as a row, not a CREATE TABLE) and no mailbox. Both are the owner's design calls, not mine.
 
+## The lines themselves, typed through the prompt on the twin
+
+After the diff, the seven lines of `HOP-LINES-2026-10-30.txt` were typed on the twin V through bottom7 (its mailbox widened and the folder's bottom7.py in place first, as the sequence says): every line answered ok, 0 refused, and the two triggers the brain laid through the prompt came out identical, character for character after whitespace, to those laid directly on U (`measure/LEDGER-THE-SEVEN-LINES-TYPED-...`). The lines fit.
+
 ## To type it live
 
 The sequence in `HOP-LINES-2026-10-30.txt`: the door stopped by the owner's word; the mailbox widened on both brain files at the terminal and this folder's `bottom7.py` put in place; the door started; then seven lines at the prompt. The three speed lines of `tries/24` are then partly done (the hop's table test) and partly still to type (the two indexes on run).
