@@ -1,0 +1,30 @@
+| # | prompt | line | run | runs | hits | born | refused | s | what the brain put in its out mailbox |
+|---|---|---|---|---|---|---|---|---|---|
+| | | *UNKNOWN-LINES-2026-10-29.txt (second trial: the collection's test for 'already asked' is one materialized set, NOT IN, not a scan per gate; the first trial's correlated NOT EXISTS cost 200 s on every line): the lines that make the brain complete its own definitions (the owner, 10-29 21:05: "since the run is complete* | | | | | | | |
+| | | *when the cells are all filled ... could the unknown word in the definition be part of an incomplete run ... in the end all the unknowns will be* | | | | | | | |
+| | | *populated with definitions ... the brain is not satisfied with not complete, and desires its information to be complete"). The sixth, which* | | | | | | | |
+| | | *already asks why for an empty cell, reads a define run's filled unknown list (cell 152) as the run's open questions: it collects every listed gate* | | | | | | | |
+| | | *that no define run has asked about yet (no run beginning with define, 153, has what = that gate) into its table spawned, and sends them to main* | | | | | | | |
+| | | *as lines "define : X" (main.third, arriving from the sixth, 5), most-shared unknown first (the count of unknown lists that hold the gate: a* | | | | | | | |
+| | | *measured order, mine). A define from the sixth needs define's (the sixth, :) shard bound to the define run 10516; that shard is laid the long* | | | | | | | |
+| | | *way by one define line from the sixth. The gate numbers are the live brain's: define 153, unknown 152, what 23, say 25, ":" 68, seen 82 (sixth).* | | | | | | | |
+| | | *--- form 1, the brain completes when told how many: the sixth collects on every seen; "define unknown : N" sends the next N.* | | | | | | | |
+| | | *1. A define line from the sixth, once: lays define's (5, :) shard; who is already defined, nothing else happens.* | | | | | | | |
+| 1 | sixth | `6> BUILD INSERT INTO main.third ( text ) VALUES ( 'define : ` | 1057 | 11 | 752 | 0 | 0 | 1.40 | main run 11247 · me: 11247<br>sixth run 1057 · me: 1057<br>sixth run 1057 · newgate: 117<br>sixth run 1057 · reply: run 1064 from mother: ok<br>sixth run 1065 · me: 1065 |
+| | | *2. Bind that shard to the define run: from now on a define from the sixth defines.* | | | | | | | |
+| 2 | main | `BUILD UPDATE "153" SET call = 10516 WHERE before = 5 AND tri` | 11248 | 6 | 554 | 0 | 0 | 1.84 | main run 11248 · me: 11248<br>main run 11248 · reply: run 11253 from mother: ok<br>main run 11248 · know: 5/42<br>main run 11248 · remember: 0<br>main run 11248 · shape: 0<br>sixth run 1068 · me: 1068 |
+| | | *3. The sixth's table of the unknowns it has asked main to define.* | | | | | | | |
+| 3 | sixth | `6> BUILD CREATE TABLE sixth.spawned ( id INTEGER PRIMARY KEY` | 1071 | 6 | 244 | 0 | 0 | 0.42 | sixth run 1071 · me: 1071<br>sixth run 1071 · newgate: 119<br>sixth run 1071 · reply: run 1076 from mother: ok |
+| | | *4. The sixth's observing line laid again (the live run 1019's text) plus the collection of unknowns. Its run number is {run:4}.* | | | | | | | |
+| 4 | sixth | `6> BUILD INSERT INTO sixth.asked ( run , cell , returns ) SE` | 1077 | 34 | 2212 | 0 | 0 | 4.03 | sixth run 1077 · me: 1077<br>sixth run 1077 · newgate: 135<br>sixth run 1077 · reply: run 1110 from mother: ok |
+| | | *5. Bind seen to it.* | | | | | | | |
+| 5 | sixth | `6> BUILD UPDATE sixth."82" SET call = 1077 WHERE before = 6 ` | 1111 | 2 | 45 | 0 | 0 | 0.14 | sixth run 1111 · me: 1111<br>sixth run 1111 · reply: run 1112 from mother: ok |
+| | | *6. The send formula, three spans (the tool shape): what = N from the line; mark the next N unknowns; send them as define lines from the sixth; say = how many. Its run number is {run:6}.* | | | | | | | |
+| 6 | main | `BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state ` | 11254 | 12 | 1272 | 2 | 0 | 2.36 | main run 11254 · me: 11254<br>main run 11254 · newgate: 3707<br>main run 11254 · reply: run 11265 from mother: error: no such column: above<br>main run 11254 · know: 34/536<br>main run 11254 · remember: 0<br>main run 11254 · shape: 0<br>sixth run 1113 · me: 1113 |
+| | | *7. define unknown : 1, once: lays define's (heard, unknown) shard; nothing fires yet.* | | | | | | | |
+| 7 | main | `define unknown : 1` | 11266 | 5 | 517 | 0 | 0 | 2.00 | main run 11266 · me: 11266<br>main run 11266 · know: 1/7<br>main run 11266 · remember: 0<br>main run 11266 · shape: 10516<br>sixth run 1116 · me: 1116 |
+| | | *8. Bind that shard to the send formula.* | | | | | | | |
+| 8 | main | `BUILD UPDATE "153" SET call = 11254 WHERE before = 1 AND tri` | 11271 | 6 | 555 | 0 | 0 | 1.94 | main run 11271 · me: 11271<br>main run 11271 · reply: run 11276 from mother: ok<br>main run 11271 · know: 5/43<br>main run 11271 · remember: 0<br>main run 11271 · shape: 0<br>sixth run 1119 · me: 1119 |
+| | | *9. The brain completes one unknown; then five.* | | | | | | | |
+| 9 | main | `define unknown : 1` | 11277 | 319 | 19217 | 115 | 0 | 25.16 | main run 11284 · me: 11284<br>main run 11284 · what: 182<br>main run 11284 · def: run 11289 from wn: adjective satellite 3: previously used or owned by another; "bought a s<br>main run 11284 · known: me count like of a to and an used or the by on all verb that why at from in is not be was <br>main run 11284 · unknown: run value word United help syn persons type lost st ground part In way he old I form The b<br>main run 11277 · me: 11277<br>main run 11277 · what: 1<br>main run 11277 · say: run 11285 from mother: 1 |
+| 10 | main | `define unknown : 5` | 11596 | 2638 | 151257 | 1117 | 0 | 196.98 | main run 11607 · me: 11607<br>main run 11607 · what: 509<br>main run 11607 · def: run 11612 from gcide: [entry: With] [headword: With] [pronunciation: (?)], [part of speech<br>main run 11607 · known: me above what before source kind about no other like opposite of a to and an used as or th<br>main run 11607 · unknown: said clock id ok s r m h next such word A AS services either plural See Note under What As<br>main run 12833 · me: 12833<br>main run 12832 · me: 12832<br>main run 3123 · me: 3123 |
