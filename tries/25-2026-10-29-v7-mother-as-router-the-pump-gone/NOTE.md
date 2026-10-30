@@ -1,6 +1,6 @@
 # 25. v7: mother as a router, the pump gone, the sixth on its own connection (2026-10-29 night)
 
-**Status: built and measured on copies of the live brain at the owner's word ("ok do it ... let's make it happen", "make this v7 ... so that if we need to roll back we can"). Not switched live: the 8056 door and the live brain are v6, untouched. A v7 door runs on a copy at http://localhost:8057/ for the owner to look at.** The chain of every choice, five columns, is `CHAIN-v7-2026-10-29.md`.
+**Status: LIVE since 2026-10-30 00:10, at the owner's word ("do it. I am typing define : word now"). Both live brain files were backed up first to `D:\Neuron-sources\backups\before-v7-2026-10-30\` (brain.db, sixth.db, v6's bottom6.py, mother.c and mother.so; integrity ok). The v6 door was stopped when idle; v7's door serves the same brain at http://localhost:8056/, both files now in WAL; v6's mother is kept beside as `mother6.so`. Then the self-feeding observing line (tries/23, form 2, the send written most-shared last) and its bind were typed at the sixth through the door: sixth runs 1140 and 1154, both ok, 0 refused. The cascade began at the bind's end: within thirty seconds the sixth had sent 3,784 define lines, 5 had ended, 3,813 landings waited in the mailbox, 0 refused, 62,336 hops. The demo door on the copy (8057) was stopped.** The chain of every choice, five columns, is `CHAIN-v7-2026-10-29.md`.
 
 ## What v7 is
 
