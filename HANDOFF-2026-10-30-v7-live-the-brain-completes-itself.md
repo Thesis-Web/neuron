@@ -31,3 +31,7 @@ The send inside `define unknown : N` still writes most-shared first, so within i
 ## Faults of mine tonight, for the record
 
 The pump of v5/v6 was mine and never said to the owner in words. My first cascade collection cost 200 s on every line (a scan per gate), caught on a copy. My first v7 committed on every hop and was slower than v6, caught on a copy. The self-feeding send wrote the most-shared first into a stack and the brain defined the rarest first, caught on the copy. Twice I stopped my own shell with a kill whose pattern my command line held. The door's bookkeeping failed under births until the reads were made to run again.
+
+## The kernel, nk (`tries/28`, 03:50 to 05:00)
+
+Built on hp at the owner's word, the v6 brain as the blueprint, checked by effect: a brain as regions in C (no SQL in a hop), mother through a virtual-table bridge so the formulas are pasted as before, the sixty tool lines (27 addressed as dna rows), the v6 page behind serve8 on hp:8058 (http://10.31.1.106:8058/ from the hub). The sixty lines run in 0.25 s against v6's 70; a hop costs 0.34 µs; the formulas' scans are counted. The agreement with tries/19 is in `tries/28/test/AGREEMENT-2026-10-30.md`: identical where the text is the same, every difference traced to the kernel's egg, its born line or the changed lines. Not there: durability beyond export and a journal of typed lines, step back, a thread per brain. The owner's brain stays v7 on 8056; nothing on the hub changed. `tries/28/kernel/run-on-hp.sh fresh|resume|stop` on hp.

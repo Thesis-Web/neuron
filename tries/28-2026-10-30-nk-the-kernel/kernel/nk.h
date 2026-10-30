@@ -1,0 +1,100 @@
+/* nk.h (2026-10-30): the neuron kernel's regions. Numbers only; the encoder is the one place a symbol's spelling lives.
+   A brain is a region: its encoder, its neurons (each a region of shards keyed by (before, trigger)), its runs (seq, sheet, receipts),
+   its memories, its timeline, its mailboxes, its hop stack. Two rules: no choice points, no scans (see DESIGN-nk). */
+#ifndef NK_H
+#define NK_H
+#include <stdint.h>
+#include <stddef.h>
+#include "sqlite3.h"
+
+typedef int64_t i64;
+
+/* a hash map from a pair of 64-bit keys to a 64-bit value (open addressing); 0 never stored as a value */
+typedef struct { i64 k1, k2, v; } HEnt;
+typedef struct { HEnt *e; size_t cap, n; } HMap;
+void  hmap_init(HMap *m, size_t cap);
+i64   hmap_get(HMap *m, i64 k1, i64 k2);            /* 0 when absent */
+void  hmap_put(HMap *m, i64 k1, i64 k2, i64 v);
+void  hmap_del(HMap *m, i64 k1, i64 k2);
+
+/* a string table: symbol -> gate (hash by content), gate -> symbol (array) */
+typedef struct { char **sym; int n, cap; HMap h; } Label;
+
+typedef struct { i64 id; int before, trigger; i64 call, spawn, times; } Shard;   /* before/trigger 0 = NULL */
+typedef struct { int source; i64 run; } NodeRow;
+typedef struct { int born; Shard *sh; int nsh, csh; HMap h; NodeRow *node; int nnode, cnode; i64 *about_runs; int nabout, cabout; i64 *mem_runs; int nmem, cmem; i64 *hits; int nhits, chits; } Neuron;   /* hits: the hits on this neuron that carried a call or spawn (what the standing question shape reads) */
+
+typedef struct { int cell, state; char *value; } Cell;
+typedef struct { i64 run; int pos, gate; i64 shard; unsigned char via, had; } Rc;   /* the receipt (= the hit, whole: before/next follow from the run's seq); its id is its index + 1 */
+typedef struct {
+  int arrival, parent_set; i64 parent, root; int kind, cell, about; i64 at, moment;
+  int *seq; int nseq;
+  Cell *cells; int ncells, ccells;
+  i64 *rc; int nrc, crc;                   /* indices into the brain's receipts */
+  int ended, complete, build_pos;          /* build_pos: the open BUILD mark, -1 when none */
+  i64 *kids; int nkids, ckids;             /* the runs under this one, so a formula finds them by key */
+  /* the memory of a run that ended (the owner's shape, one per run today) */
+  char *mem_input; int mem_source, mem_gate; i64 mem_shard, mem_at; int has_mem;
+} Run;
+
+typedef struct { i64 at, run; int key1, key2; } Tl;
+typedef struct { i64 id; char *text; i64 run; } Mail;                 /* input, third */
+typedef struct { i64 id, run; int cell, gate, about; char *text; i64 made; } Sec;   /* secondary */
+typedef struct { i64 id, run; int cell; char *value; } Out;          /* out_user */
+typedef struct { i64 id; char *text, *error; } Refused;
+typedef struct { i64 id, run; int pos, gate, before, next, via, had; i64 shard, call, spawn; } Hit;  /* the call or spawn a hit carried, as it was at the hit; every other column of v6's hit table follows from the receipt */
+typedef struct { int gate, kind, other; i64 run; } Rel;
+
+enum { HOP_LAND = 1, HOP_ENDED = 2, HOP_REPLAY = 3 };
+typedef struct { int type; i64 run; int pos, gate, before, next, via; i64 a, b; int kind; } Hop;
+
+typedef struct Brain {
+  const char *name; int is_main;
+  Label label;
+  Neuron *nr; int nnr, cnr;                 /* indexed by gate */
+  Run *runs; i64 nruns, cruns;              /* runs[id], id from 1 */
+  i64 clock, shards;
+  Tl *tl; i64 ntl, ctl;
+  Rel *rel; i64 nrel, crel; HMap relh;      /* (gate,kind,other) -> index+1 */
+  Mail *input; i64 ninput, cinput; Mail *third; i64 nthird, cthird;
+  Sec *sec; i64 nsec, csec; Out *out; i64 nout, cout; Refused *ref; i64 nref, cref;
+  Hit *hit; i64 nhit, chit;
+  Rc *rcs; i64 nrcs, crcs;                  /* every receipt, in the order of the hops */
+  Hop *hop; i64 nhop, chop;                 /* the stack: the row written last runs first */
+  HMap memh;                                /* (hash of input, source) -> run+1 : the newest memory with that input (remember) */
+  struct Brain *tell;                       /* the brain told when a prompt's run ends (main -> sixth) */
+  int arrival_of_third;                     /* what a line in third arrives from: the sixth (5) in main, main (6) in the sixth */
+  HMap hith;                                /* receipt id -> index+1 into hit, for the hits that carried a call or spawn */
+  i64 hops_done, refused_n;
+  i64 hop_ns, paste_ns, pastes;             /* where the time goes: inside the hops, inside mother's pastes */
+} Brain;
+
+/* gates of the hand-laid core (egg6) */
+enum { HEARD = 1, SAID = 2, SPACE = 3, MOTHER = 4, SIXTH = 5, MAIN = 6, BORN = 16, HOP_G = 17, CLOCK_G = 18, ME = 19, ABOVE = 20, NEWGATE = 21, REPLY = 22, WHAT = 23, DEF = 24, SAY = 25, KNOW = 26, REMEMBER = 27, SHAPE = 28, BUILD = 29 };
+
+void   brain_init(Brain *b, const char *name, int is_main);
+uint64_t strhash(const char *s);
+i64    now_ns(void);
+int    label_gate(Brain *b, const char *sym);           /* 0 when the symbol has no gate */
+int    label_new(Brain *b, const char *sym);            /* the next gate, born into the encoder (no neuron region yet) */
+Neuron*neuron_of(Brain *b, int gate);
+Shard *shard_find(Brain *b, int gate, int before, int trigger);
+Shard *shard_lay(Brain *b, int gate, int before, int trigger, i64 times);
+Run   *run_of(Brain *b, i64 id);
+i64    new_run(Brain *b, int arrival, i64 parent, int has_parent, int kind, int cell, int about);
+void   cell_set(Brain *b, i64 run, int cell, int state, const char *value);   /* INSERT OR REPLACE, with sheet_fill */
+const char *cell_get(Brain *b, i64 run, int cell);                            /* state 1 and value not null, else NULL */
+void   line_in(Brain *b, int which, const char *text);     /* which: 0 input (heard), 1 third */
+void   secondary_in(Brain *b, i64 run, int cell, int gate, int about, const char *text);
+void   replay_push(Brain *b, i64 parent, i64 source, int kind);
+void   pump_batch(Brain *b, int n);                        /* n hops of this brain's stack */
+int    pending(Brain *b);
+void   nk_export(Brain *b, sqlite3 *db);                   /* every table as real rows, for the diff */
+
+/* mother: the one SQLite connection the formulas are pasted into; its tables are the brains' regions (nkvt.c) */
+int    mother_open(Brain *main, Brain *sixth, const char **sources, int nsources, const char *srcdir);
+char  *mother_paste(const char *sql);                       /* ok | rows | error: ... (caller frees) */
+sqlite3 *mother_db(void);
+void   nkvt_register(sqlite3 *db, Brain *main, Brain *sixth);
+void   nkvt_scans(char *out, size_t cap);                 /* keyed and scanned reads per table, as JSON rows */
+#endif
