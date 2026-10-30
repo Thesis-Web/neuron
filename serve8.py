@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+# serve8.py (2026-10-30): the kernel's door. The same page as v6 (the owner: "I really like the look of the one we have") served over HTTP;
+# every request becomes one line to the kernel's socket: a typed line, a read of the graph, a SELECT. The door decides nothing.
+# usage: python3 serve8.py <http port> <kernel port> <page.html> [lines file] [first-runs file] [bind address, default 127.0.0.1]
+import sys, os, json, socket, re, time, http.server, urllib.parse
+PORT, KPORT, PAGE = int(sys.argv[1]), int(sys.argv[2]), sys.argv[3]
+LINES = sys.argv[4] if len(sys.argv) > 4 else None; FIRST = sys.argv[5] if len(sys.argv) > 5 else None; BIND = sys.argv[6] if len(sys.argv) > 6 else '127.0.0.1'
+STARTED = time.time(); JOBS = {}; JOBN = [0]
+def ask(req):
+    s = socket.create_connection(('127.0.0.1', KPORT)); s.sendall((req + '\n').encode()); buf = b''
+    while True:
+        d = s.recv(1 << 20)
+        if not d: break
+        buf += d
+        if buf.endswith(b'\n'): break
+    s.close(); return json.loads(buf.decode())
+def q(sql): return ask('q ' + sql)
+RUNS = []
+def fill(line):
+    def r(m):
+        k = int(m.group(1)); return str(RUNS[k - 1]) if 0 < k <= len(RUNS) and RUNS[k - 1] else m.group(0)
+    line = re.sub(r'\{run:(\d+)\}', r, line)
+    def g(m):
+        schema = 'sixth' if m.group(1) == '6' else 'main'
+        rows = q(f"SELECT gate FROM {schema}.label WHERE symbol = '{m.group(2)}'")['rows']
+        return str(rows[0][0]) if rows else m.group(0)
+    return re.sub(r'\{gate(6?):([^}]+)\}', g, line)
+def decode(schema, run):
+    rows = q(f"SELECT group_concat(symbol, '') FROM (SELECT l.symbol FROM {schema}.seq s JOIN {schema}.label l ON l.gate = s.gate WHERE s.run = {run} ORDER BY s.pos)")['rows']
+    return rows[0][0] if rows and rows[0][0] is not None else ''
+def match_runs(lines):
+    RUNS.clear(); seen = {}; typed = {}
+    for schema in ('main', 'sixth'):
+        rows = q(f"SELECT run FROM {schema}.input WHERE run IS NOT NULL ORDER BY id")['rows']
+        typed[schema] = [(r[0], decode(schema, r[0])) for r in rows]
+    for l in lines:
+        if not l.strip() or l.startswith('#'): continue
+        l = fill(l); schema, text = ('sixth', l[3:]) if l.startswith('6> ') else ('main', l)
+        n = seen.get((schema, text), 0); seen[(schema, text)] = n + 1
+        hits = [run for (run, t) in typed[schema] if t == text]
+        RUNS.append(hits[n] if n < len(hits) else None)
+    return list(RUNS)
+def read_lines():
+    out = []
+    for which, path in (('tools', LINES), ('first', FIRST)):
+        if not path or not os.path.exists(path): continue
+        raw = [l.rstrip('\n') for l in open(path, encoding='utf-8')]
+        runs = match_runs(raw) if which == 'tools' else None
+        k = 0; note = []
+        for l in raw:
+            if not l.strip(): note = []; continue
+            if l.startswith('#'): note.append(l[1:].strip()); continue
+            k += 1
+            try: filled = fill(l)
+            except Exception: filled = l
+            out.append({'file': which, 'k': k, 'note': ' '.join(note), 'raw': l, 'line': filled, 'run': (runs[k - 1] if runs and k - 1 < len(runs) else None)}); note = []
+    return {'lines': out}
+class H(http.server.BaseHTTPRequestHandler):
+    def log_message(self, fmt, *a): pass
+    def send(self, code, obj, ctype='application/json'):
+        body = obj if isinstance(obj, bytes) else json.dumps(obj, default=str).encode()
+        self.send_response(code); self.send_header('Content-Type', ctype + ('' if isinstance(obj, bytes) and not ctype.startswith('text') else '; charset=utf-8'))
+        self.send_header('Content-Length', str(len(body))); self.send_header('Access-Control-Allow-Origin', '*'); self.send_header('Cache-Control', 'no-store'); self.end_headers(); self.wfile.write(body)
+    def body(self):
+        n = int(self.headers.get('Content-Length') or 0); return json.loads(self.rfile.read(n) or b'{}')
+    def do_GET(self):
+        u = urllib.parse.urlparse(self.path); qs = urllib.parse.parse_qs(u.query)
+        try:
+            if u.path in ('/', '/index.html'): return self.send(200, open(PAGE, 'rb').read(), 'text/html')
+            if u.path == '/api/info':
+                st = ask('stats'); return self.send(200, {'brain': 'nk main', 'sixth': 'nk sixth', 'sources': 'attached', 'sqlite': 'nk', 'started': STARTED, 'ready': True, 'error': None, 'busy': None, 'queued': 0, 'version': 'nk', 'stats': st})
+            if u.path == '/api/graph': return self.send(200, ask('graph ' + (qs.get('schema', ['main'])[0])))
+            if u.path == '/api/lines': return self.send(200, read_lines())
+            if u.path == '/api/job':
+                j = JOBS.get(int(qs.get('id', ['0'])[0])); return self.send(200, j) if j else self.send(404, {'error': 'no such job'})
+            return self.send(404, {'error': 'no such path'})
+        except Exception as e: return self.send(500, {'error': str(e)})
+    def do_POST(self):
+        u = urllib.parse.urlparse(self.path)
+        try: d = self.body()
+        except Exception as e: return self.send(400, {'error': 'bad json: ' + str(e)})
+        try:
+            if u.path == '/api/type':
+                line = str(d.get('line') or '').strip()
+                if not line: return self.send(400, {'error': 'an empty line'})
+                if d.get('prompt') == 'sixth' and not line.startswith('6> '): line = '6> ' + line
+                if not RUNS and LINES and os.path.exists(LINES): match_runs([l.rstrip('\n') for l in open(LINES, encoding='utf-8')])
+                line = fill(line); schema, text = ('sixth', line[3:]) if line.startswith('6> ') else ('main', line)
+                t = time.time(); r = ask(f'type {schema} {text}'); RUNS.append(r.get('run'))
+                JOBN[0] += 1; j = {'id': JOBN[0], 'kind': 'type', 'done': True, 'result': r, 'error': r.get('error'), 'progress': None, 'elapsed': time.time() - t, 'line': line}
+                JOBS[j['id']] = j; return self.send(200, j)
+            if u.path == '/api/q':
+                sql = str(d.get('sql') or '').strip()
+                if not sql.upper().startswith(('SELECT', 'WITH', 'PRAGMA TABLE_INFO', 'PRAGMA DATABASE_LIST')): return self.send(400, {'error': 'only a SELECT is read through this door'})
+                return self.send(200, q(sql))
+            if u.path == '/api/fresh': return self.send(400, {'error': "the kernel's door lays no eggs; start the kernel again"})
+            return self.send(404, {'error': 'no such path'})
+        except Exception as e: return self.send(500, {'error': str(e)})
+if __name__ == '__main__':
+    srv = http.server.ThreadingHTTPServer((BIND, PORT), H); srv.daemon_threads = True
+    print('kernel', KPORT, 'page', PAGE, 'bound to', BIND, 'open http://localhost:%d/' % PORT, flush=True)
+    srv.serve_forever()
