@@ -48,3 +48,4 @@ No build is alive. v3 (2026-10-26) was deleted at the owner's order the night it
 This folder is a git repository, initialized 2026-10-26 with everything above in the first commit. The point of the history from here on: a change of state is a commit, and an old state stays readable.
 
 - `HANDOFF-2026-10-29-teaching-through-prompt.md`: where v6 stands and the standing order for the next stretch: teaching through the prompt, words not code.
+- `HANDOFF-2026-10-29-EVENING-sources-full-and-the-route-deferred.md`: the full sources inside the db (WordNet, GCIDE, Moby in; gcide/wn to reload keeping all context; Wiktionary downloaded, not laid); the underscore re-laid as an operator (tries/21, lines ready); the route out of the brain deferred by the owner; real disk (C=250GB SSD, D=1TB SATA) and source architecture.
