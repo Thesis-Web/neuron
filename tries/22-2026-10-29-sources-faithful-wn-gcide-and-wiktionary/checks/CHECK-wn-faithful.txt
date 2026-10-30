@@ -1,0 +1,2 @@
+wn /tmp/claude-1000/-home-exnulla-neuron-v3/7644a646-4610-4242-a249-def6aaf485ec/scratchpad/out/full/wn.db: (lemma, synset) pairs checked 207272, missing 0
+PASS

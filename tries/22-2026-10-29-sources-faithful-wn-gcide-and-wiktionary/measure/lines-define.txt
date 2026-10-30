@@ -1,0 +1,4 @@
+# measuring the cost of a define with the sources (typed on a copy, never on the live brain)
+define : ask
+define : of
+define : set

@@ -1,0 +1,2 @@
+gcide /tmp/claude-1000/-home-exnulla-neuron-v3/7644a646-4610-4242-a249-def6aaf485ec/scratchpad/out/full/gcide.db: paragraphs 232490, (paragraph, word) pairs checked 243753, missing 0 (of which words with no rows 0)
+PASS

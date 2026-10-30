@@ -1,0 +1,2 @@
+wikt /tmp/claude-1000/-home-exnulla-neuron-v3/7644a646-4610-4242-a249-def6aaf485ec/scratchpad/out/full/wikt.db: entries checked 29984 (every 50th), entries with a missing piece 0; etymology template expansions not in the rows 0
+PASS

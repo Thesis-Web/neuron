@@ -1,0 +1,12 @@
+wn /mnt/d/Neuron/tries/20-2026-10-29-full-sources-wordnet-gcide-moby/sources/wn.db: (lemma, synset) pairs checked 207272, missing 207272
+   missing: ('entity', ['[lexicographer file: noun.Tops]', '{physical entity}', '{abstraction}', '{abstract entity}'])
+   missing: ('physical_entity', ['an entity that has physical existence', '{physical entity}', '[lexicographer file: noun.Tops]', '{entity}'])
+   missing: ('abstraction', ['[lexicographer file: noun.Tops]', '{entity}', '{psychological feature}', '{attribute}'])
+   missing: ('abstract_entity', ['a general concept formed by extracting common features from specific examples', '{abstraction}', '{abstract entity}', '[lexicographer file: noun.Tops]'])
+   missing: ('thing', ['[lexicographer file: noun.Tops]', '{physical entity}', '{subject}', '{content}'])
+   missing: ('object', ['[lexicographer file: noun.Tops]', '{physical entity}', '{objectify}', '{whole}'])
+   missing: ('physical_object', ['a tangible and visible entity; an entity that can cast a shadow; "it was full of rackets, balls and other objects"', '{object}', '{physical object}', '[lexicographer file: noun.Tops]'])
+   missing: ('whole', ['[lexicographer file: noun.Tops]', '{object}', '{physical object}', '{congener}'])
+   missing: ('unit', ['[lexicographer file: noun.Tops]', '{object}', '{physical object}', '{unify}'])
+   missing: ('congener', ['[lexicographer file: noun.Tops]', '{whole}', '{unit}'])
+FAIL

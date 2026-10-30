@@ -1,5 +1,7 @@
 # 20. The full sources: WordNet 3.1, GCIDE 0.54, Moby Thesaurus in place of the 172-word slice (2026-10-29)
 
+**Superseded the same evening by `tries/22` (the wn and gcide loads here dropped GCIDE's quotations and etymologies and WordNet's multi-word lemmas and pointers, against the owner's rule that a source keeps all its context; the faithful loads replaced them in the live source files on 2026-10-29 evening; moby was kept as laid here).**
+
 **Status: done on the live v6 brain behind the 8056 door this morning, at the owner's word ("wordnet 3.1, gcide, and moby are a go"); the owner's rule: a define is trusted with two sources, better three.**
 
 The slice (sat172.json, fetched 10-22) held 130 to 344 headwords per source, so most words came back with known and unknown empty. The three free, complete dictionaries were downloaded, laid as source brains in the shape make_sources.py laid the slice (me, corpus, inbox, outbox, the work and carry triggers), and their rows were put into the live source files wn.db, gcide.db and moby.db in place of the slice rows, keeping each file, its gate (7, 8, 11) and its triggers, so the door's attachments stayed as they were. mw, mwt, map, sqldoc, measured and guess are untouched.
