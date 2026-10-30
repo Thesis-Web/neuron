@@ -1,0 +1,14 @@
+| # | prompt | line | run | runs | hits | born | refused | s | what the brain put in its out mailbox |
+|---|---|---|---|---|---|---|---|---|---|
+| | | *SPEED-LINES-2026-10-29.txt: three lines, from the profile of one define on a copy (50 s, 1.13 million statements): the hop's test "does the* | | | | | | | |
+| | | *next symbol have a table yet" read the whole schema catalogue on every hit (sqlite_master, 10,623 rows, 474 us a hit, 21 of the 50 s, growing* | | | | | | | |
+| | | *with every neuron born); the define's known/unknown test scanned the run table once per return row (12 s, growing with every run). Line 1 and 2* | | | | | | | |
+| | | *lay the hop trigger again in each brain with the one change: the question asked of the schema's own hash (pragma_table_info, 20 us) instead of* | | | | | | | |
+| | | *a scan of its catalogue. Line 3 gives the run table two indexes, on about and on (kind, arrival), so "is there a return about this gate" and* | | | | | | | |
+| | | *"how many source returns" find the row instead of sweeping. Nothing else in any trigger or formula changes. The owner's to type (as tries/21).* | | | | | | | |
+| | | *1. main's hop trigger, laid again (its own text from sqlite_master, one change).* | | | | | | | |
+| 1 | main | `BUILD DROP TRIGGER land_go ; CREATE TRIGGER land_go AFTER IN` | 11596 | 20 | 2550 | 7 | 0 | 5.26 | main run 11596 · me: 11596<br>main run 11596 · newgate: 3829<br>main run 11596 · reply: run 11615 from mother: ok<br>main run 11596 · know: 64/1373<br>main run 11596 · remember: 0<br>main run 11596 · shape: 0<br>sixth run 1140 · me: 1140 |
+| 2 | sixth | `6> BUILD DROP TRIGGER sixth.land_go ; CREATE TRIGGER sixth.l` | 1143 | 48 | 3657 | 0 | 0 | 4.72 | sixth run 1143 · me: 1143<br>sixth run 1143 · newgate: 158<br>sixth run 1143 · reply: run 1190 from mother: ok |
+| 3 | main | `BUILD CREATE INDEX run_about ON run ( about ) ; CREATE INDEX` | 11616 | 12 | 840 | 3 | 0 | 0.89 | main run 11616 · me: 11616<br>main run 11616 · newgate: 3832<br>main run 11616 · reply: run 11627 from mother: ok<br>main run 11616 · know: 4/43<br>main run 11616 · remember: 0<br>main run 11616 · shape: 0<br>sixth run 1191 · me: 1191 |
+| | | *then one define, to time against the same define on a copy without the three lines* | | | | | | | |
+| 4 | main | `define : able` | 11628 | 981 | 52701 | 419 | 0 | 32.63 | main run 11628 · me: 11628<br>main run 11628 · what: 1589<br>main run 11628 · def: run 11636 from wn: adjective 1: (usually followed by `to') having the necessary means or s<br>main run 11628 · know: 1/5<br>main run 11628 · remember: 0<br>main run 11628 · shape: 11254<br>main run 11628 · known: what know before source count kind who other like of a to and an as or the by on all many <br>main run 11628 · unknown: born say id ok state s m h such word l A g unknown United syn World later also singular pl |

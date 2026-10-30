@@ -1,0 +1,4 @@
+| # | prompt | line | run | runs | hits | born | refused | s | what the brain put in its out mailbox |
+|---|---|---|---|---|---|---|---|---|---|
+| | | *the control: the same define on the same copy without the three lines* | | | | | | | |
+| 1 | main | `define : able` | 11596 | 981 | 52701 | 419 | 0 | 51.31 | main run 11596 · me: 11596<br>main run 11596 · what: 1589<br>main run 11596 · def: run 11604 from wn: adjective 1: (usually followed by `to') having the necessary means or s<br>main run 11596 · know: 1/5<br>main run 11596 · remember: 0<br>main run 11596 · shape: 11254<br>main run 11596 · known: what know before source count kind who other like of a to and an as or the by on all many <br>main run 11596 · unknown: born say id ok state s m h such word l A g unknown United syn World later also singular pl |
