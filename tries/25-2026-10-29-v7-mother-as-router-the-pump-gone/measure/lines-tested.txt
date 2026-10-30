@@ -1,0 +1,4 @@
+# v7 test on a copy of the live brain: one define, one tool, one own-completion
+define : only
+print dna : who
+define unknown : 1

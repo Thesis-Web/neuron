@@ -1,0 +1,8 @@
+| # | prompt | line | run | runs | hits | born | refused | s | what the brain put in its out mailbox |
+|---|---|---|---|---|---|---|---|---|---|
+| | | *v7 test on a copy of the live brain: one define, one tool, one own-completion* | | | | | | | |
+| 1 | main | `define : only` | 11596 | 1464 | 78501 | 650 | 0 | 79.25 | main run 11596 · me: 11596<br>main run 11596 · what: 451<br>main run 11596 · def: run 11604 from wn: adjective satellite 2: exclusive of anyone or anything else; "she alone<br>main run 11596 · know: 1/5<br>main run 11596 · remember: 0<br>main run 11596 · shape: 11254<br>main run 11596 · known: me what know call source count kind about no who other like of a to and an used as or the <br>main run 11596 · unknown: said mother say run cell s next such word l A known AS United syn also singular plural See |
+| 2 | main | `print dna : who` | 13060 | 9 | 1323 | 0 | 0 | 2.21 | main run 13060 · me: 13060<br>main run 13060 · what: 121<br>main run 13060 · say: run 13067 from mother: 279 / 1 /  /  /  / 1
+589 / 68 /  /  /  / 10
+692 / 38 / 163 /  /  / <br>main run 13060 · know: 2/7<br>main run 13060 · remember: run 1344 from heard: print dna : who<br>main run 13060 · shape: 525<br>sixth run 1155 · me: 1155 |
+| 3 | main | `define unknown : 1` | 13069 | 76 | 8703 | 21 | 0 | 12.44 | main run 13076 · me: 13076<br>main run 13076 · what: 168<br>main run 13076 · def: run 13081 from wikt: [word: syn] [part of speech: adj] [etymology 1] [head: syn (not compa<br>main run 13076 · known: of a and syn as the not<br>main run 13076 · unknown: word coordinate plural noun part same having with That natural forms more has function alt<br>main run 13069 · me: 13069<br>main run 13069 · what: 1<br>main run 13069 · say: run 13077 from mother: 1 |
