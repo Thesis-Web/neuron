@@ -104,10 +104,15 @@ class H(http.server.BaseHTTPRequestHandler):
         n = int(self.headers.get('Content-Length') or 0); return json.loads(self.rfile.read(n) or b'{}')
     def read(self, fn):
         if not READY.is_set() or STATE['error'] or STATE['read'] is None: return self.send(503, {'error': STATE['error'] or 'the brain is still opening'})
-        try:
-            with READLOCK: r = fn(STATE['read'])
-            return self.send(200, r)
-        except Exception as e: return self.send(500, {'error': str(e) or e.__class__.__name__})
+        for i in range(50):   # a read meets "database schema has changed" when the router births a table under it: read again
+            try:
+                with READLOCK: r = fn(STATE['read'])
+                return self.send(200, r)
+            except sqlite3.OperationalError as e:
+                if 'schema has changed' not in str(e) and 'locked' not in str(e): return self.send(500, {'error': str(e)})
+                time.sleep(0.05)
+            except Exception as e: return self.send(500, {'error': str(e) or e.__class__.__name__})
+        return self.send(500, {'error': 'the schema kept changing under the read (births); read again'})
     def do_GET(self):
         u = urllib.parse.urlparse(self.path); qs = urllib.parse.parse_qs(u.query)
         if u.path in ('/', '/index.html'):

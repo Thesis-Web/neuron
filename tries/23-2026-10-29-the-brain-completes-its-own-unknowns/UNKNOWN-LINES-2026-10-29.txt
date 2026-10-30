@@ -30,3 +30,12 @@ BUILD UPDATE "153" SET call = {run:6} WHERE before = 1 AND trigger = 152 ; BUILD
 # 9. The brain completes one unknown; then five.
 define unknown : 1
 # define unknown : 5   (typed on the copy: 5 defines, 2,638 runs, 1,117 born, 197 s)
+
+# --- form 2, the brain sends by itself: in place of line 4 (and no lines 6 to 9). Under v6 this form holds the prompt for the whole cascade
+# (one line is one transaction); under v7 (tries/25) the brain stays free while it runs. Demonstrated on the v7 copy on 2026-10-29 23:45.
+# the self-feeding form (tries/23): the sixth collects AND sends every pending unknown as a define line, on every line that ends.
+# The mailbox is a stack (the row written last runs first), so the send writes the least-shared unknown first and the most-shared LAST:
+# the brain then defines the most-shared first. (The first demo on the v7 copy had it the other way round and began with the rarest.)
+6> BUILD INSERT INTO sixth.asked ( run , cell , returns ) SELECT s.run , s.cell , ( SELECT count ( * ) FROM main.run WHERE kind = 3 AND ( arrival BETWEEN 7 AND 14 OR arrival = ( SELECT gate FROM main.label WHERE symbol = 'wikt' ) ) ) FROM main.run_sheet s JOIN main.run r ON r.id = s.run WHERE s.state = 0 AND r.kind = 0 AND r.arrival = 1 AND ( SELECT count ( * ) FROM main.run WHERE kind = 3 AND ( arrival BETWEEN 7 AND 14 OR arrival = ( SELECT gate FROM main.label WHERE symbol = 'wikt' ) ) ) > coalesce ( ( SELECT max ( a.returns ) FROM sixth.asked a WHERE a.run = s.run AND a.cell = s.cell ) , -1 ) ORDER BY s.run ; INSERT INTO main.third ( text ) SELECT 'why : ' || run || ' ' || cell FROM sixth.asked WHERE sent = 0 ORDER BY id ; UPDATE sixth.asked SET sent = 1 WHERE sent = 0 ; INSERT OR IGNORE INTO sixth.spawned ( gate ) SELECT DISTINCT CAST ( j.value AS INTEGER ) FROM main.run_sheet s , json_each ( '[' || replace ( s.value , ' ' , ',' ) || ']' ) j WHERE s.cell = 152 AND s.value <> '' AND CAST ( j.value AS INTEGER ) NOT IN ( SELECT d.value FROM main.run_sheet d JOIN main.seq q ON q.run = d.run AND q.pos = 1 AND q.gate = 153 WHERE d.cell = 23 AND d.value IS NOT NULL ) ; INSERT INTO main.third ( text ) SELECT 'define : ' || l.symbol FROM sixth.spawned p JOIN main.label l ON l.gate = p.gate WHERE p.sent = 0 ORDER BY ( SELECT count ( * ) FROM main.run_sheet u WHERE u.cell = 152 AND ' ' || u.value || ' ' LIKE '% ' || p.gate || ' %' ) ASC , p.id DESC ; UPDATE sixth.spawned SET sent = 1 WHERE sent = 0 ; BUILD
+# bind seen to it
+6> BUILD UPDATE sixth."82" SET call = {run:1} WHERE before = 6 AND trigger = 68 ; BUILD

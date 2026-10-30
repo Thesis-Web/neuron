@@ -57,7 +57,7 @@ class Router(threading.Thread):
                 except sqlite3.Error as e:
                     self.refused += 1; db.execute(f'INSERT INTO {s}.refused (text, error) VALUES (?, ?)', (text, str(e)))
                 n += 1
-            db.execute('COMMIT'); self.commits += 1; self.hops += n
+            db.execute('COMMIT'); self.commits += 1; self.hops += n; self.env.changed.set()
             if n:
                 self.env.wake_other(self); continue      # rows written for the other brain are visible to it now
             self.idle.set(); self.env.changed.set(); self.wake.wait(); self.idle.clear()
@@ -72,7 +72,17 @@ class Env:
         self.main.start(); self.sixth.start()
     def wake_all(self): self.main.wake.set(); self.sixth.wake.set()
     def wake_other(self, r): (self.sixth if r is self.main else self.main).wake.set()
-    def pending(self): return self.db.execute('SELECT (SELECT count(*) FROM main.hop) + (SELECT count(*) FROM sixth.hop)').fetchone()[0]
+    def pending(self): return steady(self.db, 'SELECT (SELECT count(*) FROM main.hop) + (SELECT count(*) FROM sixth.hop)').fetchone()[0]
+    def until_ended(self, schema, rid, timeout=None):
+        """wait until the typed line's own run has ended (its memory row is written); what the sixth fills later shows on the page's next read.
+        v7: a line's job no longer waits for every mailbox to run out, so a cascade the brain starts does not hold the prompt."""
+        t0 = time.time()
+        while True:
+            self.changed.clear()
+            if steady(self.db, f"SELECT 1 FROM {schema}.run_memory WHERE run = ?", (rid,)).fetchone(): return True
+            if self.main.idle.is_set() and self.sixth.idle.is_set() and self.pending() == 0: return True   # nothing runs and it never ended: the first ok of a fresh egg
+            self.wake_all(); self.changed.wait(0.1)
+            if timeout and time.time() - t0 > timeout: return False
     def drain(self, timeout=None):
         """wait until both routers are idle and both mailboxes are empty: the line typed last has run out"""
         t0 = time.time()
@@ -82,12 +92,21 @@ class Env:
             self.wake_all(); self.changed.wait(0.1)
             if timeout and time.time() - t0 > timeout: return False
 
+def steady(db, sql, params=()):
+    """a statement on a connection that is not the router's, run again when a birth on the router's connection changed the schema under it"""
+    for i in range(200):
+        try: return db.execute(sql, params)
+        except sqlite3.OperationalError as e:
+            if 'schema has changed' not in str(e) and 'locked' not in str(e): raise
+            time.sleep(0.02)
+    return db.execute(sql, params)
+
 def decode(db, schema, run):
-    r = db.execute(f"SELECT group_concat(symbol, '') FROM (SELECT l.symbol FROM {schema}.seq s JOIN {schema}.label l ON l.gate = s.gate WHERE s.run = ? ORDER BY s.pos)", (run,)).fetchone()
+    r = steady(db, f"SELECT group_concat(symbol, '') FROM (SELECT l.symbol FROM {schema}.seq s JOIN {schema}.label l ON l.gate = s.gate WHERE s.run = ? ORDER BY s.pos)", (run,)).fetchone()
     return r[0] if r and r[0] is not None else ''
 
 def show_out(db, schema, since, quiet):
-    rows = db.execute(f"SELECT o.id, o.run, o.cell, o.value, (SELECT symbol FROM {schema}.label WHERE gate = o.cell) FROM {schema}.out_user o WHERE o.id > ? ORDER BY o.id", (since,)).fetchall()
+    rows = steady(db, f"SELECT o.id, o.run, o.cell, o.value, (SELECT symbol FROM {schema}.label WHERE gate = o.cell) FROM {schema}.out_user o WHERE o.id > ? ORDER BY o.id", (since,)).fetchall()
     out = []
     for oid, run, cell, value, cname in rows:
         v = value
@@ -135,19 +154,20 @@ def type_line(env, line, quiet=False):
     gates0 = db.execute("SELECT count(*) FROM main.label").fetchone()[0]
     refused0 = db.execute("SELECT count(*) FROM main.refused").fetchone()[0] + db.execute("SELECT count(*) FROM sixth.refused").fetchone()[0]
     try:
-        db.execute(f"INSERT INTO {schema}.input (text) VALUES (?)", (text,))
+        cur = steady(db, f"INSERT INTO {schema}.input (text) VALUES (?)", (text,))
     except sqlite3.Error as e:
         print('refused:', e); RUNS.append(None); return None
-    env.wake_all(); env.drain()
-    RUNS.append(runs0 + 1)
-    runs1 = db.execute(f"SELECT coalesce(max(id), 0) FROM {schema}.run").fetchone()[0]
-    hits = db.execute(f"SELECT count(*) FROM {schema}.run_receipt WHERE run > ?", (runs0,)).fetchone()[0]
-    gates1 = db.execute("SELECT count(*) FROM main.label").fetchone()[0]
-    refused1 = db.execute("SELECT count(*) FROM main.refused").fetchone()[0] + db.execute("SELECT count(*) FROM sixth.refused").fetchone()[0]
+    rid = steady(db, f"SELECT run FROM {schema}.input WHERE id = ?", (cur.lastrowid,)).fetchone()[0] or (runs0 + 1)
+    env.wake_all(); env.until_ended(schema, rid)
+    RUNS.append(rid)
+    runs1 = steady(db, f"SELECT count(*) FROM {schema}.run WHERE root = ? OR id = ?", (rid, rid)).fetchone()[0] + runs0
+    hits = steady(db, f"SELECT count(*) FROM {schema}.run_receipt WHERE run IN (SELECT id FROM {schema}.run WHERE root = ? OR id = ?)", (rid, rid)).fetchone()[0]
+    gates1 = steady(db, "SELECT count(*) FROM main.label").fetchone()[0]
+    refused1 = steady(db, "SELECT count(*) FROM main.refused").fetchone()[0] + steady(db, "SELECT count(*) FROM sixth.refused").fetchone()[0]
     dt = time.time() - t
     if not quiet: print(f"  [{schema}: run {runs0 + 1}, {runs1 - runs0} runs, {hits} hits, {gates1 - gates0} born, {dt:.2f} s]")
     _, o1 = show_out(db, 'main', before_m, quiet); _, o2 = show_out(db, 'sixth', before_s, quiet)
-    return {'schema': schema, 'run': runs0 + 1, 'runs': runs1 - runs0, 'hits': hits, 'born': gates1 - gates0, 'refused': refused1 - refused0, 'seconds': dt, 'out': o1 + o2}
+    return {'schema': schema, 'run': rid, 'runs': runs1 - runs0, 'hits': hits, 'born': gates1 - gates0, 'refused': refused1 - refused0, 'seconds': dt, 'out': o1 + o2}
 
 def open_brain(): return Env()
 

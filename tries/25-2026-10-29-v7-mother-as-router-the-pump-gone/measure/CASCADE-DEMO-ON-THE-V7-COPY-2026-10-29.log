@@ -1,0 +1,6 @@
+23:45:17 feed line typed: sixth run 1191, 7.7 s, refused 0
+23:45:28 bind typed: run 1205 from mother: ok
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-exnulla-neuron-v3/7644a646-4610-4242-a249-def6aaf485ec/scratchpad/build/cascade_demo.py", line 18, in <module>
+    r, dt = typed('define : word'); say(f"define : word returned at its own end: {r['seconds']:.1f} s, {r['runs']} runs, {r['hits']} hits, {r['born']} born, refused {r['refused']}")
+TypeError: 'NoneType' object is not subscriptable
