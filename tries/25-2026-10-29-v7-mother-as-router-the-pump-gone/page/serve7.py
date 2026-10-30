@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# serve7.py (2026-10-29, v7): the v7 brains behind a local HTTP door, so the Point Of Connection page can type a line at the user's prompt
+# serve7.py (2026-10-29, v7; v7.1 2026-10-30: reads and typed lines run on the one router connection between batches): the v7 brains behind a local HTTP door, so the Point Of Connection page can type a line at the user's prompt
 # or the sixth's and read the brains' tables back. From serve6.py. What v7 changes: the brain is never held by one line. A typed line is
 # an insert into a brain's input on the typing connection; its hops are pasted one at a time by the router loops (bottom7.py); every read
 # the page asks for (the graph, the lines, a SELECT) runs at once on a reading connection of its own, in WAL mode, without waiting for a
@@ -34,7 +34,7 @@ class Job:
 def typing_thread():
     """the typing connection and the router loops; a typed line waits here until its hops have run out, so its ledger row is whole"""
     try:
-        STATE['env'] = bottom7.open_brain(); STATE['read'] = bottom7.connect()
+        STATE['env'] = bottom7.open_brain(); STATE['read'] = STATE['env']
     except Exception:
         STATE['error'] = traceback.format_exc(); READY.set(); return
     READY.set(); env = STATE['env']
@@ -103,16 +103,10 @@ class H(http.server.BaseHTTPRequestHandler):
     def body(self):
         n = int(self.headers.get('Content-Length') or 0); return json.loads(self.rfile.read(n) or b'{}')
     def read(self, fn):
-        if not READY.is_set() or STATE['error'] or STATE['read'] is None: return self.send(503, {'error': STATE['error'] or 'the brain is still opening'})
-        for i in range(50):   # a read meets "database schema has changed" when the router births a table under it: read again
-            try:
-                with READLOCK: r = fn(STATE['read'])
-                return self.send(200, r)
-            except sqlite3.OperationalError as e:
-                if 'schema has changed' not in str(e) and 'locked' not in str(e): return self.send(500, {'error': str(e)})
-                time.sleep(0.05)
-            except Exception as e: return self.send(500, {'error': str(e) or e.__class__.__name__})
-        return self.send(500, {'error': 'the schema kept changing under the read (births); read again'})
+        """a read runs on the router's own connection between two batches of hops (v7.1), so it never meets a changed schema"""
+        if not READY.is_set() or STATE['error'] or STATE['env'] is None: return self.send(503, {'error': STATE['error'] or 'the brain is still opening'})
+        try: return self.send(200, STATE['env'].submit(fn, timeout=600))
+        except Exception as e: return self.send(500, {'error': str(e) or e.__class__.__name__})
     def do_GET(self):
         u = urllib.parse.urlparse(self.path); qs = urllib.parse.parse_qs(u.query)
         if u.path in ('/', '/index.html'):
@@ -121,7 +115,7 @@ class H(http.server.BaseHTTPRequestHandler):
             return
         if u.path == '/api/info':
             env = STATE['env']
-            routers = {s: {'idle': r.idle.is_set(), 'hops': r.hops, 'refused': r.refused} for s, r in (('main', env.main), ('sixth', env.sixth))} if env else None
+            routers = {s: {'idle': env.router.idle.is_set(), 'hops': env.router.hops[s], 'refused': env.router.refused[s]} for s in ('main', 'sixth')} if env else None
             return self.send(200, {'brain': bottom7.BRAIN, 'sixth': bottom7.SIXTH, 'sources': bottom7.SRC, 'sqlite': sqlite3.sqlite_version, 'started': STARTED, 'ready': READY.is_set() and env is not None, 'error': STATE['error'], 'busy': STATE['busy'].view() if STATE['busy'] else None, 'queued': JOBS.qsize(), 'routers': routers, 'version': 'v7'})
         if u.path == '/api/graph': return self.read(lambda db: read_graph(db, qs.get('schema', ['main'])[0]))
         if u.path == '/api/lines': return self.read(read_lines)
