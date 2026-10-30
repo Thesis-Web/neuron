@@ -4,6 +4,7 @@
 # usage: python3 serve8.py <http port> <kernel port> <page.html> [lines file] [first-runs file] [bind address, default 127.0.0.1]
 import sys, os, json, socket, re, time, http.server, urllib.parse
 PORT, KPORT, PAGE = int(sys.argv[1]), int(sys.argv[2]), sys.argv[3]
+LIGHT = os.path.join(os.path.dirname(os.path.abspath(PAGE)), 'NEURON-POINT-OF-CONNECTION-nk-light-2026-10-30.html')
 LINES = sys.argv[4] if len(sys.argv) > 4 else None; FIRST = sys.argv[5] if len(sys.argv) > 5 else None; BIND = sys.argv[6] if len(sys.argv) > 6 else '127.0.0.1'
 STARTED = time.time(); JOBS = {}; JOBN = [0]; HISTORY_CAP = int(os.environ.get('NK_HISTORY_CAP', '50000'))
 def ask(req):
@@ -80,7 +81,11 @@ class H(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         u = urllib.parse.urlparse(self.path); qs = urllib.parse.parse_qs(u.query)
         try:
-            if u.path in ('/', '/index.html'): return self.send(200, open(PAGE, 'rb').read(), 'text/html')
+            if u.path in ('/', '/index.html', '/light'): return self.send(200, open(LIGHT if os.path.exists(LIGHT) else PAGE, 'rb').read(), 'text/html')
+            if u.path == '/full': return self.send(200, open(PAGE, 'rb').read(), 'text/html')
+            if u.path == '/api/stats': return self.send(200, ask('stats'))
+            if u.path == '/api/newest': return self.send(200, ask('newest ' + (qs.get('schema', ['main'])[0]) + ' ' + str(int(qs.get('n', ['30'])[0]))))
+            if u.path == '/api/run': return self.send(200, ask('run ' + (qs.get('schema', ['main'])[0]) + ' ' + str(int(qs.get('id', ['0'])[0]))))
             if u.path == '/api/info':
                 st = ask('stats'); return self.send(200, {'brain': 'nk main', 'sixth': 'nk sixth', 'sources': 'attached', 'sqlite': 'nk', 'started': STARTED, 'ready': True, 'error': None, 'busy': None, 'queued': 0, 'version': 'nk', 'stats': st})
             if u.path == '/api/graph': return self.send(200, ask('graph ' + (qs.get('schema', ['main'])[0])))

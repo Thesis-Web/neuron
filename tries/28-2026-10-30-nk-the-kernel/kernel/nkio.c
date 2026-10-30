@@ -159,8 +159,8 @@ static void do_export(const char *dir, SB *o){
   sb_str(o, "{\"exported\":true}");
 }
 static void brain_stats(Brain *b, SB *o){
-  double hop_us = b->hops_done ? (b->hop_ns - b->paste_ns) / 1000.0 / b->hops_done : 0, paste_us = b->pastes ? b->paste_ns / 1000.0 / b->pastes : 0;
-  sb_fmt(o, "{\"runs\":%lld,\"hops\":%lld,\"pending\":%d,\"gates\":%d,\"refused\":%lld,\"shards\":%lld,\"hop_us\":%.3f,\"pastes\":%lld,\"paste_us\":%.1f,\"hop_s\":%.3f,\"paste_s\":%.3f,\"returns\":%lld,\"return_us\":%.1f,\"return_s\":%.3f,\"receipts\":%lld}", (long long)b->nruns, (long long)b->hops_done, pending(b), b->label.n, (long long)b->refused_n, (long long)b->shards, hop_us, (long long)b->pastes, paste_us, (b->hop_ns - b->paste_ns) / 1e9, b->paste_ns / 1e9, (long long)b->secs, b->secs ? b->sec_ns / 1000.0 / b->secs : 0, b->sec_ns / 1e9, (long long)b->nrcs);
+  double hop_us = b->hops_run ? (b->hop_ns - b->paste_ns) / 1000.0 / b->hops_run : 0, paste_us = b->pastes ? b->paste_ns / 1000.0 / b->pastes : 0;
+  sb_fmt(o, "{\"runs\":%lld,\"hops\":%lld,\"pending\":%d,\"gates\":%d,\"refused\":%lld,\"shards\":%lld,\"hop_us\":%.3f,\"pastes\":%lld,\"paste_us\":%.1f,\"hop_s\":%.3f,\"paste_s\":%.3f,\"returns\":%lld,\"return_us\":%.1f,\"return_s\":%.3f,\"receipts\":%lld,\"hops_run\":%lld}", (long long)b->nruns, (long long)b->hops_done, pending(b), b->label.n, (long long)b->refused_n, (long long)b->shards, hop_us, (long long)b->pastes, paste_us, (b->hop_ns - b->paste_ns) / 1e9, b->paste_ns / 1e9, (long long)b->secs, b->secs ? b->sec_ns / 1000.0 / b->secs : 0, b->sec_ns / 1e9, (long long)b->nrcs, (long long)b->hops_run);
 }
 /* the brain's own tables (rel, asked, spawned ...) back from an export, with their DDL, into mother's connection under the schema */
 static void load_own_tables(const char *schema, const char *path){
@@ -200,6 +200,64 @@ static void do_profile(SB *o, int top){
   for(int i = 0; i < n && i < top; i++){ if(i) sb_str(o, ","); sb_fmt(o, "{\"s\":%.3f,\"n\":%lld,\"us\":%.0f,\"text\":", all[i]->ns / 1e9, (long long)all[i]->n, all[i]->ns / 1000.0 / all[i]->n); char t[200]; snprintf(t, sizeof t, "%.190s", all[i]->text); sb_json(o, t); sb_str(o, "}"); }
   sb_str(o, "]}"); free(all);
 }
+
+/* ---- the light page: a run and the part of the graph it touched, in one answer, every find by key ---- */
+static void sb_text_of(Brain *b, i64 run, SB *o, int limit){ Run *r = run_of(b, run); if(!r){ sb_str(o, "\"\""); return; } SB t = {0}; int len = 0; for(int i = 0; i < r->nseq && len < limit; i++){ const char *s = b->label.sym[r->seq[i]]; sb_str(&t, s); len += (int)strlen(s); } if(r->nseq && len >= limit) sb_str(&t, "…"); sb_json(o, t.s ? t.s : ""); free(t.s); }
+static sqlite3_stmt *REL_Q;
+static void do_run(Brain *b, i64 id, SB *o){
+  Run *root = run_of(b, id); if(!root){ sb_str(o, "{\"error\":\"no such run\"}"); return; }
+  /* the tree under the run, breadth first, by the kids lists; capped so the answer stays small */
+  enum { MAXRUNS = 600, MAXHOPS = 30000 };
+  i64 *tree = malloc(sizeof(i64) * MAXRUNS); int nt = 0, qi = 0; tree[nt++] = id;
+  while(qi < nt && nt < MAXRUNS){ Run *r = run_of(b, tree[qi++]); for(int i = 0; i < r->nkids && nt < MAXRUNS; i++) tree[nt++] = r->kids[i]; }
+  sb_fmt(o, "{\"schema\":\"%s\",\"run\":{\"id\":%lld,\"arrival\":%d,\"parent\":", b->name, (long long)id, root->arrival); if(root->parent_set) sb_fmt(o, "%lld", (long long)root->parent); else sb_str(o, "null");
+  sb_fmt(o, ",\"root\":%lld,\"kind\":%d,\"cell\":%d,\"about\":%d,\"at\":%lld,\"from_hit\":%lld,\"ended\":%d,\"complete\":%d,\"hops\":%d,\"text\":", (long long)root->root, root->kind, root->cell, root->about, (long long)root->at, (long long)root->from_hit, root->ended, root->complete, root->nrc); sb_text_of(b, id, o, 400);
+  sb_str(o, "},\"tree\":["); int tot = 0;
+  for(int i = 0; i < nt; i++){ Run *r = run_of(b, tree[i]); if(i) sb_str(o, ","); sb_fmt(o, "{\"id\":%lld,\"parent\":", (long long)tree[i]); if(r->parent_set) sb_fmt(o, "%lld", (long long)r->parent); else sb_str(o, "null"); sb_fmt(o, ",\"arrival\":%d,\"kind\":%d,\"cell\":%d,\"about\":%d,\"hops\":%d,\"ended\":%d,\"text\":", r->arrival, r->kind, r->cell, r->about, r->nrc, r->ended); sb_text_of(b, tree[i], o, 120); sb_str(o, "}"); tot += r->nrc; }
+  sb_fmt(o, "],\"tree_runs\":%d,\"tree_hops\":%d,\"hops\":[", nt, tot);
+  /* the hops of the tree in the order they happened: every run's receipt indices are ascending, so a merge by receipt index gives the order */
+  int *cur = calloc(nt, sizeof(int)); int first = 1, n = 0; HMap touched; hmap_init(&touched, 1024); HMap hitsh; hmap_init(&hitsh, 4096); int *tg = malloc(sizeof(int) * 4096); int ntg = 0, ctg = 4096;
+  for(;;){ int best = -1; i64 bi = 0; for(int i = 0; i < nt; i++){ Run *r = run_of(b, tree[i]); if(cur[i] < r->nrc){ i64 x = r->rc[cur[i]]; if(best < 0 || x < bi){ best = i; bi = x; } } } if(best < 0 || n >= MAXHOPS) break;
+    Rc *k = &b->rcs[bi]; cur[best]++; n++; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%lld,%d,%d,%lld,%d,%lld]", (long long)k->run, k->pos, k->gate, (long long)k->shard, k->via, (long long)bi + 1);
+    hmap_put(&hitsh, k->gate, k->shard, 1);
+    if(!hmap_get(&touched, k->gate, 0)){ hmap_put(&touched, k->gate, 0, 1); if(ntg >= ctg){ ctg *= 2; tg = realloc(tg, sizeof(int) * ctg); } tg[ntg++] = k->gate; } }
+  sb_fmt(o, "],\"hops_sent\":%d,\"gates\":{", n);
+  /* every gate the hops touched: its symbol, its shards (the lines of the drawing), its definition rows, its memories, its relationship rows */
+  if(!REL_Q){ char q[64]; snprintf(q, sizeof q, "SELECT kind, other FROM %s.rel WHERE gate = ?", b->name); sqlite3_prepare_v2(DB, q, -1, &REL_Q, 0); }
+  for(int i = 0; i < ntg; i++){ int g = tg[i]; Neuron *nn = neuron_of(b, g); if(i) sb_str(o, ","); sb_fmt(o, "\"%d\":{\"s\":", g); sb_json(o, b->label.sym[g]); sb_fmt(o, ",\"born\":%d,\"nodes\":%d,\"mem\":%d,\"nshards\":%d,\"shards\":[", nn ? nn->born : 0, nn ? nn->nnode : 0, nn ? nn->nmem : 0, nn ? nn->nsh : 0);
+    int ns = 0; if(nn) for(int j = 0; j < nn->nsh; j++){ Shard *s = &nn->sh[j]; if(!hmap_get(&hitsh, g, s->id)) continue; if(ns++) sb_str(o, ","); sb_fmt(o, "[%lld,%d,%d,%lld,%lld,%lld]", (long long)s->id, s->before, s->trigger, (long long)s->call, (long long)s->spawn, (long long)s->times); }
+    sb_str(o, "],\"rel\":["); int nr = 0;
+    if(REL_Q){ sqlite3_bind_int(REL_Q, 1, g); while(sqlite3_step(REL_Q) == SQLITE_ROW && nr < 24){ if(nr) sb_str(o, ","); sb_fmt(o, "[%d,%d]", sqlite3_column_int(REL_Q, 0), sqlite3_column_int(REL_Q, 1)); nr++; } sqlite3_reset(REL_Q); }
+    sb_str(o, "]}"); }
+  /* the symbols of the gates the shards and relationship rows point at, so every drawn line has two named ends */
+  sb_str(o, "},\"names\":{"); HMap named; hmap_init(&named, 2048); first = 1;
+  for(int i = 0; i < ntg; i++){ Neuron *nn = neuron_of(b, tg[i]); if(!nn) continue; int cand[4]; for(int j = 0; j < nn->nsh; j++){ if(!hmap_get(&hitsh, tg[i], nn->sh[j].id)) continue; cand[0] = nn->sh[j].before; cand[1] = nn->sh[j].trigger; for(int c = 0; c < 2; c++){ int g = cand[c]; if(g > 0 && g <= b->label.n && !hmap_get(&touched, g, 0) && !hmap_get(&named, g, 0)){ hmap_put(&named, g, 0, 1); if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%d\":", g); sb_json(o, b->label.sym[g]); } } }
+    if(REL_Q){ sqlite3_bind_int(REL_Q, 1, tg[i]); int nr = 0; while(sqlite3_step(REL_Q) == SQLITE_ROW && nr++ < 24){ int gs[2] = { sqlite3_column_int(REL_Q, 1), sqlite3_column_int(REL_Q, 0) }; for(int c = 0; c < 2; c++){ int g = gs[c]; if(g > 0 && g <= b->label.n && !hmap_get(&touched, g, 0) && !hmap_get(&named, g, 0)){ hmap_put(&named, g, 0, 1); if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%d\":", g); sb_json(o, b->label.sym[g]); } } } sqlite3_reset(REL_Q); } }
+  for(int i = 0; i < root->ncells; i++){ int g = root->cells[i].cell; if(g > 0 && g <= b->label.n && !hmap_get(&touched, g, 0) && !hmap_get(&named, g, 0)){ hmap_put(&named, g, 0, 1); if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%d\":", g); sb_json(o, b->label.sym[g]); } }
+  /* the cells of the run, a run-valued cell read back as that run's text */
+  sb_str(o, "},\"cells\":[");
+  for(int i = 0; i < root->ncells; i++){ Cell *c = &root->cells[i]; if(i) sb_str(o, ","); sb_fmt(o, "[%d,%d,", c->cell, c->state); if(c->value) sb_json(o, c->value); else sb_str(o, "null"); sb_str(o, ",");
+    /* the cells that name a run: me, above, reply, def, say, remember, shape (the call); what names a gate or a number and is left as it is */
+    int runcell = (c->cell == ME || c->cell == ABOVE || c->cell == REPLY || c->cell == DEF || c->cell == SAY || c->cell == REMEMBER || c->cell == SHAPE);
+    i64 rv = (c->value && runcell) ? atoll(c->value) : 0; Run *x = rv > 0 ? run_of(b, rv) : 0;
+    if(x && strspn(c->value, "0123456789") == strlen(c->value)){ sb_fmt(o, "{\"run\":%lld,\"arrival\":%d,\"text\":", (long long)rv, x->arrival); sb_text_of(b, rv, o, 300); sb_str(o, "}"); }
+    else if(c->value && (c->cell == label_gate(b, "known") || c->cell == label_gate(b, "unknown"))){ /* a list of gates: read back as symbols, the first sixty */ SB t = {0}; const char *q = c->value; int nw = 0, total = 0; while(*q){ while(*q == ' ') q++; if(!*q) break; int g = atoi(q); while(*q && *q != ' ') q++; total++; if(nw < 60 && g > 0 && g <= b->label.n){ if(nw) sb_str(&t, " "); sb_str(&t, b->label.sym[g]); nw++; } } if(total > nw) sb_fmt(&t, " … %d in all", total); sb_fmt(o, "{\"words\":%d,\"text\":", total); sb_json(o, t.s ? t.s : ""); sb_str(o, "}"); free(t.s); }
+    else sb_str(o, "null"); sb_str(o, "]"); }
+  /* step back: from this run to the line that started it, through the receipt each was made from */
+  sb_str(o, "],\"back\":["); first = 1; i64 cur_run = id; int depth = 0;
+  while(cur_run && depth < 64){ Run *r = run_of(b, cur_run); if(!r) break; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "{\"depth\":%d,\"run\":%lld,\"arrival\":%d,\"cell\":%d,\"text\":", depth, (long long)cur_run, r->arrival, r->cell); sb_text_of(b, cur_run, o, 100);
+    if(r->from_hit > 0 && r->from_hit <= b->nrcs){ Rc *k = &b->rcs[r->from_hit - 1]; sb_fmt(o, ",\"hit\":{\"run\":%lld,\"pos\":%d,\"gate\":%d,\"shard\":%lld,\"via\":%d}", (long long)k->run, k->pos, k->gate, (long long)k->shard, k->via); if(k->gate > 0 && !hmap_get(&touched, k->gate, 0) && !hmap_get(&named, k->gate, 0)){ /* named below */ } }
+    sb_str(o, "}"); if(!r->parent_set) break; cur_run = r->parent; depth++; }
+  sb_str(o, "]}");
+  free(tree); free(cur); free(tg); free(touched.e); free(named.e); free(hitsh.e);
+}
+static void do_newest(Brain *b, int n, SB *o){
+  sb_fmt(o, "{\"schema\":\"%s\",\"lines\":[", b->name); int first = 1;
+  for(i64 i = b->ninput - 1; i >= 0 && i >= b->ninput - n; i--){ Mail *m = &b->input[i]; Run *r = run_of(b, m->run); if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "{\"id\":%lld,\"run\":%lld,\"from\":\"heard\",\"ended\":%d,\"hops\":%d,\"text\":", (long long)m->id, (long long)m->run, r ? r->ended : 0, r ? r->nrc : 0); sb_text_of(b, m->run, o, 120); sb_str(o, "}"); }
+  sb_str(o, "],\"told\":["); first = 1;
+  for(i64 i = b->nthird - 1; i >= 0 && i >= b->nthird - n; i--){ Mail *m = &b->third[i]; Run *r = run_of(b, m->run); if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "{\"id\":%lld,\"run\":%lld,\"from\":\"%s\",\"ended\":%d,\"hops\":%d,\"text\":", (long long)m->id, (long long)m->run, b->is_main ? "sixth" : "main", r ? r->ended : 0, r ? r->nrc : 0); sb_text_of(b, m->run, o, 120); sb_str(o, "}"); }
+  sb_fmt(o, "],\"inputs\":%lld,\"told_n\":%lld}", (long long)b->ninput, (long long)b->nthird);
+}
 static void handle(const char *req, SB *o){
   if(strncmp(req, "profile", 7) == 0){ do_profile(o, atoi(req + 7) > 0 ? atoi(req + 7) : 15); return; }
   if(strcmp(req, "scans") == 0){ char t[4096]; nkvt_scans(t, sizeof t); sb_str(o, "["); sb_str(o, t); sb_str(o, "]"); return; }
@@ -209,6 +267,10 @@ static void handle(const char *req, SB *o){
   else if(strncmp(req, "graph main", 10) == 0) do_graph(&MAINB, o);
   else if(strncmp(req, "graph sixth", 11) == 0) do_graph(&SIXTHB, o);
   else if(strncmp(req, "export ", 7) == 0) do_export(req + 7, o);
+  else if(strncmp(req, "run main ", 9) == 0) do_run(&MAINB, atoll(req + 9), o);
+  else if(strncmp(req, "run sixth ", 10) == 0) do_run(&SIXTHB, atoll(req + 10), o);
+  else if(strncmp(req, "newest main", 11) == 0) do_newest(&MAINB, atoi(req + 11) > 0 ? atoi(req + 11) : 30, o);
+  else if(strncmp(req, "newest sixth", 12) == 0) do_newest(&SIXTHB, atoi(req + 12) > 0 ? atoi(req + 12) : 30, o);
   else if(strncmp(req, "snapshot ", 9) == 0) do_snapshot(req + 9, o);
   else if(strcmp(req, "stats") == 0) do_stats(o);
   else if(strncmp(req, "pump ", 5) == 0){ int n = atoi(req + 5); for(int i = 0; i < n; i++) pump_all(64); do_stats(o); }
