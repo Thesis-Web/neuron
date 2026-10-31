@@ -34,6 +34,10 @@ At the owner's word ("the kernel is your playground ... educate through prompt .
 
 The hop log named in the first writing of this NOTE is withdrawn: the receipts are the log (the owner's reading), and the snapshot is the persistence.
 
+## Later the same day (`measure/PLAYGROUND-2026-10-30.md`, from 15:10)
+
+The light page (one run read by key, nothing whole, at /); the dedupe laid to the owner's shape (a repeat is a tick on the run it repeats; checked against v6, effects unchanged, receipts stored down 70% on the sixty lines, memory 3 MB to 2 MB a define over the full sources); the neuron row's counts; a thousand defines (1,427 words with definition rows, 229,760 relationship rows); the geometry test on the brain's own rows (no location from one kind of line); copy P stopped (`tries/29`); and a fault of mine, said plainly in that page: a fresh run replaced the kernel's live source files and the kernel ran three hours without Wiktionary until the refused count showed it; rolled back and re-taught.
+
 ## What is not there, said plainly
 
 Durability: the kernel's brain lives in memory; a snapshot (`snapshot <dir>`, every region as tables) loads back whole (`NK_LOAD`), and the journal replays what was typed after it; what is not there is a snapshot taken by the kernel on its own clock (the owner or a script asks for it) and a region on disk larger than memory (about 3 MB a define today). Step back: not laid (the receipts are the full trace; an inverse per hop is not). Threads: both brains run in one loop, a batch of each in turn; a thread per brain and the hc and the guesser as brains of their own are not there. The ten-attach limit stands for the sources (the export opens a second connection). The page's bundle still reads the whole receipt table once on opening, as v6's did. The sixth's own sources: not there (the owner: the sixth could call main for source drops). The kernel reproduces v6's physics; it does not change them: the owner's open items (the hc's again, the nap, the hop lines of tries/27, the underscore) are lines for the owner, not kernel work.

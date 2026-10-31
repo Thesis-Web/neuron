@@ -145,6 +145,7 @@ static void copy_table(sqlite3 *dst, const char *schema, const char *name, const
 }
 static void do_export(const char *dir, SB *o){
   const char *names[2] = {"main", "sixth"}; const char *files[2] = {"brain.db", "sixth.db"};
+  { char *mk = sqlite3_mprintf("mkdir -p '%q'", dir); if(system(mk) != 0){ sb_str(o, "{\"error\":\"mkdir\"}"); sqlite3_free(mk); return; } sqlite3_free(mk); }
   for(int bi = 0; bi < 2; bi++){
     char *path = sqlite3_mprintf("%s/%s", dir, files[bi]); unlink(path);
     sqlite3 *dst = 0; if(sqlite3_open(path, &dst) != SQLITE_OK){ sb_str(o, "{\"error\":\"export open\"}"); sqlite3_free(path); return; }
@@ -160,7 +161,7 @@ static void do_export(const char *dir, SB *o){
 }
 static void brain_stats(Brain *b, SB *o){
   double hop_us = b->hops_run ? (b->hop_ns - b->paste_ns) / 1000.0 / b->hops_run : 0, paste_us = b->pastes ? b->paste_ns / 1000.0 / b->pastes : 0;
-  sb_fmt(o, "{\"runs\":%lld,\"hops\":%lld,\"pending\":%d,\"gates\":%d,\"refused\":%lld,\"shards\":%lld,\"hop_us\":%.3f,\"pastes\":%lld,\"paste_us\":%.1f,\"hop_s\":%.3f,\"paste_s\":%.3f,\"returns\":%lld,\"return_us\":%.1f,\"return_s\":%.3f,\"receipts\":%lld,\"hops_run\":%lld}", (long long)b->nruns, (long long)b->hops_done, pending(b), b->label.n, (long long)b->refused_n, (long long)b->shards, hop_us, (long long)b->pastes, paste_us, (b->hop_ns - b->paste_ns) / 1e9, b->paste_ns / 1e9, (long long)b->secs, b->secs ? b->sec_ns / 1000.0 / b->secs : 0, b->sec_ns / 1e9, (long long)b->nrcs, (long long)b->hops_run);
+  sb_fmt(o, "{\"runs\":%lld,\"hops\":%lld,\"pending\":%d,\"gates\":%d,\"refused\":%lld,\"shards\":%lld,\"hop_us\":%.3f,\"pastes\":%lld,\"paste_us\":%.1f,\"hop_s\":%.3f,\"paste_s\":%.3f,\"returns\":%lld,\"return_us\":%.1f,\"return_s\":%.3f,\"receipts\":%lld,\"hops_run\":%lld,\"deduped_runs\":%lld}", (long long)b->nruns, (long long)b->hops_done, pending(b), b->label.n, (long long)b->refused_n, (long long)b->shards, hop_us, (long long)b->pastes, paste_us, (b->hop_ns - b->paste_ns) / 1e9, b->paste_ns / 1e9, (long long)b->secs, b->secs ? b->sec_ns / 1000.0 / b->secs : 0, b->sec_ns / 1e9, (long long)b->nrcs, (long long)b->hops_run, (long long)b->deduped);
 }
 /* the brain's own tables (rel, asked, spawned ...) back from an export, with their DDL, into mother's connection under the schema */
 static void load_own_tables(const char *schema, const char *path){
@@ -211,16 +212,17 @@ static void do_run(Brain *b, i64 id, SB *o){
   i64 *tree = malloc(sizeof(i64) * MAXRUNS); int nt = 0, qi = 0; tree[nt++] = id;
   while(qi < nt && nt < MAXRUNS){ Run *r = run_of(b, tree[qi++]); for(int i = 0; i < r->nkids && nt < MAXRUNS; i++) tree[nt++] = r->kids[i]; }
   sb_fmt(o, "{\"schema\":\"%s\",\"run\":{\"id\":%lld,\"arrival\":%d,\"parent\":", b->name, (long long)id, root->arrival); if(root->parent_set) sb_fmt(o, "%lld", (long long)root->parent); else sb_str(o, "null");
-  sb_fmt(o, ",\"root\":%lld,\"kind\":%d,\"cell\":%d,\"about\":%d,\"at\":%lld,\"from_hit\":%lld,\"ended\":%d,\"complete\":%d,\"hops\":%d,\"text\":", (long long)root->root, root->kind, root->cell, root->about, (long long)root->at, (long long)root->from_hit, root->ended, root->complete, root->nrc); sb_text_of(b, id, o, 400);
+  sb_fmt(o, ",\"root\":%lld,\"kind\":%d,\"cell\":%d,\"about\":%d,\"at\":%lld,\"from_hit\":%lld,\"ended\":%d,\"complete\":%d,\"hops\":%d,\"same_as\":%lld,\"again\":%lld,\"text\":", (long long)root->root, root->kind, root->cell, root->about, (long long)root->at, (long long)root->from_hit, root->ended, root->complete, root->same_as ? run_of(b, root->same_as)->nrc : root->nrc, (long long)root->same_as, (long long)root->again); sb_text_of(b, id, o, 400);
   sb_str(o, "},\"tree\":["); int tot = 0;
-  for(int i = 0; i < nt; i++){ Run *r = run_of(b, tree[i]); if(i) sb_str(o, ","); sb_fmt(o, "{\"id\":%lld,\"parent\":", (long long)tree[i]); if(r->parent_set) sb_fmt(o, "%lld", (long long)r->parent); else sb_str(o, "null"); sb_fmt(o, ",\"arrival\":%d,\"kind\":%d,\"cell\":%d,\"about\":%d,\"hops\":%d,\"ended\":%d,\"text\":", r->arrival, r->kind, r->cell, r->about, r->nrc, r->ended); sb_text_of(b, tree[i], o, 120); sb_str(o, "}"); tot += r->nrc; }
+  for(int i = 0; i < nt; i++){ Run *r = run_of(b, tree[i]); if(i) sb_str(o, ","); sb_fmt(o, "{\"id\":%lld,\"parent\":", (long long)tree[i]); if(r->parent_set) sb_fmt(o, "%lld", (long long)r->parent); else sb_str(o, "null"); sb_fmt(o, ",\"arrival\":%d,\"kind\":%d,\"cell\":%d,\"about\":%d,\"hops\":%d,\"ended\":%d,\"same_as\":%lld,\"text\":", r->arrival, r->kind, r->cell, r->about, r->same_as ? (run_of(b, r->same_as) ? run_of(b, r->same_as)->nrc : 0) : r->nrc, r->ended, (long long)r->same_as); sb_text_of(b, tree[i], o, 120); sb_str(o, "}"); tot += r->same_as ? (run_of(b, r->same_as) ? run_of(b, r->same_as)->nrc : 0) : r->nrc; }
   sb_fmt(o, "],\"tree_runs\":%d,\"tree_hops\":%d,\"hops\":[", nt, tot);
   /* the hops of the tree in the order they happened: every run's receipt indices are ascending, so a merge by receipt index gives the order */
   int *cur = calloc(nt, sizeof(int)); int first = 1, n = 0; HMap touched; hmap_init(&touched, 1024); HMap hitsh; hmap_init(&hitsh, 4096); int *tg = malloc(sizeof(int) * 4096); int ntg = 0, ctg = 4096;
-  for(;;){ int best = -1; i64 bi = 0; for(int i = 0; i < nt; i++){ Run *r = run_of(b, tree[i]); if(cur[i] < r->nrc){ i64 x = r->rc[cur[i]]; if(best < 0 || x < bi){ best = i; bi = x; } } } if(best < 0 || n >= MAXHOPS) break;
-    Rc *k = &b->rcs[bi]; cur[best]++; n++; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%lld,%d,%d,%lld,%d,%lld]", (long long)k->run, k->pos, k->gate, (long long)k->shard, k->via, (long long)bi + 1);
-    hmap_put(&hitsh, k->gate, k->shard, 1);
-    if(!hmap_get(&touched, k->gate, 0)){ hmap_put(&touched, k->gate, 0, 1); if(ntg >= ctg){ ctg *= 2; tg = realloc(tg, sizeof(int) * ctg); } tg[ntg++] = k->gate; } }
+  /* the hops of the tree, run by run in the order the runs were made; a repeated run shows the receipts of the run it repeats under its own number */
+  for(int i = 0; i < nt && n < MAXHOPS; i++){ Run *r = run_of(b, tree[i]); Run *src = r->same_as ? run_of(b, r->same_as) : r; if(!src) continue;
+    for(int j = 0; j < src->nrc && n < MAXHOPS; j++){ i64 bi = src->rc[j]; Rc *k = &b->rcs[bi]; n++; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%lld,%d,%d,%lld,%d,%lld]", (long long)tree[i], k->pos, k->gate, (long long)k->shard, k->via, (long long)bi + 1);
+      hmap_put(&hitsh, k->gate, k->shard, 1);
+      if(!hmap_get(&touched, k->gate, 0)){ hmap_put(&touched, k->gate, 0, 1); if(ntg >= ctg){ ctg *= 2; tg = realloc(tg, sizeof(int) * ctg); } tg[ntg++] = k->gate; } } }
   sb_fmt(o, "],\"hops_sent\":%d,\"gates\":{", n);
   /* every gate the hops touched: its symbol, its shards (the lines of the drawing), its definition rows, its memories, its relationship rows */
   if(!REL_Q){ char q[64]; snprintf(q, sizeof q, "SELECT kind, other FROM %s.rel WHERE gate = ?", b->name); sqlite3_prepare_v2(DB, q, -1, &REL_Q, 0); }
@@ -242,7 +244,8 @@ static void do_run(Brain *b, i64 id, SB *o){
     i64 rv = (c->value && runcell) ? atoll(c->value) : 0; Run *x = rv > 0 ? run_of(b, rv) : 0;
     if(x && strspn(c->value, "0123456789") == strlen(c->value)){ sb_fmt(o, "{\"run\":%lld,\"arrival\":%d,\"text\":", (long long)rv, x->arrival); sb_text_of(b, rv, o, 300); sb_str(o, "}"); }
     else if(c->value && (c->cell == label_gate(b, "known") || c->cell == label_gate(b, "unknown"))){ /* a list of gates: read back as symbols, the first sixty */ SB t = {0}; const char *q = c->value; int nw = 0, total = 0; while(*q){ while(*q == ' ') q++; if(!*q) break; int g = atoi(q); while(*q && *q != ' ') q++; total++; if(nw < 60 && g > 0 && g <= b->label.n){ if(nw) sb_str(&t, " "); sb_str(&t, b->label.sym[g]); nw++; } } if(total > nw) sb_fmt(&t, " … %d in all", total); sb_fmt(o, "{\"words\":%d,\"text\":", total); sb_json(o, t.s ? t.s : ""); sb_str(o, "}"); free(t.s); }
-    else sb_str(o, "null"); sb_str(o, "]"); }
+    else sb_str(o, "null");
+    sb_str(o, "]"); }
   /* step back: from this run to the line that started it, through the receipt each was made from */
   sb_str(o, "],\"back\":["); first = 1; i64 cur_run = id; int depth = 0;
   while(cur_run && depth < 64){ Run *r = run_of(b, cur_run); if(!r) break; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "{\"depth\":%d,\"run\":%lld,\"arrival\":%d,\"cell\":%d,\"text\":", depth, (long long)cur_run, r->arrival, r->cell); sb_text_of(b, cur_run, o, 100);

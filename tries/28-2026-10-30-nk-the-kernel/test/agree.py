@@ -27,7 +27,13 @@ class B:
     def S(s, g): return None if g is None else s.sym.get(g, f'?{g}')
     def text(s, run): return ''.join(s.S(g) for (g,) in rows(s.db, "SELECT gate FROM seq WHERE run = ? ORDER BY pos", run))
     def run(s, run): r = rows(s.db, "SELECT arrival, parent, kind, cell, about FROM run WHERE id = ?", run); return r[0] if r else None
+    def canonical(s, run):
+        # the kernel (2026-10-30, the owner's shape): a run that repeats an earlier identical run stores no receipts of its own and points at it
+        try: r = rows(s.db, "SELECT same_as FROM run WHERE id = ?", run)
+        except Exception: return run
+        return r[0][0] if r and r[0][0] else run
     def receipts(s, run):
+        run = s.canonical(run)
         out = [(p, s.S(g)) for (p, g) in rows(s.db, "SELECT pos, gate FROM run_receipt WHERE run = ? ORDER BY id", run)]
         # v6 bears INSERT, INTO ... with a born hop (pos p, 'born') before landing on them; the kernel's egg has them: that hop is left out of v6's list
         if s.name == 'v6':

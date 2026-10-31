@@ -28,6 +28,7 @@ case "$MODE" in
   type) python3 nkbottom.py 7007 --lines "$2" --ledger "out/LEDGER-$(basename "$2" .txt).md" --quiet | tail -1 | cut -c1-300 ;;
   snapshot) D="out/snap-$(date +%Y%m%d-%H%M%S)"; ask "snapshot /home/james/nk/$D" && rm -f out/snap-latest && ln -s "$(basename $D)" out/snap-latest && echo "snapshot: $D" ;;
   fresh)
+    if pgrep -x nk >/dev/null && [ "$2" != "--stop-the-running-kernel" ]; then echo "a kernel is running; fresh would replace its source files. Stop it first, or use a second kernel with its own folder (hp-agree-slice.sh)"; exit 1; fi
     pkill -x nk; pkill -f serve8.py; sleep 0.5; build; mkdir -p out
     rm -f sources/*.db; cp sources-egg/*.db sources/
     [ -s out/typed.txt ] && mv out/typed.txt "out/typed-until-$(date +%Y%m%d-%H%M%S).txt"; rm -f out/snap-latest

@@ -1,0 +1,14 @@
+kinds: {'like': 102868, 'opposite': 176}
+like graph: 26027 points, largest connected piece 26022 points, 99277 like lines
+eigenvalues [-0.       0.0433   0.06377  0.08705]; positions for 26022 points in 3 dimensions
+like      pairs 102537: distance median   0.051 mean   0.262; angle (cosine) median +0.999
+opposite  pairs    152: distance median   0.057 mean   6.533; angle (cosine) median +0.999
+random    pairs   4000: distance median   0.101 mean   4.162; angle (cosine) median +0.997
+locate test on 300 words with 3+ like neighbours: the true point is the nearest in 2%, within the nearest 3 in 4%, within 10 in 8%; median rank 1795; median distance to the true point 0.047 (like distance 0.051); chance of rank 1 by luck 1 in 26022
+the neighbours' centroid alone: nearest in 4%, within 10 in 11%, median rank 1110
+  'myself' from 11 neighbours (him, she, he, I, it): nearest to the located point ['ignorant', 'impulsive', 'hourly', 'unvaryingly', 'forevermore']
+  'journeyman' from 3 neighbours (authority, author, pro): nearest to the located point ['mentor', 'guru', 'starets', 'pundit', 'rabbi']
+  'rivaling' from 4 neighbours (over, better, rare, above): nearest to the located point ['babyhood', 'girlhood', 'tots', 'childkind', 'boyhood']
+  'bonzer' from 3 neighbours (great, mean, bad): nearest to the located point ['obliquity', 'monumental', 'overgrown', 'sickening', 'vomity']
+  'rateness' from 3 neighbours (value, quality, class): nearest to the located point ['folks', 'watershoot', 'nappe', 'falls', 'Niagara']
+  'data' from 226 neighbours (supposal, clue, technics, sumption, technique): nearest to the located point ['carrying', 'art', 'primitivism', 'impressionism', 'Dadaism']
