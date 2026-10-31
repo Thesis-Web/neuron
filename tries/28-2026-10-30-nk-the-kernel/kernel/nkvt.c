@@ -116,8 +116,8 @@ static i64 run_rowid(Cur *c){ return c->e; }
 static int run_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){ if(argc > 1 && sqlite3_value_type(argv[0]) != SQLITE_NULL){ Run *r = run_of(b, V(argv[0])); if(r){ r->root = V(argv[5]); } } return SQLITE_OK; }
 /* seq (run, pos, gate) */
 static void seq_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; if(idx >= 1){ i64 r = V(argv[0]); ENT_BEGIN(c, r, r); if(idx == 2) c->k1 = V(argv[1]); } else ENT_BEGIN(c, 1, c->b->nruns); }
-static const int *SEQP; static int SEQN; static i64 SEQRUN = -1;
-static void seq_of(Cur *c, i64 run){ if(run != SEQRUN){ SEQP = nk_seq(c->b, run, &SEQN); SEQRUN = run; } }
+static int *SEQP; static int SEQN, SEQCAPV; static i64 SEQRUN = -1;
+static void seq_of(Cur *c, i64 run){ if(run != SEQRUN){ int n; const int *p = nk_seq(c->b, run, &n); if(n > SEQCAPV){ SEQCAPV = n * 2 + 16; SEQP = realloc(SEQP, SEQCAPV * sizeof(int)); } if(p && n) memcpy(SEQP, p, n * sizeof(int)); SEQN = p ? n : 0; SEQRUN = run; } }
 static int seq_step(Cur *c){
   if(c->idx == 2){ if(c->started) return 0; c->started = 1; seq_of(c, c->e); if(!SEQP || c->k1 < 1 || c->k1 > SEQN) return 0; c->i = c->k1 - 1; return 1; }
   for(;;){ if(!c->started){ c->started = 1; c->i = -1; } if(!(c->e >= 1 && c->e <= c->e_end && c->e <= c->b->nruns)) return 0; seq_of(c, c->e); c->i++; if(SEQP && c->i < SEQN) return 1; c->e++; c->i = -1; if(c->e > c->e_end) return 0; }
@@ -142,8 +142,8 @@ static int sheet_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 
   cell_set(b, run, cell, (int)V(argv[4]), val); *rowid = (run << 16) | 1; return SQLITE_OK;
 }
 /* run_receipt (id, run, pos, gate, shard, kept): keyed by run (the run's own receipts, held or re-hopped); whole: every held receipt, run by run */
-static Rc *RCP; static int RCN, RCKEPT; static i64 RCRUN = -1;
-static void rcs_of(Cur *c, i64 run){ if(run != RCRUN){ RCN = nk_receipts(c->b, run, &RCP, &RCKEPT); RCRUN = run; } }
+static Rc *RCP; static int RCN, RCKEPT, RCCAPV; static i64 RCRUN = -1;
+static void rcs_of(Cur *c, i64 run){ if(run != RCRUN){ Rc *p; int n = nk_receipts(c->b, run, &p, &RCKEPT); if(n > RCCAPV){ RCCAPV = n * 2 + 16; RCP = realloc(RCP, RCCAPV * sizeof(Rc)); } if(p && n) memcpy(RCP, p, n * sizeof(Rc)); RCN = p ? n : 0; RCRUN = run; } }
 static void rc_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; c->i = -1; c->started = 0; RCRUN = -1; if(idx == 1){ c->k1 = V(argv[0]); ENT_BEGIN(c, c->k1, c->k1); } else ENT_BEGIN(c, 1, c->b->nruns); }
 static int rc_step(Cur *c){
   if(c->idx == 1){ rcs_of(c, c->k1); c->i++; return c->i < RCN; }
@@ -294,7 +294,7 @@ static int xBestIndex(sqlite3_vtab *tab, sqlite3_index_info *info){
 static int xOpen(sqlite3_vtab *tab, sqlite3_vtab_cursor **pc){ Cur *c = sqlite3_malloc(sizeof(Cur)); memset(c, 0, sizeof(*c)); c->d = ((VT*)tab)->d; c->b = ((VT*)tab)->b; *pc = &c->base; return SQLITE_OK; }
 static int xClose(sqlite3_vtab_cursor *pc){ sqlite3_free(pc); return SQLITE_OK; }
 static int xFilter(sqlite3_vtab_cursor *pc, int idxNum, const char *idxStr, int argc, sqlite3_value **argv){
-  Cur *c = (Cur*)pc; c->idx = idxNum; c->eof = 0; c->started = 0; c->i = -1; if(idxNum) c->d->keyed++; else c->d->scanned++; SEQRUN = -1;
+  Cur *c = (Cur*)pc; c->idx = idxNum; c->eof = 0; c->started = 0; c->i = -1; if(idxNum) c->d->keyed++; else c->d->scanned++; SEQRUN = -1; RCRUN = -1;
   /* an ISNULL constraint carries no argument: pass a NULL value so the key is 0 */
   sqlite3_value *args[3] = {0, 0, 0}; for(int i = 0; i < argc && i < 3; i++) args[i] = argv[i];
   static sqlite3_value *nullv = 0; if(!nullv){ sqlite3_stmt *st; sqlite3_prepare_v2(mother_db(), "SELECT NULL", -1, &st, 0); sqlite3_step(st); nullv = sqlite3_value_dup(sqlite3_column_value(st, 0)); sqlite3_finalize(st); }

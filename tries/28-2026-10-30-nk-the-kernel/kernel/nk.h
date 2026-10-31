@@ -72,7 +72,7 @@ typedef struct Brain {
   struct Brain *tell;                       /* the brain told when a prompt's run ends (main -> sixth) */
   int arrival_of_third;                     /* what a line in third arrives from: the sixth (5) in main, main (6) in the sixth */
   HMap hith;                                /* (run, ordinal) -> index+1 into hit, for the hits that carried a call or spawn */
-  i64 last_compacted, dropped_runs, dropped_receipts;   /* the cut: sub-runs made stubs when their main run completed */
+  i64 last_compacted, dropped_runs, dropped_receipts; i64 *deferred; int ndef, cdef;   /* runs the compaction passed while they were still running; looked at again next pass */   /* the cut: sub-runs made stubs when their main run completed */
   i64 hops_done, refused_n;
   i64 hop_ns, paste_ns, pastes, hops_run;  /* hops_run: hops done since this start (the mean is over these) */             /* where the time goes: inside the hops, inside mother's pastes */
   i64 cur_run; int cur_ord;                 /* the receipt whose span mother is pasting now (the returns it brings are made from it) */

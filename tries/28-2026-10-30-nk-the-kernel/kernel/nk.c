@@ -77,6 +77,7 @@ static void complete_run(Brain *b, i64 run){
   for(int i = 0; i < n; i++){ Cell *c = &r->cells[order[i]]; GROW(b->out, b->nout, b->cout, Out); Out *o = &b->out[b->nout]; o->id = b->nout + 1; o->run = run; o->cell = c->cell; o->value = c->value ? strdup(c->value) : 0; b->nout++; }
 }
 static int sheet_open(Run *r){ for(int i = 0; i < r->ncells; i++) if(r->cells[i].state == 0) return 1; return 0; }
+int sheet_open_pub(Brain *b, i64 run){ Run *r = run_of(b, run); return r ? sheet_open(r) : 0; }
 void cell_set(Brain *b, i64 run, int cell, int state, const char *value){
   Run *r = run_of(b, run); if(!r) return;
   Cell *c = 0; for(int i = 0; i < r->ncells; i++) if(r->cells[i].cell == cell){ c = &r->cells[i]; break; }
@@ -255,17 +256,20 @@ void pump_batch(Brain *b, int n){
    Kept: every main run (a line at a prompt) with its receipts and sheet; every run that repeats (a pattern, again > 0) with its receipts; the
    shards and their times; the node rows (each a pointer to the source row); the relationship rows. Let go: a sub-run's receipts and, where
    they can be read again from the source row or the run it replays, its symbols. What is let go is re-stepped on demand (nk_seq, nk_receipts). */
+/* 1 = nothing more to do for this run; 0 = it is still running (or its main run is), look again next pass */
+static int try_compact(Brain *b, i64 id){
+  Run *r = &b->runs[id]; if(r->kind == 0 || r->again > 0 || !r->kept) return 1;
+  Run *root = run_of(b, r->root); if(!r->ended || (root && !root->ended)) return 0;
+  if(r->nrc){ free(r->rcs); r->rcs = 0; r->crc = 0; b->dropped_receipts += r->nrc; r->nrc = 0; }
+  if(r->seq && !r->seq_shared && (r->src || r->replay_src)){ free(r->seq); r->seq = 0; }
+  else if(r->seq_shared){ r->seq = 0; r->seq_shared = 0; }
+  if(r->mem_input){ free(r->mem_input); r->mem_input = 0; }
+  r->kept = 0; b->dropped_runs++; return 1;
+}
 void nk_compact(Brain *b){
-  for(i64 id = b->last_compacted + 1; id <= b->nruns; id++){
-    Run *r = &b->runs[id];
-    /* called when nothing is left to run, so a run without an end is one that stalled (a landing refused at the top); it is left as it is */
-    Run *root = run_of(b, r->root); if(!r->ended || (root && !root->ended) || r->kind == 0 || r->again > 0 || !r->kept) continue;
-    if(r->nrc){ free(r->rcs); r->rcs = 0; r->crc = 0; b->dropped_receipts += r->nrc; r->nrc = 0; }
-    if(r->seq && !r->seq_shared && (r->src || r->replay_src)){ free(r->seq); r->seq = 0; }
-    else if(r->seq_shared){ r->seq = 0; r->seq_shared = 0; }
-    if(r->mem_input){ free(r->mem_input); r->mem_input = 0; }
-    r->kept = 0; b->dropped_runs++;
-  }
+  /* called between batches while runs are in flight (the chain) as well as after a typed line: a run passed while still running is deferred, not skipped for good (the fault of 2026-10-31: 14 M receipts kept under the chain) */
+  int keep = 0; for(int i = 0; i < b->ndef; i++){ i64 id = b->deferred[i]; if(!try_compact(b, id)) b->deferred[keep++] = id; } b->ndef = keep;
+  for(i64 id = b->last_compacted + 1; id <= b->nruns; id++) if(!try_compact(b, id)){ GROW(b->deferred, b->ndef, b->cdef, i64); b->deferred[b->ndef++] = id; }
   b->last_compacted = b->nruns;
 }
 static int *SEQBUF; static int SEQCAP;
@@ -331,7 +335,7 @@ int nk_load(Brain *b, const char *path){
         hmap_put(&b->hith, x->run, ord, b->nhit + 1); Neuron *ng = neuron_of(b, k->gate); if(ng){ GROW(ng->hits, ng->nhits, ng->chits, i64); ng->hits[ng->nhits++] = b->nhit; } b->nhit++; }
       b->hops_done++;
     } sqlite3_finalize(st); }
-  b->last_compacted = b->nruns;
+  b->last_compacted = 0;   /* the first compaction after a load looks at every loaded run: what the snapshot held of finished sub-runs is let go (the fault of 2026-10-31: 1.1 GB of receipts carried over) */
   if((st = Q(db, "SELECT run, input, source, gate, shard, at FROM run_memory ORDER BY run"))){ while(sqlite3_step(st) == SQLITE_ROW){ Run *r = run_of(b, I(st, 0)); if(!r) continue; r->mem_input = strdup(T(st, 1) ? T(st, 1) : ""); r->mem_source = atoi(T(st, 2) ? T(st, 2) : "0"); r->mem_gate = (int)I(st, 3); r->mem_shard = I(st, 4); r->mem_at = I(st, 5); r->has_mem = 1; r->ended = 1; if(!r->last_at){ r->last_at = r->at; r->last_run = I(st, 0); }
       r->clean = 1; for(int i = 0; i < r->nrc; i++) if(r->rcs[i].via){ r->clean = 0; break; }
       if(!r->same_as && r->seq){ i64 sh = (i64)seqhash(r->seq, r->nseq); hmap_put(&b->memh, sh, memkey2(r), I(st, 0)); r->mem_sibling = hmap_get(&b->memt, sh, 0); hmap_put(&b->memt, sh, 0, I(st, 0)); }
