@@ -77,6 +77,7 @@ static void complete_run(Brain *b, i64 run){
   for(int i = 0; i < n; i++){ Cell *c = &r->cells[order[i]]; GROW(b->out, b->nout, b->cout, Out); Out *o = &b->out[b->nout]; o->id = b->nout + 1; o->run = run; o->cell = c->cell; o->value = c->value ? strdup(c->value) : 0; b->nout++; }
 }
 static int sheet_open(Run *r){ for(int i = 0; i < r->ncells; i++) if(r->cells[i].state == 0) return 1; return 0; }
+int sheet_open_pub(Brain *b, i64 run){ Run *r = run_of(b, run); return r ? sheet_open(r) : 0; }
 void cell_set(Brain *b, i64 run, int cell, int state, const char *value){
   Run *r = run_of(b, run); if(!r) return;
   Cell *c = 0; for(int i = 0; i < r->ncells; i++) if(r->cells[i].cell == cell){ c = &r->cells[i]; break; }
@@ -255,17 +256,20 @@ void pump_batch(Brain *b, int n){
    Kept: every main run (a line at a prompt) with its receipts and sheet; every run that repeats (a pattern, again > 0) with its receipts; the
    shards and their times; the node rows (each a pointer to the source row); the relationship rows. Let go: a sub-run's receipts and, where
    they can be read again from the source row or the run it replays, its symbols. What is let go is re-stepped on demand (nk_seq, nk_receipts). */
+/* 1 = nothing more to do for this run; 0 = it is still running (or its main run is), look again next pass */
+static int try_compact(Brain *b, i64 id){
+  Run *r = &b->runs[id]; if(r->kind == 0 || r->again > 0 || !r->kept) return 1;
+  Run *root = run_of(b, r->root); if(!r->ended || (root && !root->ended)) return 0;
+  if(r->nrc){ free(r->rcs); r->rcs = 0; r->crc = 0; b->dropped_receipts += r->nrc; r->nrc = 0; }
+  if(r->seq && !r->seq_shared && (r->src || r->replay_src)){ free(r->seq); r->seq = 0; }
+  else if(r->seq_shared){ r->seq = 0; r->seq_shared = 0; }
+  if(r->mem_input){ free(r->mem_input); r->mem_input = 0; }
+  r->kept = 0; b->dropped_runs++; return 1;
+}
 void nk_compact(Brain *b){
-  for(i64 id = b->last_compacted + 1; id <= b->nruns; id++){
-    Run *r = &b->runs[id];
-    /* called when nothing is left to run, so a run without an end is one that stalled (a landing refused at the top); it is left as it is */
-    Run *root = run_of(b, r->root); if(!r->ended || (root && !root->ended) || r->kind == 0 || r->again > 0 || !r->kept) continue;
-    if(r->nrc){ free(r->rcs); r->rcs = 0; r->crc = 0; b->dropped_receipts += r->nrc; r->nrc = 0; }
-    if(r->seq && !r->seq_shared && (r->src || r->replay_src)){ free(r->seq); r->seq = 0; }
-    else if(r->seq_shared){ r->seq = 0; r->seq_shared = 0; }
-    if(r->mem_input){ free(r->mem_input); r->mem_input = 0; }
-    r->kept = 0; b->dropped_runs++;
-  }
+  /* called between batches while runs are in flight (the chain) as well as after a typed line: a run passed while still running is deferred, not skipped for good (the fault of 2026-10-31: 14 M receipts kept under the chain) */
+  int keep = 0; for(int i = 0; i < b->ndef; i++){ i64 id = b->deferred[i]; if(!try_compact(b, id)) b->deferred[keep++] = id; } b->ndef = keep;
+  for(i64 id = b->last_compacted + 1; id <= b->nruns; id++) if(!try_compact(b, id)){ GROW(b->deferred, b->ndef, b->cdef, i64); b->deferred[b->ndef++] = id; }
   b->last_compacted = b->nruns;
 }
 static int *SEQBUF; static int SEQCAP;

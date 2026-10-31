@@ -1,6 +1,7 @@
 /* nkio.c (2026-10-30): mother (the paste and the mother() function the sources' triggers call), the egg, the socket the door talks to,
    the export of every region as rows for the diff, and the loop: a request when one arrives, a batch of each brain's stack otherwise. */
 #include "nk.h"
+#include <malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -110,16 +111,16 @@ static void pump_all(int batch){ pump_batch(&MAINB, batch); pump_batch(&SIXTHB, 
 static double now_s(void){ struct timeval tv; gettimeofday(&tv, 0); return tv.tv_sec + tv.tv_usec / 1e6; }
 
 static FILE *JOURNAL;
+int sheet_open_pub(Brain *b, i64 run);
 static void do_type(Brain *b, const char *text, SB *o){
   if(JOURNAL){ fprintf(JOURNAL, "%s%s\n", b->is_main ? "" : "6> ", text); fflush(JOURNAL); }
   i64 runs0 = b->nruns, hops0 = MAINB.hops_done + SIXTHB.hops_done, gates0 = MAINB.label.n, ref0 = MAINB.refused_n + SIXTHB.refused_n, outm = MAINB.nout, outs = SIXTHB.nout;
   double t0 = now_s();
   line_in(b, 0, text);
   i64 rid = runs0 + 1;
-  /* until the typed line's own run has ended, or nothing is left to run */
-  for(;;){ Run *r = run_of(b, rid); if((r && r->ended) || (pending(&MAINB) == 0 && pending(&SIXTHB) == 0)) break; pump_all(64); }
-  /* then let what it left run out, so the sheet is whole (as the bottom waited) */
-  while(pending(&MAINB) || pending(&SIXTHB)) pump_all(64);
+  /* until the typed line's own run has ended and its sheet is whole, or nothing is left to run; what the line left (the sixth's sends) runs on between requests */
+  for(;;){ Run *r = run_of(b, rid); if((r && r->ended && !sheet_open_pub(b, rid)) || (pending(&MAINB) == 0 && pending(&SIXTHB) == 0)) break; pump_all(64); }
+  if(getenv("NK_WAIT_EMPTY")) while(pending(&MAINB) || pending(&SIXTHB)) pump_all(64);
   i64 hits = 0; for(i64 i = rid; i <= b->nruns; i++){ Run *r = run_of(b, i); if(r && (r->root == rid || i == rid)) hits += r->nhops; }
   nk_compact(&MAINB); nk_compact(&SIXTHB);
   sb_fmt(o, "{\"schema\":\"%s\",\"run\":%lld,\"runs\":%lld,\"hits\":%lld,\"hops\":%lld,\"born\":%lld,\"refused\":%lld,\"seconds\":%.3f,\"out\":[", b->name, (long long)rid, (long long)(b->nruns - runs0), (long long)hits, (long long)(MAINB.hops_done + SIXTHB.hops_done - hops0), (long long)(MAINB.label.n - gates0), (long long)(MAINB.refused_n + SIXTHB.refused_n - ref0), now_s() - t0);
@@ -137,7 +138,7 @@ static void do_graph(Brain *b, SB *o){
   for(int g = 1; g <= b->label.n; g++){ Neuron *n = neuron_of(b, g); if(!n || !n->born) continue; tables++; for(int i = 0; i < n->nsh; i++){ Shard *s = &n->sh[i]; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%d,%lld,", g, (long long)s->id); if(s->before) sb_fmt(o, "%d,", s->before); else sb_str(o, "null,"); if(s->trigger) sb_fmt(o, "%d,", s->trigger); else sb_str(o, "null,"); if(s->call) sb_fmt(o, "%lld,", (long long)s->call); else sb_str(o, "null,"); if(s->spawn) sb_fmt(o, "%lld,", (long long)s->spawn); else sb_str(o, "null,"); sb_fmt(o, "%lld]", (long long)s->times); } }
   sb_str(o, "],\"nodes\":{"); first = 1; for(int g = 1; g <= b->label.n; g++){ Neuron *n = neuron_of(b, g); if(!n || !n->born) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%d\":%d", g, n->nnode); }
   sb_str(o, "},\"mem\":{"); first = 1; for(int g = 1; g <= b->label.n; g++){ Neuron *n = neuron_of(b, g); if(!n || !n->nmem) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%d\":%d", g, n->nmem); }
-  sb_str(o, "},\"first\":{"); first = 1; for(i64 i = 1; i <= b->nruns; i++){ Run *r = run_of(b, i); if(!r || !r->nseq) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%lld\":%d", (long long)i, r->seq[0]); }
+  sb_str(o, "},\"first\":{"); first = 1; for(i64 i = 1; i <= b->nruns; i++){ Run *r = run_of(b, i); if(!r || !r->nseq || !r->seq) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%lld\":%d", (long long)i, r->seq[0]); }
   sb_fmt(o, "},\"tables\":%d,\"rel\":[", tables);
   char q[64]; snprintf(q, sizeof q, "SELECT gate, kind, other, run FROM %s.rel", b->name); sqlite3_stmt *st = 0; first = 1;
   if(sqlite3_prepare_v2(DB, q, -1, &st, 0) == SQLITE_OK){ while(sqlite3_step(st) == SQLITE_ROW){ if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%lld,%lld,%lld,%lld]", (long long)sqlite3_column_int64(st, 0), (long long)sqlite3_column_int64(st, 1), (long long)sqlite3_column_int64(st, 2), (long long)sqlite3_column_int64(st, 3)); } sqlite3_finalize(st); }
@@ -205,7 +206,7 @@ static void do_snapshot(const char *dir, SB *o){
   char *tp = sqlite3_mprintf("%s/typed-lines.txt", dir); FILE *t = fopen(tp, "w"); if(t){ fprintf(t, "%ld\n", typed); fclose(t); } sqlite3_free(tp);
   sb_fmt(o, "{\"snapshot\":\"%s\",\"typed_lines\":%ld,\"source_files\":%d,\"main_runs\":%lld,\"sixth_runs\":%lld}", dir, typed, copied, (long long)MAINB.nruns, (long long)SIXTHB.nruns);
 }
-static void do_stats(SB *o){ sb_str(o, "{\"main\":"); brain_stats(&MAINB, o); sb_str(o, ",\"sixth\":"); brain_stats(&SIXTHB, o); sb_str(o, "}"); }
+static void do_stats(SB *o){ struct mallinfo2 mi = mallinfo2(); sb_str(o, "{\"main\":"); brain_stats(&MAINB, o); sb_str(o, ",\"sixth\":"); brain_stats(&SIXTHB, o); sb_fmt(o, ",\"heap_MB\":%.0f}", (mi.uordblks + mi.hblkhd) / 1048576.0); }
 
 static int prof_cmp(const void *a, const void *b){ const Prof *x = *(Prof* const*)a, *y = *(Prof* const*)b; return y->ns > x->ns ? 1 : (y->ns < x->ns ? -1 : 0); }
 static void do_profile(SB *o, int top){
@@ -276,7 +277,6 @@ static void do_newest(Brain *b, int n, SB *o){
   sb_fmt(o, "],\"inputs\":%lld,\"told_n\":%lld}", (long long)b->ninput, (long long)b->nthird);
 }
 /* where the memory is: every region summed from its own sizes, and the heap and SQLite as they report themselves */
-#include <malloc.h>
 static void do_memory(Brain *b, SB *o){
   double MB = 1024.0 * 1024.0; i64 runs_b = (i64)b->cruns * sizeof(Run), rcs_b = 0, seq_b = 0, cells_b = 0, kids_b = 0, mem_b = 0, nkept = 0, nseqheld = 0, ncells = 0;
   for(i64 i = 1; i <= b->nruns; i++){ Run *r = &b->runs[i]; rcs_b += (i64)r->crc * sizeof(Rc); if(r->nrc) nkept++; if(r->seq && !r->seq_shared){ seq_b += ((r->nseq + 63) / 64) * 64 * sizeof(int); nseqheld++; } for(int c = 0; c < r->ncells; c++){ cells_b += sizeof(Cell) + (r->cells[c].value ? strlen(r->cells[c].value) + 1 + 16 : 0); ncells++; } cells_b += (i64)(r->ccells - r->ncells) * sizeof(Cell); kids_b += (i64)r->ckids * 8; if(r->mem_input) mem_b += strlen(r->mem_input) + 1 + 16; }
@@ -326,9 +326,10 @@ int main(int argc, char **argv){
   if(bind(s, (struct sockaddr*)&a, sizeof a) < 0 || listen(s, 8) < 0){ perror("listen"); return 1; }
   fprintf(stderr, "nk: %d symbols laid in each brain, listening on 127.0.0.1:%d\n", MAINB.label.n, port);
   for(;;){
-    struct pollfd p = {s, POLLIN, 0}; int timeout = (pending(&MAINB) || pending(&SIXTHB)) ? 0 : -1;
+    int busy = pending(&MAINB) || pending(&SIXTHB);
+    struct pollfd p = {s, POLLIN, 0}; int timeout = busy ? 0 : -1;
     int r = poll(&p, 1, timeout);
-    if(r <= 0){ pump_all(64); continue; }
+    if(r <= 0){ if(busy){ pump_all(256); nk_compact(&MAINB); nk_compact(&SIXTHB); } continue; }
     int c = accept(s, 0, 0); if(c < 0) continue;
     SB req = {0}; char buf[65536]; ssize_t n;
     while((n = read(c, buf, sizeof buf)) > 0){ sb_put(&req, buf, n); if(memchr(buf, '\n', n)) break; }
