@@ -43,7 +43,7 @@ static int label_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 
 /* neuron (gate, born) */
 static void neuron_begin(Cur *c, int idx, sqlite3_value **argv){ if(idx == 1){ i64 g = V(argv[0]); ENT_BEGIN(c, g, g); } else ENT_BEGIN(c, 1, c->b->label.n); }
 static int neuron_step(Cur *c){ if(!c->started) c->started = 1; else c->e++; return c->e >= 1 && c->e <= c->e_end && c->e <= c->b->label.n; }
-static void neuron_col(Cur *c, sqlite3_context *x, int col){ Neuron *n = neuron_of(c->b, (int)c->e); if(col == 0) R(x, c->e); else R(x, n ? n->born : 0); }
+static void neuron_col(Cur *c, sqlite3_context *x, int col){ Neuron *n = neuron_of(c->b, (int)c->e); switch(col){ case 0: R(x, c->e); break; case 1: R(x, n ? n->born : 0); break; case 2: R(x, n ? n->narrived : 0); break; case 3: R(x, n ? n->nnode : 0); break; case 4: R(x, n ? n->nmem : 0); break; case 5: R(x, n ? n->nsh : 0); break; } }
 static int neuron_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){
   if(argc == 1) return SQLITE_OK;
   i64 g = V(argv[2]); Neuron *n = neuron_of(b, (int)g);
@@ -85,6 +85,7 @@ static int dna_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *r
   Shard *s = &n->sh[ix];
   int nb = (int)V(argv[4]), nt = (int)V(argv[5]);
   if(nb != s->before || nt != s->trigger){ hmap_del(&n->h, s->before, s->trigger); s->before = nb; s->trigger = nt; hmap_put(&n->h, nb, nt, ix + 1); }
+  if(s->call != V(argv[6]) || s->spawn != V(argv[7])) s->changed_at = b->clock;
   s->call = V(argv[6]); s->spawn = V(argv[7]); s->times = V(argv[8]);
   return SQLITE_OK;
 }
@@ -110,7 +111,7 @@ static int run_step(Cur *c){
   if(!c->started) c->started = 1; else c->e++;
   return c->e >= 1 && c->e <= c->e_end && c->e <= c->b->nruns;
 }
-static void run_col(Cur *c, sqlite3_context *x, int col){ Run *r = run_of(c->b, c->e); switch(col){ case 0: R(x, c->e); break; case 1: R(x, r->arrival); break; case 2: if(r->parent_set) R(x, r->parent); else sqlite3_result_null(x); break; case 3: R(x, r->root); break; case 4: R(x, r->kind); break; case 5: RN(x, r->cell); break; case 6: RN(x, r->about); break; case 7: R(x, r->at); break; case 8: R(x, r->moment); break; case 9: RN(x, r->from_hit); break; case 10: if(r->build_pos >= 0) R(x, r->build_pos); else sqlite3_result_null(x); break; } }
+static void run_col(Cur *c, sqlite3_context *x, int col){ Run *r = run_of(c->b, c->e); switch(col){ case 0: R(x, c->e); break; case 1: R(x, r->arrival); break; case 2: if(r->parent_set) R(x, r->parent); else sqlite3_result_null(x); break; case 3: R(x, r->root); break; case 4: R(x, r->kind); break; case 5: RN(x, r->cell); break; case 6: RN(x, r->about); break; case 7: R(x, r->at); break; case 8: R(x, r->moment); break; case 9: RN(x, r->from_hit); break; case 10: if(r->build_pos >= 0) R(x, r->build_pos); else sqlite3_result_null(x); break; case 11: RN(x, r->same_as); break; case 12: R(x, r->again); break; case 13: R(x, r->last_at); break; case 14: R(x, r->last_run); break; case 15: R(x, r->ended); break; } }
 static i64 run_rowid(Cur *c){ return c->e; }
 static int run_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){ if(argc > 1 && sqlite3_value_type(argv[0]) != SQLITE_NULL){ Run *r = run_of(b, V(argv[0])); if(r){ r->root = V(argv[5]); } } return SQLITE_OK; }
 /* seq (run, pos, gate) */
@@ -141,18 +142,21 @@ static int sheet_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 
 /* run_receipt (id, run, pos, gate, shard): keyed by run (the run's own list) and by id > X / id >= X (a slice of the brain's array, for the page's history read) */
 static void rc_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; c->i = -1; c->started = 0; if(idx == 1){ c->k1 = V(argv[0]); ENT_BEGIN(c, 0, 0); } else if(idx == 2){ ENT_BEGIN(c, V(argv[0]), c->b->nrcs - 1); } else if(idx == 3){ i64 x = V(argv[0]) - 1; ENT_BEGIN(c, x < 0 ? 0 : x, c->b->nrcs - 1); } else ENT_BEGIN(c, 0, c->b->nrcs - 1); }
 static int rc_step(Cur *c){
-  if(c->idx == 1){ Run *r = run_of(c->b, c->k1); if(!r) return 0; c->i++; if(c->i < r->nrc){ c->e = r->rc[c->i]; return 1; } return 0; }
+  if(c->idx == 1){ Run *r = run_of(c->b, c->k1); if(!r) return 0; if(r->same_as) r = run_of(c->b, r->same_as); if(!r) return 0; c->i++; if(c->i < r->nrc){ c->e = r->rc[c->i]; return 1; } return 0; }
   if(!c->started) c->started = 1; else c->e++; return c->e >= 0 && c->e <= c->e_end;
 }
-static void rc_col(Cur *c, sqlite3_context *x, int col){ Rc *k = &c->b->rcs[c->e]; switch(col){ case 0: R(x, c->e + 1); break; case 1: R(x, k->run); break; case 2: R(x, k->pos); break; case 3: R(x, k->gate); break; case 4: R(x, k->shard); break; } }
+static void rc_col(Cur *c, sqlite3_context *x, int col){ Rc *k = &c->b->rcs[c->e]; switch(col){ case 0: R(x, c->e + 1); break; case 1: R(x, c->idx == 1 ? c->k1 : k->run); break; case 2: R(x, k->pos); break; case 3: R(x, k->gate); break; case 4: R(x, k->shard); break; } }
 static i64 rc_rowid(Cur *c){ return c->e + 1; }
 /* run_memory (run, input, source, gate, shard, at): keys run, gate (the neuron's ended list), input (the newest with that input) */
-static void mem_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; c->i = -1; c->started = 0; if(idx == 1){ i64 r = V(argv[0]); ENT_BEGIN(c, r, r); } else if(idx == 2){ c->k1 = V(argv[0]); ENT_BEGIN(c, 0, 0); } else if(idx == 3){ const char *s = (const char*)sqlite3_value_text(argv[0]); i64 run = s ? hmap_get(&c->b->memh, (i64)strhash(s), 1) : 0; ENT_BEGIN(c, run, run); } else ENT_BEGIN(c, 1, c->b->nruns); }
+static void mem_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; c->i = -1; c->started = 0; if(idx == 1){ i64 r = V(argv[0]); ENT_BEGIN(c, r, r); } else if(idx == 2){ c->k1 = V(argv[0]); ENT_BEGIN(c, 0, 0); }
+  else if(idx == 3){ /* the symbols as text "g g g": hashed as a seq, then the chain of memory rows with those symbols */ const char *s = (const char*)sqlite3_value_text(argv[0]); int buf[4096], n = 0; if(s){ const char *q = s; while(*q && n < 4096){ while(*q == ' ') q++; if(!*q) break; buf[n++] = atoi(q); while(*q && *q != ' ') q++; } } i64 head = n ? hmap_get(&c->b->memt, (i64)seqhash(buf, n), 0) : 0; ENT_BEGIN(c, head, head); }
+  else ENT_BEGIN(c, 1, c->b->nruns); }
 static int mem_step(Cur *c){
   if(c->idx == 2){ Neuron *n = neuron_of(c->b, (int)c->k1); if(!n) return 0; c->i++; if(c->i < n->nmem){ c->e = n->mem_runs[c->i]; return 1; } return 0; }
-  for(;;){ if(!c->started) c->started = 1; else c->e++; if(!(c->e >= 1 && c->e <= c->e_end && c->e <= c->b->nruns)) return 0; Run *r = run_of(c->b, c->e); if(r && r->has_mem) return 1; }
+  if(c->idx == 3){ if(!c->started){ c->started = 1; return c->e > 0; } Run *r = run_of(c->b, c->e); if(!r || !r->mem_sibling) return 0; c->e = r->mem_sibling; return 1; }
+  for(;;){ if(!c->started) c->started = 1; else c->e++; if(!(c->e >= 1 && c->e <= c->e_end && c->e <= c->b->nruns)) return 0; Run *r = run_of(c->b, c->e); if(r && r->has_mem && !r->same_as) return 1; }
 }
-static void mem_col(Cur *c, sqlite3_context *x, int col){ Run *r = run_of(c->b, c->e); switch(col){ case 0: R(x, c->e); break; case 1: RT(x, r->mem_input); break; case 2: { char t[24]; snprintf(t, sizeof t, "%d", r->mem_source); RT(x, t); } break; case 3: R(x, r->mem_gate); break; case 4: R(x, r->mem_shard); break; case 5: R(x, r->mem_at); break; } }
+static void mem_col(Cur *c, sqlite3_context *x, int col){ Run *r = run_of(c->b, c->e); switch(col){ case 0: R(x, c->e); break; case 1: RT(x, r->mem_input); break; case 2: { char t[24]; snprintf(t, sizeof t, "%d", r->mem_source); RT(x, t); } break; case 3: R(x, r->mem_gate); break; case 4: R(x, r->mem_shard); break; case 5: R(x, r->mem_at); break; case 6: R(x, r->again); break; case 7: R(x, r->last_at); break; case 8: R(x, r->last_run); break; } }
 static i64 mem_rowid(Cur *c){ return c->e; }
 /* timeline (id, at, run, key1, key2) */
 static void tl_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, c->b->ntl - 1); }
@@ -188,7 +192,7 @@ static void ref_col(Cur *c, sqlite3_context *x, int col){ Refused *r = &c->b->re
 static void hit_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; c->i = -1; c->started = 0; if(idx == 1 || idx == 2){ c->k1 = V(argv[0]); ENT_BEGIN(c, 0, 0); } else if(idx == 3){ i64 id = V(argv[0]) - 1; ENT_BEGIN(c, id, (id >= 0 && id < c->b->nrcs) ? id : -1); } else ENT_BEGIN(c, 0, c->b->nrcs - 1); }
 static int hit_step(Cur *c){
   if(c->idx == 1){ Neuron *n = neuron_of(c->b, (int)c->k1); if(!n) return 0; c->i++; if(c->i < n->nhits){ c->e = n->hits[c->i]; return 1; } return 0; }
-  if(c->idx == 2){ Run *r = run_of(c->b, c->k1); if(!r) return 0; c->i++; if(c->i < r->nrc){ c->e = r->rc[c->i]; return 1; } return 0; }   /* the run's own hits, in order */
+  if(c->idx == 2){ Run *r = run_of(c->b, c->k1); if(!r) return 0; if(r->same_as) r = run_of(c->b, r->same_as); if(!r) return 0; c->i++; if(c->i < r->nrc){ c->e = r->rc[c->i]; return 1; } return 0; }   /* the run's own hits, in order (a repeat: the run it repeats) */
   if(!c->started) c->started = 1; else c->e++; return c->e >= 0 && c->e <= c->e_end;
 }
 static void hit_col(Cur *c, sqlite3_context *x, int col){
@@ -197,7 +201,7 @@ static void hit_col(Cur *c, sqlite3_context *x, int col){
   int before = k->via ? (k->pos >= 1 && k->pos <= r->nseq ? r->seq[k->pos - 1] : 0) : (k->pos >= 2 && k->pos - 1 <= r->nseq ? r->seq[k->pos - 2] : 0);
   int next = (k->pos + 1 <= r->nseq) ? r->seq[k->pos] : 0;
   i64 hx = hmap_get(&c->b->hith, c->e + 1, 0); Hit *h = hx ? &c->b->hit[hx - 1] : 0;
-  switch(col){ case 0: R(x, c->e + 1); break; case 1: R(x, k->run); break; case 2: R(x, k->pos); break; case 3: R(x, k->gate); break; case 4: RN(x, before); break; case 5: RN(x, next); break; case 6: R(x, k->via); break; case 7: R(x, k->had); break; case 8: R(x, k->shard); break; case 9: RN(x, h ? h->call : 0); break; case 10: RN(x, h ? h->spawn : 0); break; }
+  switch(col){ case 0: R(x, c->e + 1); break; case 1: R(x, c->idx == 2 ? c->k1 : k->run); break; case 2: R(x, k->pos); break; case 3: R(x, k->gate); break; case 4: RN(x, before); break; case 5: RN(x, next); break; case 6: R(x, k->via); break; case 7: R(x, k->had); break; case 8: R(x, k->shard); break; case 9: RN(x, h ? h->call : 0); break; case 10: RN(x, h ? h->spawn : 0); break; }
 }
 static i64 hit_rowid(Cur *c){ if(c->idx == 1) return c->b->hit[c->e].id; return c->e + 1; }
 /* hop (id, text, p1, p2, p3): the stack as it stands, the row that runs next last; land (id, run, pos, gate, before, next, via): every landing, as v6's land table, read from the receipts */
@@ -229,14 +233,14 @@ static i64 plain_rowid(Cur *c){ return c->e + 1; }
 
 static TDesc TABLES[] = {
   {"label", "CREATE TABLE x(gate INTEGER, symbol TEXT)", 2, 2, {{0},{1}}, {1,1}, label_begin, label_step, label_col, label_rowid, label_update},
-  {"neuron", "CREATE TABLE x(gate INTEGER, born INTEGER)", 2, 1, {{0}}, {1}, neuron_begin, neuron_step, neuron_col, label_rowid, neuron_update},
+  {"neuron", "CREATE TABLE x(gate INTEGER, born INTEGER, arrived INTEGER, nodes INTEGER, memories INTEGER, shards INTEGER)", 6, 1, {{0}}, {1}, neuron_begin, neuron_step, neuron_col, label_rowid, neuron_update},   /* arrived: runs that arrived from this gate (a source's returns); the counts a formula reads by key */
   {"dna", "CREATE TABLE x(gate INTEGER, shard INTEGER, before INTEGER, trigger INTEGER, call INTEGER, spawn INTEGER, times INTEGER)", 7, 2, {{0,2,3},{0}}, {3,1}, dna_begin, dna_step, dna_col, dna_rowid, dna_update},
   {"node", "CREATE TABLE x(gate INTEGER, id INTEGER, source INTEGER, run INTEGER)", 4, 1, {{0}}, {1}, node_begin, node_step, node_col, node_rowid, node_update},
-  {"run", "CREATE TABLE x(id INTEGER, arrival INTEGER, parent INTEGER, root INTEGER, kind INTEGER, cell INTEGER, about INTEGER, at INTEGER, moment INTEGER, from_hit INTEGER, build_pos INTEGER)", 11, 4, {{0},{2},{6},{1}}, {1,1,1,1}, run_begin, run_step, run_col, run_rowid, run_update},   /* from_hit, build_pos: the kernel's (step back; a span open at a snapshot) */
+  {"run", "CREATE TABLE x(id INTEGER, arrival INTEGER, parent INTEGER, root INTEGER, kind INTEGER, cell INTEGER, about INTEGER, at INTEGER, moment INTEGER, from_hit INTEGER, build_pos INTEGER, same_as INTEGER, again INTEGER, last_at INTEGER, last_run INTEGER, ended INTEGER)", 16, 4, {{0},{2},{6},{1}}, {1,1,1,1}, run_begin, run_step, run_col, run_rowid, run_update},   /* from_hit, build_pos: the kernel's (step back; a span open at a snapshot) */
   {"seq", "CREATE TABLE x(run INTEGER, pos INTEGER, gate INTEGER)", 3, 2, {{0},{0,1}}, {1,2}, seq_begin, seq_step, seq_col, seq_rowid, seq_update},
   {"run_sheet", "CREATE TABLE x(run INTEGER, cell INTEGER, state INTEGER, value TEXT)", 4, 2, {{0},{0,1}}, {1,2}, sheet_begin, sheet_step, sheet_col, sheet_rowid, sheet_update},
   {"run_receipt", "CREATE TABLE x(id INTEGER, run INTEGER, pos INTEGER, gate INTEGER, shard INTEGER)", 5, 1, {{1}}, {1}, rc_begin, rc_step, rc_col, rc_rowid, 0},   /* + id > X / id >= X in xBestIndex */
-  {"run_memory", "CREATE TABLE x(run INTEGER, input TEXT, source TEXT, gate INTEGER, shard INTEGER, at INTEGER)", 6, 3, {{0},{3},{1}}, {1,1,1}, mem_begin, mem_step, mem_col, mem_rowid, 0},
+  {"run_memory", "CREATE TABLE x(run INTEGER, input TEXT, source TEXT, gate INTEGER, shard INTEGER, at INTEGER, again INTEGER, last_at INTEGER, last_run INTEGER)", 9, 3, {{0},{3},{1}}, {1,1,1}, mem_begin, mem_step, mem_col, mem_rowid, 0},   /* one row per run with its own receipts; again / last_at / last_run count its repeats (the owner's shape) */
   {"timeline", "CREATE TABLE x(id INTEGER, at INTEGER, run INTEGER, key1 INTEGER, key2 INTEGER)", 5, 0, {{0}}, {0}, tl_begin, tl_step, tl_col, tl_rowid, 0},
   {"input", "CREATE TABLE x(id INTEGER, text TEXT, run INTEGER)", 3, 0, {{0}}, {0}, in_begin, in_step, in_col, in_rowid, in_update},
   {"third", "CREATE TABLE x(id INTEGER, text TEXT, run INTEGER)", 3, 0, {{0}}, {0}, th_begin, th_step, th_col, in_rowid, th_update},

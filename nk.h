@@ -20,7 +20,7 @@ void  hmap_del(HMap *m, i64 k1, i64 k2);
 /* a string table: symbol -> gate (hash by content), gate -> symbol (array) */
 typedef struct { char **sym; int n, cap; HMap h; } Label;
 
-typedef struct { i64 id; int before, trigger; i64 call, spawn, times; } Shard;   /* before/trigger 0 = NULL */
+typedef struct { i64 id; int before, trigger; i64 call, spawn, times; i64 changed_at; } Shard;   /* before/trigger 0 = NULL; changed_at: the clock when call or spawn was last written */
 typedef struct { int source; i64 run; } NodeRow;
 typedef struct { int born; Shard *sh; int nsh, csh; HMap h; NodeRow *node; int nnode, cnode; i64 *about_runs; int nabout, cabout; i64 *mem_runs; int nmem, cmem; i64 *hits; int nhits, chits; i64 *arrived; int narrived, carrived; } Neuron;   /* arrived: the runs that arrived from this gate */   /* hits: the hits on this neuron that carried a call or spawn (what the standing question shape reads) */
 
@@ -34,8 +34,11 @@ typedef struct {
   int ended, complete, build_pos;          /* build_pos: the open BUILD mark, -1 when none */
   i64 *kids; int nkids, ckids;             /* the runs under this one, so a formula finds them by key */
   i64 from_hit;                            /* the receipt (hit) in this brain whose call, spawn or BUILD span made this run; 0 for a line at a prompt: step back */
-  /* the memory of a run that ended (the owner's shape, one per run today) */
+  /* the memory of a run that ended. The owner's shape (the prose; v5 strayed from it): a run that repeats an earlier identical run is not a
+     second row but a tick on the first: same_as names that run, which keeps again (how many times) and last_at / last_run (the newest). A
+     repeated run stores no receipts and shares the first's seq; its hops still happen and the shards' times still tick. */
   char *mem_input; int mem_source, mem_gate; i64 mem_shard, mem_at; int has_mem;
+  i64 same_as, again, last_at, last_run, mem_sibling; int nhops_run, seq_shared, clean;   /* clean: ended with no born hop, so a repeat hits the same shards; mem_sibling: the next memory row with the same symbols from another arrival */
 } Run;
 
 typedef struct { i64 at, run; int key1, key2; } Tl;
@@ -62,7 +65,10 @@ typedef struct Brain {
   Hit *hit; i64 nhit, chit;
   Rc *rcs; i64 nrcs, crcs;                  /* every receipt, in the order of the hops */
   Hop *hop; i64 nhop, chop;                 /* the stack: the row written last runs first */
-  HMap memh;                                /* (hash of input, source) -> run+1 : the newest memory with that input (remember) */
+  HMap memh;                                /* (hash of the seq, arrival|cell|about) -> the newest run that ended with its own receipts (the canonical instance a repeat points at) */
+  HMap memt;                                /* (hash of the seq, 0) -> the head of the chain of memory rows with those symbols, any arrival (the input key of run_memory) */
+  HMap shid;                                /* (gate, shard id) -> index+1 into the neuron's shards */
+  i64 deduped;                              /* runs that repeated an earlier identical run and stored no receipts */
   struct Brain *tell;                       /* the brain told when a prompt's run ends (main -> sixth) */
   int arrival_of_third;                     /* what a line in third arrives from: the sixth (5) in main, main (6) in the sixth */
   HMap hith;                                /* receipt id -> index+1 into hit, for the hits that carried a call or spawn */
@@ -77,6 +83,8 @@ enum { HEARD = 1, SAID = 2, SPACE = 3, MOTHER = 4, SIXTH = 5, MAIN = 6, BORN = 1
 
 void   brain_init(Brain *b, const char *name, int is_main);
 uint64_t strhash(const char *s);
+uint64_t seqhash(const int *seq, int n);
+Shard *shard_by_id(Brain *b, int gate, i64 id);
 i64    now_ns(void);
 int    label_gate(Brain *b, const char *sym);           /* 0 when the symbol has no gate */
 int    label_new(Brain *b, const char *sym);            /* the next gate, born into the encoder (no neuron region yet) */
