@@ -1,7 +1,7 @@
 #!/bin/bash
 # hp-agree-slice.sh: the agreement configuration on a second kernel (port 7008): tries/19's slice sources (mw attached, no wikt), the sixty lines, an export
 cd ~/nk; rm -rf out/agree; mkdir -p out/agree; rm -f sources-slice/*.db-journal
-cp sources-slice/*.db out/agree/ 2>/dev/null; mkdir -p out/agree/src; mv out/agree/*.db out/agree/src/
+mkdir -p out/agree/src; cp sources-slice/*.db out/agree/src/; bash carry-src.sh out/agree/src > /dev/null
 pkill -f "nk 7008" 2>/dev/null; sleep 0.5
 (NK_JOURNAL=out/agree/typed.txt nohup ./nk 7008 egg-symbols.txt out/agree/src wn gcide mw mwt moby map sqldoc measured guess > out/agree/nk.log 2>&1 &)
 for i in $(seq 1 60); do python3 -c "import socket; socket.create_connection(('127.0.0.1', 7008), timeout=1).close()" 2>/dev/null && break; sleep 1; done

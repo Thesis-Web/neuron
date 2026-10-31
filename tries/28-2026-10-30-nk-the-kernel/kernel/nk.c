@@ -20,7 +20,7 @@ void hmap_del(HMap *m, i64 k1, i64 k2){ /* rebuild without the key (rare) */ if(
 uint64_t seqhash(const int *seq, int n){ uint64_t h = 1469598103934665603ULL ^ (uint64_t)n; for(int i = 0; i < n; i++){ h ^= (uint64_t)(uint32_t)seq[i]; h *= 1099511628211ULL; h ^= h >> 29; } return h; }
 uint64_t strhash(const char *s){ uint64_t h = 1469598103934665603ULL; while(*s){ h ^= (unsigned char)*s++; h *= 1099511628211ULL; } return h; }
 
-#define GROW(arr, n, cap, T) do { if((n) >= (cap)){ (cap) = (cap) ? (cap) * 2 : 64; (arr) = realloc((arr), (cap) * sizeof(T)); } } while(0)
+#define GROW(arr, n, cap, T) do { if((n) >= (cap)){ (cap) = (cap) ? (cap) * 2 : 2; (arr) = realloc((arr), (cap) * sizeof(T)); } } while(0)   /* small arrays start small: a run has two cells, most neurons one shard */
 
 /* ---------------- the brain ---------------- */
 void brain_init(Brain *b, const char *name, int is_main){
@@ -93,14 +93,14 @@ int pending(Brain *b){ return (int)b->nhop; }
 static void land(Brain *b, i64 run, int pos, int gate, int before, int next, int via);
 static void hit(Brain *b, i64 run, int pos, int gate, int before, int next, int via, int had, Shard *s);
 static void ended(Brain *b, i64 run, int gate, i64 shard);
-static void replay(Brain *b, i64 parent, i64 source, int kind, i64 from);
+static void replay(Brain *b, i64 parent, i64 source, int kind, i64 from_run, int from_ord);
 static void dedupe_check(Brain *b, i64 run);
 
 /* ---------------- the cut (the encoder) ---------------- */
 static int is_letter(unsigned char c){ return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_'; }
 static int u8len(unsigned char c){ if(c < 0x80) return 1; if((c >> 5) == 6) return 2; if((c >> 4) == 14) return 3; if((c >> 3) == 30) return 4; return 1; }
 /* GROW above for seq uses nseq as cap guard; give seq its own growth */
-static void seq_push(Run *r, int g){ if(r->nseq % 64 == 0){ r->seq = realloc(r->seq, (r->nseq + 64) * sizeof(int)); } r->seq[r->nseq++] = g; }
+static void seq_push(Run *r, int g){ if(r->nseq % 8 == 0){ r->seq = realloc(r->seq, (r->nseq + 8) * sizeof(int)); } r->seq[r->nseq++] = g; }
 
 static void cut2(Brain *b, i64 run, const char *text){
   Run *r = run_of(b, run); size_t i = 0, L = strlen(text); char buf[4096];
@@ -121,9 +121,9 @@ static i64 memkey2(Run *r){ return ((i64)r->arrival << 40) | ((i64)r->cell << 20
 static void dedupe_check(Brain *b, i64 run){
   Run *r = run_of(b, run); if(r->nseq == 0) return;
   i64 f = hmap_get(&b->memh, (i64)seqhash(r->seq, r->nseq), memkey2(r)); if(!f || f == run) return;
-  Run *cn = run_of(b, f); if(!cn || !cn->has_mem || cn->same_as || !cn->clean || cn->nseq != r->nseq) return;
+  Run *cn = run_of(b, f); if(!cn || !cn->has_mem || cn->same_as || !cn->clean || !cn->kept || cn->nrc == 0 || cn->nseq != r->nseq || !cn->seq) return;
   if(memcmp(cn->seq, r->seq, sizeof(int) * r->nseq) != 0) return;
-  for(int i = 0; i < cn->nrc; i++){ Rc *k = &b->rcs[cn->rc[i]]; Shard *s = shard_by_id(b, k->gate, k->shard); if(!s || s->changed_at > cn->mem_at) return; }
+  for(int i = 0; i < cn->nrc; i++){ Rc *k = &cn->rcs[i]; Shard *s = shard_by_id(b, k->gate, k->shard); if(!s || s->changed_at > cn->mem_at) return; }
   r->same_as = f; if(!r->seq_shared) free(r->seq); r->seq = cn->seq; r->seq_shared = 1; b->deduped++;
 }
 static void first_landing(Brain *b, i64 run){ Run *r = run_of(b, run); dedupe_check(b, run); if(r->nseq > 0) land(b, run, 0, r->arrival, 0, r->seq[0], 0); }
@@ -131,22 +131,22 @@ static void first_landing(Brain *b, i64 run){ Run *r = run_of(b, run); dedupe_ch
 /* a line arriving at a prompt: input (heard) or third (the other brain) */
 void line_in(Brain *b, int which, const char *text){
   int arrival = which == 0 ? HEARD : b->arrival_of_third;
-  i64 run = new_run(b, arrival, 0, 0, 0, 0, 0);
+  i64 run = new_run(b, arrival, 0, 0, 0, 0, 0); run_of(b, run)->kept = 1;
   Mail **box = which == 0 ? &b->input : &b->third; i64 *n = which == 0 ? &b->ninput : &b->nthird; i64 *c = which == 0 ? &b->cinput : &b->cthird;
   GROW(*box, *n, *c, Mail); Mail *m = &(*box)[*n]; m->id = *n + 1; m->text = 0; m->run = run; (*n)++;   /* the text is let go */
   cut2(b, run, text); first_landing(b, run);
 }
 /* a return: mother's or a source's answer, with the key */
-void secondary_in(Brain *b, i64 run, int cell, int gate, int about, const char *text){
-  i64 id = new_run(b, gate, run, 1, 3, cell, about); run_of(b, id)->from_hit = b->cur_hit;
-  GROW(b->sec, b->nsec, b->csec, Sec); Sec *s = &b->sec[b->nsec]; s->id = b->nsec + 1; s->run = run; s->cell = cell; s->gate = gate; s->about = about; s->text = 0; s->made = id; b->nsec++;
+void secondary_in(Brain *b, i64 run, int cell, int gate, int about, const char *text, i64 src){
+  i64 id = new_run(b, gate, run, 1, 3, cell, about); Run *rr = run_of(b, id); rr->from_run = b->cur_run; rr->from_ord = b->cur_ord; rr->src = src; rr->srcgate = gate; rr->kept = 1;
+  GROW(b->sec, b->nsec, b->csec, Sec); Sec *s = &b->sec[b->nsec]; s->id = b->nsec + 1; s->run = run; s->cell = cell; s->gate = gate; s->about = about; s->text = 0; s->made = id; s->src = src; b->nsec++;
   cut2(b, id, text ? text : ""); first_landing(b, id);
 }
-static void replay_push_from(Brain *b, i64 parent, i64 source, int kind, i64 from){ Hop h = {0}; h.type = HOP_REPLAY; h.run = parent; h.a = source; h.kind = kind; h.from = from; push(b, h); }
-void replay_push(Brain *b, i64 parent, i64 source, int kind){ replay_push_from(b, parent, source, kind, b->cur_hit); }
-static void replay(Brain *b, i64 parent, i64 source, int kind, i64 from){
+static void replay_push_from(Brain *b, i64 parent, i64 source, int kind, i64 from_run, int from_ord){ Hop h = {0}; h.type = HOP_REPLAY; h.run = parent; h.a = source; h.kind = kind; h.from_run = from_run; h.from_ord = from_ord; push(b, h); }
+void replay_push(Brain *b, i64 parent, i64 source, int kind){ replay_push_from(b, parent, source, kind, b->cur_run, b->cur_ord); }
+static void replay(Brain *b, i64 parent, i64 source, int kind, i64 from_run, int from_ord){
   i64 id = new_run(b, SAID, parent, 1, kind, 0, 0);
-  Run *src = run_of(b, source), *r = run_of(b, id); r->from_hit = from;
+  Run *src = run_of(b, source), *r = run_of(b, id); r->from_run = from_run; r->from_ord = from_ord; r->replay_src = source; r->kept = 1;
   if(src) for(int i = 0; i < src->nseq; i++) seq_push(r, src->seq[i]);
   dedupe_check(b, id);
   if(r->nseq > 0){ Hop h = {0}; h.type = HOP_LAND; h.run = id; h.pos = 0; h.gate = SAID; h.before = 0; h.next = r->seq[0]; h.via = 0; push(b, h); }
@@ -183,14 +183,12 @@ static char *decode_span(Brain *b, i64 run, int from_pos, int to_pos){
   return out;
 }
 static void hit(Brain *b, i64 run, int pos, int gate, int before, int next, int via, int had, Shard *s){
-  Run *r = run_of(b, run); i64 rid;
+  Run *r = run_of(b, run); int ord = r->nhops++;
   ++b->hops_done;
-  if(r->same_as){ Run *cn = run_of(b, r->same_as); rid = (cn && r->nhops_run < cn->nrc) ? cn->rc[r->nhops_run] + 1 : 0; r->nhops_run++; }
-  else {
-    /* the receipt */
-    GROW(b->rcs, b->nrcs, b->crcs, Rc); Rc *c = &b->rcs[b->nrcs]; c->run = run; c->pos = pos; c->gate = gate; c->shard = s->id; c->via = (unsigned char)via; c->had = (unsigned char)had;
-    GROW(r->rc, r->nrc, r->crc, i64); r->rc[r->nrc++] = b->nrcs++; rid = b->nrcs; r->nhops_run++;
-    if(s->call || s->spawn){ GROW(b->hit, b->nhit, b->chit, Hit); Hit *h = &b->hit[b->nhit]; h->id = rid; h->run = run; h->pos = pos; h->gate = gate; h->before = before; h->next = next; h->via = via; h->had = had; h->shard = s->id; h->call = s->call; h->spawn = s->spawn; hmap_put(&b->hith, h->id, 0, b->nhit + 1); Neuron *ng = neuron_of(b, gate); if(ng){ GROW(ng->hits, ng->nhits, ng->chits, i64); ng->hits[ng->nhits++] = b->nhit; } b->nhit++; }
+  if(!r->same_as){
+    /* the receipt, on the run */
+    GROW(r->rcs, r->nrc, r->crc, Rc); Rc *c = &r->rcs[r->nrc++]; c->pos = pos; c->gate = gate; c->shard = s->id; c->via = (unsigned char)via; c->had = (unsigned char)had;
+    if(s->call || s->spawn){ GROW(b->hit, b->nhit, b->chit, Hit); Hit *h = &b->hit[b->nhit]; h->run = run; h->ord = ord; h->pos = pos; h->gate = gate; h->before = before; h->next = next; h->via = via; h->had = had; h->shard = s->id; h->call = s->call; h->spawn = s->spawn; hmap_put(&b->hith, run, ord, b->nhit + 1); Neuron *ng = neuron_of(b, gate); if(ng){ GROW(ng->hits, ng->nhits, ng->chits, i64); ng->hits[ng->nhits++] = b->nhit; } b->nhit++; }
   }
   /* the steps, pushed in hit_go's order; the one pushed last runs first */
   if(next == 0 && via == 0){ Hop h = {0}; h.type = HOP_ENDED; h.run = run; h.gate = gate; h.a = s->id; push(b, h); }
@@ -199,17 +197,17 @@ static void hit(Brain *b, i64 run, int pos, int gate, int before, int next, int 
     char v[32]; snprintf(v, sizeof v, "%d", next); cell_set(b, run, NEWGATE, 1, v);
     Hop h = {0}; h.type = HOP_LAND; h.run = run; h.pos = pos; h.gate = BORN; h.before = gate; h.next = next; h.via = 1; push(b, h);
   }
-  if(s->spawn) replay_push_from(b, run, s->spawn, 2, rid);
-  if(s->call) replay_push_from(b, run, s->call, 1, rid);
+  if(s->spawn) replay_push_from(b, run, s->spawn, 2, run, ord);
+  if(s->call) replay_push_from(b, run, s->call, 1, run, ord);
   if(gate == BUILD && via == 0){
     if(r->build_pos < 0) r->build_pos = pos;
     else {
       int from = r->build_pos; r->build_pos = -1;
       char *text = decode_span(b, run, from, pos);
-      i64 save = b->cur_hit; b->cur_hit = rid;
+      i64 save_run = b->cur_run; int save_ord = b->cur_ord; b->cur_run = run; b->cur_ord = ord;
       i64 t0 = now_ns(); char *ans = mother_paste(text); free(text); b->paste_ns += now_ns() - t0; b->pastes++;
-      secondary_in(b, run, REPLY, MOTHER, 0, ans); free(ans);      /* her answer arrives from mother, for the reply cell, under this run */
-      b->cur_hit = save;
+      secondary_in(b, run, REPLY, MOTHER, 0, ans, 0); free(ans);      /* her answer arrives from mother, for the reply cell, under this run */
+      b->cur_run = save_run; b->cur_ord = save_ord;
     }
   }
 }
@@ -224,11 +222,11 @@ static void ended(Brain *b, i64 run, int gate, i64 shard){
     size_t cap = 64 + (size_t)r->nseq * 12; char *inp = malloc(cap); inp[0] = 0; size_t len = 0;
     for(int i = 0; i < r->nseq; i++){ len += snprintf(inp + len, cap - len, i ? " %d" : "%d", r->seq[i]); }
     r->mem_input = inp; r->mem_source = r->arrival; r->mem_gate = gate; r->mem_shard = shard; r->mem_at = r->at; r->has_mem = 1; r->last_at = r->at; r->last_run = run;
-    r->clean = 1; for(int i = 0; i < r->nrc; i++) if(b->rcs[r->rc[i]].via){ r->clean = 0; break; }
+    r->clean = 1; for(int i = 0; i < r->nrc; i++) if(r->rcs[i].via){ r->clean = 0; break; }
     i64 sh = (i64)seqhash(r->seq, r->nseq);
     hmap_put(&b->memh, sh, memkey2(r), run);                                /* the newest run that ended with its own receipts: what a repeat points at */
     r->mem_sibling = hmap_get(&b->memt, sh, 0); hmap_put(&b->memt, sh, 0, run);   /* the chain of memory rows with these symbols, the newest first */
-    Neuron *ng = neuron_of(b, gate); if(ng){ GROW(ng->mem_runs, ng->nmem, ng->cmem, i64); ng->mem_runs[ng->nmem++] = run; }
+    Neuron *ng = neuron_of(b, gate); if(ng && r->kind == 0){ GROW(ng->mem_runs, ng->nmem, ng->cmem, i64); ng->mem_runs[ng->nmem++] = run; }
   }
   /* memory_go: the timeline, then the other brain is told a prompt's run ended */
   GROW(b->tl, b->ntl, b->ctl, Tl); Tl *t = &b->tl[b->ntl++]; t->at = r->at; t->run = run; t->key1 = r->nseq ? r->seq[0] : 0; t->key2 = r->nseq ? r->seq[r->nseq - 1] : 0;
@@ -247,12 +245,59 @@ void pump_batch(Brain *b, int n){
     switch(h.type){
       case HOP_LAND: land(b, h.run, h.pos, h.gate, h.before, h.next, h.via); break;
       case HOP_ENDED: ended(b, h.run, h.gate, h.a); break;
-      case HOP_REPLAY: replay(b, h.run, h.a, h.kind, h.from); break;
+      case HOP_REPLAY: replay(b, h.run, h.a, h.kind, h.from_run, h.from_ord); break;
     }
     b->hop_ns += now_ns() - t0; b->hops_run++;
   }
 }
 
+/* ---------------- the cut: when a main run has completed, the runs under it are process; their receipts and symbols go, their stubs stay ----------------
+   Kept: every main run (a line at a prompt) with its receipts and sheet; every run that repeats (a pattern, again > 0) with its receipts; the
+   shards and their times; the node rows (each a pointer to the source row); the relationship rows. Let go: a sub-run's receipts and, where
+   they can be read again from the source row or the run it replays, its symbols. What is let go is re-stepped on demand (nk_seq, nk_receipts). */
+void nk_compact(Brain *b){
+  for(i64 id = b->last_compacted + 1; id <= b->nruns; id++){
+    Run *r = &b->runs[id];
+    /* called when nothing is left to run, so a run without an end is one that stalled (a landing refused at the top); it is left as it is */
+    Run *root = run_of(b, r->root); if(!r->ended || (root && !root->ended) || r->kind == 0 || r->again > 0 || !r->kept) continue;
+    if(r->nrc){ free(r->rcs); r->rcs = 0; r->crc = 0; b->dropped_receipts += r->nrc; r->nrc = 0; }
+    if(r->seq && !r->seq_shared && (r->src || r->replay_src)){ free(r->seq); r->seq = 0; }
+    else if(r->seq_shared){ r->seq = 0; r->seq_shared = 0; }
+    if(r->mem_input){ free(r->mem_input); r->mem_input = 0; }
+    r->kept = 0; b->dropped_runs++;
+  }
+  b->last_compacted = b->nruns;
+}
+static int *SEQBUF; static int SEQCAP;
+static void cut_into(Brain *b, const char *text, int **out, int *n){
+  size_t i = 0, L = strlen(text); char buf[4096]; *n = 0;
+  while(i < L){ size_t j = i; if(is_letter((unsigned char)text[i])){ while(j < L && is_letter((unsigned char)text[j])) j++; } else j = i + u8len((unsigned char)text[i]); if(j > L) j = L;
+    size_t m = j - i; if(m >= sizeof buf) m = sizeof buf - 1; memcpy(buf, text + i, m); buf[m] = 0;
+    if(*n >= SEQCAP){ SEQCAP = SEQCAP ? SEQCAP * 2 : 4096; SEQBUF = realloc(SEQBUF, SEQCAP * sizeof(int)); } SEQBUF[(*n)++] = label_gate(b, buf); i = j; }
+  *out = SEQBUF;
+}
+const int *nk_seq(Brain *b, i64 run, int *n){
+  Run *r = run_of(b, run); if(!r){ *n = 0; return 0; }
+  if(r->same_as && r->same_as != run) return nk_seq(b, r->same_as, n);   /* a repeat's symbols are the pattern's */
+  if(r->seq || r->nseq == 0){ *n = r->seq ? r->nseq : 0; return r->seq; }
+  if(r->replay_src && r->replay_src != run) return nk_seq(b, r->replay_src, n);
+  if(r->src && r->srcgate){ const char *t = nk_source_text(r->srcgate, r->src); if(t){ int *s; cut_into(b, t, &s, n); return s; } }
+  *n = 0; return 0;
+}
+static Rc *RCBUF; static int RCCAP;
+int nk_receipts(Brain *b, i64 run, Rc **out, int *kept){
+  Run *r = run_of(b, run); if(!r){ *out = 0; *kept = 0; return 0; }
+  if(r->same_as){ Run *cn = run_of(b, r->same_as); if(cn) r = cn; }
+  if(r->kept || r->nrc){ *out = r->rcs; *kept = 1; return r->nrc; }
+  /* re-hopped from the symbols: the landing on the arrival, then one hop a symbol with v6's key; the births of the first time are not repeated */
+  int n; const int *seq = nk_seq(b, run, &n); if(!seq){ *out = 0; *kept = 0; return 0; }
+  int need = n + 1; if(need > RCCAP){ RCCAP = need * 2; RCBUF = realloc(RCBUF, RCCAP * sizeof(Rc)); }
+  int m = 0; Shard *s0 = shard_find(b, r->arrival, 0, 0); RCBUF[m].pos = 0; RCBUF[m].gate = r->arrival; RCBUF[m].shard = s0 ? s0->id : 0; RCBUF[m].via = 0; RCBUF[m].had = 1; m++;
+  for(int p = 1; p <= n; p++){ int g = seq[p - 1], kb = 0, kx = 0;
+    if(g != SPACE){ kb = r->arrival; for(int q = p - 1; q >= 1; q--) if(seq[q - 1] != SPACE){ kb = seq[q - 1]; break; } for(int q = p + 1; q <= n; q++) if(seq[q - 1] != SPACE){ kx = seq[q - 1]; break; } }
+    Shard *s = shard_find(b, g, kb, kx); RCBUF[m].pos = p; RCBUF[m].gate = g; RCBUF[m].shard = s ? s->id : 0; RCBUF[m].via = 0; RCBUF[m].had = 1; m++; }
+  *out = RCBUF; *kept = 0; return m;
+}
 /* ---------------- a brain back from its export: the inverse of nkio's export, row for row ---------------- */
 static sqlite3_stmt *Q(sqlite3 *db, const char *sql){ sqlite3_stmt *st = 0; if(sqlite3_prepare_v2(db, sql, -1, &st, 0) != SQLITE_OK){ fprintf(stderr, "load: %s: %s\n", sql, sqlite3_errmsg(db)); return 0; } return st; }
 #define I(st, i) sqlite3_column_int64(st, i)
@@ -265,33 +310,32 @@ int nk_load(Brain *b, const char *path){
   if((st = Q(db, "SELECT gate, born FROM neuron"))){ while(sqlite3_step(st) == SQLITE_ROW){ Neuron *n = neuron_of(b, (int)I(st, 0)); if(n) n->born = (int)I(st, 1); } sqlite3_finalize(st); }
   if((st = Q(db, "SELECT gate, shard, before, trigger, call, spawn, times FROM dna ORDER BY shard"))){ while(sqlite3_step(st) == SQLITE_ROW){ int g = (int)I(st, 0); Shard *s = shard_lay(b, g, ISNULL(st, 2) ? 0 : (int)I(st, 2), ISNULL(st, 3) ? 0 : (int)I(st, 3), I(st, 6)); if(s){ Neuron *n = neuron_of(b, g); if(s->id != I(st, 1)){ hmap_del(&b->shid, g, s->id); s->id = I(st, 1); hmap_put(&b->shid, g, s->id, n->nsh); } s->call = ISNULL(st, 4) ? 0 : I(st, 4); s->spawn = ISNULL(st, 5) ? 0 : I(st, 5); s->changed_at = 0; } } sqlite3_finalize(st); }
   if((st = Q(db, "SELECT gate, source, run FROM node ORDER BY gate, id"))){ while(sqlite3_step(st) == SQLITE_ROW){ Neuron *n = neuron_of(b, (int)I(st, 0)); if(!n) continue; if(n->nnode >= n->cnode){ n->cnode = n->cnode ? n->cnode * 2 : 8; n->node = realloc(n->node, n->cnode * sizeof(NodeRow)); } n->node[n->nnode].source = (int)I(st, 1); n->node[n->nnode].run = I(st, 2); n->nnode++; } sqlite3_finalize(st); }
-  int newcols = 0; { sqlite3_stmt *p = 0; if(sqlite3_prepare_v2(db, "SELECT same_as, again, last_at, last_run FROM run LIMIT 1", -1, &p, 0) == SQLITE_OK){ newcols = 1; sqlite3_finalize(p); } }
-  if((st = Q(db, newcols ? "SELECT id, arrival, parent, root, kind, cell, about, at, moment, from_hit, build_pos, same_as, again, last_at, last_run FROM run ORDER BY id" : "SELECT id, arrival, parent, root, kind, cell, about, at, moment, from_hit, build_pos, 0, 0, 0, 0 FROM run ORDER BY id"))){
+  if((st = Q(db, "SELECT id, arrival, parent, root, kind, cell, about, at, moment, from_run, build_pos, same_as, again, last_at, last_run, from_ord, src, srcgate, replay_src, kept, ended FROM run ORDER BY id"))){
     while(sqlite3_step(st) == SQLITE_ROW){
       i64 id = ++b->nruns; if(id != I(st, 0)){ fprintf(stderr, "load: run %lld where %lld was expected\n", (long long)I(st, 0), (long long)id); bad++; }
       if(id >= b->cruns){ i64 oc = b->cruns; while(id >= b->cruns) b->cruns *= 2; b->runs = realloc(b->runs, b->cruns * sizeof(Run)); memset(b->runs + oc, 0, (b->cruns - oc) * sizeof(Run)); }
       Run *r = &b->runs[id]; memset(r, 0, sizeof(*r));
-      r->arrival = (int)I(st, 1); r->parent_set = !ISNULL(st, 2); r->parent = r->parent_set ? I(st, 2) : 0; r->root = I(st, 3); r->kind = (int)I(st, 4); r->cell = ISNULL(st, 5) ? 0 : (int)I(st, 5); r->about = ISNULL(st, 6) ? 0 : (int)I(st, 6); r->at = I(st, 7); r->moment = I(st, 8); r->from_hit = ISNULL(st, 9) ? 0 : I(st, 9); r->build_pos = ISNULL(st, 10) ? -1 : (int)I(st, 10); r->same_as = ISNULL(st, 11) ? 0 : I(st, 11); r->again = I(st, 12); r->last_at = I(st, 13); r->last_run = I(st, 14); if(r->same_as) b->deduped++;
+      r->arrival = (int)I(st, 1); r->parent_set = !ISNULL(st, 2); r->parent = r->parent_set ? I(st, 2) : 0; r->root = I(st, 3); r->kind = (int)I(st, 4); r->cell = ISNULL(st, 5) ? 0 : (int)I(st, 5); r->about = ISNULL(st, 6) ? 0 : (int)I(st, 6); r->at = I(st, 7); r->moment = I(st, 8); r->from_run = ISNULL(st, 9) ? 0 : I(st, 9); r->build_pos = ISNULL(st, 10) ? -1 : (int)I(st, 10); r->same_as = ISNULL(st, 11) ? 0 : I(st, 11); r->again = I(st, 12); r->last_at = I(st, 13); r->last_run = I(st, 14); r->from_ord = (int)I(st, 15); r->src = I(st, 16); r->srcgate = (int)I(st, 17); r->replay_src = I(st, 18); r->kept = (int)I(st, 19); r->ended = (int)I(st, 20); if(r->same_as) b->deduped++; if(!r->kept) b->dropped_runs++;
       Run *p = r->parent_set ? run_of(b, r->parent) : 0; if(p){ GROW(p->kids, p->nkids, p->ckids, i64); p->kids[p->nkids++] = id; }
       if(r->about){ Neuron *n = neuron_of(b, r->about); if(n){ GROW(n->about_runs, n->nabout, n->cabout, i64); n->about_runs[n->nabout++] = id; } }
       { Neuron *n = neuron_of(b, r->arrival); if(n){ GROW(n->arrived, n->narrived, n->carrived, i64); n->arrived[n->narrived++] = id; } }
     } sqlite3_finalize(st); }
   if((st = Q(db, "SELECT run, gate FROM seq ORDER BY run, pos"))){ while(sqlite3_step(st) == SQLITE_ROW){ Run *r = run_of(b, I(st, 0)); if(r) seq_push(r, (int)I(st, 1)); } sqlite3_finalize(st); }
   if((st = Q(db, "SELECT run, cell, state, value FROM run_sheet ORDER BY run"))){ while(sqlite3_step(st) == SQLITE_ROW){ Run *r = run_of(b, I(st, 0)); if(!r) continue; GROW(r->cells, r->ncells, r->ccells, Cell); Cell *k = &r->cells[r->ncells++]; k->cell = (int)I(st, 1); k->state = (int)I(st, 2); k->value = ISNULL(st, 3) ? 0 : strdup(T(st, 3)); } sqlite3_finalize(st); }
-  if((st = Q(db, "SELECT id, run, pos, gate, via, had, shard, call, spawn FROM hit ORDER BY id"))){
+  if((st = Q(db, "SELECT run, ord, pos, gate, via, had, shard, call, spawn FROM hit WHERE kept = 1 ORDER BY run, ord"))){
     while(sqlite3_step(st) == SQLITE_ROW){
-      GROW(b->rcs, b->nrcs, b->crcs, Rc); Rc *k = &b->rcs[b->nrcs]; k->run = I(st, 1); k->pos = (int)I(st, 2); k->gate = (int)I(st, 3); k->via = (unsigned char)I(st, 4); k->had = (unsigned char)I(st, 5); k->shard = I(st, 6);
-      if(I(st, 0) != b->nrcs + 1){ fprintf(stderr, "load: receipt %lld where %lld was expected\n", (long long)I(st, 0), (long long)b->nrcs + 1); bad++; }
-      Run *r = run_of(b, k->run); if(r){ GROW(r->rc, r->nrc, r->crc, i64); r->rc[r->nrc++] = b->nrcs; }
-      if(!ISNULL(st, 7) || !ISNULL(st, 8)){ GROW(b->hit, b->nhit, b->chit, Hit); Hit *x = &b->hit[b->nhit]; x->id = b->nrcs + 1; x->run = k->run; x->pos = k->pos; x->gate = k->gate; x->via = k->via; x->had = k->had; x->shard = k->shard; x->call = ISNULL(st, 7) ? 0 : I(st, 7); x->spawn = ISNULL(st, 8) ? 0 : I(st, 8);
-        x->before = r ? (k->via ? (k->pos >= 1 && k->pos <= r->nseq ? r->seq[k->pos - 1] : 0) : (k->pos >= 2 && k->pos - 1 <= r->nseq ? r->seq[k->pos - 2] : 0)) : 0; x->next = (r && k->pos + 1 <= r->nseq) ? r->seq[k->pos] : 0;
-        hmap_put(&b->hith, x->id, 0, b->nhit + 1); Neuron *ng = neuron_of(b, k->gate); if(ng){ GROW(ng->hits, ng->nhits, ng->chits, i64); ng->hits[ng->nhits++] = b->nhit; } b->nhit++; }
-      b->nrcs++;
-    } sqlite3_finalize(st); b->hops_done = b->nrcs; }
+      Run *r = run_of(b, I(st, 0)); if(!r) continue; int ord = (int)I(st, 1);
+      GROW(r->rcs, r->nrc, r->crc, Rc); Rc *k = &r->rcs[r->nrc++]; k->pos = (int)I(st, 2); k->gate = (int)I(st, 3); k->via = (unsigned char)I(st, 4); k->had = (unsigned char)I(st, 5); k->shard = I(st, 6); if(ord + 1 > r->nhops) r->nhops = ord + 1;
+      if(!ISNULL(st, 7) || !ISNULL(st, 8)){ GROW(b->hit, b->nhit, b->chit, Hit); Hit *x = &b->hit[b->nhit]; x->run = I(st, 0); x->ord = ord; x->pos = k->pos; x->gate = k->gate; x->via = k->via; x->had = k->had; x->shard = k->shard; x->call = ISNULL(st, 7) ? 0 : I(st, 7); x->spawn = ISNULL(st, 8) ? 0 : I(st, 8);
+        x->before = k->via ? (k->pos >= 1 && k->pos <= r->nseq ? r->seq[k->pos - 1] : 0) : (k->pos >= 2 && k->pos - 1 <= r->nseq ? r->seq[k->pos - 2] : 0); x->next = (k->pos + 1 <= r->nseq) ? r->seq[k->pos] : 0;
+        hmap_put(&b->hith, x->run, ord, b->nhit + 1); Neuron *ng = neuron_of(b, k->gate); if(ng){ GROW(ng->hits, ng->nhits, ng->chits, i64); ng->hits[ng->nhits++] = b->nhit; } b->nhit++; }
+      b->hops_done++;
+    } sqlite3_finalize(st); }
+  b->last_compacted = b->nruns;
   if((st = Q(db, "SELECT run, input, source, gate, shard, at FROM run_memory ORDER BY run"))){ while(sqlite3_step(st) == SQLITE_ROW){ Run *r = run_of(b, I(st, 0)); if(!r) continue; r->mem_input = strdup(T(st, 1) ? T(st, 1) : ""); r->mem_source = atoi(T(st, 2) ? T(st, 2) : "0"); r->mem_gate = (int)I(st, 3); r->mem_shard = I(st, 4); r->mem_at = I(st, 5); r->has_mem = 1; r->ended = 1; if(!r->last_at){ r->last_at = r->at; r->last_run = I(st, 0); }
-      r->clean = 1; for(int i = 0; i < r->nrc; i++) if(b->rcs[r->rc[i]].via){ r->clean = 0; break; }
-      if(!r->same_as){ i64 sh = (i64)seqhash(r->seq, r->nseq); hmap_put(&b->memh, sh, memkey2(r), I(st, 0)); r->mem_sibling = hmap_get(&b->memt, sh, 0); hmap_put(&b->memt, sh, 0, I(st, 0)); }
-      Neuron *ng = neuron_of(b, r->mem_gate); if(ng){ GROW(ng->mem_runs, ng->nmem, ng->cmem, i64); ng->mem_runs[ng->nmem++] = I(st, 0); } } sqlite3_finalize(st); }
+      r->clean = 1; for(int i = 0; i < r->nrc; i++) if(r->rcs[i].via){ r->clean = 0; break; }
+      if(!r->same_as && r->seq){ i64 sh = (i64)seqhash(r->seq, r->nseq); hmap_put(&b->memh, sh, memkey2(r), I(st, 0)); r->mem_sibling = hmap_get(&b->memt, sh, 0); hmap_put(&b->memt, sh, 0, I(st, 0)); }
+      Neuron *ng = neuron_of(b, r->mem_gate); if(ng && r->kind == 0){ GROW(ng->mem_runs, ng->nmem, ng->cmem, i64); ng->mem_runs[ng->nmem++] = I(st, 0); } } sqlite3_finalize(st); }
   /* a repeated run that ended marks itself as remembered, and shares the seq of the run it repeats */
   for(i64 i = 1; i <= b->nruns; i++){ Run *r = &b->runs[i]; if(r->same_as){ Run *cn = run_of(b, r->same_as); if(cn && cn->nseq == r->nseq){ free(r->seq); r->seq = cn->seq; r->seq_shared = 1; } if(r->ended || r->last_at) r->has_mem = 1; } }
   if((st = Q(db, "SELECT at, run, key1, key2 FROM timeline ORDER BY id"))){ while(sqlite3_step(st) == SQLITE_ROW){ GROW(b->tl, b->ntl, b->ctl, Tl); Tl *t = &b->tl[b->ntl++]; t->at = I(st, 0); t->run = I(st, 1); t->key1 = (int)I(st, 2); t->key2 = (int)I(st, 3); } sqlite3_finalize(st); }
@@ -303,8 +347,8 @@ int nk_load(Brain *b, const char *path){
   if((st = Q(db, "SELECT run FROM complete"))){ while(sqlite3_step(st) == SQLITE_ROW){ Run *r = run_of(b, I(st, 0)); if(r) r->complete = 1; } sqlite3_finalize(st); }
   if((st = Q(db, "SELECT n FROM clock"))){ if(sqlite3_step(st) == SQLITE_ROW) b->clock = I(st, 0); sqlite3_finalize(st); }
   if((st = Q(db, "SELECT n FROM shards"))){ if(sqlite3_step(st) == SQLITE_ROW) b->shards = I(st, 0); sqlite3_finalize(st); }
-  if((st = Q(db, "SELECT type, run, pos, gate, before, next, via, a, b, kind, from_hit FROM hop ORDER BY id"))){ while(sqlite3_step(st) == SQLITE_ROW){ Hop h = {0}; h.type = (int)I(st, 0); h.run = I(st, 1); h.pos = (int)I(st, 2); h.gate = (int)I(st, 3); h.before = (int)I(st, 4); h.next = (int)I(st, 5); h.via = (int)I(st, 6); h.a = I(st, 7); h.b = I(st, 8); h.kind = (int)I(st, 9); h.from = I(st, 10); push(b, h); } sqlite3_finalize(st); }
+  if((st = Q(db, "SELECT type, run, pos, gate, before, next, via, a, b, kind, from_run, from_ord FROM hop ORDER BY id"))){ while(sqlite3_step(st) == SQLITE_ROW){ Hop h = {0}; h.type = (int)I(st, 0); h.run = I(st, 1); h.pos = (int)I(st, 2); h.gate = (int)I(st, 3); h.before = (int)I(st, 4); h.next = (int)I(st, 5); h.via = (int)I(st, 6); h.a = I(st, 7); h.b = I(st, 8); h.kind = (int)I(st, 9); h.from_run = I(st, 10); h.from_ord = (int)I(st, 11); push(b, h); } sqlite3_finalize(st); }
   sqlite3_close(db);
-  fprintf(stderr, "load %s: %d symbols, %lld runs, %lld receipts, %lld memories, %lld hops pending%s\n", path, b->label.n, (long long)b->nruns, (long long)b->nrcs, (long long)b->ntl, (long long)b->nhop, bad ? " (WITH MISMATCHES)" : "");
+  fprintf(stderr, "load %s: %d symbols, %lld runs (%lld stubs), %lld receipts kept, %lld memories, %lld hops pending%s\n", path, b->label.n, (long long)b->nruns, (long long)b->dropped_runs, (long long)b->hops_done, (long long)b->ntl, (long long)b->nhop, bad ? " (WITH MISMATCHES)" : "");
   return bad ? -1 : 0;
 }
