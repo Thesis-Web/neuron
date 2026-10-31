@@ -1,6 +1,1 @@
-load out/snap-20261030-154531/brain.db: 72505 symbols, 212905 runs, 7691345 receipts, 212904 memories, 0 hops pending
-load out/snap-20261030-154531/sixth.db: 153 symbols, 2324 runs, 614557 receipts, 2323 memories, 0 hops pending
-load main.rel: 43025 rows
-load sixth.asked: 50 rows
-load sixth.spawned: 66770 rows
-nk: 72505 symbols laid in each brain, listening on 127.0.0.1:7007
+nk: 86 symbols laid in each brain, listening on 127.0.0.1:7007

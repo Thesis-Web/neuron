@@ -25,15 +25,16 @@ typedef struct { int source; i64 run; } NodeRow;
 typedef struct { int born; Shard *sh; int nsh, csh; HMap h; NodeRow *node; int nnode, cnode; i64 *about_runs; int nabout, cabout; i64 *mem_runs; int nmem, cmem; i64 *hits; int nhits, chits; i64 *arrived; int narrived, carrived; } Neuron;   /* arrived: the runs that arrived from this gate */   /* hits: the hits on this neuron that carried a call or spawn (what the standing question shape reads) */
 
 typedef struct { int cell, state; char *value; } Cell;
-typedef struct { i64 run; int pos, gate; i64 shard; unsigned char via, had; } Rc;   /* the receipt (= the hit, whole: before/next follow from the run's seq); its id is its index + 1 */
+typedef struct { int pos, gate; i64 shard; unsigned char via, had; } Rc;   /* a receipt, one hop of a run; before/next follow from the run's seq */
 typedef struct {
   int arrival, parent_set; i64 parent, root; int kind, cell, about; i64 at, moment;
   int *seq; int nseq;
   Cell *cells; int ncells, ccells;
-  i64 *rc; int nrc, crc;                   /* indices into the brain's receipts */
+  Rc *rcs; int nrc, crc, nhops;            /* the run's own receipts (kept for a main run and for a pattern that repeats; a sub-run's are process and go when its main run completes), and how many hops it made */
   int ended, complete, build_pos;          /* build_pos: the open BUILD mark, -1 when none */
   i64 *kids; int nkids, ckids;             /* the runs under this one, so a formula finds them by key */
-  i64 from_hit;                            /* the receipt (hit) in this brain whose call, spawn or BUILD span made this run; 0 for a line at a prompt: step back */
+  i64 from_run; int from_ord;              /* the receipt (run, ordinal) whose call, spawn or BUILD span made this run; 0 for a line at a prompt: step back */
+  i64 src, replay_src; int srcgate, kept;  /* src: a return's row in its source (srcgate names the source); replay_src: the run a replay re-runs; kept: receipts and seq still held */
   /* the memory of a run that ended. The owner's shape (the prose; v5 strayed from it): a run that repeats an earlier identical run is not a
      second row but a tick on the first: same_as names that run, which keeps again (how many times) and last_at / last_run (the newest). A
      repeated run stores no receipts and shares the first's seq; its hops still happen and the shards' times still tick. */
@@ -43,14 +44,14 @@ typedef struct {
 
 typedef struct { i64 at, run; int key1, key2; } Tl;
 typedef struct { i64 id; char *text; i64 run; } Mail;                 /* input, third */
-typedef struct { i64 id, run; int cell, gate, about; char *text; i64 made; } Sec;   /* secondary */
+typedef struct { i64 id, run; int cell, gate, about; char *text; i64 made, src; } Sec;   /* secondary; src: the source row the return came from */
 typedef struct { i64 id, run; int cell; char *value; } Out;          /* out_user */
 typedef struct { i64 id; char *text, *error; } Refused;
-typedef struct { i64 id, run; int pos, gate, before, next, via, had; i64 shard, call, spawn; } Hit;  /* the call or spawn a hit carried, as it was at the hit; every other column of v6's hit table follows from the receipt */
+typedef struct { i64 run; int ord, pos, gate, before, next, via, had; i64 shard, call, spawn; } Hit;  /* the call or spawn a hit carried, as it was at the hit; every other column of v6's hit table follows from the receipt */
 typedef struct { int gate, kind, other; i64 run; } Rel;
 
 enum { HOP_LAND = 1, HOP_ENDED = 2, HOP_REPLAY = 3 };
-typedef struct { int type; i64 run; int pos, gate, before, next, via; i64 a, b; int kind; i64 from; } Hop;   /* from: the receipt that pushed a replay */
+typedef struct { int type; i64 run; int pos, gate, before, next, via; i64 a, b; int kind; i64 from_run; int from_ord; } Hop;   /* from: the receipt that pushed a replay */
 
 typedef struct Brain {
   const char *name; int is_main;
@@ -63,7 +64,6 @@ typedef struct Brain {
   Mail *input; i64 ninput, cinput; Mail *third; i64 nthird, cthird;
   Sec *sec; i64 nsec, csec; Out *out; i64 nout, cout; Refused *ref; i64 nref, cref;
   Hit *hit; i64 nhit, chit;
-  Rc *rcs; i64 nrcs, crcs;                  /* every receipt, in the order of the hops */
   Hop *hop; i64 nhop, chop;                 /* the stack: the row written last runs first */
   HMap memh;                                /* (hash of the seq, arrival|cell|about) -> the newest run that ended with its own receipts (the canonical instance a repeat points at) */
   HMap memt;                                /* (hash of the seq, 0) -> the head of the chain of memory rows with those symbols, any arrival (the input key of run_memory) */
@@ -71,10 +71,11 @@ typedef struct Brain {
   i64 deduped;                              /* runs that repeated an earlier identical run and stored no receipts */
   struct Brain *tell;                       /* the brain told when a prompt's run ends (main -> sixth) */
   int arrival_of_third;                     /* what a line in third arrives from: the sixth (5) in main, main (6) in the sixth */
-  HMap hith;                                /* receipt id -> index+1 into hit, for the hits that carried a call or spawn */
+  HMap hith;                                /* (run, ordinal) -> index+1 into hit, for the hits that carried a call or spawn */
+  i64 last_compacted, dropped_runs, dropped_receipts;   /* the cut: sub-runs made stubs when their main run completed */
   i64 hops_done, refused_n;
   i64 hop_ns, paste_ns, pastes, hops_run;  /* hops_run: hops done since this start (the mean is over these) */             /* where the time goes: inside the hops, inside mother's pastes */
-  i64 cur_hit;
+  i64 cur_run; int cur_ord;                 /* the receipt whose span mother is pasting now (the returns it brings are made from it) */
   i64 sec_ns, secs;                         /* time inside the arrival of returns (secondary_in) and how many */                              /* the receipt whose span mother is pasting now (the returns it brings are made from it) */
 } Brain;
 
@@ -96,7 +97,11 @@ i64    new_run(Brain *b, int arrival, i64 parent, int has_parent, int kind, int 
 void   cell_set(Brain *b, i64 run, int cell, int state, const char *value);   /* INSERT OR REPLACE, with sheet_fill */
 const char *cell_get(Brain *b, i64 run, int cell);                            /* state 1 and value not null, else NULL */
 void   line_in(Brain *b, int which, const char *text);     /* which: 0 input (heard), 1 third */
-void   secondary_in(Brain *b, i64 run, int cell, int gate, int about, const char *text);
+void   secondary_in(Brain *b, i64 run, int cell, int gate, int about, const char *text, i64 src);
+void   nk_compact(Brain *b);                               /* sub-runs of completed main runs become stubs: receipts and seq let go, the sheet and the main run's receipt kept */
+const int *nk_seq(Brain *b, i64 run, int *n);               /* a run's symbols: held, or a replay's source, or re-cut from the source row */
+int    nk_receipts(Brain *b, i64 run, Rc **out, int *kept);   /* a run's receipts: held, or re-hopped from its symbols (kept = 0) */
+const char *nk_source_text(int gate, i64 src);              /* nkio: the text of a source row (the source named by its gate) */
 void   replay_push(Brain *b, i64 parent, i64 source, int kind);          /* from a formula: made from the receipt being pasted */
 int    nk_load(Brain *b, const char *path);                /* a brain back from its export (brain.db / sixth.db): the inverse of export */
 void   pump_batch(Brain *b, int n);                        /* n hops of this brain's stack */
