@@ -335,7 +335,7 @@ int nk_load(Brain *b, const char *path){
         hmap_put(&b->hith, x->run, ord, b->nhit + 1); Neuron *ng = neuron_of(b, k->gate); if(ng){ GROW(ng->hits, ng->nhits, ng->chits, i64); ng->hits[ng->nhits++] = b->nhit; } b->nhit++; }
       b->hops_done++;
     } sqlite3_finalize(st); }
-  b->last_compacted = b->nruns;
+  b->last_compacted = 0;   /* the first compaction after a load looks at every loaded run: what the snapshot held of finished sub-runs is let go (the fault of 2026-10-31: 1.1 GB of receipts carried over) */
   if((st = Q(db, "SELECT run, input, source, gate, shard, at FROM run_memory ORDER BY run"))){ while(sqlite3_step(st) == SQLITE_ROW){ Run *r = run_of(b, I(st, 0)); if(!r) continue; r->mem_input = strdup(T(st, 1) ? T(st, 1) : ""); r->mem_source = atoi(T(st, 2) ? T(st, 2) : "0"); r->mem_gate = (int)I(st, 3); r->mem_shard = I(st, 4); r->mem_at = I(st, 5); r->has_mem = 1; r->ended = 1; if(!r->last_at){ r->last_at = r->at; r->last_run = I(st, 0); }
       r->clean = 1; for(int i = 0; i < r->nrc; i++) if(r->rcs[i].via){ r->clean = 0; break; }
       if(!r->same_as && r->seq){ i64 sh = (i64)seqhash(r->seq, r->nseq); hmap_put(&b->memh, sh, memkey2(r), I(st, 0)); r->mem_sibling = hmap_get(&b->memt, sh, 0); hmap_put(&b->memt, sh, 0, I(st, 0)); }

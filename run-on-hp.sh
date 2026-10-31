@@ -8,7 +8,7 @@
 #   bash run-on-hp.sh stop             the kernel and the door stopped
 cd ~/nk; MODE=${1:-fresh}
 SOURCES="wn gcide mwt moby map sqldoc measured guess wikt"
-wait_up(){ for i in $(seq 1 120); do python3 -c "import socket; socket.create_connection(('127.0.0.1', 7007), timeout=1).close()" 2>/dev/null && return 0; sleep 1; done; echo "the kernel did not answer in 120 s"; return 1; }
+wait_up(){ for i in $(seq 1 900); do python3 -c "import socket; socket.create_connection(('127.0.0.1', 7007), timeout=1).close()" 2>/dev/null && return 0; sleep 1; done; echo "the kernel did not answer in 900 s"; return 1; }
 ask(){ python3 - "$1" <<'PY'
 import socket, json, sys
 s = socket.create_connection(("127.0.0.1", 7007)); s.sendall((sys.argv[1] + "\n").encode()); buf = b""
