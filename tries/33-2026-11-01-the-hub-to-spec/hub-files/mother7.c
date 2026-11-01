@@ -57,7 +57,9 @@ static void answer(sqlite3_context *ctx, char *got, char *err){
   sqlite3_result_text(ctx, "ok", -1, SQLITE_STATIC);
 }
 
-static void motherFunc(sqlite3_context *ctx, int argc, sqlite3_value **argv){
+static void motherRun(sqlite3_context *ctx, int argc, sqlite3_value **argv); static long long pnow(void); static void prof_add(const char *sql, long long ns);
+static void motherFunc(sqlite3_context *ctx, int argc, sqlite3_value **argv){ const char *sql = (const char*)sqlite3_value_text(argv[0]); long long t0 = pnow(); motherRun(ctx, argc, argv); if(sql) prof_add(sql, pnow() - t0); }
+static void motherRun(sqlite3_context *ctx, int argc, sqlite3_value **argv){
   const char *sql = (const char*)sqlite3_value_text(argv[0]);
   char *err = 0, *got = 0; int i, rc;
   sqlite3 *db = sqlite3_context_db_handle(ctx);
@@ -65,8 +67,16 @@ static void motherFunc(sqlite3_context *ctx, int argc, sqlite3_value **argv){
   if(trace < 0) trace = getenv("NEURON_TRACE") ? 1 : 0;
   if(!sql){ sqlite3_result_text(ctx, "error: nothing to run", -1, SQLITE_STATIC); return; }
   if(trace) fprintf(stderr, "  sql> %.300s\n", sql);
-  if(argc == 1 && strchr(sql, ';')){   /* a text of several statements: the prompt runs them in order */
-    if(sqlite3_exec(db, sql, rows, &got, &err) != SQLITE_OK){ sqlite3_free(got); got = 0; }
+  if(argc == 1 && strchr(sql, ';')){   /* a text of several statements: the prompt runs them in order, each timed for the profile */
+    const char *p = sql; int bad = 0;
+    while(p && *p && !bad){ sqlite3_stmt *st = 0; const char *tail = 0; long long t0 = pnow();
+      if(sqlite3_prepare_v2(db, p, -1, &st, &tail) != SQLITE_OK){ err = sqlite3_mprintf("%s", sqlite3_errmsg(db)); bad = 1; break; }
+      if(!st){ p = tail; continue; }
+      int rc2, n = sqlite3_column_count(st);
+      while((rc2 = sqlite3_step(st)) == SQLITE_ROW){ char *v[64]; int m = n < 64 ? n : 64; for(i = 0; i < m; i++) v[i] = (char*)sqlite3_column_text(st, i); rows(&got, m, v, 0); }
+      if(rc2 != SQLITE_DONE){ err = sqlite3_mprintf("%s", sqlite3_errmsg(db)); bad = 1; }
+      sqlite3_finalize(st); prof_add(p, pnow() - t0); p = tail; while(p && (*p == ' ' || *p == '\n')) p++; }
+    if(bad){ sqlite3_free(got); got = 0; }
     answer(ctx, got, err); return;
   }
   Ent *ent = get(c, db, sql, &err); sqlite3_stmt *st = ent ? ent->st : 0;
@@ -109,6 +119,25 @@ static void encodeFunc(sqlite3_context *ctx, int argc, sqlite3_value **argv){
   out[n++] = ']'; out[n] = 0; sqlite3_finalize(get); sqlite3_finalize(put); sqlite3_result_text(ctx, out, (int)n, sqlite3_free);
 }
 
+/* the profile: what each text pasted costs, digits masked, the first 90 characters; mother_prof() answers the costliest 24 as lines */
+#include <time.h>
+typedef struct PEnt { char key[96]; long long n, ns; struct PEnt *next; } PEnt;
+static PEnt *pbucket[4096]; static int pn;
+static long long pnow(void){ struct timespec t; clock_gettime(CLOCK_MONOTONIC, &t); return t.tv_sec * 1000000000LL + t.tv_nsec; }
+static void prof_add(const char *sql, long long ns){
+  char key[96]; int n = 0; for(const char *s = sql; *s && n < 94; s++){ if(*s >= '0' && *s <= '9'){ if(n && key[n-1] == '#') continue; key[n++] = '#'; } else key[n++] = *s; } key[n] = 0;
+  unsigned h = 5381; for(const char *k = key; *k; k++) h = h * 33 + (unsigned char)*k; h &= 4095;
+  PEnt *e; for(e = pbucket[h]; e; e = e->next) if(strcmp(e->key, key) == 0){ e->n++; e->ns += ns; return; }
+  if(pn > 20000) return; e = sqlite3_malloc(sizeof(PEnt)); memcpy(e->key, key, sizeof key); e->n = 1; e->ns = ns; e->next = pbucket[h]; pbucket[h] = e; pn++;
+}
+static int pcmp(const void *a, const void *b){ long long x = (*(PEnt**)a)->ns, y = (*(PEnt**)b)->ns; return x < y ? 1 : x > y ? -1 : 0; }
+static void profFunc(sqlite3_context *ctx, int argc, sqlite3_value **argv){
+  PEnt **all = sqlite3_malloc(sizeof(PEnt*) * (pn ? pn : 1)); int n = 0; for(int i = 0; i < 4096; i++) for(PEnt *e = pbucket[i]; e; e = e->next) all[n++] = e;
+  qsort(all, n, sizeof(PEnt*), pcmp); char *out = sqlite3_mprintf("%s", "");
+  for(int i = 0; i < n && i < 24; i++){ char *t = sqlite3_mprintf("%s%.3f s | n %lld | %.2f ms | %s\n", out, all[i]->ns / 1e9, all[i]->n, all[i]->ns / 1e6 / all[i]->n, all[i]->key); sqlite3_free(out); out = t; }
+  sqlite3_free(all); sqlite3_result_text(ctx, out, -1, sqlite3_free);
+}
+
 static void forget(void *p){ Cache *c = (Cache*)p; clear(c); sqlite3_free(c); }
 
 #ifdef _WIN32
@@ -117,6 +146,7 @@ __declspec(dllexport)
 int sqlite3_mother_init(sqlite3 *db, char **e, const sqlite3_api_routines *pApi){
   SQLITE_EXTENSION_INIT2(pApi);
   Cache *c = sqlite3_malloc(sizeof(Cache)); memset(c, 0, sizeof(Cache));
+  sqlite3_create_function_v2(db, "mother_prof", 0, SQLITE_UTF8, 0, profFunc, 0, 0, 0);
   sqlite3_create_function_v2(db, "encode", 2, SQLITE_UTF8, 0, encodeFunc, 0, 0, 0);
   return sqlite3_create_function_v2(db, "mother", -1, SQLITE_UTF8, (void*)c, motherFunc, 0, 0, forget);
 }

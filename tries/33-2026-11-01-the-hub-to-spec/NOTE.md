@@ -48,3 +48,15 @@ Blamed `sheet_fill` without reading; every read there was keyed. Left my twin on
 - **A return's symbols get a neuron only when they are defined.** The graph on the page shows defined points and lines typed, not every word a return used.
 - **`seq` copies of the old replays stay**, 23 million rows.
 - **`defined` is not meaning.** Draft 4.2's compare of the sources is not built here either.
+
+## The second pass (08:30 to 09:05): the same dropped half, the ok listener, the page
+
+The hub dropped definitions the same way: `secondary_go`'s node insert went through mother into `"X.node"`, and when the point was not yet born the table did not exist and mother's refusal was an answer nobody read. Fixed: a return births the point's two tables through mother if they are missing (`CREATE TABLE IF NOT EXISTS`, the egg's DDL), tested by `pragma_table_info`, not a catalogue scan. Repaired from the returns held: 48,141 points, 134,526 definition rows, 15 s. The sixth re-asks every point without a definition: 503,099 waiting at 08:45.
+
+The ok listener in `sheet_fill` and `complete_go` (`"81"`): live, `define : know` 1.03 to 3.3 s under the chain, the sheet ends `ok: ok`.
+
+A profile inside mother (`mother_prof()`, each statement of a paste timed) found where the hub's time goes: the three statements after a define completes cost 25 to 29 ms each, and the statements themselves are keyed. The cost is the births: each newly defined point creates two tables, every schema change makes SQLite re-read a catalogue of 435,000 tables, and the next statements pay it. That is one table per point on SQLite, which the owner said on 10-30 "always fails at scale". The hub runs at **335 to 363 defines a minute**; its queue of 503,099 takes about 24 hours.
+
+The page: the door keeps its graph read and re-reads only what changed (hits since, returns since, new tables): 14 to 22 s instead of 82 s, built once at the door's start. The owner's page re-reads the brain every 120 s and shows the memory nodes of every run by default. Checked in headless Chromium at 09:05: open in 70 s, "648,416 gates, 1,216,626 shards, 3,547,874 runs", memory on.
+
+Not done on the hub: text in its tables; the trace rows; births batched (the owner's call: it changes what a birth is).

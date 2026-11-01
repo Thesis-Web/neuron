@@ -153,7 +153,7 @@ static void do_q(const char *sql, SB *o){
 static const char *SRCDIR = "sources"; static const char **SRCS; static int NSRCS;
 static void brain_stats(Brain *b, SB *o){
   double hop_us = b->hops_run ? (b->hop_ns - b->paste_ns) / 1000.0 / b->hops_run : 0, paste_us = b->pastes ? b->paste_ns / 1000.0 / b->pastes : 0;
-  sb_fmt(o, "{\"runs\":%lld,\"hops\":%lld,\"pending\":%d,\"gates\":%d,\"refused\":%lld,\"shards\":%lld,\"hop_us\":%.3f,\"pastes\":%lld,\"paste_us\":%.1f,\"hop_s\":%.3f,\"paste_s\":%.3f,\"returns\":%lld,\"return_us\":%.1f,\"return_s\":%.3f,\"receipts\":%lld,\"hops_run\":%lld,\"deduped_runs\":%lld,\"stubs\":%lld,\"receipts_dropped\":%lld}", (long long)b->nruns, (long long)b->hops_done, pending(b), b->label.n, (long long)b->refused_n, (long long)b->shards, hop_us, (long long)b->pastes, paste_us, (b->hop_ns - b->paste_ns) / 1e9, b->paste_ns / 1e9, (long long)b->secs, b->secs ? b->sec_ns / 1000.0 / b->secs : 0, b->sec_ns / 1e9, (long long)(b->hops_done - b->dropped_receipts), (long long)b->hops_run, (long long)b->deduped, (long long)b->dropped_runs, (long long)b->dropped_receipts);
+  sb_fmt(o, "{\"defined\":%lld,", (long long)b->dropped_runs); sb_fmt(o, "\"runs\":%lld,\"hops\":%lld,\"pending\":%d,\"gates\":%d,\"refused\":%lld,\"shards\":%lld,\"hop_us\":%.3f,\"pastes\":%lld,\"paste_us\":%.1f,\"hop_s\":%.3f,\"paste_s\":%.3f,\"returns\":%lld,\"return_us\":%.1f,\"return_s\":%.3f,\"receipts\":%lld,\"hops_run\":%lld,\"deduped_runs\":%lld,\"stubs\":%lld,\"receipts_dropped\":%lld}", (long long)b->nruns, (long long)b->hops_done, pending(b), b->label.n, (long long)b->refused_n, (long long)b->shards, hop_us, (long long)b->pastes, paste_us, (b->hop_ns - b->paste_ns) / 1e9, b->paste_ns / 1e9, (long long)b->secs, b->secs ? b->sec_ns / 1000.0 / b->secs : 0, b->sec_ns / 1e9, (long long)(b->hops_done - b->dropped_receipts), (long long)b->hops_run, (long long)b->deduped, (long long)b->dropped_runs, (long long)b->dropped_receipts);
 }
 static void do_stats(SB *o){ struct mallinfo2 mi = mallinfo2(); sb_str(o, "{\"main\":"); brain_stats(&MAINB, o); sb_str(o, ",\"sixth\":"); brain_stats(&SIXTHB, o); sb_fmt(o, ",\"heap_MB\":%.0f}", (mi.uordblks + mi.hblkhd) / 1048576.0); }
 
@@ -187,6 +187,8 @@ static void do_run(Brain *b, i64 id, SB *o){
     for(int j = 0; j < nr && n < MAXHOPS; j++){ Rc *k = &rcs[j]; n++; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%lld,%d,%d,%lld,%d,%d]", (long long)tree[i], k->pos, k->gate, (long long)k->shard, k->via, kept ? j : -j);
       hmap_put(&hitsh, k->gate, k->shard, 1);
       if(!hmap_get(&touched, k->gate, 0)){ hmap_put(&touched, k->gate, 0, 1); if(ntg >= ctg){ ctg *= 2; tg = realloc(tg, sizeof(int) * ctg); } tg[ntg++] = k->gate; } } }
+  { int kg = label_gate(b, "known"), ug = label_gate(b, "unknown"); for(int i = 0; i < root->ncells; i++){ Cell *c = &root->cells[i]; const char *cv = val_text(b, &c->v); if(!cv) continue; if(c->cell == WHAT || c->cell == kg || c->cell == ug){ const char *q = cv; int k = 0; while(*q && k < 120){ while(*q == ' ') q++; if(!*q) break; int g = atoi(q); while(*q && *q != ' ') q++; k++; if(g > 0 && g <= b->label.n && !hmap_get(&touched, g, 0)){ hmap_put(&touched, g, 0, 1); if(ntg >= ctg){ ctg *= 2; tg = realloc(tg, sizeof(int) * ctg); } tg[ntg++] = g; } } } } }
+  sb_fmt(o, "],\"mem_gate\":%d,\"line\":[", root->mem_gate); { int nl = 0; const int *ls = nk_seq(b, id, &nl); int f2 = 1; for(int i = 0; ls && i < nl && i < 40; i++){ if(ls[i] == SPACE) continue; if(!f2) sb_str(o, ","); f2 = 0; sb_fmt(o, "%d", ls[i]); } }
   sb_fmt(o, "],\"hops_sent\":%d,\"gates\":{", n);
   /* every gate the hops touched: its symbol, its shards (the lines of the drawing), its definition rows, its memories, its relationship rows */
   if(!REL_Q){ char q[64]; snprintf(q, sizeof q, "SELECT kind, other FROM %s.rel WHERE gate = ?", b->name); sqlite3_prepare_v2(DB, q, -1, &REL_Q, 0); }
@@ -238,7 +240,16 @@ static void do_memory(Brain *b, SB *o){
   sb_fmt(o, "{\"brain\":\"%s\",\"runs\":%lld,\"run_structs_MB\":%.1f,\"receipts_kept\":%lld,\"receipts_MB\":%.1f,\"runs_with_receipts\":%lld,\"seq_held_runs\":%lld,\"seq_MB\":%.1f,\"cells\":%lld,\"cells_MB\":%.1f,\"kids_MB\":%.1f,\"memory_text_MB\":%.1f,\"shards\":%lld,\"shards_MB\":%.1f,\"shard_maps_MB\":%.1f,\"neuron_lists_MB\":%.1f,\"nodes_MB\":%.1f,\"labels_MB\":%.1f,\"brain_maps_MB\":%.1f,\"mail_and_misc_MB\":%.1f,\"heap_in_use_MB\":%.1f,\"heap_free_MB\":%.1f,\"sqlite_MB\":%.1f}",
     b->name, (long long)b->nruns, runs_b / MB, (long long)(b->hops_done - b->dropped_receipts), rcs_b / MB, (long long)nkept, (long long)nseqheld, seq_b / MB, (long long)ncells, cells_b / MB, kids_b / MB, mem_b / MB, (long long)nsh, sh_b / MB, nmaps_b / MB, lists_b / MB, node_b / MB, label_b / MB, maps_b / MB, mail_b / MB, mi.uordblks / MB, mi.fordblks / MB, sqlite3_memory_used() / MB);
 }
+#define GROW2(arr, n, cap, T) do { if((n) >= (cap)){ (cap) = (cap) ? (cap) * 2 : 2; (arr) = realloc((arr), (cap) * sizeof(T)); } } while(0)
+static void do_repair(Brain *b, SB *o){
+  i64 points = 0, rows = 0, defined = 0;
+  for(int g = 1; g <= b->label.n; g++){ Neuron *n = neuron_of(b, g); if(!n) continue;
+    if(n->nnode == 0) for(int i = 0; i < n->nabout; i++){ Run *r = run_of(b, n->about_runs[i]); if(!r || r->kind != 3 || r->same_as || r->arrival == 15 || r->arrival == MOTHER || !r->ended) continue; if(n->nnode == 0) points++; GROW2(n->node, n->nnode, n->cnode, NodeRow); n->node[n->nnode].source = r->arrival; n->node[n->nnode].run = r - b->runs; n->nnode++; rows++; }
+    if(n->nnode) defined++; }
+  b->dropped_runs = defined; sb_fmt(o, "{\"points_repaired\":%lld,\"node_rows\":%lld,\"defined\":%lld}", (long long)points, (long long)rows, (long long)defined);
+}
 static void handle(const char *req, SB *o){
+  if(strcmp(req, "repair") == 0){ do_repair(&MAINB, o); return; }
   if(strcmp(req, "memory") == 0){ sb_str(o, "["); do_memory(&MAINB, o); sb_str(o, ","); do_memory(&SIXTHB, o); sb_str(o, "]"); return; }
   if(strncmp(req, "profile", 7) == 0){ do_profile(o, atoi(req + 7) > 0 ? atoi(req + 7) : 15); return; }
   if(strcmp(req, "scans") == 0){ char t[4096]; nkvt_scans(t, sizeof t); sb_str(o, "["); sb_str(o, t); sb_str(o, "]"); return; }

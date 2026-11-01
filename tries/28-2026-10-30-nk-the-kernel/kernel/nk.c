@@ -71,6 +71,7 @@ i64 new_run(Brain *b, int arrival, i64 parent, int has_parent, int kind, int cel
 static void complete_run(Brain *b, i64 run){
   Run *r = run_of(b, run); if(!r || r->complete) return; r->complete = 1;
   if(r->kind != 0) return;
+  { int ok = label_gate(b, "ok"); if(ok) cell_set(b, run, ok, 1, "ok"); r = run_of(b, run); }   /* every cell populated: ok marks the sheet, so the brain knows */
   /* complete_go: the cells to the user's out mailbox, by cell */
   int order[1024], n = 0; for(int i = 0; i < r->ncells && n < 1024; i++) order[n++] = i;
   for(int i = 1; i < n; i++){ int k = order[i], j = i - 1; while(j >= 0 && r->cells[order[j]].cell > r->cells[k].cell){ order[j + 1] = order[j]; j--; } order[j + 1] = k; }
@@ -84,6 +85,7 @@ void cell_set(Brain *b, i64 run, int cell, int state, const char *value){
   if(!c){ GROW(r->cells, r->ncells, r->ccells, Cell); c = &r->cells[r->ncells++]; c->cell = cell; memset(&c->v, 0, sizeof c->v); }
   else val_free(&c->v);
   c->state = state; val_set(b, &c->v, value);
+  if(state == 1 && r->kind == 0){ int ok = label_gate(b, "ok"); if(ok && cell != ok){ Shard *o = shard_find(b, ok, cell, 0); if(!o) o = shard_lay(b, ok, cell, 0, 0); if(o) o->times++; } }   /* ok listens: a row of the ok neuron for each cell, ticked when that cell populates */
   if(state == 1 && r->has_mem && !sheet_open(r)) complete_run(b, run);          /* sheet_fill */
 }
 const char *cell_get(Brain *b, i64 run, int cell){ Run *r = run_of(b, run); if(!r) return 0; for(int i = 0; i < r->ncells; i++) if(r->cells[i].cell == cell && r->cells[i].state == 1 && r->cells[i].v.kind) return val_text(b, &r->cells[i].v); return 0; }
@@ -288,7 +290,7 @@ static void ended(Brain *b, i64 run, int gate, i64 shard){
   /* a return fills the cell it was asked for, on the run that asked */
   if(r->cell && r->parent_set){ char v[32]; snprintf(v, sizeof v, "%lld", (long long)run); cell_set(b, r->parent, r->cell, 1, v); }
   /* and lands a row in the definition node of the gate it is about */
-  if(r->about && !r->same_as){ Neuron *n = neuron_of(b, r->about); if(n && n->born){ GROW(n->node, n->nnode, n->cnode, NodeRow); n->node[n->nnode].source = r->arrival; n->node[n->nnode].run = run; n->nnode++; } }
+  if(r->about && !r->same_as){ Neuron *n = neuron_of(b, r->about); if(n){ if(n->nnode == 0) b->dropped_runs++; GROW(n->node, n->nnode, n->cnode, NodeRow); n->node[n->nnode].source = r->arrival; n->node[n->nnode].run = run; n->nnode++; } }
   if(!sheet_open(r)) complete_run(b, run);
   /* a closed line lets go of the gates of its returns: the source row holds them. By the line's own kids, at its end: no sweep */
   r = run_of(b, run); if(r->kind == 0) for(int i = 0; i < r->nkids; i++){ Run *k = run_of(b, r->kids[i]); if(k && k->ended && k->src && k->seq && !k->seq_shared){ free(k->seq); k->seq = 0; k->kept = 0; } }

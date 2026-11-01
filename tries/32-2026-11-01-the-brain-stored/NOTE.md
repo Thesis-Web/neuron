@@ -50,3 +50,15 @@ The old kernel was stuck inside a snapshot and the owner said kill it. Everythin
 - **The file is laid out for this kernel.** A kernel with a different `Run`, `Brain` or `Cell` refuses it rather than misread it; changing those needs a converter.
 - **`defined` is not meaning.** The define lays `like` and `opposite` rows and known/unknown lists. Draft 4.2's diff and compare of sources is not built.
 - **The sixth's paste is now the cost:** 7.5 ms, 73% of the time.
+
+## The second pass (08:00 to 09:05): the dropped half found and kept
+
+The owner: "you cheated by not defining the points... how is only 49% of the meaning that are listed in definitions not in the fucking dictionary?????? make that fucking make sense". It did not make sense, and it was not the dictionary. Measured on 2,072 undefined points sampled across the list (`unk.py`): **42.7% were in a source, exact spelling, and had been answered**: the returns were in the brain (`conscientization`: two Wiktionary returns, no definition row). The cause, in `ended`: a definition row was written only if the point had been born, and a return arrives before the line's landing births the point (the ':' shard's call runs first, newest first). Mine, from the kernel's first day. The other 57%: 32.7% lowercase strings in no source (`hwet`, `hvat`, `cwta`: etymology fragments inside definitions), 20.3% capitalized names in no source (`Sowerberry`, `Heeseok`), 4% inflected forms whose base is in a source, 0.4% fragments.
+
+Fixed live: a definition row is kept whether or not the point has been walked; `repair` laid the 455,243 rows from the returns the brain already held for 211,870 points, 13 s; the undefined points re-asked once (`sent = 0`), the chain ran them in about 50 minutes and found nothing more, as the sample said it would. The kernel now counts `defined` in its stats: **722,272 points with a definition** of 1,317,423 symbols. Every symbol the sources hold as an entry is defined. The rest are not entries in any of the sources attached.
+
+- **The ok neuron** (the owner: "a listener to hear a cell populate and then mark it so the brain knows the sheet is populated"): a row of `ok` per cell, keyed (cell, none), ticked when that cell populates on a line's sheet; when every cell is populated, `ok` is written on the sheet. Live: `define : hinge` 1.08 s, sheet ends `ok: ok`; the ok neuron holds 83 rows, 1.9 million ticks.
+- **refused 1**: `land run 2 pos 1 gate 87, no such neuron`, the egg's second line on the first start, before 87 was born. Kept as the record; nothing since.
+- **The page** (`page.py`): a defined point is blue, an undefined one grey, and the colour changes as points are resolved (read by key every 4 s); memory nodes are small green points, one a line, tied to the line's gates; "follow the brain" reads the newest finished define every 1.5 s and adds it to the stage (the stage is cleared at 1,400 points). Checked in headless Chromium at 08:25 (`page2.png` in the scratchpad of that session): 1,058 points, 3,406 lines, no exceptions.
+- `refused` is now a mailbox read without a key.
+- The brain file: 32 GB on disk; the kernel's own memory 60 MB.
