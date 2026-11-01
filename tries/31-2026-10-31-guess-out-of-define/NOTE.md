@@ -78,3 +78,19 @@ Lays the two indexes, runs `guess_out.py` (it reads the brain and does nothing o
 - **The 14,417 guesses and the 55 million corpus rows are kept.** Nothing was deleted. The cells a guess filled are still filled, as returns from gate 15.
 - **Whether the use-after-free already keyed a landing wrongly on the big brain is not known.** There is no check for it.
 - **The guessing brain is not redesigned.** The design's fixed parts are in `GUESS-IN-THE-OWNERS-WORDS.md`; its four open items are the owner's. Until then it is attached and unused.
+
+## Where the memory goes, read at 00:52 on 11-01 (`g31-mem.txt`, the owner: "what is the leak in memory?... a defined word is a closed run, that closed run becomes a deterministic run on cpu?")
+
+161,985 points defined, 6.8 million run records, 42 a define. Main brain, MB: run records 2,176, seq 1,621, DNA rows 1,258 and their maps 1,013, brain maps 804, mail and misc 838, cells 746, everything else about 410.
+
+**A closed run does not become a deterministic run. I did not build that.** nk.h says it: "its hops still happen". A repeat shares the first run's symbols and stores no receipts, but it is walked again hop by hop and keeps its own 272-byte record. 3.02 million of the 6.8 million records are exact repeats: mother's replies 1,813,442 of 1,813,498, the replayed formula lines 1,208,954 of 1,256,925. The owner's shape, in that same comment: "a run that repeats an earlier identical run is not a second row but a tick on the first".
+
+Other kinds: moby 2,408,658 runs (one run a thesaurus row), wikt 733,869, gcide 190,086, wn 128,304.
+
+**A leak of mine from the load:** seq went from 455 MB (1.3 M runs held) before the load to 1,621 MB (3.6 M runs held) after. A load holds the symbols of runs that can be re-stepped from their source, and compaction skips them because `kept` is already 0. About 1.2 GB.
+
+DNA rows: 19.7 million. In a sample of 400 gates by key, 62% were touched once. `:` alone holds 1,122,202 rows.
+
+Growth a define over 215 s: 19 run records (about 5.2 KB), 47 DNA rows (5.4 KB), 49 cells (2.3 KB), the sixth about 2 KB, about 19 KB in all. At that rate 1,000,000 points is about 25 GB. That replaces the 49 GB I gave at 21:59, which was measured with the guesser in. RAM is 7.8 GB.
+
+What the owner's words of 10-30 say a closed run keeps ("the run receipt from main run and the run data sheet cells filled"), with the labels and node rows, is about 1 GB of the 9.

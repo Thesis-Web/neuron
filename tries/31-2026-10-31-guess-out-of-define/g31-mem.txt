@@ -1,0 +1,42 @@
+first read 00:48:36 defined 159402
+runs by kind and arrival:
+  kind 3 arrival 11 moby runs 2408658 repeats 0
+  kind 3 arrival 4 mother runs 1813498 repeats 1813442
+  kind 1 arrival 2 said runs 1256925 repeats 1208954
+  kind 3 arrival 443 wikt runs 733869 repeats 0
+  kind 0 arrival 5 sixth runs 218367 repeats 0
+  kind 3 arrival 8 gcide runs 190086 repeats 0
+  kind 3 arrival 7 wn runs 128304 repeats 0
+  kind 3 arrival 15 guess runs 14415 repeats 0
+  kind 3 arrival 10 mwt runs 805 repeats 0
+  kind 3 arrival 12 map runs 639 repeats 0
+  kind 0 arrival 1 heard runs 115 repeats 18
+  kind 3 arrival 14 measured runs 18 repeats 0
+  kind 3 arrival 13 sqldoc runs 4 repeats 0
+DNA rows, sample of 400 gates by key:
+  rows 6720 touched only once 4183 share 0.622 median per gate 2 max 1596
+  hub gates: [[':', 1122202], ['what', 6652], ['map', 544], ['def', 58], ['wn', 16], ['moby', 3]]
+second read 00:52:11 defined 161985 added 2583 in 215 s
+  runs 6765699 6815065 + a define 19.1
+  receipts_kept 20659446 22696272 + a define 788.6
+  seq_held_runs 3599577 3604798 + a define 2.0
+  cells 15667624 15794571 + a define 49.1
+  shards 19551058 19673233 + a define 47.3
+  brain_maps_MB 804.0 804.0 KB a define 0.0
+  cells_MB 740.2 746.1 KB a define 2.34
+  heap_free_MB 867.7 833.5 KB a define -13.56
+  heap_in_use_MB 5044.4 5078.6 KB a define 13.56
+  kids_MB 73.6 74.1 KB a define 0.2
+  labels_MB 77.2 77.3 KB a define 0.04
+  mail_and_misc_MB 838.0 838.0 KB a define 0.0
+  memory_text_MB 8.2 8.4 KB a define 0.08
+  neuron_lists_MB 120.7 120.8 KB a define 0.04
+  nodes_MB 80.5 80.6 KB a define 0.04
+  receipts_MB 50.4 51.6 KB a define 0.48
+  run_structs_MB 2176.0 2176.0 KB a define 0.0
+  seq_MB 1620.1 1621.3 KB a define 0.48
+  shard_maps_MB 1006.3 1012.7 KB a define 2.54
+  shards_MB 1250.5 1257.7 KB a define 2.85
+  sqlite_MB 149.6 150.0 KB a define 0.16
+sixth: {'run_structs_MB': 0.0, 'receipts_MB': 0.75, 'seq_MB': 0.48, 'cells_MB': 0.71, 'kids_MB': 0.04, 'memory_text_MB': 0.12, 'shards_MB': 0.0, 'shard_maps_MB': 0.0, 'neuron_lists_MB': 0.0, 'nodes_MB': 0.0, 'labels_MB': 0.0, 'brain_maps_MB': 0.0, 'mail_and_misc_MB': 0.0}
+DONE
