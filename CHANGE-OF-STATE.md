@@ -99,6 +99,8 @@ A change, 2026-11-01 morning (`tries/32`, `tries/33`): the dropped half of the d
 
 A change, 2026-11-01 late morning (`tries/32`, `tries/33`): the space is the hop, not a landing, on both brains (the owner: "the space between those symbols is a hop"; the point everything passed through on the page was the space, half of all hops); what ok was in v6 found (mother's "ok" landing on the ok neuron, silenced when returns stopped being walked) and kept as the listener on the sheet; the kernel's full-brain page opens again through a bundle read in C (the brain at the scale a page can hold: DNA rows hit at least T times, the newest lines whole), 10 s, no sweep in SQL.
 
+A check, 2026-11-01 midday (`tries/34`): the owner asked whether a `define : X` of a point that already holds a full definition answers from what it learned, at runtime speed. Ten typed live on hp: none did. Each asked all the sources again, got the rows it already held, and wrote them into the point's table a second time (hinge now holds four copies); 0.4 to 1.6 s each, the sources' time. The define formula replays the ask unconditionally and `ended` keys no definition row. The fix (the ask answers from the point's own table when it has one; a key on the row) is named in the NOTE and not laid. A door fault of mine fixed on the way: since 11:23 the door's typed line failed on a keyless read of the input table.
+
 ## 3. What has been built correctly, and where (versions audit, 10-25)
 
 | Piece | Built correctly in | Never built correctly |
