@@ -85,7 +85,7 @@ static int dna_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *r
   Shard *s = &n->sh[ix];
   int nb = (int)V(argv[4]), nt = (int)V(argv[5]);
   if(nb != s->before || nt != s->trigger){ hmap_del(&n->h, s->before, s->trigger); s->before = nb; s->trigger = nt; hmap_put(&n->h, nb, nt, ix + 1); }
-  if(s->call != V(argv[6]) || s->spawn != V(argv[7])) s->changed_at = b->clock;
+  if(s->call != V(argv[6]) || s->spawn != V(argv[7])){ s->changed_at = b->clock; b->rewrite_at = b->clock; }
   s->call = V(argv[6]); s->spawn = V(argv[7]); s->times = V(argv[8]);
   return SQLITE_OK;
 }
@@ -131,7 +131,7 @@ static int sheet_step(Cur *c){
   if(c->idx == 2){ if(c->started) return 0; c->started = 1; Run *r = run_of(c->b, c->e); if(!r) return 0; for(int i = 0; i < r->ncells; i++) if(r->cells[i].cell == c->k1){ c->i = i; return 1; } return 0; }
   for(;;){ if(!c->started){ c->started = 1; c->i = -1; } Run *r = (c->e >= 1 && c->e <= c->e_end && c->e <= c->b->nruns) ? run_of(c->b, c->e) : 0; if(!r) return 0; c->i++; if(c->i < r->ncells) return 1; c->e++; c->i = -1; if(c->e > c->e_end) return 0; }
 }
-static void sheet_col(Cur *c, sqlite3_context *x, int col){ Run *r = run_of(c->b, c->e); Cell *k = &r->cells[c->i]; switch(col){ case 0: R(x, c->e); break; case 1: R(x, k->cell); break; case 2: R(x, k->state); break; case 3: RT(x, k->value); break; } }
+static void sheet_col(Cur *c, sqlite3_context *x, int col){ Run *r = run_of(c->b, c->e); Cell *k = &r->cells[c->i]; switch(col){ case 0: R(x, c->e); break; case 1: R(x, k->cell); break; case 2: R(x, k->state); break; case 3: RT(x, val_text(c->b, &k->v)); break; } }
 static i64 sheet_rowid(Cur *c){ return (c->e << 16) | (c->i + 1); }
 static int sheet_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){
   if(argc == 1) return SQLITE_OK;
@@ -158,9 +158,11 @@ static void mem_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; c->i
 static int mem_step(Cur *c){
   if(c->idx == 2){ Neuron *n = neuron_of(c->b, (int)c->k1); if(!n) return 0; c->i++; if(c->i < n->nmem){ c->e = n->mem_runs[c->i]; return 1; } return 0; }
   if(c->idx == 3){ if(!c->started){ c->started = 1; return c->e > 0; } Run *r = run_of(c->b, c->e); if(!r || !r->mem_sibling) return 0; c->e = r->mem_sibling; return 1; }
-  for(;;){ if(!c->started) c->started = 1; else c->e++; if(!(c->e >= 1 && c->e <= c->e_end && c->e <= c->b->nruns)) return 0; Run *r = run_of(c->b, c->e); if(r && r->has_mem && !r->same_as && r->mem_input) return 1; }   /* a memory row: a main run, or a pattern that repeats; a dropped sub-run has none */
+  for(;;){ if(!c->started) c->started = 1; else c->e++; if(!(c->e >= 1 && c->e <= c->e_end && c->e <= c->b->nruns)) return 0; Run *r = run_of(c->b, c->e); if(r && r->has_mem && !r->same_as && r->kept) return 1; }   /* a memory row: a main run, or a pattern that repeats; a dropped sub-run has none */
 }
-static void mem_col(Cur *c, sqlite3_context *x, int col){ Run *r = run_of(c->b, c->e); switch(col){ case 0: R(x, c->e); break; case 1: RT(x, r->mem_input); break; case 2: { char t[24]; snprintf(t, sizeof t, "%d", r->mem_source); RT(x, t); } break; case 3: R(x, r->mem_gate); break; case 4: R(x, r->mem_shard); break; case 5: R(x, r->mem_at); break; case 6: R(x, r->again); break; case 7: R(x, r->last_at); break; case 8: R(x, r->last_run); break; } }
+static char *MEMTXT; static size_t MEMCAP;
+static const char *mem_text(Brain *b, i64 run){ int n; const int *q = nk_seq(b, run, &n); if(!q) return 0; size_t need = 16 + (size_t)n * 12; if(need > MEMCAP){ MEMCAP = need * 2; MEMTXT = realloc(MEMTXT, MEMCAP); } size_t len = 0; MEMTXT[0] = 0; for(int i = 0; i < n; i++) len += snprintf(MEMTXT + len, MEMCAP - len, i ? " %d" : "%d", q[i]); return MEMTXT; }
+static void mem_col(Cur *c, sqlite3_context *x, int col){ Run *r = run_of(c->b, c->e); switch(col){ case 0: R(x, c->e); break; case 1: RT(x, r->kept ? mem_text(c->b, c->e) : 0); break; case 2: { char t[24]; snprintf(t, sizeof t, "%d", r->mem_source); RT(x, t); } break; case 3: R(x, r->mem_gate); break; case 4: R(x, r->mem_shard); break; case 5: R(x, r->mem_at); break; case 6: R(x, r->again); break; case 7: R(x, r->last_at); break; case 8: R(x, r->last_run); break; } }
 static i64 mem_rowid(Cur *c){ return c->e; }
 /* timeline (id, at, run, key1, key2) */
 static void tl_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, c->b->ntl - 1); }
@@ -185,11 +187,11 @@ static int sec_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *r
 /* out_user (id, run, cell, value) */
 static void out_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, c->b->nout - 1); }
 static int out_step(Cur *c){ if(!c->started) c->started = 1; else c->e++; return c->e <= c->e_end; }
-static void out_col(Cur *c, sqlite3_context *x, int col){ Out *o = &c->b->out[c->e]; switch(col){ case 0: R(x, o->id); break; case 1: R(x, o->run); break; case 2: R(x, o->cell); break; case 3: RT(x, o->value); break; } }
+static void out_col(Cur *c, sqlite3_context *x, int col){ Out *o = &c->b->out[c->e]; switch(col){ case 0: R(x, o->id); break; case 1: R(x, o->run); break; case 2: R(x, o->cell); break; case 3: RT(x, val_text(c->b, &o->v)); break; } }
 /* refused (id, text, error) */
 static void ref_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, c->b->nref - 1); }
 static int ref_step(Cur *c){ if(!c->started) c->started = 1; else c->e++; return c->e <= c->e_end; }
-static void ref_col(Cur *c, sqlite3_context *x, int col){ Refused *r = &c->b->ref[c->e]; switch(col){ case 0: R(x, r->id); break; case 1: RT(x, r->text); break; case 2: RT(x, r->error); break; } }
+static void ref_col(Cur *c, sqlite3_context *x, int col){ Refused *r = &c->b->ref[c->e]; switch(col){ case 0: R(x, r->id); break; case 1: RT(x, val_text(c->b, &r->text)); break; case 2: RT(x, val_text(c->b, &r->error)); break; } }
 /* hit (id, run, pos, gate, before, next, via, had, shard, call, spawn): every hit, as v6's hit table. Keyed by (gate, call IS NOT NULL): the
    neuron's own list of the hits on it that carried a call or spawn (the standing question shape asks exactly that). Any other read walks
    every run's receipts: before and next follow from the run's seq, via and had sit on the receipt, call and spawn as they were at the hit. */
@@ -289,7 +291,9 @@ static int xBestIndex(sqlite3_vtab *tab, sqlite3_index_info *info){
       info->idxNum = k + 1; info->estimatedCost = 1.0 + k; info->estimatedRows = 1; return SQLITE_OK;
     }
   }
-  info->idxNum = 0; info->estimatedCost = 1e9; info->estimatedRows = 1000000; return SQLITE_OK;
+  /* no search: a read comes with its key or it does not happen. The owner, 2026-11-01: "no sweep, search table, find nothing". Clock and shards are one row */
+  if(strcmp(d->name, "clock") == 0 || strcmp(d->name, "shards") == 0 || strcmp(d->name, "replay") == 0){ info->idxNum = 0; info->estimatedCost = 1; info->estimatedRows = 1; return SQLITE_OK; }
+  return SQLITE_CONSTRAINT;
 }
 static int xOpen(sqlite3_vtab *tab, sqlite3_vtab_cursor **pc){ Cur *c = sqlite3_malloc(sizeof(Cur)); memset(c, 0, sizeof(*c)); c->d = ((VT*)tab)->d; c->b = ((VT*)tab)->b; *pc = &c->base; return SQLITE_OK; }
 static int xClose(sqlite3_vtab_cursor *pc){ sqlite3_free(pc); return SQLITE_OK; }
@@ -316,7 +320,7 @@ void nkvt_register(sqlite3 *db, Brain *main, Brain *sixth){
   for(int bi = 0; bi < 2; bi++){
     if(!BRAINS[bi]) continue;
     for(int i = 0; i < NTABLES; i++){
-      char *q = sqlite3_mprintf("CREATE VIRTUAL TABLE %s.%s USING nk(%s, %s)", BNAMES[bi], TABLES[i].name, BNAMES[bi], TABLES[i].name);
+      char *q = sqlite3_mprintf("CREATE VIRTUAL TABLE IF NOT EXISTS %s.%s USING nk(%s, %s)", BNAMES[bi], TABLES[i].name, BNAMES[bi], TABLES[i].name);
       char *e = 0; if(sqlite3_exec(db, q, 0, 0, &e) != SQLITE_OK){ fprintf(stderr, "nkvt: %s: %s\n", q, e); sqlite3_free(e); } sqlite3_free(q);
     }
   }
