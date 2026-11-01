@@ -73,7 +73,7 @@ Lays the two indexes, runs `guess_out.py` (it reads the brain and does nothing o
 
 ## Not done
 
-- **The hub is not changed.** Its why line still feeds and asks the guesser, and its sixth still sends nothing (tries/30: the focus lines were never typed). Typing the focus lines as they stand would start it. The hub's why has to be cut first.
+- **The hub is not changed by this try.** Read at 00:31: its door restarted at 22:29:54, not by me, and the focus lines are in (both indexes, the `shared` column, seen bound to run 9040), so the sixth is sending. 2,538 points with a return, 22,235 in the mailbox, about 233 hops a second. Its why line still feeds and asks the guesser: 1.43 million corpus rows, 334 guesses, 153 returns from it into cells. Its cut has not been tried on a twin.
 - **A `fresh` brain gets the guesser back.** LINES-nk and TEACH-LINES still carry it. On a fresh brain `guess_out.py` has to follow TEACH-8.
 - **The 14,417 guesses and the 55 million corpus rows are kept.** Nothing was deleted. The cells a guess filled are still filled, as returns from gate 15.
 - **Whether the use-after-free already keyed a landing wrongly on the big brain is not known.** There is no check for it.
