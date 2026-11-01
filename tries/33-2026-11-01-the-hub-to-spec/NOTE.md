@@ -60,3 +60,5 @@ A profile inside mother (`mother_prof()`, each statement of a paste timed) found
 The page: the door keeps its graph read and re-reads only what changed (hits since, returns since, new tables): 14 to 22 s instead of 82 s, built once at the door's start. The owner's page re-reads the brain every 120 s and shows the memory nodes of every run by default. Checked in headless Chromium at 09:05: open in 70 s, "648,416 gates, 1,216,626 shards, 3,547,874 runs", memory on.
 
 Not done on the hub: text in its tables; the trace rows; births batched (the owner's call: it changes what a birth is).
+
+## The space is the hop (11:10): `hit_go`, `input_go`, `third_go`, `replay_go` on both the hub's brains land the run on the next symbol that is not the space; the first landing of a line is on its first symbol. Live: `define : hinge` 0.6 to 0.8 s, its receipt heard, define, :, hinge. The 66 s seen once was the door's first graph build after a restart.

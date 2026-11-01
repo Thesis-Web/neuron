@@ -2,7 +2,7 @@
 # serve8.py (2026-10-30): the kernel's door. The same page as v6 (the owner: "I really like the look of the one we have") served over HTTP;
 # every request becomes one line to the kernel's socket: a typed line, a read of the graph, a SELECT. The door decides nothing.
 # usage: python3 serve8.py <http port> <kernel port> <page.html> [lines file] [first-runs file] [bind address, default 127.0.0.1]
-import sys, os, json, socket, re, time, http.server, urllib.parse
+import time, sys, os, json, socket, re, time, http.server, urllib.parse
 PORT, KPORT, PAGE = int(sys.argv[1]), int(sys.argv[2]), sys.argv[3]
 LIGHT = os.path.join(os.path.dirname(os.path.abspath(PAGE)), 'NEURON-POINT-OF-CONNECTION-nk-light-2026-10-30.html')
 LINES = sys.argv[4] if len(sys.argv) > 4 else None; FIRST = sys.argv[5] if len(sys.argv) > 5 else None; BIND = sys.argv[6] if len(sys.argv) > 6 else '127.0.0.1'
@@ -30,6 +30,33 @@ def bind(sql, params):
         else: out.append(ch)
     return ''.join(out)
 def q(sql, params=None): return ask('q ' + bind(sql, params))
+BUNDLE = {'at': 0, 'd': None}
+def bundle():
+    if BUNDLE['d'] is None or time.time() - BUNDLE['at'] > 600: BUNDLE['d'] = ask('bundle 400'); BUNDLE['at'] = time.time()
+    return BUNDLE['d']
+def from_bundle(sql, params):
+    """the whole-brain page asks for the brain whole; the kernel answers the brain at the scale a page can hold (bundle): these are its reads"""
+    d = bundle(); s = sql.strip()
+    if s.startswith('SELECT gate, symbol FROM main.label'): return {'cols': ['gate', 'symbol'], 'rows': d['label']}
+    if s.startswith('SELECT id, arrival, parent, root, kind, cell, about, at FROM main.run'): return {'cols': [], 'rows': [r[:8] for r in d['runs']]}
+    if s.startswith("SELECT 'main', id, run FROM main.input"): return {'cols': [], 'rows': d['inputs']}
+    if s.startswith('SELECT id, run, cell, value FROM main.out_user'): return {'cols': [], 'rows': d['out']}
+    if s.startswith('SELECT (SELECT count(*) FROM main.label)'):
+        st = ask('stats'); m = st['main']; x = st['sixth']; c = d['counts']
+        return {'cols': [], 'rows': [[c['label'], c['born'], 0, c['shards'], c['runs'], c['receipts'], 0, 0, 0, m['refused'], m['pending'], 0, 0, c['rel'], 0, x['runs'], 0, x['refused'], m['returns']]]}
+    if s.startswith('SELECT r.about, s.gate, min(r.id)'): return {'cols': [], 'rows': [[a[1], a[1], a[2]] for a in d['answ']]}
+    if s.startswith('SELECT arrival, about, min(id) FROM main.run'): return {'cols': [], 'rows': d['answ']}
+    if s.startswith('SELECT run, count(*) FROM main.run_receipt'): return {'cols': [], 'rows': [[r[0], r[8]] for r in d['runs']]}
+    if s.startswith('SELECT run, gate, shard, input FROM main.run_memory'): return {'cols': [], 'rows': d['memrows']}
+    if s.startswith("SELECT 'told', t.run,"):
+        rows = []
+        for who, key in (('told', 'sixth'), ('asked main', 'main')):
+            n = ask('newest ' + key + ' 400')
+            for l in n.get('told', []): rows.append([who, l['run'], l['text'], None])
+        return {'cols': [], 'rows': rows}
+    if s.startswith('SELECT id, run, gate, shard FROM main.run_receipt WHERE id > ?'):
+        last = int(params[0]) if params else 0; return {'cols': [], 'rows': [r for r in d['receipts'] if r[0] > last]}
+    return None
 RUNS = []
 def fill(line):
     def r(m):
@@ -88,7 +115,8 @@ class H(http.server.BaseHTTPRequestHandler):
             if u.path == '/api/run': return self.send(200, ask('run ' + (qs.get('schema', ['main'])[0]) + ' ' + str(int(qs.get('id', ['0'])[0]))))
             if u.path == '/api/info':
                 st = ask('stats'); return self.send(200, {'brain': 'nk main', 'sixth': 'nk sixth', 'sources': 'attached', 'sqlite': 'nk', 'started': STARTED, 'ready': True, 'error': None, 'busy': None, 'queued': 0, 'version': 'nk', 'stats': st})
-            if u.path == '/api/graph': return self.send(200, ask('graph ' + (qs.get('schema', ['main'])[0])))
+            if u.path == '/api/graph':
+                d = bundle(); return self.send(200, {'dna': d['dna'] + d['hit_dna'], 'nodes': d['nodes'], 'rel': d['rel'], 'tables': d['counts']['born'], 'mem': d['mem'], 'first': d['first'], 'T': d['T'], 'dna_sent': d['counts']['dna_sent']})
             if u.path == '/api/lines': return self.send(200, read_lines())
             if u.path == '/api/job':
                 j = JOBS.get(int(qs.get('id', ['0'])[0])); return self.send(200, j) if j else self.send(404, {'error': 'no such job'})
@@ -112,11 +140,15 @@ class H(http.server.BaseHTTPRequestHandler):
                 sql = str(d.get('sql') or '').strip()
                 if not sql.upper().startswith(('SELECT', 'WITH', 'PRAGMA TABLE_INFO', 'PRAGMA DATABASE_LIST')): return self.send(400, {'error': 'only a SELECT is read through this door'})
                 params = d.get('params') or []
+                fb = from_bundle(sql, params)
+                if fb is not None: return self.send(200, fb)
                 # the page's history read asks for every receipt after the last it saw; on a brain of millions this door answers the newest HISTORY_CAP
                 if sql.startswith('SELECT id, run, gate, shard FROM main.run_receipt WHERE id > ?') and params:
                     top = q('SELECT max(id) FROM main.run_receipt')['rows'][0][0] or 0
                     if top - int(params[0]) > HISTORY_CAP: params = [top - HISTORY_CAP]
-                return self.send(200, q(sql, params))
+                r = q(sql, params)
+                if 'rows' not in r: r = {'cols': [], 'rows': [], 'error': r.get('error')}   # a read the kernel refuses (no key) is an empty answer to the page, with the reason
+                return self.send(200, r)
             if u.path == '/api/fresh': return self.send(400, {'error': "the kernel's door lays no eggs; start the kernel again"})
             return self.send(404, {'error': 'no such path'})
         except Exception as e: return self.send(500, {'error': str(e)})

@@ -97,6 +97,8 @@ A change, 2026-11-01 (`tries/33`): the hub on 8056 to the owner's words, what th
 
 A change, 2026-11-01 morning (`tries/32`, `tries/33`): the dropped half of the definitions found and kept on both brains. A return arrives before the line's landing births its point, and both brains threw the definition row away (the kernel: only a born point got a row; the hub: mother's refusal on a missing `.node` table went unread). Fixed live, the rows repaired from the returns held (211,870 points on the kernel, 48,141 on the hub), the undefined re-asked. The kernel: 722,272 of 1,317,423 symbols defined, every entry its sources hold; the rest are fragments and names inside definitions. The ok neuron laid as the owner described it, a listener that hears a cell populate and marks the sheet. The kernel's page follows the brain, colours a defined point blue, draws memory nodes. The hub's door keeps its graph read (14 s against 82); the hub's remaining cost is SQLite re-reading a 435,000-table catalogue at every birth: 335 to 363 defines a minute.
 
+A change, 2026-11-01 late morning (`tries/32`, `tries/33`): the space is the hop, not a landing, on both brains (the owner: "the space between those symbols is a hop"; the point everything passed through on the page was the space, half of all hops); what ok was in v6 found (mother's "ok" landing on the ok neuron, silenced when returns stopped being walked) and kept as the listener on the sheet; the kernel's full-brain page opens again through a bundle read in C (the brain at the scale a page can hold: DNA rows hit at least T times, the newest lines whole), 10 s, no sweep in SQL.
+
 ## 3. What has been built correctly, and where (versions audit, 10-25)
 
 | Piece | Built correctly in | Never built correctly |
