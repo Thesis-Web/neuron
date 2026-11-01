@@ -205,6 +205,7 @@ static void land(Brain *b, i64 run, int pos, int gate, int before, int next, int
     kb = r->arrival; for(int p = pos - 1; p >= 1; p--) if(r->seq[p - 1] != SPACE){ kb = r->seq[p - 1]; break; }
     for(int p = pos + 1; p <= r->nseq; p++) if(r->seq[p - 1] != SPACE){ kx = r->seq[p - 1]; break; }
   }
+  { int np = pos + 1; while(np <= r->nseq && r->seq[np - 1] == SPACE) np++; next = np <= r->nseq ? r->seq[np - 1] : 0; }   /* the space is the hop: the run steps from symbol to symbol */
   Neuron *n = neuron_of(b, gate);
   if(!n || !n->born){ /* a landing on a gate with no region: as v6's paste into a missing table, the step is refused and the run stalls */
     GROW(b->ref, b->nref, b->cref, Refused); Refused *f = &b->ref[b->nref]; f->id = b->nref + 1; char t[128]; snprintf(t, sizeof t, "land run %lld pos %d gate %d", (long long)run, pos, gate); memset(&f->text, 0, sizeof f->text); memset(&f->error, 0, sizeof f->error); val_set(b, &f->text, t); val_set(b, &f->error, "no such neuron"); b->nref++; b->refused_n++; return; }
@@ -249,7 +250,7 @@ static void hit(Brain *b, i64 run, int pos, int gate, int before, int next, int 
   }
   /* the steps, pushed in hit_go's order; the one pushed last runs first */
   if(next == 0 && via == 0){ Hop h = {0}; h.type = HOP_ENDED; h.run = run; h.gate = gate; h.a = s->id; push(b, h); }
-  if(next != 0 && (via == 1 || had == 1)){ Hop h = {0}; h.type = HOP_LAND; h.run = run; h.pos = pos + 1; h.gate = next; h.before = via == 1 ? before : gate; h.next = (pos + 2 <= r->nseq) ? r->seq[pos + 1] : 0; h.via = 0; push(b, h); }
+  if(next != 0 && (via == 1 || had == 1)){ int np = pos + 1; while(np <= r->nseq && r->seq[np - 1] == SPACE) np++; int nn = np + 1; while(nn <= r->nseq && r->seq[nn - 1] == SPACE) nn++; Hop h = {0}; h.type = HOP_LAND; h.run = run; h.pos = np; h.gate = next; h.before = via == 1 ? before : gate; h.next = nn <= r->nseq ? r->seq[nn - 1] : 0; h.via = 0; push(b, h); }
   if(next != 0 && via == 0 && had == 0){
     char v[32]; snprintf(v, sizeof v, "%d", next); cell_set(b, run, NEWGATE, 1, v);
     Hop h = {0}; h.type = HOP_LAND; h.run = run; h.pos = pos; h.gate = BORN; h.before = gate; h.next = next; h.via = 1; push(b, h);
