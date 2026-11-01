@@ -73,8 +73,9 @@ def decode(schema, run):
 def match_runs(lines):
     RUNS.clear(); seen = {}; typed = {}
     for schema in ('main', 'sixth'):
-        rows = q(f"SELECT run FROM {schema}.input WHERE run IS NOT NULL ORDER BY id")['rows']
-        typed[schema] = [(r[0], decode(schema, r[0])) for r in rows]
+        # the typed lines from the kernel's mailbox read (newest first): a read of the whole input table has no key and the kernel refuses it
+        n = ask('newest ' + schema + ' 5000')
+        typed[schema] = [(l['run'], l['text']) for l in reversed(n.get('lines', []))]
     for l in lines:
         if not l.strip() or l.startswith('#'): continue
         l = fill(l); schema, text = ('sixth', l[3:]) if l.startswith('6> ') else ('main', l)
