@@ -183,7 +183,7 @@
     <div id="busy">opening…</div>
     <div id="overlay">
       <div id="readout">no run yet</div>
-      <div id="controls">
+      <div id="controls"><label style="white-space:nowrap"><input type="checkbox" id="follow" checked> follow the brain</label>
         <button id="play">play</button><button id="stepb">‹</button><button id="stepf">›</button>
         <input type="range" id="time" min="0" max="0" value="0" aria-label="hop within the run">
         <span id="tv" style="font-family:var(--mono)">0 / 0</span>
@@ -230,16 +230,23 @@
   var dotGeo = hasGL ? new THREE.SphereGeometry(1, 10, 10) : null, dotGroup, labelGroup, lineGroup, runGroup, flash;
   if (hasGL) { dotGroup = new THREE.Group(); labelGroup = new THREE.Group(); lineGroup = new THREE.Group(); runGroup = new THREE.Group(); [lineGroup, runGroup, dotGroup, labelGroup].forEach(function (g) { scene.add(g); }); flash = new THREE.Mesh(new THREE.SphereGeometry(1, 12, 12), new THREE.MeshBasicMaterial({ color: 0xffd36b, transparent: true, opacity: .55 })); flash.visible = false; scene.add(flash); }
   var NODE = {}, SPRINGS = [], GAP = 15, SP = 21, FIXED = null;
-  var COLORS = { 'dna before': 0x6f8fb8, 'dna trigger': 0xb8a06f, like: 0x7ed07e, opposite: 0xd07e7e, other: 0x5a6270 };
+  var COLORS = { memory: 0x5fcf92, 'dna before': 0x6f8fb8, 'dna trigger': 0xb8a06f, like: 0x7ed07e, opposite: 0xd07e7e, other: 0x5a6270 };
   function makeLabel(text, color, px) { var c = document.createElement('canvas'), ctx = c.getContext('2d'); ctx.font = '500 26px "IBM Plex Mono", Consolas, monospace'; var w = Math.ceil(ctx.measureText(text).width) + 14; c.width = w; c.height = 36; ctx.font = '500 26px "IBM Plex Mono", Consolas, monospace'; ctx.fillStyle = color; ctx.textBaseline = 'middle'; ctx.fillText(text, 7, 18); var tex = new THREE.CanvasTexture(c); tex.minFilter = THREE.LinearFilter; var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false, sizeAttenuation: false })); sp.userData = { px: px, aspect: w / 36 }; return sp; }
   function sizeLabel(sp) { var y = sp.userData.px * 2.2 / ((renderer && renderer.domElement.clientHeight) || 800); sp.scale.set(y * sp.userData.aspect, y, 1); }
-  function colorOf(g, touched) { if (g === 1) return 0xfff1a8; if (g >= 7 && g <= 15) return 0x8fd3c1; if (g >= 2 && g <= 6) return 0xffffff; var G = GATES[g]; if (G && G.shards.some(function (s) { return s[3] || s[4]; })) return 0xf28c4b; return touched ? (G && G.nodes ? 0xa9c3dc : 0xbfc6cf) : 0x5f6874; }
+  function colorOf(g, touched) { if (g === 1) return 0xfff1a8; if (g >= 7 && g <= 15) return 0x8fd3c1; if (g >= 2 && g <= 6) return 0xffffff; var G = GATES[g]; if (G && G.shards.some(function (s) { return s[3] || s[4]; })) return 0xf28c4b; return (G && G.nodes) ? 0x6ea8fe : (touched ? 0xbfc6cf : 0x5f6874); }
   function clearStage() { if (!hasGL) return; [dotGroup, labelGroup, lineGroup, runGroup].forEach(function (g) { while (g.children.length) { var c = g.children.pop(); if (c.geometry) c.geometry.dispose(); if (c.material) { if (c.material.map) c.material.map.dispose(); c.material.dispose(); } } }); NODE = {}; SPRINGS = []; flash.visible = false; }
   function ensureNode(g, touched) {
     var k = String(g), n = NODE[k]; if (n) return n;
     var fixed = g === FIXED; n = NODE[k] = { key: k, g: g, pos: new THREE.Vector3(0, 0, 0), fixed: fixed, unplaced: !fixed, touched: !!touched, f: new THREE.Vector3() };
     if (hasGL) { var col = colorOf(g, touched), r = g === 1 ? 2.4 : (g >= 7 && g <= 15) ? 2.0 : touched ? 1.2 : .7; n.mesh = new THREE.Mesh(dotGeo, new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: touched ? .95 : .45 })); n.mesh.scale.setScalar(r); n.mesh.userData = { g: g, base: r }; dotGroup.add(n.mesh); n.label = makeLabel(sym(g), '#' + ('000000' + col.toString(16)).slice(-6), touched ? 12 : 9); labelGroup.add(n.label); }
     return n;
+  }
+  function ensureMem(id, gates) {
+    if (!hasGL) return; var k = 'm:' + id, n = NODE[k]; if (n) return n;
+    n = NODE[k] = { key: k, g: gates[0], pos: new THREE.Vector3(0, 0, 0), fixed: false, unplaced: true, touched: false, mem: true, f: new THREE.Vector3() };
+    n.mesh = new THREE.Mesh(dotGeo, new THREE.MeshBasicMaterial({ color: 0x5fcf92, transparent: true, opacity: .95 })); n.mesh.scale.setScalar(.8); n.mesh.userData = { g: gates[0], base: .8 }; dotGroup.add(n.mesh);
+    n.label = makeLabel(' ', '#5fcf92', 9); labelGroup.add(n.label);
+    gates.forEach(function (g) { if (NODE[String(g)]) addSpring(k, g, 'memory', .6); }); return n;
   }
   function addSpring(a, b, kind, w) { if (a === b) return; var na = NODE[String(a)], nb = NODE[String(b)]; if (!na || !nb) return; SPRINGS.push({ a: na, b: nb, kind: kind, k: w || 1, rest: kind.indexOf('dna') === 0 ? 30 : 45 }); }
   function placeNew() {
@@ -301,19 +308,22 @@
   requestAnimationFrame(loop);
 
   // ---- a run: read by key, drawn whole
-  function loadRun(schema, id, cb) {
+  function loadRun(schema, id, cb, merge) {
     $('busy').textContent = 'reading run ' + id + '…'; $('busy').style.display = '';
     api('/api/run?schema=' + schema + '&id=' + id).then(function (r) {
       if (r.error) { $('busy').textContent = r.error; return; }
-      RUN = r; SCHEMA = schema; GATES = r.gates; NAMES = r.names; TK = r.hops.length;
-      clearStage();
+      if (!merge && ready) { FOLLOW = false; }   /* a line the owner clicked holds the stage; the first load does not stop the following */
+      var over = merge && Object.keys(NODE).length > 1400;
+      if (merge && !over && Object.keys(GATES).length) { Object.keys(r.gates).forEach(function (g) { GATES[g] = r.gates[g]; }); Object.keys(r.names).forEach(function (g) { NAMES[g] = r.names[g]; }); RUN = r; SCHEMA = schema; TK = r.hops.length; }
+      else { RUN = r; SCHEMA = schema; GATES = r.gates; NAMES = r.names; TK = r.hops.length; clearStage(); }
       var touched = {}; r.hops.forEach(function (h) { touched[h[2]] = 1; });
-      FIXED = touched[1] ? 1 : (r.hops.length ? r.hops[0][2] : null);
-      Object.keys(GATES).forEach(function (g) { ensureNode(+g, true); });
-      Object.keys(GATES).forEach(function (g) { GATES[g].shards.forEach(function (s) { if (s[1]) { ensureNode(s[1], false); addSpring(s[1], +g, 'dna before', 1 + Math.log(s[5] || 1)); } if (s[2]) { ensureNode(s[2], false); addSpring(+g, s[2], 'dna trigger', 1 + Math.log(s[5] || 1)); } }); GATES[g].rel.forEach(function (rr) { var kind = nameOf(rr[0]); ensureNode(rr[1], false); addSpring(+g, rr[1], kind === 'like' || kind === 'opposite' ? kind : 'other', .6); }); });
-      placeNew(); settle(60); animLeft = 40; FIT = true; fit();
+      if (!merge || over || FIXED === null) FIXED = touched[1] ? 1 : (r.hops.length ? r.hops[0][2] : (r.line && r.line[0]) || null);
+      Object.keys(r.gates).forEach(function (g) { ensureNode(+g, true); var n = NODE[g]; n.touched = true; if (hasGL) { n.mesh.material.color.setHex(colorOf(+g, true)); n.mesh.material.opacity = .95; } });
+      Object.keys(r.gates).forEach(function (g) { r.gates[g].shards.forEach(function (s) { if (s[1]) { ensureNode(s[1], false); addSpring(s[1], +g, 'dna before', 1 + Math.log(s[5] || 1)); } if (s[2]) { ensureNode(s[2], false); addSpring(+g, s[2], 'dna trigger', 1 + Math.log(s[5] || 1)); } }); GATES[g].rel.forEach(function (rr) { var kind = nameOf(rr[0]); ensureNode(rr[1], false); addSpring(+g, rr[1], kind === 'like' || kind === 'opposite' ? kind : 'other', .6); }); });
+      if (r.line && r.line.length) { ensureMem(r.run.id, r.line.filter(function (g) { return NODE[String(g)]; }).concat(r.mem_gate && NODE[String(r.mem_gate)] ? [r.mem_gate] : [])); }
+      placeNew(); settle(merge ? 12 : 60); animLeft = merge ? 16 : 40; FIT = true; fit();
       $('time').max = r.hops.length; setTime();
-      renderRun(); renderNewest(); ready = true;
+      renderRun(); renderNewest(); ready = true; $('follow').checked = FOLLOW;
       var hopsNote = r.hops_sent < r.tree_hops ? ' (the first ' + fmtN(r.hops_sent) + ' of ' + fmtN(r.tree_hops) + ' hops drawn)' : '';
       $('busy').textContent = 'run ' + id + ': ' + fmtN(r.tree_runs) + ' runs, ' + fmtN(r.tree_hops) + ' hops, ' + fmtN(Object.keys(GATES).length) + ' points touched, ' + fmtN(SPRINGS.length) + ' lines' + hopsNote;
       if (cb) cb(r);
@@ -324,6 +334,7 @@
   $('play').addEventListener('click', function () { if (!RUN) return; if (!playing && TK >= RUN.hops.length) TK = 0; playing = !playing; this.textContent = playing ? 'pause' : 'play'; });
   $('stepf').addEventListener('click', function () { if (RUN && TK < RUN.hops.length) { TK++; setTime(); } });
   $('stepb').addEventListener('click', function () { if (RUN && TK > 0) { TK--; setTime(); } });
+  $('follow').addEventListener('change', function () { FOLLOW = this.checked; });
   $('gap').addEventListener('input', function () { GAP = +this.value; $('gapv').textContent = GAP; animLeft = 40; FIT = true; });
   $('spacing').addEventListener('input', function () { SP = +this.value; $('spv').textContent = '×' + SP; if (FIT) fit(); });
 
@@ -354,12 +365,28 @@
     if (!NEWEST) return; var box = $('newest'); box.innerHTML = ''; NEWEST.lines.forEach(function (l) { var d = document.createElement('div'); d.className = RUN && RUN.run.id === l.run ? 'cur' : ''; d.innerHTML = '<span class="who">' + l.run + '</span>' + esc(l.text) + (l.ended ? '' : ' <span class="small">…</span>'); d.title = l.text; d.addEventListener('click', function () { loadRun('main', l.run); }); box.appendChild(d); });
     var t = $('told'); t.innerHTML = ''; NEWEST.told.forEach(function (l) { var d = document.createElement('div'); d.className = RUN && RUN.run.id === l.run ? 'cur' : ''; d.innerHTML = '<span class="who">' + l.run + '</span>' + esc(l.text); d.addEventListener('click', function () { loadRun('main', l.run); }); t.appendChild(d); });
   }
-  function tiles() { var m = STATS.main, s = STATS.sixth; var T = [['runs', fmtN(m.runs)], ['hops (receipts)', fmtN(m.receipts)], ['gates (points)', fmtN(m.gates)], ['DNA rows (shards)', fmtN(m.shards)], ['a hop, since start', m.hops_run ? m.hop_us.toFixed(2) + ' µs' : '–'], ['a paste to mother', m.pastes ? (m.paste_us / 1000).toFixed(1) + ' ms' : '–'], ['hops pending', fmtN(m.pending)], ['the sixth', fmtN(s.runs) + ' runs']]; $('tiles').innerHTML = T.map(function (t) { return '<div class="tile"><b>' + t[1] + '</b><span>' + t[0] + '</span></div>'; }).join(''); $('hud').textContent = fmtN(m.gates) + ' gates · ' + fmtN(m.shards) + ' shards · ' + fmtN(m.runs) + ' runs · ' + fmtN(m.receipts) + ' hops · nothing read whole'; }
+  function tiles() { var m = STATS.main, s = STATS.sixth; var T = [['points defined', fmtN(m.defined)], ['runs', fmtN(m.runs)], ['hops (receipts)', fmtN(m.receipts)], ['gates (points)', fmtN(m.gates)], ['DNA rows (shards)', fmtN(m.shards)], ['a hop, since start', m.hops_run ? m.hop_us.toFixed(2) + ' µs' : '–'], ['a paste to mother', m.pastes ? (m.paste_us / 1000).toFixed(1) + ' ms' : '–'], ['hops pending', fmtN(m.pending)], ['the sixth', fmtN(s.runs) + ' runs']]; $('tiles').innerHTML = T.map(function (t) { return '<div class="tile"><b>' + t[1] + '</b><span>' + t[0] + '</span></div>'; }).join(''); $('hud').textContent = fmtN(m.gates) + ' gates · ' + fmtN(m.shards) + ' shards · ' + fmtN(m.runs) + ' runs · ' + fmtN(m.receipts) + ' hops · nothing read whole'; }
   function refresh(cb) { Promise.all([api('/api/stats'), api('/api/newest?schema=main&n=30')]).then(function (a) { STATS = a[0]; NEWEST = a[1]; tiles(); renderNewest(); if (cb) cb(); }); }
   function typeLine() { var v = $('line').value.trim(); if (!v) return; var who = $('who').value; if (v.indexOf('6> ') === 0) { who = 'sixth'; v = v.slice(3); } $('line').value = ''; $('busy').textContent = 'the brain is running "' + v.slice(0, 60) + '"…'; api('/api/type', { line: v, prompt: who }).then(function (j) { var r = j.result; if (!r || j.error) { $('busy').textContent = 'the line stopped: ' + (j.error || 'no result'); return; } refresh(function () { loadRun(r.schema, r.run, function () { $('busy').textContent = 'the line ran in ' + r.seconds.toFixed(3) + ' s: ' + fmtN(r.runs) + ' runs, ' + fmtN(r.hits) + ' hits, ' + r.born + ' born. ' + fmtN(STATS.main.gates) + ' gates now.'; TK = 0; setTime(); playing = true; $('play').textContent = 'pause'; }); }); }); }
   $('go').addEventListener('click', typeLine); $('line').addEventListener('keydown', function (e) { if (e.key === 'Enter') typeLine(); });
   refresh(function () { var l = NEWEST.lines[0]; if (l) loadRun('main', l.run); else { ready = true; $('busy').textContent = 'the brain is open; type a line.'; } });
-  setInterval(function () { if (!playing) api('/api/stats').then(function (s) { STATS = s; tiles(); }); }, 15000);
+  setInterval(function () { if (!playing) api('/api/stats').then(function (s) { STATS = s; tiles(); }); }, 3000);
+  var FOLLOW = true, following = false, lastFollow = 0;
+  function followTick() {
+    if (!FOLLOW || playing || following || !ready) return; following = true;
+    api('/api/newest?schema=main&n=6').then(function (N) {
+      NEWEST = N; renderNewest();
+      var l = (N.told || []).filter(function (x) { return x.ended && /^define/.test(x.text); })[0] || N.lines[0];
+      if (!l || l.run === lastFollow) { following = false; return; }
+      lastFollow = l.run; loadRun('main', l.run, function () { following = false; }, true);
+      setTimeout(function () { following = false; }, 4000);
+    }).catch(function () { following = false; });
+  }
+  setInterval(followTick, 1500);
+  setInterval(function () {
+    var grey = Object.keys(NODE).filter(function (k) { var n = NODE[k]; return !n.mem && !(GATES[k] && GATES[k].nodes); }).slice(0, 500); if (!grey.length) return;
+    api('/api/q', { sql: 'SELECT gate, nodes FROM ' + SCHEMA + '.neuron WHERE gate IN (' + grey.join(',') + ')' }).then(function (r) { (r.rows || []).forEach(function (x) { if (x[1] > 0) { GATES[x[0]] = GATES[x[0]] || { s: nameOf(x[0]), shards: [], rel: [] }; GATES[x[0]].nodes = x[1]; var n = NODE[String(x[0])]; if (n && hasGL) n.mesh.material.color.setHex(0x6ea8fe); } }); });
+  }, 4000);
   window.__nk = { ready: function () { return ready; }, run: function () { return RUN && RUN.run.id; }, hops: function () { return RUN ? RUN.hops.length : 0; }, points: function () { return Object.keys(NODE).length; }, springs: function () { return SPRINGS.length; }, tk: function () { return TK; }, load: function (id) { loadRun('main', id); }, send: function (line, who) { $('line').value = line; $('who').value = who || 'main'; typeLine(); } };
 })();
 </script>

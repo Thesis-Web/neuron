@@ -292,7 +292,7 @@ static int xBestIndex(sqlite3_vtab *tab, sqlite3_index_info *info){
     }
   }
   /* no search: a read comes with its key or it does not happen. The owner, 2026-11-01: "no sweep, search table, find nothing". Clock and shards are one row */
-  if(strcmp(d->name, "clock") == 0 || strcmp(d->name, "shards") == 0 || strcmp(d->name, "replay") == 0){ info->idxNum = 0; info->estimatedCost = 1; info->estimatedRows = 1; return SQLITE_OK; }
+  if(strcmp(d->name, "clock") == 0 || strcmp(d->name, "shards") == 0 || strcmp(d->name, "replay") == 0 || strcmp(d->name, "refused") == 0){ info->idxNum = 0; info->estimatedCost = 1; info->estimatedRows = 1; return SQLITE_OK; }
   return SQLITE_CONSTRAINT;
 }
 static int xOpen(sqlite3_vtab *tab, sqlite3_vtab_cursor **pc){ Cur *c = sqlite3_malloc(sizeof(Cur)); memset(c, 0, sizeof(*c)); c->d = ((VT*)tab)->d; c->b = ((VT*)tab)->b; *pc = &c->base; return SQLITE_OK; }
