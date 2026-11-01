@@ -1,0 +1,16 @@
+LIVE define : know: 1.03 s, runs 259, refused 0, error None ["['main', 682110, 'me', '682110']", "['main', 682110, 'what', '26']", "['main', 682110, 'def', 'run 682365 from wikt: [word: know] [par", "['main', 682110, 'know', '2/5']", "['main', 682110, 'remember', 'run 638731 from heard: define : kn"]
+LIVE define : truth: 0.82 s, runs 143, refused 0, error None ["['main', 682753, 'me', '682753']", "['main', 682753, 'what', '3042']", '[\'main\', 682753, \'def\', "run 682892 from wikt: noun 1: (social m', "['main', 682753, 'know', '1/5']", "['main', 682753, 'remember', 'run 624337 from sixth: define : tr"]
+LIVE print dna : who: 2.04 s, runs 9, refused 0, error None ["['main', 683111, 'me', '683111']", "['main', 683111, 'what', '121']", "['main', 683111, 'say', 'run 683118 from mother: 279 | 1 |  |  |", "['main', 683111, 'know', '3/7']", "['main', 683111, 'remember', 'run 1344 from heard: print dna : w"]
+a BUILD line 1.64 s ["['main', 683876, 'me', '683876']", "['main', 683876, 'reply', 'run 683881 from mother: 1']", "['main', 683876, 'know', '1/9']", "['main', 683876, 'remember', '0']", "['main', 683876, 'shape', '0']", "['main', 683748, 'me', '683748']", "['main', 683748, 'what', '1301']", "['main', 683748, 'def', 'run 683872 from wikt: verb 1: (transitive, obsolete) To", "['main', 683748, 'known', 'what know before times id source ok count s r kind wo", "['main', 683748, 'unknown', 'A health improve See Note whom person changes In Jo", "['sixth', 19934, 'me', '19934']", "['sixth', 19934, 'what', '683748']", "['sixth', 19933, 'me', '19933']", "['sixth', 19933, 'what', '683876']"]
+ its sheet [['me', '683876'], ['reply', '683881'], ['know', '1/9'], ['remember', '0'], ['shape', '0']]
+ reply reads: 1 arrival [[4, 3]]
+defines a minute 150 sent 3686 runs + 27955 hops + 2295 2786 refused 0 0
+waiting [[177613]] points with a return [[3761]] closed [[7, 2525]] [[2, 1517]] refused rows [[0]] [[0]]
+   42.86 s  n    868       49.4 ms  main INSERT INTO main.fire (run, ord) VALUES 
+   30.57 s  n    534       57.2 ms  sixth INSERT INTO sixth.fire (run, ord) VALUES
+    8.63 s  n    533       16.2 ms  COMMIT
+    2.61 s  n   1998        1.3 ms  main INSERT INTO main.land (run, pos, gate, b
+    0.29 s  n    123        2.4 ms  door job
+    0.28 s  n   2665        0.1 ms  sixth INSERT INTO sixth.land (run, pos, gate, 
+page graph read answered in 105.3 s
+DONE
