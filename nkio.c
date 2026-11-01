@@ -153,7 +153,7 @@ static void do_q(const char *sql, SB *o){
 static const char *SRCDIR = "sources"; static const char **SRCS; static int NSRCS;
 static void brain_stats(Brain *b, SB *o){
   double hop_us = b->hops_run ? (b->hop_ns - b->paste_ns) / 1000.0 / b->hops_run : 0, paste_us = b->pastes ? b->paste_ns / 1000.0 / b->pastes : 0;
-  sb_fmt(o, "{\"defined\":%lld,", (long long)b->dropped_runs); sb_fmt(o, "\"runs\":%lld,\"hops\":%lld,\"pending\":%d,\"gates\":%d,\"refused\":%lld,\"shards\":%lld,\"hop_us\":%.3f,\"pastes\":%lld,\"paste_us\":%.1f,\"hop_s\":%.3f,\"paste_s\":%.3f,\"returns\":%lld,\"return_us\":%.1f,\"return_s\":%.3f,\"receipts\":%lld,\"hops_run\":%lld,\"deduped_runs\":%lld,\"stubs\":%lld,\"receipts_dropped\":%lld}", (long long)b->nruns, (long long)b->hops_done, pending(b), b->label.n, (long long)b->refused_n, (long long)b->shards, hop_us, (long long)b->pastes, paste_us, (b->hop_ns - b->paste_ns) / 1e9, b->paste_ns / 1e9, (long long)b->secs, b->secs ? b->sec_ns / 1000.0 / b->secs : 0, b->sec_ns / 1e9, (long long)(b->hops_done - b->dropped_receipts), (long long)b->hops_run, (long long)b->deduped, (long long)b->dropped_runs, (long long)b->dropped_receipts);
+  sb_fmt(o, "{\"defined\":%lld,", (long long)b->dropped_runs); sb_fmt(o, "\"runs\":%lld,\"hops\":%lld,\"pending\":%d,\"gates\":%d,\"refused\":%lld,\"shards\":%lld,\"shard_rows\":%lld,\"hop_us\":%.3f,\"pastes\":%lld,\"paste_us\":%.1f,\"hop_s\":%.3f,\"paste_s\":%.3f,\"returns\":%lld,\"return_us\":%.1f,\"return_s\":%.3f,\"receipts\":%lld,\"hops_run\":%lld,\"deduped_runs\":%lld,\"stubs\":%lld,\"receipts_dropped\":%lld}", (long long)b->nruns, (long long)b->hops_done, pending(b), b->label.n, (long long)b->refused_n, (long long)b->shards, (long long)nk_shard_rows(b), hop_us, (long long)b->pastes, paste_us, (b->hop_ns - b->paste_ns) / 1e9, b->paste_ns / 1e9, (long long)b->secs, b->secs ? b->sec_ns / 1000.0 / b->secs : 0, b->sec_ns / 1e9, (long long)(b->hops_done - b->dropped_receipts), (long long)b->hops_run, (long long)b->deduped, (long long)b->dropped_runs, (long long)b->dropped_receipts);
 }
 static void do_stats(SB *o){ struct mallinfo2 mi = mallinfo2(); sb_str(o, "{\"main\":"); brain_stats(&MAINB, o); sb_str(o, ",\"sixth\":"); brain_stats(&SIXTHB, o); sb_fmt(o, ",\"heap_MB\":%.0f}", (mi.uordblks + mi.hblkhd) / 1048576.0); }
 
@@ -248,6 +248,35 @@ static void do_repair(Brain *b, SB *o){
     if(n->nnode) defined++; }
   b->dropped_runs = defined; sb_fmt(o, "{\"points_repaired\":%lld,\"node_rows\":%lld,\"defined\":%lld}", (long long)points, (long long)rows, (long long)defined);
 }
+/* ---- the hop laid as one shard: the back population. The owner (2026-11-01): "you do not have to log every different hop as a dna shard ...
+   it means the trigger to go the hop meaning points to the same shard of dna for all points"; "it does require or can require back population of
+   existing dna shard triggers". Every row that only recorded a pass (no call, no spawn) folds into the hop shard: its times go there, the row goes,
+   and every receipt, memory row and firing that named it now names the hop shard. Kept: a row with a call or a spawn, the egg's row 0 of the
+   core, the ok neuron's rows (its marks), the hop shard itself. A pass over the brain, once. ---- */
+static void do_hop(Brain *b, SB *o){
+  double t0 = now_s(); int ok = label_gate(b, "ok"); Shard *hop = hop_shard(b); i64 hid = hop->id;
+  i64 rows0 = 0, kept = 0, folded = 0, moved = 0, rcs = 0, mems = 0, evs = 0;
+  free(b->shid.e); b->shid.e = 0; hmap_init(&b->shid, 1 << 16);
+  for(int g = 1; g <= b->label.n; g++){ Neuron *n = neuron_of(b, g); if(!n || !n->nsh) continue; rows0 += n->nsh;
+    int k = 0;
+    for(int j = 0; j < n->nsh; j++){ Shard *s = &n->sh[j];
+      int keep = s->call || s->spawn || g == ok || s->id == hid || (s->before == 0 && s->trigger == 0 && g <= 90);
+      if(keep){ if(k != j) n->sh[k] = *s; k++; } else { moved += s->times; folded++; } }
+    n->nsh = k;
+    free(n->h.e); n->h.e = 0; n->h.n = 0; n->h.cap = 0;
+    if(k){ size_t hc = 8; while(hc * 7 < (size_t)(k + 1) * 10) hc <<= 1; hmap_init(&n->h, hc); for(int j = 0; j < k; j++){ hmap_put(&n->h, n->sh[j].before, n->sh[j].trigger, j + 1); hmap_put(&b->shid, g, n->sh[j].id, j + 1); } }
+    if(k == 0){ free(n->sh); n->sh = 0; n->csh = 0; }
+    else if(n->csh > k * 2 + 8){ Shard *ns = malloc(sizeof(Shard) * (k + 2)); memcpy(ns, n->sh, sizeof(Shard) * k); free(n->sh); n->sh = ns; n->csh = k + 2; }
+    kept += k; }
+  hop->times += moved;
+  for(i64 i = 1; i <= b->nruns; i++){ Run *r = &b->runs[i];
+    if(r->rcs) for(int j = 0; j < r->nrc; j++){ Rc *c = &r->rcs[j]; if(c->shard == hid) continue; if(!hmap_get(&b->shid, c->gate, c->shard)){ c->shard = hid; rcs++; } }
+    if(r->has_mem && r->mem_shard && r->mem_shard != hid && !hmap_get(&b->shid, r->mem_gate, r->mem_shard)){ r->mem_shard = hid; mems++; }
+    if(r->ev) for(int j = 0; j < r->nev; j++){ Ev *e = &r->ev[j]; if(e->shard != hid && !hmap_get(&b->shid, e->gate, e->shard)){ e->shard = hid; evs++; } } }
+  nk_count_rows(b);
+  sb_fmt(o, "{\"brain\":\"%s\",\"rows_before\":%lld,\"rows_kept\":%lld,\"rows_folded\":%lld,\"times_moved\":%lld,\"hop_shard\":%lld,\"hop_times\":%lld,\"receipts_repointed\":%lld,\"memory_rows_repointed\":%lld,\"firings_repointed\":%lld,\"seconds\":%.1f}",
+    b->name, (long long)rows0, (long long)kept, (long long)folded, (long long)moved, (long long)hid, (long long)hop->times, (long long)rcs, (long long)mems, (long long)evs, now_s() - t0);
+}
 /* ---- the whole-brain page's bundle: the brain at the scale a page can hold. The DNA rows hit at least T times (T chosen so at most CAP rows go),
    the symbols those rows name, every point's definition and memory counts, the relationship rows of those points, the newest K lines with every
    run under them, their sheets, receipts and outputs. Read from the regions in C, by walking them once; the page asks for it whole. ---- */
@@ -268,13 +297,9 @@ static void do_bundle(Brain *b, int K, SB *o){
   sb_str(o, "],\"rel\":["); first = 1; i64 nrel = 0;
   if(!REL_Q){ char q[64]; snprintf(q, sizeof q, "SELECT kind, other FROM %s.rel WHERE gate = ?", b->name); sqlite3_prepare_v2(DB, q, -1, &REL_Q, 0); }
   { /* the relationship rows of the included points, in one pass over the brain's own rel table (the page asks for the brain whole) */
-    static sqlite3_stmt *ALLREL; if(!ALLREL){ char q[64]; snprintf(q, sizeof q, "SELECT gate, kind, other FROM %s.rel", b->name); sqlite3_prepare_v2(DB, q, -1, &ALLREL, 0); }
-    if(ALLREL){ while(sqlite3_step(ALLREL) == SQLITE_ROW && nrel < CAP){ int g = sqlite3_column_int(ALLREL, 0); if(g <= 0 || g > b->label.n || !inc[g]) continue; int kind = sqlite3_column_int(ALLREL, 1), other = sqlite3_column_int(ALLREL, 2); if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%d,%d,%d,0]", g, kind, other); nrel++; if(kind > 0 && kind <= b->label.n) inc[kind] = 1; if(other > 0 && other <= b->label.n) inc[other] = 1; } sqlite3_reset(ALLREL); } }
-  sb_str(o, "],\"nodes\":{"); first = 1;
-  for(int g = 1; g <= b->label.n; g++){ Neuron *n = neuron_of(b, g); if(!n || !n->nnode) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%d\":%d", g, n->nnode); }
-  sb_str(o, "},\"mem\":{"); first = 1;
-  for(int g = 1; g <= b->label.n; g++){ Neuron *n = neuron_of(b, g); if(!n || !n->nmem) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%d\":%d", g, n->nmem); }
-  sb_str(o, "},\"runs\":["); first = 1;
+    static sqlite3_stmt *ALLREL; if(!ALLREL){ char q[64]; snprintf(q, sizeof q, "SELECT gate, kind, other, run FROM %s.rel", b->name); sqlite3_prepare_v2(DB, q, -1, &ALLREL, 0); }
+    if(ALLREL){ while(sqlite3_step(ALLREL) == SQLITE_ROW && nrel < CAP){ int g = sqlite3_column_int(ALLREL, 0); if(g <= 0 || g > b->label.n || !inc[g]) continue; int kind = sqlite3_column_int(ALLREL, 1), other = sqlite3_column_int(ALLREL, 2); if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%d,%d,%d,%lld]", g, kind, other, (long long)sqlite3_column_int64(ALLREL, 3)); nrel++; if(kind > 0 && kind <= b->label.n) inc[kind] = 1; if(other > 0 && other <= b->label.n) inc[other] = 1; } sqlite3_reset(ALLREL); } }
+  sb_str(o, "],\"runs\":["); first = 1;
   for(int i = 0; i < nr; i++){ Run *r = run_of(b, runs[i]); if(!r) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%lld,%d,", (long long)runs[i], r->arrival); if(r->parent_set) sb_fmt(o, "%lld", (long long)r->parent); else sb_str(o, "null"); sb_fmt(o, ",%lld,%d,", (long long)r->root, r->kind); if(r->cell) sb_fmt(o, "%d", r->cell); else sb_str(o, "null"); sb_str(o, ","); if(r->about) sb_fmt(o, "%d", r->about); else sb_str(o, "null"); sb_fmt(o, ",%lld,%d]", (long long)r->at, r->nhops); }
   sb_str(o, "],\"first\":{"); first = 1;
   for(int i = 0; i < nr; i++){ Run *rr = run_of(b, runs[i]); const int *sq = rr ? rr->seq : 0; int n = sq ? rr->nseq : 0; if(!sq || n < 1) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%lld\":%d", (long long)runs[i], sq[0]); }
@@ -285,20 +310,33 @@ static void do_bundle(Brain *b, int K, SB *o){
   /* the definitions: for the included points, which sources answered (the page's defines and answers reads) */
   sb_str(o, "],\"answ\":["); first = 1;
   for(int g = 1; g <= b->label.n; g++){ if(!inc[g]) continue; Neuron *n = neuron_of(b, g); if(!n || !n->nnode) continue; int seenSrc[64]; int ns = 0; for(int j = 0; j < n->nnode; j++){ int src = n->node[j].source; int dup = 0; for(int k = 0; k < ns; k++) if(seenSrc[k] == src) dup = 1; if(dup || ns >= 64) continue; seenSrc[ns++] = src; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%d,%d,%lld]", src, g, (long long)n->node[j].run); } }
+  /* the definition words of the newest lines' points: each point's node rows, their returns read back through the encoder (the page's
+     definition lines, "a symbol to the words of the lines its sources returned") */
+  sb_str(o, "],\"defw\":["); first = 1; { HMap dw; hmap_init(&dw, 1 << 16); int lines = 0;
+    for(int i = 0; i < nr && lines < 400; i++){ Run *r = run_of(b, runs[i]); if(!r || r->kind != 0) continue; lines++; const char *w = cell_get(b, runs[i], WHAT); if(!w) continue; int g = atoi(w); Neuron *n = (g > 0 && g <= b->label.n) ? neuron_of(b, g) : 0; if(!n || !n->nnode) continue;
+      for(int j = 0; j < n->nnode && j < 300; j++){ i64 rr = n->node[j].run; int ns; const int *sq = nk_seq(b, rr, &ns);
+        for(int k = 0; sq && k < ns; k++){ int x = sq[k]; if(x <= 0 || x > b->label.n || x == g) continue; unsigned char c0 = (unsigned char)b->label.sym[x][0]; if(!((c0 >= 'A' && c0 <= 'Z') || (c0 >= 'a' && c0 <= 'z'))) continue; if(hmap_get(&dw, g, x)) continue; hmap_put(&dw, g, x, rr); inc[x] = 1; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%d,%d,%lld]", g, x, (long long)rr); } } }
+    free(dw.e); }
   sb_str(o, "],\"memrows\":["); first = 1;
   for(int i = 0; i < nr; i++){ Run *r = run_of(b, runs[i]); if(!r || !r->has_mem || r->same_as || !r->seq) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%lld,%d,%lld,\"", (long long)runs[i], r->mem_gate, (long long)r->mem_shard); for(int k = 0; k < r->nseq && k < 60; k++) sb_fmt(o, k ? " %d" : "%d", r->seq[k]); sb_str(o, "\"]"); }
   sb_str(o, "],\"hit_dna\":["); first = 1; { HMap hs; hmap_init(&hs, 1 << 16);
   for(int i = nr - 1; i >= 0; i--){ Run *r = run_of(b, runs[i]); if(!r || !r->nrc) continue; for(int j = 0; j < r->nrc; j++){ Rc *k = &r->rcs[j]; if(hmap_get(&hs, k->gate, k->shard)) continue; hmap_put(&hs, k->gate, k->shard, 1); Shard *sh = shard_by_id(b, k->gate, k->shard); if(!sh || sh->times >= T) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%d,%lld,%d,%d,%lld,%lld,%lld]", k->gate, (long long)sh->id, sh->before, sh->trigger, (long long)sh->call, (long long)sh->spawn, (long long)sh->times); if(sh->before > 0 && sh->before <= b->label.n) inc[sh->before] = 1; if(sh->trigger > 0 && sh->trigger <= b->label.n) inc[sh->trigger] = 1; } } free(hs.e); }
   sb_str(o, "],\"receipts\":["); first = 1; i64 rid = 0;
   for(int i = nr - 1; i >= 0; i--){ Run *r = run_of(b, runs[i]); if(!r || !r->nrc) continue; for(int j = 0; j < r->nrc; j++){ Rc *k = &r->rcs[j]; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%lld,%lld,%d,%lld]", (long long)++rid, (long long)runs[i], k->gate, (long long)k->shard); } }
-  sb_str(o, "],\"label\":["); first = 1; i64 nlab = 0;
+  /* the definition-row and memory counts of the included points only (the page colours and lists by them), once the included set is final */
+  sb_str(o, "],\"nodes\":{"); first = 1;
+  for(int g = 1; g <= b->label.n; g++){ if(!inc[g]) continue; Neuron *n = neuron_of(b, g); if(!n || !n->nnode) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%d\":%d", g, n->nnode); }
+  sb_str(o, "},\"mem\":{"); first = 1;
+  for(int g = 1; g <= b->label.n; g++){ if(!inc[g]) continue; Neuron *n = neuron_of(b, g); if(!n || !n->nmem) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%d\":%d", g, n->nmem); }
+  sb_str(o, "},\"label\":["); first = 1; i64 nlab = 0;
   for(int g = 1; g <= b->label.n; g++){ if(!inc[g]) continue; if(!first) sb_str(o, ","); first = 0; nlab++; sb_fmt(o, "[%d,", g); sb_json(o, b->label.sym[g]); sb_str(o, "]"); }
-  sb_fmt(o, "],\"counts\":{\"label\":%d,\"born\":%d,\"shards\":%lld,\"runs\":%lld,\"receipts\":%lld,\"rel\":%lld,\"dna_sent\":%lld,\"label_sent\":%lld,\"runs_sent\":%d,\"defined\":%lld}}", b->label.n, b->label.n, (long long)b->shards, (long long)b->nruns, (long long)b->hops_done, (long long)nrel, (long long)ndna, (long long)nlab, nr, (long long)b->dropped_runs);
+  sb_fmt(o, "],\"counts\":{\"label\":%d,\"born\":%d,\"shards\":%lld,\"runs\":%lld,\"receipts\":%lld,\"rel\":%lld,\"dna_sent\":%lld,\"label_sent\":%lld,\"runs_sent\":%d,\"defined\":%lld}}", b->label.n, b->label.n, (long long)nk_shard_rows(b), (long long)b->nruns, (long long)b->hops_done, (long long)nrel, (long long)ndna, (long long)nlab, nr, (long long)b->dropped_runs);
   free(inc); free(runs); free(seen.e);
 }
 static void handle(const char *req, SB *o){
   if(strncmp(req, "bundle ", 7) == 0){ do_bundle(&MAINB, atoi(req + 7) > 0 ? atoi(req + 7) : 400, o); return; }
   if(strcmp(req, "repair") == 0){ do_repair(&MAINB, o); return; }
+  if(strcmp(req, "hop") == 0){ sb_str(o, "["); do_hop(&MAINB, o); sb_str(o, ","); do_hop(&SIXTHB, o); sb_str(o, "]"); return; }
   if(strcmp(req, "memory") == 0){ sb_str(o, "["); do_memory(&MAINB, o); sb_str(o, ","); do_memory(&SIXTHB, o); sb_str(o, "]"); return; }
   if(strncmp(req, "profile", 7) == 0){ do_profile(o, atoi(req + 7) > 0 ? atoi(req + 7) : 15); return; }
   if(strcmp(req, "scans") == 0){ char t[4096]; nkvt_scans(t, sizeof t); sb_str(o, "["); sb_str(o, t); sb_str(o, "]"); return; }
@@ -327,6 +365,7 @@ int main(int argc, char **argv){
   const char *defaults[] = {"wn", "gcide", "mw", "mwt", "moby", "map", "sqldoc", "measured", "guess"};
   const char **srcs = argc > 4 ? (const char**)argv + 4 : defaults; int nsrc = argc > 4 ? argc - 4 : 9; SRCDIR = argv[3]; SRCS = srcs; NSRCS = nsrc;
   if(mother_open(&MAINB, &SIXTHB, srcs, nsrc, argv[3]) != 0){ fprintf(stderr, "mother could not open\n"); return 1; }
+  nk_count_rows(&MAINB); nk_count_rows(&SIXTHB);
   nk_map_ready();
   int s = socket(AF_INET, SOCK_STREAM, 0); int one = 1; setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &one, sizeof one);
   struct sockaddr_in a = {0}; a.sin_family = AF_INET; a.sin_port = htons(port); a.sin_addr.s_addr = htonl(INADDR_LOOPBACK);

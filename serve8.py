@@ -32,7 +32,7 @@ def bind(sql, params):
 def q(sql, params=None): return ask('q ' + bind(sql, params))
 BUNDLE = {'at': 0, 'd': None}
 def bundle():
-    if BUNDLE['d'] is None or time.time() - BUNDLE['at'] > 600: BUNDLE['d'] = ask('bundle 400'); BUNDLE['at'] = time.time()
+    if BUNDLE['d'] is None or time.time() - BUNDLE['at'] > 600: BUNDLE['d'] = ask('bundle ' + os.environ.get('NK_BUNDLE_K', '2000')); BUNDLE['at'] = time.time()
     return BUNDLE['d']
 def from_bundle(sql, params):
     """the whole-brain page asks for the brain whole; the kernel answers the brain at the scale a page can hold (bundle): these are its reads"""
@@ -44,7 +44,7 @@ def from_bundle(sql, params):
     if s.startswith('SELECT (SELECT count(*) FROM main.label)'):
         st = ask('stats'); m = st['main']; x = st['sixth']; c = d['counts']
         return {'cols': [], 'rows': [[c['label'], c['born'], 0, c['shards'], c['runs'], c['receipts'], 0, 0, 0, m['refused'], m['pending'], 0, 0, c['rel'], 0, x['runs'], 0, x['refused'], m['returns']]]}
-    if s.startswith('SELECT r.about, s.gate, min(r.id)'): return {'cols': [], 'rows': [[a[1], a[1], a[2]] for a in d['answ']]}
+    if s.startswith('SELECT r.about, s.gate, min(r.id)'): return {'cols': [], 'rows': d.get('defw', [])}   # a point to the words of its definition
     if s.startswith('SELECT arrival, about, min(id) FROM main.run'): return {'cols': [], 'rows': d['answ']}
     if s.startswith('SELECT run, count(*) FROM main.run_receipt'): return {'cols': [], 'rows': [[r[0], r[8]] for r in d['runs']]}
     if s.startswith('SELECT run, gate, shard, input FROM main.run_memory'): return {'cols': [], 'rows': d['memrows']}
@@ -134,7 +134,7 @@ class H(http.server.BaseHTTPRequestHandler):
                 if d.get('prompt') == 'sixth' and not line.startswith('6> '): line = '6> ' + line
                 if not RUNS and LINES and os.path.exists(LINES): match_runs([l.rstrip('\n') for l in open(LINES, encoding='utf-8')])
                 line = fill(line); schema, text = ('sixth', line[3:]) if line.startswith('6> ') else ('main', line)
-                t = time.time(); r = ask(f'type {schema} {text}'); RUNS.append(r.get('run'))
+                t = time.time(); r = ask(f'type {schema} {text}'); RUNS.append(r.get('run')); BUNDLE['d'] = None   # the page reads the brain again after its line: it must see this run
                 JOBN[0] += 1; j = {'id': JOBN[0], 'kind': 'type', 'done': True, 'result': r, 'error': r.get('error'), 'progress': None, 'elapsed': time.time() - t, 'line': line}
                 JOBS[j['id']] = j; return self.send(200, j)
             if u.path == '/api/q':
