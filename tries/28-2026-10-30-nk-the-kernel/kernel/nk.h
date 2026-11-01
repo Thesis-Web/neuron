@@ -103,6 +103,7 @@ void   brain_init(Brain *b, const char *name, int is_main);
 uint64_t strhash(const char *s);
 uint64_t seqhash(const int *seq, int n);
 Shard *shard_by_id(Brain *b, int gate, i64 id);
+Shard *hop_shard(Brain *b); i64 hop_id(Brain *b); i64 nk_shard_rows(Brain *b); void nk_count_rows(Brain *b);
 i64    now_ns(void);
 int    label_gate(Brain *b, const char *sym);           /* 0 when the symbol has no gate */
 int    label_new(Brain *b, const char *sym);            /* the next gate, born into the encoder (no neuron region yet) */

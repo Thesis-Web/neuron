@@ -59,7 +59,7 @@ static void dna_begin(Cur *c, int idx, sqlite3_value **argv){
 }
 static int dna_step(Cur *c){
   for(;;){
-    if(c->idx == 1){ if(c->started) return 0; c->started = 1; Neuron *n = neuron_of(c->b, (int)c->e); if(!n || !n->born) return 0; i64 ix = hmap_get(&n->h, c->k1, c->k2); if(!ix) return 0; c->i = ix - 1; return 1; }
+    if(c->idx == 1){ if(c->started) return 0; c->started = 1; Neuron *n = neuron_of(c->b, (int)c->e); if(!n || !n->born) return 0; i64 ix = hmap_get(&n->h, c->k1, c->k2); if(!ix){ shard_lay(c->b, (int)c->e, (int)c->k1, (int)c->k2, 0); ix = n->nsh; } c->i = ix - 1; return 1; }   /* a row named by its full key (a binding line) exists from then on: the hop lays none for a pass */
     if(!c->started){ c->started = 1; c->i = -1; }
     Neuron *n = (c->e >= 1 && c->e <= c->e_end && c->e <= c->b->label.n) ? neuron_of(c->b, (int)c->e) : 0;
     if(!n) return 0;
@@ -225,7 +225,7 @@ static void land_col(Cur *c, sqlite3_context *x, int col){
 static void one_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, 0); }
 static int one_step(Cur *c){ if(!c->started){ c->started = 1; return 1; } return 0; }
 static void clock_col(Cur *c, sqlite3_context *x, int col){ R(x, c->b->clock); }
-static void shards_col(Cur *c, sqlite3_context *x, int col){ R(x, c->b->shards); }
+static void shards_col(Cur *c, sqlite3_context *x, int col){ R(x, nk_shard_rows(c->b)); }   /* the rows held, not the id counter */
 static int shards_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){ if(argc > 1 && sqlite3_value_type(argv[0]) != SQLITE_NULL) b->shards = V(argv[2]); return SQLITE_OK; }
 /* complete (run) */
 static void cmp_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; if(idx == 1){ i64 r = V(argv[0]); ENT_BEGIN(c, r, r); } else ENT_BEGIN(c, 1, c->b->nruns); }

@@ -416,7 +416,7 @@
   var SOURCES = [[7, 'wn', 'WordNet'], [8, 'gcide', 'Webster 1913'], [9, 'mw', 'MW Collegiate'], [10, 'mwt', 'MW thesaurus'], [11, 'moby', 'Moby'], [12, 'map', 'your map'], [13, 'sqldoc', 'SQLite docs'], [14, 'measured', 'measured'], [15, 'guess', 'the guessing brain']];
   var SRCNAME = {}; SOURCES.forEach(function (s) { SRCNAME[s[0]] = s[2]; });
   var CORE = 80, POINTERS = { 22: 1, 24: 1, 25: 1, 27: 1 };
-  var LAB = {}, SYM = {}, LABLIST = [], DNA = [], DNABY = {}, SHARDROW = {}, NODES = {}, REL = [], RELBY = {}, MEMN = {}, FIRST = {}, RUNS = {}, RUNLIST = [], CHILDREN = {}, COUNTS = {}, INPUTS = [], OUTBY = {}, DEFW = {}, ANSW = [], MAPL = null, HOPCOUNT = {};
+  var LAB = {}, SYM = {}, LABLIST = [], DNA = [], DNABY = {}, SHARDROW = {}, NODES = {}, REL = [], RELBY = {}, MEMN = {}, FIRST = {}, RUNS = {}, RUNLIST = [], CHILDREN = {}, COUNTS = {}, INPUTS = [], OUTBY = {}, DEFW = {}, DEFSEEN = {}, ANSW = [], MAPL = null, HOPCOUNT = {};
   var ready = false, busy = false, T = -1, SELG = null, INFO = null;
   var SHEET = {}, TEXT = {};   // run -> sheet rows; run -> its line read back through the encoder
   // the history: every receipt row of the brain, in the order the brain wrote them (17.3 replayed its event log; v6 replays the receipt table)
@@ -450,6 +450,7 @@
     ANSW = R[7];
     R[10].forEach(function (r) { var i = HIST.length; HIST.push(r); HISTLAST = r[0]; (RUNHOPS[r[1]] = RUNHOPS[r[1]] || []).push(i); if (FIRSTG[r[2]] === undefined) FIRSTG[r[2]] = i; if (FIRSTS[r[3]] === undefined) FIRSTS[r[3]] = i; if (RUNT0[r[1]] === undefined) RUNT0[r[1]] = i; RUNT1[r[1]] = i; });
     HOPCOUNT = {}; R[8].forEach(function (r) { HOPCOUNT[r[0]] = r[1]; });
+    DEFSEEN = {}; Object.keys(DEFW).forEach(function (g) { var f = FIRSTG[g]; if (f === undefined) return; DEFW[g].forEach(function (x) { if (DEFSEEN[x[0]] === undefined || DEFSEEN[x[0]] > f) DEFSEEN[x[0]] = f; }); });   // a word of a point's definition is present from the hit that reached the point (the kernel pulls returns to the sheet; they are not walked)
     if (R[9]) { MAPL = []; R[9].forEach(function (r) { var m = /^(like|opposite(?: of)?)\s+(.+)$/.exec(r[1]); if (!m) return; var kind = m[1].indexOf('opposite') === 0 ? 'opposite' : 'alike'; m[2].split(/\s*,\s*/).forEach(function (o) { o = o.trim(); if (o) MAPL.push([r[0], kind, o]); }); }); }
   }
   function roleOf(g) { if (g === G.heard) return 'heard'; if (g === G.said || g === G.mother || g === G.sixth || g === G.main) return 'arrival'; if (g >= 7 && g <= 15) return 'source'; if (g === G.space) return 'space'; if (g <= CORE) return 'core'; return 'born'; }
@@ -528,10 +529,10 @@
     function add(a, b, kind, trust) { a = String(a); b = String(b); if (a === b) return; if (!NODE[a] || !NODE[b]) return; if (!spaceOn && (a === String(G.space) || b === String(G.space))) return; var id = kind + '|' + (a < b ? a + '|' + b : b + '|' + a); if (!agg[id]) agg[id] = [a, b, kind, trust, 0]; agg[id][4]++; }
     DNA.forEach(function (d) { var g = d[0]; if (FIRSTS[d[1]] === undefined || FIRSTS[d[1]] > tk) return; if (d[2] !== null) add(d[2], g, 'dna before', 1); if (d[3] !== null) add(g, d[3], 'dna trigger', 1); if (d[4] !== null && FIRST[d[4]] !== undefined && atRun(d[4])) add(g, FIRST[d[4]], 'dna call', 1); if (d[5] !== null && FIRST[d[5]] !== undefined && atRun(d[5])) add(g, FIRST[d[5]], 'dna spawn', 1); });
     Object.keys(MADEOF).forEach(function (g) { MADEOF[g].forEach(function (x) { add(g, x, 'made-of', 1); }); });
-    Object.keys(DEFW).forEach(function (g) { DEFW[g].forEach(function (x) { if (atRun(x[1])) add(g, x[0], 'definition', .6); }); });
-    ANSW.forEach(function (p) { if (atRun(p[2])) add(p[0], p[1], 'answered', 1); });
+    Object.keys(DEFW).forEach(function (g) { if (!present(+g, tk)) return; DEFW[g].forEach(function (x) { add(g, x[0], 'definition', .6); }); });
+    ANSW.forEach(function (p) { if (present(p[1], tk)) add(p[0], p[1], 'answered', 1); });
     MEMROWS.forEach(function (m) { var k = 'm:' + m[0]; if (!NODE[k] || !NODE[k].mesh.visible) return; add(k, m[1], 'memory', 1); String(m[3] || '').split(' ').forEach(function (x) { if (x && +x !== G.space) add(k, x, 'memory', 1); }); });
-    REL.forEach(function (r) { if (atRun(r[3])) add(r[0], r[2], relKind(r[1]), .8); });
+    REL.forEach(function (r) { if (!r[3] || RUNT0[r[3]] === undefined || RUNT0[r[3]] <= tk) add(r[0], r[2], relKind(r[1]), .8); });   // a rel row laid before this history's window is there from its start; one laid inside it appears with its run
     if ($('mapall').checked && MAPL) MAPL.forEach(function (l) { var a = SYM[l[0]] !== undefined ? String(SYM[l[0]]) : null, b = SYM[l[2]] !== undefined ? String(SYM[l[2]]) : null; if (!a && !b) return; add(a || 'g:' + l[0], b || 'g:' + l[2], l[1], .8); });
     var lines = Object.keys(agg).map(function (id) { return agg[id]; }), count = {};
     lines.forEach(function (l) { count[l[2]] = (count[l[2]] || 0) + 1; });
@@ -626,7 +627,7 @@
   }
   var memKey = null;
   function refreshMem(then) { var key = ($('memall').checked ? 'all' : 'root:' + CUR.root) + ':' + COUNTS.memory; if (key === memKey) { then(); return; } memRowsWanted().then(function (rows) { MEMROWS = rows; memKey = key; then(); }).catch(function () { then(); }); }
-  function present(g, tk) { return g <= CORE || (FIRSTG[g] !== undefined && FIRSTG[g] <= tk); }
+  function present(g, tk) { return g <= CORE || (FIRSTG[g] !== undefined && FIRSTG[g] <= tk) || (DEFSEEN[g] !== undefined && DEFSEEN[g] <= tk); }
   function render(tk, keep) {
     if (!ready) return;
     if (tk === undefined || tk === null || tk < 0) tk = -1; if (tk > HIST.length - 1) tk = HIST.length - 1;

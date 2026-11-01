@@ -42,15 +42,24 @@ int label_new(Brain *b, const char *sym){
   return g;
 }
 Neuron *neuron_of(Brain *b, int gate){ if(gate <= 0 || gate >= b->cnr) return 0; return &b->nr[gate]; }
+static i64 SHROWS[2];   /* the DNA rows each brain holds (the id counter b->shards never comes down) */
+i64 nk_shard_rows(Brain *b){ return SHROWS[b->is_main]; }
+void nk_count_rows(Brain *b){ i64 n = 0; for(int g = 1; g <= b->label.n; g++){ Neuron *x = neuron_of(b, g); if(x) n += x->nsh; } SHROWS[b->is_main] = n; }
 Shard *shard_find(Brain *b, int gate, int before, int trigger){ Neuron *n = neuron_of(b, gate); if(!n || !n->born) return 0; i64 i = hmap_get(&n->h, before, trigger); return i ? &n->sh[i - 1] : 0; }
 Shard *shard_lay(Brain *b, int gate, int before, int trigger, i64 times){
   Neuron *n = neuron_of(b, gate); if(!n) return 0;
   GROW(n->sh, n->nsh, n->csh, Shard);
-  Shard *s = &n->sh[n->nsh++]; s->id = ++b->shards; s->before = before; s->trigger = trigger; s->call = 0; s->spawn = 0; s->times = times; s->changed_at = b->clock;
+  Shard *s = &n->sh[n->nsh++]; s->id = ++b->shards; s->before = before; s->trigger = trigger; s->call = 0; s->spawn = 0; s->times = times; s->changed_at = b->clock; SHROWS[b->is_main]++;
   hmap_put(&n->h, before, trigger, n->nsh); hmap_put(&b->shid, gate, s->id, n->nsh);
   return s;
 }
-Shard *shard_by_id(Brain *b, int gate, i64 id){ Neuron *n = neuron_of(b, gate); if(!n) return 0; i64 i = hmap_get(&b->shid, gate, id); return i ? &n->sh[i - 1] : 0; }
+/* the hop: one shard for every point. The owner (2026-11-01): "the function of the hop is one dna shard, it basically = spacebar in a sentence ...
+   the trigger to go the hop meaning points to the same shard of dna for all points"; "a substitution shard ... that accepts the before and remainder
+   as two variables". It is the space neuron's row (before and trigger both none: the variables come from the run itself). */
+static i64 HOPID[2];
+Shard *hop_shard(Brain *b){ Neuron *n = neuron_of(b, SPACE); if(!n) return 0; if(!n->born) n->born = 1; Shard *s = shard_find(b, SPACE, 0, 0); if(!s) s = shard_lay(b, SPACE, 0, 0, 0); HOPID[b->is_main] = s->id; return s; }
+i64 hop_id(Brain *b){ if(!HOPID[b->is_main]) hop_shard(b); return HOPID[b->is_main]; }
+Shard *shard_by_id(Brain *b, int gate, i64 id){ Neuron *n = neuron_of(b, gate); if(!n) return 0; i64 i = hmap_get(&b->shid, gate, id); if(i) return &n->sh[i - 1]; if(id == hop_id(b)) return hop_shard(b); return 0; }
 Run *run_of(Brain *b, i64 id){ if(id <= 0 || id > b->nruns) return 0; return &b->runs[id]; }
 i64 new_run(Brain *b, int arrival, i64 parent, int has_parent, int kind, int cell, int about){
   b->clock++;
@@ -210,7 +219,7 @@ static void land(Brain *b, i64 run, int pos, int gate, int before, int next, int
   if(!n || !n->born){ /* a landing on a gate with no region: as v6's paste into a missing table, the step is refused and the run stalls */
     GROW(b->ref, b->nref, b->cref, Refused); Refused *f = &b->ref[b->nref]; f->id = b->nref + 1; char t[128]; snprintf(t, sizeof t, "land run %lld pos %d gate %d", (long long)run, pos, gate); memset(&f->text, 0, sizeof f->text); memset(&f->error, 0, sizeof f->error); val_set(b, &f->text, t); val_set(b, &f->error, "no such neuron"); b->nref++; b->refused_n++; return; }
   Shard *s = shard_find(b, gate, kb, kx);
-  if(!s) s = shard_lay(b, gate, kb, kx, 0);
+  if(!s) s = hop_shard(b);   /* no function row of its own for this before and next: the hop, one shard for every point; nothing is laid for a pass */
   s->times++;
   int had = 0; if(next){ Neuron *nn = neuron_of(b, next); had = (nn && nn->born) ? 1 : 0; }
   hit(b, run, pos, gate, before, next, via, had, s);
