@@ -19,6 +19,8 @@ Each row was read from the kernel while it ran: `live1.txt` to `live5.txt` here.
 
 **Later the same night:** the rate fell to about 1,200 a minute by 500,000. A profile of each statement inside a paste found two statements scanning the whole of `sixth.asked` on every run seen, a table search my keyless refusal did not reach because `asked` is the brain's own table, not a region. One keyed index (`asked_unsent`): **13,381 defines a minute**. My `shared` count was also deleted from the sixth's line: it was mine, and I named it as the cause before measuring; it was not.
 
+**The frontier closed at 04:51 on hp.** 1,003,033 defines sent at 04:48:40; at 04:51 nothing waiting, nothing pending, 1,042,942 sent, 167,787 capitalized forms handled by their lowercase point, refused 1 and 1. **Sent is not defined:** in a sample of 17,436 across the list, 49.5% came back with a source definition, so about 516,000 points have one. The rest are symbols the sources use but do not hold as headwords (`iodoalkoxylations`, `theriomorphs`) and stay unknown. Moby has 30,259 headwords, so `rel` stopped near 2.36 million early; in a sample of 36 Moby words the 5 without rows were multi-word entries, which the encoder cuts into separate points, and `Shiva`. The brain file is 22 GB and the kernel's own memory 68 MB.
+
 ## What changed, each with the words that ask for it
 
 - **The stored file (`nkmap.c`).** Draft 5.8: "stored, not held only in RAM". Every region lives in one mapped file, `out/brain.map`, at the same address each time; the brain's own tables (rel, asked, spawned) in files beside it. Starting the kernel on the file is the brain coming back. Each point keeps its own table, reached by its gate, as it always did.
