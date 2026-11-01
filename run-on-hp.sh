@@ -8,7 +8,7 @@
 #   bash run-on-hp.sh stop             the kernel and the door stopped
 cd ~/nk; MODE=${1:-fresh}
 SOURCES="wn gcide mwt moby map sqldoc measured guess wikt"
-wait_up(){ for i in $(seq 1 900); do python3 -c "import socket; socket.create_connection(('127.0.0.1', 7007), timeout=1).close()" 2>/dev/null && return 0; sleep 1; done; echo "the kernel did not answer in 900 s"; return 1; }
+wait_up(){ for i in $(seq 1 2400); do python3 -c "import socket; socket.create_connection(('127.0.0.1', 7007), timeout=1).close()" 2>/dev/null && return 0; sleep 1; done; echo "the kernel did not answer in 2400 s"; return 1; }
 ask(){ python3 - "$1" <<'PY'
 import socket, json, sys
 s = socket.create_connection(("127.0.0.1", 7007)); s.sendall((sys.argv[1] + "\n").encode()); buf = b""
@@ -43,5 +43,14 @@ case "$MODE" in
     cp out/typed.txt out/typed-before-resume.txt; head -n "$N" out/typed-before-resume.txt > out/typed.txt; tail -n +"$((N + 1))" out/typed-before-resume.txt > out/replay.txt
     (NK_JOURNAL=out/typed.txt NK_LOAD="$SNAP" nohup ./nk 7007 egg-symbols.txt sources $SOURCES > nk.log 2>&1 &); wait_up || exit 1; cat nk.log
     if [ -s out/replay.txt ]; then python3 nkbottom.py 7007 --lines out/replay.txt --ledger out/LEDGER-replay.md --quiet | tail -1 | cut -c1-200; echo "$(wc -l < out/replay.txt) lines typed again after the snapshot"; fi
+    # a load brings back tables, not the indexes laid at the prompt: without these two the sixth went from 7 ms to 222 ms a paste (2026-10-31)
+    python3 - <<'PY'
+import socket
+s = socket.create_connection(("127.0.0.1", 7007)); s.sendall(b"type sixth BUILD CREATE INDEX IF NOT EXISTS sixth.spawned_sent_shared ON spawned ( sent , shared DESC ) ; CREATE INDEX IF NOT EXISTS sixth.asked_run_cell ON asked ( run , cell ) ; BUILD\n"); b = b""
+while not b.endswith(b"\n"): b += s.recv(1 << 20)
+print(b[:160])
+PY
+    # the guesser stays out of define and why; it reads the brain, so it does nothing on a brain already cut
+    python3 g31/guess_out.py 7007
     door; echo "journal: $(wc -l < out/typed.txt) lines typed since the egg" ;;
 esac
