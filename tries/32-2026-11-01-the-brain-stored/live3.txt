@@ -1,0 +1,25 @@
+01:10:20 sent 143660 RAM MB {'Rss': 1552, 'Anonymous': 43, 'Swap': 0}
+01:11:20 sent 145039 | defines a minute 1372 | refused 1 pending 4 hops + 31110 runs + 15372 gates + 1659 DNA rows + 2756 | RAM MB {'Rss': 1759, 'Anonymous': 44, 'Swap': 0}
+  pastes main 45.1 sixth 13.9 hop_s 1.07 of 60
+    33.1 s n 1379 ms 24.0  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUE
+    13.7 s n 2000 ms 6.8  INSERT OR IGNORE INTO sixth.spawned ( gate , sent ) SELECT DISTINCT C
+    8.8 s n 621 ms 14.1  INSERT INTO wn.inbox ( run , cell , about , word ) SELECT # , # , ( S
+    2.6 s n 1379 ms 1.9  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELEC
+    0.2 s n 1379 ms 0.2  INSERT OR IGNORE INTO rel ( gate , kind , other , run ) SELECT r.abou
+01:12:21 sent 146413 | defines a minute 1368 | refused 1 pending 4 hops + 30370 runs + 15519 gates + 1618 DNA rows + 2748 | RAM MB {'Rss': 1934, 'Anonymous': 45, 'Swap': 0}
+  pastes main 45.2 sixth 14.0 hop_s 0.96 of 60
+    32.9 s n 1374 ms 23.9  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUE
+    13.7 s n 1960 ms 7.0  INSERT OR IGNORE INTO sixth.spawned ( gate , sent ) SELECT DISTINCT C
+    9.4 s n 586 ms 16.1  INSERT INTO wn.inbox ( run , cell , about , word ) SELECT # , # , ( S
+    2.4 s n 1374 ms 1.7  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELEC
+    0.2 s n 1374 ms 0.2  INSERT OR IGNORE INTO rel ( gate , kind , other , run ) SELECT r.abou
+01:13:21 sent 147700 | defines a minute 1280 | refused 1 pending 4 hops + 28705 runs + 14904 gates + 1443 DNA rows + 2578 | RAM MB {'Rss': 2087, 'Anonymous': 45, 'Swap': 0}
+  pastes main 45.9 sixth 13.3 hop_s 0.92 of 60
+    31.0 s n 1287 ms 24.1  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUE
+    13.1 s n 1850 ms 7.1  INSERT OR IGNORE INTO sixth.spawned ( gate , sent ) SELECT DISTINCT C
+    9.0 s n 563 ms 16.0  INSERT INTO wn.inbox ( run , cell , about , word ) SELECT # , # , ( S
+    5.3 s n 1287 ms 4.2  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELEC
+    0.2 s n 1287 ms 0.2  INSERT OR IGNORE INTO rel ( gate , kind , other , run ) SELECT r.abou
+over the window 1340 defines a minute
+waiting [[538501]] sent [[147709]]
+DONE

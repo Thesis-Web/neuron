@@ -1,0 +1,28 @@
+LIVE define : know: 0.37 s wall, kernel says 0.32 s, runs 267 hops 67 refused 0
+["['main', 6285112, 'me', '6285112']", "['main', 6285112, 'what', '26']", "['main', 6285112, 'def', 'run 6285120 from wn: noun 1: the fact of being aware of information that is known to", "['main', 6285112, 'know', '3/5']", "['main', 6285112, 'remember', 'run 119483 from sixth: define : know']", "['main', 6285112, 'shape', '0']", "['main', 6285112, 'known', 'said mother born clock me what say know remember before call times id source run n", "['main', 6285112, 'unknown', 'A AS W O D L How See Note Let President He There Do The From Pronunciation You T"]
+01:01:18 sent 133932 RAM MB {'Rss': 6452, 'Anonymous': 113, 'Swap': 0}
+01:02:18 sent 134634 | defines a minute 697 | refused 1 pending 2 hops + 15452 runs + 8309 gates + 1167 DNA rows + 1404 | RAM MB {'Rss': 6339, 'Anonymous': 115, 'Swap': 0}
+  pastes main 48.1 sixth 8.9 hop_s 3.28 of 60
+    35.1 s n 702 ms 50.0  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUE
+    10.4 s n 296 ms 35.1  INSERT INTO wn.inbox ( run , cell , about , word ) SELECT # , # , ( S
+    8.7 s n 998 ms 8.7  INSERT OR IGNORE INTO sixth.spawned ( gate , sent ) SELECT DISTINCT C
+    2.3 s n 702 ms 3.3  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELEC
+    0.2 s n 702 ms 0.2  INSERT OR IGNORE INTO rel ( gate , kind , other , run ) SELECT r.abou
+01:03:19 sent 135324 | defines a minute 685 | refused 1 pending 2 hops + 15393 runs + 8284 gates + 1170 DNA rows + 1382 | RAM MB {'Rss': 6267, 'Anonymous': 116, 'Swap': 0}
+  pastes main 48.5 sixth 8.9 hop_s 2.86 of 60
+    35.1 s n 690 ms 50.9  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUE
+    10.6 s n 302 ms 35.1  INSERT INTO wn.inbox ( run , cell , about , word ) SELECT # , # , ( S
+    8.8 s n 992 ms 8.8  INSERT OR IGNORE INTO sixth.spawned ( gate , sent ) SELECT DISTINCT C
+    2.4 s n 690 ms 3.5  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELEC
+    0.2 s n 690 ms 0.2  INSERT OR IGNORE INTO rel ( gate , kind , other , run ) SELECT r.abou
+01:04:19 sent 136005 | defines a minute 676 | refused 1 pending 2 hops + 14878 runs + 8068 gates + 1130 DNA rows + 1360 | RAM MB {'Rss': 6212, 'Anonymous': 116, 'Swap': 0}
+  pastes main 49.0 sixth 8.6 hop_s 2.62 of 60
+    34.3 s n 681 ms 50.4  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUE
+    9.6 s n 281 ms 34.1  INSERT INTO wn.inbox ( run , cell , about , word ) SELECT # , # , ( S
+    8.5 s n 962 ms 8.8  INSERT OR IGNORE INTO sixth.spawned ( gate , sent ) SELECT DISTINCT C
+    4.7 s n 681 ms 6.9  INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELEC
+    0.2 s n 681 ms 0.2  INSERT OR IGNORE INTO rel ( gate , kind , other , run ) SELECT r.abou
+over the window 686 defines a minute
+SCANS [{"table": "label", "keyed": 1335186, "scanned": 0}, {"table": "neuron", "keyed": 16, "scanned": 0}, {"table": "dna", "keyed": 9, "scanned": 0}, {"table": "node", "keyed": 27285, "scanned": 0}, {"table": "run", "keyed": 2428679, "scanned": 0}, {"table": "seq", "keyed": 38323, "scanned": 0}, {"table": "run_sheet", "keyed": 137593, "scanned": 0}, {"table": "run_memory", "keyed": 6, "scanned": 0}, {"table": "hit", "keyed": 6, "scanned": 0}]
+mother errors in the newest replies:
+DONE
