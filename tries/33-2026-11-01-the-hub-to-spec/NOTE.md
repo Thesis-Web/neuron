@@ -8,10 +8,11 @@ The owner: "ok now ... taking what you learned from the kernal. fix the hub.... 
 |---|---|---|
 | `define : know` | 95 s | **1.03 s** |
 | `define : truth` | | 0.82 s |
-| Defines a minute | about 0.6 | **150** |
+| Defines a minute | about 0.6 | **222** |
 | Hops of a define | 38,911 | almost none after the first walk of each formula |
 | Refused, main and sixth | 0, 0 | 0, 0 |
 | The door's memory | 1.3 GB | 184 MB just after a restart |
+| The page's graph read | 105 s | 82 s, still a whole-brain read |
 
 The steps, each read live: 95 s; 4.8 s a define after returns went to the sheet and closed formulas fired; 137 a minute after `carry`; 1.03 s after the door's list read.
 
@@ -29,11 +30,15 @@ The steps, each read live: 95 s; 4.8 s a define after returns went to the sheet 
 - **A profile**, `/api/prof`, as the kernel has. It ended three wrong guesses of mine.
 - **The page's graph read** finds a run's first symbol by key instead of sweeping 23 million `seq` rows.
 
+- **The `shared` count** left the sixth's line, and `sixth.asked` got its key (`asked_unsent`), as on the kernel. 222 defines a minute.
+
 ## Faults of mine in this stretch
 
 Blamed `sheet_fill` without reading; every read there was keyed. Left my twin on 8057 running for hours. Left the owner's live brain in `/tmp` for three days. `hub-apply` of 10-31 was mine and cost a typed line 18 hours before anyone asked why.
 
 ## Not done
+
+- **The page takes about 82 s to answer its graph read under the chain.** It reads every neuron's table; it is a sweep by the page's design, and the page needs a keyed read to stop being one.
 
 - **Sheet values on the hub are still strings in a TEXT column**: numbers as text, and `2/5`. `run_memory.input` too. The kernel holds numbers; the hub does not yet. Text is not gone from the hub.
 - **The trace stays:** 7 million `hit` rows, 7 million `land` rows, 23 million receipts, 3 GB. They no longer grow much. Deleting them is the owner's word.

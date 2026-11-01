@@ -53,9 +53,22 @@ static Ent *get(const char *sql, char **err){
   e = sqlite3_malloc(sizeof(Ent)); e->text = sqlite3_mprintf("%s", sql); e->st = st; e->busy = 0; e->next = bucket[h]; bucket[h] = e; nent++; return e;
 }
 static int rows_cb(void *p, int argc, char **argv, char **col){ SB *b = (SB*)p; if(b->n) sb_str(b, "\n"); for(int i = 0; i < argc; i++){ if(i) sb_str(b, " | "); sb_str(b, argv[i] ? argv[i] : ""); } return 0; }
+static void prof_add(const char *sql0, i64 ns);
+/* the statements of a paste one at a time, each timed: what sqlite3_exec does, and the profile sees inside a paste */
+static int exec_timed(const char *sql, int (*cb)(void*, int, char**, char**), void *arg, char **err){
+  const char *p = sql;
+  while(p && *p){ sqlite3_stmt *st = 0; const char *tail = 0; i64 t0 = now_ns();
+    if(sqlite3_prepare_v2(DB, p, -1, &st, &tail) != SQLITE_OK){ *err = sqlite3_mprintf("%s", sqlite3_errmsg(DB)); return SQLITE_ERROR; }
+    if(!st){ p = tail; continue; }
+    int rc, n = sqlite3_column_count(st);
+    while((rc = sqlite3_step(st)) == SQLITE_ROW){ char *v[64]; int m = n < 64 ? n : 64; for(int i = 0; i < m; i++) v[i] = (char*)sqlite3_column_text(st, i); cb(arg, m, v, 0); }
+    if(rc != SQLITE_DONE){ *err = sqlite3_mprintf("%s", sqlite3_errmsg(DB)); sqlite3_finalize(st); return SQLITE_ERROR; }
+    sqlite3_finalize(st); prof_add(p, now_ns() - t0); p = tail; while(p && (*p == ' ' || *p == '\n')) p++; }
+  return SQLITE_OK;
+}
 static char *run_text(const char *sql, int argc, sqlite3_value **argv){
   char *err = 0; SB got = {0};
-  if(argc == 0 && strchr(sql, ';')){ if(sqlite3_exec(DB, sql, rows_cb, &got, &err) != SQLITE_OK){ char *m = sqlite3_mprintf("error: %s", err); sqlite3_free(err); free(got.s); char *r = strdup(m); sqlite3_free(m); return r; } char *r = strdup(got.n ? got.s : "ok"); free(got.s); return r; }
+  if(argc == 0 && strchr(sql, ';')){ if(exec_timed(sql, rows_cb, &got, &err) != SQLITE_OK){ char *m = sqlite3_mprintf("error: %s", err); sqlite3_free(err); free(got.s); char *r = strdup(m); sqlite3_free(m); return r; } char *r = strdup(got.n ? got.s : "ok"); free(got.s); return r; }
   if(argc == 0){ if(sqlite3_exec(DB, sql, rows_cb, &got, &err) != SQLITE_OK){ char *m = sqlite3_mprintf("error: %s", err); sqlite3_free(err); free(got.s); char *r = strdup(m); sqlite3_free(m); return r; } char *r = strdup(got.n ? got.s : "ok"); free(got.s); return r; }
   Ent *e = get(sql, &err); sqlite3_stmt *st = e ? e->st : 0;
   if(!st){ if(err){ char *m = sqlite3_mprintf("error: %s", err); sqlite3_free(err); char *r = strdup(m); sqlite3_free(m); return r; }
