@@ -125,7 +125,7 @@ static void dedupe_check(Brain *b, i64 run){
   Run *cn = run_of(b, f); if(!cn || !cn->has_mem || cn->same_as || !cn->clean || !cn->kept || cn->nrc == 0 || cn->nseq != r->nseq || !cn->seq) return;
   if(memcmp(cn->seq, r->seq, sizeof(int) * r->nseq) != 0) return;
   for(int i = 0; i < cn->nrc; i++){ Rc *k = &cn->rcs[i]; Shard *s = shard_by_id(b, k->gate, k->shard); if(!s || s->changed_at > cn->mem_at) return; }
-  r->same_as = f; if(!r->seq_shared) free(r->seq); r->seq = cn->seq; r->seq_shared = 1; b->deduped++;
+  r->same_as = f; if(!r->seq_shared) free(r->seq); r->seq = cn->seq; r->seq_shared = 1; b->deduped++; cn->again++; /* counted when the repeat starts, not when it ends: it borrows cn's symbols from here on, and compaction leaves a run with again > 0 alone */
 }
 static void first_landing(Brain *b, i64 run){ Run *r = run_of(b, run); dedupe_check(b, run); if(r->nseq > 0) land(b, run, 0, r->arrival, 0, r->seq[0], 0); }
 
@@ -217,7 +217,7 @@ static void ended(Brain *b, i64 run, int gate, i64 shard){
   Run *r = run_of(b, run); if(!r || r->ended) return; r->ended = 1;
   if(r->same_as){
     /* a repeat: one tick and a time stamp on the run it repeats; no row of its own */
-    Run *cn = run_of(b, r->same_as); if(cn){ cn->again++; cn->last_at = r->at; cn->last_run = run; } r->has_mem = 1;
+    Run *cn = run_of(b, r->same_as); if(cn){ cn->last_at = r->at; cn->last_run = run; } r->has_mem = 1;
   } else {
     /* the memory: the line as gates, who it arrived from, the ending gate and shard, the clock */
     size_t cap = 64 + (size_t)r->nseq * 12; char *inp = malloc(cap); inp[0] = 0; size_t len = 0;
