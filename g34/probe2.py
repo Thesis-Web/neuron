@@ -4,7 +4,10 @@
 import socket, json, time, urllib.request, sys
 def ask(req):
     s = socket.create_connection(("127.0.0.1", 7007), timeout=900); s.sendall((req + "\n").encode()); b = b""
-    while not b.endswith(b"\n"): b += s.recv(1 << 20)
+    while not b.endswith(b"\n"):
+        d = s.recv(1 << 20)
+        if not d: raise SystemExit("the kernel closed the socket (gone?)")
+        b += d
     s.close(); return json.loads(b.decode())
 def q(sql): return ask("q " + sql)["rows"]
 def get(u): return json.load(urllib.request.urlopen("http://localhost:8058" + u, timeout=900))

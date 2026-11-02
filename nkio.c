@@ -280,6 +280,38 @@ static void do_hop(Brain *b, SB *o){
 /* ---- the whole-brain page's bundle: the brain at the scale a page can hold. The DNA rows hit at least T times (T chosen so at most CAP rows go),
    the symbols those rows name, every point's definition and memory counts, the relationship rows of those points, the newest K lines with every
    run under them, their sheets, receipts and outputs. Read from the regions in C, by walking them once; the page asks for it whole. ---- */
+
+/* rels N: the relationship rows of the next N defined points, laid from their definition rows (WordNet's and Wiktionary's bracketed markers,
+   mapped by main.relmap), for points that hold no relationship row beyond like/opposite/capitalized yet. A cursor keeps the place between calls. */
+static int RELS_G = 1;
+static void do_rels(Brain *b, int npoints, SB *o){
+  double t0 = now_s(); int wikt = label_gate(b, "wikt"), like = label_gate(b, "like"), opp = label_gate(b, "opposite"), capd = label_gate(b, "capitalized");
+  enum { LB = 143, RB = 147, LC = 173, RC = 177, COLON = 68, SEMI = 45, COMMA = 38 };
+  char *mk[128]; int mkind[128]; int nmk = 0;
+  { sqlite3_stmt *m = 0; sqlite3_prepare_v2(DB, "SELECT marker, kind FROM main.relmap", -1, &m, 0);
+    while(m && sqlite3_step(m) == SQLITE_ROW && nmk < 128){ const char *a = (const char*)sqlite3_column_text(m, 0), *k = (const char*)sqlite3_column_text(m, 1); int kg = k ? label_gate(b, k) : 0; if(a && kg){ mk[nmk] = strdup(a); mkind[nmk] = kg; nmk++; } }
+    if(m) sqlite3_finalize(m); }
+  if(!nmk){ sb_str(o, "{\"error\":\"main.relmap holds no marker the encoder knows\"}"); return; }
+  static sqlite3_stmt *HAS, *INS; if(!HAS) sqlite3_prepare_v2(DB, "SELECT 1 FROM main.rel WHERE gate = ? AND kind NOT IN (?, ?, ?) LIMIT 1", -1, &HAS, 0);
+  if(!INS) sqlite3_prepare_v2(DB, "INSERT OR IGNORE INTO main.rel (gate, kind, other, run) VALUES (?, ?, ?, ?)", -1, &INS, 0);
+  i64 points = 0, skipped = 0, returns = 0, rows = 0; int g = RELS_G; char marker[256];
+  for(; g <= b->label.n && points < npoints; g++){ Neuron *n = neuron_of(b, g); if(!n || !n->nnode) continue; points++;
+    sqlite3_reset(HAS); sqlite3_bind_int(HAS, 1, g); sqlite3_bind_int(HAS, 2, like); sqlite3_bind_int(HAS, 3, opp); sqlite3_bind_int(HAS, 4, capd);
+    if(sqlite3_step(HAS) == SQLITE_ROW){ skipped++; continue; }
+    for(int j = 0; j < n->nnode; j++){ i64 run = n->node[j].run; Run *r = run_of(b, run); if(!r || !(r->arrival == 7 || r->arrival == wikt)) continue;
+      int ns; const int *sq = nk_seq(b, run, &ns); if(!sq || ns < 4) continue; returns++;
+      for(int i = 0; i < ns; i++){ if(sq[i] != LB) continue;
+        int c = -1, e = -1; for(int k = i + 1; k < ns; k++){ if(sq[k] == COLON || sq[k] == RB){ c = k; break; } } if(c < 0 || sq[c] != COLON) continue;
+        for(int k = c + 1; k < ns; k++){ if(sq[k] == RB){ e = k; break; } if(sq[k] == LB) break; } if(e < 0) continue;
+        int ml = 0; marker[0] = 0; for(int k = i + 1; k < c; k++){ if(sq[k] == SPACE || sq[k] <= 0 || sq[k] > b->label.n) continue; const char *w = b->label.sym[sq[k]]; int wl = (int)strlen(w); if(ml + wl + 2 >= (int)sizeof marker) break; if(ml) marker[ml++] = ' '; memcpy(marker + ml, w, wl); ml += wl; marker[ml] = 0; }
+        int kind = 0; for(int k = 0; k < nmk; k++) if(strcmp(mk[k], marker) == 0){ kind = mkind[k]; break; } if(!kind) continue;
+        for(int t = c + 1; t < e; t++){ int x = sq[t]; if(x <= 0 || x > b->label.n || x == r->about) continue; unsigned char c0 = (unsigned char)b->label.sym[x][0]; if(!((c0 >= 'A' && c0 <= 'Z') || (c0 >= 'a' && c0 <= 'z'))) continue;
+          int pv = t - 1; while(pv > i && sq[pv] == SPACE) pv--; int nx = t + 1; while(nx < e && sq[nx] == SPACE) nx++;
+          int pg = sq[pv], ng = sq[nx]; if(!(pg == LC || pg == COLON || pg == SEMI || pg == COMMA)) continue; if(!(ng == RC || ng == SEMI || ng == RB || ng == COMMA)) continue;
+          sqlite3_reset(INS); sqlite3_bind_int(INS, 1, r->about); sqlite3_bind_int(INS, 2, kind); sqlite3_bind_int(INS, 3, x); sqlite3_bind_int64(INS, 4, run); if(sqlite3_step(INS) == SQLITE_DONE) rows += sqlite3_changes(DB); } } } }
+  RELS_G = g; for(int k = 0; k < nmk; k++) free(mk[k]);
+  sb_fmt(o, "{\"brain\":\"%s\",\"from_gate\":%d,\"next_gate\":%d,\"gates\":%d,\"done\":%s,\"points\":%lld,\"already_had\":%lld,\"returns_read\":%lld,\"rows_laid\":%lld,\"markers\":%d,\"seconds\":%.1f}", b->name, RELS_G - (int)(g - RELS_G), g, b->label.n, g > b->label.n ? "true" : "false", (long long)points, (long long)skipped, (long long)returns, (long long)rows, nmk, now_s() - t0);
+}
 static void do_bundle(Brain *b, int K, SB *o){
   enum { CAP = 1200000, MAXR = 120000 };
   i64 hist[65]; memset(hist, 0, sizeof hist);
@@ -336,6 +368,7 @@ static void do_bundle(Brain *b, int K, SB *o){
 static void handle(const char *req, SB *o){
   if(strncmp(req, "bundle ", 7) == 0){ do_bundle(&MAINB, atoi(req + 7) > 0 ? atoi(req + 7) : 400, o); return; }
   if(strcmp(req, "repair") == 0){ do_repair(&MAINB, o); return; }
+  if(strncmp(req, "rels", 4) == 0){ int n = atoi(req + 4); do_rels(&MAINB, n > 0 ? n : 20000, o); return; }
   if(strcmp(req, "hop") == 0){ sb_str(o, "["); do_hop(&MAINB, o); sb_str(o, ","); do_hop(&SIXTHB, o); sb_str(o, "]"); return; }
   if(strcmp(req, "memory") == 0){ sb_str(o, "["); do_memory(&MAINB, o); sb_str(o, ","); do_memory(&SIXTHB, o); sb_str(o, "]"); return; }
   if(strncmp(req, "profile", 7) == 0){ do_profile(o, atoi(req + 7) > 0 ? atoi(req + 7) : 15); return; }

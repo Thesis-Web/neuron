@@ -31,16 +31,40 @@ def bind(sql, params):
     return ''.join(out)
 def q(sql, params=None): return ask('q ' + bind(sql, params))
 BUNDLE = {'at': 0, 'd': None}
+LIVE = {'base': None, 'rc': [], 'runs': [], 'inputs': [], 'out': [], 'first': {}, 'label': [], 'seen': set(), 'gates': set(), 'next': 1, 'n': 0}
 def bundle():
-    if BUNDLE['d'] is None or time.time() - BUNDLE['at'] > 600: BUNDLE['d'] = ask('bundle ' + os.environ.get('NK_BUNDLE_K', '2000')); BUNDLE['at'] = time.time()
+    if BUNDLE['d'] is None or time.time() - BUNDLE['at'] > 600:
+        BUNDLE['d'] = ask('bundle ' + os.environ.get('NK_BUNDLE_K', '2000')); BUNDLE['at'] = time.time()
+        if LIVE['base'] is None:   # the history the page replays: the first bundle's receipts, then every line typed through this door, appended; ids never go back
+            LIVE['base'] = BUNDLE['d']['receipts']; LIVE['next'] = (LIVE['base'][-1][0] if LIVE['base'] else 0) + 1
+            LIVE['seen'] = set(r[1] for r in LIVE['base']); LIVE['gates'] = set(l[0] for l in BUNDLE['d']['label'])
     return BUNDLE['d']
+def live_add(r):
+    """a line typed through this door: its runs, receipts, symbols and out rows, read from the kernel's run record, appended after the history served so far"""
+    if r.get('schema') != 'main' or not r.get('run'): return
+    bundle(); x = ask('run main %d' % r['run'])
+    if 'hops' not in x: return
+    root = (x.get('run') or {}).get('root') or r['run']
+    for t in x.get('tree', []):
+        if t['id'] in LIVE['seen']: continue
+        LIVE['seen'].add(t['id']); LIVE['runs'].append([t['id'], t['arrival'], t.get('parent'), root, t['kind'], t.get('cell') or None, t.get('about') or None, t['id']])
+    for h in x['hops']:
+        if h[1] == 0 and h[0] not in LIVE['first']: LIVE['first'][h[0]] = h[2]
+        LIVE['rc'].append([LIVE['next'], h[0], h[2], h[3]]); LIVE['next'] += 1
+    for g, v in (x.get('gates') or {}).items():
+        g = int(g)
+        if g not in LIVE['gates']: LIVE['gates'].add(g); LIVE['label'].append([g, v.get('s')])
+    LIVE['n'] += 1; LIVE['inputs'].append(['main', LIVE['n'], r['run']])
+    for o in r.get('out', []):
+        if o[0] == 'main': LIVE['out'].append([LIVE['next'], o[1], o[2], o[3]]); LIVE['next'] += 1
 def from_bundle(sql, params):
     """the whole-brain page asks for the brain whole; the kernel answers the brain at the scale a page can hold (bundle): these are its reads"""
     d = bundle(); s = sql.strip()
-    if s.startswith('SELECT gate, symbol FROM main.label'): return {'cols': ['gate', 'symbol'], 'rows': d['label']}
-    if s.startswith('SELECT id, arrival, parent, root, kind, cell, about, at FROM main.run'): return {'cols': [], 'rows': [r[:8] for r in d['runs']]}
-    if s.startswith("SELECT 'main', id, run FROM main.input"): return {'cols': [], 'rows': d['inputs']}
-    if s.startswith('SELECT id, run, cell, value FROM main.out_user'): return {'cols': [], 'rows': d['out']}
+    if s.startswith('SELECT gate, symbol FROM main.label'): return {'cols': ['gate', 'symbol'], 'rows': d['label'] + LIVE['label']}
+    if s.startswith('SELECT id, arrival, parent, root, kind, cell, about, at FROM main.run'):
+        bs = set(r[0] for r in d['runs']); return {'cols': [], 'rows': [r[:8] for r in d['runs']] + [r for r in LIVE['runs'] if r[0] not in bs]}
+    if s.startswith("SELECT 'main', id, run FROM main.input"): return {'cols': [], 'rows': d['inputs'] + LIVE['inputs']}
+    if s.startswith('SELECT id, run, cell, value FROM main.out_user'): return {'cols': [], 'rows': d['out'] + LIVE['out']}
     if s.startswith('SELECT (SELECT count(*) FROM main.label)'):
         st = ask('stats'); m = st['main']; x = st['sixth']; c = d['counts']
         return {'cols': [], 'rows': [[c['label'], c['born'], 0, c['shards'], c['runs'], c['receipts'], 0, 0, 0, m['refused'], m['pending'], 0, 0, c['rel'], 0, x['runs'], 0, x['refused'], m['returns']]]}
@@ -55,7 +79,7 @@ def from_bundle(sql, params):
             for l in n.get('told', []): rows.append([who, l['run'], l['text'], None])
         return {'cols': [], 'rows': rows}
     if s.startswith('SELECT id, run, gate, shard FROM main.run_receipt WHERE id > ?'):
-        last = int(params[0]) if params else 0; return {'cols': [], 'rows': [r for r in d['receipts'] if r[0] > last]}
+        last = int(params[0]) if params else 0; return {'cols': [], 'rows': [r for r in (LIVE['base'] if LIVE['base'] is not None else d['receipts']) if r[0] > last] + [r for r in LIVE['rc'] if r[0] > last]}
     return None
 RUNS = []
 def fill(line):
@@ -117,7 +141,7 @@ class H(http.server.BaseHTTPRequestHandler):
             if u.path == '/api/info':
                 st = ask('stats'); return self.send(200, {'brain': 'nk main', 'sixth': 'nk sixth', 'sources': 'attached', 'sqlite': 'nk', 'started': STARTED, 'ready': True, 'error': None, 'busy': None, 'queued': 0, 'version': 'nk', 'stats': st})
             if u.path == '/api/graph':
-                d = bundle(); return self.send(200, {'dna': d['dna'] + d['hit_dna'], 'nodes': d['nodes'], 'rel': d['rel'], 'tables': d['counts']['born'], 'mem': d['mem'], 'first': d['first'], 'T': d['T'], 'dna_sent': d['counts']['dna_sent']})
+                d = bundle(); return self.send(200, {'dna': d['dna'] + d['hit_dna'], 'nodes': d['nodes'], 'rel': d['rel'], 'tables': d['counts']['born'], 'mem': d['mem'], 'first': dict(d['first'], **{str(k): v for k, v in LIVE['first'].items()}), 'T': d['T'], 'dna_sent': d['counts']['dna_sent']})
             if u.path == '/api/lines': return self.send(200, read_lines())
             if u.path == '/api/job':
                 j = JOBS.get(int(qs.get('id', ['0'])[0])); return self.send(200, j) if j else self.send(404, {'error': 'no such job'})
@@ -134,7 +158,7 @@ class H(http.server.BaseHTTPRequestHandler):
                 if d.get('prompt') == 'sixth' and not line.startswith('6> '): line = '6> ' + line
                 if not RUNS and LINES and os.path.exists(LINES): match_runs([l.rstrip('\n') for l in open(LINES, encoding='utf-8')])
                 line = fill(line); schema, text = ('sixth', line[3:]) if line.startswith('6> ') else ('main', line)
-                t = time.time(); r = ask(f'type {schema} {text}'); RUNS.append(r.get('run')); BUNDLE['d'] = None   # the page reads the brain again after its line: it must see this run
+                t = time.time(); r = ask(f'type {schema} {text}'); RUNS.append(r.get('run')); live_add(r)   # the page reads the brain again after its line: this run, its receipts and symbols are appended to what it reads
                 JOBN[0] += 1; j = {'id': JOBN[0], 'kind': 'type', 'done': True, 'result': r, 'error': r.get('error'), 'progress': None, 'elapsed': time.time() - t, 'line': line}
                 JOBS[j['id']] = j; return self.send(200, j)
             if u.path == '/api/q':
