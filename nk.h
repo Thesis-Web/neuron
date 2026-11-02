@@ -104,6 +104,8 @@ uint64_t strhash(const char *s);
 uint64_t seqhash(const int *seq, int n);
 Shard *shard_by_id(Brain *b, int gate, i64 id);
 Shard *hop_shard(Brain *b); i64 hop_id(Brain *b); i64 nk_shard_rows(Brain *b); void nk_count_rows(Brain *b);
+/* the place of a point and the pull of its relationships (nkxyz.c) */
+int nk_xyz_open(const char *path); void nk_xyz_land(Brain *b, int gate, i64 shard, int before, int next, i64 run); void nk_xyz_settle(Brain *b, int passes, char *out, size_t cap); int nk_xyz_get(int gate, double *x, double *y, double *z, i64 *shard, int *before, int *next, i64 *at, i64 *run, int *moved); int nk_xyz_set(Brain *b, int gate, double x, double y, double z); void nk_xyz_sync(void);
 i64    now_ns(void);
 int    label_gate(Brain *b, const char *sym);           /* 0 when the symbol has no gate */
 int    label_new(Brain *b, const char *sym);            /* the next gate, born into the encoder (no neuron region yet) */
