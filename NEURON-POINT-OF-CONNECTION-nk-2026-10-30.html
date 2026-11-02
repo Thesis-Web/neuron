@@ -492,7 +492,6 @@
       // a new point has no place until its lines give it one: it waits at origin and is placed beside its neighbours once the lines are known
       var fixed = k === String(G.heard), p = new THREE.Vector3(0, 0, 0);
       n = NODE[k] = { key: k, pos: p, fixed: fixed, unplaced: !fixed, ghost: k.charAt(0) === 'g', mem: k.charAt(0) === 'm' };
-      var bx = (!fixed && !n.ghost && !n.mem) ? XYZ[+k] : null; if (bx) { n.pos.set(bx[1], bx[2], bx[3]); n.unplaced = false; }   // the brain's own place for the point, when it holds one: the drawing starts there
       if (hasGL) {
         var col = colorOf(k), r = sizeOf(k);
         n.mesh = new THREE.Mesh(dotGeo, new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: n.ghost ? .4 : .92 })); n.mesh.scale.setScalar(r); n.mesh.position.copy(n.pos); n.mesh.userData = { base: r, key: k }; dotGroup.add(n.mesh);
