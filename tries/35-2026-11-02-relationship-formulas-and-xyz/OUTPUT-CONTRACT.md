@@ -146,7 +146,7 @@ Part 1 read again, part 3's expected outputs read live; a difference is a regres
 | H6 | "16": [6, ∅, ∅, call 4554230 (was 1), times 144,952] | yes; the new born run is N5 |
 | H7 | main runs 4,557,585 and 4,557,573 arrived from the sixth after the change (`define : X`, `why : N 24`) | yes |
 | H8 | every change typed through `/api/type`; no outside connection opened for a write (two read-only openings at 13:50 were stopped before they finished) | yes |
-| H9 | the hub's page: a headless Chromium screenshot after the patch shows the stage, the kinds, the panels and the readout (`hub-page-after-g35.png`); its `ready` could not be read headless here (its whole-graph reads behind the typed lines), as on 11-01 | yes, by the screenshot |
+| H9 | the hub's page: a headless Chromium screenshot after the patch shows the stage, the kinds, the panels and the readout (`hub-page-after-g35.png`); its reads did not finish in 563 s with the box quiet: the door reads every rel row (3.30 million now, 2.59 before today's back population; about 70 s to open on 11-01 with 2.3 million). The page draws; it opens slower by the rows it now reads. | draws, yes; its opening time grew with the rel table (the hub door's whole-graph read, the owner's call) |
 | B1-B4 | formulas and places are rows and typed lines; the kernel's C and the hub's trigger are the physics; nothing deleted; 8056 never pointed at the kernel; the new tables hold numbers only | yes |
 
 ### The new work on the hub, read live

@@ -147,8 +147,13 @@ pass, three a step, the page's cost as written on 11-01). Its ready time and a s
 runs on this box all day (load 3 to 6), and the software-rendered browser never gets the thread long enough to answer; the unpatched page
 served for one probe gave the same silence (`probe-before.log`), the light page answered every five seconds (`probe-light.log`). The last
 measurement with the box quiet stands: ready in 57 s with 69,490 points sent, 20,126 drawn, 373,118 springs (14:28, before the patch).
-The hub's page rendered after its patch (`hub-page-after-g35.png`: the stage, the lines, the panels, the hit readout). The owner's browser
-is the check of the sliders' defaults and the clicked point's place; the reads they make answer on both doors.
+The hub's page rendered after its patch (`hub-page-after-g35.png`: the stage, the lines, the panels, the hit readout) but did not finish
+its reads in 563 s with the box quiet (`hubafter2.log`): its door reads the whole graph (`read_graph`: every rel row), and the rel table
+grew from 2.59 to 3.30 million rows today; on 11-01 the page opened in about 70 s with 2.3 million. The hub page's whole-graph read is
+the hub door's design (the kernel's page reads a bundle); a cost of the back population, stated here, the owner's call. The page-scope
+variables are not visible to the debugger's evaluate (the kernel page exports `__poc` for that; the hub page does not), so the sliders'
+defaults were read from the DOM only (alike 1, is +y, opposite across, the same values as the brain's rows). The owner's browser is the
+check of the sliders' defaults and the clicked point's place; the reads they make answer on both doors.
 
 ## Not done, and the owner's calls
 
