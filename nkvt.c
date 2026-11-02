@@ -125,6 +125,26 @@ static int seq_step(Cur *c){
 static void seq_col(Cur *c, sqlite3_context *x, int col){ seq_of(c, c->e); switch(col){ case 0: R(x, c->e); break; case 1: R(x, c->i + 1); break; case 2: R(x, SEQP ? SEQP[c->i] : 0); break; } }
 static i64 seq_rowid(Cur *c){ return (c->e << 24) | (c->i + 1); }
 static int seq_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){ if(argc == 1 || sqlite3_value_type(argv[0]) != SQLITE_NULL) return SQLITE_OK; Run *r = run_of(b, V(argv[2])); if(!r) return SQLITE_ERROR; int pos = (int)V(argv[3]); if(pos != r->nseq + 1) { *err = sqlite3_mprintf("seq is written in order"); return SQLITE_ERROR; } if(r->nseq % 8 == 0) r->seq = realloc(r->seq, (r->nseq + 8) * sizeof(int)); r->seq[r->nseq++] = (int)V(argv[4]); return SQLITE_OK; }
+
+/* defwords (gate, word, defined): the words of a point's definition rows, each once, and whether the word holds definition rows itself now
+   (the guesser's rows, source 15, do not count). Keyed by the point; the recall's known and unknown cells read it. */
+static int *DWW; static unsigned char *DWD; static int DWN, DWCAP; static i64 DWGATE = -1;
+static void defwords_of(Brain *b, int gate){
+  if(gate == DWGATE) return; DWGATE = gate; DWN = 0; Neuron *n = neuron_of(b, gate); if(!n || !n->nnode) return;
+  int wikt = label_gate(b, "wikt"); HMap seen; hmap_init(&seen, 1 << 10);
+  for(int j = 0; j < n->nnode; j++){ i64 run = n->node[j].run; Run *r = run_of(b, run); if(!r || !((r->arrival >= 7 && r->arrival <= 14) || r->arrival == wikt)) continue;
+    int ns; const int *sq = nk_seq(b, run, &ns);
+    for(int k = 0; sq && k < ns; k++){ int x = sq[k]; if(x <= 0 || x > b->label.n) continue; unsigned char c0 = (unsigned char)b->label.sym[x][0]; if(!((c0 >= 'A' && c0 <= 'Z') || (c0 >= 'a' && c0 <= 'z'))) continue;
+      if(hmap_get(&seen, x, 0)) continue; hmap_put(&seen, x, 0, 1);
+      if(DWN >= DWCAP){ DWCAP = DWCAP ? DWCAP * 2 : 1024; DWW = realloc(DWW, DWCAP * sizeof(int)); DWD = realloc(DWD, DWCAP); }
+      Neuron *w = neuron_of(b, x); int def = 0; if(w) for(int q = 0; q < w->nnode; q++) if(w->node[q].source != 15){ def = 1; break; }
+      DWW[DWN] = x; DWD[DWN] = (unsigned char)def; DWN++; } }
+  free(seen.e);
+}
+static void defwords_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; c->started = 0; c->i = -1; if(idx == 1){ c->k1 = V(argv[0]); defwords_of(c->b, (int)c->k1); } else { DWGATE = -1; DWN = 0; } }
+static int defwords_step(Cur *c){ if(c->idx != 1) return 0; c->i++; return c->i < DWN; }
+static void defwords_col(Cur *c, sqlite3_context *x, int col){ switch(col){ case 0: R(x, c->k1); break; case 1: R(x, DWW[c->i]); break; case 2: R(x, DWD[c->i]); break; } }
+static i64 defwords_rowid(Cur *c){ return (c->k1 << 24) | (c->i + 1); }
 /* run_sheet (run, cell, state, value) */
 static void sheet_begin(Cur *c, int idx, sqlite3_value **argv){ c->idx = idx; if(idx >= 1){ i64 r = V(argv[0]); ENT_BEGIN(c, r, r); if(idx == 2) c->k1 = V(argv[1]); } else ENT_BEGIN(c, 1, c->b->nruns); }
 static int sheet_step(Cur *c){
@@ -261,6 +281,7 @@ static TDesc TABLES[] = {
   {"shards", "CREATE TABLE x(n INTEGER)", 1, 0, {{0}}, {0}, one_begin, one_step, shards_col, plain_rowid, shards_update},
   {"complete", "CREATE TABLE x(run INTEGER)", 1, 1, {{0}}, {1}, cmp_begin, cmp_step, cmp_col, run_rowid, 0},
   {"replay", "CREATE TABLE x(parent INTEGER, source INTEGER, kind INTEGER)", 3, 0, {{0}}, {0}, rp_begin, rp_step, rp_col, plain_rowid, rp_update},
+  {"defwords", "CREATE TABLE x(gate INTEGER, word INTEGER, defined INTEGER)", 3, 1, {{0}}, {1}, defwords_begin, defwords_step, defwords_col, defwords_rowid, 0},
 };
 #define NTABLES (int)(sizeof(TABLES) / sizeof(TABLES[0]))
 static Brain *BRAINS[2]; static const char *BNAMES[2] = {"main", "sixth"};
