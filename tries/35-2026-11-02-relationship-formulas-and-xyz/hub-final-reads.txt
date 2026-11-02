@@ -1,0 +1,23 @@
+== H1 info: {'main': {'idle': True, 'hops': 877840, 'refused': 0}, 'sixth': {'idle': True, 'hops': 536458, 'refused': 0}}
+== H2 recalls on the hub (with xyz_go, the catalog rows, after the back-populations):
+  define : stone  run 4557491  1.0 s  node rows 524 -> 524  returns under it [[0]]  xyz [[-0.19, 3.0, -1.29, 17, 68, None, 4557491, 7]]
+  define : bread  run 4557518  1.0 s  node rows 170 -> 170  returns under it [[0]]  xyz [[1.13, 9.29, -2.52, 17, 68, None, 4557518, 7]]
+  define : who    run 4557546  2.0 s  node rows 92 -> 92  returns under it [[0]]  xyz [[-0.11, -0.54, -0.69, 17, 68, None, 4557546, 7]]
+  define : water  run 4557574  1.0 s  node rows 370 -> 370  returns under it [[0]]  xyz [[0.14, 2.12, -2.91, 17, 68, None, 4557574, 7]]
+== H4 the space's row, define's rows: [[17, 24628781]] [[587, 1, 68, 4254380, 108], [18574, 5, 68, 4254380, 160768], [18664, 1, 152, 11254, 2]]
+== H6 born's row: [[6, None, None, 4554230, 144952]]
+== H7 the sixth's newest lines in main: [[4557585], [4557573]]
+== N1: [[18]] [[38]]
+== N2 places on the hub: [[71546, 71541, 40427]]
+  water     [[0.14, 2.12, -2.91, 17, 68, None, 4557574, 7]]
+  ice       [[7.62, -6.36, -0.68, 0, None, None, 0, 6]]
+  stone     [[-0.19, 3.0, -1.29, 17, 68, None, 4557491, 7]]
+  bread     [[1.13, 9.29, -2.52, 17, 68, None, 4557518, 7]]
+  hinge     [[-2.24, -0.94, 0.91, 0, None, None, 0, 6]]
+  origin    [[0.0, 0.0, 0.0, 0, None, None, 0, 1]]
+  takakkaw  [[1.47, -7.02, -1.12, 17, 68, None, 4554286, 7]]
+  water's is relations' places: [['thing', -2.1, 9.3, 1.7], ['element', -0.0, 11.3, 4.9], ['food', 0.8, 13.2, -0.2], ['supply', 1.3, 12.6, -1.1], ['fill', -1.1, 10.4, 0.3], ['provide', 0.3, 19.3, -1.1]]
+== N3 rel kinds: [['like', 2444349], ['derived', 244691], ['includes', 158519], ['is', 135630], ['topic', 119993], ['related', 98339], ['similar', 56892], ['opposite', 17581], ['has', 9717], ['part', 7776], ['member', 2901], ['property', 2736], ['implies', 1399], ['causes', 531]] [[3301054]]
+== N5 takakkaw's table: [[1342406, 153, 68, None, 4554222, 0]] nodes 1
+== hub prof top: [(17375.1, 130302, 0.133, 'main INSERT INTO main.fire (run, ord) VA'), (12241.5, 82556, 0.148, 'sixth INSERT INTO sixth.fire (run, ord) '), (6540.0, 665123, 0.01, 'main INSERT INTO main.land (run, pos, ga'), (2121.2, 41298, 0.051, 'main INSERT INTO main.replay (parent, so')]
+== info end: {'main': {'idle': False, 'hops': 878004, 'refused': 0}, 'sixth': {'idle': False, 'hops': 536614, 'refused': 0}}

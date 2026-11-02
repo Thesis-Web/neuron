@@ -72,6 +72,8 @@ def from_bundle(sql, params):
     if s.startswith('SELECT arrival, about, min(id) FROM main.run'): return {'cols': [], 'rows': d['answ']}
     if s.startswith('SELECT run, count(*) FROM main.run_receipt'): return {'cols': [], 'rows': [[r[0], r[8]] for r in d['runs']]}
     if s.startswith('SELECT run, gate, shard, input FROM main.run_memory'): return {'cols': [], 'rows': d['memrows']}
+    if s.startswith('SELECT gate, x, y, z, moved FROM main.xyz'): return {'cols': [], 'rows': d.get('xyz', [])}   # the places of the included points (the xyz table is read by gate; the bundle carries them)
+    if s.startswith('SELECT p.kind, f.pull, f.rest, f.dx, f.dy, f.dz, f.mode FROM main.pull p'): return {'cols': [], 'rows': d.get('formula', [])}
     if s.startswith("SELECT 'told', t.run,"):
         rows = []
         for who, key in (('told', 'sixth'), ('asked main', 'main')):
@@ -141,7 +143,7 @@ class H(http.server.BaseHTTPRequestHandler):
             if u.path == '/api/info':
                 st = ask('stats'); return self.send(200, {'brain': 'nk main', 'sixth': 'nk sixth', 'sources': 'attached', 'sqlite': 'nk', 'started': STARTED, 'ready': True, 'error': None, 'busy': None, 'queued': 0, 'version': 'nk', 'stats': st})
             if u.path == '/api/graph':
-                d = bundle(); return self.send(200, {'dna': d['dna'] + d['hit_dna'], 'nodes': d['nodes'], 'rel': d['rel'], 'tables': d['counts']['born'], 'mem': d['mem'], 'first': dict(d['first'], **{str(k): v for k, v in LIVE['first'].items()}), 'T': d['T'], 'dna_sent': d['counts']['dna_sent']})
+                d = bundle(); return self.send(200, {'dna': d['dna'] + d['hit_dna'], 'nodes': d['nodes'], 'rel': d['rel'], 'xyz': d.get('xyz', []), 'formula': d.get('formula', []), 'tables': d['counts']['born'], 'mem': d['mem'], 'first': dict(d['first'], **{str(k): v for k, v in LIVE['first'].items()}), 'T': d['T'], 'dna_sent': d['counts']['dna_sent']})
             if u.path == '/api/lines': return self.send(200, read_lines())
             if u.path == '/api/job':
                 j = JOBS.get(int(qs.get('id', ['0'])[0])); return self.send(200, j) if j else self.send(404, {'error': 'no such job'})

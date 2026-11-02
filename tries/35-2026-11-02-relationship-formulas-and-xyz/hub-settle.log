@@ -1,0 +1,30 @@
+placing every point that holds relationship rows, 3000 a line:
+  place: line 10, 30000 points so far, 70 s
+  place: line 20, 60000 points so far, 140 s
+  place: 25 lines, 71425 points, 174 s
+  placed: [[71536]]
+pass 1 of 5: one step of every placed point, 3000 a line:
+  step: line 10, 30000 points so far, 66 s
+  step: line 20, 60000 points so far, 123 s
+  step: 25 lines, 71541 points, 150 s
+  sample: [['bread', -2.4, 0.1, 0.1, 1], ['hinge', 0.2, -3.9, -2.4, 1], ['ice', 3.5, -2.5, -2.4, 1], ['origin', 0.0, 0.0, 0.0, 1], ['stone', 1.7, 2.8, -2.9, 1], ['water', 0.1, 0.1, -1.0, 1]]
+pass 2 of 5: one step of every placed point, 3000 a line:
+  step: line 10, 30000 points so far, 53 s
+  step: line 20, 60000 points so far, 117 s
+  step: 25 lines, 71541 points, 142 s
+  sample: [['bread', -2.4, 0.1, 0.1, 1], ['hinge', 0.2, -3.9, -2.4, 1], ['ice', 3.5, -2.5, -2.4, 1], ['origin', 0.0, 0.0, 0.0, 1], ['stone', 1.7, 2.8, -2.9, 1], ['water', 0.1, 0.1, -1.0, 1]]
+pass 3 of 5: one step of every placed point, 3000 a line:
+  step: line 10, 30000 points so far, 43 s
+  step: line 20, 60000 points so far, 95 s
+  step: 25 lines, 71541 points, 126 s
+  sample: [['bread', -2.4, 0.1, 0.1, 1], ['hinge', 0.2, -3.9, -2.4, 1], ['ice', 3.5, -2.5, -2.4, 1], ['origin', 0.0, 0.0, 0.0, 1], ['stone', 1.7, 2.8, -2.9, 1], ['water', 0.1, 0.1, -1.0, 1]]
+pass 4 of 5: one step of every placed point, 3000 a line:
+  step: line 10, 30000 points so far, 56 s
+  step: line 20, 60000 points so far, 116 s
+  step: 25 lines, 71541 points, 146 s
+  sample: [['bread', -2.4, 0.1, 0.1, 1], ['hinge', 0.2, -3.9, -2.4, 1], ['ice', 3.5, -2.5, -2.4, 1], ['origin', 0.0, 0.0, 0.0, 1], ['stone', 1.7, 2.8, -2.9, 1], ['water', 0.1, 0.1, -1.0, 1]]
+pass 5 of 5: one step of every placed point, 3000 a line:
+  step: line 10, 30000 points so far, 57 s
+  step: line 20, 60000 points so far, 110 s
+  step: 25 lines, 71541 points, 139 s
+  sample: [['bread', -2.4, 0.1, 0.1, 1], ['hinge', 0.2, -3.9, -2.4, 1], ['ice', 3.5, -2.5, -2.4, 1], ['origin', 0.0, 0.0, 0.0, 1], ['stone', 1.7, 2.8, -2.9, 1], ['water', 0.1, 0.1, -1.0, 1]]

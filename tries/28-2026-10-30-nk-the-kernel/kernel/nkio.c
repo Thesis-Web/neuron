@@ -358,7 +358,12 @@ static void do_bundle(Brain *b, int K, SB *o){
   /* the definition-row and memory counts of the included points only (the page colours and lists by them), once the included set is final */
   sb_str(o, "],\"nodes\":{"); first = 1;
   for(int g = 1; g <= b->label.n; g++){ if(!inc[g]) continue; Neuron *n = neuron_of(b, g); if(!n || !n->nnode) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%d\":%d", g, n->nnode); }
-  sb_str(o, "},\"mem\":{"); first = 1;
+  /* the places the brain holds for the included points, and the formulas (the kinds' pulls) it holds: the page starts from them */
+  sb_str(o, "},\"xyz\":["); first = 1;
+  for(int g = 1; g <= b->label.n; g++){ if(!inc[g]) continue; double x, y, z; i64 sh, at, run; int bf, nx, mv; if(!nk_xyz_get(g, &x, &y, &z, &sh, &bf, &nx, &at, &run, &mv)) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%d,%.2f,%.2f,%.2f,%d]", g, x, y, z, mv); }
+  sb_str(o, "],\"formula\":["); first = 1;
+  { sqlite3_stmt *fq = 0; if(sqlite3_prepare_v2(DB, "SELECT p.kind, f.pull, f.rest, f.dx, f.dy, f.dz, f.mode FROM main.pull p JOIN main.formula f ON f.id = p.formula", -1, &fq, 0) == SQLITE_OK){ while(sqlite3_step(fq) == SQLITE_ROW){ if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%d,%g,%g,%g,%g,%g,%d]", sqlite3_column_int(fq, 0), sqlite3_column_double(fq, 1), sqlite3_column_double(fq, 2), sqlite3_column_double(fq, 3), sqlite3_column_double(fq, 4), sqlite3_column_double(fq, 5), sqlite3_column_int(fq, 6)); } } if(fq) sqlite3_finalize(fq); }
+  sb_str(o, "],\"mem\":{"); first = 1;
   for(int g = 1; g <= b->label.n; g++){ if(!inc[g]) continue; Neuron *n = neuron_of(b, g); if(!n || !n->nmem) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%d\":%d", g, n->nmem); }
   sb_str(o, "},\"label\":["); first = 1; i64 nlab = 0;
   for(int g = 1; g <= b->label.n; g++){ if(!inc[g]) continue; if(!first) sb_str(o, ","); first = 0; nlab++; sb_fmt(o, "[%d,", g); sb_json(o, b->label.sym[g]); sb_str(o, "]"); }
@@ -370,6 +375,7 @@ static void handle(const char *req, SB *o){
   if(strcmp(req, "repair") == 0){ do_repair(&MAINB, o); return; }
   if(strncmp(req, "rels", 4) == 0){ int n = atoi(req + 4); do_rels(&MAINB, n > 0 ? n : 20000, o); return; }
   if(strcmp(req, "hop") == 0){ sb_str(o, "["); do_hop(&MAINB, o); sb_str(o, ","); do_hop(&SIXTHB, o); sb_str(o, "]"); return; }
+  if(strncmp(req, "settle", 6) == 0){ char t[512]; nk_xyz_settle(&MAINB, atoi(req + 6) > 0 ? atoi(req + 6) : 1, t, sizeof t); sb_str(o, t); return; }   /* the places back-populated: one step of every point that holds a definition or a place, per pass */
   if(strcmp(req, "memory") == 0){ sb_str(o, "["); do_memory(&MAINB, o); sb_str(o, ","); do_memory(&SIXTHB, o); sb_str(o, "]"); return; }
   if(strncmp(req, "profile", 7) == 0){ do_profile(o, atoi(req + 7) > 0 ? atoi(req + 7) : 15); return; }
   if(strcmp(req, "scans") == 0){ char t[4096]; nkvt_scans(t, sizeof t); sb_str(o, "["); sb_str(o, t); sb_str(o, "]"); return; }
@@ -391,6 +397,7 @@ int main(int argc, char **argv){
   signal(SIGTERM, on_stop);
   if(argc < 4){ fprintf(stderr, "usage: nk <port> <symbols file> <sources dir> [source names...]\n"); return 1; }
   int port = atoi(argv[1]);
+  { const char *mp = getenv("NK_MAP"); if(mp && *mp){ char px[4096]; snprintf(px, sizeof px, "%s.xyz", mp); if(nk_xyz_open(px) < 0) return 1; } }   /* the places, beside the map */
   if(attached){ Brain **root = nk_map_root(); MAINP = root[0]; SIXTHP = root[1]; }
   else { Brain **root = malloc(sizeof(Brain *) * 2); MAINP = root[0] = calloc(1, sizeof(Brain)); SIXTHP = root[1] = calloc(1, sizeof(Brain)); nk_map_set_root(root); brain_init(&MAINB, "main", 1); brain_init(&SIXTHB, "sixth", 0); }
   MAINB.name = "main"; SIXTHB.name = "sixth"; MAINB.tell = &SIXTHB;
@@ -405,7 +412,7 @@ int main(int argc, char **argv){
   if(bind(s, (struct sockaddr*)&a, sizeof a) < 0 || listen(s, 8) < 0){ perror("listen"); return 1; }
   fprintf(stderr, "nk: %d symbols laid in each brain, listening on 127.0.0.1:%d\n", MAINB.label.n, port);
   for(;;){
-    if(STOP){ nk_map_sync(); sqlite3_close(DB); fprintf(stderr, "nk: stopped; the brain is in its file\n"); return 0; }
+    if(STOP){ nk_xyz_sync(); nk_map_sync(); sqlite3_close(DB); fprintf(stderr, "nk: stopped; the brain is in its file\n"); return 0; }
     int busy = pending(&MAINB) || pending(&SIXTHB);
     struct pollfd p = {s, POLLIN, 0}; int timeout = busy ? 0 : -1;
     int r = poll(&p, 1, timeout);

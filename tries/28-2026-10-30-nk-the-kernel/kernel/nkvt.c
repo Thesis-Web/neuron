@@ -257,6 +257,13 @@ static int rp_step(Cur *c){ return 0; }
 static void rp_col(Cur *c, sqlite3_context *x, int col){ sqlite3_result_null(x); }
 static int rp_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){ if(argc == 1 || sqlite3_value_type(argv[0]) != SQLITE_NULL) return SQLITE_OK; replay_push(b, V(argv[2]), V(argv[3]), (int)V(argv[4])); *rowid = 1; return SQLITE_OK; }
 static i64 plain_rowid(Cur *c){ return c->e + 1; }
+/* xyz (gate, x, y, z, shard, before, next, at, run, moved): the point's place, by gate (nkxyz.c); UPDATE or INSERT of x, y, z sets it */
+static double XX, XY, XZ; static i64 XS, XAT, XRUN; static int XB, XN, XM, XOK;
+static void xyz_begin(Cur *c, int idx, sqlite3_value **argv){ c->started = 0; c->idx = idx; c->k1 = idx == 1 ? V(argv[0]) : 0; XOK = (idx == 1 && c->b->is_main) ? nk_xyz_get((int)c->k1, &XX, &XY, &XZ, &XS, &XB, &XN, &XAT, &XRUN, &XM) : 0; }
+static int xyz_vstep(Cur *c){ if(!c->started){ c->started = 1; return XOK; } return 0; }
+static void xyz_col(Cur *c, sqlite3_context *x, int col){ switch(col){ case 0: R(x, c->k1); break; case 1: sqlite3_result_double(x, XX); break; case 2: sqlite3_result_double(x, XY); break; case 3: sqlite3_result_double(x, XZ); break; case 4: R(x, XS); break; case 5: RN(x, XB); break; case 6: RN(x, XN); break; case 7: R(x, XAT); break; case 8: R(x, XRUN); break; case 9: R(x, XM); break; } }
+static i64 xyz_rowid(Cur *c){ return c->k1; }
+static int xyz_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){ if(argc == 1) return SQLITE_OK; int g = (int)V(argv[2]); if(!b->is_main || g <= 0){ *err = sqlite3_mprintf("xyz is the main brain's, by gate"); return SQLITE_ERROR; } nk_xyz_set(b, g, sqlite3_value_double(argv[3]), sqlite3_value_double(argv[4]), sqlite3_value_double(argv[5])); *rowid = g; return SQLITE_OK; }
 
 static TDesc TABLES[] = {
   {"label", "CREATE TABLE x(gate INTEGER, symbol TEXT)", 2, 2, {{0},{1}}, {1,1}, label_begin, label_step, label_col, label_rowid, label_update},
@@ -282,6 +289,7 @@ static TDesc TABLES[] = {
   {"complete", "CREATE TABLE x(run INTEGER)", 1, 1, {{0}}, {1}, cmp_begin, cmp_step, cmp_col, run_rowid, 0},
   {"replay", "CREATE TABLE x(parent INTEGER, source INTEGER, kind INTEGER)", 3, 0, {{0}}, {0}, rp_begin, rp_step, rp_col, plain_rowid, rp_update},
   {"defwords", "CREATE TABLE x(gate INTEGER, word INTEGER, defined INTEGER)", 3, 1, {{0}}, {1}, defwords_begin, defwords_step, defwords_col, defwords_rowid, 0},
+  {"xyz", "CREATE TABLE x(gate INTEGER, x REAL, y REAL, z REAL, shard INTEGER, before INTEGER, next INTEGER, at INTEGER, run INTEGER, moved INTEGER)", 10, 1, {{0}}, {1}, xyz_begin, xyz_vstep, xyz_col, xyz_rowid, xyz_update},   /* the point's place (nkxyz.c) */
 };
 #define NTABLES (int)(sizeof(TABLES) / sizeof(TABLES[0]))
 static Brain *BRAINS[2]; static const char *BNAMES[2] = {"main", "sixth"};

@@ -1,0 +1,29 @@
+== K1 info: {'defined': 722283, 'runs': 19937685, 'hops': 33909429, 'pending': 0, 'gates': 1317441, 'refused': 1, 'shards': 20048978, 'shard_rows': 137, 'hop_us': 12.45, 'pastes': 6709000, 'paste_us': 684.5, 'hop_s': 638.636, 'paste_s': 4592.343, 'returns': 1468489, 'return_us': 27.7, 'return_s': 40.611, 'receipts': 33909429, 'hops_run': 51297744, 'deduped_runs': 6260417, 'stubs': 722283, 'receipts_dropped': 0}
+== K2 recalls (after SHAPE-2 and the settle passes):
+  define : who               run 19937686  0.055 s  hits 2231 runs 11 born 0  [('def', 'run 1332 from wn: noun 1: a United Nations agency to coordin'), ('ok', 'ok')]
+  define : stone             run 19937697  0.020 s  hits 2231 runs 11 born 0  [('def', 'run 19934921 from wn: noun 2: building material consisting o'), ('ok', 'ok')]
+  define : bread             run 19937708  0.014 s  hits 2231 runs 11 born 0  [('def', 'run 19935456 from wn: noun 1: food made from dough of flour '), ('ok', 'ok')]
+  define : water             run 19937719  0.023 s  hits 2231 runs 11 born 0  [('def', 'run 19933961 from wn: noun 4: a facility that provides a sou'), ('ok', 'ok')]
+  define : hinge             run 19937730  0.013 s  hits 2231 runs 11 born 0  [('def', 'run 19933360 from wn: noun 1: a joint that holds two parts t'), ('ok', 'ok')]
+  node rows: who [[40]] stone [[1048]] bread [[340]]
+== K5 rel kinds: [['like', 2583408], ['derived', 352976], ['topic', 339426], ['is', 188167], ['includes', 186754], ['related', 184218], ['similar', 83821], ['has', 30212], ['opposite', 27096], ['part', 15587], ['capitalized', 15371], ['member', 11784], ['property', 3163], ['implies', 1531], ['causes', 601]]
+== K6 shard_rows before a new line: 137
+  the zebu is near the okapi run 19937741  0.032 s  hits 260 runs 5 born 0  [('ok', 'ok'), ('ok', 'ok')]
+  shard_rows after a new line with known words: 137 -> 137 (a shape read lays no row now)
+== K7 dna 156: [[557, 1, 68, 19937222, 85], [1867, 5, 68, 19937222, 1363629], [1931, 1, 155, 1132, 21]] born: [[6, 19937007, 1175448]] heard: [[1, 19937672, 228]]
+== N1 formula/pull: [[18]] [[38]]
+== N2 places after the settle passes:
+  water    [[0.97, 2.96, -0.28, 17, 68, None, 19937719, 13]]
+  ice      [[-4.07, -4.52, 3, 0, None, None, 0, 11]]
+  H        []
+  stone    [[-2.75, 11.64, -0.13, 17, 68, None, 19937697, 12]]
+  bread    [[0.49, 6.56, 0.81, 17, 68, None, 19937708, 12]]
+  hinge    [[-3.03, -0.23, -2.89, 17, 68, None, 19937730, 12]]
+  origin   [[0, 0, 0, 0, None, None, 0, 2]]
+  zebu     [[-0.67, -7.64, 0.07, 17, 292, 369, 19937741, 13]]
+  okapi    [[-0.47, -8.83, -0.23, 17, 292, None, 19937741, 13]]
+  define   [[0.74, 1.2, -2.64, 557, 1, 68, 19937628, 14]]
+  water's relations' places (is/has): [['has', 'reservoir', -1.9, 0.2, 2.4], ['has', 'oxygen', -4.9, -0.4, 0.3], ['has', 'hydrogen', -5.4, 4.9, 0.8], ['is', 'element', -1, 10.8, -0.6], ['is', 'fill', 1, 5.1, 0.8], ['is', 'food', -0.1, 17.2, -0.5], ['is', 'release', -4.2, 6.2, -5.8], ['is', 'thing', -0.3, 11.6, 4.7]]
+== K11 keyless vtable read refused: ERR no query solution
+== the sixth's own define through its row: the sixth's newest told line: [{'id': 2118441, 'run': 19937621, 'from': 'sixth', 'ended': 1, 'hops': 13, 'text': 'why : 19937591 24'}, {'id': 2118440, 'run': 19937620, 'from': 'sixth', 'ended': 1, 'hops': 13, 'text': 'why : 19937590 24'}]
+== info end: {'defined': 722283, 'runs': 19937745, 'hops': 33909779, 'pending': 0, 'gates': 1317441, 'refused': 1, 'shards': 20048978, 'shard_rows': 137, 'hop_us': 12.451, 'pastes': 6709038, 'paste_us': 684.5, 'hop_s': 638.722, 'paste_s': 4592.375, 'returns': 1468489, 'return_us': 27.7, 'return_s': 40.611, 'receipts': 33909779, 'hops_run': 51298179, 'deduped_runs': 6260432, 'stubs': 722283, 'receipts_dropped': 0}
