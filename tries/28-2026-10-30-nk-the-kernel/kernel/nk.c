@@ -31,7 +31,7 @@ void brain_init(Brain *b, const char *name, int is_main){
   b->cnr = 256; b->nr = calloc(b->cnr, sizeof(Neuron)); b->nnr = 0;
   b->arrival_of_third = is_main ? SIXTH : MAIN;
 }
-int label_gate(Brain *b, const char *sym){ return (int)hmap_get(&b->label.h, (i64)strhash(sym), 1); }
+int label_gate(Brain *b, const char *sym){ if(!sym) return 0; return (int)hmap_get(&b->label.h, (i64)strhash(sym), 1); }   /* a NULL symbol names no gate (a join on a NULL key fell here, 2026-11-01) */
 int label_new(Brain *b, const char *sym){
   int g = label_gate(b, sym); if(g) return g;
   g = ++b->label.n; if(g >= b->label.cap){ b->label.cap *= 2; b->label.sym = realloc(b->label.sym, b->label.cap * sizeof(char*)); }

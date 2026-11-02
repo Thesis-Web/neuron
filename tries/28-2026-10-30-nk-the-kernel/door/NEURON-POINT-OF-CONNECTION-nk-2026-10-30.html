@@ -449,6 +449,7 @@
     DEFW = {}; R[6].forEach(function (r) { (DEFW[r[0]] = DEFW[r[0]] || []).push([r[1], r[2]]); });
     ANSW = R[7];
     R[10].forEach(function (r) { var i = HIST.length; HIST.push(r); HISTLAST = r[0]; (RUNHOPS[r[1]] = RUNHOPS[r[1]] || []).push(i); if (FIRSTG[r[2]] === undefined) FIRSTG[r[2]] = i; if (FIRSTS[r[3]] === undefined) FIRSTS[r[3]] = i; if (RUNT0[r[1]] === undefined) RUNT0[r[1]] = i; RUNT1[r[1]] = i; });
+    RELSTATIC = []; RELWIN = []; RELCACHE = { key: null, agg: null }; REL.forEach(function (r) { if (!r[3] || RUNT0[r[3]] === undefined) RELSTATIC.push(r); else RELWIN.push(r); });   // laid before this history's window, or inside it
     HOPCOUNT = {}; R[8].forEach(function (r) { HOPCOUNT[r[0]] = r[1]; });
     DEFSEEN = {}; Object.keys(DEFW).forEach(function (g) { var f = FIRSTG[g]; if (f === undefined) return; DEFW[g].forEach(function (x) { if (DEFSEEN[x[0]] === undefined || DEFSEEN[x[0]] > f) DEFSEEN[x[0]] = f; }); });   // a word of a point's definition is present from the hit that reached the point (the kernel pulls returns to the sheet; they are not walked)
     if (R[9]) { MAPL = []; R[9].forEach(function (r) { var m = /^(like|opposite(?: of)?)\s+(.+)$/.exec(r[1]); if (!m) return; var kind = m[1].indexOf('opposite') === 0 ? 'opposite' : 'alike'; m[2].split(/\s*,\s*/).forEach(function (o) { o = o.trim(); if (o) MAPL.push([r[0], kind, o]); }); }); }
@@ -501,13 +502,13 @@
   // ---- the kinds of line, the pull law, the settle (17.3's; the kinds are v6's rows)
   var REL_TYPES = [['dna before', 0.6, 'a DNA row: the symbol before, to this one'], ['dna trigger', 0.6, 'a DNA row: this symbol to the one the run goes on to'], ['dna call', 0.8, 'a DNA row\'s call: this symbol to the first gate of the run it replays and takes the answer from'], ['dna spawn', 0.8, 'a DNA row\'s spawn: this symbol to the first gate of the run it sends off'],
     ['made-of', 0.5, 'a symbol with a call, to each gate the run it calls passes'], ['definition', 0.4, 'a symbol to the words of the lines its sources returned (its definition node)'], ['answered', 0.4, 'a source brain to the symbols it answered'], ['memory', 0.5, 'a memory node (a run_memory row) to the shard\'s gate it ended on and the words of its line'],
-    ['alike', 1.0, 'like; a rel row from the thesaurus, Moby or your map'], ['opposite', 1.0, 'opposite; a rel row'], ['is', 0.9, 'kind, class; in your map'], ['includes', 0.9, ''], ['inverse', 0.9, ''], ['contradicts', 0.8, ''], ['supports', 0.7, ''], ['has', 0.7, 'in your map'], ['part', 0.7, ''], ['similar', 0.6, ''], ['prefix', 0.5, 'in your map'], ['begins', 0.5, ''], ['suffix', 0.5, 'in your map'], ['ends', 0.5, ''], ['stem', 0.5, 'in your map'], ['past', 0.5, 'in your map'], ['present', 0.5, ''], ['singular', 0.5, 'in your map'], ['plural', 0.5, ''], ['derived-from', 0.5, ''], ['use', 0.4, ''], ['before', 0.4, ''], ['after', 0.4, ''], ['topic', 0.3, ''], ['context', 0.3, ''], ['category', 0.3, ''], ['method', 0.3, '']];
-  var REL_OF = { like: 'alike', alike: 'alike', similar: 'similar', opposite: 'opposite', inverse: 'inverse', kind: 'is', class: 'is', has: 'has', part: 'part', before: 'before', after: 'after', topic: 'topic', context: 'context', category: 'category', method: 'method', use: 'use', supports: 'supports', contradicts: 'contradicts', derived: 'derived-from', includes: 'includes', begins: 'begins', ends: 'ends', present: 'present', plural: 'plural' };
-  var REL_COL = { 'dna before': 0x8fd3c1, 'dna trigger': 0xd8d4c8, 'dna call': 0xf28c4b, 'dna spawn': 0xffc98a, 'made-of': 0xe8e2a0, definition: 0x8ea3b8, answered: 0x6fb8a8, memory: 0x7ed07e, alike: 0x4f9bd9, opposite: 0xe0573f, is: 0x9b7bd4, includes: 0xb59ae0, inverse: 0xd97b4f, contradicts: 0xc24f8a, supports: 0x4fb7a8, has: 0x6fa8dc, part: 0x8cb8e0, similar: 0x7fc2e8, prefix: 0xa8a070, begins: 0x5fc89a, suffix: 0xb0a860, ends: 0x4fb8c0, stem: 0x98a860, past: 0x8fb070, present: 0xe09ab8, singular: 0x90b888, plural: 0xe0a060, 'derived-from': 0xd0a050, use: 0xc8b070, before: 0x70b0c0, after: 0x60a0b8, topic: 0x909cb0, context: 0x98a4b8, category: 0xa0acc0, method: 0xa8b4c8 };
-  var REST = { 'dna before': 14, 'dna trigger': 14, 'dna call': 16, 'dna spawn': 16, 'made-of': 16, definition: 18, answered: 22, memory: 12, alike: 10, similar: 14, is: 22, includes: 22, has: 24, part: 24, opposite: 64, inverse: 64, contradicts: 64 };
+    ['alike', 1.0, 'like; a rel row from the thesaurus, Moby or your map'], ['opposite', 1.0, 'opposite; a rel row'], ['is', 0.9, 'kind, class; in your map'], ['includes', 0.9, ''], ['inverse', 0.9, ''], ['contradicts', 0.8, ''], ['supports', 0.7, ''], ['has', 0.7, 'in your map'], ['part', 0.7, ''], ['similar', 0.6, ''], ['prefix', 0.5, 'in your map'], ['begins', 0.5, ''], ['suffix', 0.5, 'in your map'], ['ends', 0.5, ''], ['stem', 0.5, 'in your map'], ['past', 0.5, 'in your map'], ['present', 0.5, ''], ['singular', 0.5, 'in your map'], ['plural', 0.5, ''], ['derived-from', 0.5, ''], ['use', 0.4, ''], ['before', 0.4, ''], ['after', 0.4, ''], ['topic', 0.3, ''], ['context', 0.3, ''], ['category', 0.3, ''], ['method', 0.3, ''], ['member', 0.7, 'member of; a WordNet member holonym'], ['related', 0.4, 'related terms; Wiktionary'], ['implies', 0.6, 'entailment; WordNet'], ['causes', 0.6, 'cause; WordNet'], ['property', 0.5, 'attribute; WordNet'], ['alias', 0.9, 'an alternative form; Wiktionary']];
+  var REL_OF = { like: 'alike', alike: 'alike', synonym: 'alike', antonym: 'opposite', member: 'member', related: 'related', implies: 'implies', causes: 'causes', property: 'property', alias: 'alias', similar: 'similar', opposite: 'opposite', inverse: 'inverse', kind: 'is', class: 'is', has: 'has', part: 'part', before: 'before', after: 'after', topic: 'topic', context: 'context', category: 'category', method: 'method', use: 'use', supports: 'supports', contradicts: 'contradicts', derived: 'derived-from', includes: 'includes', begins: 'begins', ends: 'ends', present: 'present', plural: 'plural' };
+  var REL_COL = { 'dna before': 0x8fd3c1, 'dna trigger': 0xd8d4c8, 'dna call': 0xf28c4b, 'dna spawn': 0xffc98a, 'made-of': 0xe8e2a0, definition: 0x8ea3b8, answered: 0x6fb8a8, memory: 0x7ed07e, alike: 0x4f9bd9, opposite: 0xe0573f, is: 0x9b7bd4, includes: 0xb59ae0, inverse: 0xd97b4f, contradicts: 0xc24f8a, supports: 0x4fb7a8, has: 0x6fa8dc, part: 0x8cb8e0, similar: 0x7fc2e8, prefix: 0xa8a070, begins: 0x5fc89a, suffix: 0xb0a860, ends: 0x4fb8c0, stem: 0x98a860, past: 0x8fb070, present: 0xe09ab8, singular: 0x90b888, plural: 0xe0a060, 'derived-from': 0xd0a050, use: 0xc8b070, before: 0x70b0c0, after: 0x60a0b8, topic: 0x909cb0, context: 0x98a4b8, category: 0xa0acc0, method: 0xa8b4c8, member: 0x7fb0d8, related: 0xb0b8c4, implies: 0xc9a86a, causes: 0xd9865f, property: 0xa88fd0, alias: 0xe8e8e8 };
+  var REST = { 'dna before': 14, 'dna trigger': 14, 'dna call': 16, 'dna spawn': 16, 'made-of': 16, definition: 18, answered: 22, memory: 12, alike: 10, similar: 14, is: 22, includes: 22, has: 24, part: 24, opposite: 64, inverse: 64, contradicts: 64, member: 16, related: 18, 'derived-from': 10, alias: 6, implies: 20, causes: 20, property: 16, past: 12, before: 16, after: 16 };
   function hexOf(r) { return '#' + ('000000' + (REL_COL[r] || 0x9aa3ad).toString(16)).slice(-6); }
-  var DIRS = [['', 'any way'], ['x', 'east +x'], ['-x', 'west -x'], ['y', 'north +y'], ['-y', 'south -y'], ['z', 'up +z'], ['-z', 'down -z'], ['across', 'across origin']];
-  var DEFAULT_DIR = { opposite: 'across', inverse: 'across', contradicts: 'across' };
+  var DIRS = [['', 'any way'], ['x', 'east +x'], ['-x', 'west -x'], ['y', 'north +y'], ['-y', 'south -y'], ['z', 'up +z'], ['-z', 'down -z'], ['across', 'across origin'], ['shared', "the kind's own vector"]];
+  var DEFAULT_DIR = { opposite: 'across', inverse: 'across', contradicts: 'across', is: 'y', includes: '-y', implies: 'x', causes: 'x', past: '-x', before: 'x', after: '-x' };
   function dirVec(d) { if (!d || d === 'across') return null; var v = new THREE.Vector3(); v.setComponent({ x: 0, y: 1, z: 2 }[d.slice(-1)], d[0] === '-' ? -1 : 1); return v; }
   var RELSET = {};
   function kindRow(k, w, title) { return '<input type="checkbox" data-rel="' + esc(k) + '" checked aria-label="' + esc(k) + ' on or off"><span class="sw" style="background:' + hexOf(k) + '"></span><span title="' + esc(title || '') + '">' + esc(k) + '</span><input type="range" min="0" max="1" step="0.05" value="' + w + '" data-relw="' + esc(k) + '" aria-label="' + esc(k) + ' pull"><span class="n" id="rc-' + esc(k).replace(/[^a-z0-9]/gi, '_') + '">0</span><select class="dir" data-reldir="' + esc(k) + '" aria-label="' + esc(k) + ' direction">' + DIRS.map(function (d) { return '<option value="' + d[0] + '"' + ((DEFAULT_DIR[k] || '') === d[0] ? ' selected' : '') + '>' + d[1] + '</option>'; }).join('') + '</select>'; }
@@ -522,7 +523,7 @@
     $('fitall').addEventListener('click', function () { userZoomed = false; fitLeft = 120; });
     ['mapall', 'ghostlabels', 'spacept', 'runspace', 'memall', 'runmode'].forEach(function (id) { $(id).addEventListener('change', function () { var go = function () { render(TK, true); if (id !== 'runmode' && id !== 'runspace') reshape(); }; if (id === 'memall') refreshMem(go); else go(); }); });
   })();
-  var SPRINGS = [], ALLLINES = [], MEMROWS = [];
+  var SPRINGS = [], ALLLINES = [], MEMROWS = [], RELSTATIC = [], RELWIN = [], RELCACHE = { key: null, agg: null };
   function relKind(kindGate) { var s = LAB[kindGate]; if (s === undefined) return 'rel #' + kindGate; var k = REL_OF[s] || s; if (!RELSET[k]) addKind(k, 0.5, 'a rel row: the kind word ' + s); return k; }
   function buildSprings(tk) {
     var agg = {}, spaceOn = $('spacept').checked, atRun = function (run) { return run !== null && run !== undefined && RUNT0[run] !== undefined && RUNT0[run] <= tk; };
@@ -532,7 +533,11 @@
     Object.keys(DEFW).forEach(function (g) { if (!present(+g, tk)) return; DEFW[g].forEach(function (x) { add(g, x[0], 'definition', .6); }); });
     ANSW.forEach(function (p) { if (present(p[1], tk)) add(p[0], p[1], 'answered', 1); });
     MEMROWS.forEach(function (m) { var k = 'm:' + m[0]; if (!NODE[k] || !NODE[k].mesh.visible) return; add(k, m[1], 'memory', 1); String(m[3] || '').split(' ').forEach(function (x) { if (x && +x !== G.space) add(k, x, 'memory', 1); }); });
-    REL.forEach(function (r) { if (!r[3] || RUNT0[r[3]] === undefined || RUNT0[r[3]] <= tk) add(r[0], r[2], relKind(r[1]), .8); });   // a rel row laid before this history's window is there from its start; one laid inside it appears with its run
+    RELWIN.forEach(function (r) { if (RUNT0[r[3]] <= tk) add(r[0], r[2], relKind(r[1]), .8); });   // a rel row laid inside this history's window appears with its run
+    // the rel rows laid before the window are there from its start: their lines depend only on which points exist and the space switch, so they are built once per change of that and merged in (1.2 million rows a step otherwise)
+    var mapOn = $('mapall').checked && MAPL, ck = Object.keys(NODE).length + '|' + spaceOn;
+    if (RELCACHE.key !== ck) { var sagg = {}; RELSTATIC.forEach(function (r) { var a = String(r[0]), b = String(r[2]); if (a === b || !NODE[a] || !NODE[b]) return; if (!spaceOn && (a === String(G.space) || b === String(G.space))) return; var kind = relKind(r[1]), id = kind + '|' + (a < b ? a + '|' + b : b + '|' + a); if (!sagg[id]) sagg[id] = [a, b, kind, .8, 0]; sagg[id][4]++; }); RELCACHE = { key: ck, agg: sagg }; }
+    var sg = RELCACHE.agg; for (var sid in sg) { if (agg[sid]) agg[sid][4] += sg[sid][4]; else agg[sid] = mapOn ? sg[sid].slice() : sg[sid]; }
     if ($('mapall').checked && MAPL) MAPL.forEach(function (l) { var a = SYM[l[0]] !== undefined ? String(SYM[l[0]]) : null, b = SYM[l[2]] !== undefined ? String(SYM[l[2]]) : null; if (!a && !b) return; add(a || 'g:' + l[0], b || 'g:' + l[2], l[1], .8); });
     var lines = Object.keys(agg).map(function (id) { return agg[id]; }), count = {};
     lines.forEach(function (l) { count[l[2]] = (count[l[2]] || 0) + 1; });
@@ -540,7 +545,7 @@
     var vis = function (k) { var n = NODE[k]; return n && (!hasGL || n.mesh.visible); };
     // the pull law: the kind's pull (its slider), times the line's trust, times how much of that kind the brain holds; a row laid again pulls harder
     SPRINGS = lines.filter(function (l) { return RELSET[l[2]] && RELSET[l[2]].on && vis(l[0]) && vis(l[1]); }).map(function (l) {
-      return { a: NODE[l[0]], b: NODE[l[1]], k: RELSET[l[2]].w * l[3] * (.5 + .5 * Math.min(1, count[l[2]] / 40)) * (1 + Math.log(l[4])), rest: REST[l[2]] || 30, kind: l[2], names: [l[0], l[1]], dir: RELSET[l[2]].dir === 'across' ? 'across' : dirVec(RELSET[l[2]].dir) }; });
+      return { a: NODE[l[0]], b: NODE[l[1]], k: RELSET[l[2]].w * l[3] * (.5 + .5 * Math.min(1, count[l[2]] / 40)) * (1 + Math.log(l[4])), rest: REST[l[2]] || 30, kind: l[2], names: [l[0], l[1]], dir: RELSET[l[2]].dir === 'across' ? 'across' : RELSET[l[2]].dir === 'shared' ? 'shared' : dirVec(RELSET[l[2]].dir) }; });
     placeNew();
     ALLLINES = lines;
     return lines;
@@ -555,27 +560,35 @@
     });
   }
   var STEP = 0, LASTMOVE = 0;
+  var _F = null, _D = null, _M = null, _FL = null, _apartMs = 0;
   function settle(steps) {
     // springs only: no push between points, no pull toward any shell (owner, 2026-10-23). heard alone is fixed.
+    // the same sums in three scratch vectors: a new vector per term over 365,737 springs took 58 s for 30 steps (2026-11-01)
+    if (!_F) { _F = new THREE.Vector3(); _D = new THREE.Vector3(); _M = new THREE.Vector3(); }
+    _apartMs = 0;
     for (var s = 0; s < steps; s++) {
       STEP++;
-      SPRINGS.forEach(function (sp) { sp.a.f = sp.a.f || new THREE.Vector3(); sp.b.f = sp.b.f || new THREE.Vector3(); sp.a.f.set(0, 0, 0); sp.b.f.set(0, 0, 0); });
-      SPRINGS.forEach(function (sp) {
-        var f;
+      var n = SPRINGS.length, i, sp;
+      for (i = 0; i < n; i++) { sp = SPRINGS[i]; sp.a.f = sp.a.f || new THREE.Vector3(); sp.b.f = sp.b.f || new THREE.Vector3(); sp.a.f.set(0, 0, 0); sp.b.f.set(0, 0, 0); }
+      var SHARED = {}; for (i = 0; i < n; i++) { sp = SPRINGS[i]; if (sp.dir !== 'shared') continue; var sv = SHARED[sp.kind] || (SHARED[sp.kind] = { v: new THREE.Vector3(), n: 0 }); sv.v.add(sp.b.pos).sub(sp.a.pos); sv.n++; } for (var sk in SHARED) SHARED[sk].v.multiplyScalar(1 / SHARED[sk].n);   // the kind's own vector: the mean displacement of its pairs; every pair is pulled to it (a:b as c:d)
+      for (i = 0; i < n; i++) { sp = SPRINGS[i];
         if (sp.dir === 'across') {
-          var ma = sp.b.pos.clone().negate().sub(sp.a.pos).multiplyScalar(sp.k * ACROSS), mb = sp.a.pos.clone().negate().sub(sp.b.pos).multiplyScalar(sp.k * ACROSS);
-          if (!sp.a.fixed) sp.a.f.add(ma); if (!sp.b.fixed) sp.b.f.add(mb);
-          var d0 = sp.b.pos.clone().sub(sp.a.pos), L0 = d0.length() || .01; f = d0.multiplyScalar(sp.k * (L0 - sp.rest) / L0 * .04);
+          _M.copy(sp.b.pos).negate().sub(sp.a.pos).multiplyScalar(sp.k * ACROSS); if (!sp.a.fixed) sp.a.f.add(_M);
+          _M.copy(sp.a.pos).negate().sub(sp.b.pos).multiplyScalar(sp.k * ACROSS); if (!sp.b.fixed) sp.b.f.add(_M);
+          _D.copy(sp.b.pos).sub(sp.a.pos); var L0 = _D.length() || .01; _F.copy(_D).multiplyScalar(sp.k * (L0 - sp.rest) / L0 * .04);
+        } else if (sp.dir === 'shared') {
+          _F.copy(sp.a.pos).add(SHARED[sp.kind].v).sub(sp.b.pos).multiplyScalar(-sp.k * .04);
         } else if (sp.dir) {
-          f = sp.a.pos.clone().add(sp.dir.clone().multiplyScalar(sp.rest)).sub(sp.b.pos).multiplyScalar(-sp.k * .04);
-        } else { var d = sp.b.pos.clone().sub(sp.a.pos), L = d.length() || .01; f = d.multiplyScalar(sp.k * (L - sp.rest) / L * .04); }
-        if (!sp.a.fixed) sp.a.f.add(f); if (!sp.b.fixed) sp.b.f.sub(f);
-      });
+          _F.copy(sp.a.pos).addScaledVector(sp.dir, sp.rest).sub(sp.b.pos).multiplyScalar(-sp.k * .04);
+        } else { _D.copy(sp.b.pos).sub(sp.a.pos); var L = _D.length() || .01; _F.copy(_D).multiplyScalar(sp.k * (L - sp.rest) / L * .04); }
+        if (!sp.a.fixed) sp.a.f.add(_F); if (!sp.b.fixed) sp.b.f.sub(_F);
+      }
       // one scale for every point's step, never a cap per point (17.3): a cap per point breaks the balance of paired pulls
-      var fl = []; SPRINGS.forEach(function (sp) { fl.push(sp.a.f.length(), sp.b.f.length()); }); fl.sort(function (a, b) { return a - b; });
+      if (!_FL || _FL.length < 2 * n) _FL = new Float64Array(2 * n);
+      var fl = _FL.subarray(0, 2 * n); for (i = 0; i < n; i++) { sp = SPRINGS[i]; fl[2 * i] = sp.a.f.length(); fl[2 * i + 1] = sp.b.f.length(); } fl.sort();
       var p95 = fl.length ? fl[Math.floor(fl.length * .95)] : 0, sc = p95 > 4 ? 4 / p95 : 1;
-      var mv = 0; SPRINGS.forEach(function (sp) { [sp.a, sp.b].forEach(function (n) { if (n.fixed || n.moved === STEP) return; n.moved = STEP; var s2 = n.f.clone().multiplyScalar(sc); if (s2.length() > 6) s2.setLength(6); n.pos.add(s2); if (s2.length() > mv) mv = s2.length(); }); }); LASTMOVE = mv;
-      if (GAP > 0) for (var cp = 0; cp < PASSES; cp++) spaceApart();
+      var mv = 0; for (i = 0; i < n; i++) { sp = SPRINGS[i]; for (var w = 0; w < 2; w++) { var nd = w ? sp.b : sp.a; if (nd.fixed || nd.moved === STEP) continue; nd.moved = STEP; _M.copy(nd.f).multiplyScalar(sc); var ml = _M.length(); if (ml > 6) { _M.setLength(6); ml = 6; } nd.pos.add(_M); if (ml > mv) mv = ml; } } LASTMOVE = mv;
+      var _ta = performance.now(); if (GAP > 0) for (var cp = 0; cp < PASSES; cp++) spaceApart(); _apartMs += performance.now() - _ta;
     }
   }
   var GAP = 15, ACROSS = .25, PASSES = 3;
@@ -586,11 +599,11 @@
       var cx = Math.floor(n.pos.x / g), cy = Math.floor(n.pos.y / g), cz = Math.floor(n.pos.z / g);
       for (var i = -1; i <= 1; i++) for (var j = -1; j <= 1; j++) for (var k = -1; k <= 1; k++) (cell[(cx + i) + ',' + (cy + j) + ',' + (cz + k)] || []).forEach(function (o) {
         if (o === n || n.fixed || o.fixed) return;
-        var d = n.pos.clone().sub(o.pos), L = d.length();
+        _D.copy(n.pos).sub(o.pos); var L = _D.length();
         if (L >= g) return;
-        if (L < 1e-6) { d = unit('s' + n.key + '|' + o.key); L = 1e-6; }
-        var push = d.normalize().multiplyScalar((g - L) / 2);
-        n.pos.add(push); o.pos.sub(push);
+        if (L < 1e-6) { _D.copy(unit('s' + n.key + '|' + o.key)); L = 1e-6; }
+        _D.normalize().multiplyScalar((g - L) / 2);
+        n.pos.add(_D); o.pos.sub(_D);
       });
     });
   }
@@ -628,6 +641,8 @@
   var memKey = null;
   function refreshMem(then) { var key = ($('memall').checked ? 'all' : 'root:' + CUR.root) + ':' + COUNTS.memory; if (key === memKey) { then(); return; } memRowsWanted().then(function (rows) { MEMROWS = rows; memKey = key; then(); }).catch(function () { then(); }); }
   function present(g, tk) { return g <= CORE || (FIRSTG[g] !== undefined && FIRSTG[g] <= tk) || (DEFSEEN[g] !== undefined && DEFSEEN[g] <= tk); }
+  var TIMES = {}, compT = null;
+  function scheduleComposition(lines) { if (compT) clearTimeout(compT); compT = setTimeout(function () { compT = null; composition(lines); }, 250); }   // the side panel's table, after the step, not inside it
   function render(tk, keep) {
     if (!ready) return;
     if (tk === undefined || tk === null || tk < 0) tk = -1; if (tk > HIST.length - 1) tk = HIST.length - 1;
@@ -635,15 +650,15 @@
     var runNow = h ? h[1] : null; if (runNow !== CUR.run) { CUR.run = runNow; var R = RUNS[runNow]; CUR.root = R ? (R.root === null ? runNow : R.root) : null; renderTree(); if (!playing) renderRun(); else runStale = true; }
     if (hasGL) {
       var spaceOn = $('spacept').checked, gl = $('ghostlabels').checked, mapOn = $('mapall').checked && MAPL, atTk = tk < 0 ? -1 : tk;
-      LABLIST.forEach(function (g) { var k = String(g); if ((g === G.space && !spaceOn) || !present(g, atTk)) { hideNode(k); return; } var n = ensureNode(k); n.mesh.visible = true; if (n.label) n.label.visible = true; });
+      var _t0 = performance.now(); LABLIST.forEach(function (g) { var k = String(g); if ((g === G.space && !spaceOn) || !present(g, atTk)) { hideNode(k); return; } var n = ensureNode(k); n.mesh.visible = true; if (n.label) n.label.visible = true; });
       var memSeen = {}; if (RELSET.memory.on) MEMROWS.forEach(function (m) { if (RUNT1[m[0]] === undefined || RUNT1[m[0]] > atTk) return; var k = 'm:' + m[0]; memSeen[k] = 1; var n = ensureNode(k); n.mesh.visible = true; });
       var ghostSeen = {}; if (mapOn) MAPL.forEach(function (l) { var a = SYM[l[0]] !== undefined && present(SYM[l[0]], atTk), b = SYM[l[2]] !== undefined && present(SYM[l[2]], atTk); if (!a && !b) return; if (!a) ghostSeen['g:' + l[0]] = 1; if (!b) ghostSeen['g:' + l[2]] = 1; });
       Object.keys(ghostSeen).forEach(function (k) { var n = ensureNode(k); n.mesh.visible = true; if (n.label) n.label.visible = gl; });
       Object.keys(NODE).forEach(function (k) { if ((k.charAt(0) === 'm' && !memSeen[k]) || (k.charAt(0) === 'g' && !ghostSeen[k])) hideNode(k); });
-      var lines = buildSprings(atTk); composition(lines);
-      if (!keep) settle(30);
+      var _t1 = performance.now(); var lines = buildSprings(atTk); var _t2 = performance.now(); scheduleComposition(lines);
+      if (!keep) settle(30); var _t3 = performance.now();
       var segs = {}; SPRINGS.forEach(function (sp) { if (!segs[sp.kind]) segs[sp.kind] = { pts: [], color: REL_COL[sp.kind] || 0x9aa3ad, opacity: sp.kind === 'memory' ? .1 : .22 }; segs[sp.kind].pts.push(sp.a.pos, sp.b.pos); });
-      relSegs = segs;
+      relSegs = segs; TIMES = { present: Math.round(_t1 - _t0), springs: Math.round(_t2 - _t1), settle: Math.round(_t3 - _t2), segs: Math.round(performance.now() - _t3), apart: Math.round(_apartMs), nsprings: SPRINGS.length, nlines: lines.length, npoints: Object.keys(NODE).length };
       runPaths = []; var mode = $('runmode').value;
       if (mode !== 'none' && h) {
         var seen = {};
@@ -1011,7 +1026,7 @@
   // ---- camera, pointer, frame (17.3's)
   var theta = 0, phi = 1.45, dist = 160, tgt = hasGL ? new THREE.Vector3(0, 0, 0) : null;
   function updateCam() { camera.position.set(tgt.x + dist * Math.sin(phi) * Math.sin(theta), tgt.y + dist * Math.cos(phi), tgt.z + dist * Math.sin(phi) * Math.cos(theta)); camera.lookAt(tgt); }
-  window.__poc = { ready: function () { return ready; }, busy: function () { return busy; }, counts: function () { return COUNTS; }, gates: function () { return LABLIST.length; }, dna: function () { return DNA.length; }, springs: function () { return SPRINGS.length; }, nodes: function () { return Object.keys(NODE).filter(function (k) { return NODE[k].mesh && NODE[k].mesh.visible; }).length; },
+  window.__poc = { times: function () { return TIMES; }, ready: function () { return ready; }, busy: function () { return busy; }, counts: function () { return COUNTS; }, gates: function () { return LABLIST.length; }, dna: function () { return DNA.length; }, springs: function () { return SPRINGS.length; }, nodes: function () { return Object.keys(NODE).filter(function (k) { return NODE[k].mesh && NODE[k].mesh.visible; }).length; },
     kinds: function () { var o = {}; SPRINGS.forEach(function (sp) { o[sp.kind] = (o[sp.kind] || 0) + 1; }); return o; },
     positions: function () { var o = {}; Object.keys(NODE).forEach(function (k) { if (NODE[k].mesh && NODE[k].mesh.visible) o[k] = [NODE[k].pos.x, NODE[k].pos.y, NODE[k].pos.z]; }); return o; },
     cur: function () { return { root: CUR.root, run: CUR.run, hops: CUR.run !== null ? (RUNHOPS[CUR.run] || []).length : 0, tk: TK, hits: HIST.length }; }, chooseRun: chooseRun, showNode: showNode, send: send, render: render, last: function () { return LAST; }, shown: function () { return SHOWN.length; }, lines: function () { return LINESF.length; },
