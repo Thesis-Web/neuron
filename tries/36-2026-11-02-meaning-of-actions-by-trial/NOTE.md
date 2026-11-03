@@ -81,6 +81,26 @@ run, without holding a master table that needs a grep, sweep, query". So: the re
 run and clock of the last move; a place at an earlier state is the receipts re-stepped, not a stored row. The tries/35 NOTE's "not done"
 line is corrected to say that. Not built this turn: the re-stepping of places backward from the receipts.
 
+## The input output formula (the owner's words, 2026-11-02, relayed from the Cortex session after this turn's build)
+
+"input output formula = before/after + progression = diff output + before and after states + progression = expected completed output
+contract satisfying completed parts and remainder parts left not satisfied. I mean the start of the state, finish of state, measured
+progression." This turn's shape is that formula: STATE-BEGIN (the start), STATE-END (the finish), DIFF (the measured progression), and
+the contract below. The next turn's before is this turn's STATE-END.
+
+| Expected output of this turn | Satisfied or remainder |
+|---|---|
+| the brain answers what a point does from its own state, nothing of mine naming the answer | satisfied: `meaning : X` on both brains (print, define, hinge, type, money, alter, describe, write, INSERT answered from rows, relationships, definitions) |
+| correct and incorrect act on the brain's own rows, not only the guess table | satisfied: `belief` 26 marks hp / 21 hub, `tried` 6 / 5 legs |
+| a guess answered correct becomes the point's own rows; a wrong one leads to the brain's next leg | satisfied: type, write, describe, alter (after create was wrong); money fell to its definition |
+| the adopted keys work on lines | satisfied: `type dna : define` printed define's rows, `describe : hinge` recalled the definition, both brains |
+| no degression: recalls, refusals, the hop as one shard, no row deleted | satisfied: hp 15 and 26 ms, hub 3.1 s, refused 1 and 0 / 0, no pass row laid |
+| the sixth asking meaning questions itself | remainder: not started |
+| belief weighed by the quantity and quality of evidence | remainder: the marks are counts |
+| a formula written by the brain from its state (dependent and independent variables) | remainder: not started; `against` and `action` are the state it would read |
+| triads laid when proven | remainder: no proving process for three points yet |
+| the history of places re-stepped from the receipts | remainder: recorded as the owner's correction, not built |
+
 ## What I did that the owner should know
 
 I answered correct and incorrect myself this turn (print, define, type, describe, write, alter as change: correct; money as change, alter as
