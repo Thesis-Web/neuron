@@ -1,0 +1,50 @@
+VERSIONS (tries/39, read live on hp2 2026-11-02 22:25:47 CST)
+kernel binary nk sha256 1fb0376521bca451 built 2026-11-02 22:20:56 on hp2 from the archive kernel sources (tries/28 kernel, the uncommitted working tree after tries/37), build line of run-on-hp.sh:
+2987f97ae009f3f0  nk.c
+7f77fe22a62a0c04  nk.h
+8883f99d8a48ebcf  nkio.c
+03e8159baa4e349d  nkmap.c
+30d670e0b8a155e9  nkvt.c
+8de88772f0df7555  nkxyz.c
+89b62c671c5964e1  sqlite3.h
+
+line files typed into the scratch brain, in the ledger order (copied from hp:~/nk on 11-02 14:50, the files that educated the Cortex brain), sha256 first 16, bytes:
+d380c33f2b367b49  LINES-nk.txt             31862 bytes
+bad7296a2bb05f18  TEACH-LINES-nk.txt       14047 bytes
+f12af70fb0673f64  TEACH-2-nk.txt            9071 bytes
+d70abe33b06acdc5  TEACH-3-nk.txt            8143 bytes
+3d4d437c7df0f329  TEACH-4-nk.txt            5066 bytes
+2c29b1ea18c05cd4  TEACH-5-nk.txt            1737 bytes
+137067173fc3343b  TEACH-6-nk.txt            4634 bytes
+b7c08796e99240b8  TEACH-7-nk.txt            4607 bytes
+54c19e69fc0213c8  TEACH-8-nk.txt            5387 bytes
+bed8acfe9c6393ba  RECALL-nk.txt             5424 bytes
+a579d6a1bcd3e8f3  RECALL-2-nk.txt           5040 bytes
+ae8a994f23875969  SHAPE-nk.txt              1860 bytes
+1c8b4f6b8afd4f44  RECALL-3-nk.txt          10035 bytes
+c3ba267661f0cefb  REBIND-nk.txt               94 bytes
+39b48dd87abb29a6  RECALL-5-nk.txt           7123 bytes
+7ce1fd5467be6bc3  BORN-nk.txt               5549 bytes
+31a87a283bac0c4e  RELMAP-nk.txt             1589 bytes
+909eebdfd34889cd  RECALL-6-nk.txt           7633 bytes
+cb80df46885d1e26  RECALL-7-nk.txt           7120 bytes
+0a41c0b2c4e8c9f7  FORMULA-nk.txt            4510 bytes
+dde051b14e9a7908  REBIND-g35-nk.txt          384 bytes
+d57fdaaf689c479b  SHAPE-2-nk.txt            1882 bytes
+cb0d8704d94a8160  egg-symbols.txt            375 bytes
+2821a27e2cbd3f1b  nkbottom.py               3062 bytes
+
+sources (a copy of the Cortex kernel folder sources; the guesser file present but out of define since 10-31): bytes, time, file
+215912448 2026-11-02 22:22:12 gcide.db
+9969664 2026-11-02 22:22:11 guess.db
+61440 2026-11-02 22:22:12 map.db
+94208 2026-11-02 22:22:12 measured.db
+144310272 2026-11-02 22:22:12 moby.db
+61440 2026-11-02 22:22:12 mwt.db
+40960 2026-11-02 22:22:12 sqldoc.db
+1199697920 2026-11-02 22:22:12 wikt.db
+84475904 2026-11-02 22:22:12 wn.db
+
+machine: jameshp2, 2 cores, 7834 MB, 394G free; linux 6.12.74+deb13+1-amd64; sqlite 3.46.1; gcc 14
+scratch kernel: 127.0.0.1:7009, NK_MAP=/home/james/cortex/gates/brain/brain.map, folder /home/james/cortex/gates; educated === DONE 22:22:12 with refused 0 (the ledgers: no refused row); the Cortex brain on 7007 untouched
+scratch brain after education: defined 93 runs 260025 hops 386330 gates 31955 refused 0 shard_rows 43886
