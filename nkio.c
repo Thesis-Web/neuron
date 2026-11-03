@@ -375,6 +375,8 @@ static void handle(const char *req, SB *o){
   if(strcmp(req, "repair") == 0){ do_repair(&MAINB, o); return; }
   if(strncmp(req, "rels", 4) == 0){ int n = atoi(req + 4); do_rels(&MAINB, n > 0 ? n : 20000, o); return; }
   if(strcmp(req, "hop") == 0){ sb_str(o, "["); do_hop(&MAINB, o); sb_str(o, ","); do_hop(&SIXTHB, o); sb_str(o, "]"); return; }
+  if(strncmp(req, "restep ", 7) == 0){ /* restep CLOCK GATE,GATE,...: the places as they stood at that clock, the beginning input replayed forward over the timeline; restep base writes the beginning input again */ char t[65536]; i64 clk = strncmp(req + 7, "base", 4) == 0 ? -1 : atoll(req + 7); const char *p = strchr(req + 7, ' '); int gates[512], ng = 0; while(p && *p && ng < 512){ while(*p == ' ' || *p == ',') p++; if(!*p) break; gates[ng++] = atoi(p); while(*p && *p != ',' && *p != ' ') p++; } nk_xyz_restep(&MAINB, clk, gates, ng, t, sizeof t); sb_str(o, t); return; }
+  if(strncmp(req, "moved ", 6) == 0){ char t[1 << 20]; nk_xyz_moved(&MAINB, atoll(req + 6), 20000, t, sizeof t); sb_str(o, t); return; }   /* the points moved since a clock, with their places now */
   if(strncmp(req, "settle", 6) == 0){ char t[512]; nk_xyz_settle(&MAINB, atoi(req + 6) > 0 ? atoi(req + 6) : 1, t, sizeof t); sb_str(o, t); return; }   /* the places back-populated: one step of every point that holds a definition or a place, per pass */
   if(strcmp(req, "memory") == 0){ sb_str(o, "["); do_memory(&MAINB, o); sb_str(o, ","); do_memory(&SIXTHB, o); sb_str(o, "]"); return; }
   if(strncmp(req, "profile", 7) == 0){ do_profile(o, atoi(req + 7) > 0 ? atoi(req + 7) : 15); return; }
@@ -406,6 +408,7 @@ int main(int argc, char **argv){
   const char **srcs = argc > 4 ? (const char**)argv + 4 : defaults; int nsrc = argc > 4 ? argc - 4 : 9; SRCDIR = argv[3]; SRCS = srcs; NSRCS = nsrc;
   if(mother_open(&MAINB, &SIXTHB, srcs, nsrc, argv[3]) != 0){ fprintf(stderr, "mother could not open\n"); return 1; }
   nk_count_rows(&MAINB); nk_count_rows(&SIXTHB);
+  { const char *mp = getenv("NK_MAP"); if(mp && *mp){ char px[4096]; snprintf(px, sizeof px, "%s.xyz", mp); nk_xyz_base(&MAINB, px); } }   /* the beginning input of the history of places, written at the first start after the recording began */
   nk_map_ready();
   int s = socket(AF_INET, SOCK_STREAM, 0); int one = 1; setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &one, sizeof one);
   struct sockaddr_in a = {0}; a.sin_family = AF_INET; a.sin_port = htons(port); a.sin_addr.s_addr = htonl(INADDR_LOOPBACK);

@@ -221,7 +221,7 @@ static void land(Brain *b, i64 run, int pos, int gate, int before, int next, int
   Shard *s = shard_find(b, gate, kb, kx);
   if(!s) s = hop_shard(b);   /* no function row of its own for this before and next: the hop, one shard for every point; nothing is laid for a pass */
   s->times++;
-  if(!(pos == 0 || via == 1 || gate == SPACE)) nk_xyz_land(b, gate, s->id, kb, kx, run);   /* the place: a shard used on the point with another before or next than its last use moves it by its relationships (nkxyz.c) */
+  if(!(pos == 0 || via == 1 || gate == SPACE)) nk_xyz_land(b, gate, s->id, kb, kx, run, pos);   /* the place: a shard used on the point with another before or next than its last use moves it by its relationships (nkxyz.c) */
   int had = 0; if(next){ Neuron *nn = neuron_of(b, next); had = (nn && nn->born) ? 1 : 0; }
   hit(b, run, pos, gate, before, next, via, had, s);
 }

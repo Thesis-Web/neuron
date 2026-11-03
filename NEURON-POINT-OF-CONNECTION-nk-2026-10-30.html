@@ -163,7 +163,7 @@
         <label class="chk"><input type="checkbox" id="ghostlabels"> name your map's words (the dim points)</label>
         <label class="chk"><input type="checkbox" id="spacept"> draw the space neuron (one point, one shard; it sits at origin with no line)</label>
         <label class="chk"><input type="checkbox" id="runspace"> run lines pass through the space neuron (off: the space is skipped in the drawing of a run)</label>
-        <label class="chk"><input type="checkbox" id="memall"> memory nodes of every run (on: thousands of small green points; off: only the memory nodes of the line chosen)</label>
+        <label class="chk"><input type="checkbox" id="brainxyz" checked> the brain's places (a point sits where the brain holds it, times the spacing; it moves when the brain moves it; off: the page's own springs)<br><input type="checkbox" id="memall"> memory nodes of every run (on: thousands of small green points; off: only the memory nodes of the line chosen)</label>
         <div class="row"><label for="spacing" class="note">spacing, the drawing only</label><input type="range" id="spacing" min="1" max="100" step="1" value="21" aria-label="spacing"><span class="n" id="spv">&times;21</span></div>
         <label class="chk"><input type="checkbox" id="axes" checked> x, y and z axes over the graph, a tick every 10</label>
         <div class="row"><button id="fitall" type="button">fit all in view</button></div>
@@ -442,7 +442,7 @@
   function absorb(R) {
     LAB = {}; SYM = {}; LABLIST = R[0].map(function (r) { LAB[r[0]] = r[1]; SYM[r[1]] = r[0]; return r[0]; });
     var g = R[1]; DNA = g.dna; NODES = g.nodes || {}; REL = g.rel || []; MEMN = g.mem || {}; FIRST = g.first || {};
-    XYZ = {}; (R[11] || []).forEach(function (r) { XYZ[r[0]] = r; }); applyFormulas(R[12] || []);   // the brain's places and formulas (2026-11-02)
+    XYZ = {}; (R[11] || []).forEach(function (r) { XYZ[r[0]] = r; }); applyFormulas(R[12] || []); if (!XYZCLOCK && g.clock) XYZCLOCK = g.clock;   // the brain's places and formulas (2026-11-02)
     DNABY = {}; SHARDROW = {}; DNA.forEach(function (d) { (DNABY[d[0]] = DNABY[d[0]] || []).push(d); SHARDROW[d[1]] = d; }); Object.keys(DNABY).forEach(function (k) { DNABY[k].sort(function (a, b) { return a[1] - b[1]; }); });
     RELBY = {}; REL.forEach(function (r) { (RELBY[r[0]] = RELBY[r[0]] || []).push(r); (RELBY[r[2]] = RELBY[r[2]] || []).push(r); });
     RUNS = {}; CHILDREN = {}; RUNLIST = R[2].map(function (r) { var x = { id: r[0], arrival: r[1], parent: r[2], root: r[3], kind: r[4], cell: r[5], about: r[6], at: r[7] }; RUNS[r[0]] = x; if (r[2] !== null) (CHILDREN[r[2]] = CHILDREN[r[2]] || []).push(r[0]); return x; });
@@ -492,6 +492,7 @@
       // a new point has no place until its lines give it one: it waits at origin and is placed beside its neighbours once the lines are known
       var fixed = k === String(G.heard), p = new THREE.Vector3(0, 0, 0);
       n = NODE[k] = { key: k, pos: p, fixed: fixed, unplaced: !fixed, ghost: k.charAt(0) === 'g', mem: k.charAt(0) === 'm' };
+      if (brainOn() && !fixed && !n.ghost && !n.mem) brainPos(k, n);
       if (hasGL) {
         var col = colorOf(k), r = sizeOf(k);
         n.mesh = new THREE.Mesh(dotGeo, new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: n.ghost ? .4 : .92 })); n.mesh.scale.setScalar(r); n.mesh.position.copy(n.pos); n.mesh.userData = { base: r, key: k }; dotGroup.add(n.mesh);
@@ -517,7 +518,18 @@
   function kindRow(k, w, title) { return '<input type="checkbox" data-rel="' + esc(k) + '" checked aria-label="' + esc(k) + ' on or off"><span class="sw" style="background:' + hexOf(k) + '"></span><span title="' + esc(title || '') + '">' + esc(k) + '</span><input type="range" min="0" max="1" step="0.05" value="' + w + '" data-relw="' + esc(k) + '" aria-label="' + esc(k) + ' pull"><span class="n" id="rc-' + esc(k).replace(/[^a-z0-9]/gi, '_') + '">0</span><select class="dir" data-reldir="' + esc(k) + '" aria-label="' + esc(k) + ' direction">' + DIRS.map(function (d) { return '<option value="' + d[0] + '"' + ((DEFAULT_DIR[k] || '') === d[0] ? ' selected' : '') + '>' + d[1] + '</option>'; }).join('') + '</select>'; }
   function addKind(k, w, title) { if (RELSET[k]) return; RELSET[k] = { on: true, w: w, dir: DEFAULT_DIR[k] || '' }; $('reltypes').insertAdjacentHTML('beforeend', kindRow(k, w, title)); }
   // the brain's formulas (pull, rest, direction per kind: its formula and pull rows) become the kinds' defaults, once per load; a slider or drop-down moved after that rules the drawing
-  var XYZ = {}, FORMULA_APPLIED = false;
+  var XYZ = {}, FORMULA_APPLIED = false, XYZCLOCK = 0, BRAINXYZ = true;
+  function brainOn() { var el = document.getElementById('brainxyz'); return el ? el.checked : false; }
+  function brainPos(k, n) { var b = XYZ[+k]; if (!b) return false; n.pos.set(b[1] * SP, b[2] * SP, b[3] * SP); n.unplaced = false; return true; }
+  // which points the brain moved since the last ask: the kernel's door answers /api/moved; the hub's door answers the table by its clock column
+  function pollMoved() {
+    if (!ready || !brainOn()) return;
+    api('/api/moved?since=' + XYZCLOCK).then(function (j) { if (j.passes) { api('/api/graph?fresh=1').then(function (g) { XYZ = {}; (g.xyz || []).forEach(function (r) { XYZ[r[0]] = r; }); Object.keys(NODE).forEach(function (k) { if (NODE[k].mesh && NODE[k].mesh.visible) brainPos(k, NODE[k]); }); }); }
+      (j.moved || []).forEach(function (m) { XYZ[m[0]] = [m[0], m[1], m[2], m[3], 0]; var n = NODE[String(m[0])]; if (n && n.mesh && n.mesh.visible) { n.glide = new THREE.Vector3(m[1] * SP, m[2] * SP, m[3] * SP); } });
+      if (j.clock) XYZCLOCK = j.clock; }).catch(function () {
+      q('SELECT gate, x, y, z, at FROM main.xyz WHERE at > ? ORDER BY at LIMIT 20000', [XYZCLOCK]).then(function (rows) { rows.forEach(function (m) { XYZ[m[0]] = [m[0], m[1], m[2], m[3], 0]; var n = NODE[String(m[0])]; if (n && n.mesh && n.mesh.visible) n.glide = new THREE.Vector3(m[1] * SP, m[2] * SP, m[3] * SP); if (m[4] > XYZCLOCK) XYZCLOCK = m[4]; }); }).catch(function () {}); });
+  }
+  setInterval(pollMoved, 2000);
   function applyFormulas(rows) {
     if (FORMULA_APPLIED || !rows.length) return; FORMULA_APPLIED = true;
     rows.forEach(function (r) { var s = LAB[r[0]]; if (s === undefined) return; var k = REL_OF[s] || s; if (!RELSET[k]) addKind(k, r[1], 'a rel row: the kind word ' + s);
@@ -533,6 +545,7 @@
     $('axes').addEventListener('change', function () { drawAxes(true); });
     $('gap').addEventListener('input', function () { GAP = parseFloat($('gap').value); $('gapv').textContent = GAP; reshape(); });
     $('fitall').addEventListener('click', function () { userZoomed = false; fitLeft = 120; });
+    $('brainxyz').addEventListener('change', function () { if (brainOn()) { Object.keys(NODE).forEach(function (k) { var n = NODE[k]; if (n.mesh && !n.fixed && !n.ghost && !n.mem) brainPos(k, n); }); } render(TK, true); reshape(); });
     ['mapall', 'ghostlabels', 'spacept', 'runspace', 'memall', 'runmode'].forEach(function (id) { $(id).addEventListener('change', function () { var go = function () { render(TK, true); if (id !== 'runmode' && id !== 'runspace') reshape(); }; if (id === 'memall') refreshMem(go); else go(); }); });
   })();
   var SPRINGS = [], ALLLINES = [], MEMROWS = [], RELSTATIC = [], RELWIN = [], RELCACHE = { key: null, agg: null };
@@ -574,6 +587,7 @@
   var STEP = 0, LASTMOVE = 0;
   var _F = null, _D = null, _M = null, _FL = null, _apartMs = 0;
   function settle(steps) {
+    if (brainOn()) { Object.keys(NODE).forEach(function (k) { var n = NODE[k]; if (n.glide) { n.pos.lerp(n.glide, 0.25); if (n.pos.distanceTo(n.glide) < 0.05) { n.pos.copy(n.glide); n.glide = null; } } else if (n.unplaced && !n.mem && !n.ghost && brainPos(k, n)) {} }); placeNew(); _apartMs = 0; return; }
     // springs only: no push between points, no pull toward any shell (owner, 2026-10-23). heard alone is fixed.
     // the same sums in three scratch vectors: a new vector per term over 365,737 springs took 58 s for 30 steps (2026-11-01)
     if (!_F) { _F = new THREE.Vector3(); _D = new THREE.Vector3(); _M = new THREE.Vector3(); }
