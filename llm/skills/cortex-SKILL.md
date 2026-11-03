@@ -41,8 +41,11 @@ A new checkpoint on a frozen outline needs the owner's words asking for it; quot
 
 ```
 cortex ingest <project> <one sentence of observed live output, with its numbers>
-cortex judge <project> <n> <run>     # the verdict: the sheet (dupe, restated, noise, drift), then the graph, then claude -p haiku under the subscription, then jev when a key exists
+cortex judge <project> <n> <run>     # the verdict: the shape read from the brain by run (echo = dupe, a new value supersedes and retires, a value out of line completes, nothing shared = drift), then the learned weights over the cells, then claude -p haiku as the fallback; a judgment cell's completes never moves the state
 cortex accept <project> <n> <run>    # the owner's word only: that sentence is a part of C n's state; without a run, C n is done
+cortex reject <project> <n> <run>    # the owner's word only: that sentence is not a part, whatever the judge said; it sticks
+cortex mark <project> <run> <kind>   # the labeled set (completes progresses regresses supersedes drift invention hallucination dupe noise unsettled); the owner is the checker
+cortex learn                         # build time: the (project, gate) key for new lines, then the judge's weights from the marks, leave-one-out accuracy printed
 cortex formula <project>
 ```
 
