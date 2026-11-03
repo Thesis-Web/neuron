@@ -1,0 +1,23 @@
+89dbbeb cortex C17 2026-11-03: the words leave the index. every print replays the sentence from its run gates (line_text: the space is a gate, so the replay is exact; 634 of 634 ingest rows equal at 1.1 ms); ingest, part, verdict and receipt rows keep keys, counts, confidence and ground, no sentence text; existing rows migrated in 0.65 s; hydration and verdicts prints identical before and after
+=== receipts for C17 ===
+receipt: 1 lines typed in 41 ms; cortex C17 has receipts of: cortex q select kind sum length value from main.cx group by kind
+receipt: 4 lines typed in 56 ms; cortex C17 has receipts of: cortex q select kind sum length value from main.cx group by kind, diff c17-before c17-after and wc -c
+c17 sentence run 401642
+  ground: receipt 11 owner 29 reference 21 memory 28 | receipts 5 (cortex q select kind sum length value from main.cx group by kind,diff c17-before c17-after and wc -c) numbers in 17,7608,3881,130631,1483,642,16472 out 1 | newest print: cortex q sele
+verdict cortex 17 run 401642: hallucination 1.000 by receipt in 125 ms | shape gates 67 expected 0.81 shared project 23 values out 28 words out after,before,bytes,each,identical,ingest,migration,now,part,prints,receipt,receipts,satisfied,verdict new 
+BEFORE (clock 401575, 2026-11-03 14:40): 17 checkpoints, 17 done, 382 ingests, 12 verdicts, 19 parts
+AFTER  (clock 401651, 2026-11-03 14:43): 18 checkpoints, 17 done, 383 ingests, 13 verdicts, 19 parts
+PROGRESSION (diff): ingests +1, verdicts +1, done +0; C17 new [working]
+brain: gates 37342 runs 401651 hops 1093810 refused 0 clock 401651 | judge: receipt, shape, learned 
+load average: 0.12, 0.03, 0.01
+Mem:            7834         615         277           3        7241        7219
+RECEIPTS (the machine's own prints for C17, the newest of each command): cortex q select kind sum length value from main.cx group by kind => {"cols": ["kind", "bytes"], "rows": [["checkpoint", 8773], ["expected" [11-03 14:43] | diff c17-before c17-after and wc -c => identical / 16472 /tmp/c17-before
+c17 sentence run 401652
+state cortex 17 done run 401662 clock 401666
+  ground: receipt 10 owner 28 reference 20 memory 27 | receipts 5 (cortex q select kind sum length value from main.cx group by kind,diff c17-before c17-after and wc -c) numbers in 17,7608,3881,130631,
+verdict cortex 17 run 401652: completes 0.741 by receipt in 141 ms | shape gates 64 expected 0.74 shared project 21 values out 28 words out after,before,bytes,each,hydrations,identical,ingest,migratio
+ C17 done by this verdict; next CNone
+AFTER  (clock 401666, 2026-11-03 14:44): 18 checkpoints, 18 done, 384 ingests, 14 verdicts, 20 parts
+PROGRESSION (diff): ingests +1, verdicts +1, done +1; C17 working->done; C17 parts 0->1; C17 verdicts +1
+ACCEPTED SO FAR (parts of C17's state, each with its time, confidence and ground): c17 satisfied: the index holds no sentence text for ingest, part, verdict or receipt rows, [11-03 14:44 p0.74 receipt | receipt 10 owner 28 reference 20 memory 27]
+brain: gates 37342 runs 401666 hops 1093954 refused 0 clock 401666 | judge: receipt, shape, learned 
