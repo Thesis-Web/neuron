@@ -63,3 +63,9 @@ run     C    verdict       p     judge                  when        part        
 ```
 
 The `run` column is what `mark`, `accept` and `reject` take. `part` = the sentence is a part of the checkpoint state now; `retired` = superseded or rejected by a re-judgment; `rejected` = the owner said no. Known limit seen in `cortex verdicts neuron`: the capture judges every captured line against the checkpoint marked NEXT only, so the hp builder session lines about C10 to C12 came out as drift from C9.
+
+## 11-03 13:20 CST: the 392g supersede was never true (the owner asked "is this true?")
+
+No. The line "the command df -h / was run again at 23:59 and its printed line shows avail 392g" was typed by me in audit-judge.sh line 14 as a test of supersede; df was never run again. Live now: `df -h /` on hp2 at 13:19 prints `/dev/sda1 454G 38G 393G 9% /`. The shape judge accepted it because its shape was right (one value gate out of line against the 393g part); it had no ground to check the value against. The Cortex held a never-observed value as C1 state from 02:10 to 13:20.
+
+Done: `cortex reject audit 1 266432`; a defect found doing it: rejecting the superseder left the true 393g part retired, so reject now restores the part the rejected run had superseded (hp2 commit ad9c6f0, patch-reject-restores.py beside this file). `hydrate audit --at 1` now reads the 393g line only. Also seen: the live re-read "df -h / was run at 13:19 ... 393g" was dropped by the sheet filter as restated run 266417 (same words, new time), so a new observation of the same value never reaches the kernel as a tick with its time; that is the word-set filter standing in front of the shape, the thing the owner says cannot work per statement.
