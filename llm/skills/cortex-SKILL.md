@@ -24,6 +24,7 @@ cortex status                     # the brain (gates, runs, refused, clock), the
 cortex hydrate <project>          # the worker's whole prompt: DO NOW (the checkpoint marked NEXT), EXPECTED OUTPUT, the laws, all checkpoints, last verdicts
 cortex hydrate <project> --at n   # the same for checkpoint n, with ACCEPTED SO FAR
 cortex formula <project>          # the owner's input output formula over the brain: BEFORE, AFTER, PROGRESSION, CONTRACT satisfied | remainder (see /temporal)
+cortex questions <project> [n]    # the open meaning questions: words of judged claims that no receipt, owner line or reference holds; the owner answers them (mark, accept, reject, or a source)
 cortex verdicts <project> [n]     # every judged line of the project (or of checkpoint n), newest first: run, verdict, p, judge, when, part, mark, sentence; the run is what mark, accept and reject take
 ```
 
@@ -41,6 +42,7 @@ A new checkpoint on a frozen outline needs the owner's words asking for it; quot
 ## 4. Return the outputs, once live output exists
 
 ```
+<command> | cortex receipt <project> <n> <command>   # the machine's own print, piped in: the checkpoint's ground for values (never retyped by a model)
 cortex ingest <project> <one sentence of observed live output, with its numbers>
 cortex judge <project> <n> <run>     # the verdict: the shape read from the brain by run (echo = dupe, a new value supersedes and retires, a value out of line completes, nothing shared = drift), then the learned weights over the cells, then claude -p haiku as the fallback; a judgment cell's completes never moves the state
 cortex accept <project> <n> <run>    # the owner's word only: that sentence is a part of C n's state; without a run, C n is done
@@ -51,6 +53,8 @@ cortex formula <project>
 ```
 
 An ingest is a context whole checked line by line: tool calls, paths, code and markup are noise and dropped; a repeat ticks and is never typed twice; a sentence that names what was observed (digits, backticks, printed, returned, output) carries the observation mark. A `completes` verdict of 0.7 or more moves the checkpoint to done and makes the sentence a part; `progresses` adds a part; a `dupe` ticks; a degression is rejected. A session's own text goes in by itself: the Stop hook on the hub (`~/.claude/settings.json`) pipes the transcript tail to `cortex capture --cwd` (cwd `~` = cortex, `~/neuron*` = neuron, anything else is not captured).
+
+Sources (11-03, C16): `cortex source <name> owner|reference : <what it is, where from, as of>` registers one; `cortex source <name> -` types its sentences from stdin (build time). A claim's words are checked per gate against the receipts, the owner's words, the references and the brain's own projects; two or more words with no ground become a question, never a guess. Every part in the hydration carries its ground.
 
 ## 5. The grammar: every record is one typed line, a run with a clock
 

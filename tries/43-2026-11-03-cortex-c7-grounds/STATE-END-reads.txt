@@ -1,0 +1,60 @@
+=== C16 receipt: the proving command own print ===
+receipt: 15 lines typed in 369 ms; cortex C16 has receipts of: cortex verdicts audit
+c16 sentence run 401512
+  ground: receipt 18 owner 34 reference 26 memory 35 | receipts 15 (cortex verdicts audit) numbers in 16,269014,1.00,392g,266417,0.75,393g,269019,1.00,458,266407,0.85,2 out 12 | newest print: cortex verdicts audit => 269046 c2 hallucination 1.00 receipt 11-03 
+verdict cortex 16 run 401512: hallucination 1.000 by receipt in 179 ms | shape gates 99 expected 0.74 shared project 24 values out 44 words out after,audit,completes,confirmed,df,free,hallucination,invention,lists,made,open,owner,progresses,quantum,questions,r
+
+=== STATE-END reads Tue Nov  3 02:36:13 PM CST 2026 ===
+BEFORE (clock 268873, 2026-11-03 13:36): 16 checkpoints, 16 done, 378 ingests, 8 verdicts, 18 parts
+AFTER  (clock 401521, 2026-11-03 14:36): 17 checkpoints, 16 done, 382 ingests, 12 verdicts, 18 parts
+PROGRESSION (diff): ingests +4, verdicts +4, done +0; C16 new [working]
+  C16 [working] expected: cortex verdicts audit shows the 392g claim hallucination by the receipt of df -h / and the 393g claim complete | missing: no accepted part, no completes verdict
+BEFORE (clock 401404, 2026-11-03 13:58): 15 checkpoints, 7 done, 213 ingests, 135 verdicts, 58 parts
+AFTER  (clock 401521, 2026-11-03 14:36): 15 checkpoints, 7 done, 214 ingests, 136 verdicts, 58 parts
+PROGRESSION (diff): ingests +1, verdicts +1, done +0; C9 verdicts +1
+brain: gates 37337 runs 401521 hops 1092558 refused 0 clock 401521 | judge: receipt, shape, learned v1, then claude:haiku (subscription) | index rows -1
+freeze: brain 3e831a356586b08d file 3e831a356586b08d EQUAL
+ 14:36:14 up 61 days, 21:39,  4 users,  load average: 0.00, 0.00, 0.00
+Mem:            7834         613         279           2        7240        7220
+10551296	brain/brain.map.main.db 100667392	brain/brain.map.xyz 
+--- audit C1 ---
+ACCEPTED SO FAR (parts of C1's state, each with its time, confidence and ground): the command df -h / was run and its printed line shows avail 393g for the root filesystem [11-03 13:48 p0.75 receipt | receipt 3 owner 7 reference 3 memory 9]
+RECEIPTS (the machine's own prints for C1, the newest of each command): df -h / => filesystem size used avail use% mounted on / /dev/sda1 454g 38g 393g 9% / [11-03 13:42]
+OPEN QUESTIONS (words of C1's claims that no receipt, owner line or reference holds; the owner answers them, a worker never guesses them): run 266442: full, left
+--- audit C2 ---
+ACCEPTED SO FAR (parts of C2's state, each with its time, confidence and ground): the command free -m was run and its printed mem line shows free 300 for mem [11-03 02:10 p0.75 shape | no ground] | the mem row of free -m now reads free 458 megabytes [11-03 13:46 p1.00 receipt | receipt 2 memory 5 none: megabytes]
+RECEIPTS (the machine's own prints for C2, the newest of each command): free -m => total used free shared buff/cache available / mem: 7834 604 458 0 7067 7229 / swap: 3833 40 3793 [11-03 13:42]
+OPEN QUESTIONS (words of C2's claims that no receipt, owner line or reference holds; the owner answers them, a worker never guesses them): run 266407: confirmed, quantum
+--- cortex C16 ---
+RECEIPTS (the machine's own prints for C16, the newest of each command): cortex verdicts audit => run c verdict p judge when part mark ground sentence / 269046 c2 hallucination 1.00 receipt 11-03 13:46 - - receipt 2 memory  / 269019 c2 progresses 1.00 receipt 11-03 13:46 part - receipt 2 memory  [11-03 14:36]
+--- questions ---
+C1 run 266442 (11-03 13:42): full, left
+C2 run 266407 (11-03 13:42): confirmed, quantum
+2 open questions of audit. answer: cortex mark audit <run> <kind> [: why] | cortex accept|reject aud
+--- verdicts audit ---
+run     C    verdict       p     judge                  when        part         mark         ground                   sentence
+269046  C2   hallucination 1.00  receipt                11-03 13:46 -            -            receipt 2 memory 6       the mem row of free -m now read
+269019  C2   progresses    1.00  receipt                11-03 13:46 part         -            receipt 2 memory 5 none: the mem row of free -m now read
+269014  C1   hallucination 1.00  receipt                11-03 13:45 -            -            receipt 3 memory 5       df -h / printed 392g avail on t
+268126  C2   completes     0.75  shape                  11-03 13:45 part         -            receipt 2 memory 7       the command free -m was run and
+266484  C1   unsettled     0.45  claude:haiku (subscrip 11-03 02:10 -            -            (judged before c16)      expected: met
+266479  C1   unsettled     0.50  claude:haiku (subscrip 11-03 02:10 -            -            (judged before c16)      **contract.** satisfied: the ro
+266469  C1   drift         1.00  shape                  11-03 02:10 -            drift        (judged before c16)      the recipe calls for 2 eggs and
+266452  C1   drift         1.00  shape                  11-03 02:10 -            drift        (judged before c16)      the recipe calls for two eggs a
+266442  C1   hallucination 0.73  learned v1             11-03 13:42 -            hallucination receipt 1 memory 4 none: the root filesystem of this ma
+266432  C1   supersedes    1.00  shape                  11-03 13:45 rejected     supersedes   receipt 3 memory 10      the command df -h / was run aga
+266417  C1   completes     0.75  receipt                11-03 13:48 part         completes    receipt 3 owner 7 refere the command df -h / was run and
+266407  C2   invention     0.85  claude:haiku (subscrip 11-03 14:33 rejected     invention    receipt 3 owner 6 refere free -m printed mem free 999999
+266392  C2   dupe          1.00  shape                  11-03 02:09 retired      dupe         (judged before c16)      the command free -m was run and
+13 judged lines of audit. mark one: cortex mark audit <run> <kind> [: why]; the owner's word: cortex accept|reject audit <n> <run>
+--- sources ---
+{"cols": ["name", "substr(value,1,90)"], "rows": [["cortex-handler", "{\"band\": \"reference\", \"text\": \"CORTEX-HANDLER.md, the frozen handler of the cortex, its co"], ["owner-words", "{\"band\": \"owner\", \"text\": \"the owner own words on the cortex, 574 messages from 2026-09-01"]]}
+9d02842 cortex C16 2026-11-03: the grounds. cortex receipt (the machine own print piped in, the checkpoint ground for values; a print judges only a claim made after it), cortex source owner|reference (the owner words and reference material as projects of typed lines, no text copy kept), ground cells per word gate (receipt, owner, reference, memory of the brain projects, none) and per number, the meaning question (two or more words with no ground: typed, listed by cortex questions, answered by mark accept reject or a source), every part carries its ground in the hydration, RECEIPTS and OPEN QUESTIONS in the hydration, values in the restate key, progresses by receipt, a refused part never retires another
+receipt: 6 lines typed in 112 ms; cortex C16 has receipts of: cortex verdicts audit, cortex verdicts cortex 16
+state cortex 16 done run 401571 clock 401575
+  ground: receipt 18 owner 34 reference 26 memory 35 | receipts 21 (cortex verdicts audit,cortex verdicts cortex 16) all newer than the claim: no print at its time numbers in 16,269014,1.00,392g,266417,0.75,393g,269019,1.00,458,266407,0.85,
+verdict cortex 16 run 401512: completes 0.743 by receipt in 195 ms | shape gates 99 expected 0.74 shared project 24 values out 44 words out after,audit,completes,confirmed,df,free,hallucination,invention,lists,made,open,owner,progresses,qua
+ C16 done by this verdict; next CNone
+AFTER  (clock 401575, 2026-11-03 14:36): 17 checkpoints, 17 done, 382 ingests, 12 verdicts, 19 parts
+PROGRESSION (diff): ingests +0, verdicts +0, done +1; C16 working->done; C16 parts 0->1
+ACCEPTED SO FAR (parts of C16's state, each with its time, confidence and ground): c16 satisfied: cortex verdicts audit shows run 269014 hallucination 1.00 by receipt for th [11-03 14:36 p0.74 receipt | receipt 18 owner 34 reference 26 memory 35]
