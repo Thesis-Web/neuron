@@ -1,0 +1,8 @@
+type dna : define printed (the say run's text): [['587 | 1 | 68 | 4254380 |  | 108\n18574 | 5 | 68 | 4254380 |  | 168087\n18664 | 1 | 152 | 11254 |  | 2']]
+describe : hinge's def run 3857060 text: [['name 1: A surname.']]
+== hub STATE-END: info {'main': {'idle': True, 'hops': 1087975, 'refused': 0}, 'sixth': {'idle': True, 'hops': 727181, 'refused': 0}}
+   belief rows [[21, 21, 0]] tried [[5, 3]]
+   keys: [[1349739, 1, 68, 4684193, 7]] [[894, 1, 68, 4684323, 6]] [[897, 1, 68, 4684355, 4]]
+   guess.guesses: [[556, 0, 1, 0.337]]
+   rel, xyz, formula: [[3306643, 78873, 18, 38]]
+   a recall still: define : stone -> run 4684534 3.1 s, source returns [[0]], node rows [[524]]

@@ -159,7 +159,7 @@ check of the sliders' defaults and the clicked point's place; the reads they mak
 
 - The "kind's own vector" direction (the mean displacement of a kind's pairs) is offered on the page and is not a brain formula (mode) yet.
 - Triads and larger ("some are between multiply points a triad, or 4 or 5"): not laid; a formula over three or more points is the owner's call on which first.
-- A point's history of places (every move as a row) is not kept: `xyz` holds the place now and the state and time of the last move.
+- A point's history of places is the run receipts in the timeline (the owner, 11-02: "is that not the run reciepts in the time line? ... stepped forward or backward ... without holding a master table"): `xyz` holds the place now and the run and clock of the last move; an earlier place is the receipts re-stepped, which is not built yet.
 - The twelve stray shape rows on hp stay (the owner's word on deleting rows).
 - On the hub, a point born by a return before 11-02 holds no define row (the trigger lays it from now on).
 - The hub's page: its `ready` could not be read in headless Chromium here (455 s before the patch, 710 s after, its whole-graph reads queued behind the typed lines), as on 11-01; the screenshot after the patch (`hub-page-after-g35.png`) shows the stage drawn, the kinds, the panels and the hit readout. The owner's browser is the check.

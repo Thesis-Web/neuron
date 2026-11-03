@@ -1,0 +1,13 @@
+info: {'defined': 722284, 'runs': 19938129, 'hops': 33914745, 'pending': 0, 'gates': 1317447, 'refused': 1, 'shards': 20049008, 'shard_rows': 167, 'hop_us': 12.473, 'pastes': 6709268, 'paste_us': 684.5, 'hop_s': 639.889, 'paste_s': 4592.649, 'returns': 1468508, 'return_us': 27.7, 'return_s': 40.621, 'receipts': 33914745, 'hops_run': 51303681, 'deduped_runs': 6260525, 'stubs': 722284, 'receipts_dropped': 0}
+belief rows: [[26, 26, 0]] by point: [['define', 3, 3, 0], ['print', 5, 5, 0], ['type', 5, 5, 0], ['write', 5, 5, 0], ['alter', 5, 5, 0], ['describe', 3, 3, 0]]
+tried: [['type', 'print', 1], ['money', 'change', 0], ['alter', 'create', 0], ['describe', 'define', 1], ['write', 'print', 1], ['alter', 'change', 1]]
+keys: [[321, 20048980, 1, 68, 19937767, 9], [419, 1412, 1, 68, 19937779, 7], [423, 1415, 1, 68, 19937787, 4]]
+points that act now: [['heard,born,define,meaning,why,correct,incorrect,print,create,change,step,type,write,alter,describe']]
+guess.guesses: [[14420, 0, 1, 0.362]]
+rel, xyz placed, formula, pull: [[18, 38]] [[730]]
+recalls still:
+== define : who           run 19938130  0.015 s  runs 11 hits 2231
+   what     state 1: 120
+== define : stone         run 19938141  0.026 s  runs 11 hits 2231
+   what     state 1: 924
+node rows who, stone: [[40]] [[1048]]
