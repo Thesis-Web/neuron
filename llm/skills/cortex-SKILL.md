@@ -25,6 +25,7 @@ cortex hydrate <project>          # the worker's whole prompt: DO NOW (the check
 cortex hydrate <project> --at n   # the same for checkpoint n, with ACCEPTED SO FAR
 cortex formula <project>          # the owner's input output formula over the brain: BEFORE, AFTER, PROGRESSION, CONTRACT satisfied | remainder (see /temporal)
 cortex questions <project> [n]    # the open meaning questions: words of judged claims that no receipt, owner line or reference holds; the owner answers them (mark, accept, reject, or a source)
+cortex remainder <project>        # the contract's parts left not satisfied, typed on their checkpoints, and NEXT WORK: the first part that does not say it waits on the kernel or the owner; `cortex remainder <project> <n> : <part left>` adds one, `... <n> <k> satisfied : <by what>` closes one
 cortex verdicts <project> [n]     # every judged line of the project (or of checkpoint n), newest first: run, verdict, p, judge, when, part, mark, sentence; the run is what mark, accept and reject take
 ```
 

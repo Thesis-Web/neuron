@@ -1,0 +1,20 @@
+e8d98c8 cortex C18 2026-11-03: the cortex holds the remainder and names the next work. cortex remainder <p> <n> : <part left> (typed lines on their checkpoint; satisfied by k), the formula prints the parts left of done checkpoints and NEXT WORK (the first part that does not say it waits on the kernel or the owner), the hydration prints REMAINDER and NEXT WORK when every checkpoint is done and the next checkpoint own remainder when one is open; the capture judges against the newest checkpoint when none is open
+=== receipts for C18 ===
+receipt: 12 lines typed in 251 ms; cortex C18 has receipts of: cortex remainder cortex
+receipt: 14 lines typed in 332 ms; cortex C18 has receipts of: cortex formula cortex, cortex remainder cortex
+receipt: 3 lines typed in 139 ms; cortex C18 has receipts of: cortex formula cortex, cortex hydrate cortex, cortex remainder cortex
+receipt: 22 lines typed in 559 ms; cortex C18 has receipts of: cortex formula cortex, cortex hydrate cortex, cortex remainder cortex, cortex verdicts cortex 18
+c18 sentence run 402343
+  ground: receipt 32 owner 34 reference 29 memory 34 | receipts 51 (cortex remainder cortex,cortex formula cortex,cortex hydrate cortex,cortex verdicts cortex 18) numbers in 18,11,11,10.1,1,11,18,18,20,18,1.00,0.80 out - | newest 
+verdict cortex 18 run 402343: progresses 1.000 by receipt in 177 ms | shape gates 78 expected 0.69 shared project 21 values out 24 words out among,backlog,brain,checkpoints,cortex,drift,haiku,hydrate,invention,judged,left,line,lis
+=== AFTER ===
+BEFORE (clock 402147, 2026-11-03 15:12): 19 checkpoints, 18 done, 427 ingests, 34 verdicts, 20 parts
+AFTER  (clock 402352, 2026-11-03 15:12): 19 checkpoints, 18 done, 428 ingests, 35 verdicts, 21 parts
+PROGRESSION (diff): ingests +1, verdicts +1, done +0; C18 parts 0->1; C18 verdicts +1
+NEXT WORK (the first part left that names neither the kernel nor the owner): C10.1 the path-noise rule drops a quoted sentence that holds two slash tokens, and 
+brain: gates 37345 runs 402352 hops 1100046 refused 0 clock 402352 | judge: receipt, shape, learned 
+load average: 0.04, 0.03, 0.00
+Mem:            7834         617         378           3        7137        7216
+DO NOW, C18: the cortex holds the remainder and names the next work (the owner, 11-03 15:0x: double check with cortex... is that next step by you part of the outline that cortex holds? is it true? verified as the next step by cortex? is cor
+EXPECTED OUTPUT: cortex hydrate cortex prints do now nothing and then the remainder list from the brain; cortex formula cortex prints contract remainder with the parts of done checkpoints and next work named from them; the capture judges th
+ACCEPTED SO FAR (parts of C18's state, each with its time, confidence and ground): c18 satisfied: cortex remainder cortex lists 11 remainder parts, 11 not satisfied, and nam [11-03 15:12 p1.00 receipt | receipt 32 owner 34 reference 29 memo
