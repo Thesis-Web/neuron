@@ -1,0 +1,19 @@
+numbers: labels are not values
+=== the C10.1 sentence re-judged with labels no longer values ===
+  ground: receipt 10 owner 21 reference 13 memory 21 none: stars | receipts 7 (cortex ingest audit four test lines) numbers in - out - | newest print: cortex ingest audit
+verdict cortex 10 run 403278: progresses 0.700 by claude:haiku (subscription) in 6110 ms | shape gates 37 expected 0.06 shared project 5 values out 3 words out bold,bulle
+remainder cortex C10.1 satisfied: the filter print is the receipt (runs 403243 to 403273): df line w
+remainder cortex C17.2 satisfied: a value must start its token: c10.1 and c18 are labels now, not va
+remainder cortex C17.3 run 403293: a digit that is a command argument in a sentence, such as --at 1,
+086163e cortex 2026-11-03: a value starts its token; c10.1, c18, run401 are labels, not values (C17.2)
+=== AFTER ===
+BEFORE (clock 402766, 2026-11-03 16:54): 19 checkpoints, 18 done, 452 ingests, 55 verdicts, 25 parts
+AFTER  (clock 403297, 2026-11-03 16:58): 19 checkpoints, 19 done, 454 ingests, 57 verdicts, 27 parts
+PROGRESSION (diff): ingests +2, verdicts +2, done +1; C10 parts 2->3; C10 verdicts +1; C18 working->done; C18 parts 5->6; C18 verdicts +1
+CONTRACT, REMAINDER (0 checkpoints open, 12 parts left not satisfied):
+NEXT WORK (the first part left that names neither the kernel nor the owner): C10.2 the capture loses a session final message because it lands after the stop hook, and a f
+DO NOW: nothing; every checkpoint is done. Say so.
+NEXT WORK (the first part left that names neither the kernel nor the owner): C10.2 the capture loses a session final message because it lands after the stop hook, and a failed capture is silent
+brain: gates 37350 runs 403297 hops 1105729 refused 0 clock 403297 | judge: receipt, shape, learned 
+load average: 0.27, 0.07, 0.02
+Mem:            7834         638         355           3        7140        7195
