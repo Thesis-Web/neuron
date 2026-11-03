@@ -24,6 +24,7 @@ cortex status                     # the brain (gates, runs, refused, clock), the
 cortex hydrate <project>          # the worker's whole prompt: DO NOW (the checkpoint marked NEXT), EXPECTED OUTPUT, the laws, all checkpoints, last verdicts
 cortex hydrate <project> --at n   # the same for checkpoint n, with ACCEPTED SO FAR
 cortex formula <project>          # the owner's input output formula over the brain: BEFORE, AFTER, PROGRESSION, CONTRACT satisfied | remainder (see /temporal)
+cortex verdicts <project> [n]     # every judged line of the project (or of checkpoint n), newest first: run, verdict, p, judge, when, part, mark, sentence; the run is what mark, accept and reject take
 ```
 
 Projects: `cortex` (the Cortex itself), `neuron` (the owner's brain: the kernel nk on hp and the hub on 8056; see /neuron), `probe` (the blink test). Run the formula before choosing a step: complete the remainder first unless it is gated on something not mine (the owner, 11-02: "check with cortex as to what parts of the outlines are complete that it holds, then you can decide if this is the next step, or completing previous state is more important first").

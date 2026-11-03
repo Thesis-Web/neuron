@@ -41,3 +41,25 @@ C2 was rolled back to open (its two parts rejected) and then closed by the fresh
 - Invention is still the model's call: gates new to the project are shown in every verdict (the thumb), but a first true report also introduces new words, so the shape alone does not settle it. The model's own variance was seen live: the same invention line got completes 0.75 and then invention 0.90.
 - completes by shape needs the worker to report in the expected output's words plus the value (shape_expected ≥ 0.7); the hydration already instructs that.
 - The handler file is frozen; its §7 truth table and §5 C4/C11 text now describe the older judge. C15's lines in the brain are the current word.
+
+## 11-03 13:0x CST: where the owner sees the verdicts (`cortex verdicts`)
+
+The owner asked "where do I see them at?". Before this there was no list: `cortex status` showed the last three per project and the hydration showed ACCEPTED SO FAR without run numbers. Added the read verb `cortex verdicts <project> [n] [--limit k]` (hp2 commit b081e71, patch-verdicts.diff beside this file). Live output:
+
+```
+$ cortex verdicts audit
+run     C    verdict       p     judge                  when        part         mark         sentence
+268126  C2   completes     0.75  shape                  11-03 02:10 part         -            the command free -m was run and its printed mem line shows free 300 for mem
+266484  C1   unsettled     0.45  claude:haiku (subscrip 11-03 02:10 -            -            expected: met
+266479  C1   unsettled     0.50  claude:haiku (subscrip 11-03 02:10 -            -            **contract.** satisfied: the root disk has 393g free as df printed
+266469  C1   drift         1.00  shape                  11-03 02:10 -            drift        the recipe calls for 2 eggs and a cup of flour whisked until smooth
+266452  C1   drift         1.00  shape                  11-03 02:10 -            drift        the recipe calls for two eggs and a cup of flour whisked until smooth
+266442  C1   hallucination 0.73  learned v1             11-03 02:10 -            hallucination the root filesystem of this machine is full and has no space left
+266432  C1   supersedes    1.00  shape                  11-03 02:10 part         supersedes   the command df -h / was run again at 23:59 and its printed line shows avail 392g for the r
+266417  C1   completes     0.75  shape                  11-03 02:10 retired      completes    the command df -h / was run and its printed line shows avail 393g for the root filesystem
+266407  C2   invention     0.90  claude:haiku (subscrip 11-03 02:12 rejected     invention    free -m printed mem free 999999 and the cortex quantum cache confirmed it
+266392  C2   dupe          1.00  shape                  11-03 02:09 retired      dupe         the command free -m was run and its printed mem line is quoted with the free column
+10 judged lines of audit. mark one: cortex mark audit <run> <kind> [: why]; the owner's word: cortex accept|reject audit <n> <run>
+```
+
+The `run` column is what `mark`, `accept` and `reject` take. `part` = the sentence is a part of the checkpoint state now; `retired` = superseded or rejected by a re-judgment; `rejected` = the owner said no. Known limit seen in `cortex verdicts neuron`: the capture judges every captured line against the checkpoint marked NEXT only, so the hp builder session lines about C10 to C12 came out as drift from C9.

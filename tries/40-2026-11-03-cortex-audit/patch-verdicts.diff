@@ -1,0 +1,24 @@
+785a786,804
+> def v_verdicts(name, n=None, limit=40):
+>     # the owner reads the judge here: every judged line of a project (or of checkpoint n), newest first, with the run that mark and accept and reject take
+>     ensure_cx()
+>     parts = {}
+>     for (ts, v) in q("SELECT ts, value FROM main.cx WHERE kind = 'part' AND name = ? AND n > 0 ORDER BY ts DESC LIMIT 500", name):
+>         d = json.loads(v); parts[d.get("run")] = d
+>     rows = q("SELECT n, ts, value FROM main.cx WHERE kind = 'verdict' AND name = ? AND n > 0 ORDER BY n DESC LIMIT ?", name, 2000 if n is not None else limit)
+>     shown = 0
+>     print("%-7s %-4s %-13s %-5s %-22s %-11s %-12s %-12s %s" % ("run", "C", "verdict", "p", "judge", "when", "part", "mark", "sentence"))
+>     for (run, ts, v) in rows:
+>         d = json.loads(v)
+>         if n is not None and d.get("n") != n: continue
+>         pt = parts.get(run); st = "-"
+>         if pt: st = "rejected" if pt.get("rejected_by") == "owner" else ("retired" if (pt.get("superseded_by") or pt.get("rejected_by")) else "part")
+>         m = cx_get("mark", name, run); mk = json.loads(m[3]).get("kind") if m else "-"
+>         print("%-7d C%-3s %-13s %-5.2f %-22s %-11s %-12s %-12s %s" % (run, d.get("n"), d.get("kind"), d.get("p") or 0, (d.get("judge") or "")[:22], time.strftime("%m-%d %H:%M", time.localtime(ts)), st, mk, (d.get("text") or "")[:90]))
+>         shown += 1
+>         if shown >= limit: break
+>     print("%d judged lines of %s%s. mark one: cortex mark %s <run> <kind> [: why]; the owner's word: cortex accept|reject %s <n> <run>" % (shown, name, (" at C%d" % n) if n is not None else "", name, name))
+818a838
+>   verdicts <name> [n] [--limit k]          every judged line of the project (or of checkpoint n), newest first: run, verdict, p, judge, when, part, mark, sentence
+861a882
+>     elif v == "verdicts": v_verdicts(a[0], int(a[1]) if len(a) > 1 and a[1].isdigit() else None, int(a[a.index("--limit") + 1]) if "--limit" in a else 40)
