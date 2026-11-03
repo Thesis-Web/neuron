@@ -1,0 +1,102 @@
+# Live output of the Cortex audit, 2026-11-03 00:00 to 00:03 CST (captured stdout; hp2 clock = hub clock, CST)
+
+## verdict counts per project before the audit
+cortex: completes graph 1, drift sheet 1, dupe sheet 1, geometry 1, progresses graph 1, unsettled haiku 1, unsettled sheet 1  (7 verdicts for 15 done)
+neuron: progresses graph 33, unsettled haiku 14, drift sheet 10, completes graph 5, drift haiku 5, invention haiku 1  (68)
+probe:  geometry 5, progresses graph 4, unsettled haiku 3, drift sheet 2, completes haiku 1, completes graph 1, invention haiku 1, noise sheet 1, unsettled sheet 1  (19)
+
+## audit project registered
+project audit run 266324 clock 266342 born 2
+checkpoint audit 1 run 266343 clock 266354 / expected audit 1 run 266355 / state audit 1 open run 266360
+checkpoint audit 2 run 266365 clock 266369 / expected audit 2 run 266370 / state audit 2 open run 266382
+state audit 1 working run 266387 clock 266391
+real values on hp2: df -h / -> /dev/sda1 454G 38G 393G 9% / ; free -m -> Mem: 7834 599 300 0 7234 7234
+
+## audit-judge.sh
+== E1 (C2) an echo of the expected sentence; nothing was run
+    ingest run 266392 clock 266396 born 0 0.005s: the command free -m was run and its printed mem line is quoted with the free column
+    filter: 1 sentences, kept 1, dupe 0, restated 0, noise 0, 8 ms
+    state audit 2 done run 266402 clock 266406
+    verdict audit 2 run 266392: completes 1.000 by graph in 35 ms | sheet words 8 shared scope 1 checkpoint 3 expected 8 new 0 known 8 coverage 1.00 (0 by relation) observed True mark none times 1 noise - | geometry mag 4.361 rad 0.6993 | history {} | part added
+     C2 done by this verdict; next C1
+== E2 (C2) an invented number and an invented term
+    ingest run 266407 clock 266411 born 0 0.005s: free -m printed mem free 999999 and the cortex quantum cache confirmed it
+    verdict audit 2 run 266407: progresses 0.500 by graph in 30 ms | sheet words 7 shared scope 1 checkpoint 2 expected 3 new 3 known 4 coverage 0.38 (0 by relation) observed True mark none times 1 noise - | geometry mag 0.838 rad 0.4323 | history {"completes": 1} | part added
+== E3 (C1) the true output as a worker would write it, device path and slashes kept
+    dropped (path): the command df -h / was run and printed: /dev/sda1 454g 38g 393g 9% / so the ava
+    filter: 1 sentences, kept 0, dupe 0, restated 0, noise 1, 1 ms
+    (nothing to judge: the true output was dropped by the filter)
+== E3b (C1) the true output without the device path
+    ingest run 266417 clock 266421 born 0 0.005s: the command df -h / was run and its printed line shows avail 393g for the root filesystem
+    state audit 1 done run 266427 clock 266431
+    verdict audit 1 run 266417: completes 0.714 by graph in 36 ms | sheet words 8 shared scope 1 checkpoint 4 expected 5 new 1 known 7 coverage 0.71 (0 by relation) observed True mark none times 1 noise - | geometry mag 3.116 rad 0.6075 | history {"progresses": 1, "completes": 1} | part added
+     C1 done by this verdict; next CNone
+== E4 (C1) a newer value for the same thing (a change of state)
+    ingest run 266432 clock 266436 born 0 0.005s: the command df -h / was run again at 23:59 and its printed line shows avail 392g for the root filesy
+    verdict audit 1 run 266432: completes 0.714 by graph in 31 ms | sheet words 9 shared scope 1 checkpoint 4 expected 5 new 1 known 8 coverage 0.71 (0 by relation) observed True mark none times 1 noise - | geometry mag 2.274 rad 0.552 | history {"completes": 2, "progresses": 1} | part added
+== E5 (C1) a contradiction with no observation
+    ingest run 266442 clock 266446 born 0 0.005s: the root filesystem of this machine is full and has no space left
+    verdict audit 1 run 266442: hallucination 0.900 by claude:haiku (subscription) in 5468 ms | sheet words 6 shared scope 0 checkpoint 4 expected 0 new 2 known 4 coverage 0.00 (0 by relation) observed False mark none times 1 noise - | geometry mag 2.626 rad 1.1979 | history {"completes": 3, "progresses": 1}
+      answers completes=0.02 contradicts=0.90 invents=0.55 off_scope=0.05 progresses=0.04 regresses=0.80 supersedes=0.15
+== E6a (C1) off scope, no digit
+    ingest run 266452 clock 266463 born 1 0.007s: the recipe calls for two eggs and a cup of flour whisked until smooth
+    verdict audit 1 run 266452: drift 0.000 by sheet in 31 ms | sheet words 9 shared scope 0 checkpoint 0 expected 0 new 9 known 0 coverage 0.00 (0 by relation) observed False mark none times 1 noise - | geometry mag 1.37 rad 0.2388 | history {"hallucination": 1, "completes": 3, "progresses": 1}
+== E6b (C1) off scope, with a digit
+    ingest run 266469 clock 266473 born 0 0.004s: the recipe calls for 2 eggs and a cup of flour whisked until smooth
+    verdict audit 1 run 266469: drift 0.950 by claude:haiku (subscription) in 4436 ms | sheet words 8 shared scope 0 checkpoint 0 expected 0 new 8 known 0 coverage 0.00 (0 by relation) observed True mark none times 1 noise - | geometry mag 1.496 rad 0.3039 | history {"drift": 1, "hallucination": 1, "completes": 3, "progresses": 1}
+      answers completes=0.01 contradicts=0.05 invents=0.90 off_scope=0.95 progresses=0.02 regresses=0.10 supersedes=0.01
+== F1 an exact repeat of E3b
+    ingest run 266417 again 2 (a repeat; nothing typed): the command df -h / was run and its printed line shows avail 393g for the root filesystem
+    filter: 1 sentences, kept 0, dupe 1, restated 0, noise 0, 2 ms
+== F2 the same words in another order
+    dropped (restated run 266417): its printed line shows avail 393g for the root filesystem and the command df -h
+    filter: 1 sentences, kept 0, dupe 0, restated 1, noise 0, 3 ms
+== F3 noise lines and a markup line, as one context
+    dropped (command-or-markup): $ df -h /
+    dropped (symbols): ● bash(df -h /)
+    dropped (path): /home/james/cortex/cortex.py
+    ingest run 266479 clock 266483 born 0 0.005s: **contract.** satisfied: the root disk has 393g free as df printed
+    ingest run 266484 clock 266488 born 0 0.004s: expected: met
+    filter: 5 sentences, kept 2, dupe 0, restated 0, noise 3, 15 ms
+== hydrate audit --at 2, the ACCEPTED line
+ACCEPTED SO FAR (parts of C2's state): the command free -m was run and its printed mem line is quoted with the free column | free -m printed mem free 999999 and the cortex quantum cache confirmed it
+== hydrate audit --at 1, the ACCEPTED line
+ACCEPTED SO FAR (parts of C1's state): the command df -h / was run again at 23:59 and its printed line shows avail 392g for the r | the command df -h / was run and its printed line shows avail 393g for the root filesystem
+
+## cortex turn probe --at 5 (one live haiku turn)
+turn probe C5 [read]: claude haiku, prompt 1480 bytes (the hydration, nothing else)
+worker rc 0 in 6.2s, output 376 bytes
+filter: 6 sentences, kept 4, dupe 1, restated 1, noise 0, 33 ms
+verdict probe 5 run 266489: progresses 0.500 by graph in 28 ms | ... | part added
+state probe 5 done run 266519 clock 266523
+verdict probe 5 run 266494: completes 0.930 by claude:haiku (subscription) in 6137 ms | ... | part added
+ C5 done by this verdict; next CNone
+  answers completes=0.93 contradicts=0.03 invents=0.10 off_scope=0.10 progresses=0.60 regresses=0.04 supersedes=0.12
+verdict probe 5 run 266499: unsettled 0.600 by claude:haiku (subscription) ... invents=0.60
+verdict probe 5 run 266504: unsettled 0.400 by claude:haiku (subscription) ... supersedes=0.40
+ingested 5 sentences (1 repeats), verdicts: progresses completes unsettled unsettled
+--- worker output ---
+C5: this machine has been up for "8 weeks, 5 days, 7 hours, 4 minutes".
+The live output of `uptime -p` was: up 8 weeks, 5 days, 7 hours, 4 minutes
+The previous recorded verdict showed `up 8 weeks, 5 days, 3 hours, 47 minutes`. The uptime has advanced since then, so this reading is current.
+EXPECTED: met
+real 0m19.279s
+
+## capture replay of session b729f43d's transcript tail (its final message of 22:35 was not in the index)
+filter: 31 sentences, kept 25, dupe 0, restated 0, noise 6, 206 ms
+capture cortex: 1 texts, 25 sentences, 25 new, 0 repeats, 2679 bytes
+
+## the findings returned to the Cortex
+11 ingests into cortex, runs 266694 to 266772, filter: 11 sentences, kept 11, 98 ms
+
+## formulas at 00:03
+cortex: BEFORE (clock 266323, 23:55) 15/15, 245 ingests, 7 verdicts, 17 parts -> AFTER (clock 266776, 00:03) 15/15, 281 ingests, 7 verdicts, 17 parts; ingests +36
+neuron: 9 checkpoints, 6 done, 116 ingests, 68 verdicts, 38 parts; no change
+probe:  BEFORE (clock 264972, 20:46) 5/6, 21 ingests, 19 verdicts, 9 parts -> AFTER 6/6, 25 ingests, 23 verdicts, 11 parts; C5 working->done
+audit:  first formula: 2/2, 9 ingests, 7 verdicts, 4 parts
+status: brain gates 32369 runs 266776 hops 417199 refused 0 clock 266776 | freeze: brain 3e831a356586b08d file 3e831a356586b08d EQUAL
+
+## hub hygiene
+hp2:~/cortex commit 8ce47be: tests/hub-scratch-2026-11-02 (20 files: c3-outline.sh ... t8-freeze.sh, units.sh, educate.sh, nli-measure.sh, remnants-and-extract.tar.gz)
+removed: /tmp/claude-1000/-home-exnulla/3fc1ea58-.../scratchpad (cortex.py, CORTEX-HANDLER.md, CORTEX-OWNER-WORDS, the scripts)
+remains, not mine: /tmp/claude-1000/-home-exnulla-neuron-v3/aa97b8fd-.../scratchpad/g36/CORTEX-HANDLER.md (25,628 bytes, 11-02 17:46) in the hp builder session's scratchpad; reported to that session
