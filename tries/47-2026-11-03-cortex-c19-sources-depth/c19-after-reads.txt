@@ -1,0 +1,73 @@
+=== manifest2: calculus from html ===
+math-calculus-thompson: fetched 242796 bytes in 0.6s, body 213912 bytes
+  source math-calculus-thompson (reference) run 846804: Calculus Made Easy, Silvanus P. Thompson, 1914 (math textbook), Project Gutenberg eboo
+  source math-calculus-thompson: 1984 sentences typed, 24 repeats, 1366 noise, 0 refused, 26.0 s | 26s
+=== brain after ===
+brain: gates 37365 runs 404121 hops 1111356 refused 0 clock 404121 | judge: rece
+brain: gates 69802 runs 857575 hops 3382404 refused 0 clock 857575 | judge: rece
+load average: 0.81, 0.98, 0.67
+Mem:            7834         649         256          13        7237        7184
+43048960	/home/james/cortex/brain/brain.map.main.db 100667392	/home/james/cortex/brain/brain.map.xyz 1.1G
+=== sources registered ===
+  coding-python-reference                              {"band": "reference", "text": "The Pytho
+  coding-python-tutorial                               {"band": "reference", "text": "The Pytho
+  cortex-handler                                       {"band": "reference", "text": "CORTEX-HA
+  encyclopedia-britannica-11-baconthorpe-bankruptcy    {"band": "reference", "text": "Encyclopa
+  encyclopedia-britannica-11-banks-bassoon             {"band": "reference", "text": "Encyclopa
+  english-advanced-grammar                             {"band": "reference", "text": "An Advanc
+  english-elements-of-style                            {"band": "reference", "text": "The Eleme
+  math-calculus-thompson                               {"band": "reference", "text": "Calculus 
+  math-elements-of-arithmetic                          {"band": "reference", "text": "Elements 
+  owner-videos-11-03                                   {"band": "reference", "text": "two video
+  owner-words                                          {"band": "owner", "text": "the owner own
+  physics-faraday-candle                               {"band": "reference", "text": "The Chemi
+  physics-general-science-clark                        {"band": "reference", "text": "General S
+13 sources
+=== claims: which sources hold the words ===
+-- the derivative of a function measures the rate at which it grows
+  ground: owner 6 reference 41 memory 5 (encyclopedia-britannica-11-baconthorpe-bankruptcy 6 owner-words 6 encyclopedia-britannica-11-banks-bassoon 5 english-advanced-grammar 5) 
+verdict cortex 19 run 857576: unsettled 0.500 by claude:haiku (subscription) in 6602 ms | shape gates 6 expected 0.00 shared project 1 values out 0 words out derivative,function,grows,measures,rate,wh
+-- a candle flame draws the air upward by the current of heated gas
+  ground: owner 5 reference 43 memory 2 (physics-faraday-candle 8 physics-general-science-clark 8 encyclopedia-britannica-11-baconthorpe-bankruptcy 6 encyclopedia-britannica-11-banks-bassoon 6) 
+verdict cortex 19 run 857586: drift 0.920 by learned v1 in 126 ms | shape gates 8 expected 0.00 shared project 1 values out 0 words out air,candle,current,draws,flame,gas,heated,upward new to project 
+-- omit needless words and prefer the active voice
+  ground: owner 5 reference 39 memory 2 (english-elements-of-style 6 encyclopedia-britannica-11-banks-bassoon 5 english-advanced-grammar 5 owner-words 5) 
+verdict cortex 19 run 857596: drift 0.800 by claude:haiku (subscription) in 5304 ms | shape gates 6 expected 0.04 shared project 1 values out 0 words out active,needless,omit,prefer,voice new to proje
+-- a list comprehension builds a new list from an iterable in one expression
+  ground: owner 5 reference 49 memory 4 (coding-python-reference 7 coding-python-tutorial 7 physics-general-science-clark 6 english-elements-of-style 5) 
+verdict cortex 19 run 857606: drift 0.839 by learned v1 in 126 ms | shape gates 8 expected 0.00 shared project 1 values out 0 words out builds,comprehension,expression,iterable,list,new,one new to pro
+-- bankruptcy law deals with the estate of a debtor who cannot pay
+  ground: owner 5 reference 52 memory 4 (encyclopedia-britannica-11-baconthorpe-bankruptcy 8 encyclopedia-britannica-11-banks-bassoon 8 english-advanced-grammar 6 owner-words 5) 
+verdict cortex 19 run 857616: drift 1.000 by shape in 144 ms | shape gates 8 expected 0.00 shared project 0 values out 0 words out bankruptcy,cannot,deals,debtor,estate,law,pay,who new to project bank
+-- the sum of the angles of a triangle is two right angles
+  ground: owner 3 reference 40 memory 3 (encyclopedia-britannica-11-baconthorpe-bankruptcy 5 encyclopedia-britannica-11-banks-bassoon 5 math-calculus-thompson 5 english-advanced-grammar 4) 
+verdict cortex 19 run 857626: unsettled 0.600 by claude:haiku (subscription) in 4689 ms | shape gates 6 expected 0.04 shared project 1 values out 0 words out angles,right,sum,triangle new to project a
+=== receipts for C19 ===
+receipt: 14 lines typed in 190 ms; cortex C19 has receipts of: cortex q sources registered
+receipt: 20 lines typed in 449 ms; cortex C19 has receipts of: cortex q sources registered, fetch-sources.py manifest typing log
+receipt: 2 lines typed in 48 ms; cortex C19 has receipts of: cortex q sources registered, cortex status before and after, fetch-sources.py manifest typing log
+run 857858
+  ground: receipt 20 owner 31 reference 195 memory 30 (owner-words 31 encyclopedia-britannica-11-baconthorpe-bankruptcy 25 encyclopedia-britannica-11-banks-bass
+verdict cortex 19 run 857858: hallucination 1.000 by receipt in 270 ms | shape gates 109 expected 0.85 shared project 26 values out 69 words out coding,each,enc
+remainder cortex C16.7 satisfied: c19 sources depth: ten reference texts typed 11-03 17:2x to 17:3x,
+remainder cortex C16.9 run 857868: the brain judging its own sources against each other to find the 
+=== AFTER ===
+BEFORE (clock 403704, 2026-11-03 17:12): 19 checkpoints, 19 done, 492 ingests, 77 verdicts, 31 parts
+AFTER  (clock 857872, 2026-11-03 17:31): 20 checkpoints, 19 done, 530 ingests, 104 verdicts, 31 parts
+PROGRESSION (diff): ingests +38, verdicts +27, done +0; C19 new [working]
+CONTRACT, REMAINDER (1 checkpoints open, 14 parts left not satisfied):
+NEXT WORK (the first part left that names neither the kernel nor the owner): C10.2 the capture loses a session final message because it lands after th
+DO NOW, C19: sources depth (the owner, 11-03 17:0x: i still think we need to start adding depth to sources, it is only as smart as its sources prove, so math te
+load average: 0.39, 0.84, 0.64
+numbers out: ['1', '69802', '857575']
+status receipt lines: ['brain: gates 37365 runs 404121 hops 1111356 refused 0 clock 404121 | judge: rece', 'brain: gates 69807 runs 857840 hops 3384438 refused 0 clock 857840 | judge: rece']
+receipt: 1 lines typed in 27 ms; cortex C19 has receipts of: cortex q sources registered, cortex status after the sources, cortex status before and after, fetch-sources.py manifest typing log
+gates 69808 runs 857872
+run 857878
+  ground: receipt 18 owner 30 reference 192 memory 30 (owner-words 30 encyclopedia-britannica-11-baconthorpe-bankruptcy 24 encyclopedia-britannica-11-banks-bass
+verdict cortex 19 run 857878: completes 0.808 by receipt in 301 ms | shape gates 104 expected 0.81 shared project 24 values out 66 words out among,coding,each,e
+ C19 done by this verdict; next CNone
+AFTER  (clock 857892, 2026-11-03 17:32): 20 checkpoints, 20 done, 531 ingests, 105 verdicts, 32 parts
+PROGRESSION (diff): ingests +1, verdicts +1, done +1; C19 working->done; C19 parts 0->1; C19 verdicts +1
+DO NOW: nothing; every checkpoint is done. Say so.
+NEXT WORK (the first part left that names neither the kernel nor the owner): C10.2 the capture loses a session final message because it lands after th

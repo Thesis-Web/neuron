@@ -1,0 +1,13 @@
+[
+ {"name": "math-calculus-thompson", "id": 33283, "note": "Calculus Made Easy, Silvanus P. Thompson, 1914 (math textbook), Project Gutenberg ebook 33283", "asof": "1914, public domain"},
+ {"name": "math-plane-geometry", "id": 33063, "note": "Plane Geometry, Project Gutenberg ebook 33063 (math textbook)", "asof": "public domain"},
+ {"name": "physics-general-science-clark", "id": 16593, "note": "General Science, Bertha May Clark, 1912 (physics and science textbook), Project Gutenberg ebook 16593", "asof": "1912, public domain"},
+ {"name": "physics-faraday-candle", "id": 14474, "note": "The Chemical History of a Candle, Michael Faraday, 1861 lectures (physics and chemistry), Project Gutenberg ebook 14474", "asof": "1861, public domain"},
+ {"name": "english-elements-of-style", "id": 37134, "note": "The Elements of Style, William Strunk Jr., 1918 (english textbook), Project Gutenberg ebook 37134", "asof": "1918, public domain"},
+ {"name": "english-advanced-grammar", "id": 45814, "note": "An Advanced English Grammar with Exercises, Kittredge and Farley, 1913 (english textbook), Project Gutenberg ebook 45814", "asof": "1913, public domain"},
+ {"name": "coding-python-tutorial", "url": "https://docs.python.org/3/archives/python-3.15-docs-text.tar.bz2", "tar": ["tutorial/"], "note": "The Python Tutorial, python 3.15 documentation text (coding textbook), docs.python.org", "asof": "2026-11-03 download"},
+ {"name": "coding-python-reference", "url": "https://docs.python.org/3/archives/python-3.15-docs-text.tar.bz2", "tar": ["reference/"], "note": "The Python Language Reference, python 3.15 documentation text (coding reference), docs.python.org", "asof": "2026-11-03 download"},
+ {"name": "encyclopedia-britannica-11-baconthorpe-bankruptcy", "id": 27479, "note": "Encyclopaedia Britannica 11th edition 1911, slice Baconthorpe to Bankruptcy, Project Gutenberg ebook 27479", "asof": "1911, public domain"},
+ {"name": "encyclopedia-britannica-11-banks-bassoon", "id": 27480, "note": "Encyclopaedia Britannica 11th edition 1911, slice Banks to Bassoon, Project Gutenberg ebook 27480", "asof": "1911, public domain"},
+ {"name": "math-elements-of-arithmetic", "id": 68662, "note": "Elements of Arithmetic, Project Gutenberg ebook 68662 (math textbook)", "asof": "public domain"}
+]
