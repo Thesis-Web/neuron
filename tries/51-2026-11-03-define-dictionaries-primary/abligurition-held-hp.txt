@@ -1,0 +1,9 @@
+=== the gcide row as the brain holds it (run 19938482, every symbol):
+[entry: Abligurition] [headword: Ab*lig`u*ri"tion] [pronunciation: ((?))], [part of speech: n.] [etymology: [L. abligurito, fr. abligurire to spend in luxurious indulgence; ab + ligurire to be lickerish, dainty, fr. lingere to lick.]] [definition: Prodigal expense for food.] [mark: [Obs.]] [authority: Bailey.] [[source: 1913 Webster]]
+
+=== the wikt head row with its etymology (run 19938483, every symbol):
+[word: abligurition] [part of speech: noun] [head: abligurition (uncountable)] [etymology: PIE word *h₂epó Learned borrowing from Late Latin abligurrītiō, abligurītiō (“act of devouring; act of spending in feasting”), from abligurriō, abliguriō (“to lick away; to spend or waste indulgently, squander”) + -tiō (suffix forming abstract nouns from verbs); from ab- (“away; away from; from”) + ligurriō, liguriō (“to lick up; to feast or feed upon; to be dainty or fond of luxuries”).] [etymology templates: Proto-Indo-European] [pronunciation: /əˌblɪɡjʊˈɹɪʃən/ | tags: Received-Pronunciation; tags: Southern-England; /əˌblɪɡ(j)ʊˈɹɪʃən/ | tags: General-American; -ɪʃən] [hyphenation: ab‧lig‧u‧rit‧ion]
+
+=== relationship rows laid for abligurition (gate 1317458): 0 outward, 0 inward
+=== dna rows of abligurition: [[20049018, 156, 68, None, 19936999, 0]]
+=== its place: [[0.422688, -0.896152, 0.135078, 1]]

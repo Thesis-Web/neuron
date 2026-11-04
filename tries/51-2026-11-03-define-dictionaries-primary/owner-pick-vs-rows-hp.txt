@@ -1,0 +1,10 @@
+the owner pick: to spend on or for excessive food. Which of its words the returns hold, and what the brain already relates:
+  spend       gate    8126   292 rel rows; among them: like waste, like spend, like lavish, like squander, like prodigal, includes waste, includes squander, like waste
+  food        gate    3484  1215 rel rows; among them: like feast
+  excessive   gate   27429   373 rel rows; among them: like extravagant, like indulgent, like prodigal, like lavish, like extravagant, like indulgent, like prodigal
+  prodigal    gate   57324   407 rel rows; among them: like spend, like excessive, like lavish, like extravagant, like indulgent, like prodigal, like spend, like excessive
+  luxurious   gate   44778   362 rel rows; among them: like lavish, like extravagant, like indulgent, similar indulgent, like lavish, like extravagant, similar indulgent
+  indulgence  gate   63980   324 rel rows; among them: derived indulgent, related indulgent, related indulgent, derived indulgent
+  squander    gate   45390   183 rel rows; among them: like waste, like spend, like lavish, is spend, includes lavish, like waste, like spend, like lavish
+  expenditure gate   91779   138 rel rows; among them: like waste, like waste
+  feasting    gate  120335    27 rel rows; among them: derived feast, derived feast
