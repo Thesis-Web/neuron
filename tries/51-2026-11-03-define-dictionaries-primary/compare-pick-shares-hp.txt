@@ -1,0 +1,20 @@
+who      401 ms   40 rows | raw   : gcide  run      197  38/ 70 words agree: Originally, an interrogative pronoun, later, a relative pronoun als
+                         | shares: wikt   run     1356 agree 0.71 meanings 0.86 rels 1.00 of   7: [word: Who] [part of speech: pron] [head: Who] [head: Who]
+how     1789 ms  102 rows | raw   : gcide  run    18424  34/ 55 words agree: In what manner or way; by what means or process…
+                         | shares: gcide  run    18436 agree 0.73 meanings 0.91 rels 0.82 of  11: [quotation: How a score of ewes now?] [quotation author: Shak.] [[sour
+why     1097 ms  196 rows | raw   : wikt   run    19120  43/167 words agree: intj 1: (dated or literary) An exclamation used to express pleasant or
+                         | shares: moby   run    19061 agree 1.00 meanings 1.00 rels 1.00 of   4: like from what cause
+what    6689 ms  150 rows | raw   : wikt   run    15972  79/346 words agree: particle 2: (Singlish, Manglish) Used to invite agreement or acknowled
+                         | shares: gcide  run    15937 agree 0.79 meanings 0.89 rels 0.95 of  19: [quotation: And gave him for to feed, Such homely what as serves the s
+where   1737 ms   92 rows | raw   : wikt   run    18005  46/223 words agree: noun 1: The place in which something happens. [examples: A good articl
+                         | shares: gcide  run    17983 agree 0.78 meanings 0.94 rels 0.89 of  18: [quotation: And flight and die is death destroying death; Where fearin
+when    1820 ms  166 rows | raw   : wikt   run    17245  31/174 words agree: conj 1: At (or as soon as) that time that; at the (or any and every) t
+                         | shares: mwt    run    17191 agree 1.00 meanings 1.00 rels 1.00 of   4: like so long as
+can     5749 ms  564 rows | raw   : wikt   run    13972  74/229 words agree: noun 5: (archaic) A chamber pot.; (US, slang) a toilet or lavatory. [t
+                         | shares: moby   run    13780 agree 1.00 meanings 1.00 rels 1.00 of   4: like be up to
+the     1179 ms   62 rows | raw   : gcide  run     2628  34/ 74 words agree: [note: ☞ The was originally a demonstrative pronoun, being a weakened 
+                         | shares: wikt   run     2646 agree 0.78 meanings 1.00 rels 0.89 of   9: [word: the] [part of speech: article] [etymology 1] [synonyms: le]
+do      4757 ms  540 rows | raw   : wikt   run    76129 114/317 words agree: [word: do] [part of speech: verb] [etymology 1] [derived: a man's gott
+                         | shares: moby   run    75696 agree 1.00 meanings 1.00 rels 1.00 of   4: like act a part
+there   1281 ms   60 rows | raw   : wikt   run   108123  68/241 words agree: adv 1: (location) In or at a place or location (stated, implied or oth
+                         | shares: gcide  run   108101 agree 0.81 meanings 0.96 rels 1.00 of  27: In that matter, relation, etc.; at that point, stage, etc., regarde

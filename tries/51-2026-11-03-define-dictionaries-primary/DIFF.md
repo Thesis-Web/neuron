@@ -10,6 +10,7 @@
 | refused | 1 | 1 | unchanged |
 | the page, the hub | untouched | untouched | unchanged (the owner's words) |
 | the Cortex | C13 open, C20 open | C13 done as withdrawn, C20 working with receipts | progress |
+| the compare over every source (the owner, 22:05) | no measure | agreement, meanings and relationships per row as a read; the raw counts pick the longest rows, the shares the shortest | measured, not laid: the ordering is the owner's leg |
 
 No row went backward. The remainder: the owner's word on which dictionary leads (one ranks line); which entry fits a use is C21; the
 accept lines for C9, C10, C11, C12, C15, C16; the hub door restart; the C14 patches.

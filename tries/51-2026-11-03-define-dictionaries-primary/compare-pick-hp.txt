@@ -1,0 +1,24 @@
+who       394 ms  dictionaries first: run      197 gcide  agree  38 meanings  62 rels  66 of  70 words: Originally, an interrogative pronoun, later, a relative pronoun also; -- used alwa
+              next          : run     1334 gcide  agree  38 meanings  62 rels  66 of  70 words: Originally, an interrogative pronoun, later, a relative pronoun also; -- used alwa
+              next          : run     1344 wikt   agree  35 meanings 118 rels 114 of 128 words: [word: who] [part of speech: pron] [head: who (singular or plural, nominative case, o
+how      1901 ms  dictionaries first: run    18424 gcide  agree  34 meanings  45 rels  51 of  55 words: In what manner or way; by what means or process…
+why      1077 ms  dictionaries first: run    19120 wikt   agree  43 meanings 149 rels 152 of 167 words: intj 1: (dated or literary) An exclamation used to express pleasant or unpleasant mil
+what     6723 ms  dictionaries first: run    15972 wikt   agree  79 meanings 334 rels 315 of 346 words: particle 2: (Singlish, Manglish) Used to invite agreement or acknowledgment when some
+where    1754 ms  dictionaries first: run    18005 wikt   agree  46 meanings 217 rels 196 of 223 words: noun 1: The place in which something happens. [examples: A good article will cover th
+when     1844 ms  dictionaries first: run    17245 wikt   agree  31 meanings 158 rels 164 of 174 words: conj 1: At (or as soon as) that time that; at the (or any and every) time that; if. [
+does       12 ms  dictionaries first: run   277227 gcide  agree   7 meanings  15 rels  18 of  18 words: The [part of speech: 3d pers. sing. pres.] of [entry reference: Do].] [[source: 19
+are       269 ms  dictionaries first: run    13484 wikt   agree  23 meanings 132 rels 127 of 144 words: [word: are] [part of speech: verb] [etymology 1] [head: are] [forms: aren | tags: alt
+can      5534 ms  dictionaries first: run    13972 wikt   agree  74 meanings 214 rels 211 of 229 words: noun 5: (archaic) A chamber pot.; (US, slang) a toilet or lavatory. [tags: US, archai
+              next          : run  5940576 wikt   agree  74 meanings 214 rels 211 of 229 words: noun 5: (archaic) A chamber pot.; (US, slang) a toilet or lavatory. [tags: US, archai
+              next          : run    13755 gcide  agree  53 meanings  81 rels  84 of  91 words: [synonyms: Syn. -- [entry reference: Can but], [entry reference: Can not but]. It is 
+is         99 ms  dictionaries first: run    33619 gcide  agree  25 meanings  41 rels  50 of  51 words: The third person singular of the substantive verb be, in the indicative mood, pres
+a       11729 ms  dictionaries first: run     6103 gcide  agree  64 meanings  95 rels  97 of 104 words: An adjective, commonly called the indefinite article, and signifying one or any, b
+the      1236 ms  dictionaries first: run     2628 gcide  agree  34 meanings  71 rels  67 of  74 words: [note: ☞ The was originally a demonstrative pronoun, being a weakened form of that. W
+              next          : run  8448255 gcide  agree  34 meanings  71 rels  67 of  74 words: [note: ☞ The was originally a demonstrative pronoun, being a weakened form of that. W
+              next          : run     2629 gcide  agree  33 meanings  49 rels  52 of  53 words: By that; by how much; by so much; on that account; -- used before comparatives; [u
+do       4684 ms  dictionaries first: run    76129 wikt   agree 114 meanings 309 rels 279 of 317 words: [word: do] [part of speech: verb] [etymology 1] [derived: a man's gotta do what a man
+this      426 ms  dictionaries first: run    69861 gcide  agree  36 meanings  61 rels  68 of  77 words: [entry: This] [headword: This] [pronunciation: (thĭs)], [part of speech: pron. & a.];
+that     1615 ms  dictionaries first: run    82193 wikt   agree  85 meanings 248 rels 265 of 301 words: conj 10: (dated) Introducing a subordinate clause that expresses an aim, purpose, or 
+there    1296 ms  dictionaries first: run   108123 wikt   agree  68 meanings 204 rels 225 of 241 words: adv 1: (location) In or at a place or location (stated, implied or otherwise indicate
+you       994 ms  dictionaries first: run    19558 gcide  agree  58 meanings  95 rels  96 of 102 words: [note: ☞ Though you is properly a plural, it is in all ordinary discourse used also i
+our       140 ms  dictionaries first: run   140902 wikt   agree  20 meanings  76 rels  79 of  88 words: det 3: Of, from, or belonging to any entity that the speaker is a part of or identifi

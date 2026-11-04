@@ -49,6 +49,30 @@ marker", can → "verb 1: (auxiliary verb, defective) To know how to", where →
 "pron 1: (interrogative) What person or people". One typed line changes the ranks rows (wikt 1, gcide 2); the span reads them.
 Which entry of a dictionary is the definition for a use is C21 (a definition's uses as DNA shards), the owner's design.
 
+## The owner's correction (22:05) and the compare, read, not laid
+
+"why are we constraining to two sources??? it's not a race... tied? meaning they said the same thing, or the value of what they said is
+the same thing, then we look to our meanings, which of the words returned actually have meanings in the graph... also relationships..
+which words returned have defined relationships already... these would help in finding the mathematical formula for the meaning later".
+
+The three measures as a keyed read over every source's rows of a point (`compare_pick.py`, `compare_pick2.py`, the prints beside): for
+each row, of its letter symbols, how many another source's row also holds (agreement), how many are defined points (meanings), how many
+hold relationship rows (relationships). What the read shows (`compare-pick-hp.txt`, `compare-pick-shares-hp.txt`):
+
+- By the raw counts the longest rows win: what → a Singlish particle sense with 346 words (its examples), can → "a chamber pot" with 229,
+  do → the head row with its derived terms, the → a usage note. Agreement in words grows with length; the function words every row
+  shares (the, of, a) count as agreement, meanings and relationships alike.
+- By the shares (each count over the row's words) the shortest rows win: why → Moby's "like from what cause" (4 words, 1.00 on all
+  three), when → mwt's "like so long as", how and what → a quotation of Shakespeare's or Spenser's, who and the → a head row.
+- Cost: 12 ms to 11.7 s a point (a has hundreds of rows; the self-join over the point's words is quadratic); a read, not a recall-time
+  span as it stands; the long way at define time with the result kept would be its shortcut.
+
+So a count of words is not "the same thing said": the rows the sources agree on in words are the long and the trivial ones. What stays
+live is RECALL-8 (the dictionary's first definition row), a first leg, not the compare. The legs the owner's words leave to decide:
+whether agreement is counted among the rows that define (gcide's [definition: rows, Wiktionary's and WordNet's sense rows) and not
+the quotations, heads and like-lines; whether a word every row holds says anything; and whether the definition is per use (C21), the
+run's context picking the sense.
+
 ## Also
 
 - A test copy of the brain was started and stopped: the map file's real data is tens of GB (19 GB copied in four minutes); the fix
