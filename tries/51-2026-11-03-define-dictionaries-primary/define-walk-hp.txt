@@ -1,0 +1,31 @@
+quockerwodger  gate 650117   definition rows 4
+jentacular     gate 296287   definition rows 2
+snollygoster   gate 1281118  definition rows 2
+tittynope      gate none (not a symbol yet) definition rows 0
+dactylonomy    gate 248445   definition rows 3
+pogonotrophy   gate 610887   definition rows 2
+quomodocunquize gate none (not a symbol yet) definition rows 0
+zyzzyva        gate none (not a symbol yet) definition rows 0
+ulotrichous    gate none (not a symbol yet) definition rows 0
+kakistocracy   gate 342014   definition rows 3
+
+typing: define : tittynope
+the line ran: run 19938307, 22 runs, 4424 hits, 5 born, 0 refused, 0.047 s
+
+the returns as they came back (2), by run id; every one lands in cell 24 (def):
+  1. wikt     run 19938315  [word: tittynope] [part of speech: noun] [head: tittynope (plural tittynopes)] [forms: tittynopes | tags: plural] [etymology: Originally Yorkshire dialect for a small quantity of grain in gleaning. EDD gives titty-mouse, found in West Yorkshire, as a synonym; the same word has an additional meaning of titmouse (“small bird, chickadee”) in the dialects of Lancashire and Norfolk, and is likely a…
+  2. wikt     run 19938316  noun 1: (very rare) A small amount left over; a modicum. [tags: rare] [examples: When I ask if she can spare a tittynope of her love for this hopeless sailor | ref: 2016, Leah Edwards, “Love like Popchips”, in Wooden Teeth (The George Washington University), volume 39, page 29, column 1: | type: quotation; We will sip tea, binge and brannigan on vocabulary, nibble on sweets and yes― leave a …
+
+the sheet cells of the line (run 19938307), the definition schema:
+  cell 19   me         state 1  value: run 19938307 from 1: define : tittynope
+  cell 21   newgate    state 1  value: 1317448
+  cell 23   what       state 1  value: 1317448
+  cell 24   def        state 1  value: run 19938316 from wikt: noun 1: (very rare) A small amount left over; a modicum. [tags: rare] [examples: When I ask if she can spare a tittynope
+  cell 26   know       state 1  value: 2/5
+  cell 27   remember   state 1  value: 0
+  cell 28   shape      state 1  value: run 19938199 from 1: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE
+  cell 91   ok         state 1  value: ok
+  cell 150  known      state 1  value: above source such column word other like of y noun a to and part speech forms etymology an as plural the ask in that are
+  cell 155  unknown    state 1  value: A When Originally Note There The By On We C Me Books Dialect Local Names Poet Teeth Meet Craft Wooden Magnitude Terrapin
+
+the other runs under the line (19): 19938307 (arrival 1 kind 0: define : tittynope), 19938308 (arrival 2 kind 1: BUILD INSERT OR REPLACE INTO run_sheet (), 19938312 (arrival 2 kind 1: BUILD INSERT OR REPLACE INTO run_sheet (), 19938314 (arrival 2 kind 1: BUILD INSERT OR REPLACE INTO run_sheet (), 19938320 (arrival 2 kind 1: BUILD INSERT INTO neuron ( gate ) VALUES), 19938309 (arrival 4 kind 3: ok), 19938310 (arrival 4 kind 3: ok), 19938311 (arrival 4 kind 3: ok), 19938313 (arrival 4 kind 3: ok), 19938318 (arrival 4 kind 3: ok), 19938319 (arrival 4 kind 3: ok), 19938317 (arrival 4 kind 3: ok)

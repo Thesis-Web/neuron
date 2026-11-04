@@ -1,0 +1,31 @@
+cacoethes      gate 81152    definition rows 7
+jobation       gate 457020   definition rows 3
+famigerate     gate none (not a symbol yet) definition rows 0
+deipnosophist  gate 709812   definition rows 4
+balbutiate     gate 425970   definition rows 3
+abligurition   gate none (not a symbol yet) definition rows 0
+acersecomic    gate none (not a symbol yet) definition rows 0
+tried define : famigerate -> run 19938383, 22 runs, 5 born, returns from ['wikt']
+tried define : abligurition -> run 19938474, 23 runs, 19 born, returns from ['gcide', 'wikt']
+
+the define walked through: define : abligurition
+the line ran: run 19938474, 23 runs, 4424 hits, 19 born, 0 refused, 0.051 s
+
+the returns as they came back (3), by run id; every one lands in cell 24 (def):
+  1. gcide    run 19938482  [entry: Abligurition] [headword: Ab*lig`u*ri"tion] [pronunciation: ((?))], [part of speech: n.] [etymology: [L. abligurito, fr. abligurire to spend in luxurious indulgence; ab + ligurire to be lickerish, dainty, fr. lingere to lick.]] [definition: Prodigal expense for food.] [mark: [Obs.]] [authority: Bailey.] [[source: 1913 Webster]]
+  2. wikt     run 19938483  [word: abligurition] [part of speech: noun] [head: abligurition (uncountable)] [etymology: PIE word *h₂epó Learned borrowing from Late Latin abligurrītiō, abligurītiō (“act of devouring; act of spending in feasting”), from abligurriō, abliguriō (“to lick away; to spend or waste indulgently, squander”) + -tiō (suffix forming abstract nouns from verbs); from ab- (“away; away from…
+  3. wikt     run 19938484  noun 1: (chiefly archaic, rare) Prodigal expenditure on food. [tags: archaic, rare, uncountable] [examples: So soon as a rogation for a benison by the concionator, transpired, fourchettes, and all implements for the transportation of prog from the table to oral apertures, were movent and sonorific. Such abligurition; such lycanthropic edacity, lurcation, ingurgitation and gulosity; such omnivorousness…
+
+the sheet cells of the line (run 19938474), the definition schema:
+  cell 19   me         state 1  value: run 19938474 from 1: define : abligurition
+  cell 21   newgate    state 1  value: 1317458
+  cell 23   what       state 1  value: 1317458
+  cell 24   def        state 1  value: run 19938482 from gcide: [entry: Abligurition] [headword: Ab*lig`u*ri"tion] [pronunciation: ((?))], [part of speech: n.] [etymology: [L. abliguri
+  cell 26   know       state 1  value: 2/5
+  cell 27   remember   state 1  value: 0
+  cell 28   shape      state 1  value: run 19938199 from 1: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE
+  cell 91   ok         state 1  value: ok
+  cell 150  known      state 1  value: said know remember source such column s n h about word other of noun a to and entry headword pronunciation part speech e
+  cell 155  unknown    state 1  value: W L Why More Pronunciation So J For Because Than An E Or Green Language Your V Letter Ill Books Words wouldn Late PIE Su
+
+the other runs under the line (19): 19938474 (arrival 1 kind 0: define : abligurition), 19938475 (arrival 2 kind 1: BUILD INSERT OR REPLACE INTO run_sheet (), 19938479 (arrival 2 kind 1: BUILD INSERT OR REPLACE INTO run_sheet (), 19938481 (arrival 2 kind 1: BUILD INSERT OR REPLACE INTO run_sheet (), 19938488 (arrival 2 kind 1: BUILD INSERT INTO neuron ( gate ) VALUES), 19938476 (arrival 4 kind 3: ok), 19938477 (arrival 4 kind 3: ok), 19938478 (arrival 4 kind 3: ok), 19938480 (arrival 4 kind 3: ok), 19938486 (arrival 4 kind 3: ok), 19938487 (arrival 4 kind 3: ok), 19938485 (arrival 4 kind 3: ok)
