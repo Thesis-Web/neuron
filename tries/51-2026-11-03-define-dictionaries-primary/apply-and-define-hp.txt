@@ -1,0 +1,21 @@
+typed: run 19938193, 6 runs, 846 hits, 0 born, 0 refused, 0.090 s, 
+typed: run 19938199, 8 runs, 1838 hits, 0 born, 0 refused, 0.242 s, 
+typed: run 19938207, 6 runs, 285 hits, 0 born, 0 refused, 0.014 s, 
+typed: run 19938213, 6 runs, 285 hits, 0 born, 0 refused, 0.011 s, 
+define rows now: [[557, 1, 68, 19938199], [1867, 5, 68, 19938199]]
+typed: run 19938219, 11 runs, 2435 hits, 0 born, 0 refused, 0.287 s, 
+  who    def = run 197 from gcide: [sense: 1.] [definition: Originally, an interrogative pronoun, later, a relative pronoun also; -- used always substantively, and either as singular or
+typed: run 19938230, 11 runs, 2435 hits, 0 born, 0 refused, 0.037 s, 
+  how    def = run 18424 from gcide: [entry: How] [headword: How] [pronunciation: (?)], [part of speech: adv.] [etymology: [OE. how, hou, hu, hwu, AS. h(?), from the same root as hwā, hwæ
+typed: run 19938241, 11 runs, 2435 hits, 0 born, 0 refused, 0.036 s, 
+  why    def = run 19031 from gcide: [sense: 1.] [definition: For what cause, reason, or purpose; on what account; wherefore; -- used interrogatively. See the Note under [entry reference:
+typed: run 19938252, 11 runs, 2435 hits, 0 born, 0 refused, 0.058 s, 
+  what   def = run 15901 from gcide: [sense: 1.] [definition: As an interrogative pronoun, used in asking questions regarding either persons or things; [usage: as, what is this? what did 
+typed: run 19938263, 11 runs, 2435 hits, 0 born, 0 refused, 0.033 s, 
+  where  def = run 17960 from gcide: [entry: Where] [entry: Wher] [headword: Wher] [pronunciation: (?)], [headword: Where] [pronunciation: ((?))], [part of speech: pron. & conj.] [etymolo
+typed: run 19938274, 11 runs, 2435 hits, 0 born, 0 refused, 0.033 s, 
+  when   def = run 17176 from gcide: [sense: 1.] [definition: At what time; -- used interrogatively.] [[source: 1913 Webster]]
+typed: run 19938285, 11 runs, 2435 hits, 0 born, 0 refused, 0.067 s, 
+  selfie def = run 4963979 from wikt: noun 1: (informal, mobile telephony, social media) A photographic self-portrait, especially one taken manually (not using a timer, tripod etc.) with a
+typed: run 19938296, 11 runs, 2435 hits, 0 born, 0 refused, 0.046 s, 
+  zymurgy def = run 4753672 from wikt: noun 1: Synonym of zymology (“the chemistry of fermentation with yeasts, especially the science involved in beermaking and winemaking”). [tags: no-plu

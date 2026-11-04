@@ -1,0 +1,9 @@
+typed: run 19938187, 6 runs, 550 hits, 0 born, 0 refused, 0.028 s, 
+ranks rows: [[24, 8, 1], [24, 443, 1], [24, 7, 2], [24, 10, 2], [24, 11, 2], [24, 12, 2], [24, 13, 2], [24, 14, 2], [24, 15, 3], [126, 7, 1], [126, 10, 1], [126, 11, 1], [126, 12, 1], [126, 8, 2], [126, 443, 2]]
+gate of definition: 276
+who    gate    120 picks run     197 from gcide : [sense: 1.] [definition: Originally, an interrogative pronoun, later, a relative pronoun also; -- used always substantively, and either as s
+how    gate    534 picks run   18424 from gcide : [entry: How] [headword: How] [pronunciation: (?)], [part of speech: adv.] [etymology: [OE. how, hou, hu, hwu, AS. h(?), from the same root a
+why    gate    417 picks run   19031 from gcide : [sense: 1.] [definition: For what cause, reason, or purpose; on what account; wherefore; -- used interrogatively. See the Note under [entry 
+what   gate     23 picks run   15901 from gcide : [sense: 1.] [definition: As an interrogative pronoun, used in asking questions regarding either persons or things; [usage: as, what is this?
+where  gate   2531 picks run   17960 from gcide : [entry: Where] [entry: Wher] [headword: Wher] [pronunciation: (?)], [headword: Where] [pronunciation: ((?))], [part of speech: pron. & conj.
+when   gate   1047 picks run   17176 from gcide : [sense: 1.] [definition: At what time; -- used interrogatively.] [[source: 1913 Webster]]

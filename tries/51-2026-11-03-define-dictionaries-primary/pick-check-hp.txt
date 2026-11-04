@@ -1,0 +1,20 @@
+ranks rows: [[24, 8, 1], [24, 443, 1], [24, 7, 2], [24, 10, 2], [24, 11, 2], [24, 12, 2], [24, 13, 2], [24, 14, 2], [24, 15, 3], [126, 7, 1], [126, 10, 1], [126, 11, 1], [126, 12, 1], [126, 8, 2], [126, 443, 2]]
+gate of definition: 276
+who    gate    120 picks run     197 from gcide : [sense: 1.] [definition: Originally, an interrogative pronoun, later, a relative pronoun also; -- used always substantively, and either as s
+how    gate    534 picks run   18424 from gcide : [entry: How] [headword: How] [pronunciation: (?)], [part of speech: adv.] [etymology: [OE. how, hou, hu, hwu, AS. h(?), from the same root a
+why    gate    417 picks run   19031 from gcide : [sense: 1.] [definition: For what cause, reason, or purpose; on what account; wherefore; -- used interrogatively. See the Note under [entry 
+what   gate     23 picks run   15901 from gcide : [sense: 1.] [definition: As an interrogative pronoun, used in asking questions regarding either persons or things; [usage: as, what is this?
+where  gate   2531 picks run   17960 from gcide : [entry: Where] [entry: Wher] [headword: Wher] [pronunciation: (?)], [headword: Where] [pronunciation: ((?))], [part of speech: pron. & conj.
+when   gate   1047 picks run   17176 from gcide : [sense: 1.] [definition: At what time; -- used interrogatively.] [[source: 1913 Webster]]
+does   gate   3463 picks run  277227 from gcide : [entry: Does] [headword: Does] [pronunciation: (dŭz)]. [definition: The [part of speech: 3d pers. sing. pres.] of [entry reference: Do].] [[
+are    gate    305 picks run   13481 from gcide : [entry: Are] [headword: Are] [pronunciation: ((?))]. [etymology: [AS. (Northumbrian) aron, akin to the 1st pers. pl. forms, Icel. erum, Goth
+can    gate   1530 picks run   13738 from gcide : [entry: Can] [headword: Can] [pronunciation: (kăn)], [definition: an [mark: obs.] form of began, imp. & p. p. of [entry reference: Begin], s
+is     gate    369 picks run   33619 from gcide : [entry: Is] [headword: Is] [pronunciation: (?)], [part of speech: v. i.] [etymology: [AS. is; akin to G. & Goth. ist, L. est, Gr. (?), Skr. 
+a      gate    158 picks run    6098 from gcide : [entry: A] [headword: A] [pronunciation: (named ā in the English, and most commonly ä in other languages)]. [definition: The first letter of
+the    gate    292 picks run    2626 from gcide : [entry: The] [headword: The] [pronunciation: (thē)], [part of speech: v. i.] [definition: See [entry reference: Thee].] [mark: [Obs.]] [auth
+do     gate    350 picks run   75630 from gcide : [entry: Do] [headword: Do] [pronunciation: (dō)], [part of speech: n.] [field: (Mus.)] [definition: A syllable attached to the first tone of
+this   gate    714 picks run   69861 from gcide : [entry: This] [headword: This] [pronunciation: (thĭs)], [part of speech: pron. & a.]; [plural: pl. [plural word: These] [pronunciation: (thē
+that   gate    304 picks run   82121 from gcide : [entry: That] [headword: That] [pronunciation: (?)], [part of speech: pron., a., conj., & adv.] [etymology: [AS. ðaet, neuter nom. & acc. si
+there  gate    707 picks run  108098 from gcide : [entry: There] [headword: There] [pronunciation: (?)], [part of speech: adv.] [etymology: [OE. ther, AS. ðǣr; akin to D. daar, G. da, OHG. d
+you    gate    618 picks run   19554 from gcide : [entry: You] [headword: You] [pronunciation: (ū)], [part of speech: pron.] [noun forms: [[part of speech: Possess.] [declension form: Your] 
+our    gate    370 picks run  140895 from gcide : [entry: Our] [headword: Our] [pronunciation: (our)], [part of speech: possessive pron.] [etymology: [AS. ūre our, of us; akin to ūs us, to u

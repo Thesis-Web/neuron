@@ -1,0 +1,19 @@
+word   | gcide1 the definition picked with the dictionaries tied (gcide laid first)              | wikt1  with Wiktionary ranked first
+who    | 8      Originally, an interrogative pronoun, later, a relative pronoun also; -- used    | 443    pron 1: (interrogative) What person or people; which person or people; asks for 
+how    | 8      In what manner or way; by what means or process…                                 | 443    adv 1: (interrogative, degree) To what degree or extent. [tags: interrogative, n
+why    | 8      For what cause, reason, or purpose; on what account; wherefore; -- used inter    | 443    adv 1: (interrogative) For what cause, reason, or purpose.; Introducing a comple
+what   | 8      As an interrogative pronoun, used in asking questions regarding either person    | 443    det 1: (interrogative) Which, especially which of an open-ended set of possibili
+where  | 8      Whether.] [alternative spelling: [Sometimes written [alternative spelling: wh    | 443    adv 1: (interrogative) In, at or to what place. [tags: interrogative, not-compar
+when   | 8      At what time; -- used interrogatively.] [[source: 1913 Webster]]                 | 443    adv 1: (interrogative) At what time? At which time? Upon which occasion or circu
+does   | 8      The [part of speech: 3d pers. sing. pres.] of [entry reference: Do].] [[sourc    | 443    verb 1: third-person singular simple present indicative of do [tags: form-of, in
+are    | 8      The present indicative plural of the substantive verb to be; but etymological    | 443    verb 1: second-person singular simple present of be [tags: form-of, present, sec
+can    | 8      an [mark: obs.] form of began, imp. & p. p. of [entry reference: Begin], some    | 443    verb 1: (auxiliary verb, defective) To know how to. [tags: auxiliary, defective]
+is     | 8      The third person singular of the substantive verb be, in the indicative mood,    | 443    verb 1: third-person singular simple present indicative of be [tags: form-of, in
+a      | 8      The first letter of the English and of many other alphabets. The capital A of    | 443    character 1: The first letter of the English alphabet, called a and written in t
+the    | 8      See [entry reference: Thee].] [mark: [Obs.]] [authority: Chaucer.] [authority    | 443    article 1: Used before a noun phrase, including a simple noun; The definite gram
+do     | 8      A syllable attached to the first tone of the major diatonic scale for the pur    | 443    verb 1: (auxiliary) A syntactic marker.; A syntactic marker in a question whose 
+this   | 8      [entry: This] [headword: This] [pronunciation: (thĭs)], [part of speech: pron. & | 443    det 1: The (thing) here (used in indicating something or someone nearby). [examp
+that   | 8      [entry: That] [headword: That] [pronunciation: (?)], [part of speech: pron., a., | 443    conj 1: Introducing a clause that is the object of a verb, especially a reportin
+there  | 8      In or at that place.] “[They] there left me and my man, both bound together.”    | 443    adv 1: (location) In or at a place or location (stated, implied or otherwise ind
+you    | 8      [entry: You] [headword: You] [pronunciation: (ū)], [part of speech: pron.] [noun | 443    pron 1: (object pronoun) The people spoken, or written to, as an object. [tags: 
+our    | 8      Of or pertaining to us; belonging to us; [usage: as, our country; our rights;    | 443    det 1: Belonging to us, excluding the person(s) being addressed (exclusive our).
