@@ -1,0 +1,31 @@
+static void do_bundle(Brain *b, int K, SB *o){
+  enum { CAP = 1200000, MAXR = 120000 };
+  i64 hist[65]; memset(hist, 0, sizeof hist);
+  for(int g = 1; g <= b->label.n; g++){ Neuron *n = neuron_of(b, g); if(!n) continue; for(int j = 0; j < n->nsh; j++){ i64 t = n->sh[j].times; int k = 0; while(t > 1 && k < 64){ t >>= 1; k++; } hist[k]++; } }
+  i64 acc = 0; int T = 1; for(int k = 64; k >= 0; k--){ if(acc + hist[k] > CAP && acc > 0){ T = 1 << (k + 1); break; } acc += hist[k]; T = 1 << k; }
+  char *inc = calloc(b->label.n + 2, 1);
+  sb_fmt(o, "{\"T\":%d,\"dna\":[", T); int first = 1; i64 ndna = 0;
+  for(int g = 1; g <= b->label.n; g++){ Neuron *n = neuron_of(b, g); if(!n) continue; for(int j = 0; j < n->nsh; j++){ Shard *s = &n->sh[j]; if(s->times < T) continue; if(!first) sb_str(o, ","); first = 0; ndna++; inc[g] = 1; if(s->before > 0 && s->before <= b->label.n) inc[s->before] = 1; if(s->trigger > 0 && s->trigger <= b->l
+  for(int g = 1; g <= 90 && g <= b->label.n; g++) inc[g] = 1;
+  /* the newest K lines and every run under them */
+  i64 *runs = malloc(sizeof(i64) * MAXR); int nr = 0; HMap seen; hmap_init(&seen, 1 << 17);
+  for(int which = 0; which < 2; which++){ Mail *box = which ? b->third : b->input; i64 nbox = which ? b->nthird : b->ninput; for(i64 i = nbox - 1; i >= 0 && i >= nbox - K && nr < MAXR; i--){ i64 top = box[i].run; if(!top || hmap_get(&seen, top, 0)) continue; int head = nr; runs[nr++] = top; hmap_put(&seen, top, 0, 1); while(head
+  /* the symbols of those runs' lines, so the page decodes them */
+  for(int i = 0; i < nr; i++){ Run *rr = run_of(b, runs[i]); int n = rr && rr->seq ? rr->nseq : 0; const int *sq = rr ? rr->seq : 0; for(int k = 0; sq && k < n; k++) if(sq[k] > 0 && sq[k] <= b->label.n) inc[sq[k]] = 1; Run *r = run_of(b, runs[i]); if(r) for(int c = 0; c < r->ncells; c++){ int cg = r->cells[c].cell; if(cg > 0 && 
+  sb_str(o, "],\"rel\":["); first = 1; i64 nrel = 0;
+  if(!REL_Q){ char q[64]; snprintf(q, sizeof q, "SELECT kind, other FROM %s.rel WHERE gate = ?", b->name); sqlite3_prepare_v2(DB, q, -1, &REL_Q, 0); }
+  { /* the relationship rows of the included points, in one pass over the brain's own rel table (the page asks for the brain whole) */
+    static sqlite3_stmt *ALLREL; if(!ALLREL){ char q[64]; snprintf(q, sizeof q, "SELECT gate, kind, other, run FROM %s.rel", b->name); sqlite3_prepare_v2(DB, q, -1, &ALLREL, 0); }
+    if(ALLREL){ while(sqlite3_step(ALLREL) == SQLITE_ROW && nrel < CAP){ int g = sqlite3_column_int(ALLREL, 0); if(g <= 0 || g > b->label.n || !inc[g]) continue; int kind = sqlite3_column_int(ALLREL, 1), other = sqlite3_column_int(ALLREL, 2); if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%d,%d,%d,%lld]", g, kind, other, (lon
+  sb_str(o, "],\"runs\":["); first = 1;
+  for(int i = 0; i < nr; i++){ Run *r = run_of(b, runs[i]); if(!r) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[%lld,%d,", (long long)runs[i], r->arrival); if(r->parent_set) sb_fmt(o, "%lld", (long long)r->parent); else sb_str(o, "null"); sb_fmt(o, ",%lld,%d,", (long long)r->root, r->kind); if(r->cell) sb_fmt(o, "
+  sb_str(o, "],\"first\":{"); first = 1;
+  for(int i = 0; i < nr; i++){ Run *rr = run_of(b, runs[i]); const int *sq = rr ? rr->seq : 0; int n = sq ? rr->nseq : 0; if(!sq || n < 1) continue; if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "\"%lld\":%d", (long long)runs[i], sq[0]); }
+  sb_str(o, "},\"inputs\":["); first = 1;
+  for(int which = 0; which < 2; which++){ Mail *box = which ? b->third : b->input; i64 nbox = which ? b->nthird : b->ninput; for(i64 i = (nbox - K > 0 ? nbox - K : 0); i < nbox; i++){ if(!first) sb_str(o, ","); first = 0; sb_fmt(o, "[\"%s\",%lld,%lld]", which ? (b->is_main ? "sixth" : "main") : "main", (long long)box[i].id, (lon
+  sb_str(o, "],\"out\":["); first = 1;
+==== timing
+bundle    1: 1.34 s, 36778288 bytes; label 59160 dna 135 rel 1200000 receipts 13 runs 9 memrows 6 xyz 57590
+bundle   40: 1.34 s, 37343879 bytes; label 62014 dna 135 rel 1200000 receipts 4864 runs 654 memrows 463 xyz 59813
+bundle  400: 1.85 s, 42182070 bytes; label 69976 dna 135 rel 1200000 receipts 71003 runs 29823 memrows 3072 xyz 65933
+bundle 2000: 1.88 s, 43488930 bytes; label 70776 dna 135 rel 1200000 receipts 88603 runs 38623 memrows 9472 xyz 65933

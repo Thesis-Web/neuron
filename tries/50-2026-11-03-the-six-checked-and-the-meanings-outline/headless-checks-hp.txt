@@ -1,0 +1,26 @@
+== cdp_c9.js 20:38:43
+{"at":"ready","readyAtSeconds":6,"url":"http://10.31.1.106:8058/full","counts":{"brainPlacesOn":true,"visiblePoints":1465,"springsDrawn":3540,"relLinesDrawn":3540,"relKinds":20,"xyzEntries":350,"memoryNodesDrawn":1,"gatesLoaded":1364,"historyHits":90861,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90860,"hits":90861},"stream":"live","readout":"hop 252 of 252 in run 19938168"}}
+{"at":"the newest line chosen at its last hop","counts":{"brainPlacesOn":true,"visiblePoints":1465,"springsDrawn":3540,"relLinesDrawn":3540,"relKinds":20,"xyzEntries":350,"memoryNodesDrawn":1,"gatesLoaded":1364,"historyHits":90861,"cur":{"root":19938167,"run":19938167,"hops":4,"tk":90610,"hits":90861},"stream":"live","readout":"hop 3 of 3 in run 19938167"}}
+{"at":"after a point was clicked","clicked":"clicked gate 101","counts":{"brainPlacesOn":true,"visiblePoints":1465,"springsDrawn":3540,"relLinesDrawn":3540,"relKinds":20,"xyzEntries":350,"memoryNodesDrawn":1,"gatesLoaded":1364,"historyHits":90861,"cur":{"root":19938167,"run":19938167,"hops":4,"tk":90610,"hits":90861},"stream":"live","readout":"hop 3 of 3 in run 19938167"}}
+{"screenshot":"/mnt/d/Neuron/tries/50-2026-11-03-the-six-checked-and-the-meanings-outline/hp-full-headless-c9-check.png","bytes":649579}
+{"exceptions":[]}
+== cdp_stream.js 30 s 20:39:18
+{"t":3,"state":"ready"}
+{"at":"ready","readyAt":3,"s":{"stream":"live","told":0,"counts":{"moves":0,"ends":0,"passes":0},"fetches":70,"loaded":1364,"nodes":1465,"hist":90861,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90860,"hits":90861},"readout":"hop 252 of 252 in run 19938168","streamLine":"stream live","hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90860 of 90860 · run 19938168, h"}}
+{"at":"after 30 s of silence","requestsMade":0,"s":{"stream":"live","told":0,"counts":{"moves":0,"ends":0,"passes":0},"fetches":70,"loaded":1364,"nodes":1465,"hist":90861,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90860,"hits":90861},"readout":"hop 252 of 252 in run 19938168","streamLine":"stream live","hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90860 of 90860 · run 19938168, h"}}
+{"exceptions":[]}
+== cdp_onehop.js 20:39:58
+{"chosen":"choosing 19938167"}
+{"at":"start of the line","s":{"readout":"hop 0 of 3 in run 19938167","nodes":1462,"loaded":1364,"springs":3521,"cur":{"root":19938167,"run":19938167,"hops":4,"tk":90604,"hits":90861},"hud":"run 19938167 · a line from heard · cold water freezes hit 90604 of 90860 · run 19938167, hop 0 of 3 · heard (gate 1) · s"}}
+{"at":"after press 1","s":{"readout":"hop 0 of 252 in run 19938168 · 2 runs alive this hop","nodes":1462,"loaded":1364,"springs":3521,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90605,"hits":90861},"hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90605 of 908"}}
+{"at":"after press 2","s":{"readout":"hop 1 of 252 in run 19938168 · 2 runs alive this hop","nodes":1463,"loaded":1364,"springs":3536,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90607,"hits":90861},"hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90607 of 908"}}
+{"at":"after press 3","s":{"readout":"hop 2 of 252 in run 19938168 · 2 runs alive this hop","nodes":1463,"loaded":1364,"springs":3536,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90609,"hits":90861},"hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90609 of 908"}}
+{"exceptions":[]}
+== cdp_colors.js 20:40:40
+{"chosen":"choosing 19938167"}
+{"at":"start","s":{"readout":"hop 0 of 3 in run 19938167","acts":{"line":1},"legend":"■ the line itself 1   ","paths":[],"hud":"run 19938167 · a line from heard · cold water freezes hit 90604 of 90860 · run 19938167, hop 0 of 3 · heard (gate 1) · shard 1 · before ∅, trigger ∅ (row 0: excited, not arrived at along the line) · calls run 19937672 · "}}
+{"at":"after press 4","s":{"readout":"hop 3 of 252 in run 19938168 · 2 runs alive this hop","acts":{"state":4},"legend":"■ state and time 4   ","paths":[{"run":19938168,"vertices":4,"kinds":{"state":4},"cur":true},{"run":19938167,"vertices":4,"kinds":{"line":4},"cur":false}],"hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90611 of 90860 · run 19938168, hop 3 of 252 · OR (gate 92) · shard 17 · before ∅, trigger ∅ (row 0: excited, not"}}
+{"at":"after press 8","s":{"readout":"hop 7 of 252 in run 19938168","acts":{"state":8},"legend":"■ state and time 8   ","paths":[{"run":19938168,"vertices":8,"kinds":{"state":8},"cur":true},{"run":19938167,"vertices":4,"kinds":{"line":4},"cur":false}],"hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90615 of 90860 · run 19938168, hop 7 of 252 · ( (gate 33) · shard 17 · before ∅, trigger ∅ (row 0: excited, not "}}
+{"screenshot":"/mnt/d/Neuron/tries/50-2026-11-03-the-six-checked-and-the-meanings-outline/hp-colours-headless-check.png","bytes":773570}
+{"exceptions":[]}
+== done 20:41:34

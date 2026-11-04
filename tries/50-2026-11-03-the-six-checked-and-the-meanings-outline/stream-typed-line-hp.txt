@@ -1,0 +1,4 @@
+20:41:34.946 data: {"hello": "the kernel door tells", "clock": 19938187, "runs": 19938181}
+20:41:34.947 
+20:41:36.964 data: {"moves": [], "passes": 0, "runs": 19938186, "runs_before": 19938181, "clock": 19938192, "why": "type"}
+20:41:36.966 

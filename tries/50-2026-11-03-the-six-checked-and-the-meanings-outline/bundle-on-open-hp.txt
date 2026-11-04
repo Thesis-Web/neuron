@@ -1,0 +1,7 @@
+page reads on open that match a bundle prefix (grep of the page file):
+      1 SELECT id, run, cell, value FROM main.out_user
+      2 SELECT 'main', id, run FROM main.input
+      1 SELECT (SELECT count(*) FROM main.label)
+serve8.py bundle(): rebuilt when BUNDLE is None or older than 600 s
+37:    if BUNDLE['d'] is None or time.time() - BUNDLE['at'] > 600:
+VmRSS:	  663808 kB

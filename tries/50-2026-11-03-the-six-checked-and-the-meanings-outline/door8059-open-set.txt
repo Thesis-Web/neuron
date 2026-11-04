@@ -1,0 +1,10 @@
+patched serve8-g38.py
+parses
+open set built after 2 s: {"k": 2000, "built": 1, "roots": 163, "receipts": 110253, "inputs": 163, "memrows": 332, "memerr": null, "bundle_held": false}
+last: {"k": 2000, "built": 1, "roots": 163, "receipts": 110253, "inputs": 163, "memrows": 332, "memerr": null, "bundle_held": false}
+door 8059 history read: 3945352 rows, 5769 distinct runs, 1353 distinct gates
+  heaviest runs: [(1202, 2518), (1218, 2511), (6281755, 2201)]
+  memrows for root 19938167: 4 [[19938167, 49111, 17], [19938169, 91, 0], [19938170, 91, 0], [19938171, 91, 0]]
+  inputs: 2298
+VmRSS:	    3444 kB
+VmRSS:	  694596 kB

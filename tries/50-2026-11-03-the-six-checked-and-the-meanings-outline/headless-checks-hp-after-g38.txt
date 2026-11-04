@@ -1,0 +1,14 @@
+== cdp_c9.js on the live door 8058 after its restart 21:05:07
+{"at":"ready","readyAtSeconds":3,"url":"http://10.31.1.106:8058/full","counts":{"brainPlacesOn":true,"visiblePoints":1463,"springsDrawn":3527,"relLinesDrawn":3527,"relKinds":20,"xyzEntries":348,"memoryNodesDrawn":1,"gatesLoaded":1362,"historyHits":90819,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90818,"hits":90819},"stream":"live","readout":"hop 252 of 252 in run 19938168"}}
+{"at":"the newest line chosen at its last hop","counts":{"brainPlacesOn":true,"visiblePoints":1463,"springsDrawn":3527,"relLinesDrawn":3527,"relKinds":20,"xyzEntries":348,"memoryNodesDrawn":1,"gatesLoaded":1362,"historyHits":90819,"cur":{"root":19938167,"run":19938167,"hops":4,"tk":90568,"hits":90819},"stream":"live","readout":"hop 3 of 3 in run 19938167"}}
+{"at":"after a point was clicked","clicked":"clicked gate 101","counts":{"brainPlacesOn":true,"visiblePoints":1463,"springsDrawn":3527,"relLinesDrawn":3527,"relKinds":20,"xyzEntries":348,"memoryNodesDrawn":1,"gatesLoaded":1362,"historyHits":90819,"cur":{"root":19938167,"run":19938167,"hops":4,"tk":90568,"hits":90819},"stream":"live","readout":"hop 3 of 3 in run 19938167"}}
+{"screenshot":"/mnt/d/Neuron/tries/50-2026-11-03-the-six-checked-and-the-meanings-outline/hp-full-headless-c9-after-g38.png","bytes":648932}
+{"exceptions":[]}
+== cdp_stream.js 30 s on 8058 21:05:39
+{"t":3,"state":"ready"}
+{"at":"ready","readyAt":3,"s":{"stream":"live","told":0,"counts":{"moves":0,"ends":0,"passes":0},"fetches":71,"loaded":1362,"nodes":1463,"hist":90819,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90818,"hits":90819},"readout":"hop 252 of 252 in run 19938168","streamLine":"stream live","hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90818 of 90818 · run 19938168, h"}}
+{"at":"after 30 s of silence","requestsMade":0,"s":{"stream":"live","told":0,"counts":{"moves":0,"ends":0,"passes":0},"fetches":71,"loaded":1362,"nodes":1463,"hist":90819,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90818,"hits":90819},"readout":"hop 252 of 252 in run 19938168","streamLine":"stream live","hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90818 of 90818 · run 19938168, h"}}
+{"exceptions":[]}
+== the door after the page open 21:06:19
+open set k 2000 roots 2298 receipts 88561 memrows 9420 seconds 28.8 bundle_held False bundle_by []
+VmRSS:	   82164 kB

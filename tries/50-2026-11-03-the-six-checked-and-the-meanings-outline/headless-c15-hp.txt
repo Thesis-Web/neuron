@@ -1,0 +1,5 @@
+== cdp_stream.js 30 s 20:39:18
+{"t":3,"state":"ready"}
+{"at":"ready","readyAt":3,"s":{"stream":"live","told":0,"counts":{"moves":0,"ends":0,"passes":0},"fetches":70,"loaded":1364,"nodes":1465,"hist":90861,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90860,"hits":90861},"readout":"hop 252 of 252 in run 19938168","streamLine":"stream live","hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90860 of 90860 · run 19938168, h"}}
+{"at":"after 30 s of silence","requestsMade":0,"s":{"stream":"live","told":0,"counts":{"moves":0,"ends":0,"passes":0},"fetches":70,"loaded":1364,"nodes":1465,"hist":90861,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90860,"hits":90861},"readout":"hop 252 of 252 in run 19938168","streamLine":"stream live","hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90860 of 90860 · run 19938168, h"}}
+{"exceptions":[]}

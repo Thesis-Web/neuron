@@ -1,0 +1,7 @@
+== cdp_onehop.js 20:39:58
+{"chosen":"choosing 19938167"}
+{"at":"start of the line","s":{"readout":"hop 0 of 3 in run 19938167","nodes":1462,"loaded":1364,"springs":3521,"cur":{"root":19938167,"run":19938167,"hops":4,"tk":90604,"hits":90861},"hud":"run 19938167 · a line from heard · cold water freezes hit 90604 of 90860 · run 19938167, hop 0 of 3 · heard (gate 1) · s"}}
+{"at":"after press 1","s":{"readout":"hop 0 of 252 in run 19938168 · 2 runs alive this hop","nodes":1462,"loaded":1364,"springs":3521,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90605,"hits":90861},"hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90605 of 908"}}
+{"at":"after press 2","s":{"readout":"hop 1 of 252 in run 19938168 · 2 runs alive this hop","nodes":1463,"loaded":1364,"springs":3536,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90607,"hits":90861},"hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90607 of 908"}}
+{"at":"after press 3","s":{"readout":"hop 2 of 252 in run 19938168 · 2 runs alive this hop","nodes":1463,"loaded":1364,"springs":3536,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90609,"hits":90861},"hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90609 of 908"}}
+{"exceptions":[]}

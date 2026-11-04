@@ -1,0 +1,5 @@
+VmRSS:	  663872 kB
+whole-brain bundle rebuilt through /api/graph?fresh=1: 4220 ms, 38777826 bytes
+VmRSS:	  662080 kB
+{"cols": [], "rows": [[1317447, 1317447, 0, 167, 19938186, 33914841, 0, 0, 0, 1, 0, 0, 0, 1200000, 0, 8475153, 0, 1, 1468508]]}
+the counts read with the bundle cached: 16 ms

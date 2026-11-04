@@ -1,0 +1,7 @@
+== cdp_colors.js 20:40:40
+{"chosen":"choosing 19938167"}
+{"at":"start","s":{"readout":"hop 0 of 3 in run 19938167","acts":{"line":1},"legend":"■ the line itself 1   ","paths":[],"hud":"run 19938167 · a line from heard · cold water freezes hit 90604 of 90860 · run 19938167, hop 0 of 3 · heard (gate 1) · shard 1 · before ∅, trigger ∅ (row 0: excited, not arrived at along the line) · calls run 19937672 · "}}
+{"at":"after press 4","s":{"readout":"hop 3 of 252 in run 19938168 · 2 runs alive this hop","acts":{"state":4},"legend":"■ state and time 4   ","paths":[{"run":19938168,"vertices":4,"kinds":{"state":4},"cur":true},{"run":19938167,"vertices":4,"kinds":{"line":4},"cur":false}],"hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90611 of 90860 · run 19938168, hop 3 of 252 · OR (gate 92) · shard 17 · before ∅, trigger ∅ (row 0: excited, not"}}
+{"at":"after press 8","s":{"readout":"hop 7 of 252 in run 19938168","acts":{"state":8},"legend":"■ state and time 8   ","paths":[{"run":19938168,"vertices":8,"kinds":{"state":8},"cur":true},{"run":19938167,"vertices":4,"kinds":{"line":4},"cur":false}],"hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90615 of 90860 · run 19938168, hop 7 of 252 · ( (gate 33) · shard 17 · before ∅, trigger ∅ (row 0: excited, not "}}
+{"screenshot":"/mnt/d/Neuron/tries/50-2026-11-03-the-six-checked-and-the-meanings-outline/hp-colours-headless-check.png","bytes":773570}
+{"exceptions":[]}

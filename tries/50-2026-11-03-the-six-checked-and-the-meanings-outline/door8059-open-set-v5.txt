@@ -1,0 +1,11 @@
+patched serve8-g38.py
+parses
+open set: {"k": 2000, "built": 1, "roots": 2298, "receipts": 88561, "inputs": 2298, "memrows": 9420, "memerr": null, "done": 1, "seconds": 29.1, "bundle_by": [], "bundle_held": false}
+8058 bundle: 88860 rows 2278 runs | 8059 open set: 88561 rows 2273 runs 1353 gates
+runs only in the bundle: 5 (299 receipts) [2871, 3055, 4692, 19938182] | only in the open set: 0 (0 receipts) [] | both, different counts: 0
+{"t":3,"state":"ready"}
+{"at":"ready","readyAt":3,"s":{"stream":"live","told":0,"counts":{"moves":0,"ends":0,"passes":0},"fetches":71,"loaded":1362,"nodes":1463,"hist":90819,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90818,"hits":90819},"readout":"hop 252 of 252 in run 19938168","streamLine":"stream live","hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90818 of 90818 · run 19938168, h"}}
+{"at":"after 30 s of silence","requestsMade":0,"s":{"stream":"live","told":0,"counts":{"moves":0,"ends":0,"passes":0},"fetches":71,"loaded":1362,"nodes":1463,"hist":90819,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90818,"hits":90819},"readout":"hop 252 of 252 in run 19938168","streamLine":"stream live","hud":"run 19938168 · a call from said · BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) hit 90818 of 90818 · run 19938168, h"}}
+{"exceptions":[]}
+after the page open: bundle_held False bundle_by []
+VmRSS:	   71796 kB

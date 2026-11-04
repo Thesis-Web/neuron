@@ -1,0 +1,7 @@
+patched serve8-g38.py
+parses
+open set: {"k": 2000, "built": 1, "roots": 2298, "receipts": 69159, "inputs": 2298, "memrows": 9420, "memerr": null, "done": 1, "seconds": 28.9, "bundle_held": false}
+door 8059 history read: 69159 rows, 2298 distinct runs, 1346 distinct gates
+  memrows for root 19938167: 4
+  inputs: 2298  out rows: 10091  counts: [1317447, 722284, 0, 167, 19938186, 33914841]
+VmRSS:	   52932 kB

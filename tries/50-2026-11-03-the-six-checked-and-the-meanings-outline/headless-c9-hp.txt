@@ -1,0 +1,6 @@
+== cdp_c9.js 20:38:43
+{"at":"ready","readyAtSeconds":6,"url":"http://10.31.1.106:8058/full","counts":{"brainPlacesOn":true,"visiblePoints":1465,"springsDrawn":3540,"relLinesDrawn":3540,"relKinds":20,"xyzEntries":350,"memoryNodesDrawn":1,"gatesLoaded":1364,"historyHits":90861,"cur":{"root":19938167,"run":19938168,"hops":253,"tk":90860,"hits":90861},"stream":"live","readout":"hop 252 of 252 in run 19938168"}}
+{"at":"the newest line chosen at its last hop","counts":{"brainPlacesOn":true,"visiblePoints":1465,"springsDrawn":3540,"relLinesDrawn":3540,"relKinds":20,"xyzEntries":350,"memoryNodesDrawn":1,"gatesLoaded":1364,"historyHits":90861,"cur":{"root":19938167,"run":19938167,"hops":4,"tk":90610,"hits":90861},"stream":"live","readout":"hop 3 of 3 in run 19938167"}}
+{"at":"after a point was clicked","clicked":"clicked gate 101","counts":{"brainPlacesOn":true,"visiblePoints":1465,"springsDrawn":3540,"relLinesDrawn":3540,"relKinds":20,"xyzEntries":350,"memoryNodesDrawn":1,"gatesLoaded":1364,"historyHits":90861,"cur":{"root":19938167,"run":19938167,"hops":4,"tk":90610,"hits":90861},"stream":"live","readout":"hop 3 of 3 in run 19938167"}}
+{"screenshot":"/mnt/d/Neuron/tries/50-2026-11-03-the-six-checked-and-the-meanings-outline/hp-full-headless-c9-check.png","bytes":649579}
+{"exceptions":[]}
