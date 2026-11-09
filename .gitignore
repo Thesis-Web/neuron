@@ -6,3 +6,9 @@ desktop.ini
 *.db-journal
 .~lock.*#
 __pycache__/
+# 2026-11-09: files over 50 MB stay on disk, out of git (GitHub refuses over 100 MB); the history before the strip is D:\Neuron-sources\backups\Neuron-git-before-strip-20261109.git (commit-map-old-to-new.txt maps the old commit ids)
+tries/02-2026-10-18-turn-one-hp-and-hp2-go-kernels/hp/live-body/brain.db
+tries/02-2026-10-18-turn-one-hp-and-hp2-go-kernels/hp2/live-body/acts.log.1.gz
+tries/02-2026-10-18-turn-one-hp-and-hp2-go-kernels/hp2/live-body/brain.db
+tries/11-2026-10-25-new-v18-core/NEURON-v18-CORE-2026-10-25/brain18.db
+tries/20-2026-10-29-full-sources-wordnet-gcide-moby/sources/moby.db
