@@ -1,0 +1,40 @@
+after the pass, 06:33:31: ready True runs 19939072 gates 1788888 (was 1317492: 471396 born) refused 1 heap_MB 16
+define : abligurition -> run 19939073, 0.226 s; suffix 10547 = 1317491 [tiō]; prefix = [ab]; etymology (first 60) = [L abligurito fr abligurire to spend in luxurious indulgence ab ligurire be lickerish lick dainty lingere PIE word h₂epó Learned borrowing from Late Latin abligurrītiō abligurītiō of devouring act spending feasting” abligurriō abliguriō away or waste indulgently squander” tiō suffix forming abstract nouns verbs from” ligurriō liguriō up feast feed upon fond luxuries”]
+define : spend -> run 19939302, 0.419 s; etymology 68 gates, among them: h₁éǵʰ h₁éǵʰs péndeti pendō expendōbor spendōn spend” consume” out” spentōn provide” dedicate”
+
+--- the merge line (MERGE-nk.txt)
+typed: run 19939969, 71 runs, 10512 hits, 11 born, 0 refused, 0.537 s
+  mother: 
+    merged after 553633 into after 517: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived…
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+  mother: ok
+
+after the merge: label select -> [[17434, 'select']] ; SELECT -> [] ; neuron 98 (SELECT): [[0, 0, 0]] ; neuron 81 (INSERT): [[1, 19, 0]] ; neuron 10441 (insert) nodes: [[197]]
+a new BUILD SELECT count ( * ) FROM ranks ; BUILD -> run 19940040, refused 0; its symbols: BUILD   select   count   (   *   )   from   ranks   ;   BUILD; mother: ['15', 'ok', 'ok', 'ok']
+define : who -> run 19940046, 0.186 s, refused 0; def: [sense: 1.] [definition: Originally, an interrogative pronoun, later, a relative pronoun also; -- us

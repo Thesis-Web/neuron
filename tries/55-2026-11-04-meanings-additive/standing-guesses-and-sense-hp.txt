@@ -1,0 +1,71 @@
+=== the 21 standing guesses: the like ground between the word and its root, and the sense rows that carry it
+commutation    -> change  
+      commutation->change moby: like change
+      change->commutation moby: like commutation
+commute        -> change  
+      commute->change moby: like change
+      commute->change wn: verb 5: exchange or replace with another, usually of the sam
+      change->commute moby: like commute
+      change->commute wn: verb 4: lay aside, abandon, or leave for another; "switch to
+conversion     -> change  
+      conversion->change moby: like change
+      change->conversion moby: like conversion
+modification   -> change  
+      modification->change moby: like change
+      change->modification moby: like modification
+mutation       -> change  
+      mutation->change moby: like change
+      change->mutation moby: like mutation
+reversal       -> change  
+      reversal->change moby: like change
+      change->reversal moby: like reversal
+transformation -> change  
+      transformation->change moby: like change
+      change->transformation moby: like transformation
+transition     -> change  
+      transition->change moby: like change
+      change->transition moby: like transition
+variation      -> change  
+      variation->change moby: like change
+      change->variation moby: like variation
+just           -> correct 
+      just->correct moby: like correct
+      correct->just moby: like just
+nice           -> correct 
+      nice->correct moby: like correct
+      correct->nice moby: like nice
+model          -> create  
+      model->create moby: like create
+      create->model moby: like model
+organize       -> create  
+      organize->create moby: like create
+      create->organize moby: like organize
+raise          -> create  
+      raise->create moby: like create
+      create->raise moby: like raise
+sculpture      -> create  
+      sculpture->create moby: like create
+      create->sculpture moby: like sculpture
+tailor         -> create  
+      tailor->create moby: like create
+      create->tailor moby: like tailor
+construction   -> meaning 
+      construction->meaning moby: like meaning
+      meaning->construction moby: like construction
+designation    -> meaning 
+      designation->meaning moby: like meaning
+      meaning->designation moby: like designation
+blueprint      -> print   
+      blueprint->print moby: like print
+      print->blueprint moby: like blueprint
+footstep       -> step    
+      footstep->step moby: like step
+      step->footstep moby: like footstep
+leap           -> step    
+      leap->step moby: like step
+      step->leap moby: like leap
+
+=== C21 ground test on the formula guesses: does a WordNet or Wiktionary sense row of the word carry a like row to the root, and what class is that row?
+  right     25 guesses: 2 carried by a WordNet or Wiktionary sense row, 2 of them a verb sense
+  wrong      0 guesses: 0 carried by a WordNet or Wiktionary sense row, 0 of them a verb sense
+  standing  21 guesses: 1 carried by a WordNet or Wiktionary sense row, 1 of them a verb sense

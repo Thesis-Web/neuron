@@ -1,0 +1,22 @@
+--- F live through the define run (RECALL-10):
+  define : reverse    run 19942441 1.970 s refused 0; guess cell 15: change; dna rows with a call: 5 [[1, 40, 950], [1, 41, 989]]; tried: [('change', 2)]; belief (rows, correct, incorrect): [[5, 0, 0]]
+  define : produce    run 19942780 0.168 s refused 0; guess cell 15: None; dna rows with a call: 1 [[1, 83, 929]]; tried: [('create', 1)]; belief (rows, correct, incorrect): [[1, 1, 0]]
+  define : notch      run 19943550 0.094 s refused 0; guess cell 15: None; dna rows with a call: 0 []; tried: []; belief (rows, correct, incorrect): [[0, None, None]]
+  define : intent     run 19943889 0.069 s refused 0; guess cell 15: meaning; dna rows with a call: 1 [[1, 68, 19937767]]; tried: [('meaning', 2)]; belief (rows, correct, incorrect): [[1, 0, 0]]
+
+--- print dna : define against publish dna : define (who holds no dna rows since the fold, so both printed ok):
+  print dna : define     say: 557 | 1 | 68 | 19942415 |  | 105 / 1867 | 5 | 68 | 19942415 |  | 1363784 / 1931 | 1 | 155 | 1132 |  | 22
+  publish dna : define   say: 557 | 1 | 68 | 19942415 |  | 105 / 1867 | 5 | 68 | 19942415 |  | 1363784 / 1931 | 1 | 155 | 1132 |  | 22
+  list dna : define      say: 557 | 1 | 68 | 19942415 |  | 105 / 1867 | 5 | 68 | 19942415 |  | 1363784 / 1931 | 1 | 155 | 1132 |  | 22
+
+--- the back population of the formula over the roots (one line)
+typed: run 19944136, 6 runs, 1142 hits, 0 born, 0 refused, 6.063 s
+guesses laid by the line: 80; dna rows now with belief 0/0 from this run: [[254]]
+  change     37: advance, assimilation, become, break, chop, commutation, commute, conversion, deform, difference, exchange, go, interchange, make, modification, modulate, move, mutation, reform, relief, restructure, return, reversal, revolution, run, shift, swerve, tergiversate, transfigure, transformation, transition, translate, transpose, travel, variation, veer, vicissitude
+  correct     8: chasten, decent, emend, just, mannerly, nice, received, rectify
+  create     15: assemble, compound, constitute, cut, design, do, forge, manufacture, model, organize, prepare, raise, sculpt, sculpture, tailor
+  define      1: determine
+  incorrect   1: rude
+  meaning     3: construction, designation, resolve
+  print       6: blowup, blueprint, inscribe, mimeograph, overprint, reissue
+  step        9: footstep, get, leap, peg, proceeding, remove, rung, stair, stamp

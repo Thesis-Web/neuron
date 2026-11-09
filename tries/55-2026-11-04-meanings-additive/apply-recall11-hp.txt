@@ -1,0 +1,4 @@
+typed BUILD INSERT OR REPLACE INTO run_sheet ( run 19945409, 14 runs, 5291 hits, 0 born, 0 refused, 1.910 s
+typed BUILD UPDATE dna SET call = 19945409 WHE run 19945423, 6 runs, 285 hits, 0 born, 0 refused, 0.017 s
+typed BUILD UPDATE dna SET call = 19945409 WHE run 19945429, 6 runs, 285 hits, 0 born, 0 refused, 0.018 s
+define rows now: [[557, 1, 68, 19945409, 105], [1867, 5, 68, 19945409, 1363784], [1931, 1, 155, 1132, 22]]

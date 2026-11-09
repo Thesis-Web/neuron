@@ -1,0 +1,6 @@
+abandon 865 [('3', 'move', ['move'], 'leave behind empty; move out of'), ('2', 'intent', ['intent'], 'give up with the intent of never claiming again')]
+accept 4509 [('1', 'true', ['true'], 'consider or hold as true'), ('10', 'make', ['make'], 'make use of or accept for some purpose')]
+acquire 4528 [('3', 'change', ['change'], 'come to have or undergo a change of (physical features and attributes)'), ('2', 'form', ['form'], 'take on a certain form, attribute, or aspect')]
+activate 34671 [('2', 'make', ['make'], 'make active or more active'), ('3', 'make', ['make'], 'make more adsorptive'), ('1', 'move', ['move'], 'put in motion or move to act')]
+add 4201 [('1', 'make', ['make', 'join'], 'make an addition (to); join or combine or unite with others; increase '), ('4', 'make', ['make'], 'make an addition by combining numbers'), ('5', 'determine', ['determine'], 'determine the sum of'), ('6', 'constitute', ['constitute'], 'constitute an addition')]
+advance 6177 [('3', 'raise', ['raise'], 'increase or raise'), ('1', 'move', ['move'], 'move forward, also in the metaphorical sense'), ('5', 'move', ['move'], 'cause to move forward'), ('11', 'move', ['move'], 'move forward')]

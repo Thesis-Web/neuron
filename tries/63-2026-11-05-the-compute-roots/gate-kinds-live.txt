@@ -1,0 +1,18 @@
+live main gates 1..1790818 by kind, keyed reads, 33.0 s
+kind                                          gates       born    defined  examples
+lowercase ascii                              835464     812996     618675  righteously  misteach  photomural  ultrasubtle  swanee  ethnogeographic  melancholias  computationism  outnigger  purdier  airlocks  forneah  xanthogenate  wojewoda
+Capitalized ascii                            423400     319501      92303  Brito  Alresford  Brevier  Entreth  Nadejda  Scotches  Vidiwalls  Hemodialysis  Martyrdome  Openwork  Neerlandish  Nouices  Dittmers  Gunnet
+non-ascii: other                             186893       2322          1  𐌓  𐬱  ❌  រ  𐎌  ㊿  ）  ꦼ  ͬ  ⏪  ℃  ᮞ  🗧  🇬
+non-ascii: IPA or phonetic                   134656        116          0  ʌ  ɑ  ˝  ɱ  ʁ  ɓ  ˣ  ˹  ˘  ˛  ˆ  ˙  ɗ  ʐ
+non-ascii: Latin letters with marks          119662        395          3  ǃ  ç  õ  ị  Ḃ  Ð  Ñ  Ɣ  Ê  ộ  Ḏ  ḣ  ṽ  Ĺ
+UPPERCASE ascii                               25859      18425       6182  DNC  HAT  PBUH  SEES  CIX  RECOLLECTIONS  MZD  EGM  TRISTRAM  GVWR  HOOKER  QSO  FDS  SHANGHAY
+MiXed case ascii                              21351      16066       5075  SignalGate  OKer  ANTs  McWorker  ScrapComputer  NORMs  EPIs  PlayBoy  McBridge  LWs  tRNAs  OpsDev  FAther  OTPs
+non-ascii: Greek                              15233        184          0  Ε  ε  β  ϻ  ϭ  ἤ  ῇ  ᾷ  Ἅ  ᾍ  Ἦ  Ἥ  ϯ  ἂ
+non-ascii: Chinese, Japanese, Korean           8956       1972          0  叄  グ  围  无  灯  黃  着  碰  산  鯨  伽  法  豬  冻
+non-ascii: Arabic, Hebrew                      6068        142          0  ד  د  ٣  ֤  ֙  ں  ֑  ֳ  ۖ  ڭ  ڑ  ۇ  ڻ  ڌ
+non-ascii: Cyrillic                            5082        110          0  ш  і  ю  Л  ҷ  Я  Э  ү  Ф  Ђ  ң  Ѧ  Ѝ  ӱ
+non-ascii: Indic, Thai, Tibetan                4628        515          0  ๓  अ  ද  இ  ர  ટ  ྫ  ལ  ি  ด  থ  ஐ  ସ  ఁ
+other ascii                                    3471       2882         39  cub_beer  _improve  _stroke  _slaver  _pease  _grinding  _to_exchange  _committee  s_i  _DPLA_  Seth_Littrells_alt  _Dasyprocta  Professor_D  _masturbator
+one ascii mark                                   85         85         28  ^  A  s
+digits                                           10         10          0  5  7  2
+all                                         1790818    1175721     722306

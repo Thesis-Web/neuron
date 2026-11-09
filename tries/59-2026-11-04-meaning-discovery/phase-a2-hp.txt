@@ -1,0 +1,174 @@
+== A1b. acting words with their shard keys (before > trigger) and calls
+  accurate         16499  heard>::19937779
+  adjust           32368  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  alter             8757  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  append           34302  heard>cell:19952155 and>cell:19952155
+  assemble         36072  heard>neuron:929
+  become            2299  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  blueprint        38141  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  build             9598  heard>neuron:929
+  catalog           9600  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  change             438  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  characterize     10348  heard>::19938846 sixth>::19938846 heard>unknown:1132
+  clarify           2424  heard>::19938846 sixth>::19938846 heard>unknown:1132
+  commutation      76112  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  commute          49747  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  compare           4921  heard>value:19952164 and>value:19952164
+  compound           318  heard>neuron:929
+  constitute       16987  heard>neuron:929
+  construct        22060  heard>neuron:929
+  construction     16536  heard>::19937767
+  conversion       10018  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  convert          17463  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  copy              3216  heard>cell:19952056 and>cell:19952056
+  correct            419  heard>::19937779
+  create             428  heard>neuron:929
+  define             156  heard>::19948363 sixth>::19948363 heard>unknown:1132
+  deform           35993  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  delete           22293  define>::/s19936999 heard>link:19952119 and>link:19952119
+  delineate        32453  heard>::19938846 sixth>::19938846 heard>unknown:1132
+  describe          9240  heard>::19937222 sixth>::19937222 heard>unknown:1132
+  design            6629  heard>neuron:929
+  designation       8277  heard>::19937767
+  determine         4559  heard>::19942415 sixth>::19942415 heard>unknown:1132
+  erroneous        28477  heard>::19937787
+  exact             9530  heard>::19937779
+  exchange          5707  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  explain           9323  heard>::19938846 sixth>::19938846 heard>unknown:1132
+  false             4196  heard>::19937787
+  fetch             1882  heard>word:19952191 and>word:19952191
+  find              1330  heard>word:19952029 and>word:19952029
+  footstep         58523  heard>back:1302
+  forge            19953  heard>neuron:929
+  form               200  heard>neuron:929
+  generate         15722  heard>neuron:929
+  gist             19961  heard>::19937767
+  import           10436  heard>::19937767
+  inaccurate       50701  heard>::19937787
+  incorrect          423  heard>::19937787
+  inscribe          9663  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  insert           10441  define>::/s19936999 heard>shard:19952101 and>shard:19952101
+  intent            6622  heard>::19937767
+  interchange      19230  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  interpret         5120  heard>::19938846 sixth>::19938846 heard>unknown:1132
+  invent            4809  heard>neuron:929
+  join              8296  define>::/s19936999 heard>run:19952083 and>run:19952083
+  just               696  heard>::19937779
+  leap             18794  heard>back:1302
+  link             15177  heard>point:19952065 and>point:19952065
+  list              3124  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  make              1055  heard>neuron:929
+  manufacture       9550  heard>neuron:929
+  meaning            321  heard>::19937767
+  measure           5275  heard>run:19952182 and>run:19952182
+  mimeograph       77556  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  mistaken         14495  heard>::19937787
+  model             2837  heard>neuron:929
+  modification      9532  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  modify           12183  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  modulate         53389  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  move              5586  heard>point:19952047 and>point:19952047
+  mutation         41308  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  nice              6724  heard>::19937779
+  organize         17335  heard>neuron:929
+  overprint        77563  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  precise           6633  heard>::19937779
+  print              424  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  produce           2585  heard>neuron:929
+  publish          25178  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  purport          34031  heard>::19937767
+  raise              937  heard>neuron:929
+  read              2437  heard>cell:19952020 heard>::19952461 and>cell:19952020
+  recall            7528  heard>key:19952137 and>key:19952137
+  reform            1185  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  reissue          77571  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  render           17822  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  restructure      72283  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  reversal         37809  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  reverse          14764  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  run                 50  heard>line:19952200 and>line:19952200
+  sculpt           36011  heard>neuron:929
+  sculpture         9383  heard>neuron:929
+  select           17434  define>::/s19936999 heard>dna:19952092 and>dna:19952092
+  set               3984  heard>cell:19952173 and>cell:19952173
+  shift             8813  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  significance     10534  heard>::19937767
+  signification     5308  heard>::19937767
+  specify           1445  heard>::19938846 sixth>::19938846 heard>unknown:1132
+  split             2932  heard>run:19952074 and>run:19952074
+  stamp             9415  heard>cell:19952146 and>cell:19952146
+  step               460  heard>back:1302
+  store             4856  heard>value:19952128 and>value:19952128
+  switch           26426  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  tabulate          9760  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  tailor           34629  heard>neuron:929
+  transcribe        9769  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  transfigure      72286  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  transform        30612  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  transformation   17426  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  transition        1037  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  translate         4563  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  transpose        57737  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  true              2042  heard>::19937779
+  type               599  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910
+  untrue           26411  heard>::19937787
+  update            7810  heard>shard:19952110 and>shard:19952110
+  variation         9326  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  vary              9536  heard>trigger:950 heard>call:989 heard>spawn:1008 heard>define:1027 heard>meaning:1052
+  why                417  sixth>::6281755
+  write             5732  heard>dna:826 heard>memory:847 heard>node:870 heard>sheet:889 heard>table:910 heard>value:19952038 and>value:19952038
+  wrong             2208  heard>::19937787
+== A1c. what the main programs do (their text)
+  run 826: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; BUILD BUILD SELECT shard , before , trigger , call , spawn , times FROM dna WHERE gate = what ORDER BY shard ; BUILD BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 1 , reply ) ; BUILD
+
+  run 847: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; BUILD BUILD SELECT run , input , source , gate , shard , at FROM run_memory WHERE gate = what ORDER BY run ; BUILD BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 1 , reply ) ; BUILD
+
+  run 870: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; BUILD BUILD SELECT n.id , n.source , ( SELECT symbol FROM label WHERE gate = n.source ) , n.run , ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = n.run ORDER BY s.pos ) ) FROM node n WHERE n.gate = what ORDER BY n.id ; BUILD BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25
+
+  run 889: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 1 AND s.pos < 100000 ORDER BY s.pos ) ) AS INTEGER ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; BUILD BUILD SELECT s.cell , ( SELECT symbol FROM label WHERE gate = s.cell ) , s.state , s.value FROM run_sheet s WHERE s.run = what ORDER BY s.cell ; BUILD BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above ,
+
+  run 910: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; BUILD BUILD SELECT mother ( 'SELECT * FROM "' || ( SELECT symbol FROM label WHERE gate = what ) || '"' ) ; BUILD BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 1 , reply ) ; BUILD
+
+  run 929: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 21 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; INSERT INTO replay ( parent , source , kind ) SELECT above , 1 , 1 WHERE NOT EXISTS ( SELECT 1 FROM neuron WHERE gate = what AND born = 1 ) ; BUILD BUILD SELECT gate , born 
+
+  run 950: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , ( SELECT gate FROM label WHERE symbol = 'from' ) , 1 , ( SELECT CASE WHEN t GLOB '[0-9]*' THEN CAST ( t AS INTEGER ) ELSE ( SELECT gate FROM label WHERE symbol = t ) END FROM ( SELECT ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = ( SELECT gate FROM label 
+
+  run 989: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , ( SELECT gate FROM label WHERE symbol = 'from' ) , 1 , ( SELECT CASE WHEN t GLOB '[0-9]*' THEN CAST ( t AS INTEGER ) ELSE ( SELECT gate FROM label WHERE symbol = t ) END FROM ( SELECT ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = ( SELECT gate FROM label 
+
+  run 1008: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , ( SELECT gate FROM label WHERE symbol = 'from' ) , 1 , ( SELECT CASE WHEN t GLOB '[0-9]*' THEN CAST ( t AS INTEGER ) ELSE ( SELECT gate FROM label WHERE symbol = t ) END FROM ( SELECT ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = ( SELECT gate FROM label 
+
+  run 1027: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; BUILD BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT d , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 4 ) , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 6 ) FROM ( SELECT ( SELECT max ( s.run ) FROM run_she
+
+  run 1052: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , ( SELECT gate FROM label WHERE symbol = 'from' ) , 1 , ( SELECT CASE WHEN t GLOB '[0-9]*' THEN CAST ( t AS INTEGER ) ELSE ( SELECT gate FROM label WHERE symbol = t ) END FROM ( SELECT ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = ( SELECT gate FROM label 
+
+  run 1132: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 1 ORDER BY s.pos ) ) AS INTEGER ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; BUILD BUILD UPDATE sixth.spawned SET sent = 2 WHERE id IN ( SELECT p.id FROM sixth.spawned p WHERE p.sent = 0 ORDER BY p.shared DESC , p.id LIMIT what ) ; INSERT INTO third ( text ) SELECT 'define : ' || l.symbol FROM sixth.spawned p JOIN label l ON l.gate = p.g
+
+  run 19938846: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT INTO replay ( parent , source , kind ) VALUES ( above , 19938193 , 1 ) ; BUILD BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 24 , 1 , r.id FROM run r LEFT JOIN ranks p ON p.cell = 24 AND p.source = r.arrival WHERE r.parent = above AND r.kind = 3 AND r.cell = 24 ORDER BY coalesce ( p.rank , 9 ) , CASE WHEN EXISTS ( SELECT 1 FROM seq s WHERE s.run = r.id AND s.gate = 276 ) OR ( SELECT gate FROM seq WHERE run = r.id ORDER BY pos LIMIT 1
+
+  run 1302: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 1 ORDER BY s.pos ) ) AS INTEGER ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; BUILD BUILD WITH RECURSIVE back ( run , depth ) AS ( SELECT what , 0 UNION ALL SELECT r.parent , depth + 1 FROM run r JOIN back ON r.id = back.run WHERE r.parent IS NOT NULL ) SELECT b.depth , r.id , r.kept , ( SELECT symbol FROM label WHERE gate = r.arrival ) ,
+
+  run 19937767: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; INSERT INTO replay ( parent , source , kind ) VALUES ( above , 19937752 , 1 ) ; BUILD
+
+  run 19937779: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 1 ORDER BY s.pos ) ) AS INTEGER ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; BUILD BUILD INSERT INTO dna ( gate , shard , before , trigger , call , spawn , times ) SELECT x.g , NULL , d.before , d.trigger , d.call , d.spawn , 0 FROM ( SELECT CAST ( value AS INTEGER ) AS g FROM run_sheet WHERE run = what AND cell = 23 ) x JOIN ( SELECT CA
+
+  run 19937787: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 1 ORDER BY s.pos ) ) AS INTEGER ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 25 , 0 , NULL ) ; BUILD BUILD INSERT OR REPLACE INTO belief ( gate , shard , correct , incorrect , at , run ) SELECT x.g , d.shard , coalesce ( b.correct , 0 ) , coalesce ( b.incorrect , 0 ) + 1 , ( SELECT n FROM clock ) , what FROM ( SELECT CAST ( value AS INTEGER ) AS g FROM ru
+
+  run 19937222: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( pos ) FROM seq WHERE run = above AND gate = 68 ) + 2 ) ; INSERT INTO replay ( parent , source , kind ) VALUES ( above , 19937208 , 1 ) ; BUILD BUILD INSERT OR IGNORE INTO rel ( gate , kind , other , run ) SELECT r.about , k.gate , s.gate , r.id FROM run r JOIN seq k ON k.run = r.id AND k.gate IN ( SELECT gate FROM label WHERE symbol IN ( 'like' , 'opposite' ) ) JOIN seq s ON s.run = r.id AND s.pos > k.pos JOIN label l ON l.gate = s.gate WHERE r.kind = 3 AND r.arrival IN ( 10 , 11 , 12 ) AND r.parent = above AND l.symbol GLOB '[A-Za-z]
+
+  run 19942415: BUILD insert or replace into run_sheet ( run , cell , state , value ) select above , 23 , 1 , ( select gate from seq where run = above and pos = ( select min ( pos ) from seq where run = above and gate = 68 ) + 2 ) ; insert into replay ( parent , source , kind ) values ( above , 19938193 , 1 ) ; BUILD BUILD insert or replace into run_sheet ( run , cell , state , value ) select above , 24 , 1 , r.id from run r left join ranks p on p.cell = 24 and p.source = r.arrival where r.parent = above and r.kind = 3 and r.cell = 24 order by coalesce ( p.rank , 9 ) , case when exists ( select 1 from seq s where s.run = r.id and s.gate = 276 ) or ( select gate from seq where run = r.id order by pos limit 1
+
+  run 6281755: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > 4 AND s.pos < ( SELECT max ( pos ) FROM seq WHERE run = above AND gate = 3 ) ORDER BY s.pos ) ) AS INTEGER ) ) ; INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , ( SELECT gate FROM label WHERE symbol = 'to' ) , 1 , CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT max ( pos ) FROM seq WHERE run = above AND gate = 3 ) ORDER BY
+
+== A4b. did the self-typed line define : rewrite run? rewrite 9728: nodes, sense_shard rows, about runs
+nodes [[68]] sense_shard [[6]] dna [[20049825, 162, 653, None], [20049826, 162, 867, None], [20049827, 338, 292, None], [20049828, 158, 582, None], [20049829, 799, 385, None], [20049830, 292, 225, None]]
+about runs [[3484249, 443, 3, 3484249], [3484250, 443, 3, 3484250], [3484251, 443, 3, 3484251], [3484252, 443, 3, 3484252], [3484253, 443, 3, 3484253]]
+== nkvt.c in_update / th_update
+static int in_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){ if(argc == 1 || sqlite3_value_type(argv[0]) != SQLITE_NULL) return SQLITE_OK; const char *t = (const char*)sqlite3_value_text(argv[3]); line_in(b, 0, t ? t : ""); *rowid = b->ninput; return SQLITE_OK; }
+static void th_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, c->b->nthird - 1); }
+static int th_step(Cur *c){ if(!c->started) c->started = 1; else c->e++; return c->e <= c->e_end; }
+static void th_col(Cur *c, sqlite3_context *x, int col){ Mail *m = &c->b->third[c->e]; switch(col){ case 0: R(x, m->id); break; case 1: RT(x, m->text); break; case 2: R(x, m->run); break; } }
+static int th_update(Brain *b, int argc, sqlite3_value **argv, sqlite3_int64 *rowid, char **err){ if(argc == 1 || sqlite3_value_type(argv[0]) != SQLITE_NULL) return SQLITE_OK; const char *t = (const char*)sqlite3_value_text(argv[3]); line_in(b, 1, t ? t : ""); *rowid = b->nthird; return SQLITE_OK; }
+/* secondary (id, run, cell, gate, about, text, made): an insert is a return with its key */
+static void sec_begin(Cur *c, int idx, sqlite3_value **argv){ ENT_BEGIN(c, 0, c->b->nsec - 1); }
+static int sec_step(Cur *c){ if(!c->started) c->started = 1; else c->e++; return c->e <= c->e_end; }
+static void sec_col(Cur *c, sqlite3_context *x, int col){ Sec *s = &c->b->sec[c->e]; switch(col){ case 0: R(x, s->id); break; case 1: R(x, s->run); break; case 2: RN(x, s->cell); break; case 3: R(x, s->gate); break; case 4: RN(x, s->about); break; case 5: RT(x, s->text); break; case 6: R(x, s->made); break; case 7: RN(x, s->src); break; } }

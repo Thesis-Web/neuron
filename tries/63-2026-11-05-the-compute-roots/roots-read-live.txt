@@ -1,0 +1,93 @@
+address  gate 1404    dna rows 0, acting 0 | definition rows 465 | computing or logic senses 2 | etymology lines 4
+     wikt   noun 9: Direction.; (computing) A number identifying a specific storage location in computer memory. [topics: computing, engineering, mathematics, natural-sciences, physi
+     wn     noun 1: (computer science) the code that identifies where a piece of information is stored [syn: {address}, {computer address}, {reference}] [hypernym: {code}, {computer 
+     etym wikt   Etymology tree Proto-Indo-European *h₂éd Proto-Italic *ad Proto-Italic *ad- Latin ad- Old French a- Proto-Indo-European *dwóh₁ ▲ Proto-Indo-European *trísinflu.
+read     gate 2437    dna rows 0, acting 0 | definition rows 199 | computing or logic senses 1 | etymology lines 7
+     wikt   verb 12: (computing, transitive) To fetch data from (a storage medium, etc.). [tags: transitive] [topics: computing, engineering, mathematics, natural-sciences, physical-
+     etym wikt   English and Scottish surname, variant of Reed.
+write    gate 5732    dna rows 5, acting 5 | definition rows 247 | computing or logic senses 2 | etymology lines 3
+     wikt   noun 2: (computing) The operation of storing data, as in memory or onto disk. [topics: computing, engineering, mathematics, natural-sciences, physical-sciences, sciences]
+     wikt   verb 8: (computing, intransitive, with to) To record data mechanically or electronically. [tags: intransitive] [raw tags: with to] [topics: computing, engineering, mathem
+     etym wikt   From Middle English writen, from Old English wrītan, from Proto-West Germanic *wrītan, from Proto-Germanic *wrītaną (“to carve, write”), from Proto-Indo-Europea
+test     gate 3024    dna rows 0, acting 0 | definition rows 324 | computing or logic senses 0 | etymology lines 10
+     etym wikt   The river is first attested 877 as Terstan. The name is of Brythonic origin, possibly related to Welsh trais (“violence, battle”).
+advance  gate 6177    dna rows 5, acting 0 | definition rows 668 | computing or logic senses 0 | etymology lines 5
+     etym wikt   Etymology tree Proto-Indo-European *h₂ep Proto-Indo-European *-o Proto-Indo-European *h₂epó Proto-Italic *ap Latin ab Proto-Indo-European *h₂ent- Proto-Indo-Eur
+fire     gate 2544    dna rows 0, acting 0 | definition rows 781 | computing or logic senses 0 | etymology lines 5
+     etym wikt   From Middle English firen, fyren, furen, from Old English fȳrian (“to make a fire”), from the noun (see above). Cognate with Old Frisian fioria (“to light a fir
+find     gate 1330    dna rows 0, acting 0 | definition rows 612 | computing or logic senses 0 | etymology lines 6
+     etym wikt   Etymology tree Proto-Indo-European *pent-der. Proto-Germanic *finþaną Proto-West Germanic *finþan Old English findan Middle English fynden English find Inherite
+copy     gate 3216    dna rows 0, acting 0 | definition rows 552 | computing or logic senses 0 | etymology lines 5
+     etym wikt   Ellipsis of copy that.
+bind     gate 14906   dna rows 0, acting 0 | definition rows 333 | computing or logic senses 0 | etymology lines 3
+     etym wikt   Etymology tree Proto-Indo-European *bʰendʰ-der. Proto-Germanic *bindaną Proto-West Germanic *bindan Old English bindan Middle English bynden English bind From M
+join     gate 8296    dna rows 1, acting 1 | definition rows 440 | computing or logic senses 4 | etymology lines 3
+     wikt   noun 4: (computing) The act of joining something, such as a network. [topics: computing, engineering, mathematics, natural-sciences, physical-sciences, sciences] [example
+     wikt   noun 3: (computing, databases) An intersection of data in two or more database tables. [topics: computing, databases, engineering, mathematics, natural-sciences, physical
+     wikt   verb 7: (computing, databases, transitive) To produce an intersection of data in two or more database tables. [tags: transitive] [topics: computing, databases, engineerin
+     etym wikt   From Middle English joinen, joynen, joignen, from Old French joindre, juindre, jungre, from Latin iungō (“join, yoke”, verb), from Proto-Indo-European *yewg- (“
+========
+this     gate 714     dna rows 0, acting 0 | definition rows 40 | computing or logic senses 0 | etymology lines 6
+     etym wikt   Etymology tree Proto-Indo-European *só Proto-Germanic *sa, *þas Proto-Germanic *-si Proto-Germanic *þassi Proto-West Germanic *þassi Proto-Anglo-Frisian *þēs Ol
+that     gate 304     dna rows 0, acting 0 | definition rows 94 | computing or logic senses 0 | etymology lines 6
+     etym wikt   Etymology tree Proto-Indo-European *tód Proto-Germanic *þod Proto-Germanic *þat Proto-West Germanic *þat Old English þæt Middle English that English that From M
+not      gate 335     dna rows 1, acting 1 | definition rows 52 | computing or logic senses 1 | etymology lines 6
+     wikt   noun 1: (mathematics, logic) A unary operation on logical values that changes true to false, and false to true. [topics: human-sciences, logic, mathematics, philosophy, s
+     etym wikt   Etymology tree Proto-Indo-European *né Proto-Germanic *ne Proto-West Germanic *ne Proto-Indo-European *h₂ey- Proto-Indo-European *-u Proto-Indo-European *h₂óyu 
+and      gate 167     dna rows 1, acting 1 | definition rows 59 | computing or logic senses 4 | etymology lines 6
+     wikt   verb 1: (logic, transitive) To combine (a value) with another value by means of this operator. [tags: transitive] [topics: human-sciences, logic, mathematics, philosophy,
+     wikt   noun 2: (logic) The binary operator and, only true if both of two inputs is true. In infix notation. [topics: human-sciences, logic, mathematics, philosophy, sciences] [e
+     wikt   noun 1: (logic) Alternative form of ∧, the conjunction operator. [tags: alt-of, alternative] [topics: human-sciences, logic, mathematics, philosophy, sciences] [alt of: ∧
+     etym wikt   Initialism.
+or       gate 289     dna rows 1, acting 1 | definition rows 218 | computing or logic senses 5 | etymology lines 10
+     wikt   noun 1: (logic) The binary operator inclusive or, true if one at least one of two inputs is true. In infix notation. [tags: uncountable] [topics: human-sciences, logic, m
+     wikt   conj 2: (computer science) A lexical symbol to implement inclusive or in a computer language. [topics: computer, computing, engineering, mathematics, natural-sciences, ph
+     wikt   conj 1: (logic) Inclusive or; either one proposition or the other is true or both. [topics: human-sciences, logic, mathematics, philosophy, sciences] [senseid: en:inclusi
+     etym wikt   Borrowed from Cantonese 柯 (o1) or from Hebrew אור ('ór). This surname is mostly found in Hong Kong.
+any      gate 390     dna rows 0, acting 0 | definition rows 75 | computing or logic senses 0 | etymology lines 4
+     etym wikt   Etymology tree Proto-Indo-European *ís? Proto-Indo-European *h₁óynos Proto-Indo-European *-kos Proto-Indo-European *h₁oy-no-kós Proto-Germanic *ainagaz Proto-We
+either   gate 286     dna rows 0, acting 0 | definition rows 72 | computing or logic senses 0 | etymology lines 5
+     etym wikt   From Middle English either, from Old English ǣġhwæþer, from Proto-West Germanic *aiw + *gahwaþar. Akin to Old Saxon eogihwethar, iahwethar (Low German jeed); Ol
+neither  gate 5892    dna rows 0, acting 0 | definition rows 20 | computing or logic senses 0 | etymology lines 6
+     etym wikt   Alteration (after either) of nauther, from Middle English neiþer, from Old English nāwþer, contraction of nāhwæþer, corresponding to no + whether. Compare Latin
+nor      gate 5893    dna rows 0, acting 0 | definition rows 20 | computing or logic senses 1 | etymology lines 4
+     wikt   noun 1: (logic, electronics) Alternative form of NOR. [tags: alt-of, alternative] [topics: business, electrical-engineering, electricity, electromagnetism, electronics, e
+     etym wikt   From nor. Reinterpreted as not + or or negation + or (see also NAND, formed analogically).
+equal    gate 1976    dna rows 0, acting 0 | definition rows 326 | computing or logic senses 2 | etymology lines 4
+     wikt   verb 1: (mathematics, copulative) To be equal to, to have the same value as; to correspond to. [tags: copulative] [topics: mathematics, sciences] [examples: Two plus two 
+     wikt   adj 4: (not comparable) The same in one or more respects.; (mathematics, not comparable) Exactly identical, having the same value. [tags: not-comparable, usually] [topics
+     etym wikt   Etymology tree Proto-Italic *aikʷos? Old Latin aiquos Latin aequus Proto-Indo-European *h₂el- Proto-Indo-European *-is Proto-Indo-European *h₂élisder.? Proto-It
+both     gate 2886    dna rows 0, acting 0 | definition rows 54 | computing or logic senses 0 | etymology lines 4
+     etym wikt   From Middle English bothe, boþe, from Old English bā þā (“both the; both those”) and possibly reinforced by Old Norse báðir, from Proto-Germanic *bai. Cognate w
+false    gate 4196    dna rows 1, acting 1 | definition rows 280 | computing or logic senses 3 | etymology lines 6
+     wikt   adj 1: (electronics) one of two states of a Boolean variable; logic 0. [tags: not-comparable] [topics: business, electrical-engineering, electricity, electromagnetism, el
+     wikt   verb 1: (electronics, telecommunications, of a decoder) To incorrectly decode noise as if it were a valid signal. [raw tags: of a decoder] [topics: business, communicatio
+     wikt   adj 4: (logic) Of a state in Boolean logic that indicates a negative result. [topics: human-sciences, logic, mathematics, philosophy, sciences]
+     etym wikt   From Middle English false, fals, from Old English fals (“false; counterfeit; fraudulent; wrong; mistaken”), from Latin falsus (“counterfeit, false; falsehood”),
+true     gate 2042    dna rows 1, acting 1 | definition rows 369 | computing or logic senses 2 | etymology lines 6
+     wikt   adj 1: (electronics) one of two states of a Boolean variable; logic 1. [tags: not-comparable] [topics: business, electrical-engineering, electricity, electromagnetism, el
+     wikt   adj 4: (logic) Of the state in Boolean logic that indicates an affirmative or positive result. [topics: human-sciences, logic, mathematics, philosophy, sciences] [example
+     etym wikt   Variant of truce.
+no       gate 88      dna rows 0, acting 0 | definition rows 197 | computing or logic senses 1 | etymology lines 13
+     wikt   adj 1: (electronics, plumbing, of switches, relays, and valves) Initialism of normally open. [tags: abbreviation, alt-of, initialism] [raw tags: of switches] [topics: bus
+     etym wikt   Variant of No., from the scribal abbreviation for Latin (in) numerō (“in number, to the number of”).
+yes      gate 8632    dna rows 0, acting 0 | definition rows 189 | computing or logic senses 0 | etymology lines 6
+     etym wikt   Etymology tree Proto-Germanic *ja Proto-West Germanic *jā Old English ġēa Proto-Indo-European *h₁es- Proto-Indo-European *h₂wes- Proto-Germanic *wesaną Proto-We
+off      gate 1754    dna rows 0, acting 0 | definition rows 407 | computing or logic senses 0 | etymology lines 6
+     etym wikt   Etymology tree Proto-Indo-European *h₂ep Proto-Indo-European *-o Proto-Indo-European *h₂epó Proto-Germanic *ab Proto-West Germanic *ab Old English æf Old Englis
+on       gate 785     dna rows 1, acting 1 | definition rows 256 | computing or logic senses 4 | etymology lines 8
+     wikt   prep 45: (mathematics, Quebec) Divided by. [tags: Quebec] [topics: mathematics, sciences] [examples: Twenty on three. | type: example] [synonyms: over]
+     wikt   prep 44: (mathematics) Generated by. [topics: mathematics, sciences] [examples: the free group on four letters | type: example]
+     wikt   prep 43: (mathematics) Having Vⁿ as domain and V as codomain, for the specified set V and some integer n. [topics: mathematics, sciences] [examples: an operator on #92;ma
+     etym wikt   From Japanese 音読み (on'yomi, literally “sound reading”).
+0        gate 58      dna rows 0, acting 0 | definition rows 0 | computing or logic senses 0 | etymology lines 0
+1        gate 59      dna rows 0, acting 0 | definition rows 0 | computing or logic senses 0 | etymology lines 0
+xor      gate 16360   dna rows 0, acting 0 | definition rows 13 | computing or logic senses 2 | etymology lines 2
+     wikt   noun 3: (programming) The symbolic representation that implements "exclusive or". [topics: computing, engineering, mathematics, natural-sciences, physical-sciences, progr
+     wikt   noun 1: (logic) The connective "exclusive or". One way to state its meaning in plain English is "if either A or B, but not if both." [topics: human-sciences, logic, mathe
+     etym wikt   Short for exclusive or.
+nand     gate 16359   dna rows 0, acting 0 | definition rows 7 | computing or logic senses 1 | etymology lines 2
+     wikt   noun 1: (logic) A binary operator composite of not and; negation of and function. [topics: human-sciences, logic, mathematics, philosophy, sciences] [examples: The associ
+     etym wikt   Borrowed from Hindi नंद (nand). This surname is mostly found in Uttar Pradesh.
+xnor     gate 22874   dna rows 0, acting 0 | definition rows 3 | computing or logic senses 0 | etymology lines 1
+     etym wikt   Blend of exclusive + NOR.

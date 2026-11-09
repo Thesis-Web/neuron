@@ -1,0 +1,5 @@
+{"door": "http://127.0.0.1:8056", "read": "labels by gate", "ms": 109.9, "rows": 10, "error": null}
+{"door": "http://127.0.0.1:8056", "read": "places by gate", "ms": 30.3, "rows": 9, "error": null}
+{"door": "http://127.0.0.1:8056", "read": "rel rows by gate", "ms": 59.4, "rows": 1043, "error": null}
+{"door": "http://127.0.0.1:8056", "read": "runs by id", "ms": 207.4, "rows": 10, "error": null}
+{"door": "http://127.0.0.1:8056", "read": "receipts by run", "ms": 71.1, "rows": 10, "error": null}

@@ -1,0 +1,32 @@
+this           gate 714     born,nodes,shards,memories [1, 40, 0, 1]  rows 0
+that           gate 304     born,nodes,shards,memories [1, 94, 0, 1]  rows 0
+not            gate 335     born,nodes,shards,memories [1, 52, 1, 1]  rows 1
+   #20049241  define | :  call None  spawn 19936999  times 0
+      spawn r19936999: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO replay ( parent , source , kind ) VALUES ( above , 19936943 , 1 ) ; BUILD BUILD INSERT OR IGNORE INTO r
+both           gate 2886    born,nodes,shards,memories [1, 54, 0, 1]  rows 0
+and            gate 167     born,nodes,shards,memories [1, 59, 1, 1]  rows 1
+   #20049222  define | :  call None  spawn 19936999  times 0
+      spawn r19936999: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO replay ( parent , source , kind ) VALUES ( above , 19936943 , 1 ) ; BUILD BUILD INSERT OR IGNORE INTO r
+any            gate 390     born,nodes,shards,memories [1, 75, 0, 1]  rows 0
+or             gate 289     born,nodes,shards,memories [1, 218, 1, 1]  rows 1
+   #20049216  define | :  call None  spawn 19936999  times 0
+      spawn r19936999: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO replay ( parent , source , kind ) VALUES ( above , 19936943 , 1 ) ; BUILD BUILD INSERT OR IGNORE INTO r
+either         gate 286     born,nodes,shards,memories [1, 72, 0, 1]  rows 0
+neither        gate 5892    born,nodes,shards,memories [1, 20, 0, 1]  rows 0
+contrary       gate 7226    born,nodes,shards,memories [1, 327, 0, 1]  rows 0
+contradictory  gate 28519   born,nodes,shards,memories [1, 186, 0, 1]  rows 0
+equal          gate 1976    born,nodes,shards,memories [1, 326, 0, 1]  rows 0
+is             gate 369     born,nodes,shards,memories [1, 38, 0, 1]  rows 0
+true           gate 2042    born,nodes,shards,memories [1, 369, 1, 2]  rows 1
+   #20049181  heard | :  call 19937779  spawn None  times 1
+      call r19937779: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = a
+yes            gate 8632    born,nodes,shards,memories [1, 189, 0, 1]  rows 0
+on             gate 785     born,nodes,shards,memories [1, 256, 1, 1]  rows 1
+   #20049233  define | :  call None  spawn 19936999  times 0
+      spawn r19936999: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO replay ( parent , source , kind ) VALUES ( above , 19936943 , 1 ) ; BUILD BUILD INSERT OR IGNORE INTO r
+false          gate 4196    born,nodes,shards,memories [1, 280, 1, 2]  rows 1
+   #20049117  heard | :  call 19937787  spawn None  times 0
+      call r19937787: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM seq s JOIN label l ON l.gate = s.gate WHERE s.run = a
+no             gate 88      born,nodes,shards,memories [1, 197, 0, 1]  rows 0
+off            gate 1754    born,nodes,shards,memories [1, 407, 0, 1]  rows 0
+unknown        gate 155     born,nodes,shards,memories [1, 166, 0, 1]  rows 0

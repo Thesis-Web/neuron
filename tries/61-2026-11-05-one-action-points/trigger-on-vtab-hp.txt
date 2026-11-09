@@ -1,0 +1,3 @@
+test brain, SQLite 3.46.1: a span creating a trigger on main.dna; mother answered: ['error: cannot create triggers on virtual tables']
+main triggers after: []
+main.dna in the schema: [['table', 'dna', 'CREATE VIRTUAL TABLE dna USING nk(main, dna)']]

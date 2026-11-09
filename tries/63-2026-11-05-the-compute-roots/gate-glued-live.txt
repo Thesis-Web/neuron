@@ -1,0 +1,1 @@
+non-ascii gates 481178: one character 7878; English letters glued to a dash, curly quote or ellipsis 173347; pronunciations (with stress or length marks) 114024; born 5756

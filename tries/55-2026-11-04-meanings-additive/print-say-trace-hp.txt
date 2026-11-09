@@ -1,0 +1,24 @@
+print dna : who (run 19941742): cells:
+  cell 19    state 1 value 19941742 -> run 19941742 from 1: print dna : who
+  cell 26    state 1 value 4/7 
+  cell 27    state 1 value 834 -> run 834 from 1: print dna : who
+  cell 28    state 1 value 826 -> run 826 from 1: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT abo
+  cell 23    state 1 value 120 
+  cell 25    state 1 value 19941749 -> run 19941749 from 4: ok
+  cell 91    state 1 value ok 
+the runs under it (id, arrival, kind, cell, text):
+  19941742 arr 1 kind 0 cell 0: print dna : who
+  19941743 arr 2 kind 1 cell 0: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count (
+  19941747 arr 2 kind 1 cell 0: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FR
+  19941744 arr 4 kind 3 cell 22: ok
+  19941745 arr 4 kind 3 cell 22: ok
+  19941746 arr 4 kind 3 cell 22: ok
+  19941748 arr 4 kind 3 cell 22: ok
+  19941749 arr 4 kind 3 cell 22: ok
+  19941750 arr 4 kind 3 cell 22: ok
+  mother reply run 19941744, whole: 'ok'
+  mother reply run 19941745, whole: 'ok'
+  mother reply run 19941746, whole: 'ok'
+  mother reply run 19941748, whole: 'ok'
+  mother reply run 19941749, whole: 'ok'
+  mother reply run 19941750, whole: 'ok'

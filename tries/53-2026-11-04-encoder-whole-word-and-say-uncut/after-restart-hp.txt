@@ -1,0 +1,18 @@
+/api/info after the restart, 05:03:53: ready True busy None runs 19939022 defined 722299 refused 1 gates 1317489 heap_MB 10 open(done 1, roots 721, receipts 84861)
+
+define : spend -> run 19939023, 16 runs, 5313 hits, 0 refused, 0.207 s
+  the say cell: run 19939037, text length 1796, cut mark present: False
+  the say begins: spend | like: know, run, of, to, the, under, in, be, with, serve, go, over, out, experience, stand, against, weekend, purse, have, live, thr
+  the say ends:   ciation: (?)], [part of speech: v. t.] [verb forms: [[part of speech: imp. & p. p.] [conjugated form: Spent] [pronunciation: (?)]; [part of speech: p. pr. & vb.
+  the def cell: run 976342, text length 633
+  the output row for say: [(8, '19939037')]
+
+the word abligurrītiō stands here with tiō and h₂epó -> run 19939039, 29 runs, 3 born, 0 refused, 0.605 s
+  label 'abligurrītiō' -> [[1317490, 'abligurrītiō', 12]]
+  label 'tiō'          -> [[1317491, 'tiō', 3]]
+  label 'h₂epó'        -> [[1317492, 'h₂epó', 5]]
+  label 'ti'           -> [[4923, 'ti', 2]]
+  label 'ō'            -> [[241, 'ō', 1]]
+  the symbols of the line: the |   | word |   | abligurrītiō |   | stands |   | here |   | with |   | tiō |   | and |   | h₂epó
+
+/api/info, 05:03:54: ready True busy None runs 19939067 defined 722299 refused 1 gates 1317492 heap_MB 56 open(done 1, roots 723, receipts 84874)

@@ -1,0 +1,46 @@
+non-ascii gates from 900000:
+   900232 '斎' len 1 born 0
+   900275 'ڌ' len 1 born 0
+   900359 '𒎏' len 1 born 0
+   900417 '寺' len 1 born 0
+   901037 'ኛ' len 1 born 0
+   901038 '፟' len 1 born 0
+   901490 '溜' len 1 born 0
+   901782 '︠' len 1 born 0
+   901783 '︡' len 1 born 0
+   902097 '曽' len 1 born 0
+   902596 'џ' len 1 born 0
+   902832 '菊' len 1 born 0
+capitalized from 900000: Sassnitz(born 0) Neubrandenburg(born 0) Grambow(born 0) Kydonia(born 1) Lanape(born 0) KTTV(born 1) Hakuna(born 1) Lulz(born 0) Malwebolence(born 1) Vulcanism(born 0)
+lowercase unborn from 900000: masoretic massor buloke bulokes pyralididae oremus oremuses dimethylhydantoin moroz sindhi
+non-ascii gates from 1300000:
+   1300275 '宛' len 1 born 0
+   1300323 'ஊ' len 1 born 0
+   1300667 'ገ' len 1 born 0
+   1300800 '繕' len 1 born 0
+   1300861 '빙' len 1 born 0
+   1301109 '蕉' len 1 born 0
+   1301110 '认' len 1 born 0
+   1301111 '磊' len 1 born 0
+   1301113 '态' len 1 born 0
+   1301114 '适' len 1 born 0
+   1301212 '鴆' len 1 born 0
+   1301213 '鸩' len 1 born 0
+capitalized from 1300000: Mittelst(born 0) Foglers(born 0) Geophagist(born 0) Desautel(born 0) Winquists(born 0) Winqvist(born 0) Olethreutini(born 0) EBMers(born 0) Vosters(born 1) Glassin(born 1)
+lowercase unborn from 1300000: plasmoquine olethreutine olethreutines ichthyomorphous imbellished imbellish stoechiology stoichiology stoichiological keratopathy
+non-ascii gates from 1700000:
+   1700000 'tɹəˈlɔːni' len 9 born 0
+   1700001 'change—that' len 11 born 0
+   1700002 'Phérës' len 6 born 0
+   1700003 'Eurýstheus' len 10 born 0
+   1700004 'Admétus' len 7 born 0
+   1700005 'Ευριπιδου' len 9 born 0
+   1700006 'Αλκηστις' len 8 born 0
+   1700007 '“traitors' len 9 born 0
+   1700008 '“heady' len 6 born 0
+   1700009 'Christianity—or' len 15 born 0
+   1700010 'Counterfeited”' len 14 born 0
+   1700011 'C₁₂H₁₈O' len 7 born 0
+capitalized from 1700000: Phérës(born 0) Eurýstheus(born 0) Admétus(born 0) Christianity—or(born 0) Counterfeited”(born 0) C₁₂H₁₈O(born 0) Rytövuori(born 0) Arkhontikoí(born 0) Good‧nite(born 0) Lemons”(born 0)
+lowercase unborn from 1700000: 
+Capitalized ascii gates 423426, with a lowercase twin gate 195936

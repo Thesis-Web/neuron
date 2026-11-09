@@ -1,0 +1,27 @@
+# RECALL-9-nk.txt (2026-11-04, 03:40 CST). C26, the owner's words of 11-04 00:10: "worries me that the schema doesnt have opposite, antonym,
+# synonym, similar or alike, tense, prefixes, suffixes, other cells that would help with relationships; a lot of these fields are made for
+# machine to machine, that is fine; the output the brain would output would have a more who is speaking feel: llms ask give the json direct,
+# human asks maybe a system of arrays that pass the words in better shape using relationships, similar, alike are key". 03:10: "I approve c26 ..
+# build it and check it live. do not break the html serve". 03:25: "walkers are not desired, nor sweeps ... relationship tables might be small
+# now, but later they might be hundreds deep".
+# Line 1 is the define run: RECALL-8's three spans as the kernel holds them in run 19938199 (read back symbol by symbol, holes filled: the ask
+# 19938193, definition 276), then five spans after them. Every read is keyed: the point's rows by node (gate) and run (parent), a row's symbols by
+# seq (run; run, pos), the relationship rows by rel's key (gate, kind, other) and its index on other, the sheet by run_sheet (run; run, cell), the
+# ranks by (cell, source), the speaker by run (id). No table is read whole.
+# Span 4: the cells class 441, tense 6332, etymology 204, prefix 5516, suffix 10547 as gate lists (the brain holds numbers), ordered dictionaries
+#   first (ranks), then run, then position; '' at state 1 when nothing. The fields: a '[' (143) opens a marker; its name is the symbols up to its
+#   ':' (68); its content runs to the next ']' (147); only a marker whose first symbol is part (194), forms (197), conjugated (4675), plural (290)
+#   or etymology (204) is read further, one keyed read per '[' (the first form read every marker). The first symbol of a sense row is read as RECALL-8 reads it, ORDER BY pos LIMIT 1 per row (a join on an
+#   equality with that subquery ran it per symbol: 4.7 s of the first form's 4.9 s on a). class = the first 'part of speech' field of each row, and the first symbol of a WordNet or
+#   Wiktionary sense row; tense = the 'forms', 'conjugated form' and 'plural' fields, a symbol that names a sub-field (followed by ':') left out;
+#   etymology = the field whose name is the one symbol 204; prefix = a symbol of it followed by '-' (70) and a non-letter, or by ' +' (74, GCIDE's
+#   'ab + ligurire'); suffix = a symbol of it after '-' preceded by a non-letter. The field names are the labels of tries/22 (the sources' own).
+# Span 5: like 138, opposite 139, similar 530 from rel both ways (gate = what; other = what), ordered by the run that laid them; '' when none.
+# Spans 6-8: the say, as the tools of 10-28 (declare say; one statement; say = reply). The statement reads the eight cells and known/unknown back
+#   from the sheet by cell number and splits the gate lists; the speaker is the typed line's arrival: 5 (the sixth) -> one json object, the
+#   values gates; otherwise (1, heard) -> arrays of words through the encoder, the relationship arrays first, then class, tense, prefix, suffix,
+#   etymology, and the definition's first 200 characters.
+# The trap written around: nk.c decode_span replaces a symbol that names a cell of the run, its parent or grandparent by that cell's value; so
+#   inside these spans every cell is named by its number, never its word, except above, what and reply, which are meant to be replaced; and
+#   GLOB stands where LIKE would be (like is cell 138).
+# Line 2 and 3: define's two rows call line 1. Rollback: UPDATE dna SET call = 19938199 WHERE gate = 156 AND before = 1 AND trigger = 68 (and 5).

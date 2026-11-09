@@ -1,0 +1,5 @@
+HAVING before: [[256553, 'HAVING']] ; having: [[683]] nodes [[11]]
+a span with HAVING typed: run 19948312 refused 0; its symbols: BUILD select count ( * ) from ranks HAVING count ( * ) > 0 ; BUILD
+HAVING after: [] -> encodes to [[683]]
+the next span encodes HAVING as: BUILD select 1 having 1 ; BUILD
+WHO 178 still its own gate: [[178, 'WHO']]

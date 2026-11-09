@@ -1,0 +1,3 @@
+# The owner's words, 2026-11-04 21:3x CST (hub session, verbatim)
+
+maybe look at it different,,, maybe find a lesson in a real doc that teaches something to a human ... then you as the teacher the judge has the answer key that you have never seen. you teach by speaking about it ... Lecture... if you were, then giving problems to solve, checking those and marking correct or incorrect, then trying to teach another way , and give different problems to solve on the same basic topic, until the brain gets them correct, then give the brain a test and let the judge grade it... if the brain passes, then you quiz it. with edge cases to see if it can solve those also.. ??? maybe??? basically you have to develop a lesson plan, then execute it..

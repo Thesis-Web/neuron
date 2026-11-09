@@ -1,0 +1,1 @@
+live main, gates 1..1790818 read by key in 1.7 s: rows 1790818, born 1175721, born with definition rows 722306, not born 615097

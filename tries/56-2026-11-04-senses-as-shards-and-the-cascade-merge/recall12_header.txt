@@ -1,0 +1,11 @@
+# RECALL-12-nk.txt (2026-11-04 08:10). C21 (the owner, 11-03 20:10: "one trap a definition might hold many different uses, each of those uses
+# likely points to a different dna shard of that neuron; some neurons need to know more about the run before deciding the dna shard it is going
+# to run"), parts 1 and 2 of the outline of 08:00. Line 1 is the define run as the kernel holds it (RECALL-11's eighteen BUILD marks read back
+# symbol by symbol) plus two spans. The sense cell 187: the point's WordNet and Wiktionary sense rows (a row whose first symbol is not '['), as a
+# run list, machine to machine. The sense shards: every occurrence of the point inside one of its sense rows that stands between two word symbols
+# (the gloss's quoted examples in WordNet, the examples field in Wiktionary) gives a context pair, the symbol before and the symbol after, the
+# same key the hop uses; a dna shard with that key and no call is laid when the point holds none, and a row of the table sense_shard (gate, shard, run; the word sense is the cell 187 and never stands bare in a span; a table senses of an earlier try already exists)
+# names the sense row the context came from (several rows when one context occurs in several senses: the ambiguity the owner names). A typed line
+# that uses the point in one of those contexts hits that shard, and the sense is read from its receipt. Every read is keyed: node by gate, seq by
+# run, label by gate, dna and sense by gate. The cell 187 is a cell name, so the word sense is never written bare in these spans. Rollback:
+# UPDATE dna SET call = 19945409 WHERE gate = 156 AND before = 1 AND trigger = 68 (and 5).

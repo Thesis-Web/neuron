@@ -1,0 +1,86 @@
+== catalogue gate 16722 dna before: []
+   EXPECTED (written first): gloss 'make an itemized list or catalog of; classify' -> ['make', 'list', 'catalog'] -> call 929 spawn 826
+   derive run 19952887 hits 5412 say: 1 |  | make | 929 | 2654830
+   derived rows: [[None, 1, 'make', 929, 2654830]]
+   dna after: [[20049840, 1, 68, 929, None]]
+   typed 'catalogue : who' run 19952905 hits 473 receipts [[0, 1, 1], [1, 16722, 20049840], [3, 68, 17], [5, 120, 17]] kids [[19952906, 1, 19937672], [19952910, 1, 929]] say: 120 | 1
+      kid [19952906, 1, 19937672] reply: ok
+      kid [19952910, 1, 929] reply: ok
+== docket gate 10394 dna before: []
+   EXPECTED (written first): gloss 'make a summary or abstract of a legal document and inscribe it in a list' -> ['make', 'inscribe', 'list'] -> call 929 spawn 826
+   derive run 19952914 hits 5412 say: 1 |  | on | 19936999 | 1904826
+   derived rows: [[None, 1, 'on', 19936999, 1904826]]
+   dna after: [[20049842, 1, 68, 19936999, None]]
+   typed 'docket : who' run 19952932 hits 1674 receipts [[0, 1, 1], [1, 10394, 20049842], [3, 68, 17], [5, 120, 17]] kids [[19952933, 1, 19937672], [19952937, 1, 19936999]] say: None
+      kid [19952933, 1, 19937672] reply: ok
+      kid [19952937, 1, 19936999] reply: ok
+== plan gate 12482 dna before: []
+   EXPECTED (written first): gloss 'make plans for something' -> ['make'] -> call 929 spawn None
+   derive run 19952941 hits 5412 say: 1 |  | make | 929 | 601370
+2 |  | design | 929 | 601370
+3 |  | form | 929 | 601370
+   derived rows: [[None, 1, 'make', 929, 601370], [None, 2, 'design', 929, 601370], [None, 3, 'form', 929, 601370]]
+   dna after: [[20049845, 1, 68, 929, 929]]
+   typed 'plan : who' run 19952959 hits 689 receipts [[0, 1, 1], [1, 12482, 20049845], [3, 68, 17], [5, 120, 17]] kids [[19952960, 1, 19937672], [19952964, 1, 929], [19952968, 2, 929]] say: 120 | 1
+      kid [19952960, 1, 19937672] reply: ok
+      kid [19952964, 1, 929] reply: ok
+      kid [19952968, 2, 929] reply: ok
+== pulsate gate 39544 dna before: []
+   EXPECTED (written first): gloss 'produce or modulate (as electromagnetic waves) in the form of short bursts or pulses or cause an apparatus to produce pulses' -> ['produce', 'modulate', 'form', 'produce'] -> call 929 spawn 950
+   derive run 19952972 hits 5412 say: 1 |  | move | 19952047 | 3680189
+2 |  | or | 19936999 | 3680189
+3 |  | as | 19936999 | 3680189
+   derived rows: [[None, 1, 'move', 19952047, 3680189], [None, 2, 'or', 19936999, 3680189], [None, 3, 'as', 19936999, 3680189]]
+   dna after: [[20049849, 1, 68, 19952047, 19936999]]
+   typed 'pulsate : who' run 19952990 hits 6059 receipts [[0, 1, 1], [1, 39544, 20049849], [3, 68, 17], [5, 120, 17]] kids [[19952991, 1, 19937672], [19952995, 1, 19952047], [19953000, 2, 19936999]] say: None
+      kid [19952991, 1, 19937672] reply: ok
+      kid [19952995, 1, 19952047] reply: error: near "to": syntax error
+      kid [19953000, 2, 19936999] reply: ok
+== accommodate gate 4757 dna before: []
+   EXPECTED (written first): gloss 'make fit for, or change to suit a new purpose' -> ['make', 'change'] -> call 929 spawn 950
+   derive run 19953004 hits 5412 say: 0 |  | unresolved |  | 1502470
+   derived rows: [[None, 0, 'unresolved', None, 1502470]]
+   dna after: [[20049850, 1, 68, None, None]]
+   typed 'accommodate : who' run 19953022 hits 257 receipts [[0, 1, 1], [1, 4757, 20049850], [3, 68, 17], [5, 120, 17]] kids [[19953023, 1, 19937672]] say: None
+      kid [19953023, 1, 19937672] reply: ok
+== adapt gate 34572 dna before: []
+   EXPECTED (written first): gloss 'adapt or conform oneself to new or different conditions' -> [] -> call None spawn None
+   derive run 19953027 hits 5412 say: 1 |  | make | 929 | 1739673
+2 |  | or | 19936999 | 1739673
+3 |  | change | 950 | 1739673
+   derived rows: [[None, 1, 'make', 929, 1739673], [None, 2, 'or', 19936999, 1739673], [None, 3, 'change', 950, 1739673]]
+   dna after: [[20049852, 1, 68, 929, 19936999]]
+   typed 'adapt : who' run 19953045 hits 2350 receipts [[0, 1, 1], [1, 34572, 20049852], [3, 68, 17], [5, 120, 17]] kids [[19953046, 1, 19937672], [19953050, 1, 929], [19953054, 2, 19936999], [19953056, 1, 19936943]] say: 120 | 1
+      kid [19953046, 1, 19937672] reply: ok
+      kid [19953050, 1, 929] reply: ok
+      kid [19953054, 2, 19936999] reply: ok
+      kid [19953056, 1, 19936943] reply: ok
+== affect gate 5884 dna before: []
+   EXPECTED (written first): gloss 'act physically on; have an effect upon' -> [] -> call None spawn None
+   derive run 19953060 hits 5412 say: 1 |  | and | 19936999 | 962780
+   derived rows: [[None, 1, 'and', 19936999, 962780]]
+   dna after: [[20049854, 1, 68, 19936999, None]]
+   typed 'affect : who' run 19953078 hits 1674 receipts [[0, 1, 1], [1, 5884, 20049854], [3, 68, 17], [5, 120, 17]] kids [[19953079, 1, 19937672], [19953083, 1, 19936999]] say: None
+      kid [19953079, 1, 19937672] reply: ok
+      kid [19953083, 1, 19936999] reply: ok
+== apologise gate 139588 dna before: []
+   EXPECTED (written first): gloss 'acknowledge faults or shortcomings or failing' -> [] -> call None spawn None
+   derive run 19953087 hits 5412 say: 1 |  | explain | 19938846 | 4571477
+2 |  | or | 19936999 | 4571477
+3 |  | make | 929 | 4571477
+4 |  | by | 19936999 | 4571477
+   derived rows: [[None, 1, 'explain', 19938846, 4571477], [None, 2, 'or', 19936999, 4571477], [None, 3, 'make', 929, 4571477], [None, 4, 'by', 19936999, 4571477]]
+   dna after: [[20049856, 1, 68, 19938846, 19936999]]
+   typed 'apologise : who' run 19953105 hits 7190 receipts [[0, 1, 1], [1, 139588, 20049856], [3, 68, 17], [5, 120, 17]] kids [[19953106, 1, 19937672], [19953110, 1, 19938846], [19953112, 1, 19938193], [19953121, 2, 19936999], [19953123, 1, 19936943]] say: who | like: WHO | similar:  | opposite:  | class: noun, pron, det, name | tense: whom, objective, who, whose, possessive, whos, plural, WHO, canonical, the, W, H, 
+      kid [19953106, 1, 19937672] reply: ok
+      kid [19953110, 1, 19938846] reply: ok
+      kid [19953112, 1, 19938193] reply: ok
+      kid [19953121, 2, 19936999] reply: ok
+      kid [19953123, 1, 19936943] reply: ok
+== abandon gate 865 dna before: []
+   EXPECTED (written first): gloss 'stop maintaining or insisting on; of ideas or claims' -> [] -> call None spawn None
+   derive run 19953127 hits 5412 say: 0 |  | unresolved |  | 1589371
+   derived rows: [[None, 0, 'unresolved', None, 1589371]]
+   dna after: [[20049857, 1, 68, None, None]]
+   typed 'abandon : who' run 19953145 hits 257 receipts [[0, 1, 1], [1, 865, 20049857], [3, 68, 17], [5, 120, 17]] kids [[19953146, 1, 19937672]] say: None
+      kid [19953146, 1, 19937672] reply: ok

@@ -1,0 +1,33 @@
+--- /home/james/nk/nkio.c	2026-11-02 20:21:28.571344493 -0600
++++ nkio.c	2026-11-03 17:53:39.266996116 -0600
+@@ -393,6 +393,14 @@
+   else sb_str(o, "{\"error\":\"unknown request\"}");
+ }
+ 
++/* tries/45: the kernel tells. One client at a time (the door), kept open after it sends "tell"; a line whenever receipts were laid. */
++static int TELL_FD = -1; static i64 TOLD_NTL = -1, TOLD_RUNS = -1;
++static void tell_now(void){
++  if(TELL_FD < 0) return; if(MAINB.ntl == TOLD_NTL && MAINB.nruns == TOLD_RUNS) return;
++  char line[160]; int n = snprintf(line, sizeof line, "{\"clock\":%lld,\"runs\":%lld,\"tl\":%lld}\n", (long long)MAINB.clock, (long long)MAINB.nruns, (long long)MAINB.ntl);
++  if(send(TELL_FD, line, n, MSG_DONTWAIT | MSG_NOSIGNAL) != n){ close(TELL_FD); TELL_FD = -1; return; }
++  TOLD_NTL = MAINB.ntl; TOLD_RUNS = MAINB.nruns;
++}
+ static volatile sig_atomic_t STOP; static void on_stop(int n){ STOP = 1; }
+ int main(int argc, char **argv){
+   int attached = 0; { const char *mp = getenv("NK_MAP"); if(mp && *mp){ attached = nk_map_open(mp, 400ULL << 30, ((uint64_t)sizeof(Run) << 40) ^ ((uint64_t)sizeof(Brain) << 20) ^ sizeof(Cell)); if(attached < 0) return 1; } }
+@@ -419,11 +427,12 @@
+     int busy = pending(&MAINB) || pending(&SIXTHB);
+     struct pollfd p = {s, POLLIN, 0}; int timeout = busy ? 0 : -1;
+     int r = poll(&p, 1, timeout);
+-    if(r <= 0){ if(busy) pump_all(256); continue; }
++    if(r <= 0){ if(busy) pump_all(256); tell_now(); continue; }   /* tries/45: pending work that ended a run is told */
+     int c = accept(s, 0, 0); if(c < 0) continue;
+     SB req = {0}; char buf[65536]; ssize_t n;
+     while((n = read(c, buf, sizeof buf)) > 0){ sb_put(&req, buf, n); if(memchr(buf, '\n', n)) break; }
+-    if(req.s){ char *nl = strchr(req.s, '\n'); if(nl) *nl = 0; SB o = {0}; handle(req.s, &o); sb_str(&o, "\n"); size_t off = 0; while(off < o.n){ ssize_t w = write(c, o.s + off, o.n - off); if(w <= 0) break; off += w; } free(o.s); }
+-    free(req.s); close(c);
++    if(req.s){ char *nl = strchr(req.s, '\n'); if(nl) *nl = 0; if(strcmp(req.s, "tell") == 0){ if(TELL_FD >= 0) close(TELL_FD); TELL_FD = c; TOLD_NTL = -1; TOLD_RUNS = -1; free(req.s); tell_now(); continue; }   /* tries/45: this client is kept and told */
++      SB o = {0}; handle(req.s, &o); sb_str(&o, "\n"); size_t off = 0; while(off < o.n){ ssize_t w = write(c, o.s + off, o.n - off); if(w <= 0) break; off += w; } free(o.s); }
++    free(req.s); close(c); tell_now();   /* tries/45: a request that laid receipts is told at once */
+   }
+ }

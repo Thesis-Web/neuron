@@ -1,0 +1,5 @@
+assume 25561 [('3', 'form', 'The gods assume human or animal form in these fables', 'take on a certain form, attribute, or aspect'), ('1', 'true', 'I assume his train was late', 'take to be the case or to be true; accept without verificati')]
+beat 1421 [('19', 'produce', 'beat the drum', 'produce a rhythm by striking repeatedly'), ('18', 'make', 'beat a path through the forest', 'make by pounding or trampling'), ('6', 'make', 'The drums beat all night', 'make a rhythmic sound'), ('14', 'make', 'the grandfather clock beat midnight', 'make a sound like a clock or a timer')]
+block 9377 [('1', 'render', 'block the way', 'render unsuitable for passage'), ('8', 'design', 'block the book cover', 'stamp or emboss a title or design on a book with a block')]
+break 6380 [('12', 'make', 'The horse was tough to break', 'make submissive, obedient, or useful'), ('38', 'exchange', 'I had to break a $100 bill just to buy the candy', 'exchange for smaller units of money')]
+buy 4293 [('5', 'true', "I can't buy this story", 'accept as true'), ('4', 'exchange', 'She wanted to buy his love with her dedication to him and hi', 'acquire by trade or sacrifice or exchange')]

@@ -1,0 +1,40 @@
+ 1 gcide  run   206  [quotation: As who should say, it were a very dangerous matter if a man in any point should be found wiser tha
+ 2 gcide  run   205  [sense: 2.] [definition: One; any; one.] [mark: [Obs., except in the archaic phrase, as who should say.]] [[so
+ 3 gcide  run   204  [quotation: The brace of large greyhounds, who were the companions of his sports.] [quotation author: Sir W. S
+ 4 gcide  run   203  [quotation: Who cheapens life, abates the fear of death.] [quotation author: Young.] [[source: 1913 Webster]]
+ 5 gcide  run   202  [quotation: How hard is our fate, who serve in the state.] [quotation author: Addison.] [[source: 1913 Webster
+ 6 gcide  run   201  [quotation: Whom I could pity thus forlorn.] [quotation author: Milton.] [[source: 1913 Webster]]
+ 7 gcide  run   200  [quotation: Adders who with cloven tongues Do hiss into madness.] [quotation author: Shak.] [[source: 1913 Web
+ 8 gcide  run   199  [quotation: There thou tell'st of kings, and who aspire; Who fall, who rise, who triumph, who do moan.] [quota
+ 9 gcide  run   198  [quotation: [He] should not tell whose children they were.] [quotation author: Chaucer.] [[source: 1913 Webste
+10 gcide  run   197  [sense: 1.] [definition: Originally, an interrogative pronoun, later, a relative pronoun also; -- used always 
+11 gcide  run   196  [entry: Who] [headword: Who] [pronunciation: (?)], [part of speech: pron.] [noun forms: [[part of speech: Poss
+12 wn     run   195  noun 1: a United Nations agency to coordinate international health activities and to help governments improve 
+13 wikt   run  1359  name 1: (fandom slang) The television show Doctor Who. [tags: slang] [topics: lifestyle] [examples: After thre
+14 wikt   run  1358  [word: Who] [part of speech: name] [head: Who]
+15 wikt   run  1357  pron 1: Honorific alternative letter-case form of who, sometimes used when referring to God or another importa
+16 wikt   run  1356  [word: Who] [part of speech: pron] [head: Who] [head: Who]
+17 wikt   run  1355  name 1: Initialism of World Health Organization. [tags: abbreviation, alt-of, initialism] [examples: Trump ini
+18 wikt   run  1354  [word: WHO] [part of speech: name] [head: WHO or the WHO] [forms: WHO | tags: canonical; the WHO | tags: canon
+19 wikt   run  1353  det 1: (interrogative, dialect, African-American Vernacular) whose [tags: dialectal, interrogative] [qualifier
+20 wikt   run  1352  [word: who] [part of speech: det] [head: who] [etymology: From Middle English who, hwo, huo, wha, hwoa, hwa, f
+21 wikt   run  1351  noun 1: A person under discussion; a question of which person. [examples: A wham-bam caper flick, efficiently 
+22 wikt   run  1350  [word: who] [part of speech: noun] [head: who (plural whos)] [forms: whos | tags: plural] [etymology: From Mid
+23 wikt   run  1349  pron 5: (informal, especially non-US) Also used with names of collective nouns that are groups of people, espe
+24 wikt   run  1348  pron 4: (fused relative, archaic or marginal) Whoever, he who, they who. [tags: nominative, plural, singular] 
+25 wikt   run  1347  pron 3: (relative) Introduces a relative clause having a human antecedent.; (non-formal) With antecedent as ob
+26 wikt   run  1346  pron 2: (relative) Introduces a relative clause having a human antecedent.; With antecedent as subject. [tags:
+27 wikt   run  1345  pron 1: (interrogative) What person or people; which person or people; asks for the identity of someone; used 
+28 wikt   run  1344  [word: who] [part of speech: pron] [head: who (singular or plural, nominative case, objective whom, who, posse
+29 gcide  run  1343  [quotation: As who should say, it were a very dangerous matter if a man in any point should be found wiser tha
+30 gcide  run  1342  [sense: 2.] [definition: One; any; one.] [mark: [Obs., except in the archaic phrase, as who should say.]] [[so
+31 gcide  run  1341  [quotation: The brace of large greyhounds, who were the companions of his sports.] [quotation author: Sir W. S
+32 gcide  run  1340  [quotation: Who cheapens life, abates the fear of death.] [quotation author: Young.] [[source: 1913 Webster]]
+33 gcide  run  1339  [quotation: How hard is our fate, who serve in the state.] [quotation author: Addison.] [[source: 1913 Webster
+34 gcide  run  1338  [quotation: Whom I could pity thus forlorn.] [quotation author: Milton.] [[source: 1913 Webster]]
+35 gcide  run  1337  [quotation: Adders who with cloven tongues Do hiss into madness.] [quotation author: Shak.] [[source: 1913 Web
+36 gcide  run  1336  [quotation: There thou tell'st of kings, and who aspire; Who fall, who rise, who triumph, who do moan.] [quota
+37 gcide  run  1335  [quotation: [He] should not tell whose children they were.] [quotation author: Chaucer.] [[source: 1913 Webste
+38 gcide  run  1334  [sense: 1.] [definition: Originally, an interrogative pronoun, later, a relative pronoun also; -- used always 
+39 gcide  run  1333  [entry: Who] [headword: Who] [pronunciation: (?)], [part of speech: pron.] [noun forms: [[part of speech: Poss
+40 wn     run  1332  noun 1: a United Nations agency to coordinate international health activities and to help governments improve 

@@ -1,0 +1,14 @@
+acting points read: 417 | those with a Wiktionary affix entry: [('SET', 52, '-set', ['suffix']), ('and', 167, '-and', ['suffix', 'suffix', 'suffix']), ('form', 200, '-form', ['suffix', 'suffix']), ('form', 200, 'form-', ['prefix']), ('as', 287, 'as-', ['prefix', 'prefix']), ('or', 289, '-or', ['suffix', 'suffix', 'suffix', 'suffix']), ('CAST', 416, '-cast', ['suffix']), ('step', 460, '-step', ['suffix']), ('step', 460, 'step-', ['prefix']), ('type', 599, '-type', ['suffix']), ('by', 761, '-by', ['suffix']), ('by', 761, 'by-', ['prefix', 'prefix']), ('on', 785, '-on', ['suffix', 'suffix', 'suffix', 'suffix']), ('on', 785, 'on-', ['prefix']), ('then', 1826, 'then-', ['prefix']), ('where', 2531, 'where-', ['prefix']), ('end', 3966, '-end', ['suffix']), ('end', 3966, 'end-', ['prefix', 'prefix']), ('alter', 8757, 'alter-', ['prefix'])]
+== the common affixes as points: label, gate, dna rows (any), node rows, and the parts of speech Wiktionary gives the bare form and the affix form
+re    gate 589     dna rows 0   acting 0 | node rows 70   | wikt 're': ['name', 'noun', 'prep', 'symbol'] | wikt 're-': ['prefix']
+un    gate 11259   dna rows 0   acting 0 | node rows 9    | wikt 'un': ['name', 'noun', 'pron'] | wikt 'un-': ['prefix']
+pre   gate 2850    dna rows 0   acting 0 | node rows 12   | wikt 'pre': ['name', 'noun', 'prep', 'verb'] | wikt 'pre-': ['prefix']
+dis   gate 78923   dna rows 0   acting 0 | node rows 26   | wikt 'dis': ['det', 'name', 'noun', 'pron', 'verb'] | wikt 'dis-': ['prefix']
+ing   gate 2900    dna rows 0   acting 0 | node rows 7    | wikt 'ing': ['name', 'noun'] | wikt '-ing': ['suffix']
+ed    gate 11287   dna rows 0   acting 0 | node rows 23   | wikt 'ed': ['name', 'noun', 'phrase'] | wikt '-ed': ['suffix']
+s     gate 102     dna rows 0   acting 0 | node rows 36   | wikt 's': ['adj', 'character', 'name', 'noun', 'num'] | wikt '-s': ['suffix', 'verb']
+ly    gate 17532   dna rows 0   acting 0 | node rows 9    | wikt 'ly': ['name', 'noun', 'verb'] | wikt '-ly': ['suffix']
+ness  gate 6720    dna rows 0   acting 0 | node rows 15   | wikt 'ness': ['name', 'noun'] | wikt '-ness': ['suffix']
+er    gate 4457    dna rows 0   acting 0 | node rows 27   | wikt 'er': ['intj', 'name', 'noun', 'verb'] | wikt '-er': ['suffix']
+hyphen forms as points: [('-ing', None), ('re-', None), ('un-', None), ('-ed', None)]
+live after: runs 19948495 shards 20049740 shard_rows 899

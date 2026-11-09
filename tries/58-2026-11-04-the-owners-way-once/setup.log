@@ -1,0 +1,9 @@
+live before: 19948495 722323 1790818 1
+sources copied 34 s
+side files copied 37 s
+brain.map copied 262 s, 24G real
+kernel: nk: 1790818 symbols laid in each brain, listening on 127.0.0.1:7009
+door: kernel 7009 page NEURON-POINT-OF-CONNECTION-nk-2026-10-30.html bound to 127.0.0.1 open http://localhost:8059/
+test  after: True 19948495 722323 1790818 1
+live  after: 19948495 722323 1790818 1
+DONE 267 s

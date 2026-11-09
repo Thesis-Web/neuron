@@ -1,0 +1,42 @@
+typed define : spend                           run 19938908, 16 runs, 5313 hits, 0 born, 0 refused, 0.646 s
+  cell 23    what       state 1  8126 (spend)
+  cell 24    def        state 1  run 976342 from gcide: [entry: Spend] [headword: Spend] [pronunciation: (?)], [part of speech: v. t.] [verb forms: [[part of speech: imp. & p. p.] [conjugated form: Spent] [pronunciation: (?)]; [part of speech: p. pr. & vb. n.] [conjugated form: Spending].]] [etymology: [AS. spendan (in comp.), fr. L. expendere or dispendere…
+  cell 441   class      state 1  442 1117 212 1118 157  [verb v t i noun]
+  cell 138   like       state 1  26 50 148 162 292 294 303 327 354 372 607 664 666 706 754 77…  [know run of to the under in be with serve go over out experience stand against weekend purse have live throw up put while mind through give time feel around taste drop white money off bestow hand waste lead cost use open blow assign exposed summer away winter attend eat incur meet encounter lose allot contribute invest lay pass store shell business burn pay fork finish employ engage suffer exhaust busy kill spill dry wear spend suck digest bleed sink … 127 in all]
+  cell 139   opposite   state 1    [(none)]
+  cell 530   similar    state 1    [(none)]
+  cell 6332  tense      state 1  34247 116888 3930 1960 288 449 301 12042 484 6984 483 290  [Spent Spending spends present singular third person spending participle spent past plural]
+  cell 5516  prefix     state 1  3369 38341  [ex pend]
+  cell 10547 suffix     state 1  102  [s]
+  cell 204   etymology  state 1  153 220645 303 14675 5048 249 220646 289 220647 162 23981 66…  [AS spendan in comp fr L expendere or dispendere to weigh out expend dispense See entry Pendant Etymology tree Proto Indo European h s Italic eks Latin ex pend p ndeti bor West Germanic spend n Old English Middle spenden From from attested especially compounds forspendan use up consume borrowed Doublet of Cognate with High German spent whence donate provide Dutch dedicate Icelandic spenna]
+  cell 150   known      state 1  677 words: mother what know id source run ok count s n m pos h who about word other like of noun a to and syn h
+  cell 155   unknown    state 1  85 words: A AS H D L See He The From Pronunciation They To N My Inherited lang_name keyword_label No Queen May
+  cell 25    say        state 1  run 19938922 from mother: spend | like: know, run, of, to, the, under, in, be, with, serve, go, over, out, experience, stand, against, weekend, purse, have, live, throw, up, put, while, mind, through, give, time, feel, around, taste, drop, white, money, off, bestow, hand, waste, lead, cost, use, open, blow, assign, exposed, …
+typed define : abligurition                    run 19938924, 16 runs, 5313 hits, 0 born, 0 refused, 0.034 s
+  cell 23    what       state 1  1317458 (abligurition)
+  cell 24    def        state 1  run 19938482 from gcide: [entry: Abligurition] [headword: Ab*lig`u*ri"tion] [pronunciation: ((?))], [part of speech: n.] [etymology: [L. abligurito, fr. abligurire to spend in luxurious indulgence; ab + ligurire to be lickerish, dainty, fr. lingere to lick.]] [definition: Prodigal expense for food.] [mark: [Obs.]] [authority…
+  cell 441   class      state 1  104 157  [n noun]
+  cell 138   like       state 1    [(none)]
+  cell 139   opposite   state 1    [(none)]
+  cell 530   similar    state 1    [(none)]
+  cell 6332  tense      state 1    [(none)]
+  cell 5516  prefix     state 1  4211  [ab]
+  cell 10547 suffix     state 1  4923  [ti]
+  cell 204   etymology  state 1  249 1317460 5048 1317461 162 8126 303 44778 63980 4211 13174…  [L abligurito fr abligurire to spend in luxurious indulgence ab ligurire be lickerish dainty lingere lick PIE word h ep Learned borrowing from Late Latin abligurr ti abligur act of devouring spending feasting abligurri abliguri away or waste indulgently squander suffix forming abstract nouns verbs ligurri liguri up feast feed upon fond luxuries]
+  cell 150   known      state 1  221 words: said know remember source such column s n h about word other of noun a to and entry headword pronunc
+  cell 155   unknown    state 1  58 words: W L Why More Pronunciation So J For Because Than An E Or Green Language Your V Letter Ill Books Word
+  cell 25    say        state 1  run 19938938 from mother: abligurition | like:  | similar:  | opposite:  | class: n, noun | tense:  | prefix: ab | suffix: ti | etymology: L, abligurito, fr, abligurire, to, spend, in, luxurious, indulgence, ab, ligurire, be, lickerish, dainty, lingere, lick, PIE, word, h, ep, Learned, borrowing, from, Late, Latin, abligurr,…
+typed define : acersecomic                     run 19938940, 27 runs, 7302 hits, 3 born, 0 refused, 0.037 s
+  cell 23    what       state 1  1317487 (acersecomic)
+  cell 24    def        state 1  run 19938949 from wikt: noun 1: (rare) A person who does not cut their hair. [tags: rare] [examples: For quotations using this term, see Citations:acersecomic.]
+  cell 441   class      state 1  157  [noun]
+  cell 138   like       state 1    [(none)]
+  cell 139   opposite   state 1    [(none)]
+  cell 530   similar    state 1    [(none)]
+  cell 6332  tense      state 1  1317488 290  [acersecomics plural]
+  cell 5516  prefix     state 1    [(none)]
+  cell 10547 suffix     state 1    [(none)]
+  cell 204   etymology  state 1  494 2622 1317489  [From Latin acersecomes]
+  cell 150   known      state 1  26 words: who word of noun part speech forms etymology plural person not head tags examples this see their ter
+  cell 155   unknown    state 1  6 words: A From For Citations acersecomics acersecomes
+  cell 25    say        state 1  run 19938956 from mother: acersecomic | like:  | similar:  | opposite:  | class: noun | tense: acersecomics, plural | prefix:  | suffix:  | etymology: From, Latin, acersecomes | def: noun 1: (rare) A person who does not cut their hair. [tags: rare] [examples: For quotations using this term, see Citations:acersecomic.]

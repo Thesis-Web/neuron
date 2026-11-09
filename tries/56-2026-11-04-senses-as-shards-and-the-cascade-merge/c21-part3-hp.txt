@@ -1,0 +1,7 @@
+the first typing of "I spend my pocket money in two days" (run 19948437) ran before RECALL-12 was bound; a repeat of a line borrows the pattern's receipts and hops again on nothing (the kernel's dedupe), so new lines in the same contexts:
+I spend my money today             run 19948457 same_as None; the hop on spend: shard [20049691]; its sense rows: [['verb 3: spend completely; "I spend my pocket money in two days" [syn: {spend}] [hypernym: ']]
+They spend the evening reading     run 19948462 same_as None; the hop on spend: shard [20049692]; its sense rows: [['verb 2: pay out; "spend money" [syn: {spend}, {expend}, {drop}] [hypernym: {pay}] [hyponym', 'verb 3: spend completely; "I spend my pocket money in two days" [syn: {spend}] [hypernym: ']]
+They spend money freely            run 19948467 same_as None; the hop on spend: shard [20049693]; its sense rows: [['verb 2: pay out; "spend money" [syn: {spend}, {expend}, {drop}] [hypernym: {pay}] [hyponym']]
+we spend money on food             run 19948472 same_as 19948447; the hop on spend: shard [17]; its sense rows: [[]]
+shard times now: [[20049691, 362, 653, 1], [20049692, 597, 292, 1], [20049693, 597, 1664, 1]]
+xyz of spend: [[20049693, 597, 1664, 19948467]]

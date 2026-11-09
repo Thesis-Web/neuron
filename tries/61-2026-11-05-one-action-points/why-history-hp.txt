@@ -1,0 +1,9 @@
+live: the newest hit on why that carried its call: run 19948204 (0.60 s)
+the line: why : 19948183 24 | arrival sixth kind 0 parent None same_as None
+  kid 19948205 said kind 1 replays 6281755 same_as 6281816 | BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , CAST
+     return 19948206 from mother cell reply | ok
+     return 19948207 from mother cell reply | ok
+  run 19948183 (the run why asked for): 3 runs under it by arrival: {'said': 3}
+  one of them: []
+run 19948183 cell 23: [[23, 1, '1788920']] | symbol: 'Marmont”'
+why span 2, first statement: INSERT INTO wn.inbox ( run , cell , about , word ) SELECT what , to , ( SELECT value FROM run_sheet WHERE run = what AND cell = 23 ) , lower ( ( SELECT symbol FROM label WHERE gate = ( SELECT value FROM run_sheet WHERE run = what AND cell = 23 ) ) ) WHERE lower ( ( SELECT symbol FROM label WHERE gate = ( SELECT value FROM run_sheet WHERE run = what AND cell = 23 ) ) ) <> ( SELECT symbol FROM label WHERE gate = ( SELECT value FROM run_sheet WHERE run = what AND cell = 23 ) )

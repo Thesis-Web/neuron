@@ -1,0 +1,8 @@
+nk.c: letter_len and the four cut loops patched
+nk.c:119:11: error: implicit declaration of function ‘u8len’ [-Wimplicit-function-declaration]
+nk.c:124:12: error: conflicting types for ‘u8len’; have ‘int(unsigned char)’
+-rwxrwxr-x 1 james james 150584 Nov  4 06:25 nk
+BUILT
+typed run 1 born 25
+symbols: from | abligurriō | ( | “to | lick | away | ; | to | spend | or | waste | indulgently | , | squander” | ) | + | - | tiō | and | ab‧lig‧u‧rit‧ion | and | * | h₂epó | and | naïve | café | – | dash | … | end
+test kernel stopped

@@ -1,0 +1,27 @@
+sixth dna rows (all, read by gate): 21
+   [1, 1, None, None, None, None, 27] sixth label: heard | main label: heard
+   [2, 2, None, None, None, None, 170748] sixth label: said | main label: said
+   [3, 17, None, None, None, None, 331832897] sixth label:   | main label:  
+   [4, 3, None, None, None, None, 341375] sixth label: mother | main label: mother
+   [5, 4, None, None, None, None, 0] sixth label: sixth | main label: sixth
+   [6, 5, None, None, None, None, 2119582] sixth label: main | main label: main
+   [7, 7, None, None, None, None, 0] sixth label: wn | main label: wn
+   [8, 8, None, None, None, None, 0] sixth label: gcide | main label: gcide
+   [9, 9, None, None, None, None, 0] sixth label: mw | main label: mw
+   [10, 10, None, None, None, None, 0] sixth label: mwt | main label: mwt
+   [11, 11, None, None, None, None, 0] sixth label: moby | main label: moby
+   [12, 12, None, None, None, None, 0] sixth label: map | main label: map
+   [13, 13, None, None, None, None, 0] sixth label: sqldoc | main label: sqldoc
+   [14, 14, None, None, None, None, 0] sixth label: measured | main label: measured
+   [15, 15, None, None, None, None, 0] sixth label: guess | main label: guess
+   [16, 6, None, None, 1, None, 94] sixth label: born | main label: born
+   [91, 56, 4, None, None, None, 341362] sixth label: ok | main label: ok
+   [91, 2012, 19, None, None, None, 642386] sixth label: ok | main label: ok
+   [91, 2013, 23, None, None, None, 642385] sixth label: ok | main label: ok
+   [91, 2023, 22, None, None, None, 1] sixth label: ok | main label: ok
+   [92, 57, 6, 68, 2792575, None, 2119582] sixth label: seen | main label: OR
+live after: main runs 19948495 shard_rows 899 | sixth runs 8478493 shard_rows 21
+sixth run 1 : BUILD INSERT INTO sixth.neuron ( gate ) VALUES ( newgate ) ; BUILD
+
+sixth run 2792575 : BUILD INSERT OR REPLACE INTO sixth.run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , CAST ( ( SELECT group_concat ( symbol , '' ) FROM ( SELECT l.symbol FROM sixth.seq s JOIN sixth.label l ON l.gate = s.gate WHERE s.run = above AND s.pos > ( SELECT min ( pos ) FROM sixth.seq WHERE run = above AND gate = 68 ) + 1 ORDER BY s.pos ) ) AS INTEGER ) ; BUILD BUILD INSERT OR IGNORE INTO sixth.spawned ( gate , sent ) SELECT DISTINCT CAST ( j.value AS INTEGER ) , CASE WHEN ( SELECT symbol FROM main.label WHERE gate = CAST ( j.value AS INTEGER ) ) GLOB '[A-Z]*' AND ( SELECT gate FROM main.label WHERE symbol = lower ( ( SELECT symbol FROM main.label WHERE gate = CAST ( j.value AS INTEGER ) ) ) ) IS NOT NULL THEN 3 ELSE 0 END FROM main.run_sheet s , json_each ( '[' || replace ( s.value , ' ' , ',' ) || ']' ) j WHERE s.run = what AND s.cell = ( SELECT gate FROM main.label WHERE symbol = 'unknown' ) AND s.value <> '' AND NOT EXISTS ( SELECT 1 FROM main.node n WHERE n.gate = CAST ( j.value AS INTEGER ) ) ; UPDATE sixth.spawned SET sent = 2 WHERE id = ( SELECT p.id FROM sixth.spawned p WHERE p.sent = 0 ORDER BY p.shared DESC , p.id LIMIT 1 ) AND ( SELECT gate FROM main.seq WHERE run = what AND pos = 1 ) IN ( ( SELECT gate FROM main.label WHERE symbol = 'define' ) , ( SELECT gate FROM main.label WHERE symbol = 'why' ) ) AND NOT EXISTS ( SELECT 1 FROM main.run_sheet s JOIN main.run r ON r.id = s.run WHERE s.run = ( SELECT CASE WHEN ( SELECT gate FROM main.seq WHERE run = what AND pos = 1 ) = ( SELECT gate FROM main.label WHERE symbol = 'why' ) THEN ( SELECT CAST ( value AS INTEGER ) FROM main.run_sheet WHERE run = what AND cell = 23 ) ELSE what END ) AND s.state = 0 AND r.kind = 0 AND r.arrival IN ( 1 , 5 ) AND NOT EXISTS ( SELECT 1 FROM sixth.asked a WHERE a.run = s.run AN
+

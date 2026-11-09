@@ -1,0 +1,11 @@
+  not merged: INSERT   gate 81       neuron [[1, 19, 2, 0]] node sources [[12, 3], [13, 2], [14, 14]]; twin [[10441]] nodes [[197]]
+  not merged: DROP     gate 1788891  neuron [[1, 12, 0, 1]] node sources [[13, 2], [14, 10]]; twin [[1547]] nodes [[914]]
+  not merged: DELETE   gate 917750   neuron [[1, 13, 0, 1]] node sources [[13, 2], [14, 11]]; twin [[22293]] nodes [[127]]
+still naming their own gate: 3 of 58: ['INSERT', 'DROP', 'DELETE']
+typed: run 19941703, 6 runs, 0 refused, 0.127 s
+  merged delete 917750 into delete 22293: shards 1 moved, 0 kept by the twin, node rows 13, memories 0, about 13, hits 0, arrived 0
+  merged drop 1788891 into drop 1547: shards 1 moved, 0 kept by the twin, node rows 12, memories 0, about 12, hits 0, arrived 0
+  merged insert 81 into insert 10441: shards 0 moved, 0 kept by the twin, node rows 19, memories 2, about 19, hits 0, arrived 0
+  INSERT -> [[10441]]; twin nodes now [[216]]
+  DROP -> [[1547]]; twin nodes now [[926]]
+  DELETE -> [[22293]]; twin nodes now [[140]]

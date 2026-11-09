@@ -1,0 +1,306 @@
+# ONE ACTION (live brain hp:8058, read 2026-11-05 by gate)
+
+## run 826 | graph, read | reads the dna rows of the point named and says them | typed as: print dna : X
+   14 rows on 14 points, key (before, after): {('heard', 'dna'): 14}
+   blueprint        gate 38141   shard 20049478  call (heard, dna) hit 0    belief 0/0      copied from print
+   catalog          gate 9600    shard 20049205  call (heard, dna) hit 0    belief 1/0      copied from type
+   inscribe         gate 9663    shard 20049417  call (heard, dna) hit 0    belief 1/0      copied from print
+   list             gate 3124    shard 20049195  call (heard, dna) hit 2    belief 1/0      copied from type
+   mimeograph       gate 77556   shard 20049542  call (heard, dna) hit 0    belief 1/0      copied from print
+   overprint        gate 77563   shard 20049547  call (heard, dna) hit 0    belief 1/0      copied from print
+   print            gate 424     shard 1465      call (heard, dna) hit 3    belief 1/0      
+   publish          gate 25178   shard 20049185  call (heard, dna) hit 2    belief 1/0      copied from print
+   reissue          gate 77571   shard 20049552  call (heard, dna) hit 0    belief 1/0      copied from print
+   render           gate 17822   shard 20049190  call (heard, dna) hit 0    belief 1/0      copied from print
+   tabulate         gate 9760    shard 20049200  call (heard, dna) hit 0    belief 1/0      copied from type
+   transcribe       gate 9769    shard 20049210  call (heard, dna) hit 0    belief 1/0      copied from type
+   type             gate 599     shard 20048987  call (heard, dna) hit 2    belief 1/0      copied from print
+   write            gate 5732    shard 20048999  call (heard, dna) hit 0    belief 1/0      copied from print
+
+## run 870 | graph, read | reads the definition rows (node) of the point named and says them | typed as: print node : X
+   14 rows on 14 points, key (before, after): {('heard', 'node'): 14}
+   blueprint        gate 38141   shard 20049480  call (heard, node) hit 0    belief 0/0      copied from print
+   catalog          gate 9600    shard 20049207  call (heard, node) hit 0    belief 1/0      copied from type
+   inscribe         gate 9663    shard 20049419  call (heard, node) hit 0    belief 1/0      copied from print
+   list             gate 3124    shard 20049197  call (heard, node) hit 0    belief 1/0      copied from type
+   mimeograph       gate 77556   shard 20049544  call (heard, node) hit 0    belief 1/0      copied from print
+   overprint        gate 77563   shard 20049549  call (heard, node) hit 0    belief 1/0      copied from print
+   print            gate 424     shard 1531      call (heard, node) hit 1    belief 1/0      
+   publish          gate 25178   shard 20049187  call (heard, node) hit 0    belief 1/0      copied from print
+   reissue          gate 77571   shard 20049554  call (heard, node) hit 0    belief 1/0      copied from print
+   render           gate 17822   shard 20049192  call (heard, node) hit 0    belief 1/0      copied from print
+   tabulate         gate 9760    shard 20049202  call (heard, node) hit 0    belief 1/0      copied from type
+   transcribe       gate 9769    shard 20049212  call (heard, node) hit 0    belief 1/0      copied from type
+   type             gate 599     shard 20048989  call (heard, node) hit 0    belief 1/0      copied from print
+   write            gate 5732    shard 20049001  call (heard, node) hit 0    belief 1/0      copied from print
+
+## run 910 | graph, read | reads every row of the brain table the point names (mother runs SELECT * FROM it) and says them | typed as: print table : X
+   14 rows on 14 points, key (before, after): {('heard', 'table'): 14}
+   blueprint        gate 38141   shard 20049482  call (heard, table) hit 0    belief 0/0      copied from print
+   catalog          gate 9600    shard 20049209  call (heard, table) hit 0    belief 1/0      copied from type
+   inscribe         gate 9663    shard 20049421  call (heard, table) hit 0    belief 1/0      copied from print
+   list             gate 3124    shard 20049199  call (heard, table) hit 0    belief 1/0      copied from type
+   mimeograph       gate 77556   shard 20049546  call (heard, table) hit 0    belief 1/0      copied from print
+   overprint        gate 77563   shard 20049551  call (heard, table) hit 0    belief 1/0      copied from print
+   print            gate 424     shard 1592      call (heard, table) hit 1    belief 1/0      
+   publish          gate 25178   shard 20049189  call (heard, table) hit 0    belief 1/0      copied from print
+   reissue          gate 77571   shard 20049556  call (heard, table) hit 0    belief 1/0      copied from print
+   render           gate 17822   shard 20049194  call (heard, table) hit 0    belief 1/0      copied from print
+   tabulate         gate 9760    shard 20049204  call (heard, table) hit 0    belief 1/0      copied from type
+   transcribe       gate 9769    shard 20049214  call (heard, table) hit 0    belief 1/0      copied from type
+   type             gate 599     shard 20048991  call (heard, table) hit 0    belief 1/0      copied from print
+   write            gate 5732    shard 20049003  call (heard, table) hit 0    belief 1/0      copied from print
+
+## run 847 | memory, read | reads the memory rows that ended on the point named and says them | typed as: print memory : X
+   14 rows on 14 points, key (before, after): {('heard', 'memory'): 14}
+   blueprint        gate 38141   shard 20049479  call (heard, memory) hit 0    belief 0/0      copied from print
+   catalog          gate 9600    shard 20049206  call (heard, memory) hit 0    belief 1/0      copied from type
+   inscribe         gate 9663    shard 20049418  call (heard, memory) hit 0    belief 1/0      copied from print
+   list             gate 3124    shard 20049196  call (heard, memory) hit 0    belief 1/0      copied from type
+   mimeograph       gate 77556   shard 20049543  call (heard, memory) hit 0    belief 1/0      copied from print
+   overprint        gate 77563   shard 20049548  call (heard, memory) hit 0    belief 1/0      copied from print
+   print            gate 424     shard 1497      call (heard, memory) hit 1    belief 1/0      
+   publish          gate 25178   shard 20049186  call (heard, memory) hit 0    belief 1/0      copied from print
+   reissue          gate 77571   shard 20049553  call (heard, memory) hit 0    belief 1/0      copied from print
+   render           gate 17822   shard 20049191  call (heard, memory) hit 0    belief 1/0      copied from print
+   tabulate         gate 9760    shard 20049201  call (heard, memory) hit 0    belief 1/0      copied from type
+   transcribe       gate 9769    shard 20049211  call (heard, memory) hit 0    belief 1/0      copied from type
+   type             gate 599     shard 20048988  call (heard, memory) hit 0    belief 1/0      copied from print
+   write            gate 5732    shard 20049000  call (heard, memory) hit 0    belief 1/0      copied from print
+
+## run 889 | state, read | reads the sheet cells of the run named and says them | typed as: print sheet : N
+   14 rows on 14 points, key (before, after): {('heard', 'sheet'): 14}
+   blueprint        gate 38141   shard 20049481  call (heard, sheet) hit 0    belief 0/0      copied from print
+   catalog          gate 9600    shard 20049208  call (heard, sheet) hit 0    belief 1/0      copied from type
+   inscribe         gate 9663    shard 20049420  call (heard, sheet) hit 0    belief 1/0      copied from print
+   list             gate 3124    shard 20049198  call (heard, sheet) hit 0    belief 1/0      copied from type
+   mimeograph       gate 77556   shard 20049545  call (heard, sheet) hit 0    belief 1/0      copied from print
+   overprint        gate 77563   shard 20049550  call (heard, sheet) hit 0    belief 1/0      copied from print
+   print            gate 424     shard 1568      call (heard, sheet) hit 1    belief 1/0      
+   publish          gate 25178   shard 20049188  call (heard, sheet) hit 0    belief 1/0      copied from print
+   reissue          gate 77571   shard 20049555  call (heard, sheet) hit 0    belief 1/0      copied from print
+   render           gate 17822   shard 20049193  call (heard, sheet) hit 0    belief 1/0      copied from print
+   tabulate         gate 9760    shard 20049203  call (heard, sheet) hit 0    belief 1/0      copied from type
+   transcribe       gate 9769    shard 20049213  call (heard, sheet) hit 0    belief 1/0      copied from type
+   type             gate 599     shard 20048990  call (heard, sheet) hit 0    belief 1/0      copied from print
+   write            gate 5732    shard 20049002  call (heard, sheet) hit 0    belief 1/0      copied from print
+
+## run 1302 | time, read | reads the chain of parent runs back from run N, with the hit that started each | typed as: step back : N
+   3 rows on 3 points, key (before, after): {('heard', 'back'): 3}
+   footstep         gate 58523   shard 20049521  call (heard, back) hit 0    belief 0/0      copied from step
+   leap             gate 18794   shard 20049451  call (heard, back) hit 0    belief 0/0      copied from step
+   step             gate 460     shard 2031      call (heard, back) hit 1    belief none     
+
+## run 929 | graph, write | births the point named if it is not born (replays run 1: INSERT INTO neuron), then reads it back | typed as: create neuron : X
+   20 rows on 20 points, key (before, after): {('heard', 'neuron'): 20}
+   assemble         gate 36072   shard 20049472  call (heard, neuron) hit 0    belief 1/0      copied from create
+   build            gate 9598    shard 20049122  call (heard, neuron) hit 1    belief 1/0      copied from create
+   compound         gate 318     shard 20049320  call (heard, neuron) hit 0    belief 1/0      copied from create
+   constitute       gate 16987   shard 20049434  call (heard, neuron) hit 0    belief 1/0      copied from create
+   construct        gate 22060   shard 20049125  call (heard, neuron) hit 0    belief 1/0      copied from create
+   create           gate 428     shard 1622      call (heard, neuron) hit 3    belief none     
+   design           gate 6629    shard 20049390  call (heard, neuron) hit 0    belief 1/0      copied from create
+   forge            gate 19953   shard 20049457  call (heard, neuron) hit 0    belief 1/0      copied from create
+   form             gate 200     shard 20049126  call (heard, neuron) hit 0    belief 1/0      copied from create
+   generate         gate 15722   shard 20049124  call (heard, neuron) hit 0    belief 1/0      copied from create
+   invent           gate 4809    shard 20049127  call (heard, neuron) hit 0    belief 1/0      copied from create
+   make             gate 1055    shard 20049599  call (heard, neuron) hit 0    belief 1/0      
+   manufacture      gate 9550    shard 20049416  call (heard, neuron) hit 0    belief 1/0      copied from create
+   model            gate 2837    shard 20049356  call (heard, neuron) hit 0    belief 0/0      copied from create
+   organize         gate 17335   shard 20049440  call (heard, neuron) hit 0    belief 0/0      copied from create
+   produce          gate 2585    shard 20049123  call (heard, neuron) hit 0    belief 1/0      copied from create
+   raise            gate 937     shard 20049328  call (heard, neuron) hit 0    belief 0/0      copied from create
+   sculpt           gate 36011   shard 20049471  call (heard, neuron) hit 0    belief 1/0      copied from create
+   sculpture        gate 9383    shard 20049404  call (heard, neuron) hit 0    belief 0/0      copied from create
+   tailor           gate 34629   shard 20049465  call (heard, neuron) hit 0    belief 0/0      copied from create
+
+## run 950 | graph, write | rewrites the trigger of the point's dna row from A to B | typed as: change trigger : X from A to B
+   29 rows on 29 points, key (before, after): {('heard', 'trigger'): 29}
+   adjust           gate 32368   shard 20049171  call (heard, trigger) hit 0    belief 1/0      copied from change
+   alter            gate 8757    shard 20049004  call (heard, trigger) hit 0    belief 1/0      copied from change
+   become           gate 2299    shard 20049351  call (heard, trigger) hit 0    belief 1/0      copied from change
+   change           gate 438     shard 1698      call (heard, trigger) hit 1    belief none     
+   commutation      gate 76112   shard 20049537  call (heard, trigger) hit 0    belief 0/0      copied from change
+   commute          gate 49747   shard 20049490  call (heard, trigger) hit 0    belief 0/0      copied from change
+   conversion       gate 10018   shard 20049422  call (heard, trigger) hit 0    belief 0/0      copied from change
+   convert          gate 17463   shard 20049166  call (heard, trigger) hit 0    belief 1/0      copied from change
+   deform           gate 35993   shard 20049466  call (heard, trigger) hit 0    belief 1/0      copied from change
+   exchange         gate 5707    shard 20049374  call (heard, trigger) hit 0    belief 1/0      copied from change
+   interchange      gate 19230   shard 20049452  call (heard, trigger) hit 0    belief 1/0      copied from change
+   modification     gate 9532    shard 20049411  call (heard, trigger) hit 0    belief 0/0      copied from change
+   modify           gate 12183   shard 20049151  call (heard, trigger) hit 0    belief 1/0      copied from change
+   modulate         gate 53389   shard 20049510  call (heard, trigger) hit 0    belief 1/0      copied from change
+   mutation         gate 41308   shard 20049483  call (heard, trigger) hit 0    belief 0/0      copied from change
+   reform           gate 1185    shard 20049340  call (heard, trigger) hit 0    belief 1/0      copied from change
+   restructure      gate 72283   shard 20049527  call (heard, trigger) hit 0    belief 1/0      copied from change
+   reversal         gate 37809   shard 20049473  call (heard, trigger) hit 0    belief 0/0      copied from change
+   reverse          gate 14764   shard 20049245  call (heard, trigger) hit 0    belief 1/0      copied from change
+   shift            gate 8813    shard 20049394  call (heard, trigger) hit 0    belief 1/0      copied from change
+   switch           gate 26426   shard 20049176  call (heard, trigger) hit 0    belief 1/0      copied from change
+   transfigure      gate 72286   shard 20049532  call (heard, trigger) hit 0    belief 1/0      copied from change
+   transform        gate 30612   shard 20049161  call (heard, trigger) hit 0    belief 1/0      copied from change
+   transformation   gate 17426   shard 20049441  call (heard, trigger) hit 0    belief 0/0      copied from change
+   transition       gate 1037    shard 20049330  call (heard, trigger) hit 0    belief 0/0      copied from change
+   translate        gate 4563    shard 20049361  call (heard, trigger) hit 0    belief 1/0      copied from change
+   transpose        gate 57737   shard 20049516  call (heard, trigger) hit 0    belief 1/0      copied from change
+   variation        gate 9326    shard 20049399  call (heard, trigger) hit 0    belief 0/0      copied from change
+   vary             gate 9536    shard 20049156  call (heard, trigger) hit 0    belief 1/0      copied from change
+
+## run 989 | graph, write | rewrites the call of the point's dna row from A to B | typed as: change call : X from A to B
+   29 rows on 29 points, key (before, after): {('heard', 'call'): 29}
+   adjust           gate 32368   shard 20049172  call (heard, call) hit 0    belief 1/0      copied from change
+   alter            gate 8757    shard 20049005  call (heard, call) hit 0    belief 1/0      copied from change
+   become           gate 2299    shard 20049352  call (heard, call) hit 0    belief 1/0      copied from change
+   change           gate 438     shard 1718      call (heard, call) hit 2    belief none     
+   commutation      gate 76112   shard 20049538  call (heard, call) hit 0    belief 0/0      copied from change
+   commute          gate 49747   shard 20049491  call (heard, call) hit 0    belief 0/0      copied from change
+   conversion       gate 10018   shard 20049423  call (heard, call) hit 0    belief 0/0      copied from change
+   convert          gate 17463   shard 20049167  call (heard, call) hit 0    belief 1/0      copied from change
+   deform           gate 35993   shard 20049467  call (heard, call) hit 0    belief 1/0      copied from change
+   exchange         gate 5707    shard 20049375  call (heard, call) hit 0    belief 1/0      copied from change
+   interchange      gate 19230   shard 20049453  call (heard, call) hit 0    belief 1/0      copied from change
+   modification     gate 9532    shard 20049412  call (heard, call) hit 0    belief 0/0      copied from change
+   modify           gate 12183   shard 20049152  call (heard, call) hit 1    belief 1/0      copied from change
+   modulate         gate 53389   shard 20049511  call (heard, call) hit 0    belief 1/0      copied from change
+   mutation         gate 41308   shard 20049484  call (heard, call) hit 0    belief 0/0      copied from change
+   reform           gate 1185    shard 20049341  call (heard, call) hit 0    belief 1/0      copied from change
+   restructure      gate 72283   shard 20049528  call (heard, call) hit 0    belief 1/0      copied from change
+   reversal         gate 37809   shard 20049474  call (heard, call) hit 0    belief 0/0      copied from change
+   reverse          gate 14764   shard 20049246  call (heard, call) hit 0    belief 1/0      copied from change
+   shift            gate 8813    shard 20049395  call (heard, call) hit 0    belief 1/0      copied from change
+   switch           gate 26426   shard 20049177  call (heard, call) hit 0    belief 1/0      copied from change
+   transfigure      gate 72286   shard 20049533  call (heard, call) hit 0    belief 1/0      copied from change
+   transform        gate 30612   shard 20049162  call (heard, call) hit 0    belief 1/0      copied from change
+   transformation   gate 17426   shard 20049442  call (heard, call) hit 0    belief 0/0      copied from change
+   transition       gate 1037    shard 20049331  call (heard, call) hit 0    belief 0/0      copied from change
+   translate        gate 4563    shard 20049362  call (heard, call) hit 0    belief 1/0      copied from change
+   transpose        gate 57737   shard 20049517  call (heard, call) hit 0    belief 1/0      copied from change
+   variation        gate 9326    shard 20049400  call (heard, call) hit 0    belief 0/0      copied from change
+   vary             gate 9536    shard 20049157  call (heard, call) hit 0    belief 1/0      copied from change
+
+## run 1008 | graph, write | rewrites the spawn of the point's dna row from A to B | typed as: change spawn : X from A to B
+   29 rows on 29 points, key (before, after): {('heard', 'spawn'): 29}
+   adjust           gate 32368   shard 20049173  call (heard, spawn) hit 0    belief 1/0      copied from change
+   alter            gate 8757    shard 20049006  call (heard, spawn) hit 0    belief 1/0      copied from change
+   become           gate 2299    shard 20049353  call (heard, spawn) hit 0    belief 1/0      copied from change
+   change           gate 438     shard 1731      call (heard, spawn) hit 1    belief none     
+   commutation      gate 76112   shard 20049539  call (heard, spawn) hit 0    belief 0/0      copied from change
+   commute          gate 49747   shard 20049492  call (heard, spawn) hit 0    belief 0/0      copied from change
+   conversion       gate 10018   shard 20049424  call (heard, spawn) hit 0    belief 0/0      copied from change
+   convert          gate 17463   shard 20049168  call (heard, spawn) hit 0    belief 1/0      copied from change
+   deform           gate 35993   shard 20049468  call (heard, spawn) hit 0    belief 1/0      copied from change
+   exchange         gate 5707    shard 20049376  call (heard, spawn) hit 0    belief 1/0      copied from change
+   interchange      gate 19230   shard 20049454  call (heard, spawn) hit 0    belief 1/0      copied from change
+   modification     gate 9532    shard 20049413  call (heard, spawn) hit 0    belief 0/0      copied from change
+   modify           gate 12183   shard 20049153  call (heard, spawn) hit 0    belief 1/0      copied from change
+   modulate         gate 53389   shard 20049512  call (heard, spawn) hit 0    belief 1/0      copied from change
+   mutation         gate 41308   shard 20049485  call (heard, spawn) hit 0    belief 0/0      copied from change
+   reform           gate 1185    shard 20049342  call (heard, spawn) hit 0    belief 1/0      copied from change
+   restructure      gate 72283   shard 20049529  call (heard, spawn) hit 0    belief 1/0      copied from change
+   reversal         gate 37809   shard 20049475  call (heard, spawn) hit 0    belief 0/0      copied from change
+   reverse          gate 14764   shard 20049247  call (heard, spawn) hit 0    belief 1/0      copied from change
+   shift            gate 8813    shard 20049396  call (heard, spawn) hit 0    belief 1/0      copied from change
+   switch           gate 26426   shard 20049178  call (heard, spawn) hit 0    belief 1/0      copied from change
+   transfigure      gate 72286   shard 20049534  call (heard, spawn) hit 0    belief 1/0      copied from change
+   transform        gate 30612   shard 20049163  call (heard, spawn) hit 0    belief 1/0      copied from change
+   transformation   gate 17426   shard 20049443  call (heard, spawn) hit 0    belief 0/0      copied from change
+   transition       gate 1037    shard 20049332  call (heard, spawn) hit 0    belief 0/0      copied from change
+   translate        gate 4563    shard 20049363  call (heard, spawn) hit 0    belief 1/0      copied from change
+   transpose        gate 57737   shard 20049518  call (heard, spawn) hit 0    belief 1/0      copied from change
+   variation        gate 9326    shard 20049401  call (heard, spawn) hit 0    belief 0/0      copied from change
+   vary             gate 9536    shard 20049158  call (heard, spawn) hit 0    belief 1/0      copied from change
+
+## run 1027 | state, write | writes one cell on the newest define sheet of the point | typed as: change define : X cell value
+   29 rows on 29 points, key (before, after): {('heard', 'define'): 29}
+   adjust           gate 32368   shard 20049174  call (heard, define) hit 0    belief 1/0      copied from change
+   alter            gate 8757    shard 20049007  call (heard, define) hit 0    belief 1/0      copied from change
+   become           gate 2299    shard 20049354  call (heard, define) hit 0    belief 1/0      copied from change
+   change           gate 438     shard 1784      call (heard, define) hit 1    belief none     
+   commutation      gate 76112   shard 20049540  call (heard, define) hit 0    belief 0/0      copied from change
+   commute          gate 49747   shard 20049493  call (heard, define) hit 0    belief 0/0      copied from change
+   conversion       gate 10018   shard 20049425  call (heard, define) hit 0    belief 0/0      copied from change
+   convert          gate 17463   shard 20049169  call (heard, define) hit 0    belief 1/0      copied from change
+   deform           gate 35993   shard 20049469  call (heard, define) hit 0    belief 1/0      copied from change
+   exchange         gate 5707    shard 20049377  call (heard, define) hit 0    belief 1/0      copied from change
+   interchange      gate 19230   shard 20049455  call (heard, define) hit 0    belief 1/0      copied from change
+   modification     gate 9532    shard 20049414  call (heard, define) hit 0    belief 0/0      copied from change
+   modify           gate 12183   shard 20049154  call (heard, define) hit 0    belief 1/0      copied from change
+   modulate         gate 53389   shard 20049513  call (heard, define) hit 0    belief 1/0      copied from change
+   mutation         gate 41308   shard 20049486  call (heard, define) hit 0    belief 0/0      copied from change
+   reform           gate 1185    shard 20049343  call (heard, define) hit 0    belief 1/0      copied from change
+   restructure      gate 72283   shard 20049530  call (heard, define) hit 0    belief 1/0      copied from change
+   reversal         gate 37809   shard 20049476  call (heard, define) hit 0    belief 0/0      copied from change
+   reverse          gate 14764   shard 20049248  call (heard, define) hit 0    belief 1/0      copied from change
+   shift            gate 8813    shard 20049397  call (heard, define) hit 0    belief 1/0      copied from change
+   switch           gate 26426   shard 20049179  call (heard, define) hit 0    belief 1/0      copied from change
+   transfigure      gate 72286   shard 20049535  call (heard, define) hit 0    belief 1/0      copied from change
+   transform        gate 30612   shard 20049164  call (heard, define) hit 0    belief 1/0      copied from change
+   transformation   gate 17426   shard 20049444  call (heard, define) hit 0    belief 0/0      copied from change
+   transition       gate 1037    shard 20049333  call (heard, define) hit 0    belief 0/0      copied from change
+   translate        gate 4563    shard 20049364  call (heard, define) hit 0    belief 1/0      copied from change
+   transpose        gate 57737   shard 20049519  call (heard, define) hit 0    belief 1/0      copied from change
+   variation        gate 9326    shard 20049402  call (heard, define) hit 0    belief 0/0      copied from change
+   vary             gate 9536    shard 20049159  call (heard, define) hit 0    belief 1/0      copied from change
+
+## run 1052 | state, write | rewrites the meaning cell on the newest define sheet of the point from A to B | typed as: change meaning : X from A to B
+   29 rows on 29 points, key (before, after): {('heard', 'meaning'): 29}
+   adjust           gate 32368   shard 20049175  call (heard, meaning) hit 0    belief 1/0      copied from change
+   alter            gate 8757    shard 20049008  call (heard, meaning) hit 0    belief 1/0      copied from change
+   become           gate 2299    shard 20049355  call (heard, meaning) hit 0    belief 1/0      copied from change
+   change           gate 438     shard 1809      call (heard, meaning) hit 1    belief none     
+   commutation      gate 76112   shard 20049541  call (heard, meaning) hit 0    belief 0/0      copied from change
+   commute          gate 49747   shard 20049494  call (heard, meaning) hit 0    belief 0/0      copied from change
+   conversion       gate 10018   shard 20049426  call (heard, meaning) hit 0    belief 0/0      copied from change
+   convert          gate 17463   shard 20049170  call (heard, meaning) hit 0    belief 1/0      copied from change
+   deform           gate 35993   shard 20049470  call (heard, meaning) hit 0    belief 1/0      copied from change
+   exchange         gate 5707    shard 20049378  call (heard, meaning) hit 0    belief 1/0      copied from change
+   interchange      gate 19230   shard 20049456  call (heard, meaning) hit 0    belief 1/0      copied from change
+   modification     gate 9532    shard 20049415  call (heard, meaning) hit 0    belief 0/0      copied from change
+   modify           gate 12183   shard 20049155  call (heard, meaning) hit 0    belief 1/0      copied from change
+   modulate         gate 53389   shard 20049514  call (heard, meaning) hit 0    belief 1/0      copied from change
+   mutation         gate 41308   shard 20049487  call (heard, meaning) hit 0    belief 0/0      copied from change
+   reform           gate 1185    shard 20049344  call (heard, meaning) hit 0    belief 1/0      copied from change
+   restructure      gate 72283   shard 20049531  call (heard, meaning) hit 0    belief 1/0      copied from change
+   reversal         gate 37809   shard 20049477  call (heard, meaning) hit 0    belief 0/0      copied from change
+   reverse          gate 14764   shard 20049249  call (heard, meaning) hit 0    belief 1/0      copied from change
+   shift            gate 8813    shard 20049398  call (heard, meaning) hit 0    belief 1/0      copied from change
+   switch           gate 26426   shard 20049180  call (heard, meaning) hit 0    belief 1/0      copied from change
+   transfigure      gate 72286   shard 20049536  call (heard, meaning) hit 0    belief 1/0      copied from change
+   transform        gate 30612   shard 20049165  call (heard, meaning) hit 0    belief 1/0      copied from change
+   transformation   gate 17426   shard 20049445  call (heard, meaning) hit 0    belief 0/0      copied from change
+   transition       gate 1037    shard 20049334  call (heard, meaning) hit 0    belief 0/0      copied from change
+   translate        gate 4563    shard 20049365  call (heard, meaning) hit 0    belief 1/0      copied from change
+   transpose        gate 57737   shard 20049520  call (heard, meaning) hit 0    belief 1/0      copied from change
+   variation        gate 9326    shard 20049403  call (heard, meaning) hit 0    belief 0/0      copied from change
+   vary             gate 9536    shard 20049160  call (heard, meaning) hit 0    belief 1/0      copied from change
+
+## run 1132 | route, write | takes N points from the sixth's list of unasked points and types define : X for each into the main brain's mailbox | typed as: define unknown : N
+   9 rows on 9 points, key (before, after): {('heard', 'unknown'): 9}
+   characterize     gate 10348   shard 20049142  call (heard, unknown) hit 0    belief 1/0      copied from define
+   clarify          gate 2424    shard 20049133  call (heard, unknown) hit 0    belief 1/0      copied from define
+   define           gate 156     shard 1931      call (heard, unknown) hit 22   belief 1/0      
+   delineate        gate 32453   shard 20049145  call (heard, unknown) hit 0    belief 1/0      copied from define
+   describe         gate 9240    shard 20048998  call (heard, unknown) hit 0    belief 1/0      copied from define
+   determine        gate 4559    shard 20049360  call (heard, unknown) hit 0    belief 1/0      copied from define
+   explain          gate 9323    shard 20049136  call (heard, unknown) hit 0    belief 1/0      copied from define
+   interpret        gate 5120    shard 20049139  call (heard, unknown) hit 0    belief 1/0      copied from define
+   specify          gate 1445    shard 20049130  call (heard, unknown) hit 0    belief 1/0      copied from define
+
+## run 6281755 | silicon, write | puts the point into the inbox of each of the eight sources; their triggers answer and mother carries the returns to the cell | typed as: why : N to cell
+   1 rows on 1 points, key (before, after): {('sixth', ':'): 1}
+   why              gate 417     shard 1330      call (sixth, :) hit 755063 belief none     
+
+# SEVERAL ACTIONS
+
+## run 19937672 | every typed line (heard): three cells, know (a definitions read), remember (a memory read), shape (a dna read) | 1 rows on 1 points: heard
+## run 19937007 | born: births the gate, lays its (define, :) spawn row, starts define | 1 rows on 1 points: born
+## run 19936999 | the define laid at birth: relationship rows from the definitions plus three reads | 316 rows on 316 points: abligur abliguri abligurire abligurition abligurito abliguriō abligurr abligurri abligurriō abligurrītiō abligurītiō ab‧lig‧u‧rit‧ion acersecomes acersecomic acersecomics after” Amour” and Andronicus” anſwered aristologist aristologists aristology as Bartoli” Beattock” begin Blackwood’s book’s bow” ... (+286)
+## run 19937222 | describe: the define of 11-02 | 2 rows on 1 points: describe
+## run 19938846 | define with the dictionaries primary (RECALL-9): 8 spans | 12 rows on 6 points: characterize clarify delineate explain interpret specify
+## run 19942415 | determine: define plus the formula F (RECALL-11): 9 spans | 2 rows on 1 points: determine
+## run 19948363 | define with senses (RECALL-12): 11 spans | 2 rows on 1 points: define
+## run 19937767 | meaning: passes the line to run 19937752, which picks the leg that answers and reads it | 9 rows on 9 points: construction designation gist import intent meaning purport significance signification
+## run 19937779 | correct: lays the borrowed rows, records tried, belief and the guess | 7 rows on 7 points: accurate correct exact just nice precise true
+## run 19937787 | incorrect: marks belief, tried and the guess, then replays | 7 rows on 7 points: erroneous false inaccurate incorrect mistaken untrue wrong
+
+runs not classified: []

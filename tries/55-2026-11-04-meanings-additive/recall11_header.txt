@@ -1,0 +1,11 @@
+# RECALL-11-nk.txt (2026-11-04 07:20; RECALL-10 of 07:00 plus one condition). C22, the owner 05:00: "work on the meanings ... tackle this with meanings that start to fill other definition
+# cells such that other meanings can be found from the work done ... an additive process ... if you find a formula that works, back pop it and
+# let the sixth work it into the cascade". Line 1 is the define run as the kernel holds it (RECALL-9's sixteen BUILD marks read back symbol by
+# symbol) plus one span, the formula F, the brain's own trial of tries/36 run without the teacher: a point just defined that has no action of its
+# own, that a thesaurus relates by a mutual one-word like or similar row (both lines three symbols: like X) to an acting root (a point whose
+# action was not itself borrowed: no tried row), and whose WordNet or Wiktionary sense rows name that root's word within their first fourteen symbols (measured on the 39 adopted words
+# against a sample of 64 candidates: 21 of 39 against 5 of 64; the looser defwords test passed all 1,040 candidates), and that the teacher has not refused for that root (no tried row with outcome 0: RECALL-10 re-laid rectify on correct after the teacher had said incorrect three times), takes the root's shards (before,
+# trigger, call, spawn copied, new shard ids) as a guess: belief 0/0, tried outcome 2 (by the formula, unjudged), and the line's sheet shows
+# guess 15 = the root. The owner's correct : N and incorrect : N judge it later; a point that already acts is left alone. Every read is keyed:
+# rel by its key and by other, seq by run, dna and defwords and tried by gate, run_sheet by run. Lines 2 and 3 bind define's two rows to it.
+# Rollback: UPDATE dna SET call = <the RECALL-9 run> WHERE gate = 156 AND before = 1 AND trigger = 68 (and 5).

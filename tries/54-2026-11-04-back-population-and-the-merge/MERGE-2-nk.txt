@@ -1,0 +1,2 @@
+# MERGE-2-nk.txt: the hand laid words left by the first line because they hold documentation rows of their own (map 12, sqldoc 13, measured 14, the SQL documentation sources keyed uppercase); the owner's instruction covers them, their rows move with them.
+BUILD SELECT merge ( u.gate , l.gate ) FROM label u JOIN label l ON l.symbol = lower ( u.symbol ) WHERE u.symbol IN ( 'INSERT' , 'DROP' , 'DELETE' ) AND u.gate <> l.gate AND EXISTS ( SELECT 1 FROM node WHERE gate = l.gate ) ; BUILD

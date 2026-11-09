@@ -1,0 +1,129 @@
+head position of the root word in the adopted words' sense rows (symbols from the row start, spaces counted; None = not within any sense row):
+  wrong         incorrect 7
+  false         incorrect 11
+  mistaken      incorrect 26
+  erroneous     incorrect 40
+  untrue        incorrect 363
+  inaccurate    incorrect 9
+  build         create    48
+  produce       create    5
+  generate      create    77
+  construct     create    5
+  form          create    5
+  invent        create    7
+  specify       define    5
+  clarify       define    None
+  explain       define    5
+  interpret     define    None
+  characterize  define    68
+  delineate     define    25
+  signification meaning   7
+  significance  meaning   7
+  purport       meaning   9
+  gist          meaning   9
+  import        meaning   7
+  modify        change    9
+  vary          change    11
+  transform     change    5
+  convert       change    5
+  adjust        change    11
+  switch        change    5
+  true          correct   26
+  accurate      correct   41
+  exact         correct   41
+  precise       correct   41
+  publish       print     9
+  render        print     None
+  list          type      57
+  tabulate      type      226
+  catalog       type      130
+  transcribe    type      69
+
+formula guesses in tried: 82; by the back-pop line 19944136: 80; by the cascade (define runs) since the bind: 2
+head position for the 80 + cascade guesses:
+  advance        change    head 7    
+  assimilation   change    head 13   
+  become         change    head 9    
+  break          change    head 6    
+  chop           change    head 13   
+  commutation    change    head 11   
+  commute        change    head 5    
+  conversion     change    head 7    
+  deform         change    head 12   
+  difference     change    head 9    
+  exchange       change    head 5    
+  go             change    head 5    
+  interchange    change    head 9    
+  make           change    head 6    
+  modification   change    head 11   
+  modulate       change    head 5    
+  move           change    head 5    
+  mutation       change    head 7    
+  reform         change    head 5    
+  relief         change    head 7    
+  restructure    change    head 7    
+  return         change    head 13   
+  reversal       change    head 7    
+  reverse        change    head 5    cascade run 19942441
+  revolution     change    head 12   
+  run            change    head 5    
+  shift          change    head 5    
+  swerve         change    head 10   
+  tergiversate   change    head 11   
+  transfigure    change    head 5    
+  transformation change    head 9    
+  transition     change    head 7    
+  translate      change    head 5    
+  transpose      change    head 5    
+  travel         change    head 5    
+  variation      change    head 11   
+  veer           change    head 10   
+  vicissitude    change    head 7    
+  chasten        correct   head 5    
+  decent         correct   head 13   
+  emend          correct   head 11   
+  just           correct   head 10   
+  mannerly       correct   head 9    
+  nice           correct   head 13   
+  received       correct   head 11   
+  rectify        correct   head 11   
+  assemble       create    head 5    
+  compound       create    head 5    
+  constitute     create    head 5    
+  cut            create    head 6    
+  design         create    head 5    
+  do             create    head 5    
+  forge          create    head 5    
+  manufacture    create    head 5    
+  model          create    head 5    
+  organize       create    head 5    
+  prepare        create    head 5    
+  raise          create    head 6    
+  sculpt         create    head 5    
+  sculpture      create    head 5    
+  tailor         create    head 5    
+  determine      define    head 11   
+  rude           incorrect head 9    
+  construction   meaning   head 7    
+  designation    meaning   head 8    
+  intent         meaning   head 9    cascade run 19943889
+  resolve        meaning   head 9    
+  blowup         print     head 9    
+  blueprint      print     head 7    
+  inscribe       print     head 13   
+  mimeograph     print     head 5    
+  overprint      print     head 5    
+  reissue        print     head 5    
+  footstep       step      head 7    
+  get            step      head 12   
+  leap           step      head 13   
+  peg            step      head 8    
+  proceeding     step      head 11   
+  remove         step      head 7    
+  rung           step      head 13   
+  stair          step      head 9    
+  stamp          step      head 11   
+window  6: adopted 8 of 39; laid guesses 30 of 82
+window  8: adopted 13 of 39; laid guesses 46 of 82
+window 10: adopted 18 of 39; laid guesses 58 of 82
+window 14: adopted 21 of 39; laid guesses 82 of 82

@@ -1,0 +1,60 @@
+the merge reply (run 19940039): 55 lines
+  merged after 553633 into after 517: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged all 456 into all 867: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged and 57 into and 167: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged as 153 into as 287: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged begin 1054722 into begin 2901: shards 1 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged between 154 into between 711: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged by 112 into by 761: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged case 430 into case 491: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged cast 416 into cast 923: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged create 30 into create 428: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged cross 487439 into cross 7230: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged default 1788889 into default 19163: shards 1 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged desc 118 into desc 958355: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged distinct 152 into distinct 16159: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged else 433 into else 2114: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged end 434 into end 3966: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged exists 103 into exists 412: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged from 100 into from 429: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged glob 142 into glob 94911: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged group 405385 into group 186: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged if 43142 into if 400: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged ignore 132 into ignore 26173: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged in 137 into in 303: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged index 113021 into index 1625: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged integer 35 into integer 26685: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged into 82 into into 359: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged is 55 into is 369: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged join 135 into join 8296: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged key 37 into key 188: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged left 458 into left 963: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged limit 119 into limit 1135: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged materialized 844132 into materialized 214478: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged new 330991 into new 1549: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged not 117 into not 335: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged null 56 into null 27895: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged on 136 into on 785: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged or 92 into or 289: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged order 111 into order 2191: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged primary 36 into primary 10752: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged real 98151 into real 3603: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged recursive 452 into recursive 16491: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged replace 93 into replace 6450: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged select 98 into select 17434: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged set 52 into set 3984: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged table 31 into table 410: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged text 1193971 into text 450: shards 1 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged then 432 into then 1826: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged trigger 1788890 into trigger 40: shards 1 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged union 455 into union 15107: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged unique 424448 into unique 1353: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged update 51 into update 7810: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged values 85 into values 3111: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged when 431 into when 1047: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged where 54 into where 2531: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+  merged with 451 into with 354: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0
+
+INSERT 81 node rows by source: [[12, 3], [13, 2], [14, 14]]
+the 11 born by the merge line: ERR no query solution
+symbols of the merged words now encode to: [('SELECT', [[17434]]), ('INSERT', [[10441]]), ('TABLE', [[410]]), ('INTEGER', [[26685]]), ('GROUP', [[186]]), ('TEXT', [[450]])]

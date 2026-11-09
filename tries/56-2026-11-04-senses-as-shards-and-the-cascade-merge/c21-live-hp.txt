@@ -1,0 +1,14 @@
+define : spend         run 19948399 2.369 s refused 0; sense cell 187: 16 sense rows ['976339', '976340', '976341', '976470', '976471', '976472', '976473', '976474']; dna rows 8 (with a call 0); sense_shard rows 9
+   shard 20049686  (advertising, exceeded) call None -> sense ['976481 noun 1: Amount of money spent (during a period); expenditure']
+   shard 20049687  (then, time) call None -> sense ['976474 verb 5: To consume, to use up (time). [examples: My sister u']
+   shard 20049688  (to, an) call None -> sense ['976472 verb 3: (dated) To squander. [tags: dated] [examples: to spe']
+   shard 20049689  (To, my) call None -> sense ['976471 verb 2: To bestow; to employ; often with on or upon. [exampl']
+   shard 20049690  (They, a) call None -> sense ['976341 verb 1: use up a period of time in a specific way; "how are ']
+   shard 20049691  (I, my) call None -> sense ['976340 verb 3: spend completely; "I spend my pocket money in two da']
+   shard 20049692  (They, the) call None -> sense ['976339 verb 2: pay out; "spend money" [syn: {spend}, {expend}, {dro', '976340 verb 3: spend completely; "I spend my pocket money in two da']
+   shard 20049693  (They, money) call None -> sense ['976339 verb 2: pay out; "spend money" [syn: {spend}, {expend}, {dro']
+define : abligurition  run 19948418 0.065 s refused 0; sense cell 187: 1 sense rows ['19938484']; dna rows 1 (with a call 0); sense_shard rows 0
+   shard 20049018  (define, :) call None -> sense []
+I spend my pocket money in two days      run 19948437; the hop on spend: [(3, 'spend', 17)]; its sense rows: [[]]
+he spends freely                         run 19948442; the hop on spend: []; its sense rows: []
+we spend money on food                   run 19948447; the hop on spend: [(3, 'spend', 17)]; its sense rows: [[]]

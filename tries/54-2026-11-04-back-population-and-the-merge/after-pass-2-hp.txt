@@ -1,0 +1,6 @@
+define : spend -> run 19948278, 0.659 s; etymology 65 words; glued to a quote: 0 []; whole words of other scripts: ['h₁éǵʰ', 'h₁éǵʰs', 'péndeti', 'pendō', 'expendōbor', 'spendōn', 'spentōn']
+  the say begins: spend | like: know, run, of, to, the, under, in, be, with, serve, go, over, out, experience, stand, against, weekend, pu
+define : abligurition -> run 19948295, 0.131 s; class ['n', 'noun']; prefix ['ab']; suffix ['tiō']; etymology words 52, among them ['h₂epó', 'abligurrītiō', 'abligurītiō', 'abligurriō', 'abliguriō', 'tiō', 'ligurriō', 'liguriō']
+  guess cell 15 on this define: None
+/api/info: ready True runs 19948311 defined 722323 refused 1 gates 1790817 heap_MB 17
+belief: points confirmed 71, guesses standing 21, refused legs 73

@@ -1,0 +1,7 @@
+meaning : run -> run 19948208; incorrect : 19948208 -> run 19948218
+UNBIND typed again: run 19948230 refused 0; run acting rows: [[0]]
+pre-refused the eight roots for run: run 19948236 refused 0; tried rows of run: [('define', 0), ('meaning', 0), ('correct', 0), ('incorrect', 0), ('print', 0), ('create', 0), ('change', 0), ('step', 0)]
+define : run -> guess cell: None; acting rows: [[0]]
+meaning : make -> 19948259; correct : 19948259; make belief: [[20049335, 0, 1], [20049336, 0, 1], [20049337, 0, 1], [20049338, 0, 1], [20049339, 0, 1], [20049599, 1, 0]]
+
+state: acting points with belief correct > 0: 71; guesses standing (belief 0/0 points): 21; refused legs (tried 0): 73; tried by formula (2): 46

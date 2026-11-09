@@ -1,0 +1,12 @@
+# tries/57 (2026-11-04, 15:34 CST): the state at the beginning, read live
+
+The owner's words (15:3x, verbatim in OWNER-WORDS.md): the cascade is done; copy the new state and deploy it for the cortex; the judge a concern of the sixth and the brain using source data; code base docs as sources with paths (typescript strict, py, sql, rust; maybe go); a source populates what the brain needs to know; the sixth sees the trust drop and asks why, how, can it be fixed, do we have a plan, registers its plan, asks the headless to build it; teaching docs for codebases as a beginner-to-senior lesson with checkpoints, tests and the answer key held by the judge.
+
+| What | Read |
+|---|---|
+| cortex formula cortex (15:34) | BEFORE clock 2184615 (08:15) 49 checkpoints 47 done 1371 ingests 595 verdicts 71 parts; AFTER clock 2185872 (15:34) 49 checkpoints 47 done 1409 ingests 615 verdicts 71 parts; open C28 (parts together 0.53) and C48 (no part); remainder C15.3 (the marks, owner), C48.1 (waits on the cascade) |
+| cortex status brain line | gates 137558 runs 2185872 hops 12695631 refused 0 clock 2185872; judge receipt, shape, learned v6, then claude:haiku; freeze EQUAL 3e831a35; captures cortex 15:19 SessionEnd, neuron 15:23 Stop |
+| hp2 kernel (live, port 7007, pid 1355161, up since 11-02 15:19) | ~/cortex/nk built from hp commit a9bdc24 (g35, 11-02 14:40): nk.c 91c4e024, nkio.c c2f7b686, nk.h 434b3fb9, nkxyz.c 0aeecd3a; brain ~/cortex/brain/brain.map (3.6 G used of a 400 G sparse file), .main.db 757 MB, .sixth.db 1.2 MB (untouched since 11-02 15:04), .xyz 100 MB; memory 4.3 G of 7.8 G |
+| hp kernel (never touched; read only) | ~/nk at commit 2aa286d (g37, 11-02 20:29) plus uncommitted nk.c nk.h nkio.c serve8.py (the cascade: C27 encoder whole word in any script, returns re-cut, output never cut, relabel back population; C28 hand laid symbol merges into its defined twin, merge(h,t)); nk pid 389334 started 11-04 08:01:15 on out/brain.map; stats: runs 19948476 defined 722323 gates 1790818 refused 1; the diff from a9bdc24: nk.c +58, nk.h +6, nkio.c +18, nkxyz.c +155/-54; new door verbs restep, moved, relabel; new line file MEANING-nk.txt (ledger 11-02 17:54) |
+| the hp builder's record of the cascade | tries/56 STATE-END 08:25: fourth restart 08:01:10 in 7.4 s, counts equal across it; RECALL-12 bound; senses as shards live |
+| hp2 headroom | 389 G free on /, 7.8 G RAM (485 free + 6.9 G cache), 2 cores |

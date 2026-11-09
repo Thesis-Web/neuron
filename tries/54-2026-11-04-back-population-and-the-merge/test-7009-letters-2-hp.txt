@@ -1,0 +1,9 @@
+nk.c: letter_len and the four cut loops patched
+112:static int is_letter(unsigned char c){ return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_'; }   /* C27 (the owner, 11-04 04:30): a word is one symbol in any script; a byte of a non-ascii letter no longer ends it */
+113:static int u8len(unsigned char c){ if(c < 0x80) return 1; if((c >> 5) == 6) return 2; if((c >> 4) == 14) return 3; if((c >> 3) == 30) return 4; return 1; }
+117:static int letter_len(const unsigned char *s, size_t rem){
+-rwxrwxr-x 1 james james 150616 Nov  4 06:37 nk
+BUILT
+typed run 1 born 31
+symbols: from | abligurriō | ( | “ | to | lick | away | ; | to | spend | or | waste | indulgently | , | squander | ” | ) | + | - | tiō | and | ab | ‧ | lig | ‧ | u | ‧ | rit | ‧ | ion | and | * | h₂epó | and | naïve | café | – | dash | … | end
+test kernel stopped

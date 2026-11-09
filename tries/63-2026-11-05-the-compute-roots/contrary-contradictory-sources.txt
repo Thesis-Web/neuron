@@ -1,0 +1,19 @@
+== gcide contrary (logic lines)
+[sense: 4.] [field: (Logic)] [definition: Affirming the opposite; so opposed as to destroy each other; [usage: as, contrary propositions].] [[source: 1913 Webster]]
+[sense: 4.] [field: (Logic)] [definition: See [entry reference: Contraries].] [[source: 1913 Webster]]
+== wn contrary (logic lines)
+noun 3: a logical relation such that two propositions are contraries if both cannot be true but both can be false [syn: {contrary}] [hypernym: {logical relation}] [lexicographer file: noun.relation] [sense key: contrary%1:24:02::] [tag count: 0]
+adjective satellite 2: of words or propositions so related that both cannot be true but both may be false; "`hot' and `cold' are contrary terms" [syn: {contrary}] [similar to: {antonymous}] [lexicographer file: adj.all] [sense key: contrary%5:00:00:antonymous:00] [tag count: 1]
+== gcide contradictory (logic lines)
+[sense: 2.] [plural form: pl.] [field: (Logic)] [definition: propositions with the same terms, but opposed to each other both in quality and quantity.] [[source: 1913 Webster]]
+== wn contradictory (logic lines)
+noun 1: two propositions are contradictories if both cannot be true (or both cannot be false) at the same time [syn: {contradictory}] [hypernym: {logical relation}] [lexicographer file: noun.relation] [sense key: contradictory%1:24:00::] [tag count: 0]
+adjective satellite 4: unable for both to exist or be true at the same time [syn: {contradictory}, {mutually exclusive}] [similar to: {incompatible}] [derivationally related form: {contradictoriness}, {contradict}, {contradict}] [lexicographer file: adj.all] [sense key: contradictory%5:00:00:incompa
+adjective satellite 1: of words or propositions so related that both cannot be true and both cannot be false; "`perfect' and `imperfect' are contradictory terms" [syn: {contradictory}] [similar to: {antonymous}] [derivationally related form: {contradictoriness}, {contradict}, {contradict}] [lexicogr
+== gcide subcontrary (logic lines)
+[sense: 3.] [field: (Logic)] [definition: Denoting the relation of opposition between the particular affirmative and particular negative. Of these both may be true and only one can be false.] [[source: 1913 Webster]]
+[entry: Subcontrary] [headword: Sub*con"tra*ry], [part of speech: n.]; [plural: pl. [plural word: Subcontraries] [pronunciation: ((?))].] [field: (Logic)] [definition: A subcontrary proposition; a proposition inferior or contrary in a lower degree.] [[source: 1913 Webster]]
+== wn subcontrary (logic lines)
+== gcide incompatible (logic lines)
+[collocation segment: [collocation: Incompatible terms] [field: (Logic)], [collocation definition: terms which can not be combined in thought.]]
+== wn incompatible (logic lines)

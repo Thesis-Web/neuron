@@ -1,0 +1,5 @@
+6.0 s
+non-ascii gates 481177, distinct symbols among them 481177
+most repeated non-ascii: [('¢', 1, 30307), ('£', 1, 3856), ('§', 1, 2830), ('«', 1, 37049), ('¬', 1, 21699), ('®', 1, 148268), ('°', 1, 13769), ('±', 1, 30277), ('²', 1, 22615), ('³', 1, 7286), ('´', 1, 52800), ('µ', 1, 6055)]
+ascii symbols held by more than one gate within a 200k chunk: 0 symbols, 0 gates
+most repeated ascii: []

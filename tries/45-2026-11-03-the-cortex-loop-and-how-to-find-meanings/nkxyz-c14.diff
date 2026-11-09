@@ -1,0 +1,27 @@
+--- /home/james/nk/nkxyz.c	2026-11-02 20:23:18.402925015 -0600
++++ nkxyz.c	2026-11-03 17:53:39.238996028 -0600
+@@ -112,6 +112,24 @@
+   if(me->placed && me->shard == (int)shard && me->before == before && me->next == next) return;
+   int did = xyz_step(b, gate, 1);
+   me->shard = (int)shard; me->before = before; me->next = next; me->at = b->clock; me->run = run; if(did){ me->moved++; tl_move(b, gate, run, pos, did == 1); }
++  /* tries/45 (C14): the neighbours react. The points this point's relationship rows name, both ways, each take one step by their own pulls,
++     at most NK_TENSION_MAX of them (64), each step a receipt of its own so restep replays it. The list is read first, then stepped: a step
++     resets the shared rel statements. One round; the strength per shard and any further round are the owner's formula design. */
++  if(did == 2){
++    static int TENSION_MAX = -1; if(TENSION_MAX < 0){ const char *e = getenv("NK_TENSION_MAX"); TENSION_MAX = e ? atoi(e) : 64; if(TENSION_MAX < 0) TENSION_MAX = 0; }
++    if(TENSION_MAX > 0){
++      sqlite3 *db = mother_db();
++      if(!RQ) sqlite3_prepare_v2(db, "SELECT kind, other FROM main.rel WHERE gate = ?", -1, &RQ, 0);
++      if(!RQ2) sqlite3_prepare_v2(db, "SELECT kind, gate FROM main.rel WHERE other = ?", -1, &RQ2, 0);
++      int *nb = malloc(sizeof(int) * TENSION_MAX); int nn = 0;
++      for(int side = 0; side < 2 && nn < TENSION_MAX; side++){ sqlite3_stmt *q = side ? RQ2 : RQ; if(!q) continue; sqlite3_reset(q); sqlite3_bind_int(q, 1, gate);
++        while(nn < TENSION_MAX && sqlite3_step(q) == SQLITE_ROW){ int other = sqlite3_column_int(q, 1); if(other <= 0 || (uint64_t)other >= XCAP || other == gate || other == ORIGIN_G || !X[other].placed) continue;
++          int dup = 0; for(int k = 0; k < nn; k++) if(nb[k] == other){ dup = 1; break; } if(!dup) nb[nn++] = other; }
++        sqlite3_reset(q); }
++      for(int k = 0; k < nn; k++){ int d2 = xyz_step(b, nb[k], 1); if(d2 == 2){ X[nb[k]].at = b->clock; X[nb[k]].moved++; tl_move(b, nb[k], run, pos, 0); } }
++      free(nb);
++    }
++  }
+ }
+ /* the back population, the long way once: every point that holds a definition or a place, one step each per pass; a pass is one receipt of the
+    timeline (its placements are receipts of their own, so the pass can be undone exactly: the placed points were not stepped in it) */

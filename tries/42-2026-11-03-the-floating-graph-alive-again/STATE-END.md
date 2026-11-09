@@ -1,0 +1,12 @@
+# tries/42 (2026-11-03, 03:50): the state at the end of the turn, read live
+
+| What | Read |
+|---|---|
+| hp's page, headless (03:45, `hp-tension-headless.png`) | `page_patch10` live; ready in 6 s; 1,465 points, 3,540 springs, the brain's places on; in ten seconds 463 of the 1,465 drawn points moved (the largest 229 units: the springs pull the seeded cloud together); `alike` clicked off: springs 3,540 → 2,205 and 365 points moved again (largest 421); lines at 10 %; no page exceptions. The picture: a tight cluster around the drawn runs with faint lines and the orange call lines, `heard` fixed below it |
+| the hub's page, headless (03:53, `hub-tension-headless.png`) | `page_patch10` live after a second try (the hub's space-apart line is bare, the kernel's timed); ready in 3 s; 607 points, 97 springs; 583 of 607 moved in ten seconds (largest 280); `alike` off: 1,196 of 1,241 moved again. The same ball as on hp |
+| the owner's word on it (03:55) | "yeah that is wrong, and this is why... a runs shape through the neurons is it's pattern, it's physical shape... if every run through the neurons is the same shape then a specific run has no pattern to match... context will change the shape of a run, as will mood, tense, modifiers, operators, context, concept, multipliers (adjectives, singular, plural)... suffix and prefixes... a root having a suffix or prefix will have a different shape run than one not... but the root will shift a little" |
+| the pages at 04:02 (`page_patch10b`, live on both doors) | the page's springs are out of the brain's-places mode again: a point sits where the brain holds it and glides when the brain moves it; lines stay at 10 %; the label says the shape is the brain's pulls per shard. Off: the page's own springs, one shape for every run |
+| what moves now | only what the brain moves (one point per landing, no neighbour: 109 of 65,933 points by landings so far). The shape per shard, with the neighbours reacting and the root shifting under a prefix or suffix, is the brain's own tension: neuron C14, the next build, on the owner's word |
+| the kernel's places | unchanged by this turn: 65,708 of 65,933 points moved by the fourteen passes only; nothing typed into either brain |
+| hp `/api/info` | defined 722,284, runs 19,938,171, refused 1, pending 0 |
+| the Cortex | neuron C13 working with its live output ingested; C14 open (the owner's word for the kernel) |

@@ -1,0 +1,11 @@
+# The owner's words, 2026-11-04 19:2x CST (hub session), verbatim, before the two pastes
+
+"what I think you are saying is that after the merge the correct dna shard is not being picked... essentially.. because the uppercase function in the encoder should handle that problem??? no yes?"
+
+"Mine, for you to strike: the noun after the root keys the use; of, to, at, by carry the operands; the result sits in the line's cell 23 and it reads it; the example sentences; compare orders text.--- not sure this is true???? your one shard more than once.. yes, but also some meanings require more information thatn before and after, in that case a dna shard is hit first to find the rest of the information needed to determine the real dna shard needed. it's triggers might look for the tense, mood , memories, outcomes, subject, predicate, verb, adjectives or any mixture of many different things just to know what specific shard should be used in this state/time/context/use case... it then returns back to the neuron and runs that shard...."
+
+"the one case a sentance is not a script... noooo. the one case a sentance is not a script is when and only when the brain is speaking to an output... all others are scripts... hear,see are inputs scripts, saying is output not script.... basically everyword in this prompt if ingested by the brain would be treated as a progamatic code file... and it would cause a bunch of actions to happen ... that is correct and how it should be, because that is what happens in a brain, hears a word, does the code of that word to the brain so that the brain can remmeber, think, act upon, reason, test, hypothosize, observe, look, run, sit, fart, speak, burp, scream, feel, be frightened ... shit all of it has a specific meaning in a specific use case, its all fucking code... but the words themselves are not the code,,, they are the short hand code ... the fucking grep,sed,cat,py,EOF,ls,mkdir, the fucking symbols of the fucking actions... fuck this is just not that fucking hard????? here lets see if a crazy ass llm can teach you another crazy ass llm the correct way to do it...."
+
+[paste 9: CONTRACT-cortex-paste9.md; paste 10: DIRECTIVE-builder-paste10.md]
+
+"paste in 9 is for the cortex,, paste in 10 is for you... /cortex /neuron /temporal proceed and get it fixed."

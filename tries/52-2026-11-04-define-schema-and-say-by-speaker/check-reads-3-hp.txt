@@ -1,0 +1,74 @@
+
+== spend (gate 8126)
+  span 4 fields: 5 rows, 0.151 s
+    cell 441   class      verb v t i noun
+    cell 6332  tense      Spent Spending spends present singular third person spending participle spent past plural
+    cell 204   etymology  AS spendan in comp fr L expendere or dispendere to weigh out expend dispense See entry Pendant Etymology tree Proto Indo European h s Italic eks Latin ex pend p ndeti bor West Germanic spend n Old English Middle spenden From from attested especially compounds forspendan use up consume borrowed Doublet of Cognate with High German spent whence donate provide Dutch dedicate Icelandic spenna
+    cell 5516  prefix     ex pend
+    cell 10547 suffix     s
+  span 5 rel: 3 rows, 0.003 s
+    cell 138   like       know run of to the under in be with serve go over out experience stand against weekend purse have live throw up put while mind through give time feel around taste drop white money off bestow hand waste lead cost use open blow assign exposed summer away winter attend eat incur meet encounter lose allot contribute invest lay pass store shell business burn pay fork finish employ engage suffer exhaust busy kill spill dry wear spend suck digest bleed sink … 127 in all
+    cell 139   opposite   (none)
+    cell 530   similar    (none)
+
+== abligurition (gate 1317458)
+  span 4 fields: 5 rows, 0.016 s
+    cell 441   class      n noun
+    cell 6332  tense      (none)
+    cell 204   etymology  L abligurito fr abligurire to spend in luxurious indulgence ab ligurire be lickerish dainty lingere lick PIE word h ep Learned borrowing from Late Latin abligurr ti abligur act of devouring spending feasting abligurri abliguri away or waste indulgently squander suffix forming abstract nouns verbs ligurri liguri up feast feed upon fond luxuries
+    cell 5516  prefix     ab
+    cell 10547 suffix     ti
+  span 5 rel: 3 rows, 0.002 s
+    cell 138   like       (none)
+    cell 139   opposite   (none)
+    cell 530   similar    (none)
+
+== who (gate 120)
+  span 4 fields: 5 rows, 0.148 s
+    cell 441   class      noun pron det name
+    cell 6332  tense      whom objective who whose possessive whos plural WHO canonical the W H O alternative
+    cell 204   etymology  who wha hwa hw hwaz OE AS interrogative pron neut t akin to OFries was hwet OS hwat D of wie wat G wer OHG hwer waz Icel hvat Dan hvo hvad Sw ho hvem Goth hwas fem Lith kas Ir Gael co W pwy L quod neuter qui Gr po teros From Middle English hwo huo hwoa from Old dative m genitive s Proto West Germanic Indo European k os The sound change h without a corresponding in spelling … 127 in all
+    cell 5516  prefix     (none)
+    cell 10547 suffix     (none)
+  span 5 rel: 3 rows, 0.002 s
+    cell 138   like       WHO
+    cell 139   opposite   (none)
+    cell 530   similar    (none)
+
+== the (gate 292)
+  span 4 fields: 5 rows, 0.195 s
+    cell 441   class      v i article definite adv prep pron
+    cell 6332  tense      da alternative d teh de t th ye y e
+    cell 204   etymology  AS of the s a See entry form later for earlier nom sing masc formed under influence oblique cases That instrumental case se t definite article d The From Middle English from Old by that and demonstrative pronoun Dutch German all e m Icelandic late variant Swedish which occurred in masculine feminine nominative singular only having been replaced stem words cognates Originally neutral it superseded previous forms o f n pl is Proto West Germanic siz sa ultimately Indo European … 121 in all
+    cell 5516  prefix     s
+    cell 10547 suffix     (none)
+  span 5 rel: 3 rows, 0.027 s
+    cell 138   like       mother main guess born hop clock above reply say know remember shape before call times run gate no such cell state count hit next about word label kind other like opposite unknown define coordinate help improve sense key part form akin neuter later also used always either singular under person in corresponding but less now compound especially one will be authority tell they aspire fall rise triumph do moan hiss I hard fate serve life fear death brace large mark … 6500 in all
+    cell 139   opposite   (none)
+    cell 530   similar    outback
+
+== a (gate 158)
+  span 4 fields: 5 rows, 0.255 s
+    cell 441   class      noun prep character num symbol adj article verb pron adv particle contraction conj intj
+    cell 6332  tense      A a lowercase As alternative plural s uppercase as aes rare ha o uh
+    cell 204   etymology  L per se by itself AS an of See entry Shortened form n one One Originally the preposition a on Abbreviated On From off from Of Middle and English Old letter A The in upper case split letters replaced th century Anglo Saxon Futhorc c sc derived Runic Ansuz highest rank grade music initial position alphabet blood type antigen name is French ultimately Latin Use displaced futhorc beginning partially also Etymology tree Proto Indo European s h ynos Germanic ainaz … 141 in all
+    cell 5516  prefix     a
+    cell 10547 suffix     o
+  span 5 rel: 3 rows, 0.017 s
+    cell 138   like       map measured guess above reply say remember shape call run no state value count hit about other like opposite A unknown define coordinate help improve file sense part object reference an later either singular plural under ask question in corresponding less now compound especially one will tell aspire fall rise do thus hard fate serve large any mark very man point table line belief print near change back step lower head comparable simple capitalize case sound due after regularly note … 4005 in all
+    cell 139   opposite   (none)
+    cell 530   similar    and e
+
+== of (gate 148)
+  span 4 fields: 5 rows, 0.070 s
+    cell 441   class      prep verb name noun
+    cell 6332  tense      ov alternative ob o a OFs plural
+    cell 204   etymology  of AS from off akin to D OS af G ab OHG aba away Icel Dan Sw Goth L Gr Skr apa Cf entry Off Etymology tree Proto Indo European h ep o Germanic West Old English f Middle From out an unstressed form Doublet which is the stressed descendant same word More at A spelling v influenced by
+    cell 5516  prefix     (none)
+    cell 10547 suffix     o
+  span 5 rel: 3 rows, 0.036 s
+    cell 138   like       mother guess above reply say know remember shape before call times node source run error no such cell state value count hit about word symbol label kind like opposite of unknown agency to coordinate help improve file sense key entry part speech declension form object interrogative Greek reference definition relative also as or under ask question in but less now especially meaning will authority tell author aspire fall rise triumph do moan with hiss madness I thus hard fate serve … 8401 in all
+    cell 139   opposite   after between following scant exceed
+    cell 530   similar    vespertine PONI matutine poni
+  span 7 say, heard on run 19938474: 0.005 s: abligurition | like:  | similar:  | opposite:  | class:  | tense:  | prefix:  | suffix:  | etymology:  | def: [entry: Abligurition] [headword: Ab*lig`u*ri"tion] [pronunciation: ((?))], [part of speech: n.] [etymology: [L. abligurito, fr. abligurire to spend in luxurious indulgence; ab + ligurire to 
+  span 7 say, the sixth on run 19938474: 0.005 s: {"what":1317458,"def":19938482,"class":[],"like":[],"opposite":[],"similar":[],"tense":[],"prefix":[],"suffix":[],"etymology":[],"known":[2,26,27,49,89,90,102,104,114,122,123,128,148,157,158,162,167,190,192,193,194,195,204,212,275,276,278,287,289,292,294,300,303,304,305,309,322,327,330,332,335,339,3

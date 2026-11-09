@@ -1,0 +1,39 @@
+--- make, two more legs
+  run 19940772: how relationship, guess print
+  incorrect : 19940772 -> re-asked as run 19941709
+  run 19941709: how relationship, guess form
+  incorrect : 19941709 -> re-asked as run 19941721
+  make dna rows with a call: []
+
+--- the adopted rows against the roots
+  make          differs from create: [] vs [(1, 83, 929)]
+  39 of 40 adopted words hold exactly their root's (before, trigger, call) rows
+
+--- live output, the adopted word's line against the root's
+  publish dna : who                run 19941733 say 'ok'
+  print dna : who                  run 19941742 say 'ok' -> SAME; cells same set
+  list dna : who                   run 19941751 say 'ok'
+  type dna : who                   run 19941760 say 'ok' -> SAME; cells same set
+  specify : who                    run 19941769 say 'who | like: WHO | similar:  | opposite:  | class: noun, pron, det, nam'
+  define : who                     run 19941785 say 'who | like: WHO | similar:  | opposite:  | class: noun, pron, det, nam' -> SAME; cells same set
+  gist : print                     run 19941801 say 'ok'
+  meaning : print                  run 19941811 say 'ok' -> SAME; cells same set
+  modify call : who from 0 to 0    run 19941821 say '0'
+  change call : who from 0 to 0    run 19942285 say '0' -> SAME; cells same set
+  build neuron : zz_build_1        run 19942294 say '1788912 | 0'
+  create neuron : zz_create_1      run 19942356 say '1788914 | 0' -> differs; cells same set
+  true : 19937881                  run 19942373 say 'ok'
+  correct : 19937881               run 19942382 say 'ok' -> SAME; cells same set
+  wrong : 19938035                 run 19942391 say 'ok'
+  incorrect : 19938035             run 19942403 say 'ok' -> SAME; cells same set
+
+--- the formula's candidates per root (mutual one-word like, not acting, root word in the definition rows)
+  print     154: alveolus, back, backlash, backwash, beard, bed, belly, bevel, blaze, blemish, blotch, blowup, blueprint, body, brand, cap, capital, carve, case, chalk, character, chart, check, chisel, clout, confirm, counter, crease, crosshatch, dapple, dash, delimit, demarcate, develop, diagram, dimple, discolor, dot, draw, embed, engrave, enlarge, entrench, establish, etch, face, fix, font, force, found, freckle, furrow, gash, glossy, gouge, grave, groove, ground, hatch, hologram
+  create     81: assemble, author, bear, beget, breed, bring, carve, cast, cause, chisel, coin, compose, compound, conceive, conceptualize, concoct, constitute, cut, design, devise, do, effectuate, elaborate, engender, erect, establish, evolve, extrude, fabricate, fancy, fantasize, fashion, father, fictionalize, figure, fix, forge, formalize, formulate, found, frame, gestate, hatch, head, hew, imagine, inaugurate, indite, initiate, institute, knead, lead, make, manufacture, mature, mint, model, mold, organize, originate
+  change    213: accommodate, adapt, advance, agency, alchemy, alteration, alternate, alternative, ameliorate, analogy, analysis, analyze, anatomize, ascend, assimilation, assume, assumption, atomization, atomize, back, backup, bandy, barter, become, better, break, budge, castrate, changeling, checker, chop, circle, climb, commutation, commute, comparison, compensate, conversion, cooperate, copy, counterfeit, deal, deform, degenerate, delegation, demarcation, denature, deputation, deputy, descend, deteriorate, deviate, deviation, difference, differentiate, differentiation, discriminate, discrimination, disjoin, disjunction
+  define    109: assign, baptize, bed, blaze, blemish, blotch, bound, brand, call, chalk, check, christen, circumscribe, confirm, construe, dapple, dash, delimit, demarcate, designate, determine, diagnose, differentiate, discolor, distinguish, dot, dub, earmark, embed, enclose, engrave, entitle, entrench, establish, etch, fix, found, freckle, gash, ground, hatch, hem, identify, impact, implant, impress, imprint, infix, ingrain, inscribe, jam, keynote, label, limit, line, lodge, mottle, name, nick, nickname
+  meaning    48: aim, ambition, animus, aspiration, characterization, construction, counsel, definition, denomination, description, desideratum, design, designation, desire, determination, diagnosis, differentiation, disclosure, explanation, expression, fatality, fingering, function, identification, intent, intention, manifestation, message, mind, motive, naming, plan, portent, project, proposal, prospectus, reading, resolution, resolve, sake, selection, showing, specification, striving, study, understanding, view, will
+  correct   157: Christian, absolute, accepted, accommodate, accord, acknowledged, adapt, admitted, admonish, amend, appropriate, approved, apt, attentive, authentic, authoritative, awaken, becoming, befitting, bend, canonical, castigate, chasten, chastise, chide, close, comely, compensate, comply, compose, condign, conform, conscientious, conventional, correspond, counteract, counterbalance, critical, cure, customary, debunk, decent, decorous, delicate, demanding, detailed, disabuse, disappoint, discipline, disenchant, disillusion, due, edit, emend, enlighten, evangelical, exacting, exigent, expose, exquisite
+  incorrect  64: aberrant, abnormal, abominable, approximate, atrocious, barbaric, barbarous, careless, clumsy, coarse, criminal, crude, delinquent, disgraceful, doggerel, evil, faulty, graceless, gross, harsh, ignominious, illegal, imprecise, improper, impure, inappropriate, indecorous, inelegant, inexact, infamous, infelicitous, lax, loose, low, negligent, outlandish, rude, sacrilegious, scandalous, shameful, shameless, sinful, slipshod, slovenly, specious, tasteless, terrible, uncouth, undignified, undue, uneuphonious, unfactual, unfit, ungraceful, unlawful, unpolished, unrefined, unrighteous, unseemly, unsound
+  step      214: accomplishment, ace, achievement, act, acta, action, adventure, amount, answer, appraise, appreciate, approach, artifice, assay, assess, attempt, band, bed, bedding, belt, bid, bit, blow, boss, bound, bump, calculate, caliber, calibrate, canter, career, clip, clop, colophon, compass, compute, concavity, contrivance, convexity, countermove, coup, course, crack, cut, dealings, deck, deed, dent, device, dial, dint, divide, dodge, doing, doings, earshot, effort, embossment, endeavor, enterprise
+  in all: 1040 candidates the formula would lay as guesses

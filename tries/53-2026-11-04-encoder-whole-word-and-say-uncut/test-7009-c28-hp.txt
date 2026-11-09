@@ -1,0 +1,23 @@
+stats: {'gates': 86, 'runs': 0, 'refused': 0}
+SELECT in the egg: []  select: []
+BUILD SELECT 1 + 1 -> run 1 refused 1
+the word select stands here -> run 2 born 5
+before the merge: SELECT gate 87 neuron [[0, 0, 0]] dna []; select gate 94 neuron [[0, 0, 0]]
+the merge line -> run 3 refused 1
+  the reply (mother): []
+after the merge: label SELECT -> [[87, 'SELECT']] ; neuron 87: [[0, 0, 0]] ; neuron 94: [[0, 0, 0]] ; dna of 94: []
+a new BUILD SELECT 2 + 2 after the merge -> run 4 refused 1; its symbols: BUILD   SELECT   2   +   2   ;   BUILD; reply: []
+relabel on the fresh brain: {'points': 0, 'node_rows': 0, 'texts': 0, 'missing': 0, 'labels_before': 100, 'labels_after': 100, 'born': 0, 'seconds': 0.0}
+test kernel pid 369240
+test kernel stopped
+BUILD SELECT 1 + 1 -> run 1 refused 1
+refused rows: [[1, 'land run 1 pos 3 gate 87', 'no such neuron']]
+the word select stands here -> run 2 born 5
+before: SELECT gate 87, select gate 94
+merge through mother: [['merged SELECT 87 into select 94: shards 0 moved, 0 kept by the twin, node rows 0, memories 0, about 0, hits 0, arrived 0']]
+after: label SELECT -> [] ; label select -> [[94, 'select']]
+neuron 87 (born, nodes, shards): [[0, 0, 0]] ; neuron 94: [[1, 0, 0]]
+a line with SELECT in it -> run 3; its symbols by gate: [[7, 94, 'select']]
+merge error path (same gate): [['error: gates 94 and 94']]
+relabel: {'points': 0, 'node_rows': 0, 'texts': 0, 'missing': 0, 'labels_before': 101, 'labels_after': 101, 'born': 0, 'seconds': 0.0}
+test kernel stopped

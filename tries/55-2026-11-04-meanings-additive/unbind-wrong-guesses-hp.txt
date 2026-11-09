@@ -1,0 +1,9 @@
+formula guesses the teacher marked wrong (belief incorrect > 0, correct = 0): 36: advance, assimilation, blowup, break, chasten, chop, cut, decent, difference, do, emend, get, go, make, mannerly, move, peg, prepare, proceeding, received, rectify, relief, remove, resolve, return, revolution, rude, run, rung, stair, stamp, swerve, tergiversate, travel, veer, vicissitude
+rude before: [[20049392, 1, 68, 19937787, None]] [[20049392, 0, 1]]
+typed on rude: run 19945435 refused 0
+rude after: [[20049392, 1, 68, None, None]] tried: [[423, 0]]
+typed over all: run 19945441, 0 refused, 0.082 s
+wrong guesses still acting: 0 []
+tried outcome 0 rows now: 65 ; acting points in all (gates with a call): 70 confirmed by belief
+define : run -> guess cell: 424; run dna rows with a call: [[5]]
+define : make -> guess cell: create; make dna rows with a call: [[1, 83, 929]]

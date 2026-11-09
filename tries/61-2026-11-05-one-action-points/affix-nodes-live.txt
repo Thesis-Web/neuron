@@ -1,0 +1,7 @@
+re node rows 70 | rows naming prefix or suffix: 1
+    ('wikt', '[word: re] [part of speech: noun] [etymology 3] [head: re (plural res)] [forms: res | tags: plural] [etymology: From the prefix re-.] [pronunciation: /ɹiː/ | ta')
+ing node rows 7 | rows naming prefix or suffix: 1
+    ('wikt', '[word: ing] [part of speech: noun] [etymology 2] [head: ing (plural ings)] [forms: ings | tags: plural] [etymology: From Pitman em and en, which it is related t')
+ness node rows 15 | rows naming prefix or suffix: 2
+    ('wikt', 'noun 1: (geography) A promontory; a cape or headland. (Frequently used as a suffix in placenames.) [topics: geography, natural-sciences] [examples: Velvraz Seba')
+    ('gcide', '[note: ☞ Ness is frequently used as a suffix in the names of places and promontories; as, Sheerness.] [[source: 1913 Webster]]')

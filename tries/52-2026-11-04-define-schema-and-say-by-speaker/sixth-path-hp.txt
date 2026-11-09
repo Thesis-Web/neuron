@@ -1,0 +1,3 @@
+newest run of arrival 5 before: 19939010
+typed define unknown : 1                       run 19939014, 9 runs, 515 hits, 0 born, 0 refused, 0.058 s
+newest run of arrival 5 after: 19939010

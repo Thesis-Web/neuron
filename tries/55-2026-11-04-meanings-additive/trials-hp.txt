@@ -1,0 +1,46 @@
+wrong          want incorrect legs relationship:correct | relationship:incorrect -> correct : 19940598 adopted incorrect; dna rows with a call now: 1
+false          want incorrect legs relationship:correct | relationship:incorrect -> correct : 19940629 adopted incorrect; dna rows with a call now: 1
+mistaken       want incorrect legs relationship:incorrect                        -> correct : 19940650 adopted incorrect; dna rows with a call now: 1
+erroneous      want incorrect legs relationship:incorrect                        -> correct : 19940669 adopted incorrect; dna rows with a call now: 1
+untrue         want incorrect legs relationship:correct | relationship:incorrect -> correct : 19940698 adopted incorrect; dna rows with a call now: 1
+inaccurate     want incorrect legs relationship:correct | relationship:incorrect -> correct : 19940729 adopted incorrect; dna rows with a call now: 1
+make           want create    legs relationship:define | relationship:correct | relationship:print -> incorrect, re-asked; dna rows with a call now: 0
+build          want create    legs relationship:create                           -> correct : 19940796 adopted create; dna rows with a call now: 1
+produce        want create    legs relationship:create                           -> correct : 19940815 adopted create; dna rows with a call now: 1
+generate       want create    legs relationship:create                           -> correct : 19940834 adopted create; dna rows with a call now: 1
+construct      want create    legs relationship:create                           -> correct : 19940853 adopted create; dna rows with a call now: 1
+form           want create    legs relationship:create                           -> correct : 19940872 adopted create; dna rows with a call now: 1
+invent         want create    legs relationship:form | relationship:create       -> correct : 19940901 adopted create; dna rows with a call now: 1
+specify        want define    legs relationship:define                           -> correct : 19940922 adopted define; dna rows with a call now: 3
+clarify        want define    legs relationship:define                           -> correct : 19940941 adopted define; dna rows with a call now: 3
+explain        want define    legs relationship:define                           -> correct : 19940960 adopted define; dna rows with a call now: 3
+interpret      want define    legs relationship:define                           -> correct : 19940979 adopted define; dna rows with a call now: 3
+characterize   want define    legs relationship:define                           -> correct : 19940998 adopted define; dna rows with a call now: 3
+delineate      want define    legs relationship:define                           -> correct : 19941017 adopted define; dna rows with a call now: 3
+signification  want meaning   legs relationship:meaning                          -> correct : 19941036 adopted meaning; dna rows with a call now: 1
+significance   want meaning   legs relationship:meaning                          -> correct : 19941055 adopted meaning; dna rows with a call now: 1
+purport        want meaning   legs relationship:meaning                          -> correct : 19941074 adopted meaning; dna rows with a call now: 1
+gist           want meaning   legs relationship:meaning                          -> correct : 19941093 adopted meaning; dna rows with a call now: 1
+import         want meaning   legs relationship:meaning                          -> correct : 19941112 adopted meaning; dna rows with a call now: 1
+modify         want change    legs relationship:correct | relationship:create | relationship:change -> correct : 19941153 adopted change; dna rows with a call now: 5
+vary           want change    legs relationship:create | relationship:change     -> correct : 19941184 adopted change; dna rows with a call now: 5
+transform      want change    legs relationship:change                           -> correct : 19941205 adopted change; dna rows with a call now: 5
+convert        want change    legs relationship:create | relationship:change     -> correct : 19941234 adopted change; dna rows with a call now: 5
+adjust         want change    legs relationship:correct | relationship:create | relationship:change -> correct : 19941277 adopted change; dna rows with a call now: 5
+switch         want change    legs relationship:change                           -> correct : 19941298 adopted change; dna rows with a call now: 5
+true           want correct   legs relationship:meaning | relationship:correct   -> correct : 19941327 adopted correct; dna rows with a call now: 1
+accurate       want correct   legs relationship:correct                          -> correct : 19941348 adopted correct; dna rows with a call now: 1
+exact          want correct   legs relationship:correct                          -> correct : 19941367 adopted correct; dna rows with a call now: 1
+precise        want correct   legs relationship:correct                          -> correct : 19941386 adopted correct; dna rows with a call now: 1
+publish        want print     legs relationship:print                            -> correct : 19941405 adopted print; dna rows with a call now: 5
+render         want print     legs relationship:print                            -> correct : 19941424 adopted print; dna rows with a call now: 5
+list           want type      legs relationship:type                             -> correct : 19941443 adopted type; dna rows with a call now: 5
+tabulate       want type      legs relationship:type                             -> correct : 19941462 adopted type; dna rows with a call now: 5
+catalog        want type      legs relationship:type                             -> correct : 19941481 adopted type; dna rows with a call now: 5
+transcribe     want type      legs relationship:type                             -> correct : 19941500 adopted type; dna rows with a call now: 5
+kind           want None      legs relationship:form | relationship:meaning | relationship:type -> incorrect, re-asked; dna rows with a call now: 0
+category       want None      legs relationship:type | relationship:list | relationship:form -> incorrect, re-asked; dna rows with a call now: 0
+rectify        want None      legs relationship:correct | relationship:true | relationship:clarify -> incorrect, re-asked; dna rows with a call now: 0
+amend          want None      legs relationship:form | relationship:correct | relationship:modify -> incorrect, re-asked; dna rows with a call now: 0
+
+adopted: 39 of 44 trials

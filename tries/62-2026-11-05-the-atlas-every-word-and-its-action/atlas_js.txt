@@ -1,0 +1,204 @@
+  // ---- the atlas (tries/62, 2026-11-05; the owner, 05:4x: "walk the corpus and make sure every word is in the atlas, and it's meaning/action if it has them"):
+  // every gate with definition rows or DNA rows, walked by key 100,000 gates at a time when the atlas first opens (and on read again, never on a clock),
+  // with the brain's own place (main.xyz), its DNA rows, and the meaning / action at each shard: what the run the shard calls or spawns does, read from
+  // that run's own SQL, span by span. The gates this page loaded that hold neither are kept, as the atlas had them. Paged 200 rows at a time.
+  var AT = null, ATOPEN = -1, ATPAGE = 0, ATSIZE = 200, ATVIEW = [], ATBUSY = false, ATACT = {};
+  function aName(g) {
+    var s; if (AT && AT.idx[g] !== undefined) s = AT.sym[AT.idx[g]]; else if (AT && AT.lab[g] !== undefined) s = AT.lab[g]; else return nameOf(g);
+    return s === ' ' ? '␣' : s === '\n' ? '⏎' : s;
+  }
+  function atlasWalk() {
+    if (ATBUSY) return Promise.reject(new Error('the atlas is already walking'));
+    ATBUSY = true; var t0 = Date.now(), STEPG = 100000;
+    var W = { gate: [], sym: [], key: [], nodes: [], shards: [], mem: [], x: [], y: [], z: [], idx: {}, dnaBy: {}, lab: {}, err: null, top: 0, words: 0, ord: [] };
+    var say = function (h) { $('asum').innerHTML = h; };
+    return api('/api/info').then(function (info) {
+      W.top = (info && info.stats && info.stats.main && info.stats.main.gates) || 0;
+      var chunk = function (from) {
+        if (from > W.top) return Promise.resolve();
+        var to = Math.min(W.top, from + STEPG - 1);
+        say('<b>walking the brain by key</b>: gates ' + fmtN(from) + ' to ' + fmtN(to) + ' of ' + fmtN(W.top) + ' · ' + fmtN(W.gate.length) + ' words so far · ' + ((Date.now() - t0) / 1000).toFixed(1) + ' s');
+        return api('/api/q', { sql: 'WITH RECURSIVE g(x) AS (SELECT ? UNION ALL SELECT x + 1 FROM g WHERE x < ?) SELECT g.x, l.symbol, n.nodes, n.shards, n.memories, round(p.x, 1), round(p.y, 1), round(p.z, 1) FROM g JOIN main.neuron n ON n.gate = g.x JOIN main.label l ON l.gate = g.x LEFT JOIN main.xyz p ON p.gate = g.x WHERE n.nodes > 0 OR n.shards > 0', params: [from, to] }).then(function (j) {
+          if (j.error) W.err = j.error;
+          (j.rows || []).forEach(function (r) { W.idx[r[0]] = W.gate.length; W.gate.push(r[0]); W.sym.push(r[1] === null ? '' : String(r[1])); W.nodes.push(r[2] || 0); W.shards.push(r[3] || 0); W.mem.push(r[4] || 0); W.x.push(r[5]); W.y.push(r[6]); W.z.push(r[7]); });
+          return chunk(to + 1);
+        });
+      };
+      return chunk(1);
+    }).then(function () {
+      W.words = W.gate.length;
+      LABLIST.forEach(function (g) {   // the gates this page loaded that hold neither definition rows nor DNA rows: as the page has them
+        if (W.idx[g] !== undefined) return; var p = XYZ[g];
+        W.idx[g] = W.gate.length; W.gate.push(g); W.sym.push(LAB[g] === undefined ? '#' + g : String(LAB[g])); W.nodes.push(NODES[g] || 0); W.shards.push((DNABY[g] || []).length); W.mem.push(MEMN[g] || 0);
+        W.x.push(p ? Math.round(p[1] * 10) / 10 : null); W.y.push(p ? Math.round(p[2] * 10) / 10 : null); W.z.push(p ? Math.round(p[3] * 10) / 10 : null);
+      });
+      var withShards = W.gate.filter(function (g, i) { return W.shards[i] > 0; });
+      say('<b>reading the DNA rows</b> of ' + fmtN(withShards.length) + ' gates by key…');
+      return dnaOf(withShards);
+    }).then(function (rows) {
+      rows.forEach(function (d) { (W.dnaBy[d[0]] = W.dnaBy[d[0]] || []).push(d); });
+      Object.keys(W.dnaBy).forEach(function (k) { W.dnaBy[k].sort(function (a, b) { return a[1] - b[1]; }); });
+      var need = {}, runs = {};
+      rows.forEach(function (d) { [d[2], d[3]].forEach(function (g) { if (g !== null && W.idx[g] === undefined && LAB[g] === undefined) need[g] = 1; }); if (d[4] !== null) runs[d[4]] = 1; if (d[5] !== null) runs[d[5]] = 1; });
+      return qIn('SELECT gate, symbol FROM main.label WHERE gate IN (%IN%)', Object.keys(need).map(Number)).then(function (lr) {
+        lr.forEach(function (r) { W.lab[r[0]] = r[1]; });
+        var rl = Object.keys(runs).map(Number);
+        say('<b>reading the SQL</b> of the ' + rl.length + ' runs the shards call or spawn, by key…');
+        return rl.reduce(function (p, r) { return p.then(function () { return decodeRun(r); }); }, Promise.resolve());
+      });
+    }).then(function () {
+      var n = W.gate.length, ord = new Array(n);
+      for (var i = 0; i < n; i++) { ord[i] = i; W.key[i] = W.sym[i].toLowerCase(); }
+      ord.sort(function (a, b) { var x = W.key[a], y = W.key[b]; return x < y ? -1 : x > y ? 1 : W.gate[a] - W.gate[b]; });
+      W.ord = ord; W.seconds = (Date.now() - t0) / 1000; W.at = new Date();
+      AT = W; ATBUSY = false; ATACT = {};
+    }, function (e) { ATBUSY = false; say('<span class="no">the walk stopped: ' + esc(e && e.message) + '</span>'); throw e; });
+  }
+  // the action at a shard: what the run it calls or spawns does, read from that run's own SQL. Each BUILD span is one paste to mother at the SQL prompt;
+  // each statement in it is named by what it does: a cell written (cell ← where from), a table read, a column rewritten, a row laid, a run run, a source asked, a line typed
+  function topSplit(s, sep) {
+    var out = [], d = 0, qt = false, cur = '';
+    for (var i = 0; i < s.length; i++) { var c = s.charAt(i);
+      if (c === "'") qt = !qt;
+      if (!qt) { if (c === '(') d++; else if (c === ')') d--; else if (c === sep && d === 0) { out.push(cur.trim()); cur = ''; continue; } }
+      cur += c; }
+    if (cur.trim()) out.push(cur.trim()); return out;
+  }
+  function cellWord(x) { var m; x = x.trim(); if (/^\d+$/.test(x)) return aName(+x); if ((m = /symbol = '([^']+)'/i.exec(x))) return m[1]; return x.replace(/^\(\s*|\s*\)$/g, '').slice(0, 24); }
+  function fromWhere(v, state) {
+    if (/^NULL\b/i.test(v)) return state === '0' ? null : 'nothing';
+    if (/^reply\b/i.test(v)) return "mother's answer";
+    if (/FROM seq\b.*\brun = above\b/i.test(v)) return 'the line';
+    if (/^(what|newgate|to|from|me|above)\b/i.test(v)) return v.split(/\s/)[0];
+    if (/\bcount \(/i.test(v)) return 'a count';
+    if (/run_memory/i.test(v)) return 'a memory row';
+    if (/\bdna\b/i.test(v)) return 'a dna read';
+    if (/^\d+$/.test(v)) return v;
+    return 'a read';
+  }
+  function stmtAct(st) {
+    var s = st.replace(/\s+/g, ' ').trim(), m;
+    if (!s || /^SELECT changes \(/i.test(s)) return null;
+    if ((m = /^INSERT OR REPLACE INTO (?:main\.|sixth\.)?run_sheet \( ?run , cell , state , value ?\) (VALUES|SELECT) (.*)$/i.exec(s))) {
+      var body = m[2]; if (m[1].toUpperCase() === 'VALUES') body = body.replace(/^\(\s*/, '').replace(/\s*\)\s*$/, '');
+      var it = topSplit(body, ','); if (it.length < 4) return 'write a cell';
+      var src = fromWhere(it.slice(3).join(' , '), it[2]); if (src === null) return null;
+      var on = it[0] === 'above' ? '' : it[0] === 'me' ? ' (its own sheet)' : ' (on run ' + it[0] + ')';
+      return cellWord(it[1]) + ' ← ' + src + on;
+    }
+    if ((m = /^INSERT INTO (?:main\.)?replay \( ?parent , source , kind ?\) (?:VALUES \( ?|SELECT )(\w+) , (\d+) , (\d)/i.exec(s))) return 'run r' + m[2] + (m[3] === '2' ? ' as a spawn' : '') + (/WHERE NOT EXISTS/i.test(s) ? ' if not born' : '');
+    if ((m = /^INSERT INTO (\w+)\.inbox\b/i.exec(s))) return 'ask ' + m[1];
+    if (/^INSERT INTO (?:main\.)?third\b/i.test(s)) return 'type lines into the main brain';
+    if (/^INSERT INTO (?:main\.)?input\b/i.test(s)) return 'type a line';
+    if ((m = /^INSERT (?:OR \w+ )?INTO ([\w.]+)/i.exec(s))) return 'lay a ' + m[1].replace(/^main\./, '') + ' row';
+    if ((m = /^UPDATE ([\w.]+) SET (\w+)/i.exec(s))) return 'rewrite ' + m[1].replace(/^main\./, '') + '.' + m[2];
+    if ((m = /^DELETE FROM ([\w.]+)/i.exec(s))) return 'delete ' + m[1].replace(/^main\./, '') + ' rows';
+    if (/^SELECT mother \(/i.test(s)) return /FROM "/.test(s) ? 'read every row of the table the subject names (mother runs it)' : 'mother runs the text it builds';
+    if (/^(SELECT|WITH)\b/i.test(s)) {
+      var t = {}, re = /\b(?:FROM|JOIN) ([a-z_][\w.]*)/ig, x; while ((x = re.exec(s))) { var nm = x[1].replace(/^main\./, ''); if (!/^(select|seq|label|back|g|x|z|c|q|p|kb|br|mk|nm|pr|tok|gs|sp|oc|ok|sr|d|s|r|h|n|l|j|json_each)$/i.test(nm)) t[nm] = 1; }
+      var tl = Object.keys(t); if (!tl.length) tl = /\bseq\b/i.test(s) ? ['the line'] : ['a value'];
+      var key = /WHERE (?:\w+\.)?gate = what\b/i.test(s) ? ' of the subject' : /WHERE (?:\w+\.)?run = what\b/i.test(s) ? ' of run what' : /^WITH RECURSIVE back\b/i.test(s) ? ' back up the parents of run what' : '';
+      return 'read ' + tl.join(', ') + key;
+    }
+    if ((m = /^CREATE (\w+)/i.exec(s))) return 'create a ' + m[1].toLowerCase();
+    return s.split(' ').slice(0, 4).join(' ');
+  }
+  function actOf(run) {
+    if (ATACT[run] !== undefined) return ATACT[run];
+    var t = TEXT[run]; if (t === undefined) return null;
+    var parts = t.split(/\bBUILD\b/), spans = [];
+    for (var i = 1; i < parts.length; i += 2) {
+      var acts = [];
+      topSplit(parts[i], ';').forEach(function (st) { var a = stmtAct(st); if (!a) return; var last = acts[acts.length - 1]; if (last && /^ask /.test(a) && /^ask /.test(last)) acts[acts.length - 1] = last + ', ' + a.slice(4); else if (last !== a) acts.push(a); });
+      if (acts.length) spans.push(acts);
+    }
+    return ATACT[run] = { spans: spans, text: t };
+  }
+  function actLine(run, full) {
+    var a = actOf(run); if (!a) return 'r' + run + ' (not read)';
+    var s = a.spans.length ? a.spans.map(function (x) { return x.join(' · '); }).join(' ▸ ') : 'its line, no BUILD span: ' + a.text.slice(0, 90);
+    return full || s.length <= 220 ? s : s.slice(0, 220) + '…';
+  }
+  function hasAct(g) { var d = AT.dnaBy[g] || []; for (var i = 0; i < d.length; i++) if (d[i][4] !== null || d[i][5] !== null) return true; return false; }
+  function shardHead(d) { return '#' + d[1] + ' ' + esc(d[2] === null ? '∅' : aName(d[2])) + '→' + esc(d[3] === null ? 'end' : aName(d[3])) + ' (trigger g' + (d[3] === null ? '–' : d[3]) + ')'; }
+  function actCell(g) {
+    var rows = (AT.dnaBy[g] || []).filter(function (d) { return d[4] !== null || d[5] !== null; });
+    if (!rows.length) return '<span class="m">—</span>';
+    var h = rows.slice(0, 3).map(function (d) { return '<b>' + shardHead(d) + '</b> ' + [d[4] !== null ? 'calls r' + d[4] + ': ' + esc(actLine(d[4])) : null, d[5] !== null ? 'spawns r' + d[5] + ': ' + esc(actLine(d[5])) : null].filter(Boolean).join('; '); }).join('<br>');
+    return h + (rows.length > 3 ? '<br><span class="m">+' + (rows.length - 3) + ' more</span>' : '');
+  }
+  function atlasView() {
+    var qf = $('afind').value.trim().toLowerCase(), show = $('ashow').value, out = [], W = AT;
+    for (var k = 0; k < W.ord.length; k++) {
+      var i = W.ord[k], g = W.gate[i];
+      if (qf && W.key[i].indexOf(qf) < 0) continue;
+      if (show === 'act') { if (!hasAct(g)) continue; }
+      else if (show === 'dna') { if (!W.shards[i]) continue; }
+      else if (show === 'node') { if (!W.nodes[i]) continue; }
+      else if (show === 'rel') { if (!(RELBY[g] || []).length) continue; }
+      else if (show === 'drawn') { var nd = NODE[String(g)]; if (!(nd && nd.mesh && nd.mesh.visible)) continue; }
+      else if (show === 'loaded') { if (LAB[g] === undefined) continue; }
+      out.push(i);
+    }
+    ATVIEW = out;
+  }
+  function fx(v) { return (Math.abs(v) < .05 ? 0 : v).toFixed(1); }
+  function atlasLines() { var lineBy = {}; ALLLINES.forEach(function (l) { [l[0], l[1]].forEach(function (k) { var o = lineBy[k] = lineBy[k] || {}; o[l[2]] = (o[l[2]] || 0) + 1; }); }); return lineBy; }
+  function atlasDraw() {
+    if (!AT) return;
+    var n = ATVIEW.length, pages = Math.max(1, Math.ceil(n / ATSIZE)); if (ATPAGE >= pages) ATPAGE = pages - 1; if (ATPAGE < 0) ATPAGE = 0;
+    var a = ATPAGE * ATSIZE, b = Math.min(n, a + ATSIZE), lineBy = atlasLines();
+    var h = '<thead><tr><th>symbol</th><th class="xyz">x</th><th class="xyz">y</th><th class="xyz">z</th><th>gate</th><th>DNA rows (shard: before → trigger, call, spawn, ×times)</th><th>meaning / action at the shard (what the run it calls or spawns does)</th><th>definition rows</th><th>rel</th><th>memory</th><th>what it is</th><th>lines</th></tr></thead><tbody>';
+    for (var k = a; k < b; k++) {
+      var i = ATVIEW[k], g = AT.gate[i], dna = AT.dnaBy[g] || [], role = roleOf(g);
+      var dcell = dna.slice(0, 3).map(function (d) { return d[1] + ': ' + esc(d[2] === null ? '∅' : aName(d[2])) + ' → ' + esc(d[3] === null ? 'end' : aName(d[3])) + (d[4] !== null ? ', calls ' + d[4] : '') + (d[5] !== null ? ', spawns ' + d[5] : '') + ', ×' + d[6]; }).join('<br>') + (dna.length > 3 ? '<br><span class="m">+' + (dna.length - 3) + ' more</span>' : '');
+      var ln = Object.keys(lineBy[String(g)] || {}).sort().map(function (key) { return esc(key) + ' ' + lineBy[String(g)][key]; }).join('<br>');
+      var xyz = AT.x[i] === null || AT.x[i] === undefined ? '<td colspan="3" class="m xyz">no place</td>' : '<td class="n xyz">' + fx(AT.x[i]) + '</td><td class="n xyz">' + fx(AT.y[i]) + '</td><td class="n xyz">' + fx(AT.z[i]) + '</td>';
+      var what = role === 'core' || role === 'born' ? (role + (hasAct(g) ? ', with a call or spawn' : '')) : ROLETEXT[role] || role;
+      h += '<tr class="arow" data-k="' + k + '"><td>' + esc(aName(g)) + '</td>' + xyz + '<td class="n">' + g + '</td><td>' + dcell + '</td><td class="act">' + actCell(g) + '</td><td class="n">' + fmtN(AT.nodes[i]) + '</td><td class="n">' + (LOADED[g] ? (RELBY[g] || []).length : '<span class="m">·</span>') + '</td><td class="n">' + fmtN(AT.mem[i]) + '</td><td>' + esc(what) + '</td><td style="white-space:nowrap">' + ln + '</td></tr>';
+      if (k === ATOPEN) h += '<tr class="det"><td colspan="12"><div class="dt">' + atlasDetail(k) + '</div></td></tr>';
+    }
+    $('atable').innerHTML = h + '</tbody>';
+    $('ashown').textContent = n ? fmtN(a + 1) + '–' + fmtN(b) + ' of ' + fmtN(n) : '0 shown';
+    $('aprev').disabled = ATPAGE <= 0; $('anext').disabled = ATPAGE >= pages - 1;
+  }
+  function atlasDetail(k) {
+    var i = ATVIEW[k], g = AT.gate[i], dna = AT.dnaBy[g] || [], role = roleOf(g), nd = NODE[String(g)];
+    var h = '<b>' + esc(aName(g)) + '</b> <span class="m">gate ' + g + ' · ' + esc(ROLETEXT[role] || role) + '</span>';
+    h += '\nthe brain\'s place (main.xyz): ' + (AT.x[i] === null || AT.x[i] === undefined ? 'none' : AT.x[i] + ', ' + AT.y[i] + ', ' + AT.z[i]) + (nd && nd.mesh && nd.mesh.visible ? ' · the drawing has it at ' + fx(nd.pos.x) + ', ' + fx(nd.pos.y) + ', ' + fx(nd.pos.z) : '');
+    h += '\n\ntable "' + g + '": ' + dna.length + ' DNA rows' + (dna.length ? '\nshard | before | trigger | call | spawn | times\n' + dna.map(function (d) { return d[1] + ' | ' + esc(d[2] === null ? '∅' : aName(d[2]) + ' (' + d[2] + ')') + ' | ' + esc(d[3] === null ? '∅ end' : aName(d[3]) + ' (' + d[3] + ')') + ' | ' + (d[4] === null ? '' : d[4]) + ' | ' + (d[5] === null ? '' : d[5]) + ' | ' + d[6]; }).join('\n') : '');
+    dna.filter(function (d) { return d[4] !== null || d[5] !== null; }).forEach(function (d) {
+      [[d[4], 'calls'], [d[5], 'spawns']].forEach(function (cv) {
+        if (cv[0] === null) return; var a = actOf(cv[0]);
+        h += '\n\n<b>' + shardHead(d) + ' ' + cv[1] + ' run ' + cv[0] + '</b>' + (a ? ': ' + a.spans.length + ' BUILD spans, each one paste to mother at the SQL prompt' : ' (not read)');
+        if (!a) return;
+        if (!a.spans.length) h += '\n   its line, no BUILD span: ' + esc(a.text.slice(0, 300));
+        a.spans.forEach(function (sp, j) { h += '\n   span ' + (j + 1) + ': ' + esc(sp.join(' · ')); });
+        h += '\n   <span class="m">its SQL as the brain holds it: ' + esc(a.text.slice(0, 900)) + (a.text.length > 900 ? '…' : '') + '</span>';
+      });
+    });
+    h += '\n\ndefinition rows: ' + fmtN(AT.nodes[i]) + ' · memory rows: ' + fmtN(AT.mem[i]) + ' · rel rows: ' + (LOADED[g] ? (RELBY[g] || []).length : 'reading…');
+    var lb = atlasLines()[String(g)] || {}, ln = Object.keys(lb); h += '\nlines: ' + (ln.length ? ln.sort().map(function (key) { return esc(key) + ' ' + lb[key]; }).join(', ') : 'none');
+    return h;
+  }
+  function atlasSum() {
+    var W = AT, act = 0, dn = 0; for (var i = 0; i < W.gate.length; i++) if (W.shards[i]) dn++;
+    Object.keys(W.dnaBy).forEach(function (g) { if (hasAct(+g)) act++; });
+    $('asum').innerHTML = '<b>' + fmtN(W.words) + ' words</b> walked by key over gates 1 to ' + fmtN(W.top) + ' (every gate with definition rows or DNA rows), and ' + fmtN(W.gate.length - W.words) + ' more gates this page loaded; ' + fmtN(dn) + ' hold DNA rows, ' + fmtN(act) + ' a call or spawn. Walked in ' + W.seconds.toFixed(1) + ' s at ' + W.at.toLocaleTimeString() + (W.err ? ' · <span class="no">' + esc(W.err) + '</span>' : '') + '.<br><span class="m">x, y, z are the brain\'s own places (main.xyz), one decimal. The meaning / action at a shard is read from the SQL of the run it calls or spawns: each BUILD span is one paste to mother at the SQL prompt, each statement named by what it does (cell ← where from, read a table, rewrite a column, lay a row, run another run, ask a source, type a line); a click shows every span and the SQL. A source entry whose spelling has no gate (a phrase the encoder cuts into several symbols) is not a point and is not listed. Read again walks the brain again.</span>';
+  }
+  function atlasShow() { atlasSum(); ATOPEN = -1; ATPAGE = 0; atlasView(); atlasDraw(); }
+  $('atlasbtn').addEventListener('click', function () { if (!ready) return; $('atlas').hidden = false; if (AT) { atlasShow(); return; } if (!ATBUSY) atlasWalk().then(atlasShow).catch(function () {}); });
+  $('aclose').addEventListener('click', function () { $('atlas').hidden = true; });
+  $('arefresh').addEventListener('click', function () { if (!ATBUSY) atlasWalk().then(atlasShow).catch(function () {}); });
+  $('afind').addEventListener('input', function () { if (!AT) return; ATOPEN = -1; ATPAGE = 0; atlasView(); atlasDraw(); });
+  $('ashow').addEventListener('change', function () { if (!AT) return; ATOPEN = -1; ATPAGE = 0; atlasView(); atlasDraw(); });
+  $('aprev').addEventListener('click', function () { if (!AT) return; ATPAGE--; ATOPEN = -1; atlasDraw(); $('atable').parentNode.scrollTop = 0; });
+  $('anext').addEventListener('click', function () { if (!AT) return; ATPAGE++; ATOPEN = -1; atlasDraw(); $('atable').parentNode.scrollTop = 0; });
+  $('atable').addEventListener('click', function (ev) {
+    var tr = ev.target.closest('tr.arow'); if (!tr || !AT) return; var k = +tr.getAttribute('data-k'), g = AT.gate[ATVIEW[k]];
+    if (ev.detail === 2 && g !== undefined) { $('atlas').hidden = true; showNode(g); showTab('panel-sel'); return; }
+    ATOPEN = ATOPEN === k ? -1 : k; atlasDraw();
+    if (ATOPEN === k && !LOADED[g]) loadGates([g]).catch(function () {}).then(function () { if (ATOPEN === k) atlasDraw(); });
+  });
+  window.__atlas = { busy: function () { return ATBUSY; }, words: function () { return AT ? AT.words : null; }, rows: function () { return AT ? AT.gate.length : null; }, view: function () { return ATVIEW.length; }, act: function (g) { return AT ? actCell(g) : null; } };
+

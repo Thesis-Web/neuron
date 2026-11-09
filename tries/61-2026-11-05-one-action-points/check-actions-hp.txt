@@ -1,0 +1,23 @@
+== refused rows, newest 10 (id, text, error):
+   [4, 'land run 19949391 pos 3 gate 81', 'no such neuron'] | gate 81 label 'INSERT' | neuron row [[81, 0, 0, 0]]
+   [5, 'land run 19949443 pos 3 gate 81', 'no such neuron'] | gate 81 label 'INSERT' | neuron row [[81, 0, 0, 0]]
+   [6, 'land run 19949476 pos 3 gate 81', 'no such neuron'] | gate 81 label 'INSERT' | neuron row [[81, 0, 0, 0]]
+   [7, 'land run 19949509 pos 3 gate 81', 'no such neuron'] | gate 81 label 'INSERT' | neuron row [[81, 0, 0, 0]]
+   [8, 'land run 19949542 pos 3 gate 81', 'no such neuron'] | gate 81 label 'INSERT' | neuron row [[81, 0, 0, 0]]
+   [9, 'land run 19949575 pos 3 gate 81', 'no such neuron'] | gate 81 label 'INSERT' | neuron row [[81, 0, 0, 0]]
+   [10, 'land run 19949625 pos 3 gate 81', 'no such neuron'] | gate 81 label 'INSERT' | neuron row [[81, 0, 0, 0]]
+   [11, 'land run 19949667 pos 3 gate 81', 'no such neuron'] | gate 81 label 'INSERT' | neuron row [[81, 0, 0, 0]]
+   [12, 'land run 19949700 pos 3 gate 81', 'no such neuron'] | gate 81 label 'INSERT' | neuron row [[81, 0, 0, 0]]
+   [13, 'land run 19949733 pos 3 gate 81', 'no such neuron'] | gate 81 label 'INSERT' | neuron row [[81, 0, 0, 0]]
+== the landings of the stalled call run under print node : glimmer (run 19949443): pos, gate, shard
+   [(0, "'said'", 2), (1, "'BUILD'", 17), (1, "'born'", 6)]
+  its first symbols: [(1, "'BUILD'"), (2, "' '"), (3, "'INSERT'"), (4, "' '"), (5, "'OR'"), (6, "' '")]
+  INSERT now: None insert: 10441
+== did the four that ran do their action?
+  print dna : glimmer: say cell 25 = ('19949436', {'run': 19949436, 'arrival': 4, 'text': 'ok'})
+  change call : leap from 1302 to 1302: say cell 25 = ('19949660', {'run': 19949660, 'arrival': 4, 'text': '1'})
+  create neuron : hlēapan: say cell 25 = ('19949610', {'run': 19949610, 'arrival': 4, 'text': '1332003 | 0'})
+  define unknown : 1: say cell 25 = ('19949768', {'run': 19949768, 'arrival': 4, 'text': '0'})
+  hlēapan neuron row now: [[1332003, 1, 0, 1]]
+  leap dna rows now: [[20049451, 1, 453, 1302, None, 0]]
+  newest third rows (the main mailbox from the other brain): []

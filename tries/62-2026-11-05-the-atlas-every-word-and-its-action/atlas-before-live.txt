@@ -1,0 +1,8 @@
+{"ready_s":7}
+{"atlas_s":3,"summary":"724 gates. 1 heard, 4 arrival, 9 source, 1 space, 65 core, 644 born. 768 DNA rows over every neuron table, 899 shards, 4,024,130 relationship rows. Read from the brain as it stands. x, y, z are where the drawing has put each point at step 0; in that step the lines moved a point at most 0.00. The brain holds no positions.","shown":"724 shown","header":"symbol | x | y | z | gate | DNA rows (shard: before → trigger, call, spawn, times) | definition rows | rel | memory nodes | what it is | lines","firstRows":["! -14.8 52.6 6.2 77 0 0 0 core definition 6","\" -29.5 44.7 -15.0 32 0 0 0 core definition 10","% -37.3 33.9 -40.4 79 0 0 0 core definition 9"]}
+{"find":"print","result":"no answer in 30000 ms"}
+{"find":"black","result":{"shown":"1 shown","rows":["Blackwood’s ‖ 19.0 ‖ -4.6 ‖ -7.7 ‖ 1328922 ‖ 20049629: define → :, spawns 19936999, ×0 ‖ 0 ‖ 0 ‖ 0 ‖ born, with a call or spawn ‖ "]}}
+{"find":"become","result":{"shown":"1 shown","rows":["become ‖ -5.3 ‖ 176.2 ‖ -24.9 ‖ 2299 ‖ 20049351: heard → trigger, calls 950, ×0 20049352: heard → call, calls 989, ×0 20049353: heard → spawn, calls 1008, ×0 +2 more ‖ 103 ‖ 290 ‖ 0 ‖ born, with a call or spawn ‖ alike 24 answered 4 definition 2 includes 5 is 5"]}}
+{"find":"hlēapan","result":{"shown":"0 shown","rows":[]}}
+{"screenshot":"/mnt/d/Neuron/tries/62-2026-11-05-the-atlas-every-word-and-its-action/atlas-before-live.png","bytes":238358}
+{"exceptions":[]}

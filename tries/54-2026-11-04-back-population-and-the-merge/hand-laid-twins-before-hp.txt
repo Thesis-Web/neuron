@@ -1,0 +1,70 @@
+hand-laid symbols of the build lines and the egg, each beside its lowercase twin: gate | neuron (born, arrived, nodes=definition rows, memories, shards) | dna (rows, times)
+  BUILD         29 | [1, 0, 0, 114, 3] | [3, 42]                  build       9598 | [1, 0, 232, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  INSERT        81 | [1, 0, 19, 2, 0] | [0, 0]                    insert     10441 | [1, 0, 197, 1, 0] | [0, 0]
+  SELECT        98 | [1, 0, 0, 0, 0] | [0, 0]                     select     17434 | [1, 0, 200, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  TABLE         31 | [1, 0, 0, 0, 0] | [0, 0]                     table        410 | [1, 0, 488, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  INTEGER       35 | [1, 0, 0, 0, 0] | [0, 0]                     integer    26685 | [1, 0, 63, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  CREATE        30 | [1, 0, 0, 0, 0] | [0, 0]                     create       428 | [1, 0, 172, 1, 1] | [1, 2]  <- hand laid, no definition; the twin is defined
+  REPLACE       93 | [1, 0, 0, 0, 0] | [0, 0]                     replace     6450 | [1, 0, 139, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  UPDATE        51 | [1, 0, 0, 0, 0] | [0, 0]                     update      7810 | [1, 0, 42, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  VALUES        85 | [1, 0, 0, 0, 0] | [0, 0]                     values      3111 | [1, 0, 6, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  FROM         100 | [1, 0, 0, 0, 0] | [0, 0]                     from         429 | [1, 0, 47, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  WHERE         54 | [1, 0, 0, 0, 0] | [0, 0]                     where       2531 | [1, 0, 92, 3, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  JOIN         135 | [1, 0, 0, 0, 0] | [0, 0]                     join        8296 | [1, 0, 440, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  ORDER        111 | [1, 0, 0, 0, 0] | [0, 0]                     order       2191 | [1, 0, 810, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  GROUP     405385 | [1, 0, 0, 0, 0] | [0, 0]                     group        186 | [1, 0, 427, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  AND           57 | [1, 0, 0, 0, 0] | [0, 0]                     and          167 | [1, 0, 47, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  OR            92 | [1, 0, 0, 0, 0] | [0, 0]                     or           289 | [1, 0, 207, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  NOT          117 | [1, 0, 0, 0, 0] | [0, 0]                     not          335 | [1, 0, 34, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  NULL          56 | [1, 0, 0, 0, 0] | [0, 0]                     null       27895 | [1, 0, 89, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  CASE         430 | [1, 0, 0, 0, 0] | [0, 0]                     case         491 | [1, 0, 684, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  WHEN         431 | [1, 0, 0, 0, 0] | [0, 0]                     when        1047 | [1, 0, 166, 3, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  THEN         432 | [1, 0, 0, 0, 0] | [0, 0]                     then        1826 | [1, 0, 172, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  ELSE         433 | [1, 0, 0, 0, 0] | [0, 0]                     else        2114 | [1, 0, 78, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  END          434 | [1, 0, 0, 0, 0] | [0, 0]                     end         3966 | [1, 0, 618, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  AS           153 | [1, 0, 0, 0, 0] | [0, 0]                     as           287 | [1, 0, 278, 2, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  IN           137 | [1, 0, 0, 0, 0] | [0, 0]                     in           303 | [1, 0, 432, 2, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  EXISTS       103 | [1, 0, 0, 0, 0] | [0, 0]                     exists       412 | [1, 0, 2, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  LIMIT        119 | [1, 0, 0, 0, 0] | [0, 0]                     limit       1135 | [1, 0, 301, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  SET           52 | [1, 0, 0, 0, 0] | [0, 0]                     set         3984 | [1, 0, 1430, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  INTO          82 | [1, 0, 0, 0, 0] | [0, 0]                     into         359 | [1, 0, 24, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  WITH         451 | [1, 0, 0, 0, 0] | [0, 0]                     with         354 | [1, 0, 129, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  ON           136 | [1, 0, 0, 0, 0] | [0, 0]                     on           785 | [1, 0, 256, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  BY           112 | [1, 0, 0, 0, 0] | [0, 0]                     by           761 | [1, 0, 144, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  LEFT         458 | [1, 0, 0, 0, 0] | [0, 0]                     left         963 | [1, 0, 121, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  UNION        455 | [1, 0, 0, 0, 0] | [0, 0]                     union      15107 | [1, 0, 453, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  ALL          456 | [1, 0, 0, 0, 0] | [0, 0]                     all          867 | [1, 0, 214, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  DISTINCT     152 | [1, 0, 0, 0, 0] | [0, 0]                     distinct   16159 | [1, 0, 217, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  CAST         416 | [1, 0, 0, 0, 0] | [0, 0]                     cast         923 | [1, 0, 1052, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  IS            55 | [1, 0, 0, 0, 0] | [0, 0]                     is           369 | [1, 0, 38, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  TEXT     1193971 | [1, 0, 0, 0, 1] | [1, 0]                     text         450 | [1, 0, 248, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  PRIMARY       36 | [1, 0, 0, 0, 0] | [0, 0]                     primary    10752 | [1, 0, 260, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  KEY           37 | [1, 0, 0, 0, 0] | [0, 0]                     key          188 | [1, 0, 436, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  IF         43142 | [1, 0, 0, 0, 0] | [0, 0]                     if           400 | [1, 0, 34, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+  GLOB         142 | [1, 0, 0, 0, 0] | [0, 0]                     glob       94911 | [1, 0, 12, 1, 0] | [0, 0]  <- hand laid, no definition; the twin is defined
+pairs where the uppercase hand-laid symbol has no definition row and its lowercase twin has some: 42 of 43
+
+the egg cells as words (the same gate is the egg symbol and the word):
+  me        gate      19 | neuron [1, 0, 83, 1, 0] | dna [0, 0]
+  above     gate      20 | neuron [1, 0, 174, 1, 0] | dna [0, 0]
+  newgate   gate      21 | neuron [1, 0, 0, 0, 0] | dna [0, 0]
+  reply     gate      22 | neuron [1, 0, 199, 1, 0] | dna [0, 0]
+  what      gate      23 | neuron [1, 0, 150, 3, 0] | dna [0, 0]
+  def       gate      24 | neuron [1, 0, 14, 1, 0] | dna [0, 0]
+  say       gate      25 | neuron [1, 0, 525, 1, 0] | dna [0, 0]
+  know      gate      26 | neuron [1, 0, 1240, 6, 0] | dna [0, 0]
+  remember  gate      27 | neuron [1, 0, 101, 1, 0] | dna [0, 0]
+  shape     gate      28 | neuron [1, 0, 467, 1, 0] | dna [0, 0]
+  trigger   gate      40 | neuron [1, 0, 41, 1, 0] | dna [0, 0]
+  call      gate      41 | neuron [1, 0, 639, 1, 0] | dna [0, 0]
+  spawn     gate      42 | neuron [1, 0, 106, 1, 0] | dna [0, 0]
+  node      gate      47 | neuron [1, 0, 315, 3, 0] | dna [0, 0]
+  heard     gate       1 | neuron [1, 321, 13, 1, 1] | dna [1, 284]
+  said      gate       2 | neuron [1, 4658374, 45, 1, 1] | dna [1, 1127494]
+  mother    gate       4 | neuron [1, 8312395, 313, 1, 1] | dna [1, 1602599]
+  sixth     gate       5 | neuron [1, 2118495, 67, 1, 1] | dna [1, 2118495]
+  main      gate       6 | neuron [1, 0, 231, 1, 1] | dna [1, 0]
+  born      gate      16 | neuron [1, 0, 109, 1, 1] | dna [1, 1175488]
+  ok        gate      91 | neuron [1, 0, 39, 1, 100] | dna [100, 4157316]
+  known     gate     150 | neuron [1, 0, 13, 1, 0] | dna [0, 0]
+  unknown   gate     155 | neuron [1, 0, 166, 1, 0] | dna [0, 0]

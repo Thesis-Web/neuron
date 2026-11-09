@@ -1,0 +1,101 @@
+accurate       calls 19937779                           | adjective 1: conforming exactly or almost exactly to fact or to a standard or performing with total accuracy; "an accurate reproduction"; "the account
+adjust         calls 1008,1027,1052,950,989             | verb 1: alter or regulate so as to achieve accuracy or conform to a standard; "Adjust the clock, please"; "correct the alignment of the front wheels"
+alter          calls 1008,1027,1052,950,989             | verb 1: cause to change; make different; cause a transformation; "The advent of the automobile may have altered the growth pattern of the city"; "The 
+assemble       calls 929                                | verb 1: create by putting components or members together; "She pieced a quilt"; "He tacked together some verses"; "They set up a committee"
+become         calls 1008,1027,1052,950,989             | verb 1: enter or assume a certain state or condition; "He became annoyed when he heard the bad news"; "It must be getting more serious"; "her face wen
+blueprint      calls 826,847,870,889,910                | verb 1: make a blueprint of
+born           calls 19937007                           | noun 1: British nuclear physicist (born in Germany) honored for his contributions to quantum mechanics (1882-1970)
+build          calls 929                                | verb 1: make by combining materials and parts; "this little pig made his house out of straw"; "Some eccentric constructed an electric brassiere warmer
+catalog        calls 826,847,870,889,910                | verb 1: make a catalogue, compile a catalogue; "She spends her weekends cataloguing"
+change         calls 1008,1027,1052,950,989             | verb 1: cause to change; make different; cause a transformation; "The advent of the automobile may have altered the growth pattern of the city"; "The 
+characterize   calls 1132,19938846                      | verb 1: describe or portray the character or the qualities or peculiarities of; "You can characterize his behavior as that of an egotist"; "This poem 
+clarify        calls 1132,19938846                      | verb 1: make clear and (more) comprehensible; "clarify the mystery surrounding her death"
+commutation    calls 1008,1027,1052,950,989             | noun 1: the travel of a commuter
+commute        calls 1008,1027,1052,950,989             | verb 1: exchange positions without a change in value; "These operators commute with each other"
+compound       calls 929                                | verb 1: make more intense, stronger, or more marked; "The efforts were intensified"; "Her rudeness intensified his dislike for her"; "Pot smokers clai
+constitute     calls 929                                | verb 1: form or compose; "This money is my only income"; "The stone wall was the backdrop for the performance"; "These constitute my entire belonging"
+construct      calls 929                                | verb 1: make by combining materials and parts; "this little pig made his house out of straw"; "Some eccentric constructed an electric brassiere warmer
+construction   calls 19937767                           | noun 1: the act of constructing something; "during the construction we had to take a detour"; "his hobby was the building of boats"
+conversion     calls 1008,1027,1052,950,989             | noun 1: an event that results in a transformation
+convert        calls 1008,1027,1052,950,989             | verb 1: change from one system to another or to a new plan or policy; "We converted from 220 to 110 Volt"
+correct        calls 19937779                           | verb 1: make right or correct; "Correct the mistakes"; "rectify the calculation"
+create         calls 929                                | verb 1: make or cause to be or to become; "make a mess in one's office"; "create a furor"
+define         calls 1132,19948363                      | verb 1: determine the essential quality of
+deform         calls 1008,1027,1052,950,989             | verb 1: make formless; "the heat deformed the plastic sculpture"
+delineate      calls 1132,19938846                      | verb 1: show the form or outline of; "The tree was clearly defined by the light"; "The camera could define the smallest object"
+describe       calls 1132,19937222                      | verb 1: give a description of; "He drew an elaborate plan of attack"
+design         calls 929                                | verb 1: make or work out a plan for; devise; "They contrived to murder their boss"; "design a new sales strategy"; "plan an attack"
+designation    calls 19937767                           | noun 1: identifying word or words by which someone or something is called and classified or distinguished from others
+determine      calls 1132,19942415                      | verb 1: establish after a calculation, investigation, experiment, survey, or study; "find the product of two numbers"; "The physicist who found the el
+erroneous      calls 19937787                           | adjective satellite 1: containing or characterized by error; "erroneous conclusions"
+exact          calls 19937779                           | verb 1: claim as due or just; "The bank demanded payment of the loan"
+exchange       calls 1008,1027,1052,950,989             | verb 1: give to, and receive from, one another; "Would you change places with me?"; "We have been exchanging letters for a year"
+explain        calls 1132,19938846                      | verb 1: make plain and comprehensible; "He explained the laws of physics to his students"
+false          calls 19937787                           | adjective 1: not in accordance with the fact or reality or actuality; "gave false testimony under oath"; "false tales of bravery"
+footstep       calls 1302                               | noun 1: the sound of a step of someone walking; "he heard footsteps on the porch"
+forge          calls 929                                | verb 1: create by hammering; "hammer the silver into a bowl"; "forge a pair of tongues"
+form           calls 929                                | verb 1: create (as an entity); "social groups form everywhere"; "They formed a company"
+generate       calls 929                                | verb 1: bring into existence; "The new manager generated a lot of problems"; "The computer bug generated chaos in the office"; "The computer generated
+gist           calls 19937767                           | noun 1: the central meaning or theme of a speech or literary work
+heard          calls 19937672                           | adjective satellite 1: detected or perceived by the sense of hearing; "a conversation heard through the wall"
+import         calls 19937767                           | verb 1: bring in from abroad
+inaccurate     calls 19937787                           | adjective 1: not accurate; "an inaccurate translation"; "the thermometer is inaccurate"
+incorrect      calls 19937787                           | adjective 1: not correct; not in conformity with fact or truth; "an incorrect calculation"; "the report in the paper is wrong"; "your information is w
+inscribe       calls 826,847,870,889,910                | verb 1: carve, cut, or etch into a material or surface; "engrave a pen"; "engraved the trophy cup with the winner's name"; "the lovers scratched their
+intent         calls 19937767                           | noun 1: an anticipated outcome that is intended or that guides your planned actions; "his intent was to provide a new translation"; "good intentions a
+interchange    calls 1008,1027,1052,950,989             | verb 1: put in the place of another; switch seemingly equivalent items; "the con artist replaced the original with a fake Rembrandt"; "substitute regu
+interpret      calls 1132,19938846                      | verb 1: make sense of; assign a meaning to; "What message do you see in this letter?"; "How do you interpret his behavior?"
+invent         calls 929                                | verb 1: come up with (an idea, plan, explanation, theory, or principle) after a mental effort; "excogitate a way to measure the speed of light"
+just           calls 19937779                           | adjective 1: used especially of what is legally or ethically right or proper or fitting; "a just and lasting peace"- A.Lincoln; "a kind and just man";
+leap           calls 1302                               | verb 1: move forward by leaps and bounds; "The horse bounded across the meadow"; "The child leapt across the puddle"; "Can you jump over the fence?"
+list           calls 826,847,870,889,910                | verb 1: give or make a list of; name individually; give the names of; "List the states west of the Mississippi"
+make           calls 929                                | verb 1: engage in; "make love, not war"; "make an effort"; "do research"; "do nothing"; "make revolution"
+manufacture    calls 929                                | verb 1: put together out of artificial or natural components or parts; "the company fabricates plastic chairs"; "They manufacture small toys"; "He man
+meaning        calls 19937767                           | noun 1: the message that is intended or expressed or signified; "what is the meaning of this sentence"; "the significance of a red traffic light"; "th
+mimeograph     calls 826,847,870,889,910                | verb 1: print copies from (a prepared stencil) using a mimeograph; "She mimeographed the syllabus"
+mistaken       calls 19937787                           | adjective satellite 1: wrong in e.g. opinion or judgment; "well-meaning but misguided teachers"; "a mistaken belief"; "mistaken identity"
+model          calls 929                                | verb 1: plan or create according to a model or models
+modification   calls 1008,1027,1052,950,989             | noun 1: the act of making something different (as e.g. the size of a garment)
+modify         calls 1008,1027,1052,950,989             | verb 1: make less severe or harsh or extreme; "please modify this letter to make it more polite"; "he modified his views on same-gender marriage"
+modulate       calls 1008,1027,1052,950,989             | verb 1: change the key of, in music; "modulate the melody"
+mutation       calls 1008,1027,1052,950,989             | noun 1: (biology) an organism that has characteristics resulting from chromosomal alteration
+nice           calls 19937779                           | noun 1: a city in southeastern France on the Mediterranean; the leading resort on the French Riviera
+organize       calls 929                                | verb 1: create (as an entity); "social groups form everywhere"; "They formed a company"
+overprint      calls 826,847,870,889,910                | verb 1: print (additional text or colors) onto an already imprinted paper
+precise        calls 19937779                           | adjective 1: sharply exact or accurate or delimited; "a precise mind"; "specified a precise amount"; "arrived at the precise moment"
+print          calls 826,847,870,889,910                | verb 1: put into print; "The newspaper published the news of the royal couple's divorce"; "These news should not be printed"
+produce        calls 929                                | verb 1: bring forth or yield; "The tree would not produce fruit"
+publish        calls 826,847,870,889,910                | verb 1: put into print; "The newspaper published the news of the royal couple's divorce"; "These news should not be printed"
+purport        calls 19937767                           | verb 1: have the often specious appearance of being, intending, or claiming; "The letter purports to express people's opinion"
+raise          calls 929                                | verb 1: raise the level or amount of something; "raise my salary"; "raise the price of bread"
+reform         calls 1008,1027,1052,950,989             | verb 1: make changes for improvement in order to remove abuse and injustices; "reform a political system"
+reissue        calls 826,847,870,889,910                | verb 1: print anew; "They never reprinted the famous treatise"
+render         calls 826,847,870,889,910                | verb 1: cause to become; "The shot rendered her immobile"
+restructure    calls 1008,1027,1052,950,989             | verb 1: construct or form anew or provide with a new structure; "After his accident, he had to restructure his life"; "The governing board was reconst
+reversal       calls 1008,1027,1052,950,989             | noun 1: a change from one state to the opposite state; "there was a reversal of autonomic function"
+reverse        calls 1008,1027,1052,950,989             | verb 1: change to the contrary; "The trend was reversed"; "the tides turned against him"; "public opinion turned when it was revealed that the preside
+sculpt         calls 929                                | verb 1: create by shaping stone or wood or any other hard material; "sculpt a swan out of a block of ice"
+sculpture      calls 929                                | verb 1: create by shaping stone or wood or any other hard material; "sculpt a swan out of a block of ice"
+shift          calls 1008,1027,1052,950,989             | verb 1: make a shift in or exchange of; "First Joe led; then we switched"
+significance   calls 19937767                           | noun 1: the quality of being significant; "do not underestimate the significance of nuclear power"
+signification  calls 19937767                           | noun 1: the message that is intended or expressed or signified; "what is the meaning of this sentence"; "the significance of a red traffic light"; "th
+specify        calls 1132,19938846                      | verb 1: specify as a condition or requirement in a contract or agreement; make an express demand or provision in an agreement; "The will stipulates th
+step           calls 1302                               | verb 1: shift or move by taking a step; "step back"
+switch         calls 1008,1027,1052,950,989             | verb 1: change over, change around, as to a new order or sequence
+tabulate       calls 826,847,870,889,910                | verb 1: arrange or enter in tabular form
+tailor         calls 929                                | verb 1: adjust to a specific need or market; "a magazine oriented towards young people"; "tailor your needs to your surroundings"
+transcribe     calls 826,847,870,889,910                | verb 1: write out from speech, notes, etc.; "Transcribe the oral history of this tribe"
+transfigure    calls 1008,1027,1052,950,989             | verb 1: elevate or idealize, in allusion to Christ's transfiguration
+transform      calls 1008,1027,1052,950,989             | verb 1: subject to a mathematical transformation
+transformation calls 1008,1027,1052,950,989             | noun 1: a qualitative change
+transition     calls 1008,1027,1052,950,989             | verb 1: cause to convert or undergo a transition; "the company had to transition the old practices to modern technology"
+translate      calls 1008,1027,1052,950,989             | verb 1: restate (words) from one language into another language; "I have to translate when my in-laws from Austria visit the U.S."; "Can you interpret
+transpose      calls 1008,1027,1052,950,989             | verb 1: change the order or arrangement of; "Dyslexics often transpose letters in a word"
+true           calls 19937779                           | verb 1: make level, square, balanced, or concentric; "true up the cylinder of an engine"
+type           calls 826,847,870,889,910                | verb 1: write by means of a keyboard with types; "type the acceptance letter, please"
+untrue         calls 19937787                           | adjective satellite 1: not according with the facts; "unfortunately the statement was simply untrue"
+variation      calls 1008,1027,1052,950,989             | noun 1: an instance of change; the rate or magnitude of change
+vary           calls 1008,1027,1052,950,989             | verb 1: become different in some particular way, without permanently losing one's or its former characteristics or essence; "her mood changes in accor
+why            calls 6281755                            | noun 1: the cause or intention underlying an action or situation, especially in the phrase `the whys and wherefores'
+write          calls 826,847,870,889,910                | verb 1: produce a literary work; "She composed a poem"; "He wrote four novels"
+wrong          calls 19937787                           | verb 1: treat unjustly; do wrong to

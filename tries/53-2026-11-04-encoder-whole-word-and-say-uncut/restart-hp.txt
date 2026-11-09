@@ -1,0 +1,22 @@
+ 324376  1-08:39:50 ./nk 7007 egg-symbols.txt sources wn gcide mwt moby map sqldoc measured guess wikt
+ 349085    07:59:00 python3 serve8.py 8058 7007 NEURON-POINT-OF-CONNECTION-nk-2026-10-30.html LINES-nk.txt FIRST-RUNS-nk.txt 0.0.0.0
+-rwxrwxr-x 1 james james 146336 Nov  2 20:23 /home/james/nk/nk
+--- bash run-on-hp.sh up, 05:03:17
+nkvt.c: In function ‘defwords_of’:
+nkxyz.c: In function ‘force_at’:
+nkxyz.c: In function ‘xyz_step’:
+nkxyz.c: In function ‘nk_xyz_land’:
+nkxyz.c: In function ‘nk_xyz_restep’:
+nkxyz.c: In function ‘nk_xyz_get’:
+nkxyz.c: In function ‘nk_xyz_set’:
+nk: 1317489 symbols laid in each brain, listening on 127.0.0.1:7007
+kernel 7007 page NEURON-POINT-OF-CONNECTION-nk-2026-10-30.html bound to 0.0.0.0 open http://localhost:8058/
+
+real	0m6.114s
+user	0m3.671s
+sys	0m0.142s
+--- after, 05:03:23
+-rwxrwxr-x 1 james james 146336 Nov  4 05:03 /home/james/nk/nk
+ 355944       00:01 ./nk 7007 egg-symbols.txt sources wn gcide mwt moby map sqldoc measured guess wikt
+ 355951       00:01 python3 serve8.py 8058 7007 NEURON-POINT-OF-CONNECTION-nk-2026-10-30.html LINES-nk.txt FIRST-RUNS-nk.txt 0.0.0.0
+nk: 1317489 symbols laid in each brain, listening on 127.0.0.1:7007

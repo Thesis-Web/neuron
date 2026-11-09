@@ -1,0 +1,9 @@
+# MERGE-nk.txt (2026-11-04, 06:30 CST). C28, the owner 05:00: "the hand laid neurons dna tables and memories should merge with the correct
+# neuron for that word ... thus eliminating the hand laid neurons ... the dna table of the real gate just adds the dna table of the hand laid,
+# since the rows are numbered in sequence you don't even have to change the dna shard numbers ... the memory tables pointed to that shard
+# follow ... I instruct you to lay them". One line: for each uppercase SQL word of the taught BUILD lines (58, read from the lines; BUILD 29 is
+# the kernel's span mark and ME a cell, both left out) whose lowercase twin holds definition rows, mother's merge(h, t) (nk_merge, kernel
+# physics): the hand laid gate's shards (ids kept), node rows, memories, about, hits and arrived lists move into the twin, the hand laid
+# neuron is born 0, and the symbol names the twin in the encoder from now on; the old gate keeps its text so the lines already laid still
+# read. A hand laid gate that holds definition rows of its own from a source other than sqldoc (13) is left (it is a word, not a hand laid).
+BUILD SELECT merge ( u.gate , l.gate ) FROM label u JOIN label l ON l.symbol = lower ( u.symbol ) WHERE u.symbol IN ( 'SELECT' , 'FROM' , 'WHERE' , 'AND' , 'INSERT' , 'INTO' , 'WHEN' , 'THEN' , 'ON' , 'JOIN' , 'OR' , 'AS' , 'IN' , 'REPLACE' , 'NOT' , 'EXISTS' , 'INTEGER' , 'BY' , 'ORDER' , 'CAST' , 'UPDATE' , 'SET' , 'NULL' , 'VALUES' , 'GLOB' , 'IS' , 'WITH' , 'UNION' , 'DISTINCT' , 'IGNORE' , 'ALL' , 'RECURSIVE' , 'END' , 'CASE' , 'ELSE' , 'NEW' , 'MATERIALIZED' , 'CREATE' , 'BETWEEN' , 'LIMIT' , 'DESC' , 'TABLE' , 'PRIMARY' , 'KEY' , 'IF' , 'REAL' , 'LEFT' , 'INDEX' , 'DEFAULT' , 'TRIGGER' , 'TEXT' , 'CROSS' , 'UNIQUE' , 'GROUP' , 'DROP' , 'DELETE' , 'BEGIN' , 'AFTER' ) AND u.gate <> l.gate AND EXISTS ( SELECT 1 FROM node WHERE gate = l.gate ) AND NOT EXISTS ( SELECT 1 FROM node WHERE gate = u.gate AND source <> 13 ) ; BUILD

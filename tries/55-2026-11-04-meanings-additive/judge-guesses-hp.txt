@@ -1,0 +1,85 @@
+advance        change    meaning answered memory None -> incorrect : 19944142; the re-ask: memory None (left)
+assemble       create    meaning answered memory None -> correct : 19944164
+assimilation   change    meaning answered memory None -> incorrect : 19944183; the re-ask: memory None (left)
+become         change    meaning answered memory None -> correct : 19944205
+blowup         print     meaning answered memory None -> incorrect : 19944224; the re-ask: memory None (left)
+blueprint      print     left as the brain's guess
+break          change    meaning answered memory None -> incorrect : 19944246; the re-ask: memory None (left)
+chasten        correct   meaning answered memory None -> incorrect : 19944268; the re-ask: memory None (left)
+chop           change    meaning answered memory None -> incorrect : 19944290; the re-ask: memory None (left)
+commutation    change    left as the brain's guess
+commute        change    left as the brain's guess
+compound       create    meaning answered memory None -> correct : 19944312
+constitute     create    meaning answered memory None -> correct : 19944331
+construction   meaning   left as the brain's guess
+conversion     change    left as the brain's guess
+cut            create    meaning answered memory None -> incorrect : 19944350; the re-ask: memory None (left)
+decent         correct   meaning answered memory None -> incorrect : 19944372; the re-ask: memory None (left)
+deform         change    meaning answered memory None -> correct : 19944394
+design         create    meaning answered memory None -> correct : 19944413
+designation    meaning   left as the brain's guess
+determine      define    meaning answered memory None -> correct : 19944432
+difference     change    meaning answered memory None -> incorrect : 19944451; the re-ask: memory None (left)
+do             create    meaning answered memory None -> incorrect : 19944473; the re-ask: memory None (left)
+emend          correct   meaning answered memory None -> incorrect : 19944495; the re-ask: memory None (left)
+exchange       change    meaning answered memory None -> correct : 19944517
+footstep       step      left as the brain's guess
+forge          create    meaning answered memory None -> correct : 19944536
+get            step      meaning answered memory None -> incorrect : 19944555; the re-ask: memory None (left)
+go             change    meaning answered memory None -> incorrect : 19944577; the re-ask: memory None (left)
+inscribe       print     meaning answered memory None -> correct : 19944599
+intent         meaning   meaning answered memory None -> correct : 19944618
+interchange    change    meaning answered memory None -> correct : 19944637
+just           correct   left as the brain's guess
+leap           step      left as the brain's guess
+make           change    meaning answered memory None -> incorrect : 19944656; the re-ask: memory None (left)
+mannerly       correct   meaning answered memory None -> incorrect : 19944678; the re-ask: memory None (left)
+manufacture    create    meaning answered memory None -> correct : 19944700
+mimeograph     print     meaning answered memory None -> correct : 19944719
+model          create    left as the brain's guess
+modification   change    left as the brain's guess
+modulate       change    meaning answered memory None -> correct : 19944738
+move           change    meaning answered memory None -> incorrect : 19944757; the re-ask: memory None (left)
+mutation       change    left as the brain's guess
+nice           correct   left as the brain's guess
+organize       create    left as the brain's guess
+overprint      print     meaning answered memory None -> correct : 19944779
+peg            step      meaning answered memory None -> incorrect : 19944798; the re-ask: memory None (left)
+prepare        create    meaning answered memory None -> incorrect : 19944820; the re-ask: memory None (left)
+proceeding     step      meaning answered memory None -> incorrect : 19944842; the re-ask: memory None (left)
+raise          create    left as the brain's guess
+received       correct   meaning answered memory None -> incorrect : 19944864; the re-ask: memory None (left)
+rectify        correct   meaning answered memory None -> incorrect : 19944886; the re-ask: memory None (left)
+reform         change    meaning answered memory None -> correct : 19944908
+reissue        print     meaning answered memory None -> correct : 19944927
+relief         change    meaning answered memory None -> incorrect : 19944946; the re-ask: memory None (left)
+remove         step      meaning answered memory None -> incorrect : 19944968; the re-ask: memory None (left)
+resolve        meaning   meaning answered memory None -> incorrect : 19944990; the re-ask: memory None (left)
+restructure    change    meaning answered memory None -> correct : 19945012
+return         change    meaning answered memory None -> incorrect : 19945031; the re-ask: memory None (left)
+reversal       change    left as the brain's guess
+reverse        change    meaning answered memory None -> correct : 19945053
+revolution     change    meaning answered memory None -> incorrect : 19945072; the re-ask: memory None (left)
+rude           incorrect meaning answered memory None -> incorrect : 19945094; the re-ask: memory None (left)
+run            change    meaning answered memory None -> incorrect : 19945116; the re-ask: memory None (left)
+rung           step      meaning answered memory None -> incorrect : 19945138; the re-ask: memory None (left)
+sculpt         create    meaning answered memory None -> correct : 19945160
+sculpture      create    left as the brain's guess
+shift          change    meaning answered memory None -> correct : 19945179
+stair          step      meaning answered memory None -> incorrect : 19945198; the re-ask: memory None (left)
+stamp          step      meaning answered memory None -> incorrect : 19945220; the re-ask: memory None (left)
+swerve         change    meaning answered memory None -> incorrect : 19945242; the re-ask: memory None (left)
+tailor         create    left as the brain's guess
+tergiversate   change    meaning answered memory None -> incorrect : 19945264; the re-ask: memory None (left)
+transfigure    change    meaning answered memory None -> correct : 19945286
+transformation change    left as the brain's guess
+transition     change    left as the brain's guess
+translate      change    meaning answered memory None -> correct : 19945305
+transpose      change    meaning answered memory None -> correct : 19945324
+travel         change    meaning answered memory None -> incorrect : 19945343; the re-ask: memory None (left)
+variation      change    left as the brain's guess
+veer           change    meaning answered memory None -> incorrect : 19945365; the re-ask: memory None (left)
+vicissitude    change    meaning answered memory None -> incorrect : 19945387; the re-ask: memory None (left)
+
+confirmed 25, marked wrong 36, left as guesses 21, recovered by the re-ask: []
+belief now: rows 385, correct>0 216, incorrect>0 108, 0/0 61

@@ -1,0 +1,28 @@
+== regression: the cells of meaning : catalog (run 19949372)
+   cell 23     what       state 9600 value None
+   cell 25     say        state 19949380 value ok
+   cell 26     know       state 3/5 value None
+   cell 27     remember   state 19941481 value meaning : catalog
+   cell 28     shape      state 19937767 value BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SELECT min ( 
+   cell 91     ok         state ok value None
+   cell 421    belief     state 5 value None
+   cell 534    how        state 426 value None
+   cell 775    against    state run_sheet,run,seq,dna,input,run_memory,label,node value None
+   cell 3722   action     state heard dna 826 ; heard memory 847 ; heard node 870 ; heard sheet 889 ; heard table 910 value None
+== EO-10 retained: a later line of a derived point, no derivation between: black : print
+   run 19949382 receipts [[0, 1, 1], [1, 2813, 20049778], [3, 68, 17], [5, 424, 17]] kids [[19949383, 1, 19937672], [19949387, 1, 929], [19949391, 2, 950]]
+== the derived table whole, by the gates derived (catalogue plan adapt apologise black bribe assume):
+   catalogue [[None, 1, 'make', 929, 2654830, 19948562]]
+   plan [[None, 1, 'make', 929, 601370, 19948612], [None, 2, 'design', 929, 601370, 19948612], [None, 3, 'form', 929, 601370, 19948612]]
+   adapt [[None, 1, 'make', 929, 1739673, 19948689]]
+   apologise [[None, 1, 'explain', 19938846, 4571477, 19948739], [None, 2, 'make', 929, 4571477, 19948739]]
+   black [[None, 1, 'make', 929, 373137, 19949267], [None, 2, 'become', 950, 373137, 19949267]]
+   bribe [[None, 1, 'make', 929, 2904415, 19949322], [None, 2, 'exchange', 950, 2904415, 19949322]]
+   assume [[None, 0, 'unresolved', None, 1062730, 19948900], [None, 0, 'unresolved', None, 1062730, 19949180], [20049752, 1, 'form', 929, 1063019, 19949180], [20049753, 1, 'true', 19937779, 1063018, 19949180], [20049754, 1, 'true', 19937779, 1063018, 19949180], [20049756, 1, 'true', 19937779, 1062724, 19949180], [20049757, 1, 'form', 929, 1062723, 19949180]]
+== belief rows laid as guesses (correct 0 incorrect 0) by the derivation:
+   catalogue [[20049748, 0, 0, 19948562]]
+   plan [[20049749, 0, 0, 19948612]]
+   adapt [[20049750, 0, 0, 19948689]]
+   apologise [[20049751, 0, 0, 19948739]]
+   black [[20049778, 0, 0, 19949267]]
+   bribe [[20049779, 0, 0, 19949322]]

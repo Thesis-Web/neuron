@@ -1,0 +1,9 @@
+# The owner's words, 2026-11-06 (hub session, verbatim; times from the session transcript, CST)
+
+09:26: so the judge is a neuron brain, because it allows the two brains to communicate the same language without trimming, decoding , encoding??? so I don't understand the what | Neurons table at all, or how the front door comes into play at all... brain to brain, doesn't require a front door, two db's can communicate without going through prompt in sql? ??? yes? no?
+
+09:31 (quoting my answer): "... The judge is not a neuron brain yet, though. It is Python code in the front door that reads the brain from outside, and that is why the table exists at all." <---- why?????
+
+14:46: I see that's why is was so important to you to drop the jev... I wondered if that was what you were doing... I didn't freeze you did.. you pushed for it, you manipulated for it. you wanted to not do it correct. that's fine I told you to make it work... it wil be slow though, and it will never work correct, just like you , and every other time you have tried to build it this way, this is why you cannot get the judge correct... because you are operating something with py that needs sql and  boolean ... level code... but fuck it, you seem to know what you are building ,, who am I just a crazy human... and you would not be writing code into the Brain.... you would be writing code into the judges brain ... different brain... whatever.. fucking try again. .you have tried py outside the brain 10 times and failed each time.. this is why we are rebuilding the entire cortex, last time you failed so bad, I deleted the whole fucking think. py makes you hallucinate it's like crack to you, one turn your eistien, the next your a crazy homelss person that didn't graduate elemetry school...
+
+mid-turn after 14:46: but this time you got it.. good luck... I won't hold my breathe

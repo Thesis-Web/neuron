@@ -1,0 +1,19 @@
+nk.c: the cascade merge at the span closing
+-rwxrwxr-x 1 james james 154752 Nov  4 07:57 nk
+BUILT
+select born: run 1 born 9
+SELECT gate 99, select gate 89 (no node rows yet)
+BUILD SELECT 1 with an undefined twin -> refused 1; label SELECT -> [[99]] (no merge: the twin holds no definition)
+node insert for select: [[1]]
+node row laid: refused 1; nodes of select: [[1]]
+BUILD SELECT 2 with a defined twin -> refused 1; label SELECT -> [[99]]; neuron 99 born [[0]]; neuron 89 born [[0]]
+a new BUILD SELECT 3 -> its symbols: BUILD SELECT 3 ; BUILD
+WHO in a plain line (not a span): label WHO -> [[103, 'WHO']] (untouched)
+test kernel stopped
+VALUES in the egg: [[85]]
+values born as gate 89; VALUES is gate 85
+a span with VALUES while values has no definition: refused 1; label VALUES -> [[85]] (no merge yet); nodes of values now [[1]]
+a span with VALUES once values holds a definition: refused 1; label VALUES -> []; neuron 85 born [[0]]; neuron 89 born [[1]]
+the next span encodes: BUILD INSERT INTO node ( gate , id , source , run ) values ( 8 9 , 3 , 7 , 1 ) ; BUILD
+WHO in a plain line: label WHO -> [[97, 'WHO']] (untouched)
+test kernel stopped

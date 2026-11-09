@@ -1,0 +1,25 @@
+== any
+adjective satellite 1: one or some or every or all without specification; "give me any peaches you don't want"; "not any milk is left"; "any child would know that"; "pick
+adverb 1: to any degree or extent; "it isn't any better" [syn: {any}] [lexicographer file: adv.all] [sense key: any%4:02:00::] [tag count: 4]
+[entry: Any] [headword: A"ny] [pronunciation: ((?))], [part of speech: a. & pron.] [etymology: [OE. æniȝ, æni, eni, ani, oni, AS. ǣnig, fr. ān one. It is akin to OS. ēnig
+[sense: 2.] [definition: Some, of whatever kind, quantity, or number; as, are there any witnesses present? are there any other houses like it?] “Who will show us any good
+== either
+adverb 1: after a negative statement used as an intensive meaning something like `likewise' or `also'; "he isn't stupid, but he isn't exactly a genius either"; "I don't k
+[entry: Either] [headword: Ei"ther] [pronunciation: (ē"thẽr or ī"thẽr; 277)], [part of speech: a. & pron.] [etymology: [OE. either, aither, AS. ǣgðer, ǣghwæðer (akin to O
+[sense: 2.] [definition: Each of two; the one and the other; both; -- formerly, also, each of any number.] [[source: 1913 Webster]]
+== both
+adjective satellite 1: (used with count nouns) two considered together; the two; "both girls are pretty" [syn: {both(a)}] [similar to: {some(a)}] [lexicographer file: adj
+[entry: Both] [headword: Both] [pronunciation: (bōth)], [part of speech: a. or pron.] [etymology: [OE. bothe, baþe, fr. Icel. bāðir; akin to Dan. baade, Sw. båda, Goth. b
+[entry: Both] [headword: Both], [part of speech: conj.] [definition: As well; not only; equally.] [[source: 1913 Webster]]
+== neither
+adjective satellite 1: not either; not one or the other [syn: {neither}] [similar to: {incomplete}, {uncomplete}] [lexicographer file: adj.all] [sense key: neither%5:00:0
+[entry: Neither] [headword: Nei"ther] [pronunciation: (nē"thẽr or nī"thẽr; 277)], [part of speech: a.] [etymology: [OE. neither, nother, nouther, AS. nāwðer, nāhwaeðer; n
+[entry: Neither] [headword: Nei"ther], [part of speech: conj.] [definition: Not either; generally used to introduce the first of two or more coordinate clauses of which t
+== not
+adverb 1: negation of a word or group of words; "he does not speak French"; "she is not going"; "they are not friends"; "not many"; "not much"; "not at all" [syn: {not}, 
+[entry: Not] [headword: Not] [pronunciation: (?)]. [etymology: [Contr. from ne wot. See 2d [entry reference: Note].]] [definition: Wot not; know not; knows not.] [mark: [
+[entry: Not] [headword: Not], [part of speech: a.] [definition: Shorn; shaven.] [mark: [Obs.]] [see: See [entry reference: Nott].] [[source: 1913 Webster]]
+== equal
+adjective 1: having the same quantity, value, or measure as another; "on equal terms"; "all men are equal before the law" [syn: {equal}] [also see: {commensurate}, {compa
+[entry: Equal] [headword: E"qual] [pronunciation: (?)], [part of speech: a.] [etymology: [L. aequalis, fr. aequus even, equal; akin to Skr. (?)ka, and perh. to L. unus fo
+[sense: 2.] [definition: Bearing a suitable relation; of just proportion; having competent power, abilities, or means; adequate; [usage: as, he is not equal to the task].

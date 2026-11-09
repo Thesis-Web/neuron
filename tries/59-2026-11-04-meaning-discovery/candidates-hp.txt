@@ -1,0 +1,110 @@
+acting.json
+verb senses with two or more grounded words in the gloss: 388 (live-grounded only: 275)
+live  all  word           n   gloss                                                                                      grounded words
+3     3    alter          1   cause to change; make different; cause a transformation                                    ['change', 'make', 'transformation'] | ACTS 148
+3     3    catalog        2   make an itemized list or catalog of; classify                                              ['make', 'list', 'catalog'] | ACTS 252
+3     3    catalogue      1   make an itemized list or catalog of; classify                                              ['make', 'list', 'catalog'] | ok 23
+3     3    change         1   cause to change; make different; cause a transformation                                    ['change', 'make', 'transformation'] | ACTS 469
+3     3    change_over    1   make a shift in or exchange of                                                             ['make', 'shift', 'exchange'] | undef 0
+3     3    design         4   make a design of; plan out in systematic, often graphic form                               ['make', 'design', 'form'] | ACTS 497
+3     3    docket         2   make a summary or abstract of a legal document and inscribe it in a list                   ['make', 'inscribe', 'list'] | ok 257
+3     3    modify         3   cause to change; make different; cause a transformation                                    ['change', 'make', 'transformation'] | ACTS 127
+3     3    plan           4   make a design of; plan out in systematic, often graphic form                               ['make', 'design', 'form'] | ok 401
+3     3    pulsate        3   produce or modulate (as electromagnetic waves) in the form of short bursts or pulses or ca ['produce', 'modulate', 'form', 'produce'] | ok 67
+3     3    pulse          2   produce or modulate (as electromagnetic waves) in the form of short bursts or pulses or ca ['produce', 'modulate', 'form', 'produce'] | ok 195
+3     3    shift          1   make a shift in or exchange of                                                             ['make', 'shift', 'exchange'] | ACTS 629
+3     3    switch         4   make a shift in or exchange of                                                             ['make', 'shift', 'exchange'] | ACTS 492
+3     3    transform      2   change or alter in form, appearance, or nature                                             ['change', 'alter', 'form'] | ACTS 102
+3     3    transmute      2   change or alter in form, appearance, or nature                                             ['change', 'alter', 'form'] | ok 8
+3     3    transubstantiate 2   change or alter in form, appearance, or nature                                             ['change', 'alter', 'form'] | ok 10
+2     3    copy           3   reproduce or make an exact copy of                                                         ['make', 'exact'] | ACTS 552
+2     3    counterfeit    1   make a copy of with the intent to deceive                                                  ['make', 'intent'] | ok 335
+2     3    enter          5   make a record of; set down in permanent form                                               ['make', 'form'] | ok 269
+2     3    fake           1   make a copy of with the intent to deceive                                                  ['make', 'intent'] | ok 348
+2     3    forge          2   make a copy of with the intent to deceive                                                  ['make', 'intent'] | ACTS 141
+2     3    put_down       8   make a record of; set down in permanent form                                               ['make', 'form'] | undef 0
+2     3    record         1   make a record of; set down in permanent form                                               ['make', 'form'] | ok 303
+2     3    replicate      2   reproduce or make an exact copy of                                                         ['make', 'exact'] | ok 47
+2     3    step           1   shift or move by taking a step                                                             ['shift', 'step'] | ACTS 587
+2     2    accommodate    2   make fit for, or change to suit a new purpose                                              ['make', 'change'] | ok 287
+2     2    adapt          1   make fit for, or change to suit a new purpose                                              ['make', 'change'] | ok 168
+2     2    affect         4   make believe with the intent to deceive                                                    ['make', 'intent'] | ok 307
+2     2    air-slake      1   alter by exposure to air with conversion at least in part to a carbonate                   ['alter', 'conversion'] | undef 0
+2     2    angulate       1   make or become angular                                                                     ['make', 'become'] | ok 8
+2     2    apologise      1   defend, explain, clear away, or make excuses for by reasoning                              ['explain', 'make'] | ok 5
+2     2    apologize      2   defend, explain, clear away, or make excuses for by reasoning                              ['explain', 'make'] | ok 38
+2     2    attest         2   authenticate, affirm to be true, genuine, or correct, as in an official capacity           ['true', 'correct'] | ok 128
+2     2    backpedal      3   modify one's opinion, make it less strong                                                  ['modify', 'make'] | ok 74
+2     2    be_amiss       1   interpret in the wrong way                                                                 ['interpret', 'wrong'] | undef 0
+2     2    black          1   make or become black                                                                       ['make', 'become'] | ok 467
+2     2    blacken        1   make or become black                                                                       ['make', 'become'] | ok 144
+2     2    blueprint      1   make a blueprint of                                                                        ['make', 'blueprint'] | ACTS 219
+2     2    bribe          1   make illegal payments to in exchange for favors or influence                               ['make', 'exchange'] | ok 107
+2     2    bubble         1   form, produce, or emit bubbles                                                             ['form', 'produce'] | ok 303
+2     2    build_up       5   change the use of and make available or usable                                             ['change', 'make'] | undef 0
+2     2    buy            2   make illegal payments to in exchange for favors or influence                               ['make', 'exchange'] | ok 145
+2     2    chafe          1   become or make sore by or as if by rubbing                                                 ['become', 'make'] | ok 293
+2     2    change         2   undergo a change; become different in essence; losing one's or its original nature         ['change', 'become'] | ACTS 469
+2     2    change_integrity 1   change in physical make-up                                                                 ['change', 'make'] | undef 0
+2     2    change_state   1   undergo a transformation or a change of position or action                                 ['transformation', 'change'] | undef 0
+2     2    coarsen        1   make or become coarse or coarser                                                           ['make', 'become'] | ok 57
+2     2    come_on        1   appear or become visible; make a showing                                                   ['become', 'make'] | undef 0
+2     2    come_out       1   appear or become visible; make a showing                                                   ['become', 'make'] | undef 0
+2     2    comment        2   explain or interpret something                                                             ['explain', 'interpret'] | ok 148
+2     2    commutate      1   reverse the direction of (an alternating electric current) each half cycle so as to produc ['reverse', 'produce'] | ok 10
+2     2    commute        1   exchange positions without a change in value                                               ['exchange', 'change'] | ACTS 98
+2     2    complement     1   make complete or perfect; supply what is wanting or form the complement to                 ['make', 'form'] | ok 323
+2     2    condition      3   specify as a condition or requirement in a contract or agreement; make an express demand o ['specify', 'make'] | ok 418
+2     2    confect        1   make or construct                                                                          ['make', 'construct'] | ok 17
+2     2    consolidate    5   make or form into a solid or hardened mass                                                 ['make', 'form'] | ok 168
+2     2    construe       1   make sense of; assign a meaning to                                                         ['make', 'meaning'] | ok 38
+2     2    contract       8   make or become more narrow or restricted                                                   ['make', 'become'] | ok 318
+2     2    controvert     2   prove to be false or incorrect                                                             ['false', 'incorrect'] | ok 135
+2     2    convolute      2   practice sophistry; change the meaning of or be vague about in order to mislead or deceive ['change', 'meaning'] | ok 14
+2     2    cook           3   transform and make suitable for consumption by heating                                     ['transform', 'make'] | ok 254
+2     2    correct        1   make right or correct                                                                      ['make', 'correct'] | ACTS 335
+2     2    corrupt        2   make illegal payments to in exchange for favors or influence                               ['make', 'exchange'] | ok 366
+2     2    create         1   make or cause to be or to become                                                           ['make', 'become'] | ACTS 172
+2     2    create         6   create or manufacture a man-made product                                                   ['create', 'manufacture'] | ACTS 172
+2     2    crystalise     3   assume crystalline form; become crystallized                                               ['form', 'become'] | ok 6
+2     2    crystalize     3   assume crystalline form; become crystallized                                               ['form', 'become'] | ok 6
+2     2    crystallize    4   assume crystalline form; become crystallized                                               ['form', 'become'] | ok 44
+2     2    cut            17  make an abrupt change of image or sound                                                    ['make', 'change'] | judged 1671
+2     2    cut_out        2   form and create by cutting out                                                             ['form', 'create'] | undef 0
+2     2    de-ice         1   make or become free of frost or ice                                                        ['make', 'become'] | undef 0
+2     2    deaf           1   make or render deaf                                                                        ['make', 'render'] | ok 108
+2     2    deafen         2   make or render deaf                                                                        ['make', 'render'] | ok 47
+2     2    defrost        1   make or become free of frost or ice                                                        ['make', 'become'] | ok 11
+2     2    deice          1   make or become free of frost or ice                                                        ['make', 'become'] | ok 7
+2     2    deoxidise      1   to remove oxygen from a compound, or cause to react with hydrogen or form a hydride, or to ['compound', 'form'] | ok 3
+2     2    deoxidize      1   to remove oxygen from a compound, or cause to react with hydrogen or form a hydride, or to ['compound', 'form'] | ok 4
+2     2    design         3   create the design for; create or execute in an artistic or highly skilled manner           ['create', 'design', 'create'] | ACTS 497
+2     2    develop        6   change the use of and make available or usable                                             ['change', 'make'] | ok 385
+2     2    diazotize      1   convert (an amine) into a diazo compound                                                   ['convert', 'compound'] | ok 4
+2     2    dilate         2   add details, as to an account or idea; clarify the meaning of and discourse in a learned w ['clarify', 'meaning'] | ok 102
+2     2    dissemble      1   make believe with the intent to deceive                                                    ['make', 'intent'] | ok 18
+2     2    dissimilate    2   make dissimilar; cause to become less similar                                              ['make', 'become'] | ok 9
+2     2    distort        1   make false by mutilation or addition; as of a message or story                             ['make', 'false'] | ok 185
+2     2    do             8   create or design, often in a certain way                                                   ['create', 'design'] | judged 540
+2     2    doctor         1   alter and make impure, as with the intention to deceive                                    ['alter', 'make'] | ok 274
+2     2    doctor_up      1   alter and make impure, as with the intention to deceive                                    ['alter', 'make'] | undef 0
+2     2    dope           2   add impurities to (a semiconductor) in order to produce or modify its properties           ['produce', 'modify'] | ok 373
+2     2    downsize       2   design or manufacture in a smaller size                                                    ['design', 'manufacture'] | ok 9
+2     2    draft          3   make a blueprint of                                                                        ['make', 'blueprint'] | ok 540
+2     2    draught        1   make a blueprint of                                                                        ['make', 'blueprint'] | ok 419
+2     2    effloresce     2   assume crystalline form; become crystallized                                               ['form', 'become'] | ok 13
+2     2    elaborate      1   add details, as to an account or idea; clarify the meaning of and discourse in a learned w ['clarify', 'meaning'] | ok 244
+2     2    elaborate      2   produce from basic elements or sources; change into a more developed product               ['produce', 'change'] | ok 244
+2     2    emulsify       2   form into or become an emulsion                                                            ['form', 'become'] | ok 63
+2     2    emulsify       1   cause to become an emulsion; make into an emulsion                                         ['become', 'make'] | ok 63
+2     2    enlarge        4   add details, as to an account or idea; clarify the meaning of and discourse in a learned w ['clarify', 'meaning'] | ok 129
+2     2    erect          1   construct, build, or erect                                                                 ['construct', 'build'] | ok 248
+2     2    err            1   to make a mistake or be incorrect                                                          ['make', 'incorrect'] | ok 79
+2     2    esterify       1   change (a compound) into an ester                                                          ['change', 'compound'] | ok 3
+2     2    excuse         4   defend, explain, clear away, or make excuses for by reasoning                              ['explain', 'make'] | ok 227
+2     2    expand         6   add details, as to an account or idea; clarify the meaning of and discourse in a learned w ['clarify', 'meaning'] | ok 147
+2     2    expatiate      1   add details, as to an account or idea; clarify the meaning of and discourse in a learned w ['clarify', 'meaning'] | ok 38
+2     2    exposit        2   add details, as to an account or idea; clarify the meaning of and discourse in a learned w ['clarify', 'meaning'] | ok 6
+2     2    expound        1   add details, as to an account or idea; clarify the meaning of and discourse in a learned w ['clarify', 'meaning'] | ok 63
+2     2    falsify        1   make false by mutilation or addition; as of a message or story                             ['make', 'false'] | ok 97
+2     2    feign          1   make believe with the intent t

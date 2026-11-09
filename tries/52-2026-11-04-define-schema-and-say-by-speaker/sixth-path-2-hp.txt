@@ -1,0 +1,27 @@
+runs of arrival 5 (from the sixth) since the binds at 19938902: 4; newest [19938986, 19938990, 19939010]
+
+run 19938990 arrival 5 kind 0: define : acersecomes
+  cell 23    state 1  1317489
+  cell 24    state 0  None
+  cell 441   state 1  
+  cell 138   state 1  
+  cell 139   state 1  
+  cell 530   state 1  
+  cell 6332  state 1  
+  cell 5516  state 1  
+  cell 10547 state 1  
+  cell 204   state 1  
+  cell 25    state 1  run 19939000 from arrival 4: {"what":1317489,"def":null,"class":[],"like":[],"opposite":[],"similar":[],"tense":[],"prefix":[],"suffix":[],"etymology":[],"known":[],"unknown":[]}
+
+run 19939010 arrival 5 kind 0: why : 19938990 24
+  cell 23    state 1  19938990
+  cell 24    absent
+  cell 441   absent
+  cell 138   absent
+  cell 139   absent
+  cell 530   absent
+  cell 6332  absent
+  cell 5516  absent
+  cell 10547 absent
+  cell 204   absent
+  cell 25    absent

@@ -1,0 +1,44 @@
+test kernel pid: 355494
+nkxyz: the history of places begins at clock 0 (/home/james/nk-c27/out/brain.map.xyz.0)
+nk: 86 symbols laid in each brain, listening on 127.0.0.1:7009
+stats: {'gates': 86, 'runs': 0, 'refused': 0}
+typed: {'run': 1, 'runs': 1, 'hits': 2, 'born': 13, 'refused': 1}
+  label 'abligurrītiō' -> [[89, 'abligurrītiō', 12]]
+  label 'tiō'          -> [[93, 'tiō', 3]]
+  label 'h₂epó'        -> [[95, 'h₂epó', 5]]
+  label 'ti'           -> []
+  label 'ō'            -> []
+long line typed: run 2, 454 characters
+  me cell 19 read back: text length 454, cut mark present: False
+  root text field (the 400 limit kept on purpose): 408
+nkxyz: the history of places begins at clock 0 (/home/james/nk-c27/out/brain.map.xyz.0)
+nk: 86 symbols laid in each brain, listening on 127.0.0.1:7009
+test kernel STILL UP
+--- live sources patched (binary untouched):
+112c112
+< static int is_letter(unsigned char c){ return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_'; }
+---
+> static int is_letter(unsigned char c){ return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_' || c >= 0x80; }   /* C27 (the owner, 11-04 04:30): a word is one symbol in any script; a by
+122c122
+<     if(is_ptr && wv && atoll(wv) > 0){ i64 rr = atoll(wv); Run *x = run_of(b, rr); sb_fmt(&v, "run %lld from %s: ", (long long)rr, (x && x->arrival <= b->labe
+---
+>     if(is_ptr && wv && atoll(wv) > 0){ i64 rr = atoll(wv); Run *x = run_of(b, rr); sb_fmt(&v, "run %lld from %s: ", (long long)rr, (x && x->arrival <= b->labe
+211c211
+<     if(x && strspn(cv, "0123456789") == strlen(cv)){ sb_fmt(o, "{\"run\":%lld,\"arrival\":%d,\"text\":", (long long)rv, x->arrival); sb_text_of(b, rv, o, 300)
+---
+>     if(x && strspn(cv, "0123456789") == strlen(cv)){ sb_fmt(o, "{\"run\":%lld,\"arrival\":%d,\"text\":", (long long)rv, x->arrival); sb_text_of(b, rv, o, 1 <<
+-rwxrwxr-x 1 james james 146336 Nov  2 20:23 nk
+-rw-r--r-- 1 james james  29828 Nov  4 04:45 nk.c
+-rw-r--r-- 1 james james  29694 Nov  4 04:45 nk.c.before-c27
+-rw-r--r-- 1 james james  55308 Nov  4 04:45 nkio.c
+-rw-r--r-- 1 james james  55168 Nov  4 04:45 nkio.c.before-c27
+--- the live kernel still the 11-02 binary:
+ 324376  1-08:22:29 ./nk 7007 egg-symbols.txt sources wn gcide mwt moby map sqldoc measured guess wikt
+8058 ready True runs 19939022 refused 1
+    PID     ELAPSED COMMAND
+ 355497 ./nk 7009 egg-symbols.txt src
+the test kernel pid: 355497
+test kernel on 7009 stopped
+--- the live kernel:
+ 324376  1-08:24:04 ./nk 7007 egg-symbols.txt sources wn gcide mwt moby map sqldoc measured guess wikt
+8058 ready True runs 19939022
