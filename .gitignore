@@ -1,1 +1,12 @@
 out/
+# 2026-11-09: kept out of git: the binaries, the log, every db (the sources live beside the kernel, not in git), the hand backups, builds
+/nk
+/nk.before*
+g32/nkheap
+g32/nkstored
+g31/build/
+nk.log
+*.db
+*.before*
+*.g35
+__pycache__/
