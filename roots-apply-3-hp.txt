@@ -1,0 +1,90 @@
+run 19952000 BUILD CREATE TABLE IF NOT EXISTS stored ( key INTEGER PR refused 0 reply: ok
+run 19952014 BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , st refused 0 reply: error: no such column: above
+run 19952020 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: above
+run 19952029 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: above
+run 19952038 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: near "to": syntax error
+run 19952047 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: near "to": syntax error
+run 19952056 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: near "to": syntax error
+run 19952065 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: near "to": syntax error
+run 19952074 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: above
+run 19952083 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: above
+run 19952092 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: above
+run 19952101 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: near "to": syntax error
+run 19952110 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: near "to": syntax error
+run 19952119 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: near "to": syntax error
+run 19952128 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: at
+run 19952137 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: above
+run 19952146 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: above
+run 19952155 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: of
+run 19952164 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: above
+run 19952173 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: near "to": syntax error
+run 19952182 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: above
+run 19952191 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: above
+run 19952200 BUILD INSERT INTO replay ( parent , source , kind ) VALU refused 0 reply: error: no such column: above
+run 19952209 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952215 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952221 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952227 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952233 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952239 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952245 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952251 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952257 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952263 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952269 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952275 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952281 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952287 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952293 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952299 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952305 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952311 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952317 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952323 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952329 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952335 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952341 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952347 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952353 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952359 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952365 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952371 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952377 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952383 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952389 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952395 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952401 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952407 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952413 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952419 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952425 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952431 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952437 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952443 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952449 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+run 19952455 BUILD INSERT INTO dna ( gate , shard , before , trigger  refused 0 reply: ok
+R = 19952461 (define : scan)  R2 = 19952480 (define : lookup)
+read cell 25 of 19952461                 run 19952499 hits 4596  cell 23 = ('19952475', None) | replies: ['ok', 'ok']
+find word scan                           run 19952509 hits 4584  cell 23 = ('27359', None) | replies: ['ok', 'ok']
+write value seven to 4921 of 19952461    run 19952519 hits 4616  cell 23 = ('seven', None) | replies: ['ok', 'ok']
+move point 2437 to 1330                  run 19952529 hits 4650  cell 23 = ('7.18938446044922 5.91977691650391 0.526990532875061', None) | replies: ['ok', 'ok']
+copy cell 25 of 19952461 to 19952480     run 19952539 hits 4643  cell 23 = ('19952475', None) | replies: ['ok', 'ok']
+link point 2437 to 1330 by 12            run 19952549 hits 4625  cell 23 = ('1', None) | replies: ['ok', 'ok']
+split run 19952461                       run 19952559 hits 4595  cell 23 = ('156 3 68 3 27359', None) | replies: ['ok', 'ok']
+join run 19952461                        run 19952569 hits 4623  cell 23 = ('define : scan', None) | replies: ['ok', 'ok']
+select dna 2437                          run 19952579 hits 4620  cell 23 = ('20049763:1:95:19952020 20049795:1:68:19951700 20049803:167:95:19952020', None) | replies: ['ok', 'ok']
+insert shard 2437 at 1 to 68             run 19952589 hits 4633  cell 23 = ('20049795', None) | replies: ['ok', 'ok']
+update shard 2437 at 1 to 68 by 19952461 run 19952599 hits 4626  cell 23 = ('19952461', None) | replies: ['ok', 'ok']
+delete link 2437 to 1330 by 12           run 19952609 hits 4616  cell 23 = ('0', None) | replies: ['ok', 'ok']
+store value seven at 2437                run 19952619 hits 4619  cell 23 = ('seven', None) | replies: ['ok', 'ok']
+recall key 2437                          run 19952629 hits 4585  cell 23 = ('seven', None) | replies: ['ok', 'ok']
+stamp cell 25 of 19952461                run 19952639 hits 4602  cell 23 = ('19952653 19952461 25', None) | replies: ['ok', 'ok']
+append cell 25 of 19952461               run 19952649 hits 4632  cell 23 = ('1', None) | replies: ['ok', 'ok']
+compare value seven to nine              run 19952659 hits 4599  cell 23 = ('1', None) | replies: ['ok', 'ok']
+set cell 4921 of 19952461 to 0           run 19952669 hits 4638  cell 23 = ('0', None) | replies: ['ok', 'ok']
+measure run 19952461                     run 19952679 hits 4592  cell 23 = ('4', None) | replies: ['ok', 'ok']
+fetch word scan at wn                    run 19952689 hits 4616  cell 23 = ('9 rows: noun 1: the act of scanning; systematic examination of a prescribed region; "he made a thorough scan of the be | replies: ['ok', 'ok']
+run line 19952461                        run 19952699 hits 4577  cell 23 = absent | replies: ['ok', 'ok']
+find word scan and select dna it         run 19952710 hits 8948  cell 23 = ('20049743:162:19697:0 20049744:212:397:0 20049745:162:158:0 20049746:162:9179:0 20049747:162:292:0 20049748:162:1137:0  | replies: ['ok', 'ok', 'ok']
+measure run 19952461 and compare value it to 4 run 19952725 hits 8938  cell 23 = ('0', None) | replies: ['ok', 'ok', 'ok']
+read cell 25 of 19952461 and write value it to 4921 of 19952480 run 19952740 hits 8959  cell 23 = ('19952475', None) | replies: ['ok', 'ok', 'ok']

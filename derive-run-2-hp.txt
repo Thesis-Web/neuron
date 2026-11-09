@@ -1,0 +1,74 @@
+believed points (belief correct > 0 with a call): 71
+== catalogue gate 16722 dna before: []
+   EXPECTED (written first): gloss 'make a catalogue, compile a catalogue' -> ['make'] -> call 929 spawn None
+   derive run 19948557 hits 5277 say: 1 |  | make | 929 | 2654830
+   derived rows: [[None, 1, 'make', 929, 2654830]]
+   dna after: [[20049748, 1, 68, 929, None]]
+   typed 'catalogue : who' run 19948575 hits 473 receipts [[0, 1, 1], [1, 16722, 20049748], [3, 68, 17], [5, 120, 17]] kids [[19948576, 1, 19937672], [19948580, 1, 929]] say: 120 | 1
+      kid [19948576, 1, 19937672] reply: ok
+      kid [19948580, 1, 929] reply: ok
+== docket gate 10394 dna before: []
+   EXPECTED (written first): gloss 'place on the docket for legal action' -> [] -> call None spawn None
+   derive run 19948584 hits 5277 say: 0 |  | unresolved |  | 1904826
+   derived rows: [[None, 0, 'unresolved', None, 1904826]]
+   dna after: []
+   typed 'docket : who' run 19948602 hits 257 receipts [[0, 1, 1], [1, 10394, 17], [3, 68, 17], [5, 120, 17]] kids [[19948603, 1, 19937672]] say: None
+      kid [19948603, 1, 19937672] reply: ok
+== plan gate 12482 dna before: []
+   EXPECTED (written first): gloss 'make a design of; plan out in systematic, often graphic form' -> ['make', 'design', 'form'] -> call 929 spawn 929
+   derive run 19948607 hits 5277 say: 1 |  | make | 929 | 601370
+2 |  | design | 929 | 601370
+3 |  | form | 929 | 601370
+   derived rows: [[None, 1, 'make', 929, 601370], [None, 2, 'design', 929, 601370], [None, 3, 'form', 929, 601370]]
+   dna after: [[20049749, 1, 68, 929, 929]]
+   typed 'plan : who' run 19948625 hits 689 receipts [[0, 1, 1], [1, 12482, 20049749], [3, 68, 17], [5, 120, 17]] kids [[19948626, 1, 19937672], [19948630, 1, 929], [19948634, 2, 929]] say: 120 | 1
+      kid [19948626, 1, 19937672] reply: ok
+      kid [19948630, 1, 929] reply: ok
+      kid [19948634, 2, 929] reply: ok
+== pulsate gate 39544 dna before: []
+   EXPECTED (written first): gloss 'move with or as if with a regular alternating motion' -> [] -> call None spawn None
+   derive run 19948638 hits 5277 say: 0 |  | unresolved |  | 3680189
+   derived rows: [[None, 0, 'unresolved', None, 3680189]]
+   dna after: []
+   typed 'pulsate : who' run 19948656 hits 257 receipts [[0, 1, 1], [1, 39544, 17], [3, 68, 17], [5, 120, 17]] kids [[19948657, 1, 19937672]] say: None
+      kid [19948657, 1, 19937672] reply: ok
+== accommodate gate 4757 dna before: []
+   EXPECTED (written first): gloss 'have room for; hold without crowding' -> [] -> call None spawn None
+   derive run 19948661 hits 5277 say: 0 |  | unresolved |  | 1502470
+   derived rows: [[None, 0, 'unresolved', None, 1502470]]
+   dna after: []
+   typed 'accommodate : who' run 19948679 hits 257 receipts [[0, 1, 1], [1, 4757, 17], [3, 68, 17], [5, 120, 17]] kids [[19948680, 1, 19937672]] say: None
+      kid [19948680, 1, 19937672] reply: ok
+== adapt gate 34572 dna before: []
+   EXPECTED (written first): gloss 'make fit for, or change to suit a new purpose' -> ['make'] -> call 929 spawn None
+   derive run 19948684 hits 5277 say: 1 |  | make | 929 | 1739673
+   derived rows: [[None, 1, 'make', 929, 1739673]]
+   dna after: [[20049750, 1, 68, 929, None]]
+   typed 'adapt : who' run 19948702 hits 473 receipts [[0, 1, 1], [1, 34572, 20049750], [3, 68, 17], [5, 120, 17]] kids [[19948703, 1, 19937672], [19948707, 1, 929]] say: 120 | 1
+      kid [19948703, 1, 19937672] reply: ok
+      kid [19948707, 1, 929] reply: ok
+== affect gate 5884 dna before: []
+   EXPECTED (written first): gloss 'connect closely and often incriminatingly' -> [] -> call None spawn None
+   derive run 19948711 hits 5277 say: 0 |  | unresolved |  | 962780
+   derived rows: [[None, 0, 'unresolved', None, 962780]]
+   dna after: []
+   typed 'affect : who' run 19948729 hits 257 receipts [[0, 1, 1], [1, 5884, 17], [3, 68, 17], [5, 120, 17]] kids [[19948730, 1, 19937672]] say: None
+      kid [19948730, 1, 19937672] reply: ok
+== apologise gate 139588 dna before: []
+   EXPECTED (written first): gloss 'defend, explain, clear away, or make excuses for by reasoning' -> ['explain', 'make'] -> call 19938846 spawn 929
+   derive run 19948734 hits 5277 say: 1 |  | explain | 19938846 | 4571477
+2 |  | make | 929 | 4571477
+   derived rows: [[None, 1, 'explain', 19938846, 4571477], [None, 2, 'make', 929, 4571477]]
+   dna after: [[20049751, 1, 68, 19938846, 929]]
+   typed 'apologise : who' run 19948752 hits 5529 receipts [[0, 1, 1], [1, 139588, 20049751], [3, 68, 17], [5, 120, 17]] kids [[19948753, 1, 19937672], [19948757, 1, 19938846], [19948759, 1, 19938193], [19948768, 2, 929]] say: 120 | 1
+      kid [19948753, 1, 19937672] reply: ok
+      kid [19948757, 1, 19938846] reply: ok
+      kid [19948759, 1, 19938193] reply: ok
+      kid [19948768, 2, 929] reply: ok
+== abandon gate 865 dna before: []
+   EXPECTED (written first): gloss 'forsake, leave behind' -> [] -> call None spawn None
+   derive run 19948772 hits 5277 say: 0 |  | unresolved |  | 1589371
+   derived rows: [[None, 0, 'unresolved', None, 1589371]]
+   dna after: []
+   typed 'abandon : who' run 19948790 hits 257 receipts [[0, 1, 1], [1, 865, 17], [3, 68, 17], [5, 120, 17]] kids [[19948791, 1, 19937672]] say: None
+      kid [19948791, 1, 19937672] reply: ok

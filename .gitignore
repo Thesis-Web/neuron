@@ -1,0 +1,7 @@
+# 2026-11-09: the roots kernel copy (running since 11-04 20:10): the brain (out/), the source dbs, the binary and logs stay on disk, not in git
+out/
+sources/
+/nk
+*.log
+*.db
+__pycache__/

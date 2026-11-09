@@ -1,0 +1,112 @@
+print gate 424 rows: [[1465, 1, 86, 826], [1497, 1, 426, 847], [1531, 1, 47, 870], [1568, 1, 427, 889], [1592, 1, 410, 910], [20048962, 1, 68, None]]
+
+== 1. the brain's changed run A typed as a line (its spans run once at typing with their holes unfilled)
+
+>>> BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SEL
+    run 19949770 | runs +8, hops +143, pastes +6, deduped_runs +1, refused +0
+   mother's answers at typing: ['error: no such column: above', 'error: no such table: shard', 'error: no such column: above']
+
+>>> change call : print from 826 to 19949770
+    run 19949778 | runs +9, hops +30, pastes +6, deduped_runs +2, refused +0
+    say cell 25: 1
+   print rows now: [[1465, 1, 86, 19949770], [1497, 1, 426, 847], [1531, 1, 47, 870], [1568, 1, 427, 889], [1592, 1, 410, 910], [20048962, 1, 68, None]]
+
+== 2. print dna through the changed run, first time, then a repeat
+
+>>> print dna : leap
+    run 19949787 | runs +9, hops +148, pastes +6, deduped_runs +1, refused +0
+    called run 19949792 replays 19949770 | landed: 137 receipts of its own
+       mother answered: ok
+       mother answered: error: no such table: shard
+       mother answered: ok
+    say cell 25: error: no such table: shard
+
+>>> print dna : jump
+    run 19949796 | runs +9, hops +17, pastes +6, deduped_runs +2, refused +0
+    called run 19949801 replays 19949770 | REPEAT of 19949792: no landings, its recorded BUILD marks fired
+       mother answered: ok
+       mother answered: error: no such table: shard
+       mother answered: ok
+    say cell 25: error: no such table: shard
+
+== 3. a valid change B: SELECT shard , call FROM dna
+
+>>> BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SEL
+    run 19949805 | runs +8, hops +135, pastes +6, deduped_runs +1, refused +0
+
+>>> change call : print from 19949770 to 19949805
+    run 19949813 | runs +9, hops +35, pastes +6, deduped_runs +2, refused +0
+    say cell 25: 1
+
+>>> print dna : step
+    run 19949822 | runs +9, hops +140, pastes +6, deduped_runs +1, refused +0
+    called run 19949827 replays 19949805 | landed: 129 receipts of its own
+       mother answered: ok
+       mother answered: 2031 | 1302
+       mother answered: ok
+    say cell 25: 2031 | 1302
+
+>>> print dna : leap
+    run 19949831 | runs +9, hops +17, pastes +6, deduped_runs +2, refused +0
+    called run 19949836 replays 19949805 | REPEAT of 19949827: no landings, its recorded BUILD marks fired
+       mother answered: ok
+       mother answered: 20049451 | 1302
+       mother answered: ok
+    say cell 25: 20049451 | 1302
+
+== 4. a NEW row on where, keyed (dna, gate) as it lands in B's span 2, call = run 1; then print dna again (B repeats)
+
+>>> BUILD INSERT INTO dna ( gate , shard , before , trigger , call , spawn , times ) VALUES ( 2531 , NULL , 86 , 84 , 1 , NULL , 0 ) ; BUILD
+    run 19949840 | runs +6, hops +49, pastes +4, deduped_runs +1, refused +0
+   where rows now: [[20049221, 156, 68, None, 19936999, 0], [20049781, 86, 84, 1, None, 0]]
+
+>>> print dna : stride
+    run 19949846 | runs +9, hops +17, pastes +6, deduped_runs +2, refused +0
+    called run 19949851 replays 19949805 | REPEAT of 19949827: no landings, its recorded BUILD marks fired
+       mother answered: ok
+       mother answered: ok
+       mother answered: ok
+    say cell 25: ok
+
+== 5. a run with other symbols B3 (ORDER BY shard DESC): it must land, and the where row should fire
+
+>>> BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHERE run = above AND pos = ( SEL
+    run 19949855 | runs +10, hops +138, pastes +7, deduped_runs +2, refused +0
+
+>>> change call : print from 19949805 to 19949855
+    run 19949865 | runs +9, hops +35, pastes +6, deduped_runs +2, refused +0
+    say cell 25: 1
+
+>>> print dna : pace
+    run 19949874 | runs +11, hops +143, pastes +7, deduped_runs +2, refused +0
+    called run 19949879 replays 19949855 | landed: 130 receipts of its own
+       mother answered: ok
+       KID run 19949881 kind 1 replays 1 (a shard on the called run's path fired)
+       mother answered: ok
+       mother answered: ok
+    say cell 25: ok
+   where rows now: [[20049221, 156, 68, None, 19936999, 0], [20049781, 86, 84, 1, None, 2]]
+
+== 6. restore: print's call back to 826, the where row's call to none, then print dna as before
+
+>>> change call : print from 19949855 to 826
+    run 19949885 | runs +9, hops +30, pastes +6, deduped_runs +2, refused +0
+    say cell 25: 1
+
+>>> change call : where from 1 to 0
+    run 19949894 | runs +9, hops +21, pastes +6, deduped_runs +2, refused +0
+    say cell 25: 1
+   print rows: [[1465, 1, 86, 826], [1497, 1, 426, 847], [1531, 1, 47, 870], [1568, 1, 427, 889], [1592, 1, 410, 910], [20048962, 1, 68, None]] | where rows: [[20049221, 156, 68, None, 0], [20049781, 86, 84, None, 2]]
+
+>>> print dna : step
+    run 19949903 | runs +9, hops +17, pastes +6, deduped_runs +2, refused +0
+    called run 19949908 replays 826 | REPEAT of 19937889: no landings, its recorded BUILD marks fired
+       mother answered: ok
+       mother answered: 2031 | 1 | 453 | 1302 |  | 2
+       mother answered: ok
+    say cell 25: 2031 | 1 | 453 | 1302 |  | 2
+
+== 7. which tables can carry a trigger: the triggers in the brain's own SQL files and the sources
+   main triggers: []
+   sixth triggers: []
+   wikt triggers: ['work', 'carry']

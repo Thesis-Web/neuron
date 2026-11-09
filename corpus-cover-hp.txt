@@ -1,0 +1,9 @@
+chunk of 100,000 gates (700,001 to 800,000): 48369 words, 2370407 bytes, 0.65 s
+wn        distinct words   152557 | with no gate of that exact spelling    71499 | e.g. ["'hood", "'s_gravenhage", "'tween", "'tween_decks", '.22', '.22-caliber', '.22-calibre', '.22_caliber'] | 4.9 s
+gcide     distinct words   114774 | with no gate of that exact spelling    24200 | e.g. ["'em", "'gainst", "'mongst", "'neath", "'s", "'sblood", "'sdeath", "'snails"] | 3.8 s
+wikt      distinct words  1361252 | with no gate of that exact spelling   735228 | e.g. ["!'o!uŋ", '!kung', '"early life" check', '"early life" checks', '"homework" folders', '"r" slur', '"r" slurs', '"small c" conservative'] | 23.1 s
+mwt       distinct words      140 | with no gate of that exact spelling        0 | e.g. [] | 0.0 s
+moby      distinct words    30259 | with no gate of that exact spelling     5115 | e.g. ['A-bomb', 'Agnus Dei', 'Aqua Lung', 'Artful Dodger', 'Ash Wednesday', 'Ave Maria', 'Band Aid', 'Beau Brummel'] | 0.4 s
+map       distinct words      344 | with no gate of that exact spelling        4 | e.g. ['CREATE', 'INSERT', 'TABLE', 'VALUES'] | 0.0 s
+sqldoc    distinct words       41 | with no gate of that exact spelling       29 | e.g. ['!=', '<>', 'AND', 'AS', 'BY', 'CAST', 'CREATE', 'DELETE'] | 0.0 s
+measured  distinct words       50 | with no gate of that exact spelling       32 | e.g. ['!=', '<=', '<>', '>=', 'AND', 'AS', 'BY', 'CAST'] | 0.0 s

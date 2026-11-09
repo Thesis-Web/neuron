@@ -1,0 +1,19 @@
+== assume gate 25561 dna before: []
+define run 19948795 hits 6642
+sense_shard rows: 6
+   shard 20049752 key (will, the) sense 1063019: verb 2: To take on a position, duty or form. [examples: Mr. Jones will assume the position
+   shard 20049753 key (We, that) sense 1063018: verb 1: To authenticate by means of belief; to surmise; to suppose to be true, especially 
+   shard 20049754 key (we, that) sense 1063018: verb 1: To authenticate by means of belief; to surmise; to suppose to be true, especially 
+   shard 20049755 key (President, office) sense 1062730: verb 2: take on titles, offices, duties, responsibilities; "When will the new President as
+   shard 20049756 key (I, his) sense 1062724: verb 1: take to be the case or to be true; accept without verification or proof; "I assume
+   shard 20049757 key (gods, human) sense 1062723: verb 3: take on a certain form, attribute, or aspect; "His voice took on a sad tone"; "The
+derive run 19948895 hits 5277
+derived rows (shard, ord, word, run_used, sense_run): [[None, 0, 'unresolved', None, 1062730]]
+dna after derive: [[20049752, 326, 292, None, None], [20049753, 1671, 304, None, None], [20049754, 544, 304, None, None], [20049755, 328, 1390, None, None], [20049756, 362, 385, None, None], [20049757, 1833, 684, None, None]]
+typed 'The gods assume human or animal form in these fables' run 19948913 hits 264: the hit on assume [[5, 25561, 20049757]]; kids [[19948914, 1, 19937672]]
+      kid [19948914, 1, 19937672] reply: ok
+typed 'I assume his train was late' run 19948918 hits 260: the hit on assume [[3, 25561, 20049756]]; kids [[19948919, 1, 19937672]]
+      kid [19948919, 1, 19937672] reply: ok
+typed 'we assume nothing' run 19948923 hits 257: the hit on assume [[3, 25561, 17]]; kids [[19948924, 1, 19937672]]
+      kid [19948924, 1, 19937672] reply: ok
+dna at the end: [[20049752, 326, 292, None, None], [20049753, 1671, 304, None, None], [20049754, 544, 304, None, None], [20049755, 328, 1390, None, None], [20049756, 362, 385, None, None], [20049757, 1833, 684, None, None]]

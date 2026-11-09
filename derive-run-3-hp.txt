@@ -1,0 +1,35 @@
+believed points (belief correct > 0 with a call): 71
+== attest gate 23589 dna before: []
+   EXPECTED (written first): gloss 'give testimony in a court of law' -> [] -> call None spawn None
+   derive run 19949216 hits 6122 say: 0 |  | unresolved |  | 2411374
+   derived rows: [[None, 0, 'unresolved', None, 2411374]]
+   dna after: []
+   typed 'attest : who' run 19949234 hits 257 receipts [[0, 1, 1], [1, 23589, 17], [3, 68, 17], [5, 120, 17]] kids [[19949235, 1, 19937672]] say: None
+      kid [19949235, 1, 19937672] reply: ok
+== backpedal gate 62693 dna before: []
+   EXPECTED (written first): gloss 'pedal backwards on a bicycle' -> [] -> call None spawn None
+   derive run 19949239 hits 6122 say: 0 |  | unresolved |  | 4094578
+   derived rows: [[None, 0, 'unresolved', None, 4094578]]
+   dna after: []
+   typed 'backpedal : who' run 19949257 hits 257 receipts [[0, 1, 1], [1, 62693, 17], [3, 68, 17], [5, 120, 17]] kids [[19949258, 1, 19937672]] say: None
+      kid [19949258, 1, 19937672] reply: ok
+== black gate 2813 dna before: []
+   EXPECTED (written first): gloss 'make or become black' -> ['make', 'become'] -> call 929 spawn 950
+   derive run 19949262 hits 6122 say: 1 |  | make | 929 | 373137
+2 |  | become | 950 | 373137
+   derived rows: [[None, 1, 'make', 929, 373137], [None, 2, 'become', 950, 373137]]
+   dna after: [[20049778, 1, 68, 929, 950]]
+   typed 'black : who' run 19949280 hits 2464 receipts [[0, 1, 1], [1, 2813, 20049778], [3, 68, 17], [5, 120, 17]] kids [[19949281, 1, 19937672], [19949285, 1, 929], [19949289, 2, 950]] say: 120 | 1
+      kid [19949281, 1, 19937672] reply: ok
+      kid [19949285, 1, 929] reply: ok
+      kid [19949289, 2, 950] reply: None
+== bribe gate 47187 dna before: []
+   EXPECTED (written first): gloss 'make illegal payments to in exchange for favors or influence' -> ['make', 'exchange'] -> call 929 spawn 950
+   derive run 19949317 hits 6122 say: 1 |  | make | 929 | 2904415
+2 |  | exchange | 950 | 2904415
+   derived rows: [[None, 1, 'make', 929, 2904415], [None, 2, 'exchange', 950, 2904415]]
+   dna after: [[20049779, 1, 68, 929, 950]]
+   typed 'bribe : who' run 19949335 hits 2464 receipts [[0, 1, 1], [1, 47187, 20049779], [3, 68, 17], [5, 120, 17]] kids [[19949336, 1, 19937672], [19949340, 1, 929], [19949344, 2, 950]] say: 120 | 1
+      kid [19949336, 1, 19937672] reply: ok
+      kid [19949340, 1, 929] reply: ok
+      kid [19949344, 2, 950] reply: None

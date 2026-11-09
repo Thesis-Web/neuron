@@ -1,0 +1,11 @@
+derive run 19949175 hits 6122 reply of the derive run: ['ok', 'ok']
+derived rows (shard, ord, word, run_used, sense_run): [[None, 0, 'unresolved', None, 1062730], [20049752, 1, 'form', 929, 1063019], [20049753, 1, 'true', 19937779, 1063018], [20049754, 1, 'true', 19937779, 1063018], [20049756, 1, 'true', 19937779, 1062724], [20049757, 1, 'form', 929, 1062723]]
+dna after derive: [[20049752, 326, 292, 929, None], [20049753, 1671, 304, 19937779, None], [20049754, 544, 304, 19937779, None], [20049755, 328, 1390, None, None], [20049756, 362, 385, 19937779, None], [20049757, 1833, 684, 929, None]]
+typed 'The gods assume human form' run 19949193 hits 475: the hit on assume [[5, 25561, 20049757]]; kids [[19949194, 1, 19937672], [19949198, 1, 929]]
+      kid [19949194, 1, 19937672] reply: ok
+      kid [19949198, 1, 929] reply: ok
+typed 'I assume his car was late' run 19949202 hits 863: the hit on assume [[3, 25561, 20049756]]; kids [[19949203, 1, 19937672], [19949207, 1, 19937779]]
+      kid [19949203, 1, 19937672] reply: ok
+      kid [19949207, 1, 19937779] reply: ok
+typed 'they assume nothing' run 19949211 hits 257: the hit on assume [[3, 25561, 17]]; kids [[19949212, 1, 19937672]]
+      kid [19949212, 1, 19937672] reply: ok

@@ -1,0 +1,792 @@
+
+=== 'print dna : glimmer'  run 19949429: 9 runs, 395 hits, 0 born, 0 refused, 0.019 s at the door
+    kernel counters: runs +9, hops +17, hops_run +29, pastes +6, returns +0, deduped_runs +2, refused +0, shard_rows +0
+  run 19949429  typed from heard | symbols 7, landings of its own 5
+     hit at pos 0 on heard (before -, after print) shard 1: call 19937672 spawn None
+     hit at pos 1 on print (before -, after  ) shard 1465: call 826 spawn None
+    run 19949430  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949431  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949432  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949433  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949434  call from said, replays run 826 | symbols 267, landings of its own 137 | REPEAT of run 19937889: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE…
+       run 19937889's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949435  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949436  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949437  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+
+=== 'print node : glimmer'  run 19949438: 33 runs, 2249 hits, 0 born, 1 refused, 0.029 s at the door
+    kernel counters: runs +33, hops +24, hops_run +65, pastes +8, returns +19, deduped_runs +4, refused +1, shard_rows +0
+  run 19949438  typed from heard | symbols 7, landings of its own 5
+     hit at pos 0 on heard (before -, after print) shard 1: call 19937672 spawn None
+     hit at pos 1 on print (before -, after  ) shard 1531: call 870 spawn None
+    run 19949439  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949440  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949441  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949442  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949443  call from said, replays run 870 | symbols 368, landings of its own 3
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE…
+       hit at pos 1 on born (before BUILD, after  ) shard 6: call 19937007 spawn None
+      run 19949444  call from said, replays run 19937007 | symbols 201, landings of its own 111 | REPEAT of run 19937024: no landings, the kernel fires that run's recorded firings
+         its line: BUILD INSERT INTO neuron ( gate ) VALUES ( newgate ) ; INSERT INTO dna ( gate , shard , before , trigger , call , spawn …
+         run 19937024's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+        run 19949445  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+        run 19949446  spawn from said, replays run 19936999 | symbols 2351, landings of its own 1417 | REPEAT of run 19937026: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO rep…
+           run 19937026's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+          run 19949447  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949469  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949470  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949448  call from said, replays run 19936943 | symbols 887, landings of its own 460 | REPEAT of run 19936603: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 24 , 0 , NULL ) ; INSERT OR REPLA…
+           run 19936603's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+          run 19949468  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949449  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like put
+        run 19949450  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like tuck
+        run 19949451  return from map, cell def | symbols 5, landings of its own 0
+           mother's answer: opposite of remove
+        run 19949452  return from sqldoc, cell def | symbols 26, landings of its own 0
+           mother's answer: The insert statement comes in three basic forms. (sqlite.org/lang_insert.html)
+        run 19949453  return from sqldoc, cell def | symbols 42, landings of its own 0
+           mother's answer: The second form of the insert statement contains a select statement instead of a values clause. (sqlite.org/lang_insert.html)
+        run 19949454  return from measured, cell def | symbols 36, landings of its own 0
+           mother's answer: +1 · insert: run "insert into t values (4, 'w')": t +1 rows
+        run 19949455  return from measured, cell def | symbols 33, landings of its own 0
+           mother's answer: 0 · insert: run "insert into t values (4, 'w')": +0 tables
+        run 19949456  return from measured, cell def | symbols 16, landings of its own 0
+           mother's answer: 0 · insert: its output is not text
+        run 19949457  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of read its line adds: 
+        run 19949458  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of test its line adds: 
+        run 19949459  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of number its line adds: 
+        run 19949460  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of gather its line adds: 
+        run 19949461  return from measured, cell def | symbols 31, landings of its own 0
+           mother's answer: +4 · insert: steps of write its line adds: OpenWrite, NewRowid, MakeRecord, Insert
+        run 19949462  return from measured, cell def | symbols 50, landings of its own 0
+           mother's answer: delete · insert and delete: insert into t values (4, 'w'); then delete from t where a = 4;: back exactly
+        run 19949463  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: into · insert and into: in "insert into t ( a , b ) values ( 4 , 'w' )": without "into": refused (near "t": syntax error); without "into t": refused (near "(": …
+        run 19949464  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: values · insert and values: in "insert into t ( a , b ) values ( 4 , 'w' )": without "values": refused (near "(": syntax error); without "values ( 4 , 'w' )": r…
+        run 19949465  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: ( · insert and (: in "insert into t ( a , b ) values ( 4 , 'w' )": without "(": refused (near "4": syntax error); without "( )": refused (near "4": syntax error…
+        run 19949466  return from measured, cell def | symbols 85, landings of its own 0
+           mother's answer: ) · insert and ): in "insert into t ( a , b ) values ( 4 , 'w' )": without ")": refused (incomplete input); without "( )": refused (near "4": syntax error)
+        run 19949467  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: , · insert and ,: in "insert into t ( a , b ) values ( 4 , 'w' )": without ",": refused (near "'w'": syntax error); without ", 'w'": refused (1 values for 2 col…
+
+=== 'print table : pull'  run 19949471: 33 runs, 2249 hits, 0 born, 1 refused, 0.066 s at the door
+    kernel counters: runs +33, hops +24, hops_run +65, pastes +8, returns +19, deduped_runs +4, refused +1, shard_rows +0
+  run 19949471  typed from heard | symbols 7, landings of its own 5
+     hit at pos 0 on heard (before -, after print) shard 1: call 19937672 spawn None
+     hit at pos 1 on print (before -, after  ) shard 1592: call 910 spawn None
+    run 19949472  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949473  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949474  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949475  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949476  call from said, replays run 910 | symbols 273, landings of its own 3
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE…
+       hit at pos 1 on born (before BUILD, after  ) shard 6: call 19937007 spawn None
+      run 19949477  call from said, replays run 19937007 | symbols 201, landings of its own 111 | REPEAT of run 19937024: no landings, the kernel fires that run's recorded firings
+         its line: BUILD INSERT INTO neuron ( gate ) VALUES ( newgate ) ; INSERT INTO dna ( gate , shard , before , trigger , call , spawn …
+         run 19937024's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+        run 19949478  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+        run 19949479  spawn from said, replays run 19936999 | symbols 2351, landings of its own 1417 | REPEAT of run 19937026: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO rep…
+           run 19937026's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+          run 19949480  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949502  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949503  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949481  call from said, replays run 19936943 | symbols 887, landings of its own 460 | REPEAT of run 19936603: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 24 , 0 , NULL ) ; INSERT OR REPLA…
+           run 19936603's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+          run 19949501  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949482  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like put
+        run 19949483  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like tuck
+        run 19949484  return from map, cell def | symbols 5, landings of its own 0
+           mother's answer: opposite of remove
+        run 19949485  return from sqldoc, cell def | symbols 26, landings of its own 0
+           mother's answer: The insert statement comes in three basic forms. (sqlite.org/lang_insert.html)
+        run 19949486  return from sqldoc, cell def | symbols 42, landings of its own 0
+           mother's answer: The second form of the insert statement contains a select statement instead of a values clause. (sqlite.org/lang_insert.html)
+        run 19949487  return from measured, cell def | symbols 36, landings of its own 0
+           mother's answer: +1 · insert: run "insert into t values (4, 'w')": t +1 rows
+        run 19949488  return from measured, cell def | symbols 33, landings of its own 0
+           mother's answer: 0 · insert: run "insert into t values (4, 'w')": +0 tables
+        run 19949489  return from measured, cell def | symbols 16, landings of its own 0
+           mother's answer: 0 · insert: its output is not text
+        run 19949490  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of read its line adds: 
+        run 19949491  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of test its line adds: 
+        run 19949492  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of number its line adds: 
+        run 19949493  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of gather its line adds: 
+        run 19949494  return from measured, cell def | symbols 31, landings of its own 0
+           mother's answer: +4 · insert: steps of write its line adds: OpenWrite, NewRowid, MakeRecord, Insert
+        run 19949495  return from measured, cell def | symbols 50, landings of its own 0
+           mother's answer: delete · insert and delete: insert into t values (4, 'w'); then delete from t where a = 4;: back exactly
+        run 19949496  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: into · insert and into: in "insert into t ( a , b ) values ( 4 , 'w' )": without "into": refused (near "t": syntax error); without "into t": refused (near "(": …
+        run 19949497  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: values · insert and values: in "insert into t ( a , b ) values ( 4 , 'w' )": without "values": refused (near "(": syntax error); without "values ( 4 , 'w' )": r…
+        run 19949498  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: ( · insert and (: in "insert into t ( a , b ) values ( 4 , 'w' )": without "(": refused (near "4": syntax error); without "( )": refused (near "4": syntax error…
+        run 19949499  return from measured, cell def | symbols 85, landings of its own 0
+           mother's answer: ) · insert and ): in "insert into t ( a , b ) values ( 4 , 'w' )": without ")": refused (incomplete input); without "( )": refused (near "4": syntax error)
+        run 19949500  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: , · insert and ,: in "insert into t ( a , b ) values ( 4 , 'w' )": without ",": refused (near "'w'": syntax error); without ", 'w'": refused (1 values for 2 col…
+
+=== 'print memory : glimmer'  run 19949504: 33 runs, 2249 hits, 0 born, 1 refused, 0.042 s at the door
+    kernel counters: runs +33, hops +24, hops_run +65, pastes +8, returns +19, deduped_runs +4, refused +1, shard_rows +0
+  run 19949504  typed from heard | symbols 7, landings of its own 5
+     hit at pos 0 on heard (before -, after print) shard 1: call 19937672 spawn None
+     hit at pos 1 on print (before -, after  ) shard 1497: call 847 spawn None
+    run 19949505  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949506  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949507  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949508  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949509  call from said, replays run 847 | symbols 267, landings of its own 3
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE…
+       hit at pos 1 on born (before BUILD, after  ) shard 6: call 19937007 spawn None
+      run 19949510  call from said, replays run 19937007 | symbols 201, landings of its own 111 | REPEAT of run 19937024: no landings, the kernel fires that run's recorded firings
+         its line: BUILD INSERT INTO neuron ( gate ) VALUES ( newgate ) ; INSERT INTO dna ( gate , shard , before , trigger , call , spawn …
+         run 19937024's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+        run 19949511  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+        run 19949512  spawn from said, replays run 19936999 | symbols 2351, landings of its own 1417 | REPEAT of run 19937026: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO rep…
+           run 19937026's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+          run 19949513  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949535  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949536  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949514  call from said, replays run 19936943 | symbols 887, landings of its own 460 | REPEAT of run 19936603: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 24 , 0 , NULL ) ; INSERT OR REPLA…
+           run 19936603's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+          run 19949534  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949515  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like put
+        run 19949516  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like tuck
+        run 19949517  return from map, cell def | symbols 5, landings of its own 0
+           mother's answer: opposite of remove
+        run 19949518  return from sqldoc, cell def | symbols 26, landings of its own 0
+           mother's answer: The insert statement comes in three basic forms. (sqlite.org/lang_insert.html)
+        run 19949519  return from sqldoc, cell def | symbols 42, landings of its own 0
+           mother's answer: The second form of the insert statement contains a select statement instead of a values clause. (sqlite.org/lang_insert.html)
+        run 19949520  return from measured, cell def | symbols 36, landings of its own 0
+           mother's answer: +1 · insert: run "insert into t values (4, 'w')": t +1 rows
+        run 19949521  return from measured, cell def | symbols 33, landings of its own 0
+           mother's answer: 0 · insert: run "insert into t values (4, 'w')": +0 tables
+        run 19949522  return from measured, cell def | symbols 16, landings of its own 0
+           mother's answer: 0 · insert: its output is not text
+        run 19949523  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of read its line adds: 
+        run 19949524  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of test its line adds: 
+        run 19949525  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of number its line adds: 
+        run 19949526  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of gather its line adds: 
+        run 19949527  return from measured, cell def | symbols 31, landings of its own 0
+           mother's answer: +4 · insert: steps of write its line adds: OpenWrite, NewRowid, MakeRecord, Insert
+        run 19949528  return from measured, cell def | symbols 50, landings of its own 0
+           mother's answer: delete · insert and delete: insert into t values (4, 'w'); then delete from t where a = 4;: back exactly
+        run 19949529  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: into · insert and into: in "insert into t ( a , b ) values ( 4 , 'w' )": without "into": refused (near "t": syntax error); without "into t": refused (near "(": …
+        run 19949530  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: values · insert and values: in "insert into t ( a , b ) values ( 4 , 'w' )": without "values": refused (near "(": syntax error); without "values ( 4 , 'w' )": r…
+        run 19949531  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: ( · insert and (: in "insert into t ( a , b ) values ( 4 , 'w' )": without "(": refused (near "4": syntax error); without "( )": refused (near "4": syntax error…
+        run 19949532  return from measured, cell def | symbols 85, landings of its own 0
+           mother's answer: ) · insert and ): in "insert into t ( a , b ) values ( 4 , 'w' )": without ")": refused (incomplete input); without "( )": refused (near "4": syntax error)
+        run 19949533  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: , · insert and ,: in "insert into t ( a , b ) values ( 4 , 'w' )": without ",": refused (near "'w'": syntax error); without ", 'w'": refused (1 values for 2 col…
+
+=== 'print sheet : 19949429'  run 19949537: 33 runs, 2256 hits, 0 born, 1 refused, 0.040 s at the door
+    kernel counters: runs +33, hops +31, hops_run +72, pastes +8, returns +19, deduped_runs +4, refused +1, shard_rows +0
+  run 19949537  typed from heard | symbols 14, landings of its own 12
+     hit at pos 0 on heard (before -, after print) shard 1: call 19937672 spawn None
+     hit at pos 1 on print (before -, after  ) shard 1568: call 889 spawn None
+    run 19949538  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949539  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949540  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949541  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949542  call from said, replays run 889 | symbols 371, landings of its own 3
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , CAST ( ( SELECT group_conc…
+       hit at pos 1 on born (before BUILD, after  ) shard 6: call 19937007 spawn None
+      run 19949543  call from said, replays run 19937007 | symbols 201, landings of its own 111 | REPEAT of run 19937024: no landings, the kernel fires that run's recorded firings
+         its line: BUILD INSERT INTO neuron ( gate ) VALUES ( newgate ) ; INSERT INTO dna ( gate , shard , before , trigger , call , spawn …
+         run 19937024's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+        run 19949544  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+        run 19949545  spawn from said, replays run 19936999 | symbols 2351, landings of its own 1417 | REPEAT of run 19937026: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO rep…
+           run 19937026's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+          run 19949546  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949568  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949569  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949547  call from said, replays run 19936943 | symbols 887, landings of its own 460 | REPEAT of run 19936603: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 24 , 0 , NULL ) ; INSERT OR REPLA…
+           run 19936603's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+          run 19949567  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949548  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like put
+        run 19949549  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like tuck
+        run 19949550  return from map, cell def | symbols 5, landings of its own 0
+           mother's answer: opposite of remove
+        run 19949551  return from sqldoc, cell def | symbols 26, landings of its own 0
+           mother's answer: The insert statement comes in three basic forms. (sqlite.org/lang_insert.html)
+        run 19949552  return from sqldoc, cell def | symbols 42, landings of its own 0
+           mother's answer: The second form of the insert statement contains a select statement instead of a values clause. (sqlite.org/lang_insert.html)
+        run 19949553  return from measured, cell def | symbols 36, landings of its own 0
+           mother's answer: +1 · insert: run "insert into t values (4, 'w')": t +1 rows
+        run 19949554  return from measured, cell def | symbols 33, landings of its own 0
+           mother's answer: 0 · insert: run "insert into t values (4, 'w')": +0 tables
+        run 19949555  return from measured, cell def | symbols 16, landings of its own 0
+           mother's answer: 0 · insert: its output is not text
+        run 19949556  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of read its line adds: 
+        run 19949557  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of test its line adds: 
+        run 19949558  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of number its line adds: 
+        run 19949559  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of gather its line adds: 
+        run 19949560  return from measured, cell def | symbols 31, landings of its own 0
+           mother's answer: +4 · insert: steps of write its line adds: OpenWrite, NewRowid, MakeRecord, Insert
+        run 19949561  return from measured, cell def | symbols 50, landings of its own 0
+           mother's answer: delete · insert and delete: insert into t values (4, 'w'); then delete from t where a = 4;: back exactly
+        run 19949562  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: into · insert and into: in "insert into t ( a , b ) values ( 4 , 'w' )": without "into": refused (near "t": syntax error); without "into t": refused (near "(": …
+        run 19949563  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: values · insert and values: in "insert into t ( a , b ) values ( 4 , 'w' )": without "values": refused (near "(": syntax error); without "values ( 4 , 'w' )": r…
+        run 19949564  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: ( · insert and (: in "insert into t ( a , b ) values ( 4 , 'w' )": without "(": refused (near "4": syntax error); without "( )": refused (near "4": syntax error…
+        run 19949565  return from measured, cell def | symbols 85, landings of its own 0
+           mother's answer: ) · insert and ): in "insert into t ( a , b ) values ( 4 , 'w' )": without ")": refused (incomplete input); without "( )": refused (near "4": syntax error)
+        run 19949566  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: , · insert and ,: in "insert into t ( a , b ) values ( 4 , 'w' )": without ",": refused (near "'w'": syntax error); without ", 'w'": refused (1 values for 2 col…
+
+=== 'step back : 19949434'  run 19949570: 33 runs, 2256 hits, 0 born, 1 refused, 0.070 s at the door
+    kernel counters: runs +33, hops +31, hops_run +72, pastes +8, returns +19, deduped_runs +4, refused +1, shard_rows +0
+  run 19949570  typed from heard | symbols 14, landings of its own 12
+     hit at pos 0 on heard (before -, after step) shard 1: call 19937672 spawn None
+     hit at pos 1 on step (before -, after  ) shard 2031: call 1302 spawn None
+    run 19949571  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949572  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949573  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949574  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949575  call from said, replays run 1302 | symbols 604, landings of its own 3
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , CAST ( ( SELECT group_conc…
+       hit at pos 1 on born (before BUILD, after  ) shard 6: call 19937007 spawn None
+      run 19949576  call from said, replays run 19937007 | symbols 201, landings of its own 111 | REPEAT of run 19937024: no landings, the kernel fires that run's recorded firings
+         its line: BUILD INSERT INTO neuron ( gate ) VALUES ( newgate ) ; INSERT INTO dna ( gate , shard , before , trigger , call , spawn …
+         run 19937024's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+        run 19949577  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+        run 19949578  spawn from said, replays run 19936999 | symbols 2351, landings of its own 1417 | REPEAT of run 19937026: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO rep…
+           run 19937026's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+          run 19949579  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949601  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949602  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949580  call from said, replays run 19936943 | symbols 887, landings of its own 460 | REPEAT of run 19936603: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 24 , 0 , NULL ) ; INSERT OR REPLA…
+           run 19936603's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+          run 19949600  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949581  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like put
+        run 19949582  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like tuck
+        run 19949583  return from map, cell def | symbols 5, landings of its own 0
+           mother's answer: opposite of remove
+        run 19949584  return from sqldoc, cell def | symbols 26, landings of its own 0
+           mother's answer: The insert statement comes in three basic forms. (sqlite.org/lang_insert.html)
+        run 19949585  return from sqldoc, cell def | symbols 42, landings of its own 0
+           mother's answer: The second form of the insert statement contains a select statement instead of a values clause. (sqlite.org/lang_insert.html)
+        run 19949586  return from measured, cell def | symbols 36, landings of its own 0
+           mother's answer: +1 · insert: run "insert into t values (4, 'w')": t +1 rows
+        run 19949587  return from measured, cell def | symbols 33, landings of its own 0
+           mother's answer: 0 · insert: run "insert into t values (4, 'w')": +0 tables
+        run 19949588  return from measured, cell def | symbols 16, landings of its own 0
+           mother's answer: 0 · insert: its output is not text
+        run 19949589  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of read its line adds: 
+        run 19949590  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of test its line adds: 
+        run 19949591  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of number its line adds: 
+        run 19949592  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of gather its line adds: 
+        run 19949593  return from measured, cell def | symbols 31, landings of its own 0
+           mother's answer: +4 · insert: steps of write its line adds: OpenWrite, NewRowid, MakeRecord, Insert
+        run 19949594  return from measured, cell def | symbols 50, landings of its own 0
+           mother's answer: delete · insert and delete: insert into t values (4, 'w'); then delete from t where a = 4;: back exactly
+        run 19949595  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: into · insert and into: in "insert into t ( a , b ) values ( 4 , 'w' )": without "into": refused (near "t": syntax error); without "into t": refused (near "(": …
+        run 19949596  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: values · insert and values: in "insert into t ( a , b ) values ( 4 , 'w' )": without "values": refused (near "(": syntax error); without "values ( 4 , 'w' )": r…
+        run 19949597  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: ( · insert and (: in "insert into t ( a , b ) values ( 4 , 'w' )": without "(": refused (near "4": syntax error); without "( )": refused (near "4": syntax error…
+        run 19949598  return from measured, cell def | symbols 85, landings of its own 0
+           mother's answer: ) · insert and ): in "insert into t ( a , b ) values ( 4 , 'w' )": without ")": refused (incomplete input); without "( )": refused (near "4": syntax error)
+        run 19949599  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: , · insert and ,: in "insert into t ( a , b ) values ( 4 , 'w' )": without ",": refused (near "'w'": syntax error); without ", 'w'": refused (1 values for 2 col…
+
+=== 'create neuron : hlēapan'  run 19949603: 17 runs, 2463 hits, 0 born, 0 refused, 0.039 s at the door
+    kernel counters: runs +17, hops +28, hops_run +54, pastes +11, returns +0, deduped_runs +5, refused +0, shard_rows +1
+  run 19949603  typed from heard | symbols 7, landings of its own 6
+     hit at pos 0 on heard (before -, after create) shard 1: call 19937672 spawn None
+     hit at pos 1 on create (before -, after  ) shard 1622: call 929 spawn None
+     hit at pos 5 on born (before :, after  ) shard 6: call 19937007 spawn None
+    run 19949604  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949605  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949606  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949607  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949608  call from said, replays run 929 | symbols 423, landings of its own 216 | REPEAT of run 19942361: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE…
+       run 19942361's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949609  return from mother, cell reply | symbols 11, landings of its own 0
+         mother's answer: error: no such column: what
+      run 19949610  return from mother, cell reply | symbols 11, landings of its own 0
+         mother's answer: 1332003 | 0
+      run 19949611  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949612  call from said, replays run 19937007 | symbols 201, landings of its own 111 | REPEAT of run 19937024: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT INTO neuron ( gate ) VALUES ( newgate ) ; INSERT INTO dna ( gate , shard , before , trigger , call , spawn …
+       run 19937024's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+      run 19949613  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949614  spawn from said, replays run 19936999 | symbols 2351, landings of its own 1417 | REPEAT of run 19937026: no landings, the kernel fires that run's recorded firings
+         its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO rep…
+         run 19937026's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+        run 19949615  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+        run 19949618  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+        run 19949619  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+      run 19949616  call from said, replays run 19936943 | symbols 887, landings of its own 460 | REPEAT of run 19936603: no landings, the kernel fires that run's recorded firings
+         its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 24 , 0 , NULL ) ; INSERT OR REPLA…
+         run 19936603's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+        run 19949617  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+
+=== 'change trigger : leap from back to back'  run 19949620: 33 runs, 2253 hits, 0 born, 1 refused, 0.147 s at the door
+    kernel counters: runs +33, hops +28, hops_run +69, pastes +8, returns +19, deduped_runs +4, refused +1, shard_rows +0
+  run 19949620  typed from heard | symbols 15, landings of its own 9
+     hit at pos 0 on heard (before -, after change) shard 1: call 19937672 spawn None
+     hit at pos 1 on change (before -, after  ) shard 1698: call 950 spawn None
+    run 19949621  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949622  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949623  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949624  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949625  call from said, replays run 950 | symbols 1016, landings of its own 3
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE…
+       hit at pos 1 on born (before BUILD, after  ) shard 6: call 19937007 spawn None
+      run 19949626  call from said, replays run 19937007 | symbols 201, landings of its own 111 | REPEAT of run 19937024: no landings, the kernel fires that run's recorded firings
+         its line: BUILD INSERT INTO neuron ( gate ) VALUES ( newgate ) ; INSERT INTO dna ( gate , shard , before , trigger , call , spawn …
+         run 19937024's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+        run 19949627  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+        run 19949628  spawn from said, replays run 19936999 | symbols 2351, landings of its own 1417 | REPEAT of run 19937026: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO rep…
+           run 19937026's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+          run 19949629  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949651  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949652  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949630  call from said, replays run 19936943 | symbols 887, landings of its own 460 | REPEAT of run 19936603: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 24 , 0 , NULL ) ; INSERT OR REPLA…
+           run 19936603's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+          run 19949650  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949631  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like put
+        run 19949632  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like tuck
+        run 19949633  return from map, cell def | symbols 5, landings of its own 0
+           mother's answer: opposite of remove
+        run 19949634  return from sqldoc, cell def | symbols 26, landings of its own 0
+           mother's answer: The insert statement comes in three basic forms. (sqlite.org/lang_insert.html)
+        run 19949635  return from sqldoc, cell def | symbols 42, landings of its own 0
+           mother's answer: The second form of the insert statement contains a select statement instead of a values clause. (sqlite.org/lang_insert.html)
+        run 19949636  return from measured, cell def | symbols 36, landings of its own 0
+           mother's answer: +1 · insert: run "insert into t values (4, 'w')": t +1 rows
+        run 19949637  return from measured, cell def | symbols 33, landings of its own 0
+           mother's answer: 0 · insert: run "insert into t values (4, 'w')": +0 tables
+        run 19949638  return from measured, cell def | symbols 16, landings of its own 0
+           mother's answer: 0 · insert: its output is not text
+        run 19949639  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of read its line adds: 
+        run 19949640  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of test its line adds: 
+        run 19949641  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of number its line adds: 
+        run 19949642  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of gather its line adds: 
+        run 19949643  return from measured, cell def | symbols 31, landings of its own 0
+           mother's answer: +4 · insert: steps of write its line adds: OpenWrite, NewRowid, MakeRecord, Insert
+        run 19949644  return from measured, cell def | symbols 50, landings of its own 0
+           mother's answer: delete · insert and delete: insert into t values (4, 'w'); then delete from t where a = 4;: back exactly
+        run 19949645  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: into · insert and into: in "insert into t ( a , b ) values ( 4 , 'w' )": without "into": refused (near "t": syntax error); without "into t": refused (near "(": …
+        run 19949646  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: values · insert and values: in "insert into t ( a , b ) values ( 4 , 'w' )": without "values": refused (near "(": syntax error); without "values ( 4 , 'w' )": r…
+        run 19949647  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: ( · insert and (: in "insert into t ( a , b ) values ( 4 , 'w' )": without "(": refused (near "4": syntax error); without "( )": refused (near "4": syntax error…
+        run 19949648  return from measured, cell def | symbols 85, landings of its own 0
+           mother's answer: ) · insert and ): in "insert into t ( a , b ) values ( 4 , 'w' )": without ")": refused (incomplete input); without "( )": refused (near "4": syntax error)
+        run 19949649  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: , · insert and ,: in "insert into t ( a , b ) values ( 4 , 'w' )": without ",": refused (near "'w'": syntax error); without ", 'w'": refused (1 values for 2 col…
+
+=== 'change call : leap from 1302 to 1302'  run 19949653: 9 runs, 811 hits, 0 born, 0 refused, 0.042 s at the door
+    kernel counters: runs +9, hops +27, hops_run +39, pastes +6, returns +0, deduped_runs +2, refused +0, shard_rows +0
+  run 19949653  typed from heard | symbols 21, landings of its own 15
+     hit at pos 0 on heard (before -, after change) shard 1: call 19937672 spawn None
+     hit at pos 1 on change (before -, after  ) shard 1718: call 989 spawn None
+    run 19949654  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949655  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949656  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949657  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949658  call from said, replays run 989 | symbols 1016, landings of its own 543 | REPEAT of run 19942290: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE…
+       run 19942290's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949659  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949660  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: 1
+      run 19949661  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+
+=== 'change spawn : leap from 0 to 0'  run 19949662: 33 runs, 2253 hits, 0 born, 1 refused, 0.048 s at the door
+    kernel counters: runs +33, hops +28, hops_run +69, pastes +8, returns +19, deduped_runs +4, refused +1, shard_rows +0
+  run 19949662  typed from heard | symbols 15, landings of its own 9
+     hit at pos 0 on heard (before -, after change) shard 1: call 19937672 spawn None
+     hit at pos 1 on change (before -, after  ) shard 1731: call 1008 spawn None
+    run 19949663  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949664  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949665  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949666  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949667  call from said, replays run 1008 | symbols 1016, landings of its own 3
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE…
+       hit at pos 1 on born (before BUILD, after  ) shard 6: call 19937007 spawn None
+      run 19949668  call from said, replays run 19937007 | symbols 201, landings of its own 111 | REPEAT of run 19937024: no landings, the kernel fires that run's recorded firings
+         its line: BUILD INSERT INTO neuron ( gate ) VALUES ( newgate ) ; INSERT INTO dna ( gate , shard , before , trigger , call , spawn …
+         run 19937024's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+        run 19949669  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+        run 19949670  spawn from said, replays run 19936999 | symbols 2351, landings of its own 1417 | REPEAT of run 19937026: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO rep…
+           run 19937026's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+          run 19949671  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949693  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949694  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949672  call from said, replays run 19936943 | symbols 887, landings of its own 460 | REPEAT of run 19936603: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 24 , 0 , NULL ) ; INSERT OR REPLA…
+           run 19936603's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+          run 19949692  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949673  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like put
+        run 19949674  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like tuck
+        run 19949675  return from map, cell def | symbols 5, landings of its own 0
+           mother's answer: opposite of remove
+        run 19949676  return from sqldoc, cell def | symbols 26, landings of its own 0
+           mother's answer: The insert statement comes in three basic forms. (sqlite.org/lang_insert.html)
+        run 19949677  return from sqldoc, cell def | symbols 42, landings of its own 0
+           mother's answer: The second form of the insert statement contains a select statement instead of a values clause. (sqlite.org/lang_insert.html)
+        run 19949678  return from measured, cell def | symbols 36, landings of its own 0
+           mother's answer: +1 · insert: run "insert into t values (4, 'w')": t +1 rows
+        run 19949679  return from measured, cell def | symbols 33, landings of its own 0
+           mother's answer: 0 · insert: run "insert into t values (4, 'w')": +0 tables
+        run 19949680  return from measured, cell def | symbols 16, landings of its own 0
+           mother's answer: 0 · insert: its output is not text
+        run 19949681  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of read its line adds: 
+        run 19949682  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of test its line adds: 
+        run 19949683  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of number its line adds: 
+        run 19949684  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of gather its line adds: 
+        run 19949685  return from measured, cell def | symbols 31, landings of its own 0
+           mother's answer: +4 · insert: steps of write its line adds: OpenWrite, NewRowid, MakeRecord, Insert
+        run 19949686  return from measured, cell def | symbols 50, landings of its own 0
+           mother's answer: delete · insert and delete: insert into t values (4, 'w'); then delete from t where a = 4;: back exactly
+        run 19949687  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: into · insert and into: in "insert into t ( a , b ) values ( 4 , 'w' )": without "into": refused (near "t": syntax error); without "into t": refused (near "(": …
+        run 19949688  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: values · insert and values: in "insert into t ( a , b ) values ( 4 , 'w' )": without "values": refused (near "(": syntax error); without "values ( 4 , 'w' )": r…
+        run 19949689  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: ( · insert and (: in "insert into t ( a , b ) values ( 4 , 'w' )": without "(": refused (near "4": syntax error); without "( )": refused (near "4": syntax error…
+        run 19949690  return from measured, cell def | symbols 85, landings of its own 0
+           mother's answer: ) · insert and ): in "insert into t ( a , b ) values ( 4 , 'w' )": without ")": refused (incomplete input); without "( )": refused (near "4": syntax error)
+        run 19949691  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: , · insert and ,: in "insert into t ( a , b ) values ( 4 , 'w' )": without ",": refused (near "'w'": syntax error); without ", 'w'": refused (1 values for 2 col…
+
+=== 'change define : leap like jump'  run 19949695: 33 runs, 2251 hits, 0 born, 1 refused, 0.062 s at the door
+    kernel counters: runs +33, hops +26, hops_run +67, pastes +8, returns +19, deduped_runs +4, refused +1, shard_rows +0
+  run 19949695  typed from heard | symbols 11, landings of its own 7
+     hit at pos 0 on heard (before -, after change) shard 1: call 19937672 spawn None
+     hit at pos 1 on change (before -, after  ) shard 1784: call 1027 spawn None
+    run 19949696  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949697  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949698  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949699  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949700  call from said, replays run 1027 | symbols 528, landings of its own 3
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE…
+       hit at pos 1 on born (before BUILD, after  ) shard 6: call 19937007 spawn None
+      run 19949701  call from said, replays run 19937007 | symbols 201, landings of its own 111 | REPEAT of run 19937024: no landings, the kernel fires that run's recorded firings
+         its line: BUILD INSERT INTO neuron ( gate ) VALUES ( newgate ) ; INSERT INTO dna ( gate , shard , before , trigger , call , spawn …
+         run 19937024's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+        run 19949702  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+        run 19949703  spawn from said, replays run 19936999 | symbols 2351, landings of its own 1417 | REPEAT of run 19937026: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO rep…
+           run 19937026's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+          run 19949704  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949726  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949727  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949705  call from said, replays run 19936943 | symbols 887, landings of its own 460 | REPEAT of run 19936603: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 24 , 0 , NULL ) ; INSERT OR REPLA…
+           run 19936603's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+          run 19949725  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949706  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like put
+        run 19949707  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like tuck
+        run 19949708  return from map, cell def | symbols 5, landings of its own 0
+           mother's answer: opposite of remove
+        run 19949709  return from sqldoc, cell def | symbols 26, landings of its own 0
+           mother's answer: The insert statement comes in three basic forms. (sqlite.org/lang_insert.html)
+        run 19949710  return from sqldoc, cell def | symbols 42, landings of its own 0
+           mother's answer: The second form of the insert statement contains a select statement instead of a values clause. (sqlite.org/lang_insert.html)
+        run 19949711  return from measured, cell def | symbols 36, landings of its own 0
+           mother's answer: +1 · insert: run "insert into t values (4, 'w')": t +1 rows
+        run 19949712  return from measured, cell def | symbols 33, landings of its own 0
+           mother's answer: 0 · insert: run "insert into t values (4, 'w')": +0 tables
+        run 19949713  return from measured, cell def | symbols 16, landings of its own 0
+           mother's answer: 0 · insert: its output is not text
+        run 19949714  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of read its line adds: 
+        run 19949715  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of test its line adds: 
+        run 19949716  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of number its line adds: 
+        run 19949717  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of gather its line adds: 
+        run 19949718  return from measured, cell def | symbols 31, landings of its own 0
+           mother's answer: +4 · insert: steps of write its line adds: OpenWrite, NewRowid, MakeRecord, Insert
+        run 19949719  return from measured, cell def | symbols 50, landings of its own 0
+           mother's answer: delete · insert and delete: insert into t values (4, 'w'); then delete from t where a = 4;: back exactly
+        run 19949720  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: into · insert and into: in "insert into t ( a , b ) values ( 4 , 'w' )": without "into": refused (near "t": syntax error); without "into t": refused (near "(": …
+        run 19949721  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: values · insert and values: in "insert into t ( a , b ) values ( 4 , 'w' )": without "values": refused (near "(": syntax error); without "values ( 4 , 'w' )": r…
+        run 19949722  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: ( · insert and (: in "insert into t ( a , b ) values ( 4 , 'w' )": without "(": refused (near "4": syntax error); without "( )": refused (near "4": syntax error…
+        run 19949723  return from measured, cell def | symbols 85, landings of its own 0
+           mother's answer: ) · insert and ): in "insert into t ( a , b ) values ( 4 , 'w' )": without ")": refused (incomplete input); without "( )": refused (near "4": syntax error)
+        run 19949724  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: , · insert and ,: in "insert into t ( a , b ) values ( 4 , 'w' )": without ",": refused (near "'w'": syntax error); without ", 'w'": refused (1 values for 2 col…
+
+=== 'change meaning : leap from 0 to 0'  run 19949728: 33 runs, 2253 hits, 0 born, 1 refused, 0.053 s at the door
+    kernel counters: runs +33, hops +28, hops_run +69, pastes +8, returns +19, deduped_runs +4, refused +1, shard_rows +0
+  run 19949728  typed from heard | symbols 15, landings of its own 9
+     hit at pos 0 on heard (before -, after change) shard 1: call 19937672 spawn None
+     hit at pos 1 on change (before -, after  ) shard 1809: call 1052 spawn None
+    run 19949729  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949730  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949731  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949732  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949733  call from said, replays run 1052 | symbols 1143, landings of its own 3
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , ( SELECT gate FROM seq WHE…
+       hit at pos 1 on born (before BUILD, after  ) shard 6: call 19937007 spawn None
+      run 19949734  call from said, replays run 19937007 | symbols 201, landings of its own 111 | REPEAT of run 19937024: no landings, the kernel fires that run's recorded firings
+         its line: BUILD INSERT INTO neuron ( gate ) VALUES ( newgate ) ; INSERT INTO dna ( gate , shard , before , trigger , call , spawn …
+         run 19937024's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+        run 19949735  return from mother, cell reply | symbols 1, landings of its own 0
+           mother's answer: ok
+        run 19949736  spawn from said, replays run 19936999 | symbols 2351, landings of its own 1417 | REPEAT of run 19937026: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 23 , 1 , what ) ; INSERT INTO rep…
+           run 19937026's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+          run 19949737  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949759  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+          run 19949760  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949738  call from said, replays run 19936943 | symbols 887, landings of its own 460 | REPEAT of run 19936603: no landings, the kernel fires that run's recorded firings
+           its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) VALUES ( above , 24 , 0 , NULL ) ; INSERT OR REPLA…
+           run 19936603's recorded firings: 0 calls or spawns, 2 BUILD marks (every second one closes a span that mother runs)
+          run 19949758  return from mother, cell reply | symbols 1, landings of its own 0
+             mother's answer: ok
+        run 19949739  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like put
+        run 19949740  return from map, cell def | symbols 3, landings of its own 0
+           mother's answer: like tuck
+        run 19949741  return from map, cell def | symbols 5, landings of its own 0
+           mother's answer: opposite of remove
+        run 19949742  return from sqldoc, cell def | symbols 26, landings of its own 0
+           mother's answer: The insert statement comes in three basic forms. (sqlite.org/lang_insert.html)
+        run 19949743  return from sqldoc, cell def | symbols 42, landings of its own 0
+           mother's answer: The second form of the insert statement contains a select statement instead of a values clause. (sqlite.org/lang_insert.html)
+        run 19949744  return from measured, cell def | symbols 36, landings of its own 0
+           mother's answer: +1 · insert: run "insert into t values (4, 'w')": t +1 rows
+        run 19949745  return from measured, cell def | symbols 33, landings of its own 0
+           mother's answer: 0 · insert: run "insert into t values (4, 'w')": +0 tables
+        run 19949746  return from measured, cell def | symbols 16, landings of its own 0
+           mother's answer: 0 · insert: its output is not text
+        run 19949747  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of read its line adds: 
+        run 19949748  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of test its line adds: 
+        run 19949749  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of number its line adds: 
+        run 19949750  return from measured, cell def | symbols 20, landings of its own 0
+           mother's answer: 0 · insert: steps of gather its line adds: 
+        run 19949751  return from measured, cell def | symbols 31, landings of its own 0
+           mother's answer: +4 · insert: steps of write its line adds: OpenWrite, NewRowid, MakeRecord, Insert
+        run 19949752  return from measured, cell def | symbols 50, landings of its own 0
+           mother's answer: delete · insert and delete: insert into t values (4, 'w'); then delete from t where a = 4;: back exactly
+        run 19949753  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: into · insert and into: in "insert into t ( a , b ) values ( 4 , 'w' )": without "into": refused (near "t": syntax error); without "into t": refused (near "(": …
+        run 19949754  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: values · insert and values: in "insert into t ( a , b ) values ( 4 , 'w' )": without "values": refused (near "(": syntax error); without "values ( 4 , 'w' )": r…
+        run 19949755  return from measured, cell def | symbols 92, landings of its own 0
+           mother's answer: ( · insert and (: in "insert into t ( a , b ) values ( 4 , 'w' )": without "(": refused (near "4": syntax error); without "( )": refused (near "4": syntax error…
+        run 19949756  return from measured, cell def | symbols 85, landings of its own 0
+           mother's answer: ) · insert and ): in "insert into t ( a , b ) values ( 4 , 'w' )": without ")": refused (incomplete input); without "( )": refused (near "4": syntax error)
+        run 19949757  return from measured, cell def | symbols 95, landings of its own 0
+           mother's answer: , · insert and ,: in "insert into t ( a , b ) values ( 4 , 'w' )": without ",": refused (near "'w'": syntax error); without ", 'w'": refused (1 values for 2 col…
+
+=== 'define unknown : 1'  run 19949761: 9 runs, 515 hits, 0 born, 0 refused, 0.019 s at the door
+    kernel counters: runs +9, hops +14, hops_run +28, pastes +6, returns +0, deduped_runs +3, refused +0, shard_rows +0
+  run 19949761  typed from heard | symbols 7, landings of its own 5 | REPEAT of run 19939014: no landings, the kernel fires that run's recorded firings
+     hit at pos 0 on heard (before -, after define) shard 1: call 19937672 spawn None
+     hit at pos 1 on define (before -, after  ) shard 1931: call 1132 spawn None
+     run 19939014's recorded firings: 2 calls or spawns, 0 BUILD marks (every second one closes a span that mother runs)
+    run 19949762  call from said, replays run 19937672 | symbols 475, landings of its own 253 | REPEAT of run 19937687: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 26 , 1 , ( SELECT count ( * ) FROM …
+       run 19937687's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949763  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949764  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949765  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+    run 19949766  call from said, replays run 1132 | symbols 466, landings of its own 257 | REPEAT of run 19939019: no landings, the kernel fires that run's recorded firings
+       its line: BUILD INSERT OR REPLACE INTO run_sheet ( run , cell , state , value ) SELECT above , 23 , 1 , CAST ( ( SELECT group_conc…
+       run 19939019's recorded firings: 0 calls or spawns, 6 BUILD marks (every second one closes a span that mother runs)
+      run 19949767  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
+      run 19949768  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: 0
+      run 19949769  return from mother, cell reply | symbols 1, landings of its own 0
+         mother's answer: ok
