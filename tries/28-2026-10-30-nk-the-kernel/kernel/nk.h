@@ -119,7 +119,9 @@ void   cell_set(Brain *b, i64 run, int cell, int state, const char *value);   /*
 const char *cell_get(Brain *b, i64 run, int cell);                            /* state 1 and value not null, else NULL */
 void   line_in(Brain *b, int which, const char *text);     /* which: 0 input (heard), 1 third */
 void   secondary_in(Brain *b, i64 run, int cell, int gate, int about, const char *text, i64 src);
-const int *nk_seq(Brain *b, i64 run, int *n);               /* a run's symbols: held, or a replay's source, or re-cut from the source row */
+const int *nk_seq(Brain *b, i64 run, int *n);
+int nk_learn_text(Brain *b, const char *s);                     /* C27 back population: every symbol of a text given a gate under the encoder as it stands (label_new); the count born */
+int nk_merge(Brain *b, int h, int t, char *out, size_t cap);    /* C28 (the owner, 11-04 05:00): the hand laid neuron h merges into the neuron t of its word: shards (ids kept), node rows, memories, about, hits, arrived; the symbol of h names t */               /* a run's symbols: held, or a replay's source, or re-cut from the source row */
 int    nk_receipts(Brain *b, i64 run, Rc **out, int *kept);   /* a run's receipts: held, or re-hopped from its symbols (kept = 0) */
 const char *nk_source_text(int gate, i64 src);              /* nkio: the text of a source row (the source named by its gate) */
 void   replay_push(Brain *b, i64 parent, i64 source, int kind);          /* from a formula: made from the receipt being pasted */
