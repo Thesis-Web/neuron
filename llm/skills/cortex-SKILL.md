@@ -89,6 +89,20 @@ cortex senses plan|lecture|problems|reteach|test|quiz [--n k]   # the learner is
 
 The brain's side (lesson-senses C2) is the hp builder's sense work (RECALL-12 and what it rests on); on the Cortex copy it is not yet in place (sense rows yes, sense shards no, landings on the space gate); handed to the neuron builder through the neuron project 11-04 21:5x. Do not debug their lines; ask through the Cortex.
 
+## 2f. 11-09 (project rail; the owner 00:48: ok do it .. claude exec on the backside builds the tests and audits, so you are not checking your own work)
+
+Only an audited cortex check closes a checkpoint. A completes verdict, the parts together, an accept, the judgment by graph and the state verb now record "met" and leave the checkpoint working; the hydration says MET, NOT CLOSED. You never write a check and never close a checkpoint yourself.
+
+```
+cortex author <p> <n> [--model m]     # a claude exec turn on a copy of the work writes the check: a library program (hp2:~/cortex/work/checks/lib, stored once) plus variables, citations from the source db; or answers no check (handed back: not yet a checkpoint)
+cortex audit-check <p> <n>            # the check on the real work twice (fresh inputs: its inputs: line must differ), then on broken copies a codex exec turn made without seeing it, and on the work absent (empty folder / no brain on the port / empty report / target at nothing); every one caught or refused
+cortex prove <p> [n] [--done] [--box min]   # write + audit + run: kept, closed, reopened (check wrong), handed back (no check, refused, author and auditor disagree)
+cortex look <word> [<word>] [--source s]    # source db rows by word or pair, with path and line (read only): what an author cites
+CORTEX_PORT=7010 cortex jev <p ...> [--n k] # rail C6: our own jev in the judge brain (judge/judge-jev.sql, rules 5 and 6 on the test kernel) beside the python judge; decides nothing
+```
+
+Checks of the cortex's own work run `CORTEX_PORT=7010 python3 cortex.py ...` against the test brain (stale since its last refresh; its source db was empty on 11-09). Docs sources added 11-09 (rail C5): python-3.13-library, sqlite-3.46, hp2-man, gnu-bash, gnu-coreutils.
+
 ## 3. Register the work before building
 
 ```
