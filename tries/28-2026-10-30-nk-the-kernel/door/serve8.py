@@ -72,6 +72,8 @@ def from_bundle(sql, params):
     if s.startswith('SELECT arrival, about, min(id) FROM main.run'): return {'cols': [], 'rows': d['answ']}
     if s.startswith('SELECT run, count(*) FROM main.run_receipt'): return {'cols': [], 'rows': [[r[0], r[8]] for r in d['runs']]}
     if s.startswith('SELECT run, gate, shard, input FROM main.run_memory'): return {'cols': [], 'rows': d['memrows']}
+    if s.startswith('SELECT m.run, m.gate, m.shard, m.input FROM main.run_memory m JOIN main.run r'):
+        root = int(params[0]) if params else 0; roots = {r[0]: r[3] for r in d['runs']}; return {'cols': [], 'rows': [m for m in d['memrows'] if m[0] == root or roots.get(m[0]) == root]}
     if s.startswith('SELECT gate, x, y, z, moved FROM main.xyz'): return {'cols': [], 'rows': d.get('xyz', [])}   # the places of the included points (the xyz table is read by gate; the bundle carries them)
     if s.startswith('SELECT p.kind, f.pull, f.rest, f.dx, f.dy, f.dz, f.mode FROM main.pull p'): return {'cols': [], 'rows': d.get('formula', [])}
     if s.startswith("SELECT 'told', t.run,"):
@@ -142,8 +144,10 @@ class H(http.server.BaseHTTPRequestHandler):
             if u.path == '/api/run': return self.send(200, ask('run ' + (qs.get('schema', ['main'])[0]) + ' ' + str(int(qs.get('id', ['0'])[0]))))
             if u.path == '/api/info':
                 st = ask('stats'); return self.send(200, {'brain': 'nk main', 'sixth': 'nk sixth', 'sources': 'attached', 'sqlite': 'nk', 'started': STARTED, 'ready': True, 'error': None, 'busy': None, 'queued': 0, 'version': 'nk', 'stats': st})
+            if u.path == '/api/moved': return self.send(200, ask('moved ' + str(int(qs.get('since', ['0'])[0]))))   # the points the brain moved since a clock (the timeline's move receipts)
             if u.path == '/api/graph':
-                d = bundle(); return self.send(200, {'dna': d['dna'] + d['hit_dna'], 'nodes': d['nodes'], 'rel': d['rel'], 'xyz': d.get('xyz', []), 'formula': d.get('formula', []), 'tables': d['counts']['born'], 'mem': d['mem'], 'first': dict(d['first'], **{str(k): v for k, v in LIVE['first'].items()}), 'T': d['T'], 'dna_sent': d['counts']['dna_sent']})
+                if qs.get('fresh', ['0'])[0] == '1': BUNDLE['d'] = None
+                d = bundle(); return self.send(200, {'dna': d['dna'] + d['hit_dna'], 'nodes': d['nodes'], 'rel': d['rel'], 'xyz': d.get('xyz', []), 'formula': d.get('formula', []), 'clock': ((q('SELECT n FROM main.clock') or {}).get('rows') or [[0]])[0][0], 'tables': d['counts']['born'], 'mem': d['mem'], 'first': dict(d['first'], **{str(k): v for k, v in LIVE['first'].items()}), 'T': d['T'], 'dna_sent': d['counts']['dna_sent']})
             if u.path == '/api/lines': return self.send(200, read_lines())
             if u.path == '/api/job':
                 j = JOBS.get(int(qs.get('id', ['0'])[0])); return self.send(200, j) if j else self.send(404, {'error': 'no such job'})
